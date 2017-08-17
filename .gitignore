@@ -1,0 +1,7 @@
+pmplots.Rcheck
+*.tar.gz
+test-*.R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata

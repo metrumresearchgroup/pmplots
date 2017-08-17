@@ -1,0 +1,22 @@
+Package: pmplots
+Type: Package
+Title: Plots for Pharmacometrics
+Version: 0.0.1
+Authors@R: c(
+       person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
+       person("Metrum Research Group LLC", role =  c("cph"))
+       )
+Maintainer: Kyle Baron <kyleb@metrumrg.com>
+Description: Very light wrappers around 'ggplot2' plotting code tailored for pharmacometric applications.
+License: GPL (>=2)
+Encoding: UTF-8
+LazyData: true
+Imports: 
+  grDevices,
+  gridExtra,
+  grid,
+  gtable,
+  dplyr
+Suggests: GGally, testthat
+Depends: ggplot2
+RoxygenNote: 6.0.1

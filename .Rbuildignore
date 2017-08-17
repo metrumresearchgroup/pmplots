@@ -1,0 +1,8 @@
+^.*\.tar\.gz$
+Makefile
+^.*\.html$
+inst/img
+inst/examples
+^.*\.Rproj$
+^\.Rproj\.user$
+^docs$
