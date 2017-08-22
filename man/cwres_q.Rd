@@ -2,10 +2,16 @@
 % Please edit documentation in R/qq.R
 \name{cwres_q}
 \alias{cwres_q}
+\alias{wres_q}
+\alias{res_q}
 \title{QQ plot for conditional weighted residuals}
 \usage{
 cwres_q(df, x = "CWRES", xs = defx(), ys = defy(), abline = c(0, 1),
   ...)
+
+wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = c(0, 1), ...)
+
+res_q(df, x = "RES", xs = defx(), ys = defy(), abline = c(0, 1), ...)
 }
 \arguments{
 \item{df}{data frame to plot}

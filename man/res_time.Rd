@@ -5,6 +5,8 @@
 \alias{wres_time}
 \alias{cwres_time}
 \alias{cwres_tad}
+\alias{wres_tad}
+\alias{res_tad}
 \title{Plot residuals versus time}
 \usage{
 res_time(df, what = "Residual", xwhat = "Time", x = "TIME", y = "RES",
@@ -18,6 +20,12 @@ cwres_time(df, what = "Conditional weighted residual", x = "TIME",
 
 cwres_tad(df, what = "Conditional weighted residual",
   xwhat = "Time after dose", x = "TAD", y = "CWRES", ...)
+
+wres_tad(df, what = "Weighted residual", xwhat = "Time after dose",
+  x = "TAD", y = "WRES", ...)
+
+res_tad(df, what = "Residual", xwhat = "Time after dose", x = "TAD",
+  y = "RES", ...)
 }
 \arguments{
 \item{df}{data set to plot}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/box.R
 \name{boxwork}
 \alias{boxwork}
-\title{Make boxplots.}
+\title{Make boxplots}
 \usage{
 boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
   hline = NULL, title = NULL, ...)
@@ -29,5 +29,5 @@ boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
 \item{...}{not used}
 }
 \description{
-Make boxplots.
+Make boxplots
 }

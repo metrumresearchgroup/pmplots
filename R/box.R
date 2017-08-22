@@ -1,5 +1,5 @@
 
-##' Make boxplots.
+##' Make boxplots
 ##'
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
@@ -66,7 +66,7 @@ eta_cat <- function(df,x,y,hline=0,...) {
   return(out)
 }
 
-##' Plot CWRES versus categorical variable
+##' Plot residuals versus categorical variable
 ##'
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
@@ -79,7 +79,21 @@ eta_cat <- function(df,x,y,hline=0,...) {
 ##' cwres_cat(df, x="STUDYc//Study name")
 ##'
 ##' @export
-cwres_cat <- function(df,x,y="CWRES//Conditional weighted residuals",
+res_cat <- function(df,x,y="RES//Residual",
+                    hline=0,...) {
+  cont_cat(df,x,y,hline=hline,...)
+}
+
+##' @export
+##' @rdname res_cat
+wres_cat <- function(df,x,y="WRES//Weighted residual",
+                     hline=0,...) {
+  cont_cat(df,x,y,hline=hline,...)
+}
+
+##' @export
+##' @rdname res_cat
+cwres_cat <- function(df,x,y="CWRES//Conditional weighted residual",
                       hline=0,...) {
   cont_cat(df,x,y,hline=hline,...)
 }

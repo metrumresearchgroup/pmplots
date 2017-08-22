@@ -4,7 +4,7 @@
 \alias{dv_time}
 \title{Plot DV versus time}
 \usage{
-dv_time(df, x = "TIME", y = "DV", unit = "hours", what = NULL,
+dv_time(df, x = "TIME", y = "DV", xunit = "hr", what = NULL,
   group = "ID", xs = defx(), ys = defy(), log = FALSE, ...)
 }
 \arguments{
@@ -14,7 +14,7 @@ dv_time(df, x = "TIME", y = "DV", unit = "hours", what = NULL,
 
 \item{y}{character name for y-axis data}
 
-\item{unit}{time units; used to form x-axis label}
+\item{xunit}{time units; used to form x-axis label}
 
 \item{what}{used to form y-axis label}
 
