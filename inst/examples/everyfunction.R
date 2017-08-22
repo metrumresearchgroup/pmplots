@@ -51,16 +51,41 @@ dv_ipred(df, loglog=TRUE, what=.what)
 ##'
 ##' ### Residuals versus time (`res_time`)
 res_time(df)
+
+##' ### Residuals versus time after dose (`res_tad`)
+res_tad(df)
+
 ##' ### Residuals versus population predicted (`res_pred`)
 res_pred(df)
+
+##' ### RES versus continuous covariate (`res_cont`)
+res_cont(df, x="WT//Weight (kg)")
+
+##' ### RES by categorical covariate (`res_cat`)
+res_cat(df, x="STUDYc//Study type")
+
+##' ### RES QQ plot (`res_q`)
+res_q(df)
 
 ##' ## Weighted residuals
 ##'
 ##' ### Weighted residuals versus time (`wres_time`)
 wres_time(df)
 
+##' ### Weighted residuals versus time after dose (`wres_tad`)
+wres_tad(df)
+
 ##' ### Weighted esiduals versus population predicted (`wres_pred`)
 wres_pred(df)
+
+##' ### WRES versus continuous covariate (`wres_cont`)
+wres_cont(df, x="WT//Weight (kg)")
+
+##' ### WRES by categorical covariate (`wres_cat`)
+wres_cat(df, x="STUDYc//Study type")
+
+##' ### WRES QQ plot (`wres_q`)
+wres_q(df)
 
 ##' ## Conditional weighted residuals (CWRES)
 ##'
