@@ -67,13 +67,7 @@ dayx <- defx(breaks = seq(0,168,24))
 `col//title` specification
 ==========================
 
-This is a way to specify the column name for source data along with the axis label
-
-``` r
-col_label("CL//Clearance (L)")
-```
-
-    . [1] "CL"            "Clearance (L)"
+This is a way to specify the column name for source data along with the axis label col\_label("CL//Clearance (L)")
 
 Observed vs predicted
 =====================
@@ -85,7 +79,7 @@ Observed versus population predicted (`dv_pred`)
 dv_pred(df, yname = .yname)
 ```
 
-![](img/everyfunction--unnamed-chunk-5-1.png)
+![](img/everyfunction--unnamed-chunk-4-1.png)
 
 ### Observed versus population predicted - log/log
 
@@ -93,7 +87,7 @@ dv_pred(df, yname = .yname)
 dv_pred(df,loglog=TRUE, yname = .yname)
 ```
 
-![](img/everyfunction--unnamed-chunk-6-1.png)
+![](img/everyfunction--unnamed-chunk-5-1.png)
 
 Observed versus individual predicted (`dv_ipred`)
 -------------------------------------------------
@@ -102,7 +96,7 @@ Observed versus individual predicted (`dv_ipred`)
 dv_ipred(df, what=.what)
 ```
 
-![](img/everyfunction--unnamed-chunk-7-1.png)
+![](img/everyfunction--unnamed-chunk-6-1.png)
 
 ### Observed versus individual predicted - log/log
 
@@ -110,7 +104,7 @@ dv_ipred(df, what=.what)
 dv_ipred(df, loglog=TRUE, yname = .yname)
 ```
 
-![](img/everyfunction--unnamed-chunk-8-1.png)
+![](img/everyfunction--unnamed-chunk-7-1.png)
 
 Residual plots
 ==============
@@ -124,7 +118,7 @@ Residuals
 res_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-9-1.png)
+![](img/everyfunction--unnamed-chunk-8-1.png)
 
 ### Residuals versus time after dose (`res_tad`)
 
@@ -132,7 +126,7 @@ res_time(df)
 res_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-10-1.png)
+![](img/everyfunction--unnamed-chunk-9-1.png)
 
 ### Residuals versus population predicted (`res_pred`)
 
@@ -140,7 +134,7 @@ res_tad(df)
 res_pred(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-11-1.png)
+![](img/everyfunction--unnamed-chunk-10-1.png)
 
 ### RES versus continuous covariate (`res_cont`)
 
@@ -148,7 +142,7 @@ res_pred(df)
 res_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-12-1.png)
+![](img/everyfunction--unnamed-chunk-11-1.png)
 
 ### RES by categorical covariate (`res_cat`)
 
@@ -156,7 +150,7 @@ res_cont(df, x="WT//Weight (kg)")
 res_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/everyfunction--unnamed-chunk-13-1.png)
+![](img/everyfunction--unnamed-chunk-12-1.png)
 
 ### RES QQ plot (`res_q`)
 
@@ -164,7 +158,7 @@ res_cat(df, x="STUDYc//Study type")
 res_q(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-14-1.png)
+![](img/everyfunction--unnamed-chunk-13-1.png)
 
 Weighted residuals
 ------------------
@@ -172,10 +166,10 @@ Weighted residuals
 ### Weighted residuals versus time (`wres_time`)
 
 ``` r
-wres_time(df)
+wres_time(df) 
 ```
 
-![](img/everyfunction--unnamed-chunk-15-1.png)
+![](img/everyfunction--unnamed-chunk-14-1.png)
 
 ### Weighted residuals versus time after dose (`wres_tad`)
 
@@ -183,7 +177,7 @@ wres_time(df)
 wres_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-16-1.png)
+![](img/everyfunction--unnamed-chunk-15-1.png)
 
 ### Weighted esiduals versus population predicted (`wres_pred`)
 
@@ -191,7 +185,7 @@ wres_tad(df)
 wres_pred(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-17-1.png)
+![](img/everyfunction--unnamed-chunk-16-1.png)
 
 ### WRES versus continuous covariate (`wres_cont`)
 
@@ -199,7 +193,7 @@ wres_pred(df)
 wres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-18-1.png)
+![](img/everyfunction--unnamed-chunk-17-1.png)
 
 ### WRES by categorical covariate (`wres_cat`)
 
@@ -207,7 +201,7 @@ wres_cont(df, x="WT//Weight (kg)")
 wres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/everyfunction--unnamed-chunk-19-1.png)
+![](img/everyfunction--unnamed-chunk-18-1.png)
 
 ### WRES QQ plot (`wres_q`)
 
@@ -215,7 +209,7 @@ wres_cat(df, x="STUDYc//Study type")
 wres_q(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-20-1.png)
+![](img/everyfunction--unnamed-chunk-19-1.png)
 
 Conditional weighted residuals (CWRES)
 --------------------------------------
@@ -226,7 +220,7 @@ Conditional weighted residuals (CWRES)
 cwres_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-21-1.png)
+![](img/everyfunction--unnamed-chunk-20-1.png)
 
 ### CWRES versus time after dose (`cwres_tad`)
 
@@ -234,7 +228,7 @@ cwres_time(df)
 cwres_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-22-1.png)
+![](img/everyfunction--unnamed-chunk-21-1.png)
 
 ### CWRES versus continuous covariate (`cwres_cont`)
 
@@ -242,12 +236,18 @@ cwres_tad(df)
 cwres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-23-1.png)
+![](img/everyfunction--unnamed-chunk-22-1.png)
 
 ### CWRES by categorical covariate (`cwres_cat`)
 
 ``` r
 cwres_cat(df, x="STUDYc//Study type")
+```
+
+![](img/everyfunction--unnamed-chunk-23-1.png)
+
+``` r
+cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 ```
 
 ![](img/everyfunction--unnamed-chunk-24-1.png)

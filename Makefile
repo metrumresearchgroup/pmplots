@@ -6,7 +6,7 @@ PKGDIR=.
 CHKDIR=.
 
 everyfun:
-	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.R")'
+	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.Rmd")'
 
 readme:
 	Rscript -e 'library(rmarkdown)' -e 'render("README.R")'

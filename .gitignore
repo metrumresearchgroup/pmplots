@@ -1,3 +1,4 @@
+test*.R
 pmplots.Rcheck
 *.tar.gz
 test-*.R
