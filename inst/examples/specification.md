@@ -29,7 +29,6 @@ than "Weighted residuals")
 - Legend is located at the top of the plot
 - x scales are modified 
 
-
 # Plot specifictions
 
 ## Any plot
