@@ -45,6 +45,9 @@ Plot residuals versus time
 By default, the time unit is assumed
 to be hours (\code{hr}).  See the \code{xunit} argument
 to \code{\link{y_time}} to change the time unit.
+
+See the \code{xby} argument to \code{\link{y_time}} for a
+convenient way to change the breaks for the x-axis (time).
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
@@ -52,6 +55,8 @@ df <- dplyr::filter(superset2(), EVID==0)
 cwres_time(df)
 
 cwres_time(df, xunit="day")
+
+wres_time(df, xby=48)
 
 }
 \seealso{

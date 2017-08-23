@@ -15,7 +15,6 @@ Available functions
         -   [Residuals versus population predicted (`res_pred`)](#residuals-versus-population-predicted-res_pred)
         -   [RES versus continuous covariate (`res_cont`)](#res-versus-continuous-covariate-res_cont)
         -   [RES by categorical covariate (`res_cat`)](#res-by-categorical-covariate-res_cat)
-        -   [RES QQ plot (`res_q`)](#res-qq-plot-res_q)
     -   [Weighted residuals](#weighted-residuals)
         -   [Weighted residuals versus time (`wres_time`)](#weighted-residuals-versus-time-wres_time)
         -   [Weighted residuals versus time after dose (`wres_tad`)](#weighted-residuals-versus-time-after-dose-wres_tad)
@@ -152,14 +151,6 @@ res_cat(df, x="STUDYc//Study type")
 
 ![](img/everyfunction--unnamed-chunk-12-1.png)
 
-### RES QQ plot (`res_q`)
-
-``` r
-res_q(df)
-```
-
-![](img/everyfunction--unnamed-chunk-13-1.png)
-
 Weighted residuals
 ------------------
 
@@ -169,7 +160,7 @@ Weighted residuals
 wres_time(df) 
 ```
 
-![](img/everyfunction--unnamed-chunk-14-1.png)
+![](img/everyfunction--unnamed-chunk-13-1.png)
 
 ### Weighted residuals versus time after dose (`wres_tad`)
 
@@ -177,7 +168,7 @@ wres_time(df)
 wres_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-15-1.png)
+![](img/everyfunction--unnamed-chunk-14-1.png)
 
 ### Weighted esiduals versus population predicted (`wres_pred`)
 
@@ -185,7 +176,7 @@ wres_tad(df)
 wres_pred(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-16-1.png)
+![](img/everyfunction--unnamed-chunk-15-1.png)
 
 ### WRES versus continuous covariate (`wres_cont`)
 
@@ -193,7 +184,7 @@ wres_pred(df)
 wres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-17-1.png)
+![](img/everyfunction--unnamed-chunk-16-1.png)
 
 ### WRES by categorical covariate (`wres_cat`)
 
@@ -201,7 +192,7 @@ wres_cont(df, x="WT//Weight (kg)")
 wres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/everyfunction--unnamed-chunk-18-1.png)
+![](img/everyfunction--unnamed-chunk-17-1.png)
 
 ### WRES QQ plot (`wres_q`)
 
@@ -209,7 +200,7 @@ wres_cat(df, x="STUDYc//Study type")
 wres_q(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-19-1.png)
+![](img/everyfunction--unnamed-chunk-18-1.png)
 
 Conditional weighted residuals (CWRES)
 --------------------------------------
@@ -220,7 +211,7 @@ Conditional weighted residuals (CWRES)
 cwres_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-20-1.png)
+![](img/everyfunction--unnamed-chunk-19-1.png)
 
 ### CWRES versus time after dose (`cwres_tad`)
 
@@ -228,7 +219,7 @@ cwres_time(df)
 cwres_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-21-1.png)
+![](img/everyfunction--unnamed-chunk-20-1.png)
 
 ### CWRES versus continuous covariate (`cwres_cont`)
 
@@ -236,7 +227,7 @@ cwres_tad(df)
 cwres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-22-1.png)
+![](img/everyfunction--unnamed-chunk-21-1.png)
 
 ### CWRES by categorical covariate (`cwres_cat`)
 
@@ -244,13 +235,13 @@ cwres_cont(df, x="WT//Weight (kg)")
 cwres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/everyfunction--unnamed-chunk-23-1.png)
+![](img/everyfunction--unnamed-chunk-22-1.png)
 
 ``` r
 cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 ```
 
-![](img/everyfunction--unnamed-chunk-24-1.png)
+![](img/everyfunction--unnamed-chunk-23-1.png)
 
 ### CWRES versus population predicted (`cwres_pred`)
 
@@ -258,7 +249,7 @@ cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 cwres_pred(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-25-1.png)
+![](img/everyfunction--unnamed-chunk-24-1.png)
 
 ### CWRES QQ plot (`cwres_q`)
 
@@ -266,7 +257,7 @@ cwres_pred(df)
 cwres_q(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-26-1.png)
+![](img/everyfunction--unnamed-chunk-25-1.png)
 
 ETA plots
 =========
@@ -283,7 +274,7 @@ p <- eta_cont(df, x="WT//Weight (kg)",y=etas)
 mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-28-1.png)
+![](img/everyfunction--unnamed-chunk-27-1.png)
 
 ETA by categorical covariates (`eta_cat`)
 -----------------------------------------
@@ -296,7 +287,7 @@ p <- eta_cat(df, x="STUDYc//Study type", y=etas)
 mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-30-1.png)
+![](img/everyfunction--unnamed-chunk-29-1.png)
 
 ETA histograms (`eta_hist`)
 ---------------------------
@@ -310,7 +301,7 @@ p <- eta_hist(df,etas, bins=10)
 mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-32-1.png)
+![](img/everyfunction--unnamed-chunk-31-1.png)
 
 DV versus time (`dv_time`)
 ==========================
@@ -322,7 +313,7 @@ Basic plot
 dv_time(df, yname = .yname)
 ```
 
-![](img/everyfunction--unnamed-chunk-33-1.png)
+![](img/everyfunction--unnamed-chunk-32-1.png)
 
 Faceted
 -------
@@ -332,7 +323,7 @@ dv_time(df, yname="NoDoze (ng/mL)") +
   facet_wrap(~DOSE, scales="free_x")
 ```
 
-![](img/everyfunction--unnamed-chunk-34-1.png)
+![](img/everyfunction--unnamed-chunk-33-1.png)
 
 Colored
 -------
@@ -342,7 +333,7 @@ dv_time(df, yname="NoDoze (ng/mL)", col="STUDYc") +
   facet_wrap(~DOSE, scales="free")
 ```
 
-![](img/everyfunction--unnamed-chunk-35-1.png)
+![](img/everyfunction--unnamed-chunk-34-1.png)
 
 log-Scale
 ---------
@@ -352,7 +343,7 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
   facet_wrap(~STUDYc)
 ```
 
-![](img/everyfunction--unnamed-chunk-36-1.png)
+![](img/everyfunction--unnamed-chunk-35-1.png)
 
 Data summary
 ============
@@ -364,7 +355,7 @@ Continuous variable by categorical variable (`cont_cat`)
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-37-1.png)
+![](img/everyfunction--unnamed-chunk-36-1.png)
 
 Split and plot (`split_plot`)
 -----------------------------
@@ -377,7 +368,7 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 mrggdraw(p, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-39-1.png)
+![](img/everyfunction--unnamed-chunk-38-1.png)
 
 Plot output (`mrggsave`)
 ========================
@@ -413,4 +404,4 @@ Arrange multiple plots on a single page
 mrggdraw(list(p1,p2,p3,p4), arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-44-1.png)
+![](img/everyfunction--unnamed-chunk-43-1.png)

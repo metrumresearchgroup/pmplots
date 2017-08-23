@@ -90,10 +90,6 @@ res_cont(df, x="WT//Weight (kg)")
 res_cat(df, x="STUDYc//Study type")
 ```
 
-### RES QQ plot (`res_q`)
-```{r}
-res_q(df)
-```
 
 ## Weighted residuals
 

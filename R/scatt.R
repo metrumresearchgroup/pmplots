@@ -115,6 +115,7 @@ dv_ipred <- function(df, y = "IPRED",...) {
 ##' @param ys see \code{\link{defy}}
 ##' @param group passed to \code{\link{scatt}}
 ##' @param log if \code{TRUE}, y-axis will be log-transformed
+##' @param xby interval for x-axis breaks
 ##' @param ... passed to \code{\link{scatt}}
 ##'
 ##' @examples
@@ -129,7 +130,7 @@ dv_ipred <- function(df, y = "IPRED",...) {
 ##' @export
 dv_time <- function(df, x="TIME", y="DV", xunit="hr",
                     yname = NULL, group="ID",
-                    xs=defx(), ys=defy(), log=FALSE,...) {
+                    xs=defx(), ys=defy(), log=FALSE, xby = NULL, ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
@@ -148,6 +149,10 @@ dv_time <- function(df, x="TIME", y="DV", xunit="hr",
       ys$breaks <- logbr()
     }
   }
+  if(is.numeric(xby)) {
+    xs$breaks <- seq(0,max(df[,x]),xby)
+  }
+
   scatt(df,x,y,xs=xs,ys=ys,smooth=FALSE,group=group,...)
 }
 
@@ -250,12 +255,17 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' to be hours (\code{hr}).  See the \code{xunit} argument
 ##' to \code{\link{y_time}} to change the time unit.
 ##'
+##' See the \code{xby} argument to \code{\link{y_time}} for a
+##' convenient way to change the breaks for the x-axis (time).
+##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
 ##'
 ##' cwres_time(df)
 ##'
 ##' cwres_time(df, xunit="day")
+##'
+##' wres_time(df, xby=48)
 ##'
 ##' @export
 res_time <- function(df,
@@ -318,6 +328,7 @@ res_tad <- function(df,
 ##' @param xname used to form x-axis title
 ##' @param xunit used to form x-axis title
 ##' @param log if \code{TRUE}, y-axis will be log-transformed
+##' @param xby interval for breaks on x-axis (time)
 ##' @param ... passed to \code{\link{scatt}}
 ##'
 ##' @details
@@ -327,7 +338,7 @@ y_time <- function(df, x="TIME", y,
                    xname="Time", xunit="hr",
                    yname = NULL,
                    xs = defx(), ys = defy(),
-                   log=FALSE, ...) {
+                   log=FALSE, xby = NULL, ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
@@ -335,11 +346,17 @@ y_time <- function(df, x="TIME", y,
   xs$name <- paste0(xname, " (",xunit,")")
   ys$name <- yname
 
+  if(is.numeric(xby)) {
+    xs$breaks <- seq(0,max(df[,x]),xby)
+  }
+
   if(log) {
     ys$trans <- "log"
     ys$breaks <- logbr3()
   }
+
   scatt(df, x, y, xs=xs, ys=ys, ...)
+
 }
 
 

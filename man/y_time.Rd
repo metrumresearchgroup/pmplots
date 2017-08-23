@@ -5,7 +5,7 @@
 \title{Plot continuous data versus time.}
 \usage{
 y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
-  xs = defx(), ys = defy(), log = FALSE, ...)
+  xs = defx(), ys = defy(), log = FALSE, xby = NULL, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -25,6 +25,8 @@ y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
 \item{ys}{see \code{\link{defy}}}
 
 \item{log}{if \code{TRUE}, y-axis will be log-transformed}
+
+\item{xby}{interval for breaks on x-axis (time)}
 
 \item{...}{passed to \code{\link{scatt}}}
 }

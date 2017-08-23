@@ -5,7 +5,8 @@
 \title{Plot DV versus time}
 \usage{
 dv_time(df, x = "TIME", y = "DV", xunit = "hr", yname = NULL,
-  group = "ID", xs = defx(), ys = defy(), log = FALSE, ...)
+  group = "ID", xs = defx(), ys = defy(), log = FALSE, xby = NULL,
+  ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -25,6 +26,8 @@ dv_time(df, x = "TIME", y = "DV", xunit = "hr", yname = NULL,
 \item{ys}{see \code{\link{defy}}}
 
 \item{log}{if \code{TRUE}, y-axis will be log-transformed}
+
+\item{xby}{interval for x-axis breaks}
 
 \item{...}{passed to \code{\link{scatt}}}
 }

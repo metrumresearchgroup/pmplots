@@ -1,5 +1,6 @@
 
 
+
 ##' QQ plot for conditional residuals
 ##'
 ##' @param df data frame to plot
@@ -16,10 +17,10 @@
 ##' cwres_q(df)
 ##'
 ##' @export
-res_q <- function(df, x="RES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
+wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
   require_numeric(df,x)
-  xs$name <- "Standard normal quantiles"
-  ys$name <- paste0(x, " distribution quantiles")
+  xs$name <- "Standard normal quantile"
+  ys$name <- paste0(x, " distribution quantile")
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   p <- ggplot(data=df, aes_string(sample=x))
@@ -32,15 +33,9 @@ res_q <- function(df, x="RES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
 }
 
 ##' @export
-##' @rdname res_q
-wres_q<- function(df, x="WRES",  ...) {
-  res_q(df, x, ...)
-}
-
-##' @export
-##' @rdname res_q
-cwres_q<- function(df, x="CWRES", ...) {
-  res_q(df, x, ...)
+##' @rdname wres_q
+cwres_q <- function(df, x="CWRES", ...) {
+  wres_q(df, x, ...)
 }
 
 
