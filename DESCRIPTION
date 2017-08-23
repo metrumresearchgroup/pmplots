@@ -16,7 +16,8 @@ Imports:
   gridExtra,
   grid,
   gtable,
-  dplyr
+  dplyr,
+  rlang
 Suggests: GGally, testthat
 Depends: ggplot2
 RoxygenNote: 6.0.1

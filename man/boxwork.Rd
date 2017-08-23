@@ -5,7 +5,7 @@
 \title{Make boxplots}
 \usage{
 boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
-  hline = NULL, title = NULL, ...)
+  hline = NULL, title = NULL, shown = TRUE, ...)
 }
 \arguments{
 \item{df}{data frame to plot}

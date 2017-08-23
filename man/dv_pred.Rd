@@ -36,6 +36,9 @@ Plot DV versus predicted values
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
+
 dv_pred(df)
+
+dv_ipred(df, yname="MyDrug (ng/mL)")
 
 }

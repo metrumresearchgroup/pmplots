@@ -5,6 +5,7 @@
 ##' @importFrom ggplot2 geom_abline geom_hline margin
 ##' @importFrom ggplot2 stat_qq facet_wrap geom_histogram scale_color_brewer
 ##' @importFrom stats as.formula qnorm
+##' @importFrom rlang sym
 ##'
 NULL
 

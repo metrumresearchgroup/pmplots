@@ -33,7 +33,11 @@ Plot DV versus time
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
-dv_time(df)
+
+dv_time(df, yname="MyDrug (ng/mL)")
+
+dv_time(df, yname="MyDrug (ng/mL)", xunit="day")
+
 dv_time(df, log=TRUE, col="STUDYc")
 
 }

@@ -10,12 +10,21 @@
 ##' @param alpha passed to \code{geom_boxplot}
 ##' @param hline used to draw horizontal reference line
 ##' @param title passed to \code{ggtitle}
+##' @param shown if \code{TRUE} numbers in each box are shown below tick labels
 ##' @param ... not used
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
-                    alpha=1, hline = NULL, title=NULL, ...) {
+                    alpha=1, hline = NULL, title=NULL, shown = TRUE, ...) {
+
+  if(shown) {
+    .sum <- as.data.frame(dplyr::count(df, !! rlang::sym(x)))
+    xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"])
+  }
+
   yscale <- do.call("scale_y_continuous", ys)
   xscale <- do.call("scale_x_discrete", xs)
+
+
   p <- ggplot(data=df, aes_string(x=x,y=y))
   p <- p + geom_boxplot(fill=fill, alpha=alpha) + yscale + xscale
   if(is.numeric(hline)) {

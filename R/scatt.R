@@ -55,7 +55,10 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
+##'
 ##' dv_pred(df)
+##'
+##' dv_ipred(df, yname="MyDrug (ng/mL)")
 ##'
 ##' @export
 dv_pred <- function(df, x="DV", y="PRED", xname="value", yname=xname,
@@ -116,7 +119,11 @@ dv_ipred <- function(df, y = "IPRED",...) {
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
-##' dv_time(df)
+##'
+##' dv_time(df, yname="MyDrug (ng/mL)")
+##'
+##' dv_time(df, yname="MyDrug (ng/mL)", xunit="day")
+##'
 ##' dv_time(df, log=TRUE, col="STUDYc")
 ##'
 ##' @export
@@ -146,13 +153,22 @@ dv_time <- function(df, x="TIME", y="DV", xunit="hr",
 
 ##' Plot continuous variable versus continuous variable
 ##'
+##' This function is primarily called by other functions.
+##'
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
 ##' @param y character col//title for y-axis data; ; see \code{\link{col_label}}
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param ... passed to \code{\link{scatt}}
+##'
 ##' @seealso \code{\link{scatt}}
+##'
+##' @examples
+##' df <- dplyr::filter(superset2(), EVID==0)
+##'
+##' cont_cont(df, x="WT//Weight (kg)", y="HT//Height (cm)")
+##'
 ##' @export
 cont_cont <- function(df, x, y, xs = defx(), ys=defy(),...) {
   y <- col_label(y)
@@ -227,11 +243,19 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' @param xname used for x-axis label
 ##' @param yname used for y-axis label
 ##' @param ... passed to \code{\link{y_time}}
+##'
 ##' @seealso \code{\link{y_time}}
+##'
+##' @details By default, the time unit is assumed
+##' to be hours (\code{hr}).  See the \code{xunit} argument
+##' to \code{\link{y_time}} to change the time unit.
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
+##'
 ##' cwres_time(df)
+##'
+##' cwres_time(df, xunit="day")
 ##'
 ##' @export
 res_time <- function(df,
@@ -295,6 +319,10 @@ res_tad <- function(df,
 ##' @param xunit used to form x-axis title
 ##' @param log if \code{TRUE}, y-axis will be log-transformed
 ##' @param ... passed to \code{\link{scatt}}
+##'
+##' @details
+##' When the y-axis label needs a unit, include it in
+##' the \code{yname} specification.
 y_time <- function(df, x="TIME", y,
                    xname="Time", xunit="hr",
                    yname = NULL,
@@ -322,41 +350,43 @@ y_time <- function(df, x="TIME", y,
 ##' @param y character naem for y-axis data
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
-##' @param yname used to form y-axis label
+##' @param xname used to form x-axis label
 ##' @param ... passed to \code{\link{scatt}}
 ##'
 ##' @examples
+##'
 ##' df <- dplyr::filter(superset2(), EVID==0)
-##' cwres_pred(df)
+##'
+##' cwres_pred(df, xname="MyDrug (ng/mL)")
 ##'
 ##' @export
 res_pred <- function(df, x="PRED", y="RES", xs=defx(), ys=defy(),
-                     yname="value", ...) {
+                     xname="value", ...) {
   require_numeric(df,x)
   require_numeric(df,y)
-  xs$name <- paste0("Population predicted ", yname)
+  xs$name <- paste0("Population predicted ", xname)
   ys$name <- "Residual"
-  scatt(df,x,y,xs,ys,...)
+  scatt(df, x, y, xs, ys, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
 cwres_pred <- function(df, x="PRED", y="CWRES", xs=defx(), ys=defy(),
-                       yname="value",...) {
+                       xname="value",...) {
   require_numeric(df,x)
   require_numeric(df,y)
-  xs$name <- paste0("Population predicted ", yname)
+  xs$name <- paste0("Population predicted ", xname)
   ys$name <- "Conditional weighted residual"
-  scatt(df,x,y,xs,ys,...)
+  scatt(df, x, y, xs, ys, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
 wres_pred <- function(df, x="PRED", y="WRES", xs=defx(), ys=defy(),
-                      yname="value",...) {
+                      xname="value", ...) {
   require_numeric(df,x)
   require_numeric(df,y)
-  xs$name <- paste0("Population predicted ", yname)
+  xs$name <- paste0("Population predicted ", xname)
   ys$name <- "Weighted residual"
-  scatt(df,x,y,xs,ys,...)
+  scatt(df, x, y, xs, ys, ...)
 }

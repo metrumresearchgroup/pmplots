@@ -7,13 +7,13 @@
 \title{Residuals versus predicted values}
 \usage{
 res_pred(df, x = "PRED", y = "RES", xs = defx(), ys = defy(),
-  yname = "value", ...)
+  xname = "value", ...)
 
 cwres_pred(df, x = "PRED", y = "CWRES", xs = defx(), ys = defy(),
-  yname = "value", ...)
+  xname = "value", ...)
 
 wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
-  yname = "value", ...)
+  xname = "value", ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -26,7 +26,7 @@ wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{yname}{used to form y-axis label}
+\item{xname}{used to form x-axis label}
 
 \item{...}{passed to \code{\link{scatt}}}
 }
@@ -34,7 +34,9 @@ wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
 Residuals versus predicted values
 }
 \examples{
+
 df <- dplyr::filter(superset2(), EVID==0)
-cwres_pred(df)
+
+cwres_pred(df, xname="MyDrug (ng/mL)")
 
 }

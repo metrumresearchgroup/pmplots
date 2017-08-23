@@ -34,7 +34,13 @@ res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
 \item{...}{passed to \code{\link{scatt}}}
 }
 \description{
-Plot continuous variable versus continuous variable
+This function is primarily called by other functions.
+}
+\examples{
+df <- dplyr::filter(superset2(), EVID==0)
+
+cont_cont(df, x="WT//Weight (kg)", y="HT//Height (cm)")
+
 }
 \seealso{
 \code{\link{scatt}}

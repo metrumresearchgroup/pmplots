@@ -41,9 +41,17 @@ res_tad(df, yname = "Residual", xname = "Time after dose", x = "TAD",
 \description{
 Plot residuals versus time
 }
+\details{
+By default, the time unit is assumed
+to be hours (\code{hr}).  See the \code{xunit} argument
+to \code{\link{y_time}} to change the time unit.
+}
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
+
 cwres_time(df)
+
+cwres_time(df, xunit="day")
 
 }
 \seealso{
