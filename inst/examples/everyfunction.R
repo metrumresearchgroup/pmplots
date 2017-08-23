@@ -101,6 +101,8 @@ cwres_cont(df, x="WT//Weight (kg)")
 ##' ### CWRES by categorical covariate (`cwres_cat`)
 cwres_cat(df, x="STUDYc//Study type")
 
+cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
+
 ##' ### CWRES versus population predicted (`cwres_pred`)
 cwres_pred(df)
 
