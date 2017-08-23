@@ -20,7 +20,7 @@
 ##'
 ##' @export
 cwres_q<- function(df, x="CWRES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
-  require_column(df,x)
+  require_numeric(df,x)
   xs$name <- "Standard normal quantiles"
   ys$name <- paste0(x, " distribution quantiles")
   xscale <- do.call("scale_x_continuous", xs)
@@ -37,7 +37,7 @@ cwres_q<- function(df, x="CWRES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
 ##' @export
 ##' @rdname cwres_q
 wres_q<- function(df, x="WRES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
-  require_column(df,x)
+  require_numeric(df,x)
   xs$name <- "Standard normal quantiles"
   ys$name <- paste0(x, " distribution quantiles")
   xscale <- do.call("scale_x_continuous", xs)
@@ -54,7 +54,7 @@ wres_q<- function(df, x="WRES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
 ##' @export
 ##' @rdname cwres_q
 res_q<- function(df, x="RES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
-  require_column(df,x)
+  require_numeric(df,x)
   xs$name <- "Standard normal quantiles"
   ys$name <- paste0(x, " distribution quantiles")
   xscale <- do.call("scale_x_continuous", xs)

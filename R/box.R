@@ -12,9 +12,8 @@
 ##' @param title passed to \code{ggtitle}
 ##' @param ... not used
 ##' @export
-boxwork <- function(df,x,y,xs=defcx(),ys=defy(),fill="white",
+boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
                     alpha=1, hline = NULL, title=NULL, ...) {
-  if(is.numeric(df[,x])) df[,x] <- factor(df[,x])
   yscale <- do.call("scale_y_continuous", ys)
   xscale <- do.call("scale_x_discrete", xs)
   p <- ggplot(data=df, aes_string(x=x,y=y))
@@ -47,6 +46,8 @@ cont_cat <- function(df, x, y, xs=defcx(), ys = defy(),...) {
   if(length(x)!=2) stop("invalid x value", call.=FALSE)
   y <- col_label(y)
   if(length(x)!=2) stop("invalid y value", call.=FALSE)
+  require_numeric(df,y[1])
+  require_discrete(df,x[1])
   xs$name <- x[2]
   ys$name <- y[2]
   boxwork(df,x[1],y[1],xs,ys,...)
@@ -54,13 +55,13 @@ cont_cat <- function(df, x, y, xs=defcx(), ys = defy(),...) {
 
 ##' @export
 ##' @rdname cont_cat
-eta_cat <- function(df,x,y,hline=0,...) {
+eta_cat <- function(df, x, y, hline=0, ...) {
   out <- vector(mode="list", length=length(y))
   xx <- col_label(x)
-  require_column(df,xx[1])
+  require_discrete(df,xx[1])
   for(i in seq_along(y)) {
     yy <- col_label(y[i])
-    require_column(df, yy[1])
+    require_numeric(df, yy[1])
     out[[i]] <- cont_cat(df,x,y[i],hline=hline,...)
   }
   return(out)
@@ -79,22 +80,22 @@ eta_cat <- function(df,x,y,hline=0,...) {
 ##' cwres_cat(df, x="STUDYc//Study name")
 ##'
 ##' @export
-res_cat <- function(df,x,y="RES//Residual",
-                    hline=0,...) {
+res_cat <- function(df, x, y="RES//Residual",
+                    hline=0, ...) {
   cont_cat(df,x,y,hline=hline,...)
 }
 
 ##' @export
 ##' @rdname res_cat
-wres_cat <- function(df,x,y="WRES//Weighted residual",
-                     hline=0,...) {
+wres_cat <- function(df, x, y="WRES//Weighted residual",
+                     hline=0, ...) {
   cont_cat(df,x,y,hline=hline,...)
 }
 
 ##' @export
 ##' @rdname res_cat
-cwres_cat <- function(df,x,y="CWRES//Conditional weighted residual",
-                      hline=0,...) {
+cwres_cat <- function(df, x, y="CWRES//Conditional weighted residual",
+                      hline=0, ...) {
   cont_cat(df,x,y,hline=hline,...)
 }
 

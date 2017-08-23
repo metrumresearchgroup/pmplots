@@ -61,7 +61,7 @@ df <- superset2() %>% filter(EVID==0)
 id <- distinct(df, ID, .keep_all=TRUE)
 
 dayx <- defx(breaks = seq(0,168,24))
-.what <- "NoDoz (ng/mL)"
+.yname <- "NoDoz (ng/mL)"
 ```
 
 `col//title` specification
@@ -82,7 +82,7 @@ Observed versus population predicted (`dv_pred`)
 ------------------------------------------------
 
 ``` r
-dv_pred(df, what=.what)
+dv_pred(df, yname = .yname)
 ```
 
 ![](img/everyfunction--unnamed-chunk-5-1.png)
@@ -90,7 +90,7 @@ dv_pred(df, what=.what)
 ### Observed versus population predicted - log/log
 
 ``` r
-dv_pred(df,loglog=TRUE, what=.what)
+dv_pred(df,loglog=TRUE, yname = .yname)
 ```
 
 ![](img/everyfunction--unnamed-chunk-6-1.png)
@@ -107,7 +107,7 @@ dv_ipred(df, what=.what)
 ### Observed versus individual predicted - log/log
 
 ``` r
-dv_ipred(df, loglog=TRUE, what=.what)
+dv_ipred(df, loglog=TRUE, yname = .yname)
 ```
 
 ![](img/everyfunction--unnamed-chunk-8-1.png)
@@ -319,7 +319,7 @@ Basic plot
 ----------
 
 ``` r
-dv_time(df, what=.what)
+dv_time(df, yname = .yname)
 ```
 
 ![](img/everyfunction--unnamed-chunk-33-1.png)
@@ -328,7 +328,7 @@ Faceted
 -------
 
 ``` r
-dv_time(df, what="NoDoze (ng/mL)") +
+dv_time(df, yname="NoDoze (ng/mL)") +
   facet_wrap(~DOSE, scales="free_x")
 ```
 
@@ -338,7 +338,7 @@ Colored
 -------
 
 ``` r
-dv_time(df, what="NoDoze (ng/mL)", col="STUDYc") +
+dv_time(df, yname="NoDoze (ng/mL)", col="STUDYc") +
   facet_wrap(~DOSE, scales="free")
 ```
 
@@ -348,7 +348,7 @@ log-Scale
 ---------
 
 ``` r
-dv_time(df, what="NoDoze (ng/mL)", log=TRUE) +
+dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
   facet_wrap(~STUDYc)
 ```
 

@@ -4,8 +4,8 @@
 \alias{y_time}
 \title{Plot continuous data versus time.}
 \usage{
-y_time(df, x = "TIME", y, what, xunit = "hr", xs = defx(), ys = defy(),
-  xwhat = "Time", log = FALSE, ...)
+y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
+  xs = defx(), ys = defy(), log = FALSE, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -14,15 +14,15 @@ y_time(df, x = "TIME", y, what, xunit = "hr", xs = defx(), ys = defy(),
 
 \item{y}{character name for y-axis data}
 
-\item{what}{used to form y-axis title}
+\item{xname}{used to form x-axis title}
 
-\item{xunit}{time unit, used to for x-axis label}
+\item{xunit}{used to form x-axis title}
+
+\item{yname}{used to form y-axis title}
 
 \item{xs}{see \code{\link{defx}}}
 
 \item{ys}{see \code{\link{defy}}}
-
-\item{xwhat}{used to form y-axis title}
 
 \item{log}{if \code{TRUE}, y-axis will be log-transformed}
 

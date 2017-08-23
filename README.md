@@ -16,7 +16,7 @@ Simple function calls
 ---------------------
 
 ``` r
-dv_pred(df, what="NoDoze conc (ng/mL)")
+dv_pred(df, yname="NoDoze conc (ng/mL)")
 ```
 
 ![](inst/img/README-unnamed-chunk-2-1.png)
@@ -46,7 +46,7 @@ dv_time(df, log=TRUE)
 ![](inst/img/README-unnamed-chunk-4-2.png)
 
 ``` r
-dv_time(df, what="NoDoze (mg/L)",
+dv_time(df, yname="NoDoze (mg/L)",
         ys = list(trans="log", breaks=logbr()),
         xs = list(br=seq(0,240,72)))
 ```

@@ -39,7 +39,7 @@ df <- superset2() %>% filter(EVID==0)
 ##' # Basics
 ##'
 ##' ## Simple function calls
-dv_pred(df, what="NoDoze conc (ng/mL)")
+dv_pred(df, yname="NoDoze conc (ng/mL)")
 
 ##' ## Add a title
 dv_time(df, title="Lookie here!")
@@ -49,7 +49,7 @@ dv_time(df, xs=list(br=seq(0,240,24)))
 
 dv_time(df, log=TRUE)
 
-dv_time(df, what="NoDoze (mg/L)",
+dv_time(df, yname="NoDoze (mg/L)",
         ys = list(trans="log", breaks=logbr()),
         xs = list(br=seq(0,240,72)))
 

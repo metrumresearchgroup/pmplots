@@ -45,7 +45,8 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
-##' @param what used to form y-axis label
+##' @param xname used to form x-axis label
+##' @param yname used to form y-axis label
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
@@ -57,13 +58,15 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
 ##' dv_pred(df)
 ##'
 ##' @export
-dv_pred <- function(df, x="DV", y="PRED", what="value",xs = defx(),
-                    ys = defy(), loglog=FALSE, prefix="Population", ...) {
+dv_pred <- function(df, x="DV", y="PRED", xname="value", yname=xname,
+                    xs = defx(), ys = defy(), loglog=FALSE,
+                    prefix="Population", ...) {
 
-  require_column(df, x, y)
+  require_numeric(df,x)
+  require_numeric(df,y)
 
-  ys$name <- paste0(prefix, " predicted ", what)
-  xs$name <- paste0("Observed ", what)
+  ys$name <- paste0(prefix, " predicted ", xname)
+  xs$name <- paste0("Observed ", xname)
 
   if(loglog) {
     xs$trans <- "log"
@@ -95,8 +98,8 @@ dv_pred <- function(df, x="DV", y="PRED", what="value",xs = defx(),
 
 ##' @export
 ##' @rdname dv_pred
-dv_ipred <- function(df,...) {
-  dv_pred(df,prefix="Individual", ...)
+dv_ipred <- function(df, y = "IPRED",...) {
+  dv_pred(df, prefix="Individual", y = y, ...)
 }
 
 ##' Plot DV versus time
@@ -104,7 +107,7 @@ dv_ipred <- function(df,...) {
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
 ##' @param xunit time units; used to form x-axis label
-##' @param what used to form y-axis label
+##' @param yname used to form y-axis label
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param group passed to \code{\link{scatt}}
@@ -118,11 +121,15 @@ dv_ipred <- function(df,...) {
 ##'
 ##' @export
 dv_time <- function(df, x="TIME", y="DV", xunit="hr",
-                    what = NULL, group="ID",
+                    yname = NULL, group="ID",
                     xs=defx(), ys=defy(), log=FALSE,...) {
-  require_column(df, x, y)
+
+  require_numeric(df,x)
+  require_numeric(df,y)
+
   xs$name <- paste0("Time (",xunit,")")
-  ys$name <- what
+  ys$name <- yname
+
   if(log) {
     ys$trans <- "log"
     ys$breaks <- logbr3()
@@ -152,7 +159,8 @@ cont_cont <- function(df, x, y, xs = defx(), ys=defy(),...) {
   x <- col_label(x)
   ys$name <- y[2]
   xs$name <- x[2]
-  require_column(df, x[1], y[1])
+  require_numeric(df, x[1])
+  require_numeric(df, y[1])
   scatt(df,x[1],y[1],xs,ys,...)
 }
 
@@ -168,43 +176,46 @@ eta_cont <- function(df,x,y,...) {
 
 ##' @export
 ##' @rdname cont_cont
-cwres_cont <- function(df,x,y="CWRES//Conditional weighted residual",
-                       xs = defx(), ys = defy(),...) {
+cwres_cont <- function(df, x, y="CWRES//Conditional weighted residual",
+                       xs=defx(), ys=defy(),...) {
   x <- col_label(x)
   y <- col_label(y)
-  if(length(x)!=2) .stop("invalid x name")
-  if(length(y)!=2) .stop("invalid y name")
+  if(length(x)!=2) .stop("invalid x specification")
+  if(length(y)!=2) .stop("invalid y specification")
   ys$name <- y[2]
   xs$name <- x[2]
-  require_column(df, x[1], y[1])
+  require_numeric(df, x[1])
+  require_numeric(df, y[1])
   scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
 }
 
 ##' @export
 ##' @rdname cont_cont
-wres_cont <- function(df,x,y="WRES//Weighted residual",
-                      xs = defx(), ys = defy(),...) {
+wres_cont <- function(df, x, y="WRES//Weighted residual",
+                      xs=defx(), ys=defy(),...) {
   x <- col_label(x)
   y <- col_label(y)
-  if(length(x)!=2) .stop("invalid x name")
-  if(length(y)!=2) .stop("invalid y name")
+  if(length(x)!=2) .stop("invalid x specification")
+  if(length(y)!=2) .stop("invalid y specification")
   ys$name <- y[2]
   xs$name <- x[2]
-  require_column(df, x[1], y[1])
+  require_numeric(df, x[1])
+  require_numeric(df, y[1])
   scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
 }
 
 ##' @export
 ##' @rdname cont_cont
-res_cont <- function(df,x,y="RES//Residual",
-                     xs = defx(), ys = defy(),...) {
+res_cont <- function(df, x, y="RES//Residual",
+                     xs=defx(), ys=defy(), ...) {
   x <- col_label(x)
   y <- col_label(y)
-  if(length(x)!=2) .stop("invalid x name")
-  if(length(y)!=2) .stop("invalid y name")
+  if(length(x)!=2) .stop("invalid x specification")
+  if(length(y)!=2) .stop("invalid y specification")
   ys$name <- y[2]
   xs$name <- x[2]
-  require_column(df, x[1], y[1])
+  require_numeric(df, x[1])
+  require_numeric(df, y[1])
   scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
 }
 
@@ -213,8 +224,8 @@ res_cont <- function(df,x,y="RES//Residual",
 ##' @param df data set to plot
 ##' @param x character name of x-axis data
 ##' @param y character name of y-axis data
-##' @param what used for y-axis label
-##' @param xwhat used for x-axis label (not typically used)
+##' @param xname used for x-axis label
+##' @param yname used for y-axis label
 ##' @param ... passed to \code{\link{y_time}}
 ##' @seealso \code{\link{y_time}}
 ##'
@@ -224,53 +235,51 @@ res_cont <- function(df,x,y="RES//Residual",
 ##'
 ##' @export
 res_time <- function(df,
-                     what="Residual",
-                     xwhat="Time",
+                     yname="Residual",
                      x="TIME", y="RES", ...) {
-  y_time(df, what=what, x=x, y=y, ...)
+  y_time(df, yname=yname, x=x, y=y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
 wres_time <- function(df,
-                      what="Weighted residual",
-                      xwhat="Time",
+                      yname="Weighted residual",
                       x="TIME", y="WRES",...) {
-  y_time(df,what=what,x=x,y=y,...)
+  y_time(df, yname=yname, x=x, y=y,...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_time <- function(df, what="Conditional weighted residual",
+cwres_time <- function(df, yname="Conditional weighted residual",
                        x="TIME", y="CWRES",...) {
-  y_time(df,what=what,x=x,y=y,...)
+  y_time(df,yname=yname,x=x,y=y,...)
 }
 
 ##' @export
 ##' @rdname res_time
 cwres_tad <- function(df,
-                      what="Conditional weighted residual",
-                      xwhat="Time after dose",
+                      yname="Conditional weighted residual",
+                      xname="Time after dose",
                       x="TAD", y="CWRES",...) {
-  y_time(df, what=what, xwhat=xwhat, x=x, y=y, ...)
+  y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
 wres_tad <- function(df,
-                     what="Weighted residual",
-                     xwhat="Time after dose",
+                     yname="Weighted residual",
+                     xname="Time after dose",
                      x="TAD", y="WRES",...) {
-  y_time(df, what=what, xwhat=xwhat, x=x, y=y, ...)
+  y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
 res_tad <- function(df,
-                    what="Residual",
-                    xwhat="Time after dose",
+                    yname="Residual",
+                    xname="Time after dose",
                     x="TAD", y="RES",...) {
-  y_time(df, what=what, xwhat=xwhat, x=x, y=y, ...)
+  y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
 }
 
 
@@ -279,19 +288,25 @@ res_tad <- function(df,
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
-##' @param xunit time unit, used to for x-axis label
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
-##' @param what used to form y-axis title
-##' @param xwhat used to form y-axis title
+##' @param yname used to form y-axis title
+##' @param xname used to form x-axis title
+##' @param xunit used to form x-axis title
 ##' @param log if \code{TRUE}, y-axis will be log-transformed
 ##' @param ... passed to \code{\link{scatt}}
-y_time <- function(df, x="TIME", y,  what, xunit="hr",
+y_time <- function(df, x="TIME", y,
+                   xname="Time", xunit="hr",
+                   yname = NULL,
                    xs = defx(), ys = defy(),
-                   xwhat = "Time", log=FALSE, ...) {
-  require_column(df, x, y)
-  xs$name <- paste0(xwhat, " (",xunit,")")
-  ys$name <- what
+                   log=FALSE, ...) {
+
+  require_numeric(df,x)
+  require_numeric(df,y)
+
+  xs$name <- paste0(xname, " (",xunit,")")
+  ys$name <- yname
+
   if(log) {
     ys$trans <- "log"
     ys$breaks <- logbr3()
@@ -307,7 +322,7 @@ y_time <- function(df, x="TIME", y,  what, xunit="hr",
 ##' @param y character naem for y-axis data
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
-##' @param what used to form y-axis label
+##' @param yname used to form y-axis label
 ##' @param ... passed to \code{\link{scatt}}
 ##'
 ##' @examples
@@ -316,8 +331,10 @@ y_time <- function(df, x="TIME", y,  what, xunit="hr",
 ##'
 ##' @export
 res_pred <- function(df, x="PRED", y="RES", xs=defx(), ys=defy(),
-                     what="value", ...) {
-  xs$name <- paste0("Population predicted ", what)
+                     yname="value", ...) {
+  require_numeric(df,x)
+  require_numeric(df,y)
+  xs$name <- paste0("Population predicted ", yname)
   ys$name <- "Residual"
   scatt(df,x,y,xs,ys,...)
 }
@@ -325,8 +342,10 @@ res_pred <- function(df, x="PRED", y="RES", xs=defx(), ys=defy(),
 ##' @export
 ##' @rdname res_pred
 cwres_pred <- function(df, x="PRED", y="CWRES", xs=defx(), ys=defy(),
-                       what="value",...) {
-  xs$name <- paste0("Population predicted ", what)
+                       yname="value",...) {
+  require_numeric(df,x)
+  require_numeric(df,y)
+  xs$name <- paste0("Population predicted ", yname)
   ys$name <- "Conditional weighted residual"
   scatt(df,x,y,xs,ys,...)
 }
@@ -334,8 +353,10 @@ cwres_pred <- function(df, x="PRED", y="CWRES", xs=defx(), ys=defy(),
 ##' @export
 ##' @rdname res_pred
 wres_pred <- function(df, x="PRED", y="WRES", xs=defx(), ys=defy(),
-                      what="value",...) {
-  xs$name <- paste0("Population predicted ", what)
+                      yname="value",...) {
+  require_numeric(df,x)
+  require_numeric(df,y)
+  xs$name <- paste0("Population predicted ", yname)
   ys$name <- "Weighted residual"
   scatt(df,x,y,xs,ys,...)
 }

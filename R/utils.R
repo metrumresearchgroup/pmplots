@@ -4,12 +4,28 @@
 require_discrete <- function(df,x) {
   require_column(df,x)
   cl <- class(df[1,x])
-  if(!(cl %in% c("character", "factor", "logical"))) {
-    .stop("column ",x, " is requred to be character, factor, or logical")
+  if(!is.element(cl, c("character", "factor", "logical"))) {
+    .stop("column ", x, " is required to be character, factor, or logical")
   }
 }
 
-require_column <- function(df,...) {
+require_numeric <- function(df,x) {
+  require_column(df,x)
+  cl <- class(df[1,x])
+  if(!is.element(cl,"numeric")) {
+     .stop("column ", x, " is required to be numeric")
+  }
+  return(invisible(NULL))
+}
+
+require_column <- function(df,x) {
+  if(!exists(x,df)) {
+    .stop("column ", x, " is required in the data set")
+  }
+  return(invisible(NULL))
+}
+
+require_columns <- function(df,...) {
   x <- unlist(list(...), use.names=FALSE)
   for(xx in x) {
     if(!exists(xx,df)) {

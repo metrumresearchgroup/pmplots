@@ -9,36 +9,34 @@
 \alias{res_tad}
 \title{Plot residuals versus time}
 \usage{
-res_time(df, what = "Residual", xwhat = "Time", x = "TIME", y = "RES",
-  ...)
+res_time(df, yname = "Residual", x = "TIME", y = "RES", ...)
 
-wres_time(df, what = "Weighted residual", xwhat = "Time", x = "TIME",
-  y = "WRES", ...)
+wres_time(df, yname = "Weighted residual", x = "TIME", y = "WRES", ...)
 
-cwres_time(df, what = "Conditional weighted residual", x = "TIME",
+cwres_time(df, yname = "Conditional weighted residual", x = "TIME",
   y = "CWRES", ...)
 
-cwres_tad(df, what = "Conditional weighted residual",
-  xwhat = "Time after dose", x = "TAD", y = "CWRES", ...)
+cwres_tad(df, yname = "Conditional weighted residual",
+  xname = "Time after dose", x = "TAD", y = "CWRES", ...)
 
-wres_tad(df, what = "Weighted residual", xwhat = "Time after dose",
+wres_tad(df, yname = "Weighted residual", xname = "Time after dose",
   x = "TAD", y = "WRES", ...)
 
-res_tad(df, what = "Residual", xwhat = "Time after dose", x = "TAD",
+res_tad(df, yname = "Residual", xname = "Time after dose", x = "TAD",
   y = "RES", ...)
 }
 \arguments{
 \item{df}{data set to plot}
 
-\item{what}{used for y-axis label}
-
-\item{xwhat}{used for x-axis label (not typically used)}
+\item{yname}{used for y-axis label}
 
 \item{x}{character name of x-axis data}
 
 \item{y}{character name of y-axis data}
 
 \item{...}{passed to \code{\link{y_time}}}
+
+\item{xname}{used for x-axis label}
 }
 \description{
 Plot residuals versus time

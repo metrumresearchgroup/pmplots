@@ -7,13 +7,13 @@
 \title{Residuals versus predicted values}
 \usage{
 res_pred(df, x = "PRED", y = "RES", xs = defx(), ys = defy(),
-  what = "value", ...)
+  yname = "value", ...)
 
 cwres_pred(df, x = "PRED", y = "CWRES", xs = defx(), ys = defy(),
-  what = "value", ...)
+  yname = "value", ...)
 
 wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
-  what = "value", ...)
+  yname = "value", ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -26,7 +26,7 @@ wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{what}{used to form y-axis label}
+\item{yname}{used to form y-axis label}
 
 \item{...}{passed to \code{\link{scatt}}}
 }

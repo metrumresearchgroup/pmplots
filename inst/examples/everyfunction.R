@@ -22,7 +22,7 @@ df <- superset2() %>% filter(EVID==0)
 id <- distinct(df, ID, .keep_all=TRUE)
 
 dayx <- defx(breaks = seq(0,168,24))
-.what <- "NoDoz (ng/mL)"
+.yname <- "NoDoz (ng/mL)"
 
 ##' # `col//title` specification
 ##'
@@ -33,16 +33,16 @@ col_label("CL//Clearance (L)")
 
 ##' # Observed vs predicted
 ##' ## Observed versus population predicted (`dv_pred`)
-dv_pred(df, what=.what)
+dv_pred(df, yname = .yname)
 
 ##' ### Observed versus population predicted - log/log
-dv_pred(df,loglog=TRUE, what=.what)
+dv_pred(df,loglog=TRUE, yname = .yname)
 
 ##' ## Observed versus individual predicted (`dv_ipred`)
 dv_ipred(df, what=.what)
 
 ##' ### Observed versus individual predicted - log/log
-dv_ipred(df, loglog=TRUE, what=.what)
+dv_ipred(df, loglog=TRUE, yname = .yname)
 
 
 ##' # Residual plots
@@ -130,21 +130,21 @@ mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ##' # DV versus time (`dv_time`)
 
 ##' ## Basic plot
-dv_time(df, what=.what)
+dv_time(df, yname = .yname)
 
 ##' ## Faceted
 #+ fig.width=6, fig.height=7
-dv_time(df, what="NoDoze (ng/mL)") +
+dv_time(df, yname="NoDoze (ng/mL)") +
   facet_wrap(~DOSE, scales="free_x")
 
 ##' ## Colored
 #+ fig.width=6, fig.height=7
-dv_time(df, what="NoDoze (ng/mL)", col="STUDYc") +
+dv_time(df, yname="NoDoze (ng/mL)", col="STUDYc") +
   facet_wrap(~DOSE, scales="free")
 
 ##' ## log-Scale
 #+ fig.width=6, fig.height=6
-dv_time(df, what="NoDoze (ng/mL)", log=TRUE) +
+dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
   facet_wrap(~STUDYc)
 
 ##' # Data summary

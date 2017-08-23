@@ -4,7 +4,7 @@
 \alias{dv_time}
 \title{Plot DV versus time}
 \usage{
-dv_time(df, x = "TIME", y = "DV", xunit = "hr", what = NULL,
+dv_time(df, x = "TIME", y = "DV", xunit = "hr", yname = NULL,
   group = "ID", xs = defx(), ys = defy(), log = FALSE, ...)
 }
 \arguments{
@@ -16,7 +16,7 @@ dv_time(df, x = "TIME", y = "DV", xunit = "hr", what = NULL,
 
 \item{xunit}{time units; used to form x-axis label}
 
-\item{what}{used to form y-axis label}
+\item{yname}{used to form y-axis label}
 
 \item{group}{passed to \code{\link{scatt}}}
 

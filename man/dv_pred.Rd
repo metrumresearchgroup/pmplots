@@ -5,10 +5,10 @@
 \alias{dv_ipred}
 \title{Plot DV versus predicted values}
 \usage{
-dv_pred(df, x = "DV", y = "PRED", what = "value", xs = defx(),
-  ys = defy(), loglog = FALSE, prefix = "Population", ...)
+dv_pred(df, x = "DV", y = "PRED", xname = "value", yname = xname,
+  xs = defx(), ys = defy(), loglog = FALSE, prefix = "Population", ...)
 
-dv_ipred(df, ...)
+dv_ipred(df, y = "IPRED", ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -17,7 +17,9 @@ dv_ipred(df, ...)
 
 \item{y}{character name for y-axis data}
 
-\item{what}{used to form y-axis label}
+\item{xname}{used to form x-axis label}
+
+\item{yname}{used to form y-axis label}
 
 \item{xs}{see \code{\link{defx}}}
 

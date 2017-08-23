@@ -20,6 +20,7 @@ eta_hist <- function(df, x, xs=defx(), fill="black", col="white",
   out <- vector(mode="list", length=length(x))
   for(i in seq_along(x)) {
     xx <- col_label(x[i])
+    require_numeric(df,xx[1])
     xs$name <- xx[2]
     xscale <- do.call("scale_x_continuous", xs)
     out[[i]] <- ggplot(data=df, aes_string(x=xx[1])) +
