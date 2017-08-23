@@ -83,8 +83,9 @@ the data frame, or an error is generated
 
 
 ## QQ
-- includes `res_q`, `wres_q`, `cwres_q`
-- 
+- includes `wres_q`, `cwres_q`
+- a line of identity is included
+- points are in blue
 
 
 ## Histograms
