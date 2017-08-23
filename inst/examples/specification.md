@@ -19,13 +19,13 @@ changed with function arguments.
 
 - `hr` default time unit
 
-
 ## Default style
 
 - Data point color: `black`
 - Loess line: `dashed` and `blue`
 - Line of identity: `black`
-- `residual` is always singular not plural (e.g. "Weighted residual" rather than "Weighted residuals")
+- `residual` is always singular not plural (e.g. "Weighted residual" rather 
+than "Weighted residuals")
 - Legend is located at the top of the plot
 - x scales are modified 
 
@@ -33,6 +33,7 @@ changed with function arguments.
 # Plot specifictions
 
 ## Any plot
+
 - any continuous x-scale can be modified by
 passing a list as `xs` containing arguments to 
 `scale_x_continuous`
@@ -44,6 +45,7 @@ passing a list as `xs` containing arguments
 to `scale_x_discrete`
 
 ## DV/PRED
+
 - includes `dv_pred` and `dv_ipred`
 - x- and y-scales have the same limits
 - a line of identity is drawn (can be omitted)
@@ -51,45 +53,50 @@ to `scale_x_discrete`
 - switch to make both scales log-transformed
 
 ## RESIDUAL/TIME
+
 - includes `res_time`, `wres_time`, `cwres_time`, `res_tad`, 
 `wres_tad`, `cwres_tad`
 - time unit can be changed via `xunit` argument
 
-## RESIDUAL/Continuous value
-- includes `res_cont`, `wres_cont`, `cwres_cont`, 
-`cont_cont`, `res_pred`, `wres_pred`, `cwres_pred`
-- a loess line (blue, dashed) is drawn (can be omitted)
-- other reference lines are added outside of 
-the function
+## ETA or continuous value/Continuous value
 
-## RESIDUAL/Categorical value
-- includes `res_cat`, `wres_cat`, `cwres_cat`, 
-`cont_cat`, `eta_cat`
-
-## ETA/Continuous value
-- includes `eta_cont`
+- includes `eta_cont`, `cont_cont`, 
+`res_cont`, `wres_cont`, `cwres_cont`, 
+`res_pred`, `wres_pred`, `cwres_pred`
 - a single continuous value is specified in 
 `col//short title` format (e.g. `WT//Weight (kg)`)
 - the continuous value must be a numeric column
 in the data frame, or an error is generated
+- a loess line (blue, dashed) is drawn (can be omitted)
+- other reference lines are added outside of 
+the function
 
-## ETA/Categorical value
-- includes `eta_cat`
+## ETA or continuous variable/Categorical value
+
+- includes `eta_cat`, `cont_cat`, `res_cat`,
+`wres_cat`, `cwres_cat`
 - a single categorical value is specified in 
 `col//short title` format (eg. `RFSTAGE//Renal function stage`)
 - the categorical value must be either 
 factor, character, or logical value in 
 the data frame, or an error is generated
-
+- By default, the number in each box
+is inculded under each x-axis tick label
 
 ## QQ
+
 - includes `wres_q`, `cwres_q`
 - a line of identity is included
 - points are in blue
-
+- y-label is `[C]WRES distribution quantile`
+- x-label is `Standard normal quantile`
 
 ## Histograms
+
 - includes `eta_hist`
 - etas are specified in `col//title`
 format (e.g. `ETA1//ETA-KA`)
+- `fill`, `col` and `alpha` can be set
+through function arguments which are 
+passed to `geom_histogram`
 
