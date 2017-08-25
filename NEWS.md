@@ -29,9 +29,9 @@ than "Weighted residuals")
 - Legend is located at the top of the plot
 - x scales are modified
 
-# Plot specifictions
+## Plot specifictions
 
-## Any plot
+### Any plot
 
 - any continuous x-scale can be modified by
 passing a list as `xs` containing arguments to
@@ -43,7 +43,7 @@ passing a list as `ys` containing arguments to
 passing a list as `xs` containing arguments
 to `scale_x_discrete`
 
-## DV/PRED
+### DV/PRED
 
 - includes `dv_pred` and `dv_ipred`
 - x- and y-scales have the same limits
@@ -51,13 +51,13 @@ to `scale_x_discrete`
 - a loess line (blue, dashed) is drawn (can be omitted)
 - switch to make both scales log-transformed
 
-## RESIDUAL/TIME
+### RESIDUAL/TIME
 
 - includes `res_time`, `wres_time`, `cwres_time`, `res_tad`,
 `wres_tad`, `cwres_tad`
 - time unit can be changed via `xunit` argument
 
-## ETA or continuous value/Continuous value
+### ETA or continuous value/Continuous value
 
 - includes `eta_cont`, `cont_cont`,
 `res_cont`, `wres_cont`, `cwres_cont`,
@@ -70,7 +70,7 @@ in the data frame, or an error is generated
 - other reference lines are added outside of
 the function
 
-## ETA or continuous variable/Categorical value
+### ETA or continuous variable/Categorical value
 
 - includes `eta_cat`, `cont_cat`, `res_cat`,
 `wres_cat`, `cwres_cat`
@@ -82,7 +82,7 @@ the data frame, or an error is generated
 - By default, the number in each box
 is inculded under each x-axis tick label
 
-## QQ
+### QQ
 
 - includes `wres_q`, `cwres_q`
 - a line of identity is included
@@ -90,7 +90,7 @@ is inculded under each x-axis tick label
 - y-label is `[C]WRES distribution quantile`
 - x-label is `Standard normal quantile`
 
-## Histograms
+### Histograms
 
 - includes `eta_hist`
 - etas are specified in `col//title`
