@@ -30,6 +30,11 @@ dayx <- defx(breaks = seq(0,168,24))
 .yname <- "NoDoz (ng/mL)"
 ```
 
+Override the `df` and `id` objects in the above chunk
+```{r}
+## Nothing here
+```
+
 
 # `col//title` specification
 
@@ -87,6 +92,7 @@ res_cont(df, x="WT//Weight (kg)")
 
 ### RES by categorical covariate (`res_cat`)
 ```{r}
+dplyr::count(df, STUDYc)
 res_cat(df, x="STUDYc//Study type")
 ```
 
@@ -247,6 +253,76 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 ```{r,fig.width=6, fig.height=7}
 mrggdraw(p, arrange=TRUE, script="everyfunction.R")
 ```
+
+
+# Some customization
+
+## Modify x-axis
+
+```{r}
+a <- list(trans="log", breaks = logbr3())
+
+dv_time(df, xs=a)
+```
+
+## Modify y-axis
+```{r}
+dv_time(df, ys=a, yname="Y-axis name")
+```
+
+
+## Add / drop smoother
+```{r}
+dv_pred(df, smooth=FALSE)
+```
+
+## Custom breaks
+
+Default breaks:
+```{r}
+dv_time(df)
+```
+
+Break every 3 days
+```{r}
+dv_time(df, xby=72)
+```
+
+Custom breaks and limits
+```{r}
+a <- list(br = seq(0,240,48), limits=c(0,240))
+dv_time(df, xs=a)
+```
+
+
+# Controlled input / output
+```{r}
+dd <- df
+
+dd$PRED <- 2*dd$DV
+dv_pred(dd)
+dd$IPRED <- 3*dd$DV
+dv_ipred(dd)
+dd$RES <- 2*dd$TIME
+res_time(dd)
+dd$WRES <- 10*dd$TIME
+wres_time(dd)
+dd$CWRES <- 100*dd$TIME
+cwres_time(dd)
+```
+
+
+
+```{r}
+cwres_cont(dd, x = "RES//Controlled")
+```
+
+Should be fairly flat
+```{r}
+dd$CWRESQ <- rnorm(nrow(dd))
+cwres_q(dd,x="CWRESQ")
+```
+
 
 # Plot output (`mrggsave`)
 

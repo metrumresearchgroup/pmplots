@@ -3,7 +3,7 @@
 
 require_discrete <- function(df,x) {
   require_column(df,x)
-  cl <- class(df[1,x])
+  cl <- class(unlist(df[1,x],use.names=FALSE))
   if(!is.element(cl, c("character", "factor", "logical"))) {
     .stop("column ", x, " is required to be character, factor, or logical")
   }
@@ -11,7 +11,7 @@ require_discrete <- function(df,x) {
 
 require_numeric <- function(df,x) {
   require_column(df,x)
-  cl <- class(df[1,x])
+  cl <- class(unlist(df[1,x],use.names=FALSE))
   if(!is.element(cl,"numeric")) {
      .stop("column ", x, " is required to be numeric")
   }

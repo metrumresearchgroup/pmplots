@@ -15,7 +15,7 @@ changed with function arguments.
 - `IPRED` individual predicted value
 - `DV` observed data
 
-## Other default names
+## Other defaults
 
 - `hr` default time unit
 
@@ -80,7 +80,8 @@ the function
 factor, character, or logical value in
 the data frame, or an error is generated
 - By default, the number in each box
-is inculded under each x-axis tick label
+is inculded under each x-axis tick label; this
+can be suppressed by function argument
 
 ### QQ
 

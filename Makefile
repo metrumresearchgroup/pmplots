@@ -9,7 +9,7 @@ everyfun:
 	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.Rmd")'
 
 readme:
-	Rscript -e 'library(rmarkdown)' -e 'render("README.R")'
+	Rscript -e 'library(rmarkdown)' -e 'render("README.Rmd")'
 
 exampler:
 	Rscript -e 'rmarkdown::render("inst/examples/example1.R")'
