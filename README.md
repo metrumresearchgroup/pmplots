@@ -1,29 +1,4 @@
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-    ## 
-    ## Attaching package: 'GGally'
-
-    ## The following object is masked from 'package:dplyr':
-    ## 
-    ##     nasa
-
-    ## 
-    ## Attaching package: 'pmplots'
-
-    ## The following objects are masked from 'package:Mmisc':
-    ## 
-    ##     mrggdraw, mrggsave
-
 Table of contents
 =================
 
