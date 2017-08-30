@@ -3,7 +3,9 @@
 
 ## Data column names
 
-These are default column names.  All of the defaults can easily be
+These are default column names.  All 
+default columns are numeric.  
+All of the defaults can easily be
 changed with function arguments.
 
 - `CWRES` conditional weighted residual
@@ -46,6 +48,8 @@ to `scale_x_discrete`
 ### DV/PRED
 
 - includes `dv_pred` and `dv_ipred`
+- x- and y-values must be numeric and must exist
+in the data frame, or an error is generated
 - x- and y-scales have the same limits
 - a line of identity is drawn (can be omitted)
 - a loess line (blue, dashed) is drawn (can be omitted)
@@ -55,6 +59,8 @@ to `scale_x_discrete`
 
 - includes `res_time`, `wres_time`, `cwres_time`, `res_tad`,
 `wres_tad`, `cwres_tad`
+- x- and y-values must be numeric and must exist
+in the data frame, or an error is generated
 - time unit can be changed via `xunit` argument
 
 ### ETA or continuous value/Continuous value
@@ -64,7 +70,7 @@ to `scale_x_discrete`
 `res_pred`, `wres_pred`, `cwres_pred`
 - a single continuous value is specified in
 `col//short title` format (e.g. `WT//Weight (kg)`)
-- the continuous value must be a numeric column
+- x- and y-values must be numeric and must exist
 in the data frame, or an error is generated
 - a loess line (blue, dashed) is drawn (can be omitted)
 - other reference lines are added outside of
@@ -76,6 +82,8 @@ the function
 `wres_cat`, `cwres_cat`
 - a single categorical value is specified in
 `col//short title` format (eg. `RFSTAGE//Renal function stage`)
+- y-value must be numeric and must exist
+in the data frame, or an error is generated
 - the categorical value must be either
 factor, character, or logical value in
 the data frame, or an error is generated
@@ -86,6 +94,9 @@ can be suppressed by function argument
 ### QQ
 
 - includes `wres_q`, `cwres_q`
+- both `wres` and `cwres` must be numeric
+and exist in the data frame, or an error is 
+generated
 - a line of identity is included
 - points are in blue
 - y-label is `[C]WRES distribution quantile`
@@ -96,6 +107,8 @@ can be suppressed by function argument
 - includes `eta_hist`
 - etas are specified in `col//title`
 format (e.g. `ETA1//ETA-KA`)
+- etas must be numeric and must exist in the 
+data frame, or an error is generated
 - `fill`, `col` and `alpha` can be set
 through function arguments which are
 passed to `geom_histogram`
