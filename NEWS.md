@@ -48,6 +48,8 @@ to `scale_x_discrete`
 rows that contributed actual observations that 
 influenced the estimates. In general, dosing
 records and BQL records should be discarded.
+However, the contents may vary across 
+different applications.
 
 ### DV/PRED
 
