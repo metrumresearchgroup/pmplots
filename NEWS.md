@@ -44,6 +44,10 @@ passing a list as `ys` containing arguments to
 - any discrete x-scale can be modified by
 passing a list as `xs` containing arguments
 to `scale_x_discrete`
+- The input data set should only include 
+rows that contributed actual observations that 
+influenced the estimates. In general, dosing
+records and BQL records should be discarded.
 
 ### DV/PRED
 
