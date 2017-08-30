@@ -9,6 +9,9 @@
 ##' @param alpha passed to \code{geom_histogram}
 ##' @param ... other arguments for \code{geom_histogram}
 ##'
+##' @details
+##' The \code{x} column must be numeric.
+##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
 ##' etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")

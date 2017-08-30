@@ -25,6 +25,9 @@ cwres_q(df, x = "CWRES", ...)
 \description{
 QQ plot for conditional residuals
 }
+\details{
+The \code{x} column must be numeric.
+}
 \examples{
 
 df <- dplyr::filter(superset2(), EVID==0)

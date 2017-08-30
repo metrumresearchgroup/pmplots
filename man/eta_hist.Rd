@@ -25,6 +25,9 @@ eta_hist(df, x, xs = defx(), fill = "black", col = "white", alpha = 0.6,
 \description{
 ETA histograms
 }
+\details{
+The \code{x} column must be numeric.
+}
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")

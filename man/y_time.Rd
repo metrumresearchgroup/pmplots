@@ -36,4 +36,8 @@ Plot continuous data versus time.
 \details{
 When the y-axis label needs a unit, include it in
 the \code{yname} specification.
+
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
 }

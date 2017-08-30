@@ -33,6 +33,11 @@ wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
 \description{
 Residuals versus predicted values
 }
+\details{
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
+}
 \examples{
 
 df <- dplyr::filter(superset2(), EVID==0)

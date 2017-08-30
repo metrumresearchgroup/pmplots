@@ -10,6 +10,9 @@
 ##' @param abline numeric vector with two elements to be passed to \code{geom_abline}
 ##' @param ... not used
 ##'
+##' @details
+##' The \code{x} column must be numeric.
+##'
 ##' @examples
 ##'
 ##' df <- dplyr::filter(superset2(), EVID==0)

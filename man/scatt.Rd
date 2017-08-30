@@ -39,3 +39,8 @@ scatt(df, x, y, xs = defx(), ys = defy(), smooth = TRUE,
 \description{
 Scatter plot function.
 }
+\details{
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
+}

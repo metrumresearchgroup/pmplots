@@ -34,6 +34,11 @@ dv_time(df, x = "TIME", y = "DV", xunit = "hr", yname = NULL,
 \description{
 Plot DV versus time
 }
+\details{
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
+}
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
 

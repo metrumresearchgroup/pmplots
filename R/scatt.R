@@ -14,6 +14,12 @@
 ##' @param col character name of coloring variable
 ##' @param scale_col color scale
 ##' @param ... not used
+##'
+##' @details
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
+##'
 ##' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
                   identity=FALSE,hline = NULL,title = NULL,
@@ -52,6 +58,11 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
 ##' @param prefix used internally
 ##' @param ... passed to \code{\link{scatt}}
+##'
+##' @details
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
@@ -118,6 +129,11 @@ dv_ipred <- function(df, y = "IPRED",...) {
 ##' @param xby interval for x-axis breaks
 ##' @param ... passed to \code{\link{scatt}}
 ##'
+##' @details
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
+##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
 ##'
@@ -166,6 +182,11 @@ dv_time <- function(df, x="TIME", y="DV", xunit="hr",
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param ... passed to \code{\link{scatt}}
+##'
+##' @details
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
 ##'
 ##' @seealso \code{\link{scatt}}
 ##'
@@ -258,6 +279,10 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' See the \code{xby} argument to \code{\link{y_time}} for a
 ##' convenient way to change the breaks for the x-axis (time).
 ##'
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
+##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
 ##'
@@ -334,6 +359,12 @@ res_tad <- function(df,
 ##' @details
 ##' When the y-axis label needs a unit, include it in
 ##' the \code{yname} specification.
+##'
+##' @details
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
+##'
 y_time <- function(df, x="TIME", y,
                    xname="Time", xunit="hr",
                    yname = NULL,
@@ -369,6 +400,11 @@ y_time <- function(df, x="TIME", y,
 ##' @param ys see \code{\link{defy}}
 ##' @param xname used to form x-axis label
 ##' @param ... passed to \code{\link{scatt}}
+##'
+##' @details
+##' Since this function creates a scatter plot,
+##' both the \code{x} and \code{y} columns must
+##' be numeric.
 ##'
 ##' @examples
 ##'

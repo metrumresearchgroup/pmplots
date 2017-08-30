@@ -48,6 +48,10 @@ to \code{\link{y_time}} to change the time unit.
 
 See the \code{xby} argument to \code{\link{y_time}} for a
 convenient way to change the breaks for the x-axis (time).
+
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)

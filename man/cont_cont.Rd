@@ -36,6 +36,11 @@ res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
 \description{
 This function is primarily called by other functions.
 }
+\details{
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
+}
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
 

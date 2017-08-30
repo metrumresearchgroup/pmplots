@@ -33,3 +33,9 @@ boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
 \description{
 Make boxplots
 }
+\details{
+Since this function creates a boxplot,
+the \code{x} column must be character, factor
+or logical and \code{y} column must
+be numeric.
+}

@@ -12,6 +12,13 @@
 ##' @param title passed to \code{ggtitle}
 ##' @param shown if \code{TRUE} numbers in each box are shown below tick labels
 ##' @param ... not used
+##'
+##' @details
+##' Since this function creates a boxplot,
+##' the \code{x} column must be character, factor
+##' or logical and \code{y} column must
+##' be numeric.
+##'
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
                     alpha=1, hline = NULL, title=NULL, shown = TRUE, ...) {
@@ -43,6 +50,12 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' @param ys see \code{\link{defy}}
 ##' @param hline passed to \code{\link{boxwork}}
 ##' @param ... other arguments passed to \code{\link{boxwork}}
+##'
+##' @details
+##' Since this function creates a boxplot,
+##' the \code{x} column must be character, factor
+##' or logical and \code{y} column must
+##' be numeric.
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
@@ -83,6 +96,12 @@ eta_cat <- function(df, x, y, hline=0, ...) {
 ##' @param y character name for y-axis data
 ##' @param hline where to draw horizontal refrence line
 ##' @param ... passed to \code{\link{cont_cat}}
+##'
+##' @details
+##' Since this function creates a boxplot,
+##' the \code{x} column must be character, factor
+##' or logical and \code{y} column must
+##' be numeric.
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)

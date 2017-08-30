@@ -34,6 +34,11 @@ dv_ipred(df, y = "IPRED", ...)
 \description{
 Plot DV versus predicted values
 }
+\details{
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
+}
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
 

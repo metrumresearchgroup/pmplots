@@ -26,6 +26,12 @@ cwres_cat(df, x, y = "CWRES//Conditional weighted residual", hline = 0, ...)
 \description{
 Plot residuals versus categorical variable
 }
+\details{
+Since this function creates a boxplot,
+the \code{x} column must be character, factor
+or logical and \code{y} column must
+be numeric.
+}
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
 cwres_cat(df, x="STUDYc//Study name")
