@@ -93,8 +93,9 @@ in the data frame, or an error is generated
 - the categorical value must be either
 factor, character, or logical value in
 the data frame, or an error is generated
-- By default, the number in each box
-is inculded under each x-axis tick label; this
+- By default, the number of rows with 
+non-NA values (based on the y-column) in each box
+is included under each x-axis tick label; this
 can be suppressed by function argument
 
 ### QQ

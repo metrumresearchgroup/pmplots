@@ -26,7 +26,8 @@ boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
 
 \item{title}{passed to \code{ggtitle}}
 
-\item{shown}{if \code{TRUE} numbers in each box are shown below tick labels}
+\item{shown}{if \code{TRUE} number of non-NA values in each box are shown below
+the x-axis tick labels}
 
 \item{...}{not used}
 }

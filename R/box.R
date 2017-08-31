@@ -10,7 +10,8 @@
 ##' @param alpha passed to \code{geom_boxplot}
 ##' @param hline used to draw horizontal reference line
 ##' @param title passed to \code{ggtitle}
-##' @param shown if \code{TRUE} numbers in each box are shown below tick labels
+##' @param shown if \code{TRUE} number of non-NA values in each box are shown below
+##' the x-axis tick labels
 ##' @param ... not used
 ##'
 ##' @details
