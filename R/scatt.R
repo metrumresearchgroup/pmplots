@@ -79,7 +79,7 @@ dv_pred <- function(df, x="DV", y="PRED", xname="value", yname=xname,
   require_numeric(df,x)
   require_numeric(df,y)
 
-  ys$name <- paste0(prefix, " predicted ", xname)
+  ys$name <- paste0(prefix, " predicted ", yname)
   xs$name <- paste0("Observed ", xname)
 
   if(loglog) {
