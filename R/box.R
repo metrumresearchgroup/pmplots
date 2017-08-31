@@ -23,8 +23,12 @@
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
                     alpha=1, hline = NULL, title=NULL, shown = TRUE, ...) {
 
+
   if(shown) {
-    .sum <- as.data.frame(dplyr::count(df, !! rlang::sym(x)))
+    .xcol <- rlang::sym(x)
+    .ycol  <- rlang::sym(y)
+    .sum <- dplyr::filter(df, !is.na(!!.ycol))
+    .sum <- as.data.frame(dplyr::count(.sum, !! .xcol))
     xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"])
   }
 
