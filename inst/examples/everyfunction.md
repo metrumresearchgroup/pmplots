@@ -104,7 +104,7 @@ Observed versus individual predicted (`dv_ipred`)
 -------------------------------------------------
 
 ``` r
-dv_ipred(df, what=.what)
+dv_ipred(df, yname=.yname)
 ```
 
 ![](img/everyfunction--unnamed-chunk-7-1.png)

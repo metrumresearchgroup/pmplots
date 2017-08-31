@@ -57,7 +57,7 @@ dv_pred(df,loglog=TRUE, yname = .yname)
 
 ## Observed versus individual predicted (`dv_ipred`)
 ```{r}
-dv_ipred(df, what=.what)
+dv_ipred(df, yname=.yname)
 ```
 
 ### Observed versus individual predicted - log/log
