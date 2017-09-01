@@ -11,13 +11,46 @@ gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
   args <- list(...)
   c(args,list(yintercept=yintercept,lwd=lwd,col=col))
 }
-scatt_as <- function(..., identity = ga(), smooth = gs()) {
-  scatt(..., identity = identity, smooth = smooth)
+
+##' Layer functions
+##'
+##' @name layer
+##' @rdname layer
+##' @export
+layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
+  if(!is.null(hline)) x <- x + do.call(geom_hline,hline)
+  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
+  x
 }
-scatt_h <- function(..., hline = gh()) {
-  scatt(..., hline = hline)
+##' @export
+##' @rdname layer
+layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
+  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
+  if(!is.null(hline)) x <- x + do.call(geom_hline,hline)
+  x
 }
-scatt_hs <- function(...,smooth = gs()) {
-  scatt(..., smooth = smooth())
+##' @export
+##' @rdname layer
+layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
+  if(!is.null(abline)) x <- x + do.call(geom_abline,abline)
+  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
+  x
 }
+##' @export
+##' @rdname layer
+layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
+  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
+  if(!is.null(abline)) x <- x + do.call(geom_abline,abline)
+  x
+}
+##' @export
+##' @rdname layer
+layer_dots <- function(x,...) {
+  args <- list(...)
+  for(i in seq_along(args)) {
+    x <- x + args[[i]]
+  }
+  x
+}
+
 

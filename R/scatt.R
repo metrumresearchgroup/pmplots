@@ -21,8 +21,8 @@
 ##' be numeric.
 ##'
 ##' @export
-scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
-                  identity=FALSE,hline = NULL,title = NULL,
+scatt <- function(df, x, y, xs = defx(), ys = defy(),
+                  title = NULL,
                   group=NULL, col=NULL,
                   scale_col = scale_color_brewer(palette="Set2", name=""),
                   ... ) {
@@ -31,18 +31,20 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(), smooth=TRUE,
   yscale <- do.call("scale_y_continuous", ys)
 
   locol <- .ggblue
+
   p <- ggplot(data=df,aes_string(x,y,col=col)) + geom_point() + xscale + yscale
+
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
 
-  if(identity) p <- p + geom_abline(intercept=0,slope=1)
-  if(!is.null(hline)) p <- p + geom_hline(yintercept=hline, lwd=1, lty=2)
+  #if(identity) p <- p + geom_abline(intercept=0,slope=1)
+  #if(!is.null(hline)) p <- p + geom_hline(yintercept=hline, lwd=1, lty=2)
   if(is.character(title)) p <- p + ggtitle(title)
   if(is.character(col)) {
     if(missing(scale_col)) require_discrete(df, col)
     locol <- "black"
     p <- p + theme(legend.position="top") + scale_col
   }
-  if(smooth) p <- p + geom_smooth(method="loess",se=FALSE,lty=2,lwd=1,col=locol)
+  #if(smooth) p <- p + geom_smooth(method="loess",se=FALSE,lty=2,lwd=1,col=locol)
   p
 }
 
@@ -107,13 +109,16 @@ dv_pred <- function(df, x="DV", y="PRED", xname="value", yname=xname,
   xs$limits <- lim
   ys$limits <- lim
 
-  scatt(df,x,y,identity=TRUE,xs=xs,ys=ys,...)
+  out <- scatt(df,x,y,identity=TRUE,xs=xs,ys=ys,...)
+
+  layer_as(out,...)
 }
 
 ##' @export
 ##' @rdname dv_pred
 dv_ipred <- function(df, y = "IPRED",...) {
-  dv_pred(df, prefix="Individual", y = y, ...)
+  out <- dv_pred(df, prefix="Individual", y = y, ...)
+  layer_as(out,...)
 }
 
 ##' Plot DV versus time
@@ -213,6 +218,7 @@ eta_cont <- function(df,x,y,...) {
   for(i in seq_along(y)) {
     out[[i]] <- cont_cont(df,x,y[i],...)
   }
+  out <- lapply(out, layer_hs, ...)
   return(out)
 }
 
@@ -228,7 +234,8 @@ cwres_cont <- function(df, x, y="CWRES//Conditional weighted residual",
   xs$name <- x[2]
   require_numeric(df, x[1])
   require_numeric(df, y[1])
-  scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
+  out <- scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -243,7 +250,8 @@ wres_cont <- function(df, x, y="WRES//Weighted residual",
   xs$name <- x[2]
   require_numeric(df, x[1])
   require_numeric(df, y[1])
-  scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
+  out <- scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -258,7 +266,8 @@ res_cont <- function(df, x, y="RES//Residual",
   xs$name <- x[2]
   require_numeric(df, x[1])
   require_numeric(df, y[1])
-  scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
+  out <- scatt(df,x[1],y[1],xs=xs,ys=ys,horiz = 0)
+  layer_hs(out,...)
 }
 
 ##' Plot residuals versus time
@@ -296,7 +305,8 @@ res_cont <- function(df, x, y="RES//Residual",
 res_time <- function(df,
                      yname="Residual",
                      x="TIME", y="RES", ...) {
-  y_time(df, yname=yname, x=x, y=y, ...)
+  out <- y_time(df, yname=yname, x=x, y=y, ...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -304,14 +314,16 @@ res_time <- function(df,
 wres_time <- function(df,
                       yname="Weighted residual",
                       x="TIME", y="WRES",...) {
-  y_time(df, yname=yname, x=x, y=y,...)
+  out <- y_time(df, yname=yname, x=x, y=y,...)
+  layer_hs(out,...)
 }
 
 ##' @export
 ##' @rdname res_time
 cwres_time <- function(df, yname="Conditional weighted residual",
                        x="TIME", y="CWRES",...) {
-  y_time(df,yname=yname,x=x,y=y,...)
+  out <- y_time(df,yname=yname,x=x,y=y,...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -320,7 +332,8 @@ cwres_tad <- function(df,
                       yname="Conditional weighted residual",
                       xname="Time after dose",
                       x="TAD", y="CWRES",...) {
-  y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
+  out <- y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -329,7 +342,8 @@ wres_tad <- function(df,
                      yname="Weighted residual",
                      xname="Time after dose",
                      x="TAD", y="WRES",...) {
-  y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
+  out <- y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -338,7 +352,8 @@ res_tad <- function(df,
                     yname="Residual",
                     xname="Time after dose",
                     x="TAD", y="RES",...) {
-  y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
+  out <- y_time(df, yname=yname, xname=xname, x=x, y=y, ...)
+  layer_hs(out,...)
 }
 
 
@@ -419,7 +434,8 @@ res_pred <- function(df, x="PRED", y="RES", xs=defx(), ys=defy(),
   require_numeric(df,y)
   xs$name <- paste0("Population predicted ", xname)
   ys$name <- "Residual"
-  scatt(df, x, y, xs, ys, ...)
+  out <- scatt(df, x, y, xs, ys, ...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -430,7 +446,8 @@ cwres_pred <- function(df, x="PRED", y="CWRES", xs=defx(), ys=defy(),
   require_numeric(df,y)
   xs$name <- paste0("Population predicted ", xname)
   ys$name <- "Conditional weighted residual"
-  scatt(df, x, y, xs, ys, ...)
+  out <- scatt(df, x, y, xs, ys, ...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -441,5 +458,6 @@ wres_pred <- function(df, x="PRED", y="WRES", xs=defx(), ys=defy(),
   require_numeric(df,y)
   xs$name <- paste0("Population predicted ", xname)
   ys$name <- "Weighted residual"
-  scatt(df, x, y, xs, ys, ...)
+  out <- scatt(df, x, y, xs, ys, ...)
+  layer_hs(out,...)
 }
