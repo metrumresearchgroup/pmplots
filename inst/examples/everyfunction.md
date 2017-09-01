@@ -421,7 +421,7 @@ Add / drop smoother
 -------------------
 
 ``` r
-dv_pred(df, smooth=FALSE)
+dv_pred(df, smooth=NULL)
 ```
 
 ![](img/everyfunction--unnamed-chunk-42-1.png)

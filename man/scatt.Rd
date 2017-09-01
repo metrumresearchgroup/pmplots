@@ -35,6 +35,8 @@ scatt(df, x, y, xs = defx(), ys = defy(), smooth = TRUE,
 \item{scale_col}{color scale}
 
 \item{...}{not used}
+
+\item{hline_col}{color if \code{hline} is drawn}
 }
 \description{
 Scatter plot function.

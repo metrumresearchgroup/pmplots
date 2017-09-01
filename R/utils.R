@@ -183,3 +183,16 @@ merge.list <- function(x,y,...,open=FALSE,
   }
   x
 }
+
+
+##' Add loess line
+##' @param method passed to \code{geom_smooth}
+##' @param se passed to \code{geom_smooth}
+##' @param lty passed to \code{geom_smooth}
+##' @param lwd passed to \code{geom_smooth}
+##' @param col passed to \code{geom_smooth}
+##' @param ... passed to \code{geom_smooth}
+##' @export
+pmsmooth <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...) {
+  geom_smooth(method=method,se=se,lty=lty,lwd=lwd,col=col)
+}
