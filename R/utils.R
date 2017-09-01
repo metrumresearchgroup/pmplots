@@ -164,10 +164,6 @@ merge.list <- function(x,y,...,open=FALSE,
                        warn=FALSE,context="object") {
   y <- as.list(y)
 
-  if(!open) {
-    y <- y[is.null(names(y))]
-  }
-
   ## Merge two lists
   common <- intersect(names(x), names(y))
 

@@ -31,7 +31,7 @@ res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{...}{passed to \code{\link{scatt}}}
+\item{...}{passed to \code{\link{scatt}}  and \code{\link{layer_hs}}}
 }
 \description{
 This function is primarily called by other functions.

@@ -22,8 +22,7 @@
 ##'
 ##' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
-                  title = NULL,
-                  group=NULL, col=NULL,
+                  title = NULL, group=NULL, col=NULL,
                   scale_col = scale_color_brewer(palette="Set2", name=""),
                   ... ) {
 
@@ -35,16 +34,12 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
   p <- ggplot(data=df,aes_string(x,y,col=col)) + geom_point() + xscale + yscale
 
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
-
-  #if(identity) p <- p + geom_abline(intercept=0,slope=1)
-  #if(!is.null(hline)) p <- p + geom_hline(yintercept=hline, lwd=1, lty=2)
   if(is.character(title)) p <- p + ggtitle(title)
   if(is.character(col)) {
     if(missing(scale_col)) require_discrete(df, col)
     locol <- "black"
     p <- p + theme(legend.position="top") + scale_col
   }
-  #if(smooth) p <- p + geom_smooth(method="loess",se=FALSE,lty=2,lwd=1,col=locol)
   p
 }
 
@@ -59,7 +54,7 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' @param ys see \code{\link{defy}}
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
 ##' @param prefix used internally
-##' @param ... passed to \code{\link{scatt}}
+##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_as}}
 ##'
 ##' @details
 ##' Since this function creates a scatter plot,
@@ -186,7 +181,7 @@ dv_time <- function(df, x="TIME", y="DV", xunit="hr",
 ##' @param y character col//title for y-axis data; ; see \code{\link{col_label}}
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
-##' @param ... passed to \code{\link{scatt}}
+##' @param ... passed to \code{\link{scatt}}  and \code{\link{layer_hs}}
 ##'
 ##' @details
 ##' Since this function creates a scatter plot,
@@ -277,7 +272,7 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' @param y character name of y-axis data
 ##' @param xname used for x-axis label
 ##' @param yname used for y-axis label
-##' @param ... passed to \code{\link{y_time}}
+##' @param ... passed to \code{\link{y_time}} and \code{\link{layer_hs}}
 ##'
 ##' @seealso \code{\link{y_time}}
 ##'
@@ -414,7 +409,7 @@ y_time <- function(df, x="TIME", y,
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param xname used to form x-axis label
-##' @param ... passed to \code{\link{scatt}}
+##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_hs}}
 ##'
 ##' @details
 ##' Since this function creates a scatter plot,

@@ -34,7 +34,7 @@ res_tad(df, yname = "Residual", xname = "Time after dose", x = "TAD",
 
 \item{y}{character name of y-axis data}
 
-\item{...}{passed to \code{\link{y_time}}}
+\item{...}{passed to \code{\link{y_time}} and \code{\link{layer_hs}}}
 
 \item{xname}{used for x-axis label}
 }
