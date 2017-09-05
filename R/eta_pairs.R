@@ -1,9 +1,15 @@
-eta_pairs_fun <- function(data,mapping,...) {
+eta_pairs_fun <- function(data, mapping, ...) {
   ggplot(data = data, mapping = mapping) +
     geom_point() +
     geom_smooth(method = "loess", color = .ggblue, lty=2, se = FALSE, lwd = 1.3)
 
 }
+
+eta_pairs_upper <- function(data, mapping, ...) {
+ GGally::ggally_cor(data = data, mapping = mapping) +
+    theme(panel.grid.major = ggplot2::element_blank(),panel.grid.minor = ggplot2::element_blank())
+}
+
 
 
 ##' Pairs plot for ETAs using ggpairs
@@ -41,6 +47,7 @@ eta_pairs <- function(x, etas, bins = 15, alpha = 0.6, fill = "black", col="grey
   for(col in cols) require_numeric(x,col)
   GGally::ggpairs(x[,cols],
                   columnLabels=labs,
+                  upper = list(continuous = eta_pairs_upper),
                   diag = list(continuous = diag),
                   lower = list(continuous = eta_pairs_fun))
 }

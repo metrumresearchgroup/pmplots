@@ -100,7 +100,7 @@ dv_pred(df, yname = .yname)
 ### Observed versus population predicted - log/log
 
 ``` r
-dv_pred(df,loglog=TRUE, yname = .yname)
+dv_pred(df, loglog=TRUE, yname = .yname)
 ```
 
 ![](img/everyfunction--unnamed-chunk-6-1.png)
