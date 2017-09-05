@@ -145,6 +145,9 @@ dv_ipred <- function(df, x = "IPRED",...) {
 ##'
 ##' dv_time(df, log=TRUE, col="STUDYc")
 ##'
+##' # Add a rug
+##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))
+##'
 ##' @export
 dv_time <- function(df, x="TIME", y="DV", xunit="hr",
                     yname = NULL, group = "ID",
