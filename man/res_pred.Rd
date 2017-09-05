@@ -45,3 +45,6 @@ df <- dplyr::filter(superset2(), EVID==0)
 cwres_pred(df, xname="MyDrug (ng/mL)")
 
 }
+\seealso{
+\code{\link{geom_3s}}
+}

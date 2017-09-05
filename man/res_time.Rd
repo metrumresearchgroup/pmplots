@@ -71,7 +71,9 @@ cwres_time(df, xunit="day")
 
 wres_time(df, xby=48)
 
+wres_time(df) + geom_3s()
+
 }
 \seealso{
-\code{\link{y_time}}
+\code{\link{y_time}}, \code{\link{geom_3s}}
 }

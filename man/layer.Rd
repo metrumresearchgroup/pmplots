@@ -43,3 +43,9 @@ layer_3s(x, lwd = 1.35, lty = 3, ...)
 \description{
 Layer functions
 }
+\examples{
+df <- dplyr::filter(superset2(), EVID==0 & BLQ==0)
+
+cwres_time(df) + geom_3s()
+
+}

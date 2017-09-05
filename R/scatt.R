@@ -287,7 +287,7 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' @param yname used for y-axis label
 ##' @param ... passed to \code{\link{y_time}} and \code{\link{layer_hs}}
 ##'
-##' @seealso \code{\link{y_time}}
+##' @seealso \code{\link{y_time}}, \code{\link{geom_3s}}
 ##'
 ##' @details By default, the time unit is assumed
 ##' to be hours (\code{hr}).  See the \code{xunit} argument
@@ -308,6 +308,8 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' cwres_time(df, xunit="day")
 ##'
 ##' wres_time(df, xby=48)
+##'
+##' wres_time(df) + geom_3s()
 ##'
 ##' @export
 res_time <- function(df,
@@ -440,6 +442,8 @@ y_time <- function(df, x="TIME", y,
 ##' Since this function creates a scatter plot,
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
+##'
+##' @seealso \code{\link{geom_3s}}
 ##'
 ##' @examples
 ##'

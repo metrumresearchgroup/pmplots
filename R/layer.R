@@ -25,6 +25,11 @@ gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
 ##' @param lwd passed to \code{geom} functions
 ##' @param ... not used
 ##'
+##' @examples
+##' df <- dplyr::filter(superset2(), EVID==0 & BLQ==0)
+##'
+##' cwres_time(df) + geom_3s()
+##'
 ##' @name layer
 ##' @rdname layer
 ##' @export
