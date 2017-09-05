@@ -390,7 +390,7 @@ Continuous variable by categorical variable (`cont_cat`)
 --------------------------------------------------------
 
 ``` r
-cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
+cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
 ![](img/everyfunction--unnamed-chunk-39-1.png)
