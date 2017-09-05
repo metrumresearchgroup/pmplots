@@ -34,6 +34,8 @@ box_labels <- function(df, x, y) {
 ##' \code{n} is the number of unique \code{ID} values for
 ##' that box.  An error will be generated if \code{ID} does
 ##' not exist in the plotting data frame when \code{shown} is \code{TRUE}.
+##' When \code{N} is equal to \code{n} in the summary, only \code{n} is
+##' shown.
 ##'
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
@@ -76,6 +78,8 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' the \code{x} column must be character, factor
 ##' or logical and \code{y} column must
 ##' be numeric.
+##'
+##' @seealso \code{\link{boxwork}}
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
@@ -122,6 +126,8 @@ eta_cat <- function(df, x, y, hline=0, ...) {
 ##' the \code{x} column must be character, factor
 ##' or logical and \code{y} column must
 ##' be numeric.
+##'
+##' @seealso \code{\link{boxwork}}
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)

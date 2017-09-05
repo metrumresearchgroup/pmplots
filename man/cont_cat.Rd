@@ -39,3 +39,6 @@ df <- dplyr::filter(superset2(), EVID==0)
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 
 }
+\seealso{
+\code{\link{boxwork}}
+}

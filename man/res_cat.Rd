@@ -37,3 +37,6 @@ df <- dplyr::filter(superset2(), EVID==0)
 cwres_cat(df, x="STUDYc//Study name")
 
 }
+\seealso{
+\code{\link{boxwork}}
+}

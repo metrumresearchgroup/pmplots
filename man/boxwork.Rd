@@ -45,4 +45,6 @@ non-NA observations in the \code{y} column for that box and
 \code{n} is the number of unique \code{ID} values for
 that box.  An error will be generated if \code{ID} does
 not exist in the plotting data frame when \code{shown} is \code{TRUE}.
+When \code{N} is equal to \code{n} in the summary, only \code{n} is
+shown.
 }
