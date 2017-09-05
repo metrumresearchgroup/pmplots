@@ -3,7 +3,7 @@
 
 ## Data column names
 
-These are default column names.  All 
+These are default column names.  All
 default columns are numeric.  
 All of the defaults can easily be
 changed with function arguments.
@@ -25,7 +25,8 @@ changed with function arguments.
 
 - Data point color: `black`
 - Loess line: `dashed` and `blue`
-- Line of identity: `black`
+- Line of identity: `solid` and `darkgrey`
+- Horizontal reference line: `solid` and `darkgrey`
 - `residual` is always singular not plural (e.g. "Weighted residual" rather
 than "Weighted residuals")
 - Legend is located at the top of the plot
@@ -44,14 +45,15 @@ passing a list as `ys` containing arguments to
 - any discrete x-scale can be modified by
 passing a list as `xs` containing arguments
 to `scale_x_discrete`
-- The input data set should only include 
-rows that contributed actual observations that 
+- The input data set should only include
+rows that contributed actual observations that
 influenced the estimates. In general, dosing
 records and BQL records should be discarded.
-However, the contents may vary across 
+However, the contents may vary across
 different applications.  
 
-### DV/PRED
+
+### DV/(PRED|IPRED)
 
 - includes `dv_pred` and `dv_ipred`
 - x- and y-values must be numeric and must exist
@@ -60,6 +62,9 @@ in the data frame, or an error is generated
 - a line of identity is drawn (can be omitted)
 - a loess line (blue, dashed) is drawn (can be omitted)
 - switch to make both scales log-transformed
+- when a `BQL` column exists in the data set,
+any `DV` value is forced to be `NA` where `BQL != 1`
+
 
 ### RESIDUAL/TIME
 
@@ -68,6 +73,9 @@ in the data frame, or an error is generated
 - x- and y-values must be numeric and must exist
 in the data frame, or an error is generated
 - time unit can be changed via `xunit` argument
+- horizontal reference line is drawn with
+yintercept of 0
+- a loess line is drawn
 
 ### ETA or continuous value/Continuous value
 
@@ -78,7 +86,9 @@ in the data frame, or an error is generated
 `col//short title` format (e.g. `WT//Weight (kg)`)
 - x- and y-values must be numeric and must exist
 in the data frame, or an error is generated
-- a loess line (blue, dashed) is drawn (can be omitted)
+- a loess line is drawn
+- a horizontal reference line is drawn with
+yintercept of 0
 - other reference lines are added outside of
 the function
 
@@ -93,18 +103,23 @@ in the data frame, or an error is generated
 - the categorical value must be either
 factor, character, or logical value in
 the data frame, or an error is generated
-- By default, the number of rows with 
+- by default, the number of rows with
 non-NA values (based on the y-column) in each box
-is included under each x-axis tick label; this
-can be suppressed by function argument
+is included under each x-axis tick label (as `N`) along with
+the number of unique IDs in that box (as `n`). When the number
+of IDs is equal to the number of observations in
+every box, only `n` is shown.
+- the numeric summaries below the boxes can be suppressed
+with function argument.
 
 ### QQ
 
 - includes `wres_q`, `cwres_q`
 - both `wres` and `cwres` must be numeric
-and exist in the data frame, or an error is 
+and exist in the data frame, or an error is
 generated
-- a line of identity is included
+- a diagonal reference line is drawn based on
+results of `stats::qqline`
 - points are in blue
 - y-label is `[C]WRES distribution quantile`
 - x-label is `Standard normal quantile`
@@ -114,7 +129,7 @@ generated
 - includes `eta_hist`
 - etas are specified in `col//title`
 format (e.g. `ETA1//ETA-KA`)
-- etas must be numeric and must exist in the 
+- etas must be numeric and must exist in the
 data frame, or an error is generated
 - `fill`, `col` and `alpha` can be set
 through function arguments which are
