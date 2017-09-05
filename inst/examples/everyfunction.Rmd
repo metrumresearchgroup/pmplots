@@ -75,6 +75,12 @@ dv_ipred(df, loglog=TRUE, yname = .yname)
 res_time(df)
 ```
 
+### Residuals versus time after first dose (`res_tafd`)
+```{r,eval=FALSE}
+res_tafd(df)
+```
+
+
 ### Residuals versus time after dose (`res_tad`)
 ```{r}
 res_tad(df)
@@ -103,6 +109,12 @@ res_cat(df, x="STUDYc//Study type")
 ```{r}
 wres_time(df) 
 ```
+
+### Weighted residuals versus time after first dose (`wres_tafd`)
+```{r,eval=FALSE}
+wres_tafd(df)
+```
+
 
 ### Weighted residuals versus time after dose (`wres_tad`)
 ```{r}
@@ -137,6 +149,13 @@ wres_q(df)
 ```{r}
 cwres_time(df)
 ```
+
+
+### Conditional weighted residuals versus time after first dose (`cwres_tafd`)
+```{r,eval=FALSE}
+cwres_tafd(df)
+```
+
 
 ### CWRES versus time after dose (`cwres_tad`)
 ```{r}
