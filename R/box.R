@@ -43,6 +43,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
     require_column(df, "ID")
     .sum <- box_labels(df, x, y)
     xs$labels <- paste0(.sum[,x], "\nN=", .sum[,"N"], "\nn=", .sum[,"n"])
+    if(all(.sum$N == .sum$n)) {
+      xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"])
+    }
   }
 
   yscale <- do.call("scale_y_continuous", ys)
