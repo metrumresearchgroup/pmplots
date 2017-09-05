@@ -29,7 +29,7 @@ dv_ipred(df, y = "IPRED", ...)
 
 \item{prefix}{used internally}
 
-\item{...}{passed to \code{\link{scatt}}}
+\item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
 }
 \description{
 Plot DV versus predicted values

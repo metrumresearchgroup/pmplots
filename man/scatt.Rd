@@ -4,8 +4,7 @@
 \alias{scatt}
 \title{Scatter plot function.}
 \usage{
-scatt(df, x, y, xs = defx(), ys = defy(), smooth = TRUE,
-  identity = FALSE, hline = NULL, title = NULL, group = NULL,
+scatt(df, x, y, xs = defx(), ys = defy(), title = NULL, group = NULL,
   col = NULL, scale_col = scale_color_brewer(palette = "Set2", name = ""),
   ...)
 }
@@ -20,12 +19,6 @@ scatt(df, x, y, xs = defx(), ys = defy(), smooth = TRUE,
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{smooth}{if \code{TRUE} a loess smooth will be drawn}
-
-\item{identity}{if \code{TRUE} a line of identity will be drawn}
-
-\item{hline}{if numeric, a horizontal reference line will be drawn}
-
 \item{title}{character, passed to \code{ggtitle}}
 
 \item{group}{character name of grouping variable}
@@ -35,6 +28,12 @@ scatt(df, x, y, xs = defx(), ys = defy(), smooth = TRUE,
 \item{scale_col}{color scale}
 
 \item{...}{not used}
+
+\item{smooth}{if \code{TRUE} a loess smooth will be drawn}
+
+\item{identity}{if \code{TRUE} a line of identity will be drawn}
+
+\item{hline}{if numeric, a horizontal reference line will be drawn}
 }
 \description{
 Scatter plot function.

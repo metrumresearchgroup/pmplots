@@ -28,7 +28,7 @@ wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
 
 \item{xname}{used to form x-axis label}
 
-\item{...}{passed to \code{\link{scatt}}}
+\item{...}{passed to \code{\link{scatt}} and \code{\link{layer_hs}}}
 }
 \description{
 Residuals versus predicted values

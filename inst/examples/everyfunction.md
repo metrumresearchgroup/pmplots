@@ -291,7 +291,7 @@ ETA versus continuous covariates (`eta_cont`)
 
 ``` r
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
-p <- eta_cont(df, x="WT//Weight (kg)",y=etas)
+p <- eta_cont(id, x="WT//Weight (kg)",y=etas)
 ```
 
 ``` r
@@ -304,7 +304,7 @@ ETA by categorical covariates (`eta_cat`)
 -----------------------------------------
 
 ``` r
-p <- eta_cat(df, x="STUDYc//Study type", y=etas)
+p <- eta_cat(id, x="STUDYc//Study type", y=etas)
 ```
 
 ``` r
@@ -318,7 +318,7 @@ ETA histograms (`eta_hist`)
 
 ``` r
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
-p <- eta_hist(df,etas, bins=10)
+p <- eta_hist(id,etas, bins=10)
 ```
 
 ``` r
@@ -421,7 +421,7 @@ Add / drop smoother
 -------------------
 
 ``` r
-dv_pred(df, smooth=FALSE)
+dv_pred(df, smooth=NULL)
 ```
 
 ![](img/everyfunction--unnamed-chunk-42-1.png)
