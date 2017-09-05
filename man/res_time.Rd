@@ -2,8 +2,11 @@
 % Please edit documentation in R/scatt.R
 \name{res_time}
 \alias{res_time}
+\alias{res_tafd}
 \alias{wres_time}
+\alias{wres_tafd}
 \alias{cwres_time}
+\alias{cwres_tafd}
 \alias{cwres_tad}
 \alias{wres_tad}
 \alias{res_tad}
@@ -11,10 +14,16 @@
 \usage{
 res_time(df, yname = "Residual", x = "TIME", y = "RES", ...)
 
+res_tafd(..., x = "TAFD")
+
 wres_time(df, yname = "Weighted residual", x = "TIME", y = "WRES", ...)
+
+wres_tafd(..., x = "TAFD")
 
 cwres_time(df, yname = "Conditional weighted residual", x = "TIME",
   y = "CWRES", ...)
+
+cwres_tafd(..., x = "TAFD")
 
 cwres_tad(df, yname = "Conditional weighted residual",
   xname = "Time after dose", x = "TAD", y = "CWRES", ...)

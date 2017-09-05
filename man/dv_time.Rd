@@ -2,11 +2,14 @@
 % Please edit documentation in R/scatt.R
 \name{dv_time}
 \alias{dv_time}
+\alias{dv_tafd}
 \title{Plot DV versus time}
 \usage{
 dv_time(df, x = "TIME", y = "DV", xunit = "hr", yname = NULL,
   group = "ID", xs = defx(), ys = defy(), log = FALSE, xby = NULL,
   ...)
+
+dv_tafd(..., x = "TAFD")
 }
 \arguments{
 \item{df}{data frame to plot}

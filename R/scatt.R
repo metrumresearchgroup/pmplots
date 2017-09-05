@@ -169,6 +169,10 @@ dv_time <- function(df, x="TIME", y="DV", xunit="hr",
   scatt(df,x,y,xs=xs,ys=ys,smooth=FALSE,group=group,...)
 }
 
+##' @export
+##' @rdname dv_time
+dv_tafd <- function(..., x = "TAFD") dv_time(...,x = x)
+
 ##' Plot continuous variable versus continuous variable
 ##'
 ##' This function is primarily called by other functions.
@@ -303,6 +307,10 @@ res_time <- function(df,
 
 ##' @export
 ##' @rdname res_time
+res_tafd <- function(..., x = "TAFD") res_time(..., x = x)
+
+##' @export
+##' @rdname res_time
 wres_time <- function(df,
                       yname="Weighted residual",
                       x="TIME", y="WRES",...) {
@@ -312,11 +320,19 @@ wres_time <- function(df,
 
 ##' @export
 ##' @rdname res_time
+wres_tafd <- function(..., x = "TAFD") wres_time(..., x = x)
+
+##' @export
+##' @rdname res_time
 cwres_time <- function(df, yname="Conditional weighted residual",
                        x="TIME", y="CWRES",...) {
   out <- y_time(df,yname=yname,x=x,y=y,...)
   layer_hs(out,...)
 }
+
+##' @export
+##' @rdname res_time
+cwres_tafd <- function(..., x = "TAFD") cwres_time(..., x = x)
 
 ##' @export
 ##' @rdname res_time
