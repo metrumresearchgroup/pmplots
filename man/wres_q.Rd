@@ -5,7 +5,7 @@
 \alias{cwres_q}
 \title{QQ plot for conditional residuals}
 \usage{
-wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = c(0, 1), ...)
+wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = NULL, ...)
 
 cwres_q(df, x = "CWRES", ...)
 }

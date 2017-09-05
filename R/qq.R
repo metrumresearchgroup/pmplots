@@ -1,4 +1,14 @@
 
+qq_reg_data <- function(y) {
+  probs <- c(0.25, 0.75)
+  y <- quantile(y,  probs, names=FALSE, type=7, na.rm=TRUE)
+  x <- qnorm(probs)
+  slope <- diff(x)/diff(y)
+  int <- y[1L] - slope * x[1L]
+  c(slope = slope, int = int)
+}
+
+
 
 
 ##' QQ plot for conditional residuals
@@ -20,8 +30,9 @@
 ##' cwres_q(df)
 ##'
 ##' @export
-wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=c(0,1), ...) {
+wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
   require_numeric(df,x)
+  if(is.null(abline)) abline <- qq_reg_data(df[,x])
   xs$name <- "Standard normal quantile"
   ys$name <- paste0(x, " distribution quantile")
   xscale <- do.call("scale_x_continuous", xs)
