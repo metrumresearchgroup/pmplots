@@ -1,3 +1,12 @@
+box_labels <- function(df, x, y) {
+  .xcol <- rlang::sym(x)
+  .ycol  <- rlang::sym(y)
+  .sum <- filter(df, !is.na(!!.ycol))
+  .sum <- group_by(.sum, !!.xcol)
+  .sum <- summarize(.sum, N = n(), n = n_distinct(ID))
+  .sum <- ungroup(.sum)
+  as.data.frame(.sum)
+}
 
 ##' Make boxplots
 ##'
@@ -10,8 +19,7 @@
 ##' @param alpha passed to \code{geom_boxplot}
 ##' @param hline used to draw horizontal reference line
 ##' @param title passed to \code{ggtitle}
-##' @param shown if \code{TRUE} number of non-NA values in each box are shown below
-##' the x-axis tick labels
+##' @param shown if \code{TRUE} provide a numeric summary of each box (see details)
 ##' @param ... not used
 ##'
 ##' @details
@@ -20,17 +28,21 @@
 ##' or logical and \code{y} column must
 ##' be numeric.
 ##'
+##' If \code{shown} is \code{TRUE}, a numeric summar of each box is included
+##' below each box.  In the summary, \code{N} is the number of
+##' non-NA observations in the \code{y} column for that box and
+##' \code{n} is the number of unique \code{ID} values for
+##' that box.  An error will be generated if \code{ID} does
+##' not exist in the plotting data frame when \code{shown} is \code{TRUE}.
+##'
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
                     alpha=1, hline = NULL, title=NULL, shown = TRUE, ...) {
 
-
   if(shown) {
-    .xcol <- rlang::sym(x)
-    .ycol  <- rlang::sym(y)
-    .sum <- dplyr::filter(df, !is.na(!!.ycol))
-    .sum <- as.data.frame(dplyr::count(.sum, !! .xcol))
-    xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"])
+    require_column(df, "ID")
+    .sum <- box_labels(df, x, y)
+    xs$labels <- paste0(.sum[,x], "\nN=", .sum[,"N"], "\nn=", .sum[,"n"])
   }
 
   yscale <- do.call("scale_y_continuous", ys)
