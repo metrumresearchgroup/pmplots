@@ -50,6 +50,7 @@ Available functions
     -   [Modify y-axis](#modify-y-axis)
     -   [Add / drop smoother](#add-drop-smoother)
     -   [Custom breaks](#custom-breaks)
+    -   [Add reference lines at -3 and 3](#add-reference-lines-at--3-and-3)
 -   [Controlled input / output](#controlled-input-output)
 -   [Plot output (`mrggsave`)](#plot-output-mrggsave)
     -   [Saving single plots](#saving-single-plots)
@@ -489,6 +490,15 @@ dv_time(df, xs=a)
 
 ![](img/everyfunction--unnamed-chunk-50-1.png)
 
+Add reference lines at -3 and 3
+-------------------------------
+
+``` r
+wres_time(df) + geom_3s()
+```
+
+![](img/everyfunction--unnamed-chunk-51-1.png)
+
 Controlled input / output
 =========================
 
@@ -499,41 +509,41 @@ dd$PRED <- 2*dd$DV
 dv_pred(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-1.png)
+![](img/everyfunction--unnamed-chunk-52-1.png)
 
 ``` r
 dd$IPRED <- 3*dd$DV
 dv_ipred(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-2.png)
+![](img/everyfunction--unnamed-chunk-52-2.png)
 
 ``` r
 dd$RES <- 2*dd$TIME
 res_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-3.png)
+![](img/everyfunction--unnamed-chunk-52-3.png)
 
 ``` r
 dd$WRES <- 10*dd$TIME
 wres_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-4.png)
+![](img/everyfunction--unnamed-chunk-52-4.png)
 
 ``` r
 dd$CWRES <- 100*dd$TIME
 cwres_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-5.png)
+![](img/everyfunction--unnamed-chunk-52-5.png)
 
 ``` r
 cwres_cont(dd, x = "RES//Controlled")
 ```
 
-![](img/everyfunction--unnamed-chunk-52-1.png)
+![](img/everyfunction--unnamed-chunk-53-1.png)
 
 Should be fairly flat
 
@@ -542,7 +552,7 @@ dd$CWRESQ <- rnorm(nrow(dd))
 cwres_q(dd,x="CWRESQ")
 ```
 
-![](img/everyfunction--unnamed-chunk-53-1.png)
+![](img/everyfunction--unnamed-chunk-54-1.png)
 
 Plot output (`mrggsave`)
 ========================
@@ -578,4 +588,4 @@ Arrange multiple plots on a single page
 mrggdraw(list(p1,p2,p3,p4), arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-58-1.png)
+![](img/everyfunction--unnamed-chunk-59-1.png)

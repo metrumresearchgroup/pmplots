@@ -326,6 +326,13 @@ dv_time(df, xs=a)
 ```
 
 
+## Add reference lines at -3 and 3 
+
+```{r}
+wres_time(df) + geom_3s()
+```
+
+
 # Controlled input / output
 ```{r}
 dd <- df
@@ -353,6 +360,9 @@ Should be fairly flat
 dd$CWRESQ <- rnorm(nrow(dd))
 cwres_q(dd,x="CWRESQ")
 ```
+
+
+
 
 
 # Plot output (`mrggsave`)
