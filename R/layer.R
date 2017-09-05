@@ -29,40 +29,57 @@ gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
 ##' @rdname layer
 ##' @export
 layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
-  if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
-  if(!missing(hline)) hline <- merge.list(gh(),hline,open=TRUE)
-  if(!is.null(hline)) x <- x + do.call(geom_hline,hline)
-  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
+  if(!is.null(hline)) {
+    if(!missing(hline)) hline <- merge.list(gh(),hline,open=TRUE)
+    x <- x + do.call(geom_hline,hline)
+  }
+  if(!is.null(smooth)) {
+    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    x <- x + do.call(geom_smooth,smooth)
+  }
+
   x
 }
 
 ##' @export
 ##' @rdname layer
 layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
-  if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
-  if(!missing(hline)) hline <- merge.list(gh(),hline,open=TRUE)
-  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
-  if(!is.null(hline)) x <- x + do.call(geom_hline,hline)
+  if(!is.null(smooth)) {
+    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    x <- x + do.call(geom_smooth,smooth)
+  }
+  if(!is.null(hline)) {
+    if(!missing(hline)) hline <- merge.list(gh(),hline,open=TRUE)
+    x <- x + do.call(geom_hline,hline)
+  }
   x
 }
 
 ##' @export
 ##' @rdname layer
 layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
-  if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
-  if(!missing(abline)) abline <- merge.list(ga(),abline,open=TRUE)
-  if(!is.null(abline)) x <- x + do.call(geom_abline,abline)
-  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
+  if(!is.null(abline)) {
+    if(!missing(abline)) abline <- merge.list(ga(),abline,open=TRUE)
+    x <- x + do.call(geom_abline,abline)
+  }
+  if(!is.null(smooth)) {
+    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    x <- x + do.call(geom_smooth,smooth)
+  }
   x
 }
 
 ##' @export
 ##' @rdname layer
 layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
-  if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
-  if(!missing(abline)) abline <- merge.list(ga(),abline,open=TRUE)
-  if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
-  if(!is.null(abline)) x <- x + do.call(geom_abline,abline)
+  if(!is.null(smooth)) {
+    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    x <- x + do.call(geom_smooth,smooth)
+  }
+  if(!is.null(abline)) {
+    if(!missing(abline)) abline <- merge.list(ga(),abline,open=TRUE)
+    x <- x + do.call(geom_abline,abline)
+  }
   x
 }
 

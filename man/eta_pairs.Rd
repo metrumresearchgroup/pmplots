@@ -4,12 +4,20 @@
 \alias{eta_pairs}
 \title{Pairs plot for ETAs using ggpairs}
 \usage{
-eta_pairs(x, etas)
+eta_pairs(x, etas, bins = 15, alpha = 0.6, fill = "black", col = "grey")
 }
 \arguments{
 \item{x}{plotting data.frame}
 
 \item{etas}{character col//label for pairs data; see \code{\link{col_label}}}
+
+\item{bins}{passed to \code{geom_histogram}}
+
+\item{alpha}{passed to \code{geom_histogram}}
+
+\item{fill}{passed to \code{geom_histogram}}
+
+\item{col}{passed to \code{geom_histogram}}
 }
 \value{
 The result from a ggpairs call.

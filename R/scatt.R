@@ -101,9 +101,9 @@ dv_pred <- function(df, x="PRED", y="DV", yname="value", xname=yname,
   xs$limits <- lim
   ys$limits <- lim
 
-  out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys,...)
+  out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
 
-  layer_as(out,...)
+  layer_as(out, ...)
 }
 
 ##' @export
