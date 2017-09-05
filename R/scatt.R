@@ -66,15 +66,15 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' dv_ipred(df, yname="MyDrug (ng/mL)")
 ##'
 ##' @export
-dv_pred <- function(df, x="DV", y="PRED", xname="value", yname=xname,
+dv_pred <- function(df, x="PRED", y="DV", yname="value", xname=yname,
                     xs = defx(), ys = defy(), loglog=FALSE,
                     prefix="Population", ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
 
-  ys$name <- paste0(prefix, " predicted ", yname)
-  xs$name <- paste0("Observed ", xname)
+  xs$name <- paste0(prefix, " predicted ", xname)
+  ys$name <- paste0("Observed ", yname)
 
   if(loglog) {
     xs$trans <- "log"
@@ -101,15 +101,15 @@ dv_pred <- function(df, x="DV", y="PRED", xname="value", yname=xname,
   xs$limits <- lim
   ys$limits <- lim
 
-  out <- scatt(df,x,y,identity=TRUE,xs=xs,ys=ys,...)
+  out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys,...)
 
   layer_as(out,...)
 }
 
 ##' @export
 ##' @rdname dv_pred
-dv_ipred <- function(df, y = "IPRED",...) {
-  out <- dv_pred(df, prefix="Individual", y = y, ...)
+dv_ipred <- function(df, x = "IPRED",...) {
+  out <- dv_pred(df, prefix="Individual", x = x, ...)
   layer_as(out,...)
 }
 
