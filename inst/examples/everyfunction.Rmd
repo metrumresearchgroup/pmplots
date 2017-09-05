@@ -302,17 +302,13 @@ dv_time(df, ys=a, yname="Y-axis name")
 ```
 
 
-## Add / drop layers
+## Drop extra layers
 ```{r}
 dv_pred(df, smooth=NULL)
 ```
 
 ```{r}
 dv_pred(df, abline=NULL)
-```
-
-```{r}
-dv_pred(df, smooth=NULL)
 ```
 
 ```{r}
