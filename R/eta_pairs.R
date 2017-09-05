@@ -12,6 +12,7 @@
 ##' The result from a ggpairs call.
 ##'
 ##' @examples
+##' library(dplyr)
 ##' id <- superset2() %>% filter(EVID==0) %>% distinct(ID, .keep_all = TRUE)
 ##' eta_pairs(id, c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA"))
 ##'

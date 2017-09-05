@@ -28,12 +28,6 @@ scatt(df, x, y, xs = defx(), ys = defy(), title = NULL, group = NULL,
 \item{scale_col}{color scale}
 
 \item{...}{not used}
-
-\item{smooth}{if \code{TRUE} a loess smooth will be drawn}
-
-\item{identity}{if \code{TRUE} a line of identity will be drawn}
-
-\item{hline}{if numeric, a horizontal reference line will be drawn}
 }
 \description{
 Scatter plot function.

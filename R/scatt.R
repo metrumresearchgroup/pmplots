@@ -6,9 +6,6 @@
 ##' @param y character name for y-axis data
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
-##' @param smooth if \code{TRUE} a loess smooth will be drawn
-##' @param identity if \code{TRUE} a line of identity will be drawn
-##' @param hline if numeric, a horizontal reference line will be drawn
 ##' @param title character, passed to \code{ggtitle}
 ##' @param group character name of grouping variable
 ##' @param col character name of coloring variable

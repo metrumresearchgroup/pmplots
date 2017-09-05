@@ -17,9 +17,13 @@ gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
 
 ##' Layer functions
 ##'
+##' @param x a \code{ggplot}
 ##' @param smooth list of arguments for \code{geom_smooth}
 ##' @param hline list of arguments for \code{geom_hline}
 ##' @param abline list of arguments for \code{geom_abline}
+##' @param lty passed to \code{geom} functions
+##' @param lwd passed to \code{geom} functions
+##' @param ... not used
 ##'
 ##' @name layer
 ##' @rdname layer
@@ -31,6 +35,7 @@ layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
   if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
   x
 }
+
 ##' @export
 ##' @rdname layer
 layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
@@ -40,6 +45,7 @@ layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
   if(!is.null(hline)) x <- x + do.call(geom_hline,hline)
   x
 }
+
 ##' @export
 ##' @rdname layer
 layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
@@ -49,6 +55,7 @@ layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
   if(!is.null(smooth)) x <- x + do.call(geom_smooth,smooth)
   x
 }
+
 ##' @export
 ##' @rdname layer
 layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
@@ -58,6 +65,7 @@ layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
   if(!is.null(abline)) x <- x + do.call(geom_abline,abline)
   x
 }
+
 ##' @export
 ##' @rdname layer
 layer_dots <- function(x,...) {
@@ -70,11 +78,12 @@ layer_dots <- function(x,...) {
 
 ##' @export
 ##' @rdname layer
-geom_3s <- function(x,lwd=1.35, lty=3, ...) {
+geom_3s <- function(x, lwd=1.35, lty=3, ...) {
   geom_hline(yintercept=c(-3,3), lwd = lwd, lty=lty,...)
 }
+
 ##' @export
 ##' @rdname layer
-layer_3s <- function(x,lwd=1.35, lty=3, ...) {
+layer_3s <- function(x, lwd=1.35, lty=3, ...) {
   x + geom_hline(yintercept=c(-3,3), lwd = lwd, lty=lty,...)
 }

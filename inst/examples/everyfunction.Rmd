@@ -253,7 +253,7 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
 
 ## Continuous variable by categorical variable (`cont_cat`)
 ```{r}
-cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
+cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
 

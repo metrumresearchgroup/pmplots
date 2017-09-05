@@ -26,11 +26,19 @@ geom_3s(x, lwd = 1.35, lty = 3, ...)
 layer_3s(x, lwd = 1.35, lty = 3, ...)
 }
 \arguments{
+\item{x}{a \code{ggplot}}
+
 \item{smooth}{list of arguments for \code{geom_smooth}}
 
 \item{hline}{list of arguments for \code{geom_hline}}
 
+\item{...}{not used}
+
 \item{abline}{list of arguments for \code{geom_abline}}
+
+\item{lwd}{passed to \code{geom} functions}
+
+\item{lty}{passed to \code{geom} functions}
 }
 \description{
 Layer functions
