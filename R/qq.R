@@ -5,7 +5,7 @@ qq_reg_data <- function(y) {
   x <- qnorm(probs)
   slope <- diff(x)/diff(y)
   int <- y[1L] - slope * x[1L]
-  c(slope = slope, int = int)
+  c(int = int, slope = slope)
 }
 
 
