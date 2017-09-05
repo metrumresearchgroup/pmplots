@@ -12,7 +12,7 @@ require_discrete <- function(df,x) {
 require_numeric <- function(df,x) {
   require_column(df,x)
   cl <- class(unlist(df[1,x],use.names=FALSE))
-  if(!is.element(cl,"numeric")) {
+  if(!is.element(cl,c("numeric","integer"))) {
      .stop("column ", x, " is required to be numeric")
   }
   return(invisible(NULL))

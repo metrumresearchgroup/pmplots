@@ -131,6 +131,11 @@ dv_ipred <- function(df, x = "IPRED",...) {
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
 ##'
+##' If the data set includes a \code{BLQ} column,
+##' the values in the \code{y} column are
+##' set to \code{NA} when \code{BLQ} is
+##' not equal to \code{0}.
+##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0)
 ##'
@@ -142,11 +147,18 @@ dv_ipred <- function(df, x = "IPRED",...) {
 ##'
 ##' @export
 dv_time <- function(df, x="TIME", y="DV", xunit="hr",
-                    yname = NULL, group="ID",
+                    yname = NULL, group = "ID",
                     xs=defx(), ys=defy(), log=FALSE, xby = NULL, ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
+
+  df <- as.data.frame(df)
+
+  if(exists("BLQ", df)) {
+    require_numeric(df,"BLQ")
+    df[df$BLQ != 0, y] <- NA
+  }
 
   xs$name <- paste0("Time (",xunit,")")
   ys$name <- yname

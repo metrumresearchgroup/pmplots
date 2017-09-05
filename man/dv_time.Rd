@@ -41,6 +41,11 @@ Plot DV versus time
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.
+
+If the data set includes a \code{BLQ} column,
+the values in the \code{y} column are
+set to \code{NA} when \code{BLQ} is
+not equal to \code{0}.
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)
