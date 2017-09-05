@@ -204,6 +204,18 @@ mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
 
+## ETA pairs plot (`eta_pairs`)
+
+```{r}
+p <- eta_pairs(id,etas)
+```
+
+
+```{r,fig.width=6, fig.height=7}
+print(p)
+```
+
+
 
 # DV versus time (`dv_time`)
 
