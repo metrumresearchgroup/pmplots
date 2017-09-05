@@ -50,7 +50,7 @@ Available functions
     -   [Modify y-axis](#modify-y-axis)
     -   [Drop extra layers](#drop-extra-layers)
     -   [Custom breaks](#custom-breaks)
-    -   [Add reference lines at -3 and 3](#add-reference-lines-at--3-and-3)
+    -   [Extra reference lines to \[C\]WRES plots](#extra-reference-lines-to-cwres-plots)
 -   [Controlled input / output](#controlled-input-output)
 -   [Plot output (`mrggsave`)](#plot-output-mrggsave)
     -   [Saving single plots](#saving-single-plots)
@@ -508,8 +508,8 @@ dv_time(df, xs=a)
 
 ![](img/everyfunction--unnamed-chunk-53-1.png)
 
-Add reference lines at -3 and 3
--------------------------------
+Extra reference lines to \[C\]WRES plots
+----------------------------------------
 
 ``` r
 wres_time(df) + geom_3s()
