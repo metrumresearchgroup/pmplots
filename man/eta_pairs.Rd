@@ -19,6 +19,8 @@ eta_pairs(x, etas, bins = 15, alpha = 0.6, fill = "black", col = "grey",
 \item{fill}{passed to \code{geom_histogram}}
 
 \item{col}{passed to \code{geom_histogram}}
+
+\item{shk}{not used}
 }
 \value{
 The result from a ggpairs call.

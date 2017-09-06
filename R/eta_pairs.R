@@ -28,6 +28,7 @@ eta_pairs_upper <- function(data, mapping, shk = list(), ...) {
 ##' @param alpha passed to \code{geom_histogram}
 ##' @param fill passed to \code{geom_histogram}
 ##' @param col passed to \code{geom_histogram}
+##' @param shk not used
 ##'
 ##' @details
 ##' This funciton requires the \code{GGally} package to be installed.

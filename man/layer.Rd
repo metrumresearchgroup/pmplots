@@ -7,8 +7,6 @@
 \alias{layer_as}
 \alias{layer_sa}
 \alias{layer_dots}
-\alias{geom_3s}
-\alias{layer_3s}
 \title{Layer functions}
 \usage{
 layer_hs(x, smooth = gs(), hline = gh(), ...)
@@ -20,10 +18,6 @@ layer_as(x, smooth = gs(), abline = ga(), ...)
 layer_sa(x, smooth = gs(), abline = ga(), ...)
 
 layer_dots(x, ...)
-
-geom_3s(x, lwd = 1.35, lty = 3, ...)
-
-layer_3s(x, lwd = 1.35, lty = 3, ...)
 }
 \arguments{
 \item{x}{a \code{ggplot}}
@@ -35,10 +29,6 @@ layer_3s(x, lwd = 1.35, lty = 3, ...)
 \item{...}{not used}
 
 \item{abline}{list of arguments for \code{geom_abline}}
-
-\item{lwd}{passed to \code{geom} functions}
-
-\item{lty}{passed to \code{geom} functions}
 }
 \description{
 Layer functions

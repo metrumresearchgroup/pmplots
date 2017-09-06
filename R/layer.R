@@ -21,8 +21,6 @@ gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
 ##' @param smooth list of arguments for \code{geom_smooth}
 ##' @param hline list of arguments for \code{geom_hline}
 ##' @param abline list of arguments for \code{geom_abline}
-##' @param lty passed to \code{geom} functions
-##' @param lwd passed to \code{geom} functions
 ##' @param ... not used
 ##'
 ##' @examples
@@ -98,14 +96,23 @@ layer_dots <- function(x,...) {
   x
 }
 
+
+##' Additional reference lines
+##'
+##' @param x ggplot object
+##' @param lwd passed to \code{geom_hline}
+##' @param lty passed to \code{geom_hline}
+##' @param col passed to \code{geom_hline}
+##' @param yintercept passed to \code{geom_hline}
+##' @param ... passed to \code{geom_hline}
+##'
 ##' @export
-##' @rdname layer
-geom_3s <- function(x, lwd=1.35, lty=3, ...) {
-  geom_hline(yintercept=c(-3,3), lwd = lwd, lty=lty,...)
+geom_3s <- function(lwd=1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), ...) {
+  geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty, ...)
 }
 
 ##' @export
-##' @rdname layer
-layer_3s <- function(x, lwd=1.35, lty=3, ...) {
-  x + geom_hline(yintercept=c(-3,3), lwd = lwd, lty=lty,...)
+##' @rdname geom_3s
+layer_3s <- function(x, lwd=1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), ...) {
+  x + geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty,...)
 }

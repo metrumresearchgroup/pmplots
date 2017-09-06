@@ -4,7 +4,7 @@
 ##' @importFrom ggplot2 ggtitle theme geom_point geom_smooth
 ##' @importFrom ggplot2 geom_abline geom_hline margin
 ##' @importFrom ggplot2 stat_qq facet_wrap geom_histogram scale_color_brewer theme_bw theme_set
-##' @importFrom stats as.formula qnorm quantile
+##' @importFrom stats as.formula qnorm quantile cor
 ##' @importFrom rlang sym
 ##'
 NULL
