@@ -40,9 +40,9 @@ or logical and \code{y} column must
 be numeric.
 
 If \code{shown} is \code{TRUE}, a numeric summar of each box is included
-below each box.  In the summary, \code{N} is the number of
+below each box.  In the summary, \code{n} is the number of
 non-NA observations in the \code{y} column for that box and
-\code{n} is the number of unique \code{ID} values for
+\code{N} is the number of unique \code{ID} values for
 that box.  An error will be generated if \code{ID} does
 not exist in the plotting data frame when \code{shown} is \code{TRUE}.
 When \code{N} is equal to \code{n} in the summary, only \code{n} is

@@ -3,7 +3,7 @@ qq_reg_data <- function(y) {
   probs <- c(0.25, 0.75)
   y <- quantile(y,  probs, names=FALSE, type=7, na.rm=TRUE)
   x <- qnorm(probs)
-  slope <- diff(x)/diff(y)
+  slope <- diff(y)/diff(x)
   int <- y[1L] - slope * x[1L]
   c(int = int, slope = slope)
 }
