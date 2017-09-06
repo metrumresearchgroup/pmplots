@@ -4,7 +4,8 @@
 \alias{eta_pairs}
 \title{Pairs plot for ETAs using ggpairs}
 \usage{
-eta_pairs(x, etas, bins = 15, alpha = 0.6, fill = "black", col = "grey")
+eta_pairs(x, etas, bins = 15, alpha = 0.6, fill = "black", col = "grey",
+  shk = list())
 }
 \arguments{
 \item{x}{plotting data.frame}

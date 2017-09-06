@@ -5,9 +5,15 @@ eta_pairs_fun <- function(data, mapping, ...) {
 
 }
 
-eta_pairs_upper <- function(data, mapping, ...) {
- GGally::ggally_cor(data = data, mapping = mapping) +
-    theme(panel.grid.major = ggplot2::element_blank(),panel.grid.minor = ggplot2::element_blank())
+eta_pairs_upper <- function(data, mapping, shk = list(), ...) {
+  x <- deparse(mapping$x)[1]
+  y <- deparse(mapping$y)[1]
+  label <- as.character(signif(cor(data[,x],data[,y],use = "complete.obs"), digits=3))
+
+  label <- paste0("Corr: ", label)
+  GGally::ggally_text(label = label) +
+    theme(panel.grid.major = ggplot2::element_blank(),
+          panel.grid.minor = ggplot2::element_blank())
 }
 
 
@@ -35,7 +41,7 @@ eta_pairs_upper <- function(data, mapping, ...) {
 ##' eta_pairs(id, c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA"))
 ##'
 ##' @export
-eta_pairs <- function(x, etas, bins = 15, alpha = 0.6, fill = "black", col="grey") {
+eta_pairs <- function(x, etas, bins = 15, alpha = 0.6, fill = "black", col="grey", shk = list()) {
   stopifnot(requireNamespace("GGally"))
   diag <- GGally::wrap("barDiag", bins = bins, alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)
@@ -47,7 +53,7 @@ eta_pairs <- function(x, etas, bins = 15, alpha = 0.6, fill = "black", col="grey
   for(col in cols) require_numeric(x,col)
   GGally::ggpairs(x[,cols],
                   columnLabels=labs,
-                  upper = list(continuous = eta_pairs_upper),
+                  upper = list(continuous = eta_pairs_upper, shk = shk),
                   diag = list(continuous = diag),
                   lower = list(continuous = eta_pairs_fun))
 }
