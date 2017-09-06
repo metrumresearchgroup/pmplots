@@ -107,12 +107,12 @@ layer_dots <- function(x,...) {
 ##' @param ... passed to \code{geom_hline}
 ##'
 ##' @export
-geom_3s <- function(lwd=1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), ...) {
+geom_3s <- function(lwd = 1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), ...) {
   geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty, ...)
 }
 
 ##' @export
 ##' @rdname geom_3s
-layer_3s <- function(x, lwd=1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), ...) {
+layer_3s <- function(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3,3), ...) {
   x + geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty,...)
 }
