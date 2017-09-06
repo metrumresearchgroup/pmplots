@@ -105,8 +105,8 @@ factor, character, or logical value in
 the data frame, or an error is generated
 - by default, the number of rows with
 non-NA values (based on the y-column) in each box
-is included under each x-axis tick label (as `N`) along with
-the number of unique IDs in that box (as `n`). When the number
+is included under each x-axis tick label (as `n`) along with
+the number of unique IDs in that box (as `N`). When the number
 of IDs is equal to the number of observations in
 every box, only `n` is shown.
 - the numeric summaries below the boxes can be suppressed

@@ -3,7 +3,7 @@ box_labels <- function(df, x, y) {
   .ycol  <- rlang::sym(y)
   .sum <- filter(df, !is.na(!!.ycol))
   .sum <- group_by(.sum, !!.xcol)
-  .sum <- summarize(.sum, N = n(), n = n_distinct(ID))
+  .sum <- summarize(.sum, n = n(), N = n_distinct(ID))
   .sum <- ungroup(.sum)
   as.data.frame(.sum)
 }
@@ -29,9 +29,9 @@ box_labels <- function(df, x, y) {
 ##' be numeric.
 ##'
 ##' If \code{shown} is \code{TRUE}, a numeric summar of each box is included
-##' below each box.  In the summary, \code{N} is the number of
+##' below each box.  In the summary, \code{n} is the number of
 ##' non-NA observations in the \code{y} column for that box and
-##' \code{n} is the number of unique \code{ID} values for
+##' \code{N} is the number of unique \code{ID} values for
 ##' that box.  An error will be generated if \code{ID} does
 ##' not exist in the plotting data frame when \code{shown} is \code{TRUE}.
 ##' When \code{N} is equal to \code{n} in the summary, only \code{n} is
@@ -44,9 +44,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
   if(shown) {
     require_column(df, "ID")
     .sum <- box_labels(df, x, y)
-    xs$labels <- paste0(.sum[,x], "\nN=", .sum[,"N"], "\nn=", .sum[,"n"])
+    xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"], "\nN=", .sum[,"N"])
     if(all(.sum$N == .sum$n)) {
-      xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"])
+      xs$labels <- paste0(.sum[,x], "\nN=", .sum[,"N"])
     }
   }
 
