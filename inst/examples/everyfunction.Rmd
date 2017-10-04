@@ -253,14 +253,6 @@ dv_time(df, yname="NoDoze (ng/mL)") +
 ```
 
 
-## Colored
-
-```{r,fig.width=6, fig.height=7}
-dv_time(df, yname="NoDoze (ng/mL)", col="STUDYc") +
-  facet_wrap(~DOSE, scales="free")
-```
-
-
 ## log-Scale
 ```{r,fig.width=6, fig.height=6}
 dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +

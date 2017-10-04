@@ -67,6 +67,8 @@ df <- dplyr::filter(superset2(), EVID==0)
 
 cwres_time(df)
 
+cwres_time(df, yname = "CWRES")
+
 cwres_time(df, xunit="day")
 
 wres_time(df, xby=48)

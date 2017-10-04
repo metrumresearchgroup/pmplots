@@ -16,7 +16,7 @@ eta_cat(df, x, y, hline = 0, ...)
 
 \item{y}{character col//title for y-axis data; see \code{\link{col_label}}}
 
-\item{xs}{see \code{\link{defx}}}
+\item{xs}{see \code{\link{defcx}}}
 
 \item{ys}{see \code{\link{defy}}}
 
@@ -32,6 +32,9 @@ Since this function creates a boxplot,
 the \code{x} column must be character, factor
 or logical and \code{y} column must
 be numeric.
+
+Summary numbers located below each box are described in
+\code{\link{boxwork}}.
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)

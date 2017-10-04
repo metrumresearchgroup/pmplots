@@ -23,9 +23,9 @@ scatt(df, x, y, xs = defx(), ys = defy(), title = NULL, group = NULL,
 
 \item{group}{character name of grouping variable}
 
-\item{col}{character name of coloring variable}
+\item{col}{not used}
 
-\item{scale_col}{color scale}
+\item{scale_col}{not used}
 
 \item{...}{not used}
 }

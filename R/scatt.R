@@ -8,8 +8,8 @@
 ##' @param ys see \code{\link{defy}}
 ##' @param title character, passed to \code{ggtitle}
 ##' @param group character name of grouping variable
-##' @param col character name of coloring variable
-##' @param scale_col color scale
+##' @param col not used
+##' @param scale_col not used
 ##' @param ... not used
 ##'
 ##' @details
@@ -32,11 +32,11 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
   if(is.character(title)) p <- p + ggtitle(title)
-  if(is.character(col)) {
-    if(missing(scale_col)) require_discrete(df, col)
-    locol <- "black"
-    p <- p + theme(legend.position="top") + scale_col
-  }
+  # if(is.character(col)) {
+  #   if(missing(scale_col)) require_discrete(df, col)
+  #   locol <- "black"
+  #   p <- p + theme(legend.position="top") + scale_col
+  # }
   p
 }
 
@@ -194,7 +194,7 @@ dv_tafd <- function(..., x = "TAFD") dv_time(...,x = x)
 ##'
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
-##' @param y character col//title for y-axis data; ; see \code{\link{col_label}}
+##' @param y character col//title for y-axis data; see \code{\link{col_label}}
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param ... passed to \code{\link{scatt}}  and \code{\link{layer_hs}}
@@ -313,6 +313,8 @@ res_cont <- function(df, x, y="RES//Residual",
 ##' df <- dplyr::filter(superset2(), EVID==0)
 ##'
 ##' cwres_time(df)
+##'
+##' cwres_time(df, yname = "CWRES")
 ##'
 ##' cwres_time(df, xunit="day")
 ##'

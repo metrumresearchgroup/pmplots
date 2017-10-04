@@ -25,7 +25,7 @@ res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
 
 \item{x}{character col//title for x-axis data; see \code{\link{col_label}}}
 
-\item{y}{character col//title for y-axis data; ; see \code{\link{col_label}}}
+\item{y}{character col//title for y-axis data; see \code{\link{col_label}}}
 
 \item{xs}{see \code{\link{defx}}}
 
@@ -40,6 +40,12 @@ This function is primarily called by other functions.
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.
+
+The \code{eta_cont} function can make a plot of ETA versus
+continuous variable for multiple ETAs when a vector
+of values for \code{y} are passed in.  Accordingly,
+\code{eta_cont} always returns a list of plots of the same
+length as \code{y}.
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0)

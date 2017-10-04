@@ -57,10 +57,6 @@ dv_time(df, yname="NoDoze (mg/L)",
         xs = list(br=seq(0,240,72)))
 ```
 
-## Some color support
-```{r}
-dv_time(df, col="STUDYc")
-```
 
 ## Faceting
 ```{r}

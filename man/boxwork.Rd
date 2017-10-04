@@ -14,7 +14,7 @@ boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
 
 \item{y}{character name for y-axis data}
 
-\item{xs}{see \code{\link{defx}}}
+\item{xs}{see \code{\link{defcx}}}
 
 \item{ys}{see \code{\link{defy}}}
 
