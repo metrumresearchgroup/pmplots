@@ -79,6 +79,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' or logical and \code{y} column must
 ##' be numeric.
 ##'
+##' Summary numbers located below each box are described in
+##' \code{\link{boxwork}}.
+##'
 ##' @seealso \code{\link{boxwork}}
 ##'
 ##' @examples
@@ -126,6 +129,9 @@ eta_cat <- function(df, x, y, hline=0, ...) {
 ##' the \code{x} column must be character, factor
 ##' or logical and \code{y} column must
 ##' be numeric.
+##'
+##' Summary numbers located below each box are described in
+##' \code{\link{boxwork}}.
 ##'
 ##' @seealso \code{\link{boxwork}}
 ##'
