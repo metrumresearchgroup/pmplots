@@ -204,6 +204,12 @@ dv_tafd <- function(..., x = "TAFD") dv_time(...,x = x)
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
 ##'
+##' The \code{eta_cont} function can make a plot of ETA versus
+##' continuous variable for multiple ETAs when a vector
+##' of values for \code{y} are passed in.  Accordingly,
+##' \code{eta_cont} always returns a list of plots of the same
+##' length as \code{y}.
+##'
 ##' @seealso \code{\link{scatt}}
 ##'
 ##' @examples
