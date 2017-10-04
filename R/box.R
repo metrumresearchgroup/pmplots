@@ -13,7 +13,7 @@ box_labels <- function(df, x, y) {
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
-##' @param xs see \code{\link{defx}}
+##' @param xs see \code{\link{defcx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param fill passed to \code{geom_boxplot}
 ##' @param alpha passed to \code{geom_boxplot}
@@ -68,7 +68,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
 ##' @param y character col//title for y-axis data; see \code{\link{col_label}}
-##' @param xs see \code{\link{defx}}
+##' @param xs see \code{\link{defcx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param hline passed to \code{\link{boxwork}}
 ##' @param ... other arguments passed to \code{\link{boxwork}}

@@ -59,8 +59,17 @@ logbr3 <- function() {
 
 ##' Default setting for x-axis scale
 ##'
-##' Basically the formal arguments for \code{scale_x_continuous}.
+##' A named list of the formal arguments for \code{scale_x_continuous}.  This
+##' function helps you to create a fully populated list.  For any
+##' function that uses this as a default, you can also
+##' create your own named list for arguments you want to update, using
+##' this default as a base.
+##'
 ##' @param ... arguments for \code{scale_x_continuous}
+##'
+##' @details
+##' In the named list, the name is the argument name and the value
+##' is the argument value.
 ##'
 ##' @examples
 ##' defx(trans="log")
@@ -76,7 +85,12 @@ defx <- function(...) {
 
 ##' Default setting for continuous y-axis scale
 ##'
-##' Basically the formal arguments for \code{scale_y_continuous}.
+##' A named list of the formal arguments for \code{scale_y_continuous}.  This
+##' function helps you to create a fully populated list.  For any
+##' function that uses this as a default, you can also
+##' create your own named list for arguments you want to update, using
+##' this default as a base.
+##'
 ##' @param ... arguments for \code{scale_y_continuous}
 ##'
 ##' @examples
@@ -92,9 +106,18 @@ defy <- function(...) {
 }
 ##' Default setting for discrete x-axis scale
 ##'
-##' Basically the formal arguments for \code{scale_x_discrete}.
+##' A named list of the formal arguments for \code{scale_x_discrete}.   This
+##' function helps you to create a fully populated list.  For any
+##' function that uses this as a default, you can also
+##' create your own named list for arguments you want to update using
+##' this default as a base.
+##'
 ##' @param ... arguments for \code{scale_x_discrete}
-
+##'
+##' @details
+##' In the named list, the name is the argument name and the value
+##' is the argument value.
+##'
 ##' @examples
 ##' defcx()
 ##'
