@@ -20,7 +20,7 @@ wres_pred(df, x = "PRED", y = "WRES", xs = defx(), ys = defy(),
 
 \item{x}{character name for x-axis data}
 
-\item{y}{character naem for y-axis data}
+\item{y}{character name for y-axis data}
 
 \item{xs}{see \code{\link{defx}}}
 
@@ -37,12 +37,18 @@ Residuals versus predicted values
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.
+
+The y axis name is always the name of the residual
+(e.g. "Weighted residual").  Use the \code{xname} argument
+to add specific name and or unit to the dependent variable
+(see the example).
 }
 \examples{
 
 df <- dplyr::filter(superset2(), EVID==0)
 
 cwres_pred(df, xname="MyDrug (ng/mL)")
+
 
 }
 \seealso{

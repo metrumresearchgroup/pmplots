@@ -55,6 +55,9 @@ By default, the time unit is assumed
 to be hours (\code{hr}).  See the \code{xunit} argument
 to \code{\link{y_time}} to change the time unit.
 
+For all of these functions, \code{yname} is the
+full specification of the y-axis title.
+
 See the \code{xby} argument to \code{\link{y_time}} for a
 convenient way to change the breaks for the x-axis (time).
 
