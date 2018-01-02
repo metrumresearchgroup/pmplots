@@ -9,23 +9,22 @@ This document lists the functional requirements for the `pmplots` package.
 Requirements for pharamcometric plotting package `pmplots`
 ==========================================================
 
-<table>
+<table style="width:97%;">
 <colgroup>
-<col width="48%" />
-<col width="6%" />
-<col width="45%" />
+<col width="30%" />
+<col width="8%" />
+<col width="58%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Section header<font
-color="white">_____________________</font></th>
+<th align="left">Section header</th>
 <th align="right">RID</th>
 <th align="left">Requirement</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><strong>Default column names</strong></td>
+<td align="left" width = "30%"><strong>Default column names</strong></td>
 <td align="right">1</td>
 <td align="left">Column <code>RES</code> refers to residual; rendered <code>res</code> in function names</td>
 </tr>
