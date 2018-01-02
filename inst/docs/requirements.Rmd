@@ -34,7 +34,7 @@ x <- rename(x,`Section header` = Section)
 ```
 
 ```{r, echo  = FALSE}
-pander(x, justify = c("left","right", "left"), 
+pander(x, justify = c("left","right", "left"), style = "multiline", 
        split.cells = c(25, 3, 40), split.tables = 80)
 ```
 
