@@ -11,13 +11,14 @@ Requirements for pharamcometric plotting package `pmplots`
 
 <table>
 <colgroup>
-<col width="36%" />
-<col width="8%" />
-<col width="56%" />
+<col width="48%" />
+<col width="6%" />
+<col width="45%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Section header_______________</th>
+<th align="left">Section header<font
+color="white">_____________________</font></th>
 <th align="right">RID</th>
 <th align="left">Requirement</th>
 </tr>
