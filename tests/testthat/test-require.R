@@ -1,3 +1,5 @@
+library(testthat)
+
 context("test-require")
 
 df <- dplyr::filter(superset2(),EVID==0)

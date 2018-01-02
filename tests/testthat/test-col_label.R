@@ -1,4 +1,4 @@
-
+library(testthat)
 
 context("test-col_label")
 

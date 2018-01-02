@@ -24,7 +24,7 @@ plots:
       appropriate time measure; both lines and points are plotted
     - Functions `dv_pred` and `dv_ipred` plot `DV` versus the appropriate
       predicted value; a line of identity is added as well as a loess smothing
-      line; both the x- and y-axis maybe be transoformed to log scale
+      line; both the x- and y-axis maybe be transformed to log scale
       with the `loglog` argument; if `loglog` is used, only positive
       values are retained for the plot
     - Functions `res_time`, `res_tafd`, and `res_tad` plots residual

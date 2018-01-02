@@ -55,8 +55,6 @@ res_cont <- function(df, x, y="RES//Residual",
                      xs=defx(), ys=defy(), ...) {
   x <- col_label(x)
   y <- col_label(y)
-  if(length(x)!=2) .stop("invalid x specification")
-  if(length(y)!=2) .stop("invalid y specification")
   ys$name <- y[2]
   xs$name <- x[2]
   require_numeric(df, x[1])
@@ -71,8 +69,6 @@ wres_cont <- function(df, x, y="WRES//Weighted residual",
                       xs=defx(), ys=defy(),...) {
   x <- col_label(x)
   y <- col_label(y)
-  if(length(x)!=2) .stop("invalid x specification")
-  if(length(y)!=2) .stop("invalid y specification")
   ys$name <- y[2]
   xs$name <- x[2]
   require_numeric(df, x[1])
@@ -87,8 +83,6 @@ cwres_cont <- function(df, x, y="CWRES//Conditional weighted residual",
                        xs=defx(), ys=defy(),...) {
   x <- col_label(x)
   y <- col_label(y)
-  if(length(x)!=2) .stop("invalid x specification")
-  if(length(y)!=2) .stop("invalid y specification")
   ys$name <- y[2]
   xs$name <- x[2]
   require_numeric(df, x[1])

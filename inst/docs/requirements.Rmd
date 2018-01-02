@@ -3,6 +3,15 @@ title: ""
 output: github_document
 ---
 
+# Introduction
+
+`pmplots` is an `R` package to generate exploratory and diagnostic
+plots commonly of interest in pharamcometrics.  Each function in `pmplots`
+is named according to the specific plot it generates via calls to functions
+in the `ggplot2` `R` package.  
+
+This document lists the functional requirements for the `pmplots` package. 
+
 # Requirements for pharamcometric plotting package `pmplots`
 ```{r,echo = FALSE, message = FALSE}
 library(yaml)
@@ -30,7 +39,7 @@ x <- select(x, Section = sec, RID = rid, Requirement = req)
 
 x <- mutate(x, Section = paste0("__", Section, "__"))
 x <- mutate(x, Section = if_else(duplicated(Section), "", Section))
-x <- rename(x,`Section header` = Section)
+x <- rename(x,`Section header_______________` = Section)
 ```
 
 ```{r, echo  = FALSE}

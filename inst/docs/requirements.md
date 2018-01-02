@@ -1,4 +1,11 @@
 
+Introduction
+============
+
+`pmplots` is an `R` package to generate exploratory and diagnostic plots commonly of interest in pharamcometrics. Each function in `pmplots` is named according to the specific plot it generates via calls to functions in the `ggplot2` `R` package.
+
+This document lists the functional requirements for the `pmplots` package.
+
 Requirements for pharamcometric plotting package `pmplots`
 ==========================================================
 
@@ -10,7 +17,7 @@ Requirements for pharamcometric plotting package `pmplots`
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Section header</th>
+<th align="left">Section header_______________</th>
 <th align="right">RID</th>
 <th align="left">Requirement</th>
 </tr>
@@ -69,7 +76,7 @@ Requirements for pharamcometric plotting package `pmplots`
 <tr class="odd">
 <td align="left"></td>
 <td align="right">11</td>
-<td align="left">Functions <code>dv_pred</code> and <code>dv_ipred</code> plot <code>DV</code> versus the appropriate predicted value; a line of identity is added as well as a loess smothing line; both the x- and y-axis maybe be transoformed to log scale with the <code>loglog</code> argument; if <code>loglog</code> is used, only positive values are retained for the plot</td>
+<td align="left">Functions <code>dv_pred</code> and <code>dv_ipred</code> plot <code>DV</code> versus the appropriate predicted value; a line of identity is added as well as a loess smothing line; both the x- and y-axis maybe be transformed to log scale with the <code>loglog</code> argument; if <code>loglog</code> is used, only positive values are retained for the plot</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
