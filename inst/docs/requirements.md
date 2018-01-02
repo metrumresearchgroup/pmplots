@@ -9,9 +9,9 @@ This document lists the functional requirements for the `pmplots` package.
 Requirements for pharamcometric plotting package `pmplots`
 ==========================================================
 
-<table style="width:88%;">
+<table style="width:97%;">
 <colgroup>
-<col width="20%" />
+<col width="30%" />
 <col width="8%" />
 <col width="58%" />
 </colgroup>
@@ -186,26 +186,31 @@ Requirements for pharamcometric plotting package `pmplots`
 <tr class="odd">
 <td align="left"></td>
 <td align="right">33</td>
-<td align="left">For continuous scatter plots, numeric data are required or an error is generated; data are considered discrete if they are <code>numeric</code> or <code>integer</code></td>
+<td align="left">Data sets are expected to be filter prior to plotting, so that the input data frame only contains rows that are appropriate for the current plotting function</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="right">34</td>
-<td align="left">For boxplot summaries, discrete data are required for x-axis for boxplot summaries; data are considered discrete of they are <code>character</code>, <code>factor</code>, or <code>logical</code></td>
+<td align="left">For continuous scatter plots, numeric data are required or an error is generated; data are considered discrete if they are <code>numeric</code> or <code>integer</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>R packages</strong></td>
+<td align="left"></td>
 <td align="right">35</td>
-<td align="left">Imports: <code>dplyr</code> <code>(&gt;= 0.7.2)</code>, <code>rlang</code> <code>(&gt;= 0.1.2)</code></td>
+<td align="left">For boxplot summaries, discrete data are required for x-axis for boxplot summaries; data are considered discrete of they are <code>character</code>, <code>factor</code>, or <code>logical</code></td>
 </tr>
 <tr class="even">
-<td align="left"></td>
+<td align="left"><strong>R packages</strong></td>
 <td align="right">36</td>
-<td align="left">Depends: <code>ggplot2</code> <code>(&gt;= 2.2.1)</code></td>
+<td align="left">Imports: <code>dplyr</code> <code>(&gt;= 0.7.2)</code>, <code>rlang</code> <code>(&gt;= 0.1.2)</code></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="right">37</td>
+<td align="left">Depends: <code>ggplot2</code> <code>(&gt;= 2.2.1)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">38</td>
 <td align="left">Suggests: <code>testthat</code></td>
 </tr>
 </tbody>
