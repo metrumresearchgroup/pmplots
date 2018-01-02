@@ -39,7 +39,7 @@ x <- select(x, Section = sec, RID = rid, Requirement = req)
 
 x <- mutate(x, Section = paste0("__", Section, "__"))
 x <- mutate(x, Section = if_else(duplicated(Section), "", Section))
-x <- rename(x,`Section header` = Section)
+x <- rename(x,`Section header&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` = Section)
 ```
 
 ```{r, echo  = FALSE}

@@ -9,15 +9,15 @@ This document lists the functional requirements for the `pmplots` package.
 Requirements for pharamcometric plotting package `pmplots`
 ==========================================================
 
-<table style="width:97%;">
+<table>
 <colgroup>
-<col width="30%" />
-<col width="8%" />
-<col width="58%" />
+<col width="48%" />
+<col width="6%" />
+<col width="45%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Section header</th>
+<th align="left">Section header      </th>
 <th align="right">RID</th>
 <th align="left">Requirement</th>
 </tr>
