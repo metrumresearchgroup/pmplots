@@ -9,9 +9,9 @@
 res_pred(df, x = "PRED", y = "RES", xname = "value", yname = "Residual",
   xs = defx(), ys = defy(), ...)
 
-wres_pred(df, y = "WRES", ..., yname = "Weighted residual")
+wres_pred(df, ..., y = "WRES", yname = "Weighted residual")
 
-cwres_pred(df, y = "CWRES", ..., yname = "Conditional weighted residual")
+cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
 }
 \arguments{
 \item{df}{data frame to plot}

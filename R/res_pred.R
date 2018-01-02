@@ -43,16 +43,16 @@ res_pred <- function(df, x="PRED", y="RES",
 
 ##' @export
 ##' @rdname res_pred
-wres_pred <- function(df,
-                      y="WRES", ...,
+wres_pred <- function(df, ...,
+                      y="WRES",
                       yname = "Weighted residual") {
   res_pred(df, y = y, yname = yname, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-cwres_pred <- function(df,
-                       y = "CWRES", ...,
+cwres_pred <- function(df, ...,
+                       y = "CWRES",
                        yname = "Conditional weighted residual") {
   res_pred(df, y = y, yname = yname, ...)
 }
