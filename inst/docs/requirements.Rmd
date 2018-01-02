@@ -39,12 +39,13 @@ x <- select(x, Section = sec, RID = rid, Requirement = req)
 
 x <- mutate(x, Section = paste0("__", Section, "__"))
 x <- mutate(x, Section = if_else(duplicated(Section), "", Section))
-x <- rename(x,`Section header&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` = Section)
+names(x)[1] <- paste0("Section",paste(rep("&nbsp;",12),collapse=""))
+#x <- rename(x,`Section header&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;` = Section)
 ```
 
 ```{r, echo  = FALSE}
 pander(x, justify = c("left","right", "left"), style = "multiline", 
-       split.cells = c(20, 3, 40), split.tables = 100)
+       split.cells = c(10, 3, 40), split.tables = 100)
 ```
 
 
