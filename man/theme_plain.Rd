@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{theme_plain}
 \alias{theme_plain}
-\title{A plan ggplot2 theme.}
+\title{A plain ggplot2 theme}
 \usage{
 theme_plain(...)
 }
@@ -10,5 +10,5 @@ theme_plain(...)
 \item{...}{passed to \code{ggplot2::theme}}
 }
 \description{
-A plan ggplot2 theme.
+A plain ggplot2 theme
 }

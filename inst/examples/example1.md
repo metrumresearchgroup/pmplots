@@ -18,6 +18,7 @@ Example
 ``` r
 library(pmplots)
 library(dplyr)
+library(mrggsave)
 ```
 
 Exammple data in the package

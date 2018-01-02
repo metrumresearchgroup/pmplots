@@ -40,7 +40,6 @@ Available functions
 -   [DV versus time (`dv_time`)](#dv-versus-time-dv_time)
     -   [Basic plot](#basic-plot)
     -   [Faceted](#faceted)
-    -   [Colored](#colored)
     -   [log-Scale](#log-scale)
 -   [Data summary](#data-summary)
     -   [Continuous variable by categorical variable (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
@@ -60,6 +59,7 @@ Available functions
 ``` r
 library(pmplots)
 library(dplyr)
+library(mrggsave)
 ```
 
 Example data in the package
@@ -385,16 +385,6 @@ dv_time(df, yname="NoDoze (ng/mL)") +
 
 ![](img/everyfunction--unnamed-chunk-39-1.png)
 
-Colored
--------
-
-``` r
-dv_time(df, yname="NoDoze (ng/mL)", col="STUDYc") +
-  facet_wrap(~DOSE, scales="free")
-```
-
-![](img/everyfunction--unnamed-chunk-40-1.png)
-
 log-Scale
 ---------
 
@@ -403,7 +393,7 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
   facet_wrap(~STUDYc)
 ```
 
-![](img/everyfunction--unnamed-chunk-41-1.png)
+![](img/everyfunction--unnamed-chunk-40-1.png)
 
 Data summary
 ============
@@ -415,7 +405,7 @@ Continuous variable by categorical variable (`cont_cat`)
 cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-42-1.png)
+![](img/everyfunction--unnamed-chunk-41-1.png)
 
 Split and plot (`split_plot`)
 -----------------------------
@@ -428,7 +418,7 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 mrggdraw(p, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-44-1.png)
+![](img/everyfunction--unnamed-chunk-43-1.png)
 
 Some customization
 ==================
@@ -442,7 +432,7 @@ a <- list(trans="log", breaks = logbr3())
 dv_time(df, xs=a)
 ```
 
-![](img/everyfunction--unnamed-chunk-45-1.png)
+![](img/everyfunction--unnamed-chunk-44-1.png)
 
 Modify y-axis
 -------------
@@ -451,7 +441,7 @@ Modify y-axis
 dv_time(df, ys=a, yname="Y-axis name")
 ```
 
-![](img/everyfunction--unnamed-chunk-46-1.png)
+![](img/everyfunction--unnamed-chunk-45-1.png)
 
 Drop extra layers
 -----------------
@@ -460,25 +450,25 @@ Drop extra layers
 dv_pred(df, smooth=NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-47-1.png)
+![](img/everyfunction--unnamed-chunk-46-1.png)
 
 ``` r
 dv_pred(df, abline=NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-48-1.png)
+![](img/everyfunction--unnamed-chunk-47-1.png)
 
 ``` r
 dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-49-1.png)
+![](img/everyfunction--unnamed-chunk-48-1.png)
 
 ``` r
 cwres_time(df, hline = NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-50-1.png)
+![](img/everyfunction--unnamed-chunk-49-1.png)
 
 Custom breaks
 -------------
@@ -489,7 +479,7 @@ Default breaks:
 dv_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-1.png)
+![](img/everyfunction--unnamed-chunk-50-1.png)
 
 Break every 3 days
 
@@ -497,7 +487,7 @@ Break every 3 days
 dv_time(df, xby=72)
 ```
 
-![](img/everyfunction--unnamed-chunk-52-1.png)
+![](img/everyfunction--unnamed-chunk-51-1.png)
 
 Custom breaks and limits
 
@@ -506,7 +496,7 @@ a <- list(br = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 
-![](img/everyfunction--unnamed-chunk-53-1.png)
+![](img/everyfunction--unnamed-chunk-52-1.png)
 
 Extra reference lines to \[C\]WRES plots
 ----------------------------------------
@@ -515,7 +505,7 @@ Extra reference lines to \[C\]WRES plots
 wres_time(df) + geom_3s()
 ```
 
-![](img/everyfunction--unnamed-chunk-54-1.png)
+![](img/everyfunction--unnamed-chunk-53-1.png)
 
 Controlled input / output
 =========================
@@ -527,41 +517,41 @@ dd$PRED <- 2*dd$DV
 dv_pred(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-55-1.png)
+![](img/everyfunction--unnamed-chunk-54-1.png)
 
 ``` r
 dd$IPRED <- 3*dd$DV
 dv_ipred(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-55-2.png)
+![](img/everyfunction--unnamed-chunk-54-2.png)
 
 ``` r
 dd$RES <- 2*dd$TIME
 res_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-55-3.png)
+![](img/everyfunction--unnamed-chunk-54-3.png)
 
 ``` r
 dd$WRES <- 10*dd$TIME
 wres_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-55-4.png)
+![](img/everyfunction--unnamed-chunk-54-4.png)
 
 ``` r
 dd$CWRES <- 100*dd$TIME
 cwres_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-55-5.png)
+![](img/everyfunction--unnamed-chunk-54-5.png)
 
 ``` r
 cwres_cont(dd, x = "RES//Controlled")
 ```
 
-![](img/everyfunction--unnamed-chunk-56-1.png)
+![](img/everyfunction--unnamed-chunk-55-1.png)
 
 Should be fairly flat
 
@@ -570,7 +560,7 @@ dd$CWRESQ <- rnorm(nrow(dd))
 cwres_q(dd,x="CWRESQ")
 ```
 
-![](img/everyfunction--unnamed-chunk-57-1.png)
+![](img/everyfunction--unnamed-chunk-56-1.png)
 
 Plot output (`mrggsave`)
 ========================
@@ -606,4 +596,4 @@ Arrange multiple plots on a single page
 mrggdraw(list(p1,p2,p3,p4), arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-62-1.png)
+![](img/everyfunction--unnamed-chunk-61-1.png)

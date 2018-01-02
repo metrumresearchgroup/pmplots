@@ -106,7 +106,7 @@ defy <- function(...) {
 }
 ##' Default setting for discrete x-axis scale
 ##'
-##' A named list of the formal arguments for \code{scale_x_discrete}.   This
+##' A named list of the formal arguments for \code{scale_x_discrete}.  This
 ##' function helps you to create a fully populated list.  For any
 ##' function that uses this as a default, you can also
 ##' create your own named list for arguments you want to update using
@@ -130,7 +130,7 @@ defcx <- function(...) {
   x
 }
 
-##' Scale information for log transformation.
+##' Scale information for log transformation
 ##'
 ##' @param br breaks
 ##' @param ... additional parameters
@@ -168,11 +168,12 @@ col_label <- function(x) {
     y <- split_col_label(x,sp)
     if(length(y)==2) return(y)
   }
-  .stop("invalid 'column // label' specification:\n  ",x)
+  .stop("invalid 'column // label' specification:\n  ", x)
 }
 
 noline <- ggplot2::element_blank()
-##' A plan ggplot2 theme.
+
+##' A plain ggplot2 theme
 ##'
 ##' @param ... passed to \code{ggplot2::theme}
 ##' @export

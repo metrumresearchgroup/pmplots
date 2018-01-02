@@ -10,7 +10,7 @@ defcx(...)
 \item{...}{arguments for \code{scale_x_discrete}}
 }
 \description{
-A named list of the formal arguments for \code{scale_x_discrete}.   This
+A named list of the formal arguments for \code{scale_x_discrete}.  This
 function helps you to create a fully populated list.  For any
 function that uses this as a default, you can also
 create your own named list for arguments you want to update using

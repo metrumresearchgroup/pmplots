@@ -15,6 +15,7 @@ knitr::opts_chunk$set(comment='.', message=FALSE, warning=FALSE,
 #+ message=FALSE
 library(pmplots)
 library(dplyr)
+library(mrggsave)
 
 ##' # Exammple data in the package
 obs <- superset2() %>% filter(EVID==0)

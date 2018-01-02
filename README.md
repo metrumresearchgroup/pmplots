@@ -53,15 +53,6 @@ dv_time(df, yname="NoDoze (mg/L)",
 
 ![](inst/img/README-unnamed-chunk-4-3.png)
 
-Some color support
-------------------
-
-``` r
-dv_time(df, col="STUDYc")
-```
-
-![](inst/img/README-unnamed-chunk-5-1.png)
-
 Faceting
 --------
 
@@ -69,7 +60,7 @@ Faceting
 dv_pred(df) + facet_wrap(~STUDY, ncol=2)
 ```
 
-![](inst/img/README-unnamed-chunk-6-1.png)
+![](inst/img/README-unnamed-chunk-5-1.png)
 
 Add theme
 ---------
@@ -78,4 +69,4 @@ Add theme
 dv_pred(df) + theme_plain()
 ```
 
-![](inst/img/README-unnamed-chunk-7-1.png)
+![](inst/img/README-unnamed-chunk-6-1.png)

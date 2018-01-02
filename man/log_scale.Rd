@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{log_scale}
 \alias{log_scale}
-\title{Scale information for log transformation.}
+\title{Scale information for log transformation}
 \usage{
 log_scale(br = logbr(), ...)
 }
@@ -12,7 +12,7 @@ log_scale(br = logbr(), ...)
 \item{...}{additional parameters}
 }
 \description{
-Scale information for log transformation.
+Scale information for log transformation
 }
 \examples{
 log_scale()

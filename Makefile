@@ -14,6 +14,11 @@ readme:
 exampler:
 	Rscript -e 'rmarkdown::render("inst/examples/example1.R")'
 
+examples:
+	make everyfun
+	make readme
+	make exampler
+
 ec:
 	echo ${VERSION}
 
