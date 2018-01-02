@@ -1,0 +1,46 @@
+---
+title: ""
+output: github_document
+---
+
+# Requirements for pharamcometric plotting package `pmplots`
+```{r,echo = FALSE, message = FALSE}
+library(yaml)
+library(kableExtra)
+library(pander)
+library(dplyr)
+
+x <- yaml.load_file("spec.yml")
+
+handles <- names(x)
+
+x <- lapply(seq_along(handles), function(i) {
+  handle <- handles[i]
+  data_frame(
+    i  = i,
+    handle  = handle,
+    sec = x[[i]]$section,
+    req = x[[i]]$requirements
+    )
+})
+x <- bind_rows(x)
+
+x <- mutate(x, rid = 1:n())
+x <- select(x, Section = sec, RID = rid, Requirement = req)
+
+x <- mutate(x, Section = paste0("__", Section, "__"))
+x <- mutate(x, Section = if_else(duplicated(Section), "", Section))
+
+```
+
+```{r, echo  = FALSE}
+pander(x, justify = c("left","right", "left"), 
+       split.cells = c(20, 3, 45), split.tables = 80)
+```
+
+
+
+
+
+
+

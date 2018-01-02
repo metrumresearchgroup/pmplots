@@ -17,7 +17,8 @@ qq_reg_data <- function(y) {
 ##' @param x character name for x-axis data
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
-##' @param abline numeric vector with two elements to be passed to \code{geom_abline}
+##' @param abline numeric vector with two elements to be passed to
+##' \code{geom_abline}
 ##' @param ... not used
 ##'
 ##' @details

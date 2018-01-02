@@ -18,7 +18,8 @@ cwres_q(df, x = "CWRES", ...)
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{abline}{numeric vector with two elements to be passed to \code{geom_abline}}
+\item{abline}{numeric vector with two elements to be passed to
+\code{geom_abline}}
 
 \item{...}{not used}
 }

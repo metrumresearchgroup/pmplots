@@ -1,0 +1,98 @@
+default_col:
+  section: Default column names
+  requirements:
+    - Column `RES` refers to residual; rendered `res` in function names
+    - Column `WRES` weighted residual; rendered `wres` in function names
+    - Column `CWRES` refers to conditional weighted residual;
+      rendered `cwres` in function names
+    - Column `TIME` refers to model time; rendered `time`
+      in function names
+    - Column `TAFD` refers to time after first dose; rendered
+      `tafd` in function names
+    - Column `TAD` refers to time after dose; rendered `tad`
+      in function names
+    - Column `DV` refers to observed data; rendered `dv`
+      in function names
+    - Column `PRED` refers to population level predictions; rendered
+      `pred` in function names
+    - Column `IPRED` refers to individual level predictions; rendered
+      `ipred` in function names
+plots:
+  section: Plots generated
+  requirements:
+    - Functions `dv_time`, `dv_tafd`, and `dv_tad` plot `DV` versus the
+      appropriate time measure; both lines and points are plotted
+    - Functions `dv_pred` and `dv_ipred` plot `DV` versus the appropriate
+      predicted value; a line of identity is added as well as a loess smothing
+      line; both the x- and y-axis maybe be transoformed to log scale
+      with the `loglog` argument; if `loglog` is used, only positive
+      values are retained for the plot
+    - Functions `res_time`, `res_tafd`, and `res_tad` plots residual
+      versus the appropriate time measure; a reference line is added
+      at `res=0` as well as a loess smoothing line
+    - Functions `wres_time`, `wres_tafd`, and `wres_tad` plots weighted
+      residual versus the appropriate time measure; a reference line is added
+      at `wres=0` as well as a loess smoothing line
+    - Functions `cwres_time`, `cwres_tafd`, and `cwres_tad` plots conditional
+      weighted residual versus the appropriate time measure; a reference line is added
+      at `cwres=0` as well as a loess smoothing line
+    - Functions `res_pred`, `wres_pred` and `cwres_pred` plot the appropriate
+      residual versus population model predictions (`PRED`); a horizontal
+      reference line is added at `c/w/res=0` as well as a loess smoothing line
+    - Functions `res_cont`, `wres_cont`, and `cwres_cont` plot the appropriate
+      residual versus a continuous covariate in the data set; a horizontal
+      reference line is added at `c/w/res=0` as well as a loess smoothing line
+    - Functions `res_cat`, `wres_cat`, and `cwres_cat` makes a boxplot of the
+      appropriate residual versus a categorical data set column
+    - Function `wres_q` and `cwres_q` generates quantile-quantile plots of the
+      appropriate residual value; a refereince identity line is added
+    - Function `eta_hist` generates histograms of model ETAs and returns a list
+      `gg/ggplot` objects
+    - Function `eta_cont` generates a scatterplot of model ETAs versus a continuous
+      variable in the data set; a horizontal reference line at `ETAn=0` and
+      loess smoothing line are also added to the plot
+    - Function `eta_cat` generates boxplot summaries of model ETAs by a
+      categorical variable in the data set
+    - Function `eta_pairs` generates pairs plots using the `ggpairs` function
+      from the `GGally` package
+    - Function `splitplot` splits the input data set according to a
+      discrete data item and generates a plot according to a user-named
+      function, returning a list of `gg/ggplot` objects
+cont_cont:
+  section: Continuous scatter
+  requirements:
+    - x-axis options availabe in `x_scale_continuous` can be modified
+      by the xs argument
+    - y-axis options available in `y_scale_continuous` can be modified
+      by the ys argument
+    - When loess smoothing lines are generated, `geom_smooth` with
+      `ggplot2` default behavior is used; the smooth may be modified
+      through the `smooth` argument
+    - A title may be added through the `title` argument
+cont_cat:
+  section: Boxplot summaries
+  requirements:
+    - x-axis options availabe in `x_scale_discrete` can be modified
+      by the xs argument
+    - y-axis options available in `y_scale_continuous` can be modified
+      by the ys argument
+    - Boxplot summaries are generated using `geom_boxplot` with `ggplot2`
+      default configuration
+    - A title may be added thought the `title` argument
+input:
+  section: Input data
+  requirements:
+    - Data are input as data.frame or tibble
+    - For continuous scatter plots, numeric data are required
+      or an error is generated; data are considered discrete
+      if they are `numeric` or `integer`
+    - For boxplot summaries,  discrete
+      data are required for x-axis for boxplot summaries; data are
+      considered discrete of they are `character`, `factor`, or `logical`
+rpackages:
+  section: R packages
+  requirements:
+    - "Imports: `dplyr` `(>= 0.7.2)`, `rlang` `(>= 0.1.2)`"
+    - "Depends: `ggplot2` `(>= 2.2.1)`"
+    - "Suggests: `testthat`"
+
