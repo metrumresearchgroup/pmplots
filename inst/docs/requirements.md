@@ -4,7 +4,7 @@ Requirements for pharamcometric plotting package `pmplots`
 
 <table>
 <colgroup>
-<col width="36%" />
+<col width="50%" />
 <col width="8%" />
 <col width="56%" />
 </colgroup>
