@@ -83,6 +83,9 @@ input:
   section: Input data
   requirements:
     - Data are input as data.frame or tibble
+    - Data sets are expected to be filter prior to plotting, so that
+      the input data frame only contains rows that are appropriate
+      for the current plotting function
     - For continuous scatter plots, numeric data are required
       or an error is generated; data are considered discrete
       if they are `numeric` or `integer`

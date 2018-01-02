@@ -45,7 +45,7 @@ x <- mutate(x, Section = if_else(duplicated(Section), "", Section))
 
 ```{r, echo  = FALSE}
 pander(x, justify = c("left","right", "left"), style = "multiline", 
-       split.cells = c(10, 3, 40), split.tables = 100)
+       split.cells = c(20, 3, 40), split.tables = 80)
 ```
 
 
