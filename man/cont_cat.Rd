@@ -3,7 +3,7 @@
 \name{cont_cat}
 \alias{cont_cat}
 \alias{eta_cat}
-\title{Plot continuous varible against categorical variable}
+\title{Plot continuous variable against a categorical variable}
 \usage{
 cont_cat(df, x, y, xs = defcx(), ys = defy(), ...)
 
@@ -25,7 +25,7 @@ eta_cat(df, x, y, hline = 0, ...)
 \item{hline}{passed to \code{\link{boxwork}}}
 }
 \description{
-Plot continuous varible against categorical variable
+Plot continuous variable against a categorical variable
 }
 \details{
 Since this function creates a boxplot,

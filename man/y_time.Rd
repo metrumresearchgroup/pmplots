@@ -2,7 +2,7 @@
 % Please edit documentation in R/scatt.R
 \name{y_time}
 \alias{y_time}
-\title{Plot continuous data versus time.}
+\title{Plot continuous data versus time}
 \usage{
 y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
   xs = defx(), ys = defy(), log = FALSE, xby = NULL, ...)
@@ -31,7 +31,7 @@ y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
 \item{...}{passed to \code{\link{scatt}}}
 }
 \description{
-Plot continuous data versus time.
+Plot continuous data versus time
 }
 \details{
 When the y-axis label needs a unit, include it in

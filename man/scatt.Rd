@@ -2,7 +2,7 @@
 % Please edit documentation in R/scatt.R
 \name{scatt}
 \alias{scatt}
-\title{Scatter plot function.}
+\title{Scatter plot function}
 \usage{
 scatt(df, x, y, xs = defx(), ys = defy(), title = NULL, group = NULL,
   col = NULL, scale_col = scale_color_brewer(palette = "Set2", name = ""),
@@ -30,7 +30,7 @@ scatt(df, x, y, xs = defx(), ys = defy(), title = NULL, group = NULL,
 \item{...}{not used}
 }
 \description{
-Scatter plot function.
+Scatter plot function
 }
 \details{
 Since this function creates a scatter plot,

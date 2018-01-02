@@ -63,7 +63,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
   p
 }
 
-##' Plot continuous varible against categorical variable
+##' Plot continuous variable against a categorical variable
 ##'
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
