@@ -78,6 +78,13 @@ cont_cat:
       by the ys argument
     - Boxplot summaries are generated using `geom_boxplot` with `ggplot2`
       default configuration
+    - If `shown` is `TRUE`, a numeric summary of each box is included
+      below each box. In the summary, `n` is the number of non-`NA`
+      observations in the
+      `y` column for that box and `N` is the number of unique `ID` values
+      for that box.  An error will be generated if `ID` does
+      not exist in the plotting data frame when `shown` is `TRUE`.
+      When `N` is equal to `n` in the summary, only `n` is shown.
     - A title may be added thought the `title` argument
 input:
   section: Input data
@@ -92,6 +99,16 @@ input:
     - For boxplot summaries,  discrete
       data are required for x-axis for boxplot summaries; data are
       considered discrete of they are `character`, `factor`, or `logical`
+look_feel:
+  section: Look and feel
+  requirements:
+    - Scatter plots are made with black points via `geom_point`
+    - Box plots are made with white fill via `geom_boxplot`
+    - The `ggplot2` default grid lines are retained on the plot
+    - Plots are made with white background
+    - Loess lines are blue and dashed
+    - Lines of identity and horizontal reference lines for
+      scatter plots are solid grey
 rpackages:
   section: R packages
   requirements:

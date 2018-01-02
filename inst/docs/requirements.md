@@ -176,41 +176,76 @@ Requirements for pharamcometric plotting package `pmplots`
 <tr class="odd">
 <td align="left"></td>
 <td align="right">31</td>
-<td align="left">A title may be added thought the <code>title</code> argument</td>
+<td align="left">If <code>shown</code> is <code>TRUE</code>, a numeric summary of each box is included below each box. In the summary, <code>n</code> is the number of non-<code>NA</code> observations in the <code>y</code> column for that box and <code>N</code> is the number of unique <code>ID</code> values for that box. An error will be generated if <code>ID</code> does not exist in the plotting data frame when <code>shown</code> is <code>TRUE</code>. When <code>N</code> is equal to <code>n</code> in the summary, only <code>n</code> is shown.</td>
 </tr>
 <tr class="even">
-<td align="left"><strong>Input data</strong></td>
+<td align="left"></td>
 <td align="right">32</td>
-<td align="left">Data are input as data.frame or tibble</td>
+<td align="left">A title may be added thought the <code>title</code> argument</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
+<td align="left"><strong>Input data</strong></td>
 <td align="right">33</td>
-<td align="left">Data sets are expected to be filter prior to plotting, so that the input data frame only contains rows that are appropriate for the current plotting function</td>
+<td align="left">Data are input as data.frame or tibble</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="right">34</td>
-<td align="left">For continuous scatter plots, numeric data are required or an error is generated; data are considered discrete if they are <code>numeric</code> or <code>integer</code></td>
+<td align="left">Data sets are expected to be filter prior to plotting, so that the input data frame only contains rows that are appropriate for the current plotting function</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="right">35</td>
-<td align="left">For boxplot summaries, discrete data are required for x-axis for boxplot summaries; data are considered discrete of they are <code>character</code>, <code>factor</code>, or <code>logical</code></td>
+<td align="left">For continuous scatter plots, numeric data are required or an error is generated; data are considered discrete if they are <code>numeric</code> or <code>integer</code></td>
 </tr>
 <tr class="even">
-<td align="left"><strong>R packages</strong></td>
+<td align="left"></td>
 <td align="right">36</td>
-<td align="left">Imports: <code>dplyr</code> <code>(&gt;= 0.7.2)</code>, <code>rlang</code> <code>(&gt;= 0.1.2)</code></td>
+<td align="left">For boxplot summaries, discrete data are required for x-axis for boxplot summaries; data are considered discrete of they are <code>character</code>, <code>factor</code>, or <code>logical</code></td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
+<td align="left"><strong>Look and feel</strong></td>
 <td align="right">37</td>
-<td align="left">Depends: <code>ggplot2</code> <code>(&gt;= 2.2.1)</code></td>
+<td align="left">Scatter plots are made with black points via <code>geom_point</code></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
 <td align="right">38</td>
+<td align="left">Box plots are made with white fill via <code>geom_boxplot</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">39</td>
+<td align="left">The <code>ggplot2</code> default grid lines are retained on the plot</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">40</td>
+<td align="left">Plots are made with white background</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">41</td>
+<td align="left">Loess lines are blue and dashed</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">42</td>
+<td align="left">Lines of identity and horizontal reference lines for scatter plots are solid grey</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>R packages</strong></td>
+<td align="right">43</td>
+<td align="left">Imports: <code>dplyr</code> <code>(&gt;= 0.7.2)</code>, <code>rlang</code> <code>(&gt;= 0.1.2)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="right">44</td>
+<td align="left">Depends: <code>ggplot2</code> <code>(&gt;= 2.2.1)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">45</td>
 <td align="left">Suggests: <code>testthat</code></td>
 </tr>
 </tbody>
