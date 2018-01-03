@@ -556,6 +556,7 @@ cwres_cont(dd, x = "RES//Controlled")
 Should be fairly flat
 
 ``` r
+set.seed(1001)
 dd$CWRESQ <- rnorm(nrow(dd))
 cwres_q(dd,x="CWRESQ")
 ```
