@@ -7,6 +7,9 @@
 \alias{layer_as}
 \alias{layer_sa}
 \alias{layer_dots}
+\alias{gs}
+\alias{ga}
+\alias{gh}
 \title{Layer functions}
 \usage{
 layer_hs(x, smooth = gs(), hline = gh(), ...)
@@ -18,24 +21,61 @@ layer_as(x, smooth = gs(), abline = ga(), ...)
 layer_sa(x, smooth = gs(), abline = ga(), ...)
 
 layer_dots(x, ...)
+
+gs(method = "loess", se = FALSE, lty = 2, lwd = 1.35, col = .ggblue,
+  ...)
+
+ga(intercept = 0, slope = 1, lwd = 1.35, col = "darkgrey", ...)
+
+gh(yintercept = 0, lwd = 1.35, col = "darkgrey", ...)
 }
 \arguments{
-\item{x}{a \code{ggplot}}
+\item{x}{a \code{ggplot} object}
 
 \item{smooth}{list of arguments for \code{geom_smooth}}
 
 \item{hline}{list of arguments for \code{geom_hline}}
 
-\item{...}{not used}
+\item{...}{passed to layering functions and geoms}
 
 \item{abline}{list of arguments for \code{geom_abline}}
+
+\item{method}{passed to the appropriate \code{geom_}}
+
+\item{se}{passed to the appropriate \code{geom_}}
+
+\item{lty}{passed to the appropriate \code{geom_}}
+
+\item{lwd}{passed to the appropriate \code{geom_}}
+
+\item{col}{passed to the appropriate \code{geom_}}
+
+\item{intercept}{passed to \code{geom_abline}}
+
+\item{slope}{passed to \code{geom_abline}}
+
+\item{yintercept}{passed to \code{geom_hline}}
 }
 \description{
 Layer functions
+}
+\details{
+Function names can be decoded as: \code{h} indicates horizontal
+reference line, \code{s} indicates smoothing line,
+\code{a} indicates \code{abline} (typically a line of
+identity). The order of the the codes indicates the
+order in which the layers are applied. For example,
+\code{layer_hs} means to first add a horizontal reference
+line and then add a smoothing line.
+
+\code{gs}, \code{ga}, and \code{gh} are helper functions to create
+default arguments to \code{geom_smooth}, \code{geom_abline}, and
+\code{geom_hline}, respectively.  These functions are not exported.
 }
 \examples{
 df <- dplyr::filter(superset2(), EVID==0 & BLQ==0)
 
 cwres_time(df) + geom_3s()
+
 
 }

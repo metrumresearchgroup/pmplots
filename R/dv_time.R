@@ -2,6 +2,7 @@
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
+##' @param xname used to form x-axis label
 ##' @param xunit time units; used to form x-axis label
 ##' @param yname used to form y-axis label
 ##' @param xs see \code{\link{defx}}

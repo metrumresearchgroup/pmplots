@@ -21,6 +21,8 @@ dv_tad(df, x = "TAD", ..., xname = "Time after dose")
 
 \item{y}{character name for y-axis data}
 
+\item{xname}{used to form x-axis label}
+
 \item{xunit}{time units; used to form x-axis label}
 
 \item{yname}{used to form y-axis label}

@@ -39,7 +39,7 @@ the \code{x} column must be character, factor
 or logical and \code{y} column must
 be numeric.
 
-If \code{shown} is \code{TRUE}, a numeric summar of each box is included
+If \code{shown} is \code{TRUE}, a numeric summary of each box is included
 below each box.  In the summary, \code{n} is the number of
 non-NA observations in the \code{y} column for that box and
 \code{N} is the number of unique \code{ID} values for

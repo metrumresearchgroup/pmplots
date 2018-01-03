@@ -2,7 +2,25 @@
 % Please edit documentation in R/Aaaa.R
 \name{pmplots}
 \alias{pmplots}
-\title{Plots for pharmacometrics.}
+\title{Plots for pharmacometrics}
 \description{
-Plots for pharmacometrics.
+Plots for pharmacometrics
+}
+\details{
+Help topics:
+
+\itemize{
+
+\item \code{\link{res_time}} Plots of residuals versus time
+\item \code{\link{dv_pred}} Plots of observed data versus predictions
+\item \code{\link{res_pred}} Plots of residuals versus predictions
+\item \code{\link{res_q}} Q-Q plots for residuals
+\item \code{\link{eta_hist}}, \code{\link{eta_pairs}}, \code{\link{eta_cont}},
+       \code{\link{eta_cat}} Plots for ETA
+\item \code{\link{split_plot}} split and plot
+\item \code{\link{cont_cont}} Plots for continuous variables
+\item \code{\link{layer}} Functions for adding layers to plots like
+       reference or smoothing lines
+
+}
 }

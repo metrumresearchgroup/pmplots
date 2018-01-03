@@ -22,6 +22,8 @@ cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
 
 \item{xname}{used to form x-axis label}
 
+\item{yname}{used to form y-axis label}
+
 \item{xs}{see \code{\link{defx}}}
 
 \item{ys}{see \code{\link{defy}}}

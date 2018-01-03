@@ -1,35 +1,43 @@
 
-gs <- function(method="loess", se=FALSE, lty=2, lwd=1.35, col = .ggblue,...) {
-  args <- list(...)
-  def <- list(method=method,se=se,lty=lty,lwd=lwd,col=col)
-  merge.list(def,args)
-}
-ga <- function(intercept=0, slope=1, lwd=1.35, col="darkgrey",...) {
-  args <- list(...)
-  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd)
-  merge.list(def,args)
-}
-gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
-  args <- list(...)
-  def <- list(yintercept=yintercept,lwd=lwd,col=col)
-  merge.list(def,args)
-}
 
 ##' Layer functions
 ##'
-##' @param x a \code{ggplot}
+##' @param x a \code{ggplot} object
 ##' @param smooth list of arguments for \code{geom_smooth}
 ##' @param hline list of arguments for \code{geom_hline}
 ##' @param abline list of arguments for \code{geom_abline}
-##' @param ... not used
+##' @param method passed to the appropriate \code{geom_}
+##' @param se passed to the appropriate \code{geom_}
+##' @param lty passed to the appropriate \code{geom_}
+##' @param lwd passed to the appropriate \code{geom_}
+##' @param col passed to the appropriate \code{geom_}
+##' @param slope passed to \code{geom_abline}
+##' @param intercept passed to \code{geom_abline}
+##' @param yintercept passed to \code{geom_hline}
+##' @param ... passed to layering functions and geoms
 ##'
 ##' @examples
 ##' df <- dplyr::filter(superset2(), EVID==0 & BLQ==0)
 ##'
 ##' cwres_time(df) + geom_3s()
 ##'
+##'
+##' @details
+##' Function names can be decoded as: \code{h} indicates horizontal
+##' reference line, \code{s} indicates smoothing line,
+##' \code{a} indicates \code{abline} (typically a line of
+##' identity). The order of the the codes indicates the
+##' order in which the layers are applied. For example,
+##' \code{layer_hs} means to first add a horizontal reference
+##' line and then add a smoothing line.
+##'
+##' \code{gs}, \code{ga}, and \code{gh} are helper functions to create
+##' default arguments to \code{geom_smooth}, \code{geom_abline}, and
+##' \code{geom_hline}, respectively.  These functions are not exported.
+##'
 ##' @name layer
 ##' @rdname layer
+##'
 ##' @export
 layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
   if(!is.null(hline)) {
@@ -95,6 +103,29 @@ layer_dots <- function(x,...) {
   }
   x
 }
+
+
+##' @rdname layer
+gs <- function(method="loess", se=FALSE, lty=2, lwd=1.35, col = .ggblue,...) {
+  args <- list(...)
+  def <- list(method=method,se=se,lty=lty,lwd=lwd,col=col)
+  merge.list(def,args)
+}
+
+##' @rdname layer
+ga <- function(intercept=0, slope=1, lwd=1.35, col="darkgrey",...) {
+  args <- list(...)
+  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd)
+  merge.list(def,args)
+}
+
+##' @rdname layer
+gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
+  args <- list(...)
+  def <- list(yintercept=yintercept,lwd=lwd,col=col)
+  merge.list(def,args)
+}
+
 
 
 ##' Additional reference lines

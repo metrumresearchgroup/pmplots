@@ -24,6 +24,9 @@ qq_reg_data <- function(y) {
 ##' @details
 ##' The \code{x} column must be numeric.
 ##'
+##' @name res_q
+##' @rdname res_q
+##'
 ##' @examples
 ##'
 ##' df <- dplyr::filter(superset2(), EVID==0)
@@ -48,7 +51,7 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
 }
 
 ##' @export
-##' @rdname wres_q
+##' @rdname res_q
 cwres_q <- function(df, x="CWRES", ...) {
   wres_q(df, x, ...)
 }
