@@ -66,7 +66,7 @@ Example data in the package
 ===========================
 
 ``` r
-df <- superset2() %>% filter(EVID==0)
+df <- pmplots_data() %>% filter(EVID==0)
 
 id <- distinct(df, ID, .keep_all=TRUE)
 

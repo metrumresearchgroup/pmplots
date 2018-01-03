@@ -40,4 +40,7 @@ the \code{yname} specification.
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.
+
+The \code{xby} argument is provided for
+convenience to set breaks for time scales.
 }

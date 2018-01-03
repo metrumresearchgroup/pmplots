@@ -43,6 +43,9 @@ dv_tad(df, x = "TAD", ..., xname = "Time after dose")
 Plot DV versus time
 }
 \details{
+Plots are generated using \code{\link{y_time}},
+which then calls \code{\link{scatt}}.
+
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.

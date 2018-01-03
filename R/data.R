@@ -1,20 +1,20 @@
 
-##' superset2 data sets
+##' Example data sets
 ##'
 ##' @export
-superset2 <- function() {
+pmplots_data <- function() {
   loc <- system.file(package="pmplots")
-  readRDS(file=file.path(loc,"exdata", "superset2.RDS"))
+  readRDS(file=file.path(loc,"exdata", "pmplots_data.RDS"))
 }
 ##' @export
-##' @rdname superset2
-superset2id <- function() {
+##' @rdname pmplots_data
+pmplots_data_id <- function() {
   loc <- system.file(package="pmplots")
-  readRDS(file=file.path(loc,"exdata", "superset2id.RDS"))
+  readRDS(file=file.path(loc,"exdata", "pmplots_data_id.RDS"))
 }
 ##' @export
-##' @rdname superset2
-superset2obs <- function() {
+##' @rdname pmplots_data
+pmplots_data_obs <- function() {
   loc <- system.file(package="pmplots")
-  readRDS(file=file.path(loc,"exdata", "superset2obs.RDS"))
+  readRDS(file=file.path(loc,"exdata", "pmplots_data_obs.RDS"))
 }

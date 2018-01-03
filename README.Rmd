@@ -21,7 +21,7 @@ library(GGally)
 library(pmplots)
 library(mrggsave)
 
-df <- superset2() %>% filter(EVID==0)
+df <- pmplots_data_obs()
 ```
 
 

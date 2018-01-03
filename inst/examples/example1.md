@@ -25,7 +25,7 @@ Exammple data in the package
 ============================
 
 ``` r
-obs <- superset2() %>% filter(EVID==0)
+obs <- pmplots_data_obs()
 
 id <- distinct(obs, ID, .keep_all=TRUE)
 

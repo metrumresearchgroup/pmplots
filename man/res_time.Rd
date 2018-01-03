@@ -52,8 +52,8 @@ Plot residuals versus time
 \details{
 Functions are provided for plotting \code{RES}, \code{WRES},
 and \code{CWRES} versus \code{TIME}, \code{TAFD}, and
-\code{TAD}.  The \code{_tafd} and \code{_tad} functions
-call the \code{_time} function.
+\code{TAD}.  Plots are generated using \code{\link{y_time}},
+which then calls \code{\link{scatt}}.
 
 By default, the time unit is assumed
 to be hours (\code{hr}).  See the \code{xunit} argument
