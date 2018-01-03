@@ -32,7 +32,7 @@ The \code{x} column must be numeric.
 }
 \examples{
 
-df <- dplyr::filter(superset2(), EVID==0)
+df <- dplyr::filter(pmplots_data(), EVID==0)
 
 cwres_q(df)
 

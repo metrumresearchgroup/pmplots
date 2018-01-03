@@ -17,7 +17,7 @@
 ##' @param ... passed to layering functions and geoms
 ##'
 ##' @examples
-##' df <- dplyr::filter(superset2(), EVID==0 & BLQ==0)
+##' df <- dplyr::filter(pmplots_data(), EVID==0 & BLQ==0)
 ##'
 ##' cwres_time(df) + geom_3s()
 ##'

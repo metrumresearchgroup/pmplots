@@ -25,7 +25,7 @@ Exammple data in the package
 ============================
 
 ``` r
-obs <- pmplots_data_obs()
+obs <- pmplots_data() %>% filter(EVID==0)
 
 id <- distinct(obs, ID, .keep_all=TRUE)
 

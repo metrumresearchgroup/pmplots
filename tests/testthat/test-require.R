@@ -2,7 +2,7 @@ library(testthat)
 
 context("test-require")
 
-df <- dplyr::filter(superset2(),EVID==0)
+df <- dplyr::filter(pmplots_data(),EVID==0)
 
 test_that("functions fail when col doesn't exist", {
 

@@ -34,6 +34,8 @@ y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
 Plot continuous data versus time
 }
 \details{
+This function is intented for internal use.
+
 When the y-axis label needs a unit, include it in
 the \code{yname} specification.
 

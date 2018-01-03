@@ -37,7 +37,7 @@ Summary numbers located below each box are described in
 \code{\link{boxwork}}.
 }
 \examples{
-df <- dplyr::filter(superset2(), EVID==0)
+df <- dplyr::filter(pmplots_data(), EVID==0)
 
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 

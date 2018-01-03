@@ -85,7 +85,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' @seealso \code{\link{boxwork}}
 ##'
 ##' @examples
-##' df <- dplyr::filter(superset2(), EVID==0)
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
 ##' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ##'
@@ -136,7 +136,9 @@ eta_cat <- function(df, x, y, hline=0, ...) {
 ##' @seealso \code{\link{boxwork}}
 ##'
 ##' @examples
-##' df <- dplyr::filter(superset2(), EVID==0)
+##'
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##'
 ##' cwres_cat(df, x="STUDYc//Study name")
 ##'
 ##' @export

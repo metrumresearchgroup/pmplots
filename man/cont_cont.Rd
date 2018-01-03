@@ -48,7 +48,7 @@ of values for \code{y} are passed in.  Accordingly,
 length as \code{y}.
 }
 \examples{
-df <- dplyr::filter(superset2(), EVID==0)
+df <- dplyr::filter(pmplots_data(), EVID==0)
 
 cont_cont(df, x="WT//Weight (kg)", y="HT//Height (cm)")
 

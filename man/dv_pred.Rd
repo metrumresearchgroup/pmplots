@@ -40,7 +40,7 @@ both the \code{x} and \code{y} columns must
 be numeric.
 }
 \examples{
-df <- dplyr::filter(superset2(), EVID==0)
+df <- dplyr::filter(pmplots_data(), EVID==0)
 
 dv_pred(df)
 

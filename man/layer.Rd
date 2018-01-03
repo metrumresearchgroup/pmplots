@@ -73,7 +73,7 @@ default arguments to \code{geom_smooth}, \code{geom_abline}, and
 \code{geom_hline}, respectively.  These functions are not exported.
 }
 \examples{
-df <- dplyr::filter(superset2(), EVID==0 & BLQ==0)
+df <- dplyr::filter(pmplots_data(), EVID==0 & BLQ==0)
 
 cwres_time(df) + geom_3s()
 

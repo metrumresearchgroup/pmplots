@@ -28,7 +28,7 @@
 ##' not equal to \code{0}.
 ##'
 ##' @examples
-##' df <- dplyr::filter(superset2(), EVID==0)
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
 ##' dv_time(df, yname="MyDrug (ng/mL)")
 ##'

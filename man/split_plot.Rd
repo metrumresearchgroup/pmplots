@@ -19,7 +19,9 @@ split_plot(df, sp, fun = "cont_cont", ...)
 Split and plot
 }
 \examples{
-df <- dplyr::filter(superset2(), EVID==0)
+
+df <- dplyr::filter(pmplots_data(), EVID==0)
+
 split_plot(df, sp="STUDYc", fun=dv_pred)
 
 }

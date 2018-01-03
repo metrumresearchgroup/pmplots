@@ -45,7 +45,7 @@ to add specific name and or unit to the dependent variable
 }
 \examples{
 
-df <- dplyr::filter(superset2(), EVID==0)
+df <- dplyr::filter(pmplots_data(), EVID==0)
 
 cwres_pred(df, xname="MyDrug (ng/mL)")
 

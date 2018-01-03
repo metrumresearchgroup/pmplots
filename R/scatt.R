@@ -51,10 +51,12 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' @param ... passed to \code{\link{scatt}}
 ##'
 ##' @details
+##'
+##' This function is intented for internal use.
+##'
 ##' When the y-axis label needs a unit, include it in
 ##' the \code{yname} specification.
 ##'
-##' @details
 ##' Since this function creates a scatter plot,
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.

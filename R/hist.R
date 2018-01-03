@@ -13,8 +13,11 @@
 ##' The \code{x} column must be numeric.
 ##'
 ##' @examples
-##' df <- dplyr::filter(superset2(), EVID==0)
+##'
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##'
 ##' etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+##'
 ##' eta_hist(df, etas)
 ##'
 ##' @export

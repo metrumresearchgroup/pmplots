@@ -2,7 +2,7 @@ library(testthat)
 
 context("test-pm")
 
-df <- superset2() %>% filter(EVID==0)
+df <- pmplots_data() %>% dplyr::filter(EVID==0)
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 
 test_that("every function", {
