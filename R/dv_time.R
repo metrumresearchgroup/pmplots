@@ -1,4 +1,5 @@
 ##' Plot DV versus time
+##'
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
@@ -13,6 +14,10 @@
 ##' @param ... passed to \code{\link{scatt}}
 ##'
 ##' @details
+##'
+##' Plots are generated using \code{\link{y_time}},
+##' which then calls \code{\link{scatt}}.
+##'
 ##' Since this function creates a scatter plot,
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.

@@ -28,17 +28,13 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 
   locol <- .ggblue
 
-  p <- ggplot(data=df,aes_string(x,y,col=col)) + geom_point() + xscale + yscale
+  p <- ggplot(data=df,aes_string(x,y,col=col)) + geom_point() +
+    xscale + yscale
 
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
   if(is.character(title)) p <- p + ggtitle(title)
   p
 }
-
-
-
-
-
 
 ##' Plot continuous data versus time
 ##'
@@ -62,6 +58,10 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' Since this function creates a scatter plot,
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
+##'
+##' The \code{xby} argument is provided for
+##' convenience to set breaks for time scales.
+##'
 ##'
 y_time <- function(df, x="TIME", y,
                    xname="Time", xunit="hr",
@@ -87,5 +87,10 @@ y_time <- function(df, x="TIME", y,
   scatt(df, x, y, xs=xs, ys=ys, ...)
 
 }
+
+
+
+
+
 
 
