@@ -1,3 +1,7 @@
+test.R
+README.Rmd
+README.md
+mrglogo.pdf
 ^.*\.tar\.gz$
 Makefile
 ^.*\.html$

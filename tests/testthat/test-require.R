@@ -4,7 +4,7 @@ context("test-require")
 
 df <- dplyr::filter(pmplots_data(),EVID==0)
 
-test_that("functions fail when col doesn't exist", {
+test_that("Functions fail when col doesn't exist", {
 
   df$CWRES <- NULL
   df$IPRED <- NULL

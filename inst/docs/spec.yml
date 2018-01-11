@@ -1,22 +1,11 @@
-default_col:
-  section: Default column names
+unit:
+  section: Unit tests
   requirements:
-    - Column `RES` refers to residual; rendered `res` in function names
-    - Column `WRES` weighted residual; rendered `wres` in function names
-    - Column `CWRES` refers to conditional weighted residual;
-      rendered `cwres` in function names
-    - Column `TIME` refers to model time; rendered `time`
-      in function names
-    - Column `TAFD` refers to time after first dose; rendered
-      `tafd` in function names
-    - Column `TAD` refers to time after dose; rendered `tad`
-      in function names
-    - Column `DV` refers to observed data; rendered `dv`
-      in function names
-    - Column `PRED` refers to population level predictions; rendered
-      `pred` in function names
-    - Column `IPRED` refers to individual level predictions; rendered
-      `ipred` in function names
+    - The package passes all unit tests using the `testthat` framework
+rcmdcheck:
+  section: R CMD check
+  requirements:
+    - The package passes `R CMD check`
 plots:
   section: Plots generated
   requirements:
