@@ -1,0 +1,49 @@
+unit:
+  section: Automated checks and tests
+  requirements:
+    - The package passes all unit tests using the `testthat` framework
+    - The package passes `R CMD check`
+plots:
+  section: Plots generated
+  requirements:
+    - Standard plots of residuals, observed data, model-predicted
+      data, ETAs, and other continuous and categorical covariates
+      are generated
+    - Default column names for different data items are assumed and
+      maybe overridden by the user
+cont_cont:
+  section: Plot customization
+  requirements:
+    - x-axis options availabe in `x_scale_continuous` can be modified
+      by the `xs` argument for scatter plots
+    - x-axis options availabe in `x_scale_discrete` can be modified
+      by the `xs` argument for boxplot summaries
+    - y-axis options available in `y_scale_continuous` can be modified
+      by the `ys` argument
+    - Loess or other reference lines can be modified or excluded from
+      the plots
+    - A numeric summary of each box is included by default
+      below each box in boxplot summaries
+input:
+  section: Input data
+  requirements:
+    - Input data are checked to make sure that data
+      are continuous or categorical where appropriate
+look_feel:
+  section: Look and feel
+  requirements:
+    - A default look and feel is maintained across plots
+    - Scatter plots are made with black points via `geom_point` <same>
+    - Box plots are made with white fill via `geom_boxplot` <same>
+    - The `ggplot2` default grid lines are retained on the plot <same>
+    - Plots are made with white background <same>
+    - Loess lines are blue and dashed <same>
+    - Lines of identity and horizontal reference lines for <same>
+      scatter plots are solid grey <same>
+rpackages:
+  section: R packages
+  requirements:
+    - "Imports: `dplyr` `(>= 0.7.2)`, `rlang` `(>= 0.1.2)`"
+    - "Depends: `ggplot2` `(>= 2.2.1)` <same>"
+    - "Suggests: `testthat`<same>"
+

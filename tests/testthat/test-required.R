@@ -1,6 +1,6 @@
 library(testthat)
 
-context("test-require")
+context("test-required")
 
 df <- dplyr::filter(pmplots_data(),EVID==0)
 
