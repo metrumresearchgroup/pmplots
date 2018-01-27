@@ -32,6 +32,13 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
   require_numeric(df,x)
   require_numeric(df,y)
 
+  if(!missing(xs)) {
+    xs <- update_list(defx(),xs)
+  }
+  if(!missing(ys)) {
+    ys <- update_list(defy(),ys)
+  }
+
   xs$name <- paste0(prefix, " predicted ", xname)
   ys$name <- paste0("Observed ", yname)
 
@@ -44,7 +51,7 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
     xkp <- df[,x] > 0
     df <- dplyr::filter(df,xkp)
     if(!is.numeric(xs$breaks)) {
-      xs$breaks <- logbr()
+      xs$breaks <- logbr3()
     }
   }
 
@@ -52,7 +59,7 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
     ykp <- df[,y] > 0
     df <- dplyr::filter(df,ykp)
     if(!is.numeric(ys$breaks) | is.null(ys$breaks)) {
-      ys$breaks <- logbr()
+      ys$breaks <- logbr3()
     }
   }
 

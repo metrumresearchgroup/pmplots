@@ -55,18 +55,24 @@ dv_time <- function(df, x="TIME", y="DV",
     df[df$BLQ != 0, y] <- NA
   }
 
+  if(!missing(xs)) {
+    xs <- update_list(defx(),xs)
+  }
+  if(!missing(ys)) {
+    ys <- update_list(defy(),ys)
+  }
+
   xs$name <- paste0(xname, " (",xunit,")")
   ys$name <- yname
 
   if(log) {
     ys$trans <- "log"
-    ys$breaks <- logbr3()
   }
   if(ys$trans %in% c("log", "log10")) {
     ykp <- df[,y] > 0
     df <- dplyr::filter(df,ykp)
     if(!is.numeric(ys$breaks) | is.null(ys$breaks)) {
-      ys$breaks <- logbr()
+      ys$breaks <- logbr3()
     }
   }
   if(is.numeric(xby)) {

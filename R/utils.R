@@ -54,7 +54,7 @@ logbr <- function() {
 ##' @rdname logbr
 logbr3 <- function() {
   x <- logbr()
-  c(x,3*x)
+  sort(c(x,3*x))
 }
 
 ##' Default setting for x-axis scale
@@ -215,4 +215,37 @@ merge.list <- function(x,y,...,open=FALSE,
 ##' @export
 pmsmooth <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...) {
   geom_smooth(method=method,se=se,lty=lty,lwd=lwd,col=col)
+}
+
+
+combine_list <- function(left, right) {
+  if(!all(is.list(left),is.list(right))) {
+    stop("input are not lists")
+  }
+  left[names(right)] <-  right
+  left
+}
+
+update_list <- function(left, right) {
+  if(!all(is.list(left),is.list(right))) {
+    stop("input are not lists")
+  }
+  common <- intersect(names(left), names(right))
+  left[common] <-  right[common]
+  left
+}
+
+##' Rotate axis text
+##'
+##' @param angle passed to \code{ggplot::element_text}
+##' @param hjust passed to \code{ggplot::element_text}
+##'
+##' @export
+rotx <- function(angle=30, hjust = 1) {
+  theme(axis.text.x = element_text(angle = angle, hjust = hjust))
+}
+##' @rdname rotx
+##' @export
+roty <- function(angle=30, hjust = 1) {
+  theme(axis.text.y = element_text(angle = angle, hjust = hjust))
 }
