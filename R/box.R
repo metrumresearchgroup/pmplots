@@ -86,6 +86,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##'
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 ##'
 ##' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ##'

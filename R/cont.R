@@ -24,6 +24,7 @@
 ##'
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 ##'
 ##' cont_cont(df, x="WT//Weight (kg)", y="HT//Height (cm)")
 ##'

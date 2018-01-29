@@ -31,9 +31,10 @@ The \code{x} column must be numeric.
 \examples{
 
 df <- dplyr::filter(pmplots_data(), EVID==0)
+id <- dplyr::distinct(df, ID, .keep_all = TRUE)
 
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 
-eta_hist(df, etas)
+eta_hist(id, etas)
 
 }

@@ -33,11 +33,8 @@ This funciton requires the \code{GGally} package to be installed.
 }
 \examples{
 
-library(dplyr)
-
-id <- pmplots_data() \%>\%
-  filter(EVID==0) \%>\%
-  distinct(ID, .keep_all = TRUE)
+df <- dplyr::filter(pmplots_data(), EVID==0)
+id <- dplyr::distinct(df, ID, .keep_all = TRUE)
 
 eta_pairs(id, c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA"))
 
