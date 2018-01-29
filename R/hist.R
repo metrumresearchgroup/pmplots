@@ -31,7 +31,7 @@ eta_hist <- function(df, x, xs=defx(), fill="black", col="white",
     xscale <- do.call("scale_x_continuous", xs)
     out[[i]] <- ggplot(data=df, aes_string(x=xx[1])) +
       geom_histogram(...,col=col,fill=fill,alpha=alpha) +
-      xscale
+      xscale + pm_theme()
   }
   return(out)
 }

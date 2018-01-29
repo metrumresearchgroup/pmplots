@@ -68,5 +68,5 @@ eta_pairs <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
                   columnLabels=labs,
                   upper = list(continuous = eta_pairs_upper, shk = shk),
                   diag = list(continuous = diag),
-                  lower = list(continuous = eta_pairs_fun))
+                  lower = list(continuous = eta_pairs_fun)) + pm_theme()
 }

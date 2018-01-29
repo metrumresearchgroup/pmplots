@@ -33,7 +33,7 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
   if(is.character(title)) p <- p + ggtitle(title)
-  p
+  p + pm_theme()
 }
 
 ##' Plot continuous data versus time

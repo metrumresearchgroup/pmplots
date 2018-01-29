@@ -16,9 +16,9 @@ NULL
 
 globalVariables(c("ID", "n"))
 
-.onLoad <- function(libname, pkgname) {
-  ggplot2::theme_set(ggplot2::theme_bw())
-}
+# .onLoad <- function(libname, pkgname) {
+#   ggplot2::theme_set(ggplot2::theme_bw())
+# }
 
 
 ##' Plots for pharmacometrics

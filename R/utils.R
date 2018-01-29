@@ -249,3 +249,8 @@ rotx <- function(angle=30, hjust = 1) {
 roty <- function(angle=30, hjust = 1) {
   theme(axis.text.y = element_text(angle = angle, hjust = hjust))
 }
+
+pm_theme <- function(x) {
+  x + theme_bw()
+}
+

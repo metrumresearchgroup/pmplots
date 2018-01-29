@@ -60,7 +60,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
     p <- p + geom_hline(yintercept=hline,lwd=1, lty=2)
   }
   if(is.character(title)) p <- p + ggtitle(title)
-  p
+  p + pm_theme()
 }
 
 ##' Plot continuous variable against a categorical variable
