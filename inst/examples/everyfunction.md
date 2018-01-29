@@ -51,10 +51,6 @@ Available functions
     -   [Custom breaks](#custom-breaks)
     -   [Extra reference lines to \[C\]WRES plots](#extra-reference-lines-to-cwres-plots)
 -   [Controlled input / output](#controlled-input-output)
--   [Plot output (`mrggsave`)](#plot-output-mrggsave)
-    -   [Saving single plots](#saving-single-plots)
-    -   [Save multiple plots to one file](#save-multiple-plots-to-one-file)
-    -   [Arrange multiple plots on a single page](#arrange-multiple-plots-on-a-single-page)
 
 ``` r
 library(pmplots)
@@ -562,39 +558,3 @@ cwres_q(dd,x="CWRESQ")
 ```
 
 ![](img/everyfunction--unnamed-chunk-56-1.png)
-
-Plot output (`mrggsave`)
-========================
-
-Saving single plots
--------------------
-
-``` r
-p1 <- dv_pred(df)
-```
-
-``` r
-mrggsave(p1, script="everyfunction.R", stem="figure1")
-```
-
-Save multiple plots to one file
--------------------------------
-
-``` r
-p2 <- dv_ipred(df)
-p3 <- cwres_pred(df)
-p4 <- cwres_time(df)
-```
-
-``` r
-mrggsave(list(p1,p2,p3,p4), script="everyfunction.R", stem="figure1")
-```
-
-Arrange multiple plots on a single page
----------------------------------------
-
-``` r
-mrggdraw(list(p1,p2,p3,p4), arrange=TRUE, script="everyfunction.R")
-```
-
-![](img/everyfunction--unnamed-chunk-61-1.png)

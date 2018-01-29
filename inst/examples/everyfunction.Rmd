@@ -377,35 +377,4 @@ cwres_q(dd,x="CWRESQ")
 
 
 
-# Plot output (`mrggsave`)
-
-## Saving single plots
-```{r}
-p1 <- dv_pred(df)
-```
-
-
-```{r,eval=FALSE}
-mrggsave(p1, script="everyfunction.R", stem="figure1")
-```
-
-
-## Save multiple plots to one file
-```{r}
-p2 <- dv_ipred(df)
-p3 <- cwres_pred(df)
-p4 <- cwres_time(df)
-```
-
-```{r,eval=FALSE}
-mrggsave(list(p1,p2,p3,p4), script="everyfunction.R", stem="figure1")
-```
-
-## Arrange multiple plots on a single page
-
-```{r, fig.width=6, fig.height=7}
-mrggdraw(list(p1,p2,p3,p4), arrange=TRUE, script="everyfunction.R")
-```
-
-
 
