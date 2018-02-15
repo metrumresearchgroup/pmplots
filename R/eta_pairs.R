@@ -51,7 +51,8 @@ eta_pairs <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
     stop("this function requires that the GGally package be installed",
          call. = FALSE)
   }
-  diag <- GGally::wrap("barDiag", bins = bins, alpha = alpha, fill=fill, col=col)
+  diag <- GGally::wrap("barDiag", bins = bins,
+                       alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)
   etal <- lapply(etas, col_label)
   cols <- sapply(etal, "[[", 1L)

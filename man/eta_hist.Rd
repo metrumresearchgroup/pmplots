@@ -2,10 +2,14 @@
 % Please edit documentation in R/hist.R
 \name{eta_hist}
 \alias{eta_hist}
+\alias{cont_hist}
 \title{ETA histograms}
 \usage{
 eta_hist(df, x, xs = defx(), fill = "black", col = "white", alpha = 0.6,
   ...)
+
+cont_hist(df, x, xs = defx(), fill = "black", col = "white",
+  alpha = 0.6, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -21,9 +25,23 @@ eta_hist(df, x, xs = defx(), fill = "black", col = "white", alpha = 0.6,
 \item{alpha}{passed to \code{geom_histogram}}
 
 \item{...}{other arguments for \code{geom_histogram}}
+
+\item{x}{the x column}
+
+\item{xs}{a list of information for the x axis}
+
+\item{fill}{a character value passed to \code{geom_histogram}}
+
+\item{col}{a character value passed to \code{geom_histogram}}
+
+\item{alpha}{a numeric value passed to \code{geom_histogram}}
+
+\item{...}{passed to \code{geom_histogram}}
 }
 \description{
 ETA histograms
+
+Generate a histogram plot
 }
 \details{
 The \code{x} column must be numeric.
