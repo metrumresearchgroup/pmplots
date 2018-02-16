@@ -36,6 +36,7 @@ eta_hist <- function(df, x, xs=defx(), fill="black", col="white",
 
 ##' Generate a histogram plot
 ##'
+##' @param df the data frame containing plotting data
 ##' @param x the x column
 ##' @param xs a list of information for the x axis
 ##' @param fill a character value passed to \code{geom_histogram}
