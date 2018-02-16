@@ -19,7 +19,8 @@ box_labels <- function(df, x, y) {
 ##' @param alpha passed to \code{geom_boxplot}
 ##' @param hline used to draw horizontal reference line
 ##' @param title passed to \code{ggtitle}
-##' @param shown if \code{TRUE} provide a numeric summary of each box (see details)
+##' @param shown if \code{TRUE} provide a numeric summary of each
+##' box (see details)
 ##' @param ... not used
 ##'
 ##' @details
@@ -28,14 +29,15 @@ box_labels <- function(df, x, y) {
 ##' or logical and \code{y} column must
 ##' be numeric.
 ##'
-##' If \code{shown} is \code{TRUE}, a numeric summary of each box is included
+##' If \code{shown} is \code{TRUE}, a numeric summary of each
+##' box is included
 ##' below each box.  In the summary, \code{n} is the number of
 ##' non-NA observations in the \code{y} column for that box and
 ##' \code{N} is the number of unique \code{ID} values for
 ##' that box.  An error will be generated if \code{ID} does
-##' not exist in the plotting data frame when \code{shown} is \code{TRUE}.
-##' When \code{N} is equal to \code{n} in the summary, only \code{n} is
-##' shown.
+##' not exist in the plotting data frame when \code{shown} is
+##' \code{TRUE}.  When \code{N} is equal to \code{n} in the
+##' summary, only \code{n} is shown.
 ##'
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",

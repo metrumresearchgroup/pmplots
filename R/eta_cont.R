@@ -18,7 +18,7 @@
 ##' @export
 eta_cont <- function(df, x, y,...) {
   out <- list_plot_xy(df, x, y, cont_cont,...)
-  out <- lapply(out, layer_hs)
+  out <- lapply(out, layer_hs,...)
   if(length(out)==1) return(out[[1]])
   out
 }

@@ -6,7 +6,8 @@
 ##' @param y character name of y-axis data
 ##' @param xname used for x-axis label
 ##' @param yname used for y-axis label
-##' @param ... passed to \code{\link{y_time}} and \code{\link{layer_hs}}
+##' @param ... passed to \code{\link{y_time}} and
+##' \code{\link{layer_hs}}
 ##'
 ##' @seealso \code{\link{y_time}}, \code{\link{geom_3s}}
 ##'

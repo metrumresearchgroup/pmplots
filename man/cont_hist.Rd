@@ -2,10 +2,13 @@
 % Please edit documentation in R/hist.R
 \name{cont_hist}
 \alias{cont_hist}
+\alias{cont_hist_list}
 \title{Generate a histogram plot}
 \usage{
 cont_hist(df, x, xs = defx(), fill = "black", col = "white",
   alpha = 0.6, ...)
+
+cont_hist_list(df, x, ...)
 }
 \arguments{
 \item{df}{the data frame containing plotting data}
@@ -23,5 +26,6 @@ cont_hist(df, x, xs = defx(), fill = "black", col = "white",
 \item{...}{passed to \code{geom_histogram}}
 }
 \description{
-Generate a histogram plot
+\code{cont_hist_list} is a vectorized version
+of \code{cont_hist}.
 }

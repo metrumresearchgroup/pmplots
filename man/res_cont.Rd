@@ -17,15 +17,18 @@ cwres_cont(df, x, y = "CWRES//Conditional weighted residual", xs = defx(),
 \arguments{
 \item{df}{data frame to plot}
 
-\item{x}{character col//title for x-axis data; see \code{\link{col_label}}}
+\item{x}{character col//title for x-axis data; see
+\code{\link{col_label}}}
 
-\item{y}{character col//title for y-axis data; see \code{\link{col_label}}}
+\item{y}{character col//title for y-axis data; see
+\code{\link{col_label}}}
 
 \item{xs}{see \code{\link{defx}}}
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{...}{passed to \code{\link{scatt}}  and \code{\link{layer_hs}}}
+\item{...}{passed to \code{\link{scatt}}  and
+\code{\link{layer_hs}}}
 }
 \description{
 These are vectorized functions; see details;
