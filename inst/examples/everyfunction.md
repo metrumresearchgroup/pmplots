@@ -48,7 +48,7 @@ Available functions
     -   [log-Scale](#log-scale)
 -   [Data summary](#data-summary)
     -   [Continuous variable by categorical variable (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
-    -   [General histogram](#general-histogram)
+    -   [General histogram (`cont_hist`)](#general-histogram-cont_hist)
     -   [Split and plot (`split_plot`)](#split-and-plot-split_plot)
 -   [Some customization](#some-customization)
     -   [Modify x-axis](#modify-x-axis)
@@ -476,8 +476,8 @@ cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 
 ![](img/everyfunction--unnamed-chunk-47-1.png)
 
-General histogram
------------------
+General histogram (`cont_hist`)
+-------------------------------
 
 ``` r
 cont_hist(id, x = "WT // Weight (kg)") + 

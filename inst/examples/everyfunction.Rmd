@@ -315,7 +315,7 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
 cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
-## General histogram
+## General histogram (`cont_hist`)
 ```{r}
 cont_hist(id, x = "WT // Weight (kg)") + 
   facet_wrap(~STUDYc)
