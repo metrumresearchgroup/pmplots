@@ -14,6 +14,8 @@
 ##' of plots is returned.  If both x and y are length 1,
 ##' then a single plot object (not a list) is returned.
 ##'
+##' @seealso \code{\link{eta_cont}}
+##'
 ##' @export
 eta_cat <- function(df, x, y, hline=0, ...) {
   out <- list_plot_xy(df,x,y,.fun = cont_cat, hline = hline, ...)

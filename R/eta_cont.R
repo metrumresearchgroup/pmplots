@@ -13,6 +13,8 @@
 ##' of plots is returned.  If both x and y are length 1,
 ##' then a single plot object (not a list) is returned.
 ##'
+##' @seealso \code{\link{eta_cat}}
+##'
 ##' @export
 eta_cont <- function(df, x, y,...) {
   out <- list_plot_xy(df, x, y, cont_cont,...)
