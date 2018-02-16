@@ -6,8 +6,6 @@
 ##' @param xname used to form x-axis label
 ##' @param xs see \code{\link{defx}}
 ##'
-##' @examples
-##'
 ##' @export
 res_hist <- function(df, ...,
                      x = "RES",

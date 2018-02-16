@@ -26,6 +26,3 @@ cwres_hist(df, ..., x = "CWRES", xname = "Conditional weighted residual")
 \description{
 Histograms of residuals
 }
-\examples{
-
-}

@@ -8,6 +8,8 @@ cont_hist(df, x, xs = defx(), fill = "black", col = "white",
   alpha = 0.6, ...)
 }
 \arguments{
+\item{df}{the data frame containing plotting data}
+
 \item{x}{the x column}
 
 \item{xs}{a list of information for the x axis}

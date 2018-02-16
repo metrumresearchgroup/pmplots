@@ -204,6 +204,13 @@ cwres_cat(df, x="STUDYc//Study type")
 cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 ```
 
+Vectorized version
+
+```{r}
+cwres_cat(df, x = c("STUDYc//Study", "RF//Renal Function"))
+```
+
+
 ### Conditional weighted residual histogram (`cwres_hist`)
 ```{r}
 cwres_hist(df)

@@ -2,12 +2,9 @@
 % Please edit documentation in R/box.R
 \name{cont_cat}
 \alias{cont_cat}
-\alias{eta_cat}
 \title{Plot continuous variable against a categorical variable}
 \usage{
 cont_cat(df, x, y, xs = defcx(), ys = defy(), ...)
-
-eta_cat(df, x, y, hline = 0, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -21,8 +18,6 @@ eta_cat(df, x, y, hline = 0, ...)
 \item{ys}{see \code{\link{defy}}}
 
 \item{...}{other arguments passed to \code{\link{boxwork}}}
-
-\item{hline}{passed to \code{\link{boxwork}}}
 }
 \description{
 Plot continuous variable against a categorical variable

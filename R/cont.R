@@ -39,15 +39,6 @@ cont_cont <- function(df, x, y, xs = defx(), ys=defy(),...) {
   scatt(df,x[1],y[1],xs,ys,...)
 }
 
-##' @export
-##' @rdname cont_cont
-eta_cont <- function(df, x, y,...) {
-  out <- list_plot_xy(df, x, y, cont_cont,...)
-  out <- lapply(out, layer_hs)
-  if(length(out)==1) return(out[[1]])
-  out
-}
-
 
 multi_scatter_x <- function(df, x, y,  ... ) {
   out <- vector(mode = "list", length = length(x))
@@ -67,30 +58,7 @@ multi_scatter_y <- function(df, x,  y, ... ) {
   return(out)
 }
 
-##' @export
-##' @rdname cont_cont
-res_cont <- function(df, x, y="RES//Residual",
-                     xs=defx(), ys=defy(), ...) {
-  out <- list_plot_xy(df, x, y, xs = xs, ys = ys, ...)
-  out <- lapply(out, layer_hs)
-  if(length(out)==1) return(out[[1]])
-  return(out)
-}
 
-##' @export
-##' @rdname cont_cont
-wres_cont <- function(df, x, y="WRES//Weighted residual",
-                      xs=defx(), ys=defy(),...) {
-  res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
-}
-
-##' @export
-##' @rdname cont_cont
-cwres_cont <- function(df, x,
-                       y="CWRES//Conditional weighted residual",
-                       xs=defx(), ys=defy(),...) {
-  res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
-}
 
 ##' Apply a plotting function to a vector of x or y values
 ##'

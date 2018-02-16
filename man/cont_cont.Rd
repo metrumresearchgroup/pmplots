@@ -2,23 +2,9 @@
 % Please edit documentation in R/cont.R
 \name{cont_cont}
 \alias{cont_cont}
-\alias{eta_cont}
-\alias{res_cont}
-\alias{wres_cont}
-\alias{cwres_cont}
 \title{Plot continuous variable versus continuous variable}
 \usage{
 cont_cont(df, x, y, xs = defx(), ys = defy(), ...)
-
-eta_cont(df, x, y, ...)
-
-res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
-
-wres_cont(df, x, y = "WRES//Weighted residual", xs = defx(), ys = defy(),
-  ...)
-
-cwres_cont(df, x, y = "CWRES//Conditional weighted residual", xs = defx(),
-  ys = defy(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}
