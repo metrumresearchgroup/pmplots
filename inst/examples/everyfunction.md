@@ -16,6 +16,7 @@ Available functions
         -   [Residuals versus population predicted (`res_pred`)](#residuals-versus-population-predicted-res_pred)
         -   [RES versus continuous covariate (`res_cont`)](#res-versus-continuous-covariate-res_cont)
         -   [RES by categorical covariate (`res_cat`)](#res-by-categorical-covariate-res_cat)
+        -   [Residual histogram (`res_hist`)](#residual-histogram-res_hist)
     -   [Weighted residuals](#weighted-residuals)
         -   [Weighted residuals versus time (`wres_time`)](#weighted-residuals-versus-time-wres_time)
         -   [Weighted residuals versus time after first dose (`wres_tafd`)](#weighted-residuals-versus-time-after-first-dose-wres_tafd)
@@ -23,6 +24,7 @@ Available functions
         -   [Weighted esiduals versus population predicted (`wres_pred`)](#weighted-esiduals-versus-population-predicted-wres_pred)
         -   [WRES versus continuous covariate (`wres_cont`)](#wres-versus-continuous-covariate-wres_cont)
         -   [WRES by categorical covariate (`wres_cat`)](#wres-by-categorical-covariate-wres_cat)
+        -   [Weighted residual histogram (`wres_hist`)](#weighted-residual-histogram-wres_hist)
         -   [WRES QQ plot (`wres_q`)](#wres-qq-plot-wres_q)
     -   [Conditional weighted residuals (CWRES)](#conditional-weighted-residuals-cwres)
         -   [CWRES versus time (`cwres_time`)](#cwres-versus-time-cwres_time)
@@ -30,10 +32,13 @@ Available functions
         -   [CWRES versus time after dose (`cwres_tad`)](#cwres-versus-time-after-dose-cwres_tad)
         -   [CWRES versus continuous covariate (`cwres_cont`)](#cwres-versus-continuous-covariate-cwres_cont)
         -   [CWRES by categorical covariate (`cwres_cat`)](#cwres-by-categorical-covariate-cwres_cat)
+        -   [Conditional weighted residual histogram (`cwres_hist`)](#conditional-weighted-residual-histogram-cwres_hist)
         -   [CWRES versus population predicted (`cwres_pred`)](#cwres-versus-population-predicted-cwres_pred)
         -   [CWRES QQ plot (`cwres_q`)](#cwres-qq-plot-cwres_q)
 -   [ETA plots](#eta-plots)
     -   [ETA versus continuous covariates (`eta_cont`)](#eta-versus-continuous-covariates-eta_cont)
+        -   [Grouped by eta](#grouped-by-eta)
+        -   [Grouped by covariate](#grouped-by-covariate)
     -   [ETA by categorical covariates (`eta_cat`)](#eta-by-categorical-covariates-eta_cat)
     -   [ETA histograms (`eta_hist`)](#eta-histograms-eta_hist)
     -   [ETA pairs plot (`eta_pairs`)](#eta-pairs-plot-eta_pairs)
@@ -43,6 +48,7 @@ Available functions
     -   [log-Scale](#log-scale)
 -   [Data summary](#data-summary)
     -   [Continuous variable by categorical variable (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
+    -   [General histogram](#general-histogram)
     -   [Split and plot (`split_plot`)](#split-and-plot-split_plot)
 -   [Some customization](#some-customization)
     -   [Modify x-axis](#modify-x-axis)
@@ -68,6 +74,9 @@ id <- distinct(df, ID, .keep_all=TRUE)
 
 dayx <- defx(breaks = seq(0,168,24))
 .yname <- "NoDoz (ng/mL)"
+
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
 ```
 
 Override the `df` and `id` objects in the above chunk
@@ -156,6 +165,8 @@ res_pred(df)
 
 ### RES versus continuous covariate (`res_cont`)
 
+This function is also vectorized in x.
+
 ``` r
 res_cont(df, x="WT//Weight (kg)")
 ```
@@ -169,11 +180,11 @@ dplyr::count(df, STUDYc)
 ```
 
     . # A tibble: 4 x 2
-    .    STUDYc     n
-    .    <fctr> <int>
-    . 1     SAD   450
-    . 2     MAD  1200
-    . 3   Renal   960
+    .   STUDYc      n
+    .   <fct>   <int>
+    . 1 SAD       450
+    . 2 MAD      1200
+    . 3 Renal     960
     . 4 Hepatic   600
 
 ``` r
@@ -181,6 +192,14 @@ res_cat(df, x="STUDYc//Study type")
 ```
 
 ![](img/everyfunction--unnamed-chunk-14-1.png)
+
+### Residual histogram (`res_hist`)
+
+``` r
+res_hist(df)
+```
+
+![](img/everyfunction--unnamed-chunk-15-1.png)
 
 Weighted residuals
 ------------------
@@ -191,7 +210,7 @@ Weighted residuals
 wres_time(df) 
 ```
 
-![](img/everyfunction--unnamed-chunk-15-1.png)
+![](img/everyfunction--unnamed-chunk-16-1.png)
 
 ### Weighted residuals versus time after first dose (`wres_tafd`)
 
@@ -205,7 +224,7 @@ wres_tafd(df)
 wres_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-17-1.png)
+![](img/everyfunction--unnamed-chunk-18-1.png)
 
 ### Weighted esiduals versus population predicted (`wres_pred`)
 
@@ -213,15 +232,17 @@ wres_tad(df)
 wres_pred(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-18-1.png)
+![](img/everyfunction--unnamed-chunk-19-1.png)
 
 ### WRES versus continuous covariate (`wres_cont`)
+
+This function is also vectorized in x.
 
 ``` r
 wres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-19-1.png)
+![](img/everyfunction--unnamed-chunk-20-1.png)
 
 ### WRES by categorical covariate (`wres_cat`)
 
@@ -229,7 +250,15 @@ wres_cont(df, x="WT//Weight (kg)")
 wres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/everyfunction--unnamed-chunk-20-1.png)
+![](img/everyfunction--unnamed-chunk-21-1.png)
+
+### Weighted residual histogram (`wres_hist`)
+
+``` r
+wres_hist(df)
+```
+
+![](img/everyfunction--unnamed-chunk-22-1.png)
 
 ### WRES QQ plot (`wres_q`)
 
@@ -237,7 +266,7 @@ wres_cat(df, x="STUDYc//Study type")
 wres_q(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-21-1.png)
+![](img/everyfunction--unnamed-chunk-23-1.png)
 
 Conditional weighted residuals (CWRES)
 --------------------------------------
@@ -248,7 +277,7 @@ Conditional weighted residuals (CWRES)
 cwres_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-22-1.png)
+![](img/everyfunction--unnamed-chunk-24-1.png)
 
 ### Conditional weighted residuals versus time after first dose (`cwres_tafd`)
 
@@ -262,7 +291,7 @@ cwres_tafd(df)
 cwres_tad(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-24-1.png)
+![](img/everyfunction--unnamed-chunk-26-1.png)
 
 ### CWRES versus continuous covariate (`cwres_cont`)
 
@@ -270,7 +299,16 @@ cwres_tad(df)
 cwres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-25-1.png)
+![](img/everyfunction--unnamed-chunk-27-1.png)
+
+Vectorized version
+
+``` r
+cwres_cont(df, covs) %>% 
+  mrggdraw(ncol = 2)
+```
+
+![](img/everyfunction--unnamed-chunk-28-1.png)
 
 ### CWRES by categorical covariate (`cwres_cat`)
 
@@ -278,13 +316,21 @@ cwres_cont(df, x="WT//Weight (kg)")
 cwres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/everyfunction--unnamed-chunk-26-1.png)
+![](img/everyfunction--unnamed-chunk-29-1.png)
 
 ``` r
 cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 ```
 
-![](img/everyfunction--unnamed-chunk-27-1.png)
+![](img/everyfunction--unnamed-chunk-30-1.png)
+
+### Conditional weighted residual histogram (`cwres_hist`)
+
+``` r
+cwres_hist(df)
+```
+
+![](img/everyfunction--unnamed-chunk-31-1.png)
 
 ### CWRES versus population predicted (`cwres_pred`)
 
@@ -292,7 +338,7 @@ cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 cwres_pred(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-28-1.png)
+![](img/everyfunction--unnamed-chunk-32-1.png)
 
 ### CWRES QQ plot (`cwres_q`)
 
@@ -300,24 +346,36 @@ cwres_pred(df)
 cwres_q(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-29-1.png)
+![](img/everyfunction--unnamed-chunk-33-1.png)
 
 ETA plots
 =========
 
+``` r
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
+```
+
 ETA versus continuous covariates (`eta_cont`)
 ---------------------------------------------
 
-``` r
-etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
-p <- eta_cont(id, x="WT//Weight (kg)",y=etas)
-```
+### Grouped by eta
 
 ``` r
-mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
+eta_cont(id, x=covs,y=etas[2]) %>% 
+  mrggdraw(ncol = 2)
 ```
 
-![](img/everyfunction--unnamed-chunk-31-1.png)
+![](img/everyfunction--unnamed-chunk-35-1.png)
+
+### Grouped by covariate
+
+``` r
+eta_cont(id, x=covs[1], y=etas) %>%
+  mrggdraw(ncol = 2)
+```
+
+![](img/everyfunction--unnamed-chunk-36-1.png)
 
 ETA by categorical covariates (`eta_cat`)
 -----------------------------------------
@@ -330,7 +388,7 @@ p <- eta_cat(id, x="STUDYc//Study type", y=etas)
 mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-33-1.png)
+![](img/everyfunction--unnamed-chunk-38-1.png)
 
 ETA histograms (`eta_hist`)
 ---------------------------
@@ -344,7 +402,7 @@ p <- eta_hist(id,etas, bins=10)
 mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
-![](img/everyfunction--unnamed-chunk-35-1.png)
+![](img/everyfunction--unnamed-chunk-40-1.png)
 
 ETA pairs plot (`eta_pairs`)
 ----------------------------
@@ -357,7 +415,7 @@ p <- eta_pairs(id,etas)
 print(p)
 ```
 
-![](img/everyfunction--unnamed-chunk-37-1.png)
+![](img/everyfunction--unnamed-chunk-42-1.png)
 
 DV versus time (`dv_time`)
 ==========================
@@ -369,7 +427,7 @@ Basic plot
 dv_time(df, yname = .yname)
 ```
 
-![](img/everyfunction--unnamed-chunk-38-1.png)
+![](img/everyfunction--unnamed-chunk-43-1.png)
 
 Faceted
 -------
@@ -379,7 +437,7 @@ dv_time(df, yname="NoDoze (ng/mL)") +
   facet_wrap(~DOSE, scales="free_x")
 ```
 
-![](img/everyfunction--unnamed-chunk-39-1.png)
+![](img/everyfunction--unnamed-chunk-44-1.png)
 
 log-Scale
 ---------
@@ -389,7 +447,7 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
   facet_wrap(~STUDYc)
 ```
 
-![](img/everyfunction--unnamed-chunk-40-1.png)
+![](img/everyfunction--unnamed-chunk-45-1.png)
 
 Data summary
 ============
@@ -401,7 +459,17 @@ Continuous variable by categorical variable (`cont_cat`)
 cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
-![](img/everyfunction--unnamed-chunk-41-1.png)
+![](img/everyfunction--unnamed-chunk-46-1.png)
+
+General histogram
+-----------------
+
+``` r
+cont_hist(id, x = "WT // Weight (kg)") + 
+  facet_wrap(~STUDYc)
+```
+
+![](img/everyfunction--unnamed-chunk-47-1.png)
 
 Split and plot (`split_plot`)
 -----------------------------
@@ -411,10 +479,10 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 ```
 
 ``` r
-mrggdraw(p, arrange=TRUE, script="everyfunction.R")
+mrggdraw(p, ncol = 2)
 ```
 
-![](img/everyfunction--unnamed-chunk-43-1.png)
+![](img/everyfunction--unnamed-chunk-49-1.png)
 
 Some customization
 ==================
@@ -428,7 +496,7 @@ a <- list(trans="log", breaks = logbr3())
 dv_time(df, xs=a)
 ```
 
-![](img/everyfunction--unnamed-chunk-44-1.png)
+![](img/everyfunction--unnamed-chunk-50-1.png)
 
 Modify y-axis
 -------------
@@ -437,7 +505,7 @@ Modify y-axis
 dv_time(df, ys=a, yname="Y-axis name")
 ```
 
-![](img/everyfunction--unnamed-chunk-45-1.png)
+![](img/everyfunction--unnamed-chunk-51-1.png)
 
 Drop extra layers
 -----------------
@@ -446,25 +514,25 @@ Drop extra layers
 dv_pred(df, smooth=NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-46-1.png)
+![](img/everyfunction--unnamed-chunk-52-1.png)
 
 ``` r
 dv_pred(df, abline=NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-47-1.png)
+![](img/everyfunction--unnamed-chunk-53-1.png)
 
 ``` r
 dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-48-1.png)
+![](img/everyfunction--unnamed-chunk-54-1.png)
 
 ``` r
 cwres_time(df, hline = NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-49-1.png)
+![](img/everyfunction--unnamed-chunk-55-1.png)
 
 Custom breaks
 -------------
@@ -475,7 +543,7 @@ Default breaks:
 dv_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-50-1.png)
+![](img/everyfunction--unnamed-chunk-56-1.png)
 
 Break every 3 days
 
@@ -483,7 +551,7 @@ Break every 3 days
 dv_time(df, xby=72)
 ```
 
-![](img/everyfunction--unnamed-chunk-51-1.png)
+![](img/everyfunction--unnamed-chunk-57-1.png)
 
 Custom breaks and limits
 
@@ -492,7 +560,7 @@ a <- list(br = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 
-![](img/everyfunction--unnamed-chunk-52-1.png)
+![](img/everyfunction--unnamed-chunk-58-1.png)
 
 Extra reference lines to \[C\]WRES plots
 ----------------------------------------
@@ -501,7 +569,7 @@ Extra reference lines to \[C\]WRES plots
 wres_time(df) + geom_3s()
 ```
 
-![](img/everyfunction--unnamed-chunk-53-1.png)
+![](img/everyfunction--unnamed-chunk-59-1.png)
 
 Controlled input / output
 =========================
@@ -513,41 +581,41 @@ dd$PRED <- 2*dd$DV
 dv_pred(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-54-1.png)
+![](img/everyfunction--unnamed-chunk-60-1.png)
 
 ``` r
 dd$IPRED <- 3*dd$DV
 dv_ipred(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-54-2.png)
+![](img/everyfunction--unnamed-chunk-60-2.png)
 
 ``` r
 dd$RES <- 2*dd$TIME
 res_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-54-3.png)
+![](img/everyfunction--unnamed-chunk-60-3.png)
 
 ``` r
 dd$WRES <- 10*dd$TIME
 wres_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-54-4.png)
+![](img/everyfunction--unnamed-chunk-60-4.png)
 
 ``` r
 dd$CWRES <- 100*dd$TIME
 cwres_time(dd)
 ```
 
-![](img/everyfunction--unnamed-chunk-54-5.png)
+![](img/everyfunction--unnamed-chunk-60-5.png)
 
 ``` r
 cwres_cont(dd, x = "RES//Controlled")
 ```
 
-![](img/everyfunction--unnamed-chunk-55-1.png)
+![](img/everyfunction--unnamed-chunk-61-1.png)
 
 Should be fairly flat
 
@@ -557,4 +625,4 @@ dd$CWRESQ <- rnorm(nrow(dd))
 cwres_q(dd,x="CWRESQ")
 ```
 
-![](img/everyfunction--unnamed-chunk-56-1.png)
+![](img/everyfunction--unnamed-chunk-62-1.png)

@@ -29,6 +29,10 @@ id <- distinct(df, ID, .keep_all=TRUE)
 
 dayx <- defx(breaks = seq(0,168,24))
 .yname <- "NoDoz (ng/mL)"
+
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
+
 ```
 
 Override the `df` and `id` objects in the above chunk
@@ -93,14 +97,23 @@ res_pred(df)
 ```
 
 ### RES versus continuous covariate (`res_cont`)
+
+This function is also vectorized in x.
+
 ```{r}
 res_cont(df, x="WT//Weight (kg)")
 ```
+
 
 ### RES by categorical covariate (`res_cat`)
 ```{r}
 dplyr::count(df, STUDYc)
 res_cat(df, x="STUDYc//Study type")
+```
+
+### Residual histogram (`res_hist`)
+```{r}
+res_hist(df)
 ```
 
 
@@ -128,6 +141,9 @@ wres_pred(df)
 ```
 
 ### WRES versus continuous covariate (`wres_cont`)
+
+This function is also vectorized in x.
+
 ```{r}
 wres_cont(df, x="WT//Weight (kg)")
 ```
@@ -137,6 +153,10 @@ wres_cont(df, x="WT//Weight (kg)")
 wres_cat(df, x="STUDYc//Study type")
 ```
 
+### Weighted residual histogram (`wres_hist`)
+```{r}
+wres_hist(df)
+```
 
 ### WRES QQ plot (`wres_q`)
 ```{r}
@@ -168,6 +188,13 @@ cwres_tad(df)
 cwres_cont(df, x="WT//Weight (kg)")
 ```
 
+Vectorized version
+```{r, fig.height = 6, fig.width = 5}
+cwres_cont(df, covs) %>% 
+  mrggdraw(ncol = 2)
+```
+
+
 ### CWRES by categorical covariate (`cwres_cat`)
 ```{r}
 cwres_cat(df, x="STUDYc//Study type")
@@ -175,6 +202,11 @@ cwres_cat(df, x="STUDYc//Study type")
 
 ```{r}
 cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
+```
+
+### Conditional weighted residual histogram (`cwres_hist`)
+```{r}
+cwres_hist(df)
 ```
 
 ### CWRES versus population predicted (`cwres_pred`)
@@ -189,18 +221,24 @@ cwres_q(df)
 
 # ETA plots
 
-## ETA versus continuous covariates (`eta_cont`)
-
 ```{r}
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
-p <- eta_cont(id, x="WT//Weight (kg)",y=etas)
+covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
 ```
 
+## ETA versus continuous covariates (`eta_cont`)
+
+### Grouped by eta
 ```{r, fig.width=6, fig.height=7}
-mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
+eta_cont(id, x=covs,y=etas[2]) %>% 
+  mrggdraw(ncol = 2)
 ```
 
-
+### Grouped by covariate
+```{r, fig.width=6, fig.height=7}
+eta_cont(id, x=covs[1], y=etas) %>%
+  mrggdraw(ncol = 2)
+```
 
 ## ETA by categorical covariates (`eta_cat`)
 
@@ -214,6 +252,8 @@ mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
 ```
 
 ## ETA histograms (`eta_hist`)
+
+
 ```{r}
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 p <- eta_hist(id,etas, bins=10)
@@ -268,6 +308,11 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
 cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
 ```
 
+## General histogram
+```{r}
+cont_hist(id, x = "WT // Weight (kg)") + 
+  facet_wrap(~STUDYc)
+```
 
 ## Split and plot (`split_plot`)
 ```{r}
@@ -275,7 +320,7 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 ```
 
 ```{r,fig.width=6, fig.height=7}
-mrggdraw(p, arrange=TRUE, script="everyfunction.R")
+mrggdraw(p, ncol = 2)
 ```
 
 

@@ -11,10 +11,11 @@ knitr::opts_chunk$set(fig.path = "img/vectorized-",
 ```
 
 
-```{r, message = FALSE}
+```{r, message = FALSE, warning = FALSE}
 library(pmplots)
 library(mrggsave)
-library(dplyr)
+library(tidyverse)
+
 data <- pmplots_data_obs()
 id <- pmplots_data_id()
 ```
@@ -79,6 +80,17 @@ eta_cont(data, x = covs, y = etas) %>%
   mrggdraw(ncol = 3)
 ```
 
+# You can vectorize anything
+
+It's pretty easy with `purrr::map`
+
+```{r, fig.height = 8, fig.width = 4}
+cat <- c("STUDYc//Study", "CPc//Child-Pugh", 
+         "RF//Renal Function")
+
+map(cat, ~wres_cat(data, x = .x)) %>%
+  mrggdraw(arrange = TRUE)
+```
 
 
 

@@ -8,6 +8,7 @@ Vectorized Plotting Functions
     -   [Vectorize over x-values](#vectorize-over-x-values)
     -   [Vectorize over y-values](#vectorize-over-y-values)
     -   [Vectorize over x-values and y-values](#vectorize-over-x-values-and-y-values)
+-   [You can vectorize anything](#you-can-vectorize-anything)
 
 ``` r
 knitr::opts_chunk$set(fig.path = "img/vectorized-", 
@@ -17,7 +18,8 @@ knitr::opts_chunk$set(fig.path = "img/vectorized-",
 ``` r
 library(pmplots)
 library(mrggsave)
-library(dplyr)
+library(tidyverse)
+
 data <- pmplots_data_obs()
 id <- pmplots_data_id()
 ```
@@ -101,3 +103,18 @@ eta_cont(data, x = covs, y = etas) %>%
 ```
 
 ![](img/vectorized-unnamed-chunk-9-1.png)
+
+You can vectorize anything
+==========================
+
+It's pretty easy with `purrr::map`
+
+``` r
+cat <- c("STUDYc//Study", "CPc//Child-Pugh", 
+         "RF//Renal Function")
+
+map(cat, ~wres_cat(data, x = .x)) %>%
+  mrggdraw(arrange = TRUE)
+```
+
+![](img/vectorized-unnamed-chunk-10-1.png)
