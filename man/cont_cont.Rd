@@ -2,9 +2,12 @@
 % Please edit documentation in R/cont.R
 \name{cont_cont}
 \alias{cont_cont}
+\alias{cont_cont_list}
 \title{Plot continuous variable versus continuous variable}
 \usage{
 cont_cont(df, x, y, xs = defx(), ys = defy(), ...)
+
+cont_cont_list(df, x, y, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -21,6 +24,7 @@ cont_cont(df, x, y, xs = defx(), ys = defy(), ...)
 }
 \description{
 This function is primarily called by other functions.
+\code{cont_cont_list} is a vectorized form of \code{cont_cont}.
 }
 \details{
 Since this function creates a scatter plot,

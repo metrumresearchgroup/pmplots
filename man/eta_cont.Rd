@@ -24,3 +24,6 @@ are a character vector (in col//title format), a list
 of plots is returned.  If both x and y are length 1,
 then a single plot object (not a list) is returned.
 }
+\seealso{
+\code{\link{eta_cat}}
+}

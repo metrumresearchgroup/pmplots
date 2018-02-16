@@ -1,7 +1,7 @@
-
-
-
 ##' Generate a histogram plot
+##'
+##' \code{cont_hist_list} is a vectorized version
+##' of \code{cont_hist}.
 ##'
 ##' @param df the data frame containing plotting data
 ##' @param x the x column
@@ -10,6 +10,8 @@
 ##' @param col a character value passed to \code{geom_histogram}
 ##' @param alpha a numeric value passed to \code{geom_histogram}
 ##' @param ... passed to \code{geom_histogram}
+##'
+##'
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",
@@ -23,4 +25,8 @@ cont_hist <- function(df, x, xs = defx(), fill = "black",
     xscale + pm_theme()
 }
 
-
+##' @rdname cont_hist
+##' @export
+cont_hist_list <- function(df, x, ...) {
+  list_plot_x(df, x, ...)
+}

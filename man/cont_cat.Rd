@@ -2,9 +2,12 @@
 % Please edit documentation in R/box.R
 \name{cont_cat}
 \alias{cont_cat}
+\alias{cont_cat_list}
 \title{Plot continuous variable against a categorical variable}
 \usage{
 cont_cat(df, x, y, xs = defcx(), ys = defy(), ...)
+
+cont_cat_list(df, x, y, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -20,7 +23,8 @@ cont_cat(df, x, y, xs = defcx(), ys = defy(), ...)
 \item{...}{other arguments passed to \code{\link{boxwork}}}
 }
 \description{
-Plot continuous variable against a categorical variable
+This function is primarily called by other functions.
+\code{cont_cat_list} is a vectorized version of \code{cont_cat}.
 }
 \details{
 Since this function creates a boxplot,

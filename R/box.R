@@ -65,6 +65,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 
 ##' Plot continuous variable against a categorical variable
 ##'
+##' This function is primarily called by other functions.
+##' \code{cont_cat_list} is a vectorized version of \code{cont_cat}.
+##'
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
 ##' @param y character col//title for y-axis data; see \code{\link{col_label}}
@@ -102,4 +105,8 @@ cont_cat <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   boxwork(df,x[1],y[1],xs,ys,...)
 }
 
-
+##' @rdname cont_cat
+##' @export
+cont_cat_list <- function(df, x, y, ...) {
+  list_plot_xy(df, x, y, cont_cat, ...)
+}
