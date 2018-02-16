@@ -8,9 +8,6 @@ qq_reg_data <- function(y) {
   c(int = int, slope = slope)
 }
 
-
-
-
 ##' QQ plot for conditional residuals
 ##'
 ##' @param df data frame to plot
