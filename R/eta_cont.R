@@ -22,3 +22,26 @@ eta_cont <- function(df, x, y,...) {
   if(length(out)==1) return(out[[1]])
   out
 }
+
+
+##' Make ETA labels and col-labels
+##'
+##' @param ... unquoted parameter names
+##' @param .prefix used to generate ETA axis label
+##' @param .eta_n integer ETA numbers for which to form labels
+##'
+##' @export
+##'
+eta_labs <- function(..., .prefix = "ETA-") {
+  labs <- sapply(quos(...), quo_text)
+  labs <- paste0(.prefix, labs)
+  labs
+}
+
+##' @rdname eta_labs
+##' @export
+eta_col_labs <- function(..., .eta_n = seq_along(labs), .prefix = "ETA-") {
+  labs <- eta_labs(..., .prefix = .prefix)
+  col <- paste0("ETA",.eta_n)
+  set_names(paste0(col,"//",labs),labs)
+}

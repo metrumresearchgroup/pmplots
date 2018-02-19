@@ -17,12 +17,20 @@
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
 ##'
+##' \code{dv_preds} returns a list of two plots, with
+##' the result of \code{dv_pred} in the first position
+##' and the result of \code{dv_ipred} in the
+##' second position.  In this case, \code{...} are
+##' passed to both functions.
+##'
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
 ##' dv_pred(df)
 ##'
 ##' dv_ipred(df, yname="MyDrug (ng/mL)")
+##'
+##' dv_preds(df, yname = "MyDrug (ng/mL)")
 ##'
 ##' @export
 dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
@@ -77,4 +85,10 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
 dv_ipred <- function(df, x = "IPRED", ..., prefix = "Individual") {
   out <- dv_pred(df, x = x, prefix=prefix, ...)
   layer_as(out,...)
+}
+
+##' @export
+##' @rdname dv_pred
+dv_preds <- function(df, ...) {
+  list(dv_pred(df, ...), dv_ipred(df, ...))
 }

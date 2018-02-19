@@ -8,7 +8,7 @@
 ##' @importFrom ggplot2 scale_color_brewer theme_bw theme_set
 ##' @importFrom ggplot2 element_text
 ##' @importFrom stats as.formula qnorm quantile cor
-##' @importFrom rlang sym
+##' @importFrom rlang sym quo_text quos set_names
 ##'
 NULL
 

@@ -70,6 +70,12 @@ dv_ipred(df, yname=.yname)
 dv_ipred(df, loglog=TRUE, yname = .yname)
 ```
 
+### Observed versus both PRED and IPRED
+```{r}
+dv_preds(df) %>% mrggdraw(ncol = 2)
+```
+
+
 
 # Residual plots
 
