@@ -5,7 +5,7 @@
 \title{Plot continuous data versus time}
 \usage{
 y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
-  xs = defx(), ys = defy(), log = FALSE, xby = NULL, ...)
+  xs = list(), ys = list(), log = FALSE, xby = NULL, ...)
 }
 \arguments{
 \item{df}{data frame to plot}

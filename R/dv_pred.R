@@ -34,21 +34,24 @@
 ##'
 ##' @export
 dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
-                    xs = defx(), ys = defy(), loglog=FALSE,
+                    xs = list(), ys = list(), loglog=FALSE,
                     prefix="Population", ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
 
-  if(!missing(xs)) {
-    xs <- update_list(defx(),xs)
-  }
-  if(!missing(ys)) {
-    ys <- update_list(defy(),ys)
-  }
+  inx <- xs
+  iny <- ys
 
-  xs$name <- paste0(prefix, " predicted ", xname)
-  ys$name <- paste0("Observed ", yname)
+  xs <- update_list(defx(),xs)
+  ys <- update_list(defy(),ys)
+
+  if(.miss("name", inx)) {
+    xs$name <- paste0(prefix, " predicted ", xname)
+  }
+  if(.miss("name", iny)) {
+    ys$name <- paste0("Observed ", yname)
+  }
 
   if(loglog) {
     xs$trans <- "log"
@@ -58,7 +61,7 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
   if(xs$trans %in% c("log", "log10")) {
     xkp <- df[,x] > 0
     df <- dplyr::filter(df,xkp)
-    if(!is.numeric(xs$breaks)) {
+    if(.miss("breaks", inx)) {
       xs$breaks <- logbr3()
     }
   }
@@ -66,14 +69,20 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
   if(ys$trans %in% c("log", "log10")) {
     ykp <- df[,y] > 0
     df <- dplyr::filter(df,ykp)
-    if(!is.numeric(ys$breaks) | is.null(ys$breaks)) {
+    if(.miss("breaks", iny)) {
       ys$breaks <- logbr3()
     }
   }
 
   lim <- get_limits(df,x,y)
-  xs$limits <- lim
-  ys$limits <- lim
+
+  if(.miss("limits", inx)) {
+    xs$limits <- lim
+  }
+
+  if(.miss("limits", iny)) {
+    ys$limits <- lim
+  }
 
   out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
 

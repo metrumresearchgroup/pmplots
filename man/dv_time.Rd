@@ -7,7 +7,7 @@
 \title{Plot DV versus time}
 \usage{
 dv_time(df, x = "TIME", y = "DV", xname = "Time", xunit = "hr",
-  yname = NULL, group = "ID", xs = defx(), ys = defy(), log = FALSE,
+  yname = NULL, group = "ID", xs = list(), ys = list(), log = FALSE,
   xby = NULL, ...)
 
 dv_tafd(df, x = "TAFD", ..., xname = "Time after first dose")

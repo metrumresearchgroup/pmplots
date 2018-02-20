@@ -68,14 +68,25 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 y_time <- function(df, x="TIME", y,
                    xname="Time", xunit="hr",
                    yname = NULL,
-                   xs = defx(), ys = defy(),
+                   xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
 
-  xs$name <- paste0(xname, " (",xunit,")")
-  ys$name <- yname
+  inx <- xs
+  iny <- ys
+
+  xs <- update_list(defx(),xs)
+  ys <- update_list(defy(), ys)
+
+  if(.miss("name", inx)) {
+    xs$name <- paste0(xname, " (",xunit,")")
+  }
+
+  if(.miss("name", iny)) {
+    ys$name <- yname
+  }
 
   if(is.numeric(xby)) {
     xs$breaks <- seq(0,max(df[,x]),xby)

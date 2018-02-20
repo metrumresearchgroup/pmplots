@@ -230,3 +230,9 @@ roty <- function(angle=30, hjust = 1) {
 }
 
 
+.has <- function(name,object) {
+  name %in% names(object)
+}
+.miss <- function(name,object) {
+  !(name %in% names(object))
+}
