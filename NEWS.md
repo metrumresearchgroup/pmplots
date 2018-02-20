@@ -22,6 +22,11 @@ custom functions for `upper` and `lower`
 for `smooth_color` and `smooth_lty` for more control over
 the smoothing line
 - Remove `shk` argument to `pairs_plot`
+- Re-configured code to handle user-supplied `xs` and `ys` 
+information; axis titles respect user-supplied `name` 
+settings for scales
+- Added functions to `rot_x` and `rot_y` to rotate
+tick labels 
 
 # 0.1.0.9001
 

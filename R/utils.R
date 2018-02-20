@@ -220,12 +220,12 @@ update_list <- function(left, right) {
 ##' @param hjust passed to \code{ggplot::element_text}
 ##'
 ##' @export
-rotx <- function(angle=30, hjust = 1) {
+rot_x <- function(angle=30, hjust = 1) {
   theme(axis.text.x = element_text(angle = angle, hjust = hjust))
 }
-##' @rdname rotx
+##' @rdname rot_x
 ##' @export
-roty <- function(angle=30, hjust = 1) {
+rot_y <- function(angle=30, hjust = 1) {
   theme(axis.text.y = element_text(angle = angle, hjust = hjust))
 }
 
