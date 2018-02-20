@@ -21,7 +21,7 @@ cont_hist <- function(df, x, xs = defx(), fill = "black",
   xscale$name <- xx[2]
   require_numeric(df,xx[1])
   ggplot(data=df, aes_string(x = xx[1])) +
-    geom_histogram(..., col = col, fill = fill, alpha = alpha) +
+    pm_histogram(..., col = col, fill = fill, alpha = alpha) +
     xscale + pm_theme()
 }
 
@@ -29,4 +29,11 @@ cont_hist <- function(df, x, xs = defx(), fill = "black",
 ##' @export
 cont_hist_list <- function(df, x, ...) {
   list_plot_x(df, x, ...)
+}
+
+##' @rdname cont_hist
+##' @export
+pm_histogram <- function(... , col = "white", fill = "black",
+                         alpha = 0.6) {
+  geom_histogram(..., col = col, fill = fill, alpha = alpha)
 }

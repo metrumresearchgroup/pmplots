@@ -37,6 +37,8 @@ pm_smooths <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...
 ##' ggplot(data,aes(PRED,DV)) + geom_point() +
 ##'   pm_theme() + pm_smooth() + pm_abline()
 ##'
+##' @seealso \code{\link{pm_histogram}}
+##'
 ##' @export
 pm_theme <- function() {
   theme_bw()

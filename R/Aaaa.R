@@ -25,6 +25,12 @@ globalVariables(c("ID", "n"))
 ##' Plots for pharmacometrics
 ##'
 ##'
+##' @section Look and feel:
+##'
+##' See the \code{\link{pm_theme}} help topic for functions you
+##' can use to replicate the look and feel of plots generated
+##' by this package.
+##'
 ##' @details
 ##'
 ##' Help topics:
@@ -33,6 +39,7 @@ globalVariables(c("ID", "n"))
 ##'
 ##' \item \code{\link{res_time}} Plots of residuals versus time
 ##' \item \code{\link{dv_pred}} Plots of observed data versus predictions
+##' \item \code{\link{dv_time}} Plots of observed values versus time
 ##' \item \code{\link{res_pred}} Plots of residuals versus predictions
 ##' \item \code{\link{res_q}} Q-Q plots for residuals
 ##' \item \code{\link{eta_hist}}, \code{\link{eta_pairs}}, \code{\link{eta_cont}},
@@ -43,6 +50,8 @@ globalVariables(c("ID", "n"))
 ##'        reference or smoothing lines
 ##'
 ##' }
+##'
+##'
 ##'
 ##' @rdname pmplots
 ##' @name pmplots

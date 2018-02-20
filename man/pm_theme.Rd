@@ -33,3 +33,6 @@ ggplot(data,aes(PRED,DV)) + geom_point() +
   pm_theme() + pm_smooth() + pm_abline()
 
 }
+\seealso{
+\code{\link{pm_histogram}}
+}

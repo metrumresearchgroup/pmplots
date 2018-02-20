@@ -3,12 +3,15 @@
 \name{cont_hist}
 \alias{cont_hist}
 \alias{cont_hist_list}
+\alias{pm_histogram}
 \title{Generate a histogram plot}
 \usage{
 cont_hist(df, x, xs = defx(), fill = "black", col = "white",
   alpha = 0.6, ...)
 
 cont_hist_list(df, x, ...)
+
+pm_histogram(..., col = "white", fill = "black", alpha = 0.6)
 }
 \arguments{
 \item{df}{the data frame containing plotting data}
