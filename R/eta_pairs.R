@@ -14,7 +14,7 @@ pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, .
 
 }
 
-pairs_upper <- function(data, mapping, shk = list(), ...) {
+pairs_upper <- function(data, mapping, ...) {
   x <- deparse(mapping$x)[1]
   y <- deparse(mapping$y)[1]
   label <- as.character(signif(cor(data[,x],data[,y],use = "complete.obs"), digits=3))
@@ -37,7 +37,6 @@ pairs_upper <- function(data, mapping, shk = list(), ...) {
 ##' @param alpha passed to \code{geom_histogram}
 ##' @param fill passed to \code{geom_histogram}
 ##' @param col passed to \code{geom_histogram}
-##' @param shk not used
 ##' @param upper_fun function to use for \code{upper} argument
 ##' @param lower_fun function to use for \code{lower} argument
 ##' @param ... passed to \code{GGally::ggpairs}
@@ -58,7 +57,7 @@ pairs_upper <- function(data, mapping, shk = list(), ...) {
 ##'
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
-                      col="grey", shk = list(),
+                      col="grey",
                       upper_fun = pairs_upper, lower_fun = pairs_lower, ...) {
 
   if(!requireNamespace("GGally")) {
@@ -79,7 +78,7 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
   GGally::ggpairs(x, ...,
                   columns=cols,
                   columnLabels=labs,
-                  upper = list(continuous = pairs_upper, shk = shk),
+                  upper = list(continuous = pairs_upper),
                   diag = list(continuous = diag),
                   lower = list(continuous = pairs_lower)) + pm_theme()
 }

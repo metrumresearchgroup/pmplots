@@ -11,6 +11,17 @@ versions of `cont_cont` and `cont_cat`
 of vectorized plotting function calls
 - Reorganized the R source files and split several
 composite help topics into more focused topics
+- Added `pairs_plot` as a more-generic front end to 
+`ggpairs`
+- Dots are now passed through `eta_pairs`
+and `pairs_plot` to `GGally::ggpairs`; this allows users to 
+pass in a mapping for colors etc
+- Added arguments for `pairs_plot` to allow users to pass in 
+custom functions for `upper` and `lower`
+- For the default `lower` function, the mapping object is checked
+for `smooth_color` and `smooth_lty` for more control over
+the smoothing line
+- Remove `shk` argument to `pairs_plot`
 
 # 0.1.0.9001
 

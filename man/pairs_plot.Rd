@@ -6,8 +6,7 @@
 \title{Pairs plots using ggpairs}
 \usage{
 pairs_plot(x, etas, bins = 15, alpha = 0.6, fill = "black",
-  col = "grey", shk = list(), upper_fun = pairs_upper,
-  lower_fun = pairs_lower, ...)
+  col = "grey", upper_fun = pairs_upper, lower_fun = pairs_lower, ...)
 
 eta_pairs(...)
 }
@@ -23,8 +22,6 @@ eta_pairs(...)
 \item{fill}{passed to \code{geom_histogram}}
 
 \item{col}{passed to \code{geom_histogram}}
-
-\item{shk}{not used}
 
 \item{upper_fun}{function to use for \code{upper} argument}
 
