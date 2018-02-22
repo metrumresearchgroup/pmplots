@@ -1,3 +1,33 @@
+# 0.1.0.9002
+- Added `res_hist`, `wres_hist`, and `cwres_hist` along with 
+the more general `cont_hist` functions for plotting residuals
+or other continuous variables as histograms
+- Vectorized `eta_cont`, `(cw)res_cont`, `eta_cat`, and
+`(cw)res_cat`; see function help for more details about 
+what this means
+- Added `cont_cont_list` and `cont_cat_list` as vectorized
+versions of `cont_cont` and `cont_cat`
+- Added internal functions that facilitate the creation
+of vectorized plotting function calls
+- Reorganized the R source files and split several
+composite help topics into more focused topics
+- Added `pairs_plot` as a more-generic front end to 
+`ggpairs`
+- Dots are now passed through `eta_pairs`
+and `pairs_plot` to `GGally::ggpairs`; this allows users to 
+pass in a mapping for colors etc
+- Added arguments for `pairs_plot` to allow users to pass in 
+custom functions for `upper` and `lower`
+- For the default `lower` function, the mapping object is checked
+for `smooth_color` and `smooth_lty` for more control over
+the smoothing line
+- Remove `shk` argument to `pairs_plot`
+- Re-configured code to handle user-supplied `xs` and `ys` 
+information; axis titles respect user-supplied `name` 
+settings for scales
+- Added functions to `rot_x` and `rot_y` to rotate
+tick labels 
+
 # 0.1.0.9001
 
 - Fixed `logbr3` so that the values are sorted; this 

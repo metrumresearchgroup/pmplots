@@ -2,12 +2,12 @@
 % Please edit documentation in R/box.R
 \name{cont_cat}
 \alias{cont_cat}
-\alias{eta_cat}
+\alias{cont_cat_list}
 \title{Plot continuous variable against a categorical variable}
 \usage{
 cont_cat(df, x, y, xs = defcx(), ys = defy(), ...)
 
-eta_cat(df, x, y, hline = 0, ...)
+cont_cat_list(df, x, y, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -21,11 +21,10 @@ eta_cat(df, x, y, hline = 0, ...)
 \item{ys}{see \code{\link{defy}}}
 
 \item{...}{other arguments passed to \code{\link{boxwork}}}
-
-\item{hline}{passed to \code{\link{boxwork}}}
 }
 \description{
-Plot continuous variable against a categorical variable
+This function is primarily called by other functions.
+\code{cont_cat_list} is a vectorized version of \code{cont_cat}.
 }
 \details{
 Since this function creates a boxplot,
@@ -38,6 +37,7 @@ Summary numbers located below each box are described in
 }
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 

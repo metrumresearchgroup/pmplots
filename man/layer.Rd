@@ -6,6 +6,9 @@
 \alias{layer_sh}
 \alias{layer_as}
 \alias{layer_sa}
+\alias{layer_s}
+\alias{layer_a}
+\alias{layer_h}
 \alias{layer_dots}
 \alias{gs}
 \alias{ga}
@@ -19,6 +22,12 @@ layer_sh(x, smooth = gs(), hline = gh(), ...)
 layer_as(x, smooth = gs(), abline = ga(), ...)
 
 layer_sa(x, smooth = gs(), abline = ga(), ...)
+
+layer_s(...)
+
+layer_a(...)
+
+layer_h(...)
 
 layer_dots(x, ...)
 
@@ -66,7 +75,9 @@ reference line, \code{s} indicates smoothing line,
 identity). The order of the the codes indicates the
 order in which the layers are applied. For example,
 \code{layer_hs} means to first add a horizontal reference
-line and then add a smoothing line.
+line and then add a smoothing line.  Likewise, \code{layer_s}
+adds a smoother, \code{layer_a} adds identity line, and
+\code{layer_y} adds a horizontal reference line.
 
 \code{gs}, \code{ga}, and \code{gh} are helper functions to create
 default arguments to \code{geom_smooth}, \code{geom_abline}, and

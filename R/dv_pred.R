@@ -17,6 +17,12 @@
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
 ##'
+##' \code{dv_preds} returns a list of two plots, with
+##' the result of \code{dv_pred} in the first position
+##' and the result of \code{dv_ipred} in the
+##' second position.  In this case, \code{...} are
+##' passed to both functions.
+##'
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
@@ -24,23 +30,28 @@
 ##'
 ##' dv_ipred(df, yname="MyDrug (ng/mL)")
 ##'
+##' dv_preds(df, yname = "MyDrug (ng/mL)")
+##'
 ##' @export
 dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
-                    xs = defx(), ys = defy(), loglog=FALSE,
+                    xs = list(), ys = list(), loglog=FALSE,
                     prefix="Population", ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
 
-  if(!missing(xs)) {
-    xs <- update_list(defx(),xs)
-  }
-  if(!missing(ys)) {
-    ys <- update_list(defy(),ys)
-  }
+  inx <- xs
+  iny <- ys
 
-  xs$name <- paste0(prefix, " predicted ", xname)
-  ys$name <- paste0("Observed ", yname)
+  xs <- update_list(defx(),xs)
+  ys <- update_list(defy(),ys)
+
+  if(.miss("name", inx)) {
+    xs$name <- paste0(prefix, " predicted ", xname)
+  }
+  if(.miss("name", iny)) {
+    ys$name <- paste0("Observed ", yname)
+  }
 
   if(loglog) {
     xs$trans <- "log"
@@ -50,7 +61,7 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
   if(xs$trans %in% c("log", "log10")) {
     xkp <- df[,x] > 0
     df <- dplyr::filter(df,xkp)
-    if(!is.numeric(xs$breaks)) {
+    if(.miss("breaks", inx)) {
       xs$breaks <- logbr3()
     }
   }
@@ -58,14 +69,20 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
   if(ys$trans %in% c("log", "log10")) {
     ykp <- df[,y] > 0
     df <- dplyr::filter(df,ykp)
-    if(!is.numeric(ys$breaks) | is.null(ys$breaks)) {
+    if(.miss("breaks", iny)) {
       ys$breaks <- logbr3()
     }
   }
 
   lim <- get_limits(df,x,y)
-  xs$limits <- lim
-  ys$limits <- lim
+
+  if(.miss("limits", inx)) {
+    xs$limits <- lim
+  }
+
+  if(.miss("limits", iny)) {
+    ys$limits <- lim
+  }
 
   out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
 
@@ -77,4 +94,10 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
 dv_ipred <- function(df, x = "IPRED", ..., prefix = "Individual") {
   out <- dv_pred(df, x = x, prefix=prefix, ...)
   layer_as(out,...)
+}
+
+##' @export
+##' @rdname dv_pred
+dv_preds <- function(df, ...) {
+  list(dv_pred(df, ...), dv_ipred(df, ...))
 }

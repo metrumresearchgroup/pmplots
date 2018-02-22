@@ -2,23 +2,12 @@
 % Please edit documentation in R/cont.R
 \name{cont_cont}
 \alias{cont_cont}
-\alias{eta_cont}
-\alias{res_cont}
-\alias{wres_cont}
-\alias{cwres_cont}
+\alias{cont_cont_list}
 \title{Plot continuous variable versus continuous variable}
 \usage{
 cont_cont(df, x, y, xs = defx(), ys = defy(), ...)
 
-eta_cont(df, x, y, ...)
-
-res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
-
-wres_cont(df, x, y = "WRES//Weighted residual", xs = defx(), ys = defy(),
-  ...)
-
-cwres_cont(df, x, y = "CWRES//Conditional weighted residual", xs = defx(),
-  ys = defy(), ...)
+cont_cont_list(df, x, y, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -35,20 +24,16 @@ cwres_cont(df, x, y = "CWRES//Conditional weighted residual", xs = defx(),
 }
 \description{
 This function is primarily called by other functions.
+\code{cont_cont_list} is a vectorized form of \code{cont_cont}.
 }
 \details{
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.
-
-The \code{eta_cont} function can make a plot of ETA versus
-continuous variable for multiple ETAs when a vector
-of values for \code{y} are passed in.  Accordingly,
-\code{eta_cont} always returns a list of plots of the same
-length as \code{y}.
 }
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 
 cont_cont(df, x="WT//Weight (kg)", y="HT//Height (cm)")
 

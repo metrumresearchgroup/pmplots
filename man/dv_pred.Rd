@@ -3,12 +3,15 @@
 \name{dv_pred}
 \alias{dv_pred}
 \alias{dv_ipred}
+\alias{dv_preds}
 \title{Plot DV versus predicted values}
 \usage{
 dv_pred(df, x = "PRED", y = "DV", xname = yname, yname = "value",
-  xs = defx(), ys = defy(), loglog = FALSE, prefix = "Population", ...)
+  xs = list(), ys = list(), loglog = FALSE, prefix = "Population", ...)
 
 dv_ipred(df, x = "IPRED", ..., prefix = "Individual")
+
+dv_preds(df, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -38,6 +41,12 @@ Plot DV versus predicted values
 Since this function creates a scatter plot,
 both the \code{x} and \code{y} columns must
 be numeric.
+
+\code{dv_preds} returns a list of two plots, with
+the result of \code{dv_pred} in the first position
+and the result of \code{dv_ipred} in the
+second position.  In this case, \code{...} are
+passed to both functions.
 }
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0)
@@ -45,5 +54,7 @@ df <- dplyr::filter(pmplots_data(), EVID==0)
 dv_pred(df)
 
 dv_ipred(df, yname="MyDrug (ng/mL)")
+
+dv_preds(df, yname = "MyDrug (ng/mL)")
 
 }

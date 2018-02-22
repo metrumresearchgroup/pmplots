@@ -43,7 +43,7 @@
 dv_time <- function(df, x="TIME", y="DV",
                     xname = "Time", xunit = "hr",
                     yname = NULL, group = "ID",
-                    xs=defx(), ys=defy(), log=FALSE, xby = NULL, ...) {
+                    xs=list(), ys=list(), log=FALSE, xby = NULL, ...) {
 
   require_numeric(df,x)
   require_numeric(df,y)
@@ -55,23 +55,28 @@ dv_time <- function(df, x="TIME", y="DV",
     df[df$BLQ != 0, y] <- NA
   }
 
-  if(!missing(xs)) {
-    xs <- update_list(defx(),xs)
-  }
-  if(!missing(ys)) {
-    ys <- update_list(defy(),ys)
+  inx <- xs
+  iny <- ys
+
+  xs <- update_list(defx(),xs)
+  ys <- update_list(defy(),ys)
+
+  if(.miss("name", inx)) {
+    xs$name <- paste0(xname, " (",xunit,")")
   }
 
-  xs$name <- paste0(xname, " (",xunit,")")
-  ys$name <- yname
+  if(.miss("name", iny)) {
+    ys$name <- yname
+  }
 
   if(log) {
     ys$trans <- "log"
   }
+
   if(ys$trans %in% c("log", "log10")) {
     ykp <- df[,y] > 0
     df <- dplyr::filter(df,ykp)
-    if(!is.numeric(ys$breaks) | is.null(ys$breaks)) {
+    if(.miss("breaks", iny)) {
       ys$breaks <- logbr3()
     }
   }

@@ -173,16 +173,6 @@ col_label <- function(x) {
 
 noline <- ggplot2::element_blank()
 
-##' A plain ggplot2 theme
-##'
-##' @param ... passed to \code{ggplot2::theme}
-##' @export
-theme_plain <- function(...) {
-  ggplot2::theme_bw() +
-    ggplot2::theme(panel.grid.major=noline,panel.grid.minor=noline,
-                   plot.margin=margin(0.5,0.5,1,0.5,unit="cm"),...)
-}
-
 
 merge.list <- function(x,y,...,open=FALSE,
                        warn=FALSE,context="object") {
@@ -205,17 +195,6 @@ merge.list <- function(x,y,...,open=FALSE,
 }
 
 
-##' Add loess line
-##' @param method passed to \code{geom_smooth}
-##' @param se passed to \code{geom_smooth}
-##' @param lty passed to \code{geom_smooth}
-##' @param lwd passed to \code{geom_smooth}
-##' @param col passed to \code{geom_smooth}
-##' @param ... passed to \code{geom_smooth}
-##' @export
-pmsmooth <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...) {
-  geom_smooth(method=method,se=se,lty=lty,lwd=lwd,col=col)
-}
 
 
 combine_list <- function(left, right) {
@@ -241,11 +220,19 @@ update_list <- function(left, right) {
 ##' @param hjust passed to \code{ggplot::element_text}
 ##'
 ##' @export
-rotx <- function(angle=30, hjust = 1) {
+rot_x <- function(angle=30, hjust = 1) {
   theme(axis.text.x = element_text(angle = angle, hjust = hjust))
 }
-##' @rdname rotx
+##' @rdname rot_x
 ##' @export
-roty <- function(angle=30, hjust = 1) {
+rot_y <- function(angle=30, hjust = 1) {
   theme(axis.text.y = element_text(angle = angle, hjust = hjust))
+}
+
+
+.has <- function(name,object) {
+  name %in% names(object)
+}
+.miss <- function(name,object) {
+  !(name %in% names(object))
 }

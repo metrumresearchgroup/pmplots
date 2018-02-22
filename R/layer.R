@@ -29,7 +29,9 @@
 ##' identity). The order of the the codes indicates the
 ##' order in which the layers are applied. For example,
 ##' \code{layer_hs} means to first add a horizontal reference
-##' line and then add a smoothing line.
+##' line and then add a smoothing line.  Likewise, \code{layer_s}
+##' adds a smoother, \code{layer_a} adds identity line, and
+##' \code{layer_y} adds a horizontal reference line.
 ##'
 ##' \code{gs}, \code{ga}, and \code{gh} are helper functions to create
 ##' default arguments to \code{geom_smooth}, \code{geom_abline}, and
@@ -41,11 +43,11 @@
 ##' @export
 layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
   if(!is.null(hline)) {
-    if(!missing(hline)) hline <- merge.list(gh(),hline,open=TRUE)
+    if(!missing(hline)) hline <- combine_list(gh(),hline)
     x <- x + do.call(geom_hline,hline)
   }
   if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
     x <- x + do.call(geom_smooth,smooth)
   }
 
@@ -56,11 +58,11 @@ layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
 ##' @rdname layer
 layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
   if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
     x <- x + do.call(geom_smooth,smooth)
   }
   if(!is.null(hline)) {
-    if(!missing(hline)) hline <- merge.list(gh(),hline,open=TRUE)
+    if(!missing(hline)) hline <- combine_list(gh(),hline)
     x <- x + do.call(geom_hline,hline)
   }
   x
@@ -70,11 +72,11 @@ layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
 ##' @rdname layer
 layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
   if(!is.null(abline)) {
-    if(!missing(abline)) abline <- merge.list(ga(),abline,open=TRUE)
+    if(!missing(abline)) abline <- combine_list(ga(),abline)
     x <- x + do.call(geom_abline,abline)
   }
   if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
     x <- x + do.call(geom_smooth,smooth)
   }
   x
@@ -84,14 +86,32 @@ layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
 ##' @rdname layer
 layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
   if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- merge.list(gs(),smooth,open=TRUE)
+    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
     x <- x + do.call(geom_smooth,smooth)
   }
   if(!is.null(abline)) {
-    if(!missing(abline)) abline <- merge.list(ga(),abline,open=TRUE)
+    if(!missing(abline)) abline <- combine_list(ga(),abline)
     x <- x + do.call(geom_abline,abline)
   }
   x
+}
+
+##' @export
+##' @rdname layer
+layer_s <- function(...) {
+  layer_sa(..., abline = NULL)
+}
+
+##' @export
+##' @rdname layer
+layer_a <- function(...) {
+  layer_sa(..., smooth = NULL)
+}
+
+##' @export
+##' @rdname layer
+layer_h <- function(...) {
+  layer_hs(..., smooth = FALSE)
 }
 
 ##' @export
@@ -109,21 +129,21 @@ layer_dots <- function(x,...) {
 gs <- function(method="loess", se=FALSE, lty=2, lwd=1.35, col = .ggblue,...) {
   args <- list(...)
   def <- list(method=method,se=se,lty=lty,lwd=lwd,col=col)
-  merge.list(def,args)
+  update_list(def,args)
 }
 
 ##' @rdname layer
 ga <- function(intercept=0, slope=1, lwd=1.35, col="darkgrey",...) {
   args <- list(...)
   def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd)
-  merge.list(def,args)
+  update_list(def,args)
 }
 
 ##' @rdname layer
 gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
   args <- list(...)
   def <- list(yintercept=yintercept,lwd=lwd,col=col)
-  merge.list(def,args)
+  update_list(def,args)
 }
 
 

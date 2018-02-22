@@ -19,7 +19,8 @@ box_labels <- function(df, x, y) {
 ##' @param alpha passed to \code{geom_boxplot}
 ##' @param hline used to draw horizontal reference line
 ##' @param title passed to \code{ggtitle}
-##' @param shown if \code{TRUE} provide a numeric summary of each box (see details)
+##' @param shown if \code{TRUE} provide a numeric summary of each
+##' box (see details)
 ##' @param ... not used
 ##'
 ##' @details
@@ -28,14 +29,15 @@ box_labels <- function(df, x, y) {
 ##' or logical and \code{y} column must
 ##' be numeric.
 ##'
-##' If \code{shown} is \code{TRUE}, a numeric summary of each box is included
+##' If \code{shown} is \code{TRUE}, a numeric summary of each
+##' box is included
 ##' below each box.  In the summary, \code{n} is the number of
 ##' non-NA observations in the \code{y} column for that box and
 ##' \code{N} is the number of unique \code{ID} values for
 ##' that box.  An error will be generated if \code{ID} does
-##' not exist in the plotting data frame when \code{shown} is \code{TRUE}.
-##' When \code{N} is equal to \code{n} in the summary, only \code{n} is
-##' shown.
+##' not exist in the plotting data frame when \code{shown} is
+##' \code{TRUE}.  When \code{N} is equal to \code{n} in the
+##' summary, only \code{n} is shown.
 ##'
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
@@ -60,17 +62,19 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
     p <- p + geom_hline(yintercept=hline,lwd=1, lty=2)
   }
   if(is.character(title)) p <- p + ggtitle(title)
-  p
+  p + pm_theme()
 }
 
 ##' Plot continuous variable against a categorical variable
+##'
+##' This function is primarily called by other functions.
+##' \code{cont_cat_list} is a vectorized version of \code{cont_cat}.
 ##'
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
 ##' @param y character col//title for y-axis data; see \code{\link{col_label}}
 ##' @param xs see \code{\link{defcx}}
 ##' @param ys see \code{\link{defy}}
-##' @param hline passed to \code{\link{boxwork}}
 ##' @param ... other arguments passed to \code{\link{boxwork}}
 ##'
 ##' @details
@@ -86,11 +90,12 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##'
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 ##'
 ##' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ##'
 ##' @export
-cont_cat <- function(df, x, y, xs=defcx(), ys = defy(),...) {
+cont_cat <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   x <- col_label(x)
   if(length(x)!=2) stop("invalid x value", call.=FALSE)
   y <- col_label(y)
@@ -102,62 +107,8 @@ cont_cat <- function(df, x, y, xs=defcx(), ys = defy(),...) {
   boxwork(df,x[1],y[1],xs,ys,...)
 }
 
-##' @export
 ##' @rdname cont_cat
-eta_cat <- function(df, x, y, hline=0, ...) {
-  out <- vector(mode="list", length=length(y))
-  xx <- col_label(x)
-  require_discrete(df,xx[1])
-  for(i in seq_along(y)) {
-    yy <- col_label(y[i])
-    require_numeric(df, yy[1])
-    out[[i]] <- cont_cat(df,x,y[i],hline=hline,...)
-  }
-  return(out)
-}
-
-##' Plot residuals versus categorical variable
-##'
-##' @param df data frame to plot
-##' @param x character name for x-axis data
-##' @param y character name for y-axis data
-##' @param hline where to draw horizontal refrence line
-##' @param ... passed to \code{\link{cont_cat}}
-##'
-##' @details
-##' Since this function creates a boxplot,
-##' the \code{x} column must be character, factor
-##' or logical and \code{y} column must
-##' be numeric.
-##'
-##' Summary numbers located below each box are described in
-##' \code{\link{boxwork}}.
-##'
-##' @seealso \code{\link{boxwork}}
-##'
-##' @examples
-##'
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
-##'
-##' cwres_cat(df, x="STUDYc//Study name")
-##'
 ##' @export
-res_cat <- function(df, x, y="RES//Residual",
-                    hline=0, ...) {
-  cont_cat(df,x,y,hline=hline,...)
+cont_cat_list <- function(df, x, y, ...) {
+  list_plot_xy(df, x, y, cont_cat, ...)
 }
-
-##' @export
-##' @rdname res_cat
-wres_cat <- function(df, x, y="WRES//Weighted residual",
-                     hline=0, ...) {
-  cont_cat(df,x,y,hline=hline,...)
-}
-
-##' @export
-##' @rdname res_cat
-cwres_cat <- function(df, x, y="CWRES//Conditional weighted residual",
-                      hline=0, ...) {
-  cont_cat(df,x,y,hline=hline,...)
-}
-

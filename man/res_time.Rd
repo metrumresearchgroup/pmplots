@@ -44,7 +44,8 @@ cwres_tad(df, x = "TAD", ..., xname = "Time after dose")
 
 \item{yname}{used for y-axis label}
 
-\item{...}{passed to \code{\link{y_time}} and \code{\link{layer_hs}}}
+\item{...}{passed to \code{\link{y_time}} and
+\code{\link{layer_hs}}}
 }
 \description{
 Plot residuals versus time
