@@ -32,8 +32,9 @@ qq_reg_data <- function(y) {
 ##'
 ##' @export
 wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
+
   require_numeric(df,x)
-  if(is.null(abline)) abline <- qq_reg_data(df[,x])
+  if(is.null(abline)) abline <- qq_reg_data(df[[x]])
   xs$name <- "Standard normal quantile"
   ys$name <- paste0(x, " distribution quantile")
   xscale <- do.call("scale_x_continuous", xs)

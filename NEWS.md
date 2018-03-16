@@ -33,7 +33,7 @@ when `scales = "free"` limits are chosen by ggplot2 and will likely
 be different for x- and y-axis
 - Fixed bug in `split_plot` when splitting by a factor that 
 doesn't have all level present
-
+- Fixed bug in `wres_q` related to indexing a tibble. 
 # 0.1.0.9001
 
 - Fixed `logbr3` so that the values are sorted; this 
