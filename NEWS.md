@@ -18,7 +18,7 @@ and `pairs_plot` to `GGally::ggpairs`; this allows users to
 pass in a mapping for colors etc
 - Added arguments for `pairs_plot` to allow users to pass in 
 custom functions for `upper` and `lower`
-- For the default `lower` function, the mapping object is checked
+- For the default `lower` function in `pairs_plot`, the mapping object is checked
 for `smooth_color` and `smooth_lty` for more control over
 the smoothing line
 - Remove `shk` argument to `pairs_plot`
@@ -34,6 +34,11 @@ be different for x- and y-axis
 - Fixed bug in `split_plot` when splitting by a factor that 
 doesn't have all level present
 - Fixed bug in `wres_q` related to indexing a tibble
+- Added functions to export look and feel: `pm_theme`, 
+`pm_abline`, `pm_smooth`, `pm_hline`, `pm_histogram`; these functions
+help make the plots look consistent with other plots if you are 
+making reference lines, smooths, etc; `pm_theme` is still just a wrapper
+around `theme_bw()`
 
 # 0.1.0.9001
 
