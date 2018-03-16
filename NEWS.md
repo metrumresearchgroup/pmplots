@@ -31,6 +31,8 @@ tick labels
 (`scales = "fixed"`), the x- and y-axis have the same limits; 
 when `scales = "free"` limits are chosen by ggplot2 and will likely 
 be different for x- and y-axis
+- Fixed bug in `split_plot` when splitting by a factor that 
+doesn't have all level present
 
 # 0.1.0.9001
 
