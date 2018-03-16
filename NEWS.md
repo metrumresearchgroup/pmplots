@@ -27,6 +27,10 @@ information; axis titles respect user-supplied `name`
 settings for scales
 - Added functions to `rot_x` and `rot_y` to rotate
 tick labels 
+- Added `scales` argument to `dv_pred` and `dv_ipred`; by default
+(`scales = "fixed"`), the x- and y-axis have the same limits; 
+when `scales = "free"` limits are chosen by ggplot2 and will likely 
+be different for x- and y-axis
 
 # 0.1.0.9001
 

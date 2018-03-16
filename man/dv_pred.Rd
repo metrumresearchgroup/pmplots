@@ -7,7 +7,8 @@
 \title{Plot DV versus predicted values}
 \usage{
 dv_pred(df, x = "PRED", y = "DV", xname = yname, yname = "value",
-  xs = list(), ys = list(), loglog = FALSE, prefix = "Population", ...)
+  xs = list(), ys = list(), loglog = FALSE, prefix = "Population",
+  scales = c("fixed", "free"), ...)
 
 dv_ipred(df, x = "IPRED", ..., prefix = "Individual")
 
@@ -31,6 +32,9 @@ dv_preds(df, ...)
 \item{loglog}{if \code{TRUE}, x- and y-axes will be log-transformed}
 
 \item{prefix}{used internally}
+
+\item{scales}{if \code{TRUE}, then the x- and y- axes will be forced
+to have the same limits}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
 }

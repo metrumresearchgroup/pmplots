@@ -10,6 +10,8 @@
 ##' @param ys see \code{\link{defy}}
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
 ##' @param prefix used internally
+##' @param scales if \code{TRUE}, then the x- and y- axes will be forced
+##' to have the same limits
 ##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_as}}
 ##'
 ##' @details
@@ -35,7 +37,9 @@
 ##' @export
 dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
                     xs = list(), ys = list(), loglog=FALSE,
-                    prefix="Population", ...) {
+                    prefix="Population", scales = c("fixed", "free"), ...) {
+
+  scales <- match.arg(scales)
 
   require_numeric(df,x)
   require_numeric(df,y)
@@ -74,14 +78,16 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
     }
   }
 
-  lim <- get_limits(df,x,y)
+  if(scales == "fixed") {
+    lim <- get_limits(df,x,y)
 
-  if(.miss("limits", inx)) {
-    xs$limits <- lim
-  }
+    if(.miss("limits", inx)) {
+      xs$limits <- lim
+    }
 
-  if(.miss("limits", iny)) {
-    ys$limits <- lim
+    if(.miss("limits", iny)) {
+      ys$limits <- lim
+    }
   }
 
   out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
