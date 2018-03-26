@@ -4,11 +4,17 @@
 \alias{res_q}
 \alias{wres_q}
 \alias{cwres_q}
-\title{QQ plot for conditional residuals}
+\alias{cwresi_q}
+\alias{npde_q}
+\title{QQ plot for conditional residuals or NPDE}
 \usage{
 wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = NULL, ...)
 
 cwres_q(df, x = "CWRES", ...)
+
+cwresi_q(df, x = "CWRESI", ...)
+
+npde_q(df, x = "NPDE", ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -25,7 +31,7 @@ cwres_q(df, x = "CWRES", ...)
 \item{...}{not used}
 }
 \description{
-QQ plot for conditional residuals
+QQ plot for conditional residuals or NPDE
 }
 \details{
 The \code{x} column must be numeric.

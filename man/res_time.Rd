@@ -8,9 +8,15 @@
 \alias{wres_tafd}
 \alias{wres_tad}
 \alias{cwres_time}
+\alias{cwresi_time}
 \alias{cwres_tafd}
+\alias{cwresi_tafd}
 \alias{cwres_tad}
-\title{Plot residuals versus time}
+\alias{cwresi_tad}
+\alias{npde_time}
+\alias{npde_tad}
+\alias{npde_tafd}
+\title{Plot residuals or NPDE versus time}
 \usage{
 res_time(df, x = "TIME", y = "RES", xname = "Time", yname = "Residual",
   ...)
@@ -29,9 +35,22 @@ wres_tad(df, x = "TAD", ..., xname = "Time after dose")
 cwres_time(df, x = "TIME", y = "CWRES",
   yname = "Conditional weighted residual", xname = "Time", ...)
 
+cwresi_time(df, y = "CWRESI", ...)
+
 cwres_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
 
+cwresi_tafd(df, y = "CWRESI", ...)
+
 cwres_tad(df, x = "TAD", ..., xname = "Time after dose")
+
+cwresi_tad(df, y = "CWRESI", ...)
+
+npde_time(df, y = "NPDE", ...,
+  yname = "Normalized prediction distribution error", hline = NULL)
+
+npde_tad(df, x = "TAD", ..., xname = "Time after dose")
+
+npde_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
 }
 \arguments{
 \item{df}{data set to plot}
@@ -48,7 +67,7 @@ cwres_tad(df, x = "TAD", ..., xname = "Time after dose")
 \code{\link{layer_hs}}}
 }
 \description{
-Plot residuals versus time
+Plot residuals or NPDE versus time
 }
 \details{
 Functions are provided for plotting \code{RES}, \code{WRES},

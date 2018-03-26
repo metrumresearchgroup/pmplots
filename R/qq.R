@@ -8,7 +8,7 @@ qq_reg_data <- function(y) {
   c(int = int, slope = slope)
 }
 
-##' QQ plot for conditional residuals
+##' QQ plot for conditional residuals or NPDE
 ##'
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
@@ -51,6 +51,18 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
 ##' @export
 ##' @rdname res_q
 cwres_q <- function(df, x="CWRES", ...) {
+  wres_q(df, x, ...)
+}
+
+##' @export
+##' @rdname res_q
+cwresi_q <- function(df, x="CWRESI", ...) {
+  cwres_q(df, x, ...)
+}
+
+##' @export
+##' @rdname res_q
+npde_q <- function(df, x="NPDE", ...) {
   wres_q(df, x, ...)
 }
 

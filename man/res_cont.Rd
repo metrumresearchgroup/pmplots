@@ -4,6 +4,7 @@
 \alias{res_cont}
 \alias{wres_cont}
 \alias{cwres_cont}
+\alias{cwresi_cont}
 \title{Plot residuals versus continuous variables}
 \usage{
 res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
@@ -13,6 +14,8 @@ wres_cont(df, x, y = "WRES//Weighted residual", xs = defx(), ys = defy(),
 
 cwres_cont(df, x, y = "CWRES//Conditional weighted residual", xs = defx(),
   ys = defy(), ...)
+
+cwresi_cont(df, x, y = "CWRESI//Conditional weighted residual", ...)
 }
 \arguments{
 \item{df}{data frame to plot}

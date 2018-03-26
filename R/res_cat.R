@@ -52,3 +52,9 @@ cwres_cat <- function(df, x, y="CWRES//Conditional weighted residual",
   res_cat(df, x, y, hline, ...)
 }
 
+##' @export
+##' @rdname res_cat
+cwresi_cat <- function(df, x, y="CWRESI//Conditional weighted residual", ...) {
+  cwres_cat(df, x, y, ...)
+}
+

@@ -4,6 +4,7 @@
 \alias{res_cat}
 \alias{wres_cat}
 \alias{cwres_cat}
+\alias{cwresi_cat}
 \title{Plot residuals versus categorical variable}
 \usage{
 res_cat(df, x, y = "RES//Residual", hline = 0, ...)
@@ -11,6 +12,8 @@ res_cat(df, x, y = "RES//Residual", hline = 0, ...)
 wres_cat(df, x, y = "WRES//Weighted residual", hline = 0, ...)
 
 cwres_cat(df, x, y = "CWRES//Conditional weighted residual", hline = 0, ...)
+
+cwresi_cat(df, x, y = "CWRESI//Conditional weighted residual", ...)
 }
 \arguments{
 \item{df}{data frame to plot}

@@ -1,5 +1,5 @@
 
-##' Plot residuals versus time
+##' Plot residuals or NPDE versus time
 ##'
 ##' @param df data set to plot
 ##' @param x character name of x-axis data
@@ -114,10 +114,22 @@ cwres_time <- function(df,
 
 ##' @export
 ##' @rdname res_time
+cwresi_time <- function(df, y = "CWRESI", ...) {
+  cwres_time(df, y = y, ... )
+}
+
+##' @export
+##' @rdname res_time
 cwres_tafd <- function(df,
                        x = "TAFD", ...,
                        xname="Time after first dose") {
   cwres_time(df, x=x, xname = xname, ...)
+}
+
+##' @export
+##' @rdname res_time
+cwresi_tafd <- function(df, y = "CWRESI", ...) {
+  cwres_tafd(df, y = y, ... )
 }
 
 ##' @export
@@ -128,3 +140,33 @@ cwres_tad <- function(df,
   cwres_time(df, x=x, xname=xname, ...)
 }
 
+##' @export
+##' @rdname res_time
+cwresi_tad <- function(df, y = "CWRESI", ...) {
+  cwres_tad(df, y = y, ... )
+}
+
+##' @export
+##' @rdname res_time
+npde_time <- function(df,
+                      y  = "NPDE", ...,
+                      yname  = "Normalized prediction distribution error",
+                      hline = NULL) {
+  res_time(df, y = y, yname = yname, hline = hline, ...)
+}
+
+##' @export
+##' @rdname res_time
+npde_tad <- function(df,
+                     x = "TAD", ...,
+                     xname = "Time after dose") {
+  npde_time(df, x = x, xname = xname, ...)
+}
+
+##' @export
+##' @rdname res_time
+npde_tafd <- function(df,
+                      x = "TAFD", ...,
+                      xname = "Time after first dose") {
+  npde_time(df, x = x, xname = xname, ...)
+}
