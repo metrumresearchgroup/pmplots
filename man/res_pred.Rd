@@ -4,7 +4,9 @@
 \alias{res_pred}
 \alias{wres_pred}
 \alias{cwres_pred}
-\title{Residuals versus predicted values}
+\alias{cwresi_pred}
+\alias{npde_pred}
+\title{Residuals or NPDE versus predicted values}
 \usage{
 res_pred(df, x = "PRED", y = "RES", xname = "value", yname = "Residual",
   xs = defx(), ys = defy(), ...)
@@ -12,6 +14,11 @@ res_pred(df, x = "PRED", y = "RES", xname = "value", yname = "Residual",
 wres_pred(df, ..., y = "WRES", yname = "Weighted residual")
 
 cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
+
+cwresi_pred(df, y = "CWRESI", ...)
+
+npde_pred(df, ..., y = "NPDE",
+  yname = "Normalized prediction distribution error")
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -31,7 +38,7 @@ cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_hs}}}
 }
 \description{
-Residuals versus predicted values
+Residuals or NPDE versus predicted values
 }
 \details{
 Since this function creates a scatter plot,

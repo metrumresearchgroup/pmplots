@@ -42,3 +42,10 @@ cwres_cont <- function(df, x,
                        xs=defx(), ys=defy(),...) {
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }
+
+##' @export
+##' @rdname res_cont
+cwresi_cont <- function(df, x,
+                        y="CWRESI//Conditional weighted residual", ...) {
+  cwres_cont(df, x = x, y = y, ...)
+}

@@ -4,13 +4,20 @@
 \alias{res_hist}
 \alias{wres_hist}
 \alias{cwres_hist}
-\title{Histograms of residuals}
+\alias{cwresi_hist}
+\alias{npde_hist}
+\title{Histograms of residuals or NPDE}
 \usage{
 res_hist(df, ..., x = "RES", xname = "Residual", xs = defx())
 
 wres_hist(df, ..., x = "WRES", xname = "Weighted residual")
 
 cwres_hist(df, ..., x = "CWRES", xname = "Conditional weighted residual")
+
+cwresi_hist(df, x = "CWRESI", ...)
+
+npde_hist(df, ..., x = "NPDE",
+  xname = "Normalized prediction distribution error")
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -24,5 +31,5 @@ cwres_hist(df, ..., x = "CWRES", xname = "Conditional weighted residual")
 \item{xs}{see \code{\link{defx}}}
 }
 \description{
-Histograms of residuals
+Histograms of residuals or NPDE
 }

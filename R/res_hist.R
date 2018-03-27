@@ -1,4 +1,4 @@
-##' Histograms of residuals
+##' Histograms of residuals or NPDE
 ##'
 ##' @param df data frame to plot
 ##' @param ... passed to \code{\link{cont_hist}}
@@ -31,4 +31,17 @@ cwres_hist <- function(df, ...,
   res_hist(df, x = x, xname = xname, ...)
 }
 
+##' @export
+##' @rdname res_hist
+cwresi_hist <- function(df, x = "CWRESI", ...) {
+  cwres_hist(df, x = x, ...)
+}
+
+##' @export
+##' @rdname res_hist
+npde_hist <- function(df, ...,
+                      x = "NPDE",
+                      xname = "Normalized prediction distribution error") {
+  res_hist(df, x = x, xname = xname, ...)
+}
 

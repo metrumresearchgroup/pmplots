@@ -28,7 +28,7 @@ df <- pmplots_data_obs()
 # Table of contents
 - [Basic functionality](#basics)
 - Other examples
-    - Complete listing: [everyfunction.md](inst/examples/everyfunction.md)
+    - Complete listing (validated version): [everyfunction.md](https://ghe.metrumrg.com/software/pmplots/blob/426c6f570e7968a996525e1050162c8f494d85bb/inst/examples/everyfunction.md)
     - Other examples: [example1.md](inst/examples/example1.md)
 
 

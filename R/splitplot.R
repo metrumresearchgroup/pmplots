@@ -15,7 +15,7 @@
 ##' @export
 split_plot <- function(df, sp, fun = "cont_cont",...) {
   require_column(df,sp)
-  l <- split(df, df[,sp])
+  l <- split(df, df[[sp]], drop = TRUE)
   form <- as.formula(paste0("~",sp))
   out <- lapply(l, function(this) {
     fun(this, ...) + facet_wrap(form)

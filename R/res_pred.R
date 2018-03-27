@@ -1,4 +1,4 @@
-##' Residuals versus predicted values
+##' Residuals or NPDE versus predicted values
 ##'
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
@@ -56,6 +56,20 @@ wres_pred <- function(df, ...,
 cwres_pred <- function(df, ...,
                        y = "CWRES",
                        yname = "Conditional weighted residual") {
+  res_pred(df, y = y, yname = yname, ...)
+}
+
+##' @export
+##' @rdname res_pred
+cwresi_pred <- function(df, y = "CWRESI", ...) {
+  cwres_pred(df, y = y, ...)
+}
+
+##' @export
+##' @rdname res_pred
+npde_pred <- function(df, ...,
+                      y = "NPDE",
+                      yname = "Normalized prediction distribution error") {
   res_pred(df, y = y, yname = yname, ...)
 }
 
