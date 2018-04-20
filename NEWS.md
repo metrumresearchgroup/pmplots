@@ -39,6 +39,8 @@ doesn't have all level present
 help make the plots look consistent with other plots if you are 
 making reference lines, smooths, etc; `pm_theme` is still just a wrapper
 around `theme_bw()`
+- `eta_pairs` dispatches to `eta_hist` when there is only one eta 
+in the mix #14
 
 # 0.1.0.9001
 
