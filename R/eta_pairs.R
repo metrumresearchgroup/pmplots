@@ -44,6 +44,9 @@ pairs_upper <- function(data, mapping, ...) {
 ##' @details
 ##' This function requires the \code{GGally} package to be installed.
 ##'
+##' When the length of \code{etas} is one, arguments
+##' are passed to \code{\link{eta_hist}} and that result is returned.
+##'
 ##' @return
 ##' The result from a ggpairs call.
 ##'
@@ -57,8 +60,8 @@ pairs_upper <- function(data, mapping, ...) {
 ##'
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
-                      col="grey",
-                      upper_fun = pairs_upper, lower_fun = pairs_lower, ...) {
+                       col="grey",
+                       upper_fun = pairs_upper, lower_fun = pairs_lower, ...) {
 
   if(!requireNamespace("GGally")) {
     stop("this function requires that the GGally package be installed",
@@ -66,8 +69,10 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
   }
 
   if(length(etas)==1) {
-    ans <- eta_hist(x, etas, bins = bins, alpha = alpha, fill = fill,
-                    col = col, ...)
+    ans <- eta_hist(
+      x, etas, bins = bins, alpha = alpha, fill = fill,
+      col = col, ...
+    )
     return(ans)
   }
 

@@ -37,6 +37,9 @@ Pairs plots using ggpairs
 }
 \details{
 This function requires the \code{GGally} package to be installed.
+
+When the length of \code{etas} is one, arguments
+are passed to \code{\link{eta_hist}} and that result is returned.
 }
 \examples{
 
