@@ -57,7 +57,10 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 
 
   p <- ggplot(data=df, aes_string(x=x,y=y))
-  p <- p + geom_boxplot(fill=fill, alpha=alpha) + yscale + xscale
+  # p <- p + geom_point(aes_string(x = x, y = y),
+  #                     position = position_jitter(width = 0.25),
+  #                     col = "black", alpha = 0.6)
+  p <- p + geom_boxplot(fill=fill, alpha=alpha, ...) + yscale + xscale
   if(is.numeric(hline)) {
     p <- p + geom_hline(yintercept=hline,lwd=1, lty=2)
   }

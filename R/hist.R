@@ -15,14 +15,21 @@
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",
-                      col = "white", alpha = 0.6, ...) {
+                      col = "white", alpha = 0.6, y = "..count..",
+                      add_density = y=="..density..", ...) {
   xscale <- do.call("scale_x_continuous", xs)
   xx <- col_label(x)
   xscale$name <- xx[2]
   require_numeric(df,xx[1])
-  ggplot(data=df, aes_string(x = xx[1])) +
-    pm_histogram(..., col = col, fill = fill, alpha = alpha) +
+  out <-
+    ggplot(data=df, aes_string(x = xx[1])) +
+    pm_histogram(mapping = aes_string(y = y), ...,
+                 col = col, fill = fill, alpha = alpha) +
     xscale + pm_theme()
+  if(add_density) {
+    out <- out + add_density(...)
+  }
+  out
 }
 
 ##' @rdname cont_hist

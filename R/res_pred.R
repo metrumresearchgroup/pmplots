@@ -69,8 +69,9 @@ cwresi_pred <- function(df, y = "CWRESI", ...) {
 ##' @rdname res_pred
 npde_pred <- function(df, ...,
                       y = "NPDE",
-                      yname = "Normalized prediction distribution error") {
-  res_pred(df, y = y, yname = yname, ...)
+                      yname = "Normalized prediction distribution error",
+                      hline = npde_ref()) {
+  res_pred(df, y = y, yname = yname, hline = hline, ...)
 }
 
 

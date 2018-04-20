@@ -167,3 +167,39 @@ geom_3s <- function(lwd = 1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), .
 layer_3s <- function(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3,3), ...) {
   x + geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty,...)
 }
+
+
+##' Add a density curve to a plot
+##'
+##' For example, a plot a normal density over a histogram
+##' of conditional weighted residuals.
+##'
+##' @param fun passed to \code{ggplot2::stat_function}
+##' @param col passed to \code{ggplot2::stat_function}
+##' @param lwd passed to \code{ggplot2::stat_function}
+##' @param lty passed to \code{ggplot2::stat_function}
+##' @param ... passed to \code{ggplot2::stat_function}
+##'
+##'
+add_density <- function(fun = dnorm, col = .ggblue,
+                        lwd = 1.5, lty = 2, ...) {
+  ggplot2::stat_function(fun = fun, col = col, lwd = lwd, lty = lty, ...)
+}
+
+##' @rdname add_density
+##' @export
+layer_dnorm <- function(x, sd = 1, mean = 0, ...) {
+  args <- list(mean = mean, sd = sd)
+  x + add_density(fun = dnorm, args = args, ...)
+}
+
+##' Input parameters for NPDE reference lines
+##'
+##' @param y used to set yintercept
+##' @param lwd width of reference lines
+##' @param ... other argument to set for \code{geom_hline}
+##'
+##' @export
+npde_ref <- function(y = c(-2,0,2), lwd = 1,...) {
+  c(list(yintercept = y, lwd = lwd),list(...))
+}

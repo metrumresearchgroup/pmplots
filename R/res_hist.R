@@ -19,8 +19,9 @@ res_hist <- function(df, ...,
 ##' @rdname res_hist
 wres_hist <- function(df, ...,
                       x = "WRES",
-                      xname = "Weighted residual") {
-  res_hist(df, x = x, xname = xname, ...)
+                      xname = "Weighted residual",
+                      y = "..density..") {
+  res_hist(df, x = x, xname = xname, y = y, ...)
 }
 
 ##' @export
@@ -28,7 +29,7 @@ wres_hist <- function(df, ...,
 cwres_hist <- function(df, ...,
                        x = "CWRES",
                        xname = "Conditional weighted residual") {
-  res_hist(df, x = x, xname = xname, ...)
+  wres_hist(df, x = x, xname = xname, ...)
 }
 
 ##' @export
@@ -42,6 +43,6 @@ cwresi_hist <- function(df, x = "CWRESI", ...) {
 npde_hist <- function(df, ...,
                       x = "NPDE",
                       xname = "Normalized prediction distribution error") {
-  res_hist(df, x = x, xname = xname, ...)
+  wres_hist(df, x = x, xname = xname, ...)
 }
 

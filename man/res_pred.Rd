@@ -18,7 +18,7 @@ cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
 cwresi_pred(df, y = "CWRESI", ...)
 
 npde_pred(df, ..., y = "NPDE",
-  yname = "Normalized prediction distribution error")
+  yname = "Normalized prediction distribution error", hline = npde_ref())
 }
 \arguments{
 \item{df}{data frame to plot}

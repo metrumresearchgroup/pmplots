@@ -64,6 +64,13 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
     stop("this function requires that the GGally package be installed",
          call. = FALSE)
   }
+
+  if(length(etas)==1) {
+    ans <- eta_hist(x, etas, bins = bins, alpha = alpha, fill = fill,
+                    col = col, ...)
+    return(ans)
+  }
+
   diag <- GGally::wrap("barDiag", bins = bins,
                        alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)

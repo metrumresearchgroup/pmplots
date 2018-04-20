@@ -10,7 +10,8 @@
 \usage{
 res_hist(df, ..., x = "RES", xname = "Residual", xs = defx())
 
-wres_hist(df, ..., x = "WRES", xname = "Weighted residual")
+wres_hist(df, ..., x = "WRES", xname = "Weighted residual",
+  y = "..density..")
 
 cwres_hist(df, ..., x = "CWRES", xname = "Conditional weighted residual")
 

@@ -5,7 +5,7 @@
 \title{ETA histograms}
 \usage{
 eta_hist(df, x, xs = defx(), fill = "black", col = "white", alpha = 0.6,
-  ...)
+  add_density = FALSE, ...)
 }
 \arguments{
 \item{df}{data frame to plot}

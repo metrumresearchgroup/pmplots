@@ -46,7 +46,7 @@ cwres_tad(df, x = "TAD", ..., xname = "Time after dose")
 cwresi_tad(df, y = "CWRESI", ...)
 
 npde_time(df, y = "NPDE", ...,
-  yname = "Normalized prediction distribution error", hline = NULL)
+  yname = "Normalized prediction distribution error", hline = npde_ref())
 
 npde_tad(df, x = "TAD", ..., xname = "Time after dose")
 

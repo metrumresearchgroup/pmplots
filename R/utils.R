@@ -236,3 +236,4 @@ rot_y <- function(angle=30, hjust = 1) {
 .miss <- function(name,object) {
   !(name %in% names(object))
 }
+

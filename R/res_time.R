@@ -151,7 +151,7 @@ cwresi_tad <- function(df, y = "CWRESI", ...) {
 npde_time <- function(df,
                       y  = "NPDE", ...,
                       yname  = "Normalized prediction distribution error",
-                      hline = NULL) {
+                      hline = npde_ref()) {
   res_time(df, y = y, yname = yname, hline = hline, ...)
 }
 

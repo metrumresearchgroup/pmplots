@@ -7,7 +7,7 @@
 \title{Generate a histogram plot}
 \usage{
 cont_hist(df, x, xs = defx(), fill = "black", col = "white",
-  alpha = 0.6, ...)
+  alpha = 0.6, y = "..count..", add_density = y == "..density..", ...)
 
 cont_hist_list(df, x, ...)
 
