@@ -21,4 +21,7 @@ col_label("CL @@ Clearance (L)")
 
 try(col_label("CL / Clearance (L)"))
 
+col_label("CL")
+
+
 }

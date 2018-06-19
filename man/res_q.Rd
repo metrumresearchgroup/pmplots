@@ -28,7 +28,7 @@ npde_q(df, x = "NPDE", ...)
 \item{abline}{numeric vector with two elements to be passed to
 \code{geom_abline}}
 
-\item{...}{not used}
+\item{...}{arguments passed back to \code{wres_q}}
 }
 \description{
 QQ plot for conditional residuals or NPDE
@@ -38,8 +38,8 @@ The \code{x} column must be numeric.
 }
 \examples{
 
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- dplyr::filter(pmplots_data_obs(), EVID==0, !is.na(IPRED))
 
-cwres_q(df)
+cwresi_q(df)
 
 }

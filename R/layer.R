@@ -21,6 +21,8 @@
 ##'
 ##' cwres_time(df) + geom_3s()
 ##'
+##' pmplots:::gs()
+##'
 ##'
 ##' @details
 ##' Function names can be decoded as: \code{h} indicates horizontal
@@ -35,7 +37,11 @@
 ##'
 ##' \code{gs}, \code{ga}, and \code{gh} are helper functions to create
 ##' default arguments to \code{geom_smooth}, \code{geom_abline}, and
-##' \code{geom_hline}, respectively.  These functions are not exported.
+##' \code{geom_hline}, respectively.  The \code{gx} series
+##' of functions are not exported.
+##'
+##' @seealso \code{\link{pm_smooth}}, \code{\link{pm_hline}},
+##' \code{\link{pm_abline}}
 ##'
 ##' @name layer
 ##' @rdname layer

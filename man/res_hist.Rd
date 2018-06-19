@@ -8,17 +8,15 @@
 \alias{npde_hist}
 \title{Histograms of residuals or NPDE}
 \usage{
-res_hist(df, ..., x = "RES", xname = "Residual", xs = defx())
+res_hist(df, ..., x = "RES//Residual", xs = defx())
 
-wres_hist(df, ..., x = "WRES", xname = "Weighted residual",
-  y = "..density..")
+wres_hist(df, ..., x = "WRES//Weighted residual", y = "..density..")
 
-cwres_hist(df, ..., x = "CWRES", xname = "Conditional weighted residual")
+cwres_hist(df, ..., x = "CWRES//Conditional weighted residual")
 
-cwresi_hist(df, x = "CWRESI", ...)
+cwresi_hist(df, x = "CWRESI//Conditional weighted residual", ...)
 
-npde_hist(df, ..., x = "NPDE",
-  xname = "Normalized prediction distribution error")
+npde_hist(df, ..., x = "NPDE//NPDE")
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -27,10 +25,13 @@ npde_hist(df, ..., x = "NPDE",
 
 \item{x}{character name for x-axis data}
 
-\item{xname}{used to form x-axis label}
-
 \item{xs}{see \code{\link{defx}}}
 }
 \description{
 Histograms of residuals or NPDE
+}
+\details{
+Note that \code{cwres_hist}, \code{cwresi_hist}, and
+\code{npde_hist} call \code{wres_hist}, which
+then calls \code{res_hist}.
 }

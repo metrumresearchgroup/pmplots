@@ -16,8 +16,9 @@ pm_smooth(...)
 pm_hline(...)
 }
 \arguments{
-\item{...}{passed to \code{\link{gs}} (smooth), \code{\link{gh}} (hline),
-or \code{\link{ga}} (abline).}
+\item{...}{arguments passed to \code{\link{gs}} (smooth),
+\code{\link{gh}} (hline), or \code{\link{ga}} (abline) and
+then to the appropriate \code{geom}.}
 }
 \description{
 The standard pmplots theme
@@ -29,10 +30,14 @@ The standard pmplots theme
 
 data <- pmplots_data_obs()
 
-ggplot(data,aes(PRED,DV)) + geom_point() +
-  pm_theme() + pm_smooth() + pm_abline()
+ggplot(data,aes(PRED,DV)) +
+  geom_point() +
+  pm_theme() +
+  pm_smooth(col = "firebrick") +
+  pm_abline()
 
 }
 \seealso{
-\code{\link{pm_histogram}}
+\code{\link{pm_histogram}},
+\code{\link{theme_plain}}.
 }

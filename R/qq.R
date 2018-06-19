@@ -16,7 +16,7 @@ qq_reg_data <- function(y) {
 ##' @param ys see \code{\link{defy}}
 ##' @param abline numeric vector with two elements to be passed to
 ##' \code{geom_abline}
-##' @param ... not used
+##' @param ... arguments passed back to \code{wres_q}
 ##'
 ##' @details
 ##' The \code{x} column must be numeric.
@@ -26,9 +26,9 @@ qq_reg_data <- function(y) {
 ##'
 ##' @examples
 ##'
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- dplyr::filter(pmplots_data_obs(), EVID==0, !is.na(IPRED))
 ##'
-##' cwres_q(df)
+##' cwresi_q(df)
 ##'
 ##' @export
 wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {

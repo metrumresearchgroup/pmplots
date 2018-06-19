@@ -81,12 +81,19 @@ adds a smoother, \code{layer_a} adds identity line, and
 
 \code{gs}, \code{ga}, and \code{gh} are helper functions to create
 default arguments to \code{geom_smooth}, \code{geom_abline}, and
-\code{geom_hline}, respectively.  These functions are not exported.
+\code{geom_hline}, respectively.  The \code{gx} series
+of functions are not exported.
 }
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0 & BLQ==0)
 
 cwres_time(df) + geom_3s()
 
+pmplots:::gs()
 
+
+}
+\seealso{
+\code{\link{pm_smooth}}, \code{\link{pm_hline}},
+\code{\link{pm_abline}}
 }

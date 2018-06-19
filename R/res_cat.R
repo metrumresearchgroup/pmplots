@@ -22,7 +22,7 @@
 ##' Summary numbers located below each box are described in
 ##' \code{\link{boxwork}}.
 ##'
-##' @seealso \code{\link{boxwork}}
+##' @seealso \code{\link{boxwork}}, \code{\link{cont_cat}}
 ##'
 ##' @examples
 ##'

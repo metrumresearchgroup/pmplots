@@ -46,7 +46,7 @@
 ##'
 ##' @export
 res_time <- function(df,
-                     x = "TIME",
+                     x = "TIME//Time",
                      y = "RES",
                      xname = "Time",
                      yname = "Residual",
@@ -79,7 +79,8 @@ wres_time <- function(df,
                       yname="Weighted residual",
                       xname="Time",
                       ...) {
-  out <- y_time(df,x = x, y = y, xname = xname, yname=yname, ...)
+
+  out <- y_time(df, x = x, y = y, xname = xname, yname=yname, ...)
   layer_hs(out,...)
 }
 

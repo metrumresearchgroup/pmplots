@@ -162,11 +162,17 @@ split_col_label <- function(x,split="//") {
 ##'
 ##' try(col_label("CL / Clearance (L)"))
 ##'
+##' col_label("CL")
+##'
+##'
 ##' @export
 col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
-    if(length(y)==2) return(y)
+    if(length(y)==2) {
+      if(y[2]=='.') y[2] <- y[1]
+      return(y)
+    }
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }

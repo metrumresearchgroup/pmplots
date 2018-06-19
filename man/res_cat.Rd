@@ -51,5 +51,5 @@ cwres_cat(df, x="STUDYc//Study name")
 
 }
 \seealso{
-\code{\link{boxwork}}
+\code{\link{boxwork}}, \code{\link{cont_cat}}
 }

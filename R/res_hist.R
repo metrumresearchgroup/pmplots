@@ -42,7 +42,7 @@ cwresi_hist <- function(df, x = "CWRESI", ...) {
 ##' @rdname res_hist
 npde_hist <- function(df, ...,
                       x = "NPDE",
-                      xname = "Normalized prediction distribution error") {
+                      xname = "NPDE") {
   wres_hist(df, x = x, xname = xname, ...)
 }
 

@@ -104,7 +104,10 @@ y_time <- function(df, x="TIME", y,
 ##' Plot continuous variable versus continuous variable
 ##'
 ##' This function is primarily called by other functions.
-##' \code{cont_cont_list} is a vectorized form of \code{cont_cont}.
+##' \code{pm_scatter} is an alias to \code{cont_cont} and should be
+##' used in production code. \code{pm_scatter_list} is a vectorized
+##' form of \code{pm_scatter}.
+##'
 ##'
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
@@ -127,10 +130,14 @@ y_time <- function(df, x="TIME", y,
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##' df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 ##'
-##' cont_cont(df, x="WT//Weight (kg)", y="HT//Height (cm)")
+##' pm_scatter(
+##'   df,
+##'   x="WT//Weight (kg)",
+##'   y="HT//Height (cm)"
+##' )
 ##'
 ##' @export
-cont_cont <- function(df, x, y, xs = defx(), ys=defy(),...) {
+pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
   y <- col_label(y)
   x <- col_label(x)
   ys$name <- y[2]
@@ -140,9 +147,16 @@ cont_cont <- function(df, x, y, xs = defx(), ys=defy(),...) {
   scatt(df,x[1],y[1],xs,ys,...)
 }
 
-
-##' @rdname cont_cont
+##' @rdname pm_scatter
 ##' @export
-cont_cont_list <- function(df, x, y, ...) {
+pm_scatter_list <- function(df, x, y, ...) {
   list_plot_xy(df, x, y, cont_cont, ...)
 }
+
+
+
+##' @rdname pm_scatter
+##' @export
+cont_cont <- pm_scatter
+
+

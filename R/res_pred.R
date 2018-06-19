@@ -20,11 +20,14 @@
 ##' to add specific name and or unit to the dependent variable
 ##' (see the example).
 ##'
+##' A loess smooth and a horizontal reference line are
+##' layered on the plot.
+##'
 ##' @seealso \code{\link{geom_3s}}
 ##'
 ##' @examples
 ##'
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- dplyr::filter(pmplots_data_obs(), EVID==0)
 ##'
 ##' cwres_pred(df, xname="MyDrug (ng/mL)")
 ##'
@@ -69,7 +72,7 @@ cwresi_pred <- function(df, y = "CWRESI", ...) {
 ##' @rdname res_pred
 npde_pred <- function(df, ...,
                       y = "NPDE",
-                      yname = "Normalized prediction distribution error",
+                      yname = "NPDE",
                       hline = npde_ref()) {
   res_pred(df, y = y, yname = yname, hline = hline, ...)
 }
