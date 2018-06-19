@@ -3,7 +3,6 @@
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
-##' @param xname used to form x-axis label
 ##' @param xunit time units; used to form x-axis label
 ##' @param yname used to form y-axis label
 ##' @param xs see \code{\link{defx}}
@@ -40,20 +39,21 @@
 ##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))
 ##'
 ##' @export
-dv_time <- function(df, x="TIME", y="DV",
-                    xname = "Time", xunit = "hr",
-                    yname = NULL, group = "ID",
+dv_time <- function(df, x="TIME//Time", y="DV//{yname}",
+                    xunit = "hr",
+                    yname = "DV", group = "ID",
                     xs=list(), ys=list(), log=FALSE, xby = NULL, ...) {
 
-  require_numeric(df,x)
-  require_numeric(df,y)
+  x <- glue::glue(x)
+  y <- glue::glue(y)
+
+  x <- col_label(x)
+  y <- col_label(y)
 
   df <- as.data.frame(df)
 
-  if(exists("BLQ", df)) {
-    require_numeric(df,"BLQ")
-    df[df$BLQ != 0, y] <- NA
-  }
+  require_numeric(df,x[1])
+  require_numeric(df,y[1])
 
   inx <- xs
   iny <- ys
@@ -61,12 +61,15 @@ dv_time <- function(df, x="TIME", y="DV",
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(),ys)
 
-  if(.miss("name", inx)) {
-    xs$name <- paste0(xname, " (",xunit,")")
-  }
+  xs$name <- x[2]
+  ys$name <- y[2]
 
-  if(.miss("name", iny)) {
-    ys$name <- yname
+  x <- x[1]
+  y <- y[1]
+
+  if(exists("BLQ", df)) {
+    require_numeric(df,"BLQ")
+    df[df$BLQ != 0, y] <- NA
   }
 
   if(log) {
@@ -89,16 +92,12 @@ dv_time <- function(df, x="TIME", y="DV",
 
 ##' @export
 ##' @rdname dv_time
-dv_tafd <- function(df,
-                    x = "TAFD", ...,
-                    xname = "Time after first dose") {
-  dv_time(df, x = x, xname = xname, ...)
+dv_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+  dv_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname dv_time
-dv_tad <- function(df,
-                   x = "TAD", ...,
-                   xname = "Time after dose") {
-  dv_time(df, x = x, xname = xname, ...)
+dv_tad <- function(df, x = "TAD//Time after dose", ...) {
+  dv_time(df, x = x, ...)
 }

@@ -3,8 +3,7 @@
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
-##' @param xname used to form x-axis label
-##' @param yname used to form y-axis label
+##' @param xname glued into x-axis title
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##'
@@ -33,48 +32,54 @@
 ##'
 ##'
 ##' @export
-res_pred <- function(df, x="PRED", y="RES",
+res_pred <- function(df,
+                     x="PRED//Population predicted {xname}",
+                     y="RES//Residual",
                      xname = "value",
-                     yname = "Residual",
                      xs=defx(), ys=defy(),
                      ...) {
-  require_numeric(df,x)
-  require_numeric(df,y)
-  xs$name <- paste0("Population predicted ", xname)
-  ys$name <- yname
+
+  x <- glue::glue(x)
+
+  x <- col_label(x)
+  y <- col_label(y)
+
+  require_numeric(df,x[1])
+  require_numeric(df,y[1])
+
+  xs$name <- x[2]
+  ys$name <- y[2]
+
+  x <- x[1]
+  y <- y[1]
+
   out <- scatt(df, x, y, xs, ys, ...)
+
   layer_hs(out,...)
 }
 
 ##' @export
 ##' @rdname res_pred
-wres_pred <- function(df, ...,
-                      y="WRES",
-                      yname = "Weighted residual") {
-  res_pred(df, y = y, yname = yname, ...)
+wres_pred <- function(df, ..., y="WRES//Weighted residual") {
+  res_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-cwres_pred <- function(df, ...,
-                       y = "CWRES",
-                       yname = "Conditional weighted residual") {
-  res_pred(df, y = y, yname = yname, ...)
+cwres_pred <- function(df, ..., y = "CWRES//Conditional weighted residual") {
+  res_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-cwresi_pred <- function(df, y = "CWRESI", ...) {
+cwresi_pred <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
   cwres_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-npde_pred <- function(df, ...,
-                      y = "NPDE",
-                      yname = "NPDE",
-                      hline = npde_ref()) {
-  res_pred(df, y = y, yname = yname, hline = hline, ...)
+npde_pred <- function(df, ..., y = "NPDE//NPDE", hline = npde_ref()) {
+  res_pred(df, y = y, hline = hline, ...)
 }
 
 

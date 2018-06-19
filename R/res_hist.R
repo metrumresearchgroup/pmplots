@@ -3,46 +3,38 @@
 ##' @param df data frame to plot
 ##' @param ... passed to \code{\link{cont_hist}}
 ##' @param x character name for x-axis data
-##' @param xname used to form x-axis label
 ##' @param xs see \code{\link{defx}}
 ##'
 ##' @export
 res_hist <- function(df, ...,
-                     x = "RES",
-                     xname = "Residual",
+                     x = "RES//Residual",
                      xs = defx()) {
-  x <- paste0(x, "//", xname)
   cont_hist(df, x, xs, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
 wres_hist <- function(df, ...,
-                      x = "WRES",
-                      xname = "Weighted residual",
+                      x = "WRES//Weighted residual",
                       y = "..density..") {
-  res_hist(df, x = x, xname = xname, y = y, ...)
+  res_hist(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
-cwres_hist <- function(df, ...,
-                       x = "CWRES",
-                       xname = "Conditional weighted residual") {
-  wres_hist(df, x = x, xname = xname, ...)
+cwres_hist <- function(df, ..., x = "CWRES//Conditional weighted residual") {
+  wres_hist(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
-cwresi_hist <- function(df, x = "CWRESI", ...) {
+cwresi_hist <- function(df, x = "CWRESI//Conditional weighted residual", ...) {
   cwres_hist(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
-npde_hist <- function(df, ...,
-                      x = "NPDE",
-                      xname = "NPDE") {
-  wres_hist(df, x = x, xname = xname, ...)
+npde_hist <- function(df, ..., x = "NPDE//NPDE") {
+  wres_hist(df, x = x, ...)
 }
 

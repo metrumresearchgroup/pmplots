@@ -18,39 +18,36 @@
 \alias{npde_tafd}
 \title{Plot residuals or NPDE versus time}
 \usage{
-res_time(df, x = "TIME", y = "RES", xname = "Time", yname = "Residual",
+res_time(df, x = "TIME//Time", y = "RES//Residual", ...)
+
+res_tafd(df, x = "TAFD//Time after first dose", ...)
+
+res_tad(df, x = "TAD//Time after dose", ...)
+
+wres_time(df, x = "Time//Time", y = "WRES//Weighted residual", ...)
+
+wres_tafd(df, x = "TAFD//Time after first dose", ...)
+
+wres_tad(df, x = "TAD//Time after dose", ...)
+
+cwres_time(df, x = "TIME//Time", y = "CWRES//Conditional weighted residual",
   ...)
 
-res_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
+cwresi_time(df, y = "CWRESI//Conditional weighted residual", ...)
 
-res_tad(df, x = "TAD", ..., xname = "Time after dose")
+cwres_tafd(df, x = "TAFD//Time after first dose", ...)
 
-wres_time(df, x = "TIME", y = "WRES", yname = "Weighted residual",
-  xname = "Time", ...)
+cwresi_tafd(df, y = "CWRESI//Conditional weighted residual", ...)
 
-wres_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
+cwres_tad(df, x = "TAD//Time after dose", ...)
 
-wres_tad(df, x = "TAD", ..., xname = "Time after dose")
+cwresi_tad(df, y = "CWRESI//Conditional weighted residual", ...)
 
-cwres_time(df, x = "TIME", y = "CWRES",
-  yname = "Conditional weighted residual", xname = "Time", ...)
+npde_time(df, y = "NPDE//NPDE", ..., hline = npde_ref())
 
-cwresi_time(df, y = "CWRESI", ...)
+npde_tad(df, x = "TAD//Time after first dose", ...)
 
-cwres_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
-
-cwresi_tafd(df, y = "CWRESI", ...)
-
-cwres_tad(df, x = "TAD", ..., xname = "Time after dose")
-
-cwresi_tad(df, y = "CWRESI", ...)
-
-npde_time(df, y = "NPDE", ...,
-  yname = "Normalized prediction distribution error", hline = npde_ref())
-
-npde_tad(df, x = "TAD", ..., xname = "Time after dose")
-
-npde_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
+npde_tafd(df, x = "TAFD//Time after first dose", ...)
 }
 \arguments{
 \item{df}{data set to plot}
@@ -58,10 +55,6 @@ npde_tafd(df, x = "TAFD", ..., xname = "Time after first dose")
 \item{x}{character name of x-axis data}
 
 \item{y}{character name of y-axis data}
-
-\item{xname}{used for x-axis label}
-
-\item{yname}{used for y-axis label}
 
 \item{...}{passed to \code{\link{y_time}} and
 \code{\link{layer_hs}}}
@@ -78,9 +71,6 @@ which then calls \code{\link{scatt}}.
 By default, the time unit is assumed
 to be hours (\code{hr}).  See the \code{xunit} argument
 to \code{\link{y_time}} to change the time unit.
-
-For all of these functions, \code{yname} is the
-full specification of the y-axis title.
 
 See the \code{xby} argument to \code{\link{y_time}} for a
 convenient way to change the breaks for the x-axis (time).

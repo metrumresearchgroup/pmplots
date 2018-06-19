@@ -98,7 +98,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ##'
 ##' @export
-cont_cat <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
+pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   x <- col_label(x)
   if(length(x)!=2) stop("invalid x value", call.=FALSE)
   y <- col_label(y)
@@ -112,6 +112,11 @@ cont_cat <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
 
 ##' @rdname cont_cat
 ##' @export
-cont_cat_list <- function(df, x, y, ...) {
+pm_box_list <- function(df, x, y, ...) {
   list_plot_xy(df, x, y, cont_cat, ...)
 }
+
+##' @rdname pm_box
+##' @export
+cont_cat <- pm_box
+

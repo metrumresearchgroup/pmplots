@@ -30,8 +30,3 @@ npde_hist(df, ..., x = "NPDE//NPDE")
 \description{
 Histograms of residuals or NPDE
 }
-\details{
-Note that \code{cwres_hist}, \code{cwresi_hist}, and
-\code{npde_hist} call \code{wres_hist}, which
-then calls \code{res_hist}.
-}

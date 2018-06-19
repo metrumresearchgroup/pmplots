@@ -6,11 +6,11 @@
 \alias{dv_preds}
 \title{Plot DV versus predicted values}
 \usage{
-dv_pred(df, x = "PRED", y = "DV", xname = yname, yname = "value",
-  xs = list(), ys = list(), loglog = FALSE, prefix = "Population",
-  scales = c("fixed", "free"), ...)
+dv_pred(df, x = "PRED//Population predicted {xname}", y = "DV//{yname}",
+  yname = "value", xname = yname, xs = list(), ys = list(),
+  loglog = FALSE, scales = c("fixed", "free"), ...)
 
-dv_ipred(df, x = "IPRED", ..., prefix = "Individual")
+dv_ipred(df, x = "IPRED//Individual predicted {yname}", ...)
 
 dv_preds(df, ...)
 }
@@ -21,9 +21,9 @@ dv_preds(df, ...)
 
 \item{y}{character name for y-axis data}
 
-\item{xname}{used to form x-axis label}
-
 \item{yname}{used to form y-axis label}
+
+\item{xname}{used to form x-axis label}
 
 \item{xs}{see \code{\link{defx}}}
 
@@ -31,12 +31,12 @@ dv_preds(df, ...)
 
 \item{loglog}{if \code{TRUE}, x- and y-axes will be log-transformed}
 
-\item{prefix}{used internally}
-
 \item{scales}{if \code{TRUE}, then the x- and y- axes will be forced
 to have the same limits}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
+
+\item{prefix}{used internally}
 }
 \description{
 Plot DV versus predicted values

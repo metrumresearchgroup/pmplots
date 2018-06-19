@@ -65,14 +65,22 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' convenience to set breaks for time scales.
 ##'
 ##'
-y_time <- function(df, x="TIME", y,
-                   xname="Time", xunit="hr",
+y_time <- function(df,
+                   x="TIME//Time {xunit}",
+                   y,
+                   xunit="hr",
                    yname = NULL,
                    xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {
 
-  require_numeric(df,x)
-  require_numeric(df,y)
+  x <- glue::glue(x)
+  y <- glue::glue(y)
+
+  x <- col_label(x)
+  y <- col_label(y)
+
+  require_numeric(df,x[1])
+  require_numeric(df,y[1])
 
   inx <- xs
   iny <- ys
@@ -80,13 +88,15 @@ y_time <- function(df, x="TIME", y,
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(), ys)
 
-  if(.miss("name", inx)) {
-    xs$name <- paste0(xname, " (",xunit,")")
+  xs$name <- x[2]
+  ys$name <- y[2]
+
+  if(!is.null(xunit)) {
+    xs$name <- paste0(xs$name, " (", xunit, ")")
   }
 
-  if(.miss("name", iny)) {
-    ys$name <- yname
-  }
+  x <- x[1]
+  y <- y[1]
 
   if(is.numeric(xby)) {
     xs$breaks <- seq(0,max(df[,x]),xby)

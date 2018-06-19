@@ -4,7 +4,7 @@
 \alias{y_time}
 \title{Plot continuous data versus time}
 \usage{
-y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
+y_time(df, x = "TIME//Time {xunit}", y, xunit = "hr", yname = NULL,
   xs = list(), ys = list(), log = FALSE, xby = NULL, ...)
 }
 \arguments{
@@ -13,8 +13,6 @@ y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
 \item{x}{character name for x-axis data}
 
 \item{y}{character name for y-axis data}
-
-\item{xname}{used to form x-axis title}
 
 \item{xunit}{used to form x-axis title}
 
@@ -29,6 +27,8 @@ y_time(df, x = "TIME", y, xname = "Time", xunit = "hr", yname = NULL,
 \item{xby}{interval for breaks on x-axis (time)}
 
 \item{...}{passed to \code{\link{scatt}}}
+
+\item{xname}{used to form x-axis title}
 }
 \description{
 Plot continuous data versus time

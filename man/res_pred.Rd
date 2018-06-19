@@ -8,17 +8,16 @@
 \alias{npde_pred}
 \title{Residuals or NPDE versus predicted values}
 \usage{
-res_pred(df, x = "PRED", y = "RES", xname = "value", yname = "Residual",
-  xs = defx(), ys = defy(), ...)
+res_pred(df, x = "PRED//Population predicted {xname}", y = "RES//Residual",
+  xname = "value", xs = defx(), ys = defy(), ...)
 
-wres_pred(df, ..., y = "WRES", yname = "Weighted residual")
+wres_pred(df, ..., y = "WRES//Weighted residual")
 
-cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
+cwres_pred(df, ..., y = "CWRES//Conditional weighted residual")
 
-cwresi_pred(df, y = "CWRESI", ...)
+cwresi_pred(df, y = "CWRESI//Conditional weighted residual", ...)
 
-npde_pred(df, ..., y = "NPDE",
-  yname = "Normalized prediction distribution error", hline = npde_ref())
+npde_pred(df, ..., y = "NPDE//NPDE", hline = npde_ref())
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -27,9 +26,7 @@ npde_pred(df, ..., y = "NPDE",
 
 \item{y}{character name for y-axis data}
 
-\item{xname}{used to form x-axis label}
-
-\item{yname}{used to form y-axis label}
+\item{xname}{glued into x-axis title}
 
 \item{xs}{see \code{\link{defx}}}
 
@@ -49,10 +46,13 @@ The y axis name is always the name of the residual
 (e.g. "Weighted residual").  Use the \code{xname} argument
 to add specific name and or unit to the dependent variable
 (see the example).
+
+A loess smooth and a horizontal reference line are
+layered on the plot.
 }
 \examples{
 
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- dplyr::filter(pmplots_data_obs(), EVID==0)
 
 cwres_pred(df, xname="MyDrug (ng/mL)")
 

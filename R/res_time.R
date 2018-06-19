@@ -4,8 +4,6 @@
 ##' @param df data set to plot
 ##' @param x character name of x-axis data
 ##' @param y character name of y-axis data
-##' @param xname used for x-axis label
-##' @param yname used for y-axis label
 ##' @param ... passed to \code{\link{y_time}} and
 ##' \code{\link{layer_hs}}
 ##'
@@ -20,9 +18,6 @@
 ##' By default, the time unit is assumed
 ##' to be hours (\code{hr}).  See the \code{xunit} argument
 ##' to \code{\link{y_time}} to change the time unit.
-##'
-##' For all of these functions, \code{yname} is the
-##' full specification of the y-axis title.
 ##'
 ##' See the \code{xby} argument to \code{\link{y_time}} for a
 ##' convenient way to change the breaks for the x-axis (time).
@@ -45,129 +40,94 @@
 ##' wres_time(df) + geom_3s()
 ##'
 ##' @export
-res_time <- function(df,
-                     x = "TIME//Time",
-                     y = "RES",
-                     xname = "Time",
-                     yname = "Residual",
-                     ...) {
-  out <- y_time(df, yname=yname, xname = xname, x=x, y=y, ...)
+res_time <- function(df, x = "TIME//Time", y = "RES//Residual", ...) {
+  out <- y_time(df, x=x, y=y, ...)
   layer_hs(out,...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tafd <- function(df,
-                     x = "TAFD", ...,
-                     xname = "Time after first dose") {
-  res_time(df, x=x, xname = xname, ...)
+res_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+  res_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tad <- function(df,
-                    x = "TAD", ...,
-                    xname="Time after dose") {
-  res_time(df, x = x, xname = xname, ...)
+res_tad <- function(df, x = "TAD//Time after dose", ...) {
+  res_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_time <- function(df,
-                      x = "TIME",
-                      y = "WRES",
-                      yname="Weighted residual",
-                      xname="Time",
-                      ...) {
-
-  out <- y_time(df, x = x, y = y, xname = xname, yname=yname, ...)
-  layer_hs(out,...)
+wres_time <- function(df, x = "Time//Time", y = "WRES//Weighted residual", ...) {
+  res_time(df, x = x,  y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_tafd <- function(df,
-                      x = "TAFD", ...,
-                      xname = "Time after first dose") {
-  wres_time(df, x = x, xname = xname, ...)
+wres_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+  wres_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_tad <- function(df,
-                     x = "TAD", ...,
-                     xname="Time after dose") {
-  wres_time(df,  x=x, xname = xname, ...)
+wres_tad <- function(df, x = "TAD//Time after dose", ...) {
+  wres_time(df,  x = x, ...)
 }
-
 
 ##' @export
 ##' @rdname res_time
 cwres_time <- function(df,
-                       x = "TIME",
-                       y = "CWRES",
-                       yname = "Conditional weighted residual",
-                       xname = "Time",
+                       x = "TIME//Time",
+                       y = "CWRES//Conditional weighted residual",
                        ...) {
-  out <- y_time(df, x=x, y = y, xname = xname, yname = yname, ...)
-  layer_hs(out,...)
+  res_time(df, x=x, y=y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_time <- function(df, y = "CWRESI", ...) {
+cwresi_time <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
   cwres_time(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_tafd <- function(df,
-                       x = "TAFD", ...,
-                       xname="Time after first dose") {
-  cwres_time(df, x=x, xname = xname, ...)
+cwres_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+  cwres_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_tafd <- function(df, y = "CWRESI", ...) {
+cwresi_tafd <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
   cwres_tafd(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_tad <- function(df,
-                      x = "TAD", ...,
-                      xname="Time after dose") {
-  cwres_time(df, x=x, xname=xname, ...)
+cwres_tad <- function(df, x = "TAD//Time after dose", ...) {
+  cwres_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_tad <- function(df, y = "CWRESI", ...) {
+cwresi_tad <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
   cwres_tad(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-npde_time <- function(df,
-                      y  = "NPDE", ...,
-                      yname  = "Normalized prediction distribution error",
-                      hline = npde_ref()) {
-  res_time(df, y = y, yname = yname, hline = hline, ...)
+npde_time <- function(df, y  = "NPDE//NPDE", ..., hline = npde_ref()) {
+  res_time(df, y = y, hline = hline, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-npde_tad <- function(df,
-                     x = "TAD", ...,
-                     xname = "Time after dose") {
-  npde_time(df, x = x, xname = xname, ...)
+npde_tad <- function(df, x = "TAD//Time after first dose", ...) {
+  npde_time(df, x = x,...)
 }
 
 ##' @export
 ##' @rdname res_time
-npde_tafd <- function(df,
-                      x = "TAFD", ...,
-                      xname = "Time after first dose") {
-  npde_time(df, x = x, xname = xname, ...)
+npde_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+  npde_time(df, x = x, ...)
 }
