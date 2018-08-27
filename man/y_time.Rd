@@ -27,8 +27,6 @@ y_time(df, x = "TIME//Time {xunit}", y, xunit = "hr", yname = NULL,
 \item{xby}{interval for breaks on x-axis (time)}
 
 \item{...}{passed to \code{\link{scatt}}}
-
-\item{xname}{used to form x-axis title}
 }
 \description{
 Plot continuous data versus time

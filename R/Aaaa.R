@@ -9,6 +9,7 @@
 ##' @importFrom ggplot2 element_text
 ##' @importFrom stats as.formula qnorm quantile cor
 ##' @importFrom rlang sym quo_text quos set_names
+##' @importFrom glue glue
 ##'
 NULL
 

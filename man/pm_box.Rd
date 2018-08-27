@@ -2,10 +2,13 @@
 % Please edit documentation in R/box.R
 \name{pm_box}
 \alias{pm_box}
+\alias{pm_box_list}
 \alias{cont_cat}
 \title{Plot continuous variable against a categorical variable}
 \usage{
 pm_box(df, x, y, xs = defcx(), ys = defy(), ...)
+
+pm_box_list(df, x, y, ...)
 
 cont_cat(df, x, y, xs = defcx(), ys = defy(), ...)
 }

@@ -10,7 +10,7 @@ dv_pred(df, x = "PRED//Population predicted {xname}", y = "DV//{yname}",
   yname = "value", xname = yname, xs = list(), ys = list(),
   loglog = FALSE, scales = c("fixed", "free"), ...)
 
-dv_ipred(df, x = "IPRED//Individual predicted {yname}", ...)
+dv_ipred(df, x = pm_axis("ipred"), ...)
 
 dv_preds(df, ...)
 }

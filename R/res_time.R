@@ -40,94 +40,95 @@
 ##' wres_time(df) + geom_3s()
 ##'
 ##' @export
-res_time <- function(df, x = "TIME//Time", y = "RES//Residual", ...) {
+res_time <- function(df, x = pm_axis_time, y = pm_axis_res, ...) {
   out <- y_time(df, x=x, y=y, ...)
   layer_hs(out,...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+res_tafd <- function(df, x = pm_axis("tafd"), ...) {
   res_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tad <- function(df, x = "TAD//Time after dose", ...) {
+res_tad <- function(df, x = pm_axis("tad"), ...) {
   res_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_time <- function(df, x = "Time//Time", y = "WRES//Weighted residual", ...) {
+wres_time <- function(df, x = pm_axis("time"),
+                      y = pm_axis("wres"), ...) {
   res_time(df, x = x,  y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+wres_tafd <- function(df, x = pm_axis("tafd"), ...) {
   wres_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_tad <- function(df, x = "TAD//Time after dose", ...) {
+wres_tad <- function(df, x = pm_axis("tad"), ...) {
   wres_time(df,  x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
 cwres_time <- function(df,
-                       x = "TIME//Time",
-                       y = "CWRES//Conditional weighted residual",
+                       x = pm_axis("time"),
+                       y = pm_axis("cwres"),
                        ...) {
   res_time(df, x=x, y=y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_time <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
+cwresi_time <- function(df, y = pm_axis("cwresi"), ...) {
   cwres_time(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+cwres_tafd <- function(df, x = pm_axis("tafd"), ...) {
   cwres_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_tafd <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
+cwresi_tafd <- function(df, y = pm_axis("cwresi"), ...) {
   cwres_tafd(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_tad <- function(df, x = "TAD//Time after dose", ...) {
+cwres_tad <- function(df, x = pm_axis("time"), ...) {
   cwres_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_tad <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
+cwresi_tad <- function(df, y = pm_axis("cwresi"), ...) {
   cwres_tad(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-npde_time <- function(df, y  = "NPDE//NPDE", ..., hline = npde_ref()) {
+npde_time <- function(df, y  = pm_axis("npde"), ..., hline = npde_ref()) {
   res_time(df, y = y, hline = hline, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-npde_tad <- function(df, x = "TAD//Time after first dose", ...) {
+npde_tad <- function(df, x = pm_axis("tad"), ...) {
   npde_time(df, x = x,...)
 }
 
 ##' @export
 ##' @rdname res_time
-npde_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+npde_tafd <- function(df, x = pm_axis("tafd"), ...) {
   npde_time(df, x = x, ...)
 }

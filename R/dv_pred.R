@@ -36,7 +36,7 @@
 ##'
 ##' @export
 dv_pred <- function(df, x="PRED//Population predicted {xname}",
-                    y="DV//{yname}", yname="value", xname=yname,
+                    y="DV//Observed {yname}", yname="value", xname=yname,
                     xs = list(), ys = list(), loglog=FALSE,
                     scales = c("fixed", "free"), ...) {
 
@@ -103,7 +103,7 @@ dv_pred <- function(df, x="PRED//Population predicted {xname}",
 
 ##' @export
 ##' @rdname dv_pred
-dv_ipred <- function(df, x = "IPRED//Individual predicted {yname}", ...) {
+dv_ipred <- function(df, x = pm_axis("ipred"), ...) {
   out <- dv_pred(df, x = x, ...)
   layer_as(out,...)
 }

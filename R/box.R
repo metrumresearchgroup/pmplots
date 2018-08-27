@@ -110,7 +110,7 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   boxwork(df,x[1],y[1],xs,ys,...)
 }
 
-##' @rdname cont_cat
+##' @rdname pm_box
 ##' @export
 pm_box_list <- function(df, x, y, ...) {
   list_plot_xy(df, x, y, cont_cat, ...)

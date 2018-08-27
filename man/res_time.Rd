@@ -18,36 +18,35 @@
 \alias{npde_tafd}
 \title{Plot residuals or NPDE versus time}
 \usage{
-res_time(df, x = "TIME//Time", y = "RES//Residual", ...)
+res_time(df, x = pm_axis_time, y = pm_axis_res, ...)
 
-res_tafd(df, x = "TAFD//Time after first dose", ...)
+res_tafd(df, x = pm_axis("tafd"), ...)
 
-res_tad(df, x = "TAD//Time after dose", ...)
+res_tad(df, x = pm_axis("tad"), ...)
 
-wres_time(df, x = "Time//Time", y = "WRES//Weighted residual", ...)
+wres_time(df, x = pm_axis("time"), y = pm_axis("wres"), ...)
 
-wres_tafd(df, x = "TAFD//Time after first dose", ...)
+wres_tafd(df, x = pm_axis("tafd"), ...)
 
-wres_tad(df, x = "TAD//Time after dose", ...)
+wres_tad(df, x = pm_axis("tad"), ...)
 
-cwres_time(df, x = "TIME//Time", y = "CWRES//Conditional weighted residual",
-  ...)
+cwres_time(df, x = pm_axis("time"), y = pm_axis("cwres"), ...)
 
-cwresi_time(df, y = "CWRESI//Conditional weighted residual", ...)
+cwresi_time(df, y = pm_axis("cwresi"), ...)
 
-cwres_tafd(df, x = "TAFD//Time after first dose", ...)
+cwres_tafd(df, x = pm_axis("tafd"), ...)
 
-cwresi_tafd(df, y = "CWRESI//Conditional weighted residual", ...)
+cwresi_tafd(df, y = pm_axis("cwresi"), ...)
 
-cwres_tad(df, x = "TAD//Time after dose", ...)
+cwres_tad(df, x = pm_axis("time"), ...)
 
-cwresi_tad(df, y = "CWRESI//Conditional weighted residual", ...)
+cwresi_tad(df, y = pm_axis("cwresi"), ...)
 
-npde_time(df, y = "NPDE//NPDE", ..., hline = npde_ref())
+npde_time(df, y = pm_axis("npde"), ..., hline = npde_ref())
 
-npde_tad(df, x = "TAD//Time after first dose", ...)
+npde_tad(df, x = pm_axis("tad"), ...)
 
-npde_tafd(df, x = "TAFD//Time after first dose", ...)
+npde_tafd(df, x = pm_axis("tafd"), ...)
 }
 \arguments{
 \item{df}{data set to plot}

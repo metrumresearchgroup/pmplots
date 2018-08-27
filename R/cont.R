@@ -44,7 +44,6 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param yname used to form y-axis title
-##' @param xname used to form x-axis title
 ##' @param xunit used to form x-axis title
 ##' @param log if \code{TRUE}, y-axis will be log-transformed
 ##' @param xby interval for breaks on x-axis (time)
