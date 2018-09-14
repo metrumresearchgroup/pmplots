@@ -28,7 +28,7 @@
 ##'
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
-##' cwres_cat(df, x="STUDYc//Study name")
+##' cwresi_cat(df, x="STUDYc//Study name")
 ##'
 ##' @export
 res_cat <- function(df, x, y="RES//Residual", hline=0, ...) {

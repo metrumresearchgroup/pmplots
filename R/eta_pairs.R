@@ -15,8 +15,8 @@ pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, .
 }
 
 pairs_upper <- function(data, mapping, ...) {
-  x <- deparse(mapping$x)[1]
-  y <- deparse(mapping$y)[1]
+  x <- rlang::quo_name(mapping$x)[1]
+  y <- rlang::quo_name(mapping$y)[1]
   label <- as.character(signif(cor(data[,x],data[,y],use = "complete.obs"), digits=3))
 
   label <- paste0("Corr: ", label)
@@ -24,8 +24,6 @@ pairs_upper <- function(data, mapping, ...) {
     theme(panel.grid.major = ggplot2::element_blank(),
           panel.grid.minor = ggplot2::element_blank())
 }
-
-
 
 ##' Pairs plots using ggpairs
 ##'

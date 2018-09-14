@@ -33,6 +33,9 @@ npde_pred(df, ..., y = "NPDE//NPDE", hline = npde_ref())
 \item{ys}{see \code{\link{defy}}}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_hs}}}
+
+\item{hline}{a list of parameters to pass to \code{geom_hline} specifying
+where to locate a horizontal reference line aesthetics to use}
 }
 \description{
 Residuals or NPDE versus predicted values
@@ -54,7 +57,7 @@ layered on the plot.
 
 df <- dplyr::filter(pmplots_data_obs(), EVID==0)
 
-cwres_pred(df, xname="MyDrug (ng/mL)")
+cwresi_pred(df, xname="MyDrug (ng/mL)")
 
 
 }

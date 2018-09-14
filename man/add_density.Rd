@@ -19,6 +19,12 @@ layer_dnorm(x, sd = 1, mean = 0, ...)
 \item{lty}{passed to \code{ggplot2::stat_function}}
 
 \item{...}{passed to \code{ggplot2::stat_function}}
+
+\item{x}{a \code{ggplot} object to which the density line will be added}
+
+\item{sd}{passed to \code{stats::dnorm}}
+
+\item{mean}{passed to \code{stats::dnorm}}
 }
 \description{
 For example, a plot a normal density over a histogram

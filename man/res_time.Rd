@@ -18,7 +18,7 @@
 \alias{npde_tafd}
 \title{Plot residuals or NPDE versus time}
 \usage{
-res_time(df, x = pm_axis_time, y = pm_axis_res, ...)
+res_time(df, x = pm_axis_time(), y = pm_axis_res(), ...)
 
 res_tafd(df, x = pm_axis("tafd"), ...)
 
@@ -57,6 +57,9 @@ npde_tafd(df, x = pm_axis("tafd"), ...)
 
 \item{...}{passed to \code{\link{y_time}} and
 \code{\link{layer_hs}}}
+
+\item{hline}{a list of arguments to pass to \code{geom_hline} specifying
+aesthetics to use}
 }
 \description{
 Plot residuals or NPDE versus time
@@ -81,11 +84,11 @@ be numeric.
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0)
 
-cwres_time(df)
+cwresi_time(df)
 
-cwres_time(df, yname = "CWRES")
+cwresi_time(df, yname = "CWRES")
 
-cwres_time(df, xunit="day")
+cwresi_time(df, xunit="day")
 
 wres_time(df, xby=48)
 

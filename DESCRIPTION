@@ -13,7 +13,9 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
   dplyr (>= 0.7.2),
-  rlang (>= 0.1.2)
+  rlang (>= 0.1.2),
+  glue, 
+  assertthat
 Suggests: testthat, GGally
 Depends: ggplot2 (>= 2.2.1)
 RoxygenNote: 6.0.1

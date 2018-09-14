@@ -6,9 +6,10 @@
 \alias{dv_preds}
 \title{Plot DV versus predicted values}
 \usage{
-dv_pred(df, x = "PRED//Population predicted {xname}", y = "DV//{yname}",
-  yname = "value", xname = yname, xs = list(), ys = list(),
-  loglog = FALSE, scales = c("fixed", "free"), ...)
+dv_pred(df, x = "PRED//Population predicted {xname}",
+  y = "DV//Observed {yname}", yname = "value", xname = yname,
+  xs = list(), ys = list(), loglog = FALSE, scales = c("fixed", "free"),
+  ...)
 
 dv_ipred(df, x = pm_axis("ipred"), ...)
 
@@ -35,8 +36,6 @@ dv_preds(df, ...)
 to have the same limits}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
-
-\item{prefix}{used internally}
 }
 \description{
 Plot DV versus predicted values

@@ -87,7 +87,7 @@ of functions are not exported.
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0 & BLQ==0)
 
-cwres_time(df) + geom_3s()
+cwresi_time(df) + geom_3s()
 
 pmplots:::gs()
 

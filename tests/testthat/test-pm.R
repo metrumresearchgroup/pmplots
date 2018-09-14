@@ -28,7 +28,7 @@ test_that("every function", {
   p <- wres_time(df)
   expect_is(p, "gg")
 
-  p <- cwres_time(df)
+  p <- cwresi_time(df)
   expect_is(p, "gg")
 
   p <- res_pred(df)
@@ -37,15 +37,15 @@ test_that("every function", {
   p <- wres_pred(df)
   expect_is(p, "gg")
 
-  p <- cwres_pred(df)
+  p <- cwresi_pred(df)
   expect_is(p, "gg")
 
-  p <- cwres_cont(df, x="WT//Weight (kg)")
+  p <- cwresi_cont(df, x="WT//Weight (kg)")
   expect_is(p, "gg")
 
   expect_error(cwres_cont(df, x="WT/Weight (kg)"))
 
-  p <- cwres_cat(df, x="STUDYc//Study")
+  p <- cwresi_cat(df, x="STUDYc//Study")
   expect_is(p, "gg")
 
   p <- eta_hist(df,etas)

@@ -6,6 +6,8 @@
 ##' @param y character name of y-axis data
 ##' @param ... passed to \code{\link{y_time}} and
 ##' \code{\link{layer_hs}}
+##' @param hline a list of arguments to pass to \code{geom_hline} specifying
+##' aesthetics to use
 ##'
 ##' @seealso \code{\link{y_time}}, \code{\link{geom_3s}}
 ##'
@@ -29,18 +31,18 @@
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
-##' cwres_time(df)
+##' cwresi_time(df)
 ##'
-##' cwres_time(df, yname = "CWRES")
+##' cwresi_time(df, yname = "CWRES")
 ##'
-##' cwres_time(df, xunit="day")
+##' cwresi_time(df, xunit="day")
 ##'
 ##' wres_time(df, xby=48)
 ##'
 ##' wres_time(df) + geom_3s()
 ##'
 ##' @export
-res_time <- function(df, x = pm_axis_time, y = pm_axis_res, ...) {
+res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {
   out <- y_time(df, x=x, y=y, ...)
   layer_hs(out,...)
 }

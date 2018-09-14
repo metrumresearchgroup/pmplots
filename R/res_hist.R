@@ -4,6 +4,8 @@
 ##' @param ... passed to \code{\link{cont_hist}}
 ##' @param x character name for x-axis data
 ##' @param xs see \code{\link{defx}}
+##' @param y what to use for the y-axis on the histogram; can be
+##' \code{"..count.."} or \code{"..density.."}
 ##'
 ##' @export
 res_hist <- function(df, ...,

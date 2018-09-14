@@ -26,6 +26,9 @@ npde_hist(df, ..., x = "NPDE//NPDE")
 \item{x}{character name for x-axis data}
 
 \item{xs}{see \code{\link{defx}}}
+
+\item{y}{what to use for the y-axis on the histogram; can be
+\code{"..count.."} or \code{"..density.."}}
 }
 \description{
 Histograms of residuals or NPDE

@@ -19,7 +19,7 @@
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0 & BLQ==0)
 ##'
-##' cwres_time(df) + geom_3s()
+##' cwresi_time(df) + geom_3s()
 ##'
 ##' pmplots:::gs()
 ##'
@@ -184,11 +184,13 @@ layer_3s <- function(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3
 ##' @param col passed to \code{ggplot2::stat_function}
 ##' @param lwd passed to \code{ggplot2::stat_function}
 ##' @param lty passed to \code{ggplot2::stat_function}
+##' @param x a \code{ggplot} object to which the density line will be added
+##' @param sd passed to \code{stats::dnorm}
+##' @param mean passed to \code{stats::dnorm}
 ##' @param ... passed to \code{ggplot2::stat_function}
 ##'
 ##'
-add_density <- function(fun = dnorm, col = .ggblue,
-                        lwd = 1.5, lty = 2, ...) {
+add_density <- function(fun = dnorm, col = .ggblue, lwd = 1.5, lty = 2, ...) {
   ggplot2::stat_function(fun = fun, col = col, lwd = lwd, lty = lty, ...)
 }
 

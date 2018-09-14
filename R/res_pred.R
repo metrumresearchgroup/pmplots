@@ -6,6 +6,8 @@
 ##' @param xname glued into x-axis title
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
+##' @param hline a list of parameters to pass to \code{geom_hline} specifying
+##' where to locate a horizontal reference line aesthetics to use
 ##'
 ##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_hs}}
 ##'
@@ -28,7 +30,7 @@
 ##'
 ##' df <- dplyr::filter(pmplots_data_obs(), EVID==0)
 ##'
-##' cwres_pred(df, xname="MyDrug (ng/mL)")
+##' cwresi_pred(df, xname="MyDrug (ng/mL)")
 ##'
 ##'
 ##' @export

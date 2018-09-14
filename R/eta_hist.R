@@ -7,6 +7,8 @@
 ##' @param fill passed to \code{geom_histogram}
 ##' @param col passed to \code{geom_histogram}
 ##' @param alpha passed to \code{geom_histogram}
+##' @param add_density if \code{TRUE}, a normal density line will
+##' be plotted on top of the histogram via \code{\link{add_density}}
 ##' @param ... other arguments for \code{geom_histogram}
 ##'
 ##' @details

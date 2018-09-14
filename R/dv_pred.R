@@ -9,7 +9,6 @@
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
-##' @param prefix used internally
 ##' @param scales if \code{TRUE}, then the x- and y- axes will be forced
 ##' to have the same limits
 ##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_as}}

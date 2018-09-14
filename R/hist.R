@@ -4,12 +4,16 @@
 ##' of \code{cont_hist}.
 ##'
 ##' @param df the data frame containing plotting data
-##' @param x the x column
+##' @param x the x column for \code{geom_histogram}
+##' @param y what to use for the y-axis on the histogram; can be
+##' \code{"..count.."} or \code{"..density.."}
+##' @param add_density if \code{TRUE}, a normal density line will
+##' be plotted over the histogram using \code{\link{add_density}}
 ##' @param xs a list of information for the x axis
 ##' @param fill a character value passed to \code{geom_histogram}
 ##' @param col a character value passed to \code{geom_histogram}
 ##' @param alpha a numeric value passed to \code{geom_histogram}
-##' @param ... passed to \code{geom_histogram}
+##' @param ... passed to \code{geom_histogram} and \code{add_density}
 ##'
 ##'
 ##'

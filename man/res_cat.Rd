@@ -47,7 +47,7 @@ Summary numbers located below each box are described in
 
 df <- dplyr::filter(pmplots_data(), EVID==0)
 
-cwres_cat(df, x="STUDYc//Study name")
+cwresi_cat(df, x="STUDYc//Study name")
 
 }
 \seealso{
