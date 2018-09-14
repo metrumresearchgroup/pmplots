@@ -39,7 +39,7 @@
 ##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))
 ##'
 ##' @export
-dv_time <- function(df, x="TIME//Time", y="DV//{yname}",
+dv_time <- function(df, x=pm_axis("time"), y=pm_axis("dv"),
                     xunit = "hr",
                     yname = "DV", group = "ID",
                     xs=list(), ys=list(), log=FALSE, xby = NULL, ...) {
@@ -92,12 +92,12 @@ dv_time <- function(df, x="TIME//Time", y="DV//{yname}",
 
 ##' @export
 ##' @rdname dv_time
-dv_tafd <- function(df, x = "TAFD//Time after first dose", ...) {
+dv_tafd <- function(df, x =  pm_axis_tafd(), ...) {
   dv_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname dv_time
-dv_tad <- function(df, x = "TAD//Time after dose", ...) {
+dv_tad <- function(df, x = pm_axis_tad(), ...) {
   dv_time(df, x = x, ...)
 }

@@ -7,13 +7,13 @@
 \alias{cwresi_cat}
 \title{Plot residuals versus categorical variable}
 \usage{
-res_cat(df, x, y = "RES//Residual", hline = 0, ...)
+res_cat(df, x, y = pm_axis_res(), hline = 0, ...)
 
-wres_cat(df, x, y = "WRES//Weighted residual", hline = 0, ...)
+wres_cat(df, x, y = pm_axis_wres(), hline = 0, ...)
 
-cwres_cat(df, x, y = "CWRES//Conditional weighted residual", hline = 0, ...)
+cwres_cat(df, x, y = pm_axis_cwres(), hline = 0, ...)
 
-cwresi_cat(df, x, y = "CWRESI//Conditional weighted residual", ...)
+cwresi_cat(df, x, y = pm_axis_cwresi(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}

@@ -6,13 +6,13 @@
 \alias{dv_tad}
 \title{Plot DV versus time}
 \usage{
-dv_time(df, x = "TIME//Time", y = "DV//{yname}", xunit = "hr",
+dv_time(df, x = pm_axis("time"), y = pm_axis("dv"), xunit = "hr",
   yname = "DV", group = "ID", xs = list(), ys = list(), log = FALSE,
   xby = NULL, ...)
 
-dv_tafd(df, x = "TAFD//Time after first dose", ...)
+dv_tafd(df, x = pm_axis_tafd(), ...)
 
-dv_tad(df, x = "TAD//Time after dose", ...)
+dv_tad(df, x = pm_axis_tad(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}

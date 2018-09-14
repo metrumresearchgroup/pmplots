@@ -8,14 +8,17 @@
 <title>Plots for Pharmacometrics • pmplots</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Plots for Pharmacometrics">
+<meta property="og:description" content="Very light wrappers around 'ggplot2' plotting code tailored for pharmacometric applications.">
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -24,18 +27,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">pmplots</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">pmplots</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9002</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="/index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -48,7 +58,10 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
+    
+
+    
     
 <div id="table-of-contents" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
@@ -57,9 +70,9 @@
 <li><a href="#basics">Basic functionality</a></li>
 <li>Other examples
 <ul>
-<li>Complete listing: <a href="inst/examples/everyfunction.md">everyfunction.md</a>
+<li>Complete listing (validated version): <a href="https://ghe.metrumrg.com/software/pmplots/blob/426c6f570e7968a996525e1050162c8f494d85bb/inst/examples/everyfunction.html">everyfunction.md</a>
 </li>
-<li>Other examples: <a href="inst/examples/example1.md">example1.md</a>
+<li>Other examples: <a href="inst/examples/example1.html">example1.md</a>
 </li>
 </ul>
 </li>
@@ -71,62 +84,72 @@
 <div id="simple-function-calls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simple-function-calls" class="anchor"></a>Simple function calls</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df, <span class="dt">what=</span><span class="st">"NoDoze conc (ng/mL)"</span>)</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-2-1.png"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df, <span class="dt">yname=</span><span class="st">"NoDoze conc (ng/mL)"</span>)</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-2-1.png" width="480"></p>
 </div>
 <div id="add-a-title" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-a-title" class="anchor"></a>Add a title</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">title=</span><span class="st">"Lookie here!"</span>)</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-3-1.png"></p>
+<p><img src="inst/img/README-unnamed-chunk-3-1.png" width="480"></p>
 </div>
 <div id="modify-the-axes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#modify-the-axes" class="anchor"></a>Modify the axes</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">xs=</span><span class="kw">list</span>(<span class="dt">br=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">240</span>,<span class="dv">24</span>)))</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-4-1.png"></p>
+<p><img src="inst/img/README-unnamed-chunk-4-1.png" width="480"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">log=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-4-2.png"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">what=</span><span class="st">"NoDoze (mg/L)"</span>,
+<p><img src="inst/img/README-unnamed-chunk-4-2.png" width="480"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">yname=</span><span class="st">"NoDoze (mg/L)"</span>,
         <span class="dt">ys =</span> <span class="kw">list</span>(<span class="dt">trans=</span><span class="st">"log"</span>, <span class="dt">breaks=</span><span class="kw"><a href="reference/logbr.html">logbr</a></span>()),
         <span class="dt">xs =</span> <span class="kw">list</span>(<span class="dt">br=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">240</span>,<span class="dv">72</span>)))</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-4-3.png"></p>
-</div>
-<div id="some-color-support" class="section level2">
-<h2 class="hasAnchor">
-<a href="#some-color-support" class="anchor"></a>Some color support</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">col=</span><span class="st">"STUDYc"</span>)</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-5-1.png"></p>
+<p><img src="inst/img/README-unnamed-chunk-4-3.png" width="480"></p>
 </div>
 <div id="faceting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#faceting" class="anchor"></a>Faceting</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df) +<span class="st"> </span><span class="kw">facet_wrap</span>(~STUDY, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-6-1.png"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>STUDY, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-5-1.png" width="480"></p>
 </div>
 <div id="add-theme" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-theme" class="anchor"></a>Add theme</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df) +<span class="st"> </span><span class="kw"><a href="reference/theme_plain.html">theme_plain</a></span>()</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-7-1.png"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/theme_plain.html">theme_plain</a></span>()</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-6-1.png" width="480"></p>
 </div>
 </div>
-
   </div>
 
-  <div class="col-md-3" id="sidebar">
-    <h2>License</h2>
-<p>GPL (&gt;=2)</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Report a bug at <br><a href="NA">NA</a>
+</li>
+</ul>
+</div>
+<div class="license">
+<h2>License</h2>
+<ul class="list-unstyled">
+<li>GPL (&gt;=2)</li>
+</ul>
+</div>
+<div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Kyle T Baron <br><small class="roles"> Author, maintainer </small> </li>
+<li>Kyle T Baron <br><small class="roles"> Author, maintainer </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
+</div>
+
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a name="basics"></a></li>
 </ul>
 </div>
+</div>
+
 </div>
 
 
@@ -135,11 +158,13 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

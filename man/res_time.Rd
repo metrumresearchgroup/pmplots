@@ -20,33 +20,33 @@
 \usage{
 res_time(df, x = pm_axis_time(), y = pm_axis_res(), ...)
 
-res_tafd(df, x = pm_axis("tafd"), ...)
+res_tafd(df, x = pm_axis_tafd(), ...)
 
-res_tad(df, x = pm_axis("tad"), ...)
+res_tad(df, x = pm_axis_tad(), ...)
 
-wres_time(df, x = pm_axis("time"), y = pm_axis("wres"), ...)
+wres_time(df, x = pm_axis_time(), y = pm_axis_wres(), ...)
 
-wres_tafd(df, x = pm_axis("tafd"), ...)
+wres_tafd(df, x = pm_axis_tafd(), ...)
 
-wres_tad(df, x = pm_axis("tad"), ...)
+wres_tad(df, x = pm_axis_tad(), ...)
 
-cwres_time(df, x = pm_axis("time"), y = pm_axis("cwres"), ...)
+cwres_time(df, x = pm_axis_time(), y = pm_axis_cwres(), ...)
 
-cwresi_time(df, y = pm_axis("cwresi"), ...)
+cwresi_time(df, y = pm_axis_cwresi(), ...)
 
-cwres_tafd(df, x = pm_axis("tafd"), ...)
+cwres_tafd(df, x = pm_axis_tafd(), ...)
 
-cwresi_tafd(df, y = pm_axis("cwresi"), ...)
+cwresi_tafd(df, y = pm_axis_cwresi(), ...)
 
-cwres_tad(df, x = pm_axis("time"), ...)
+cwres_tad(df, x = pm_axis_tad(), ...)
 
-cwresi_tad(df, y = pm_axis("cwresi"), ...)
+cwresi_tad(df, y = pm_axis_tad(), ...)
 
-npde_time(df, y = pm_axis("npde"), ..., hline = npde_ref())
+npde_time(df, y = pm_axis_npde(), ..., hline = npde_ref())
 
-npde_tad(df, x = pm_axis("tad"), ...)
+npde_tad(df, x = pm_axis_tad(), ...)
 
-npde_tafd(df, x = pm_axis("tafd"), ...)
+npde_tafd(df, x = pm_axis_tafd(), ...)
 }
 \arguments{
 \item{df}{data set to plot}

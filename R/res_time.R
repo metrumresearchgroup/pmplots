@@ -49,88 +49,88 @@ res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {
 
 ##' @export
 ##' @rdname res_time
-res_tafd <- function(df, x = pm_axis("tafd"), ...) {
+res_tafd <- function(df, x = pm_axis_tafd(), ...) {
   res_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tad <- function(df, x = pm_axis("tad"), ...) {
+res_tad <- function(df, x = pm_axis_tad(), ...) {
   res_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_time <- function(df, x = pm_axis("time"),
-                      y = pm_axis("wres"), ...) {
+wres_time <- function(df, x = pm_axis_time(),
+                      y = pm_axis_wres(), ...) {
   res_time(df, x = x,  y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_tafd <- function(df, x = pm_axis("tafd"), ...) {
+wres_tafd <- function(df, x = pm_axis_tafd(), ...) {
   wres_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-wres_tad <- function(df, x = pm_axis("tad"), ...) {
+wres_tad <- function(df, x = pm_axis_tad(), ...) {
   wres_time(df,  x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
 cwres_time <- function(df,
-                       x = pm_axis("time"),
-                       y = pm_axis("cwres"),
+                       x = pm_axis_time(),
+                       y = pm_axis_cwres(),
                        ...) {
   res_time(df, x=x, y=y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_time <- function(df, y = pm_axis("cwresi"), ...) {
+cwresi_time <- function(df, y = pm_axis_cwresi(), ...) {
   cwres_time(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_tafd <- function(df, x = pm_axis("tafd"), ...) {
+cwres_tafd <- function(df, x = pm_axis_tafd(), ...) {
   cwres_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_tafd <- function(df, y = pm_axis("cwresi"), ...) {
+cwresi_tafd <- function(df, y = pm_axis_cwresi(), ...) {
   cwres_tafd(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-cwres_tad <- function(df, x = pm_axis("time"), ...) {
+cwres_tad <- function(df, x = pm_axis_tad(), ...) {
   cwres_time(df, x=x, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-cwresi_tad <- function(df, y = pm_axis("cwresi"), ...) {
+cwresi_tad <- function(df, y = pm_axis_tad(), ...) {
   cwres_tad(df, y = y, ... )
 }
 
 ##' @export
 ##' @rdname res_time
-npde_time <- function(df, y  = pm_axis("npde"), ..., hline = npde_ref()) {
+npde_time <- function(df, y  = pm_axis_npde(), ..., hline = npde_ref()) {
   res_time(df, y = y, hline = hline, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-npde_tad <- function(df, x = pm_axis("tad"), ...) {
+npde_tad <- function(df, x = pm_axis_tad(), ...) {
   npde_time(df, x = x,...)
 }
 
 ##' @export
 ##' @rdname res_time
-npde_tafd <- function(df, x = pm_axis("tafd"), ...) {
+npde_tafd <- function(df, x = pm_axis_tafd(), ...) {
   npde_time(df, x = x, ...)
 }

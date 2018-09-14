@@ -20,7 +20,7 @@
 ##' then a single plot object (not a list) is returned.
 ##'
 ##' @export
-res_cont <- function(df, x, y="RES//Residual",
+res_cont <- function(df, x, y=pm_axis_res(),
                      xs=defx(), ys=defy(), ...) {
   out <- list_plot_xy(df, x, y, xs = xs, ys = ys, ...)
   out <- lapply(out, layer_hs, ...)
@@ -30,22 +30,19 @@ res_cont <- function(df, x, y="RES//Residual",
 
 ##' @export
 ##' @rdname res_cont
-wres_cont <- function(df, x, y="WRES//Weighted residual",
+wres_cont <- function(df, x, y=pm_axis_wres(),
                       xs=defx(), ys=defy(),...) {
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }
 
 ##' @export
 ##' @rdname res_cont
-cwres_cont <- function(df, x,
-                       y="CWRES//Conditional weighted residual",
-                       xs=defx(), ys=defy(),...) {
+cwres_cont <- function(df, x, y=pm_axis_cwres(), xs=defx(), ys=defy(),...) {
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }
 
 ##' @export
 ##' @rdname res_cont
-cwresi_cont <- function(df, x,
-                        y="CWRESI//Conditional weighted residual", ...) {
+cwresi_cont <- function(df, x, y=pm_axis_cwresi(), ...) {
   cwres_cont(df, x = x, y = y, ...)
 }

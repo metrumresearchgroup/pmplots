@@ -35,7 +35,9 @@ pm_axis_data <- list(
     tad  = "Time after dose {xunit}",
     tafd = "Time after first dose {xunit}",
     pred = "Population predicted {xname}",
-    ipred = "Individual predicted {xname}"
+    ipred = "Individual predicted {xname}",
+    dv = "DV {yname}",
+    npde = "NPDE"
   )
 )
 
@@ -49,10 +51,11 @@ mk_col_title <- function(what,sep="//") {
 
 pm_axis_tad <- function() mk_col_title("tad")
 pm_axis_time <- function() mk_col_title("time")
+pm_axis_tafd <- function() mk_col_title("tafd")
 pm_axis_res <- function() mk_col_title("res")
 pm_axis_wres <- function() mk_col_title("wres")
 pm_axis_cwres <- function() mk_col_title("cwres")
 pm_axis_cwresi <- function() mk_col_title("cwresi")
-
-
+pm_axis_npde <- function() mk_col_title("npde")
+pm_axis_pred <- function() mk_col_title("pred")
 

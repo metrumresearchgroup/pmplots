@@ -8,16 +8,16 @@
 \alias{npde_pred}
 \title{Residuals or NPDE versus predicted values}
 \usage{
-res_pred(df, x = "PRED//Population predicted {xname}", y = "RES//Residual",
-  xname = "value", xs = defx(), ys = defy(), ...)
+res_pred(df, x = pm_axis_pred(), y = pm_axis_res(), xname = "value",
+  xs = defx(), ys = defy(), ...)
 
-wres_pred(df, ..., y = "WRES//Weighted residual")
+wres_pred(df, ..., y = pm_axis_wres())
 
-cwres_pred(df, ..., y = "CWRES//Conditional weighted residual")
+cwres_pred(df, ..., y = pm_axis_cwres())
 
-cwresi_pred(df, y = "CWRESI//Conditional weighted residual", ...)
+cwresi_pred(df, y = pm_axis_cwresi(), ...)
 
-npde_pred(df, ..., y = "NPDE//NPDE", hline = npde_ref())
+npde_pred(df, ..., y = pm_axis_npde(), hline = npde_ref())
 }
 \arguments{
 \item{df}{data frame to plot}

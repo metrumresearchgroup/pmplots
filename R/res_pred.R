@@ -35,8 +35,8 @@
 ##'
 ##' @export
 res_pred <- function(df,
-                     x="PRED//Population predicted {xname}",
-                     y="RES//Residual",
+                     x=pm_axis_pred(),
+                     y=pm_axis_res(),
                      xname = "value",
                      xs=defx(), ys=defy(),
                      ...) {
@@ -62,25 +62,25 @@ res_pred <- function(df,
 
 ##' @export
 ##' @rdname res_pred
-wres_pred <- function(df, ..., y="WRES//Weighted residual") {
+wres_pred <- function(df, ..., y=pm_axis_wres()) {
   res_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-cwres_pred <- function(df, ..., y = "CWRES//Conditional weighted residual") {
+cwres_pred <- function(df, ..., y=pm_axis_cwres()) {
   res_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-cwresi_pred <- function(df, y = "CWRESI//Conditional weighted residual", ...) {
+cwresi_pred <- function(df, y=pm_axis_cwresi(), ...) {
   cwres_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
-npde_pred <- function(df, ..., y = "NPDE//NPDE", hline = npde_ref()) {
+npde_pred <- function(df, ..., y = pm_axis_npde(), hline = npde_ref()) {
   res_pred(df, y = y, hline = hline, ...)
 }
 

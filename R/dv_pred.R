@@ -34,8 +34,8 @@
 ##' dv_preds(df, yname = "MyDrug (ng/mL)")
 ##'
 ##' @export
-dv_pred <- function(df, x="PRED//Population predicted {xname}",
-                    y="DV//Observed {yname}", yname="value", xname=yname,
+dv_pred <- function(df, x=pm_axis("pred"),
+                    y=pm_axis("dv"), yname="value", xname=yname,
                     xs = list(), ys = list(), loglog=FALSE,
                     scales = c("fixed", "free"), ...) {
 

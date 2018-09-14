@@ -7,15 +7,13 @@
 \alias{cwresi_cont}
 \title{Plot residuals versus continuous variables}
 \usage{
-res_cont(df, x, y = "RES//Residual", xs = defx(), ys = defy(), ...)
+res_cont(df, x, y = pm_axis_res(), xs = defx(), ys = defy(), ...)
 
-wres_cont(df, x, y = "WRES//Weighted residual", xs = defx(), ys = defy(),
-  ...)
+wres_cont(df, x, y = pm_axis_wres(), xs = defx(), ys = defy(), ...)
 
-cwres_cont(df, x, y = "CWRES//Conditional weighted residual", xs = defx(),
-  ys = defy(), ...)
+cwres_cont(df, x, y = pm_axis_cwres(), xs = defx(), ys = defy(), ...)
 
-cwresi_cont(df, x, y = "CWRESI//Conditional weighted residual", ...)
+cwresi_cont(df, x, y = pm_axis_cwresi(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}

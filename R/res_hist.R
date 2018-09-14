@@ -9,7 +9,7 @@
 ##'
 ##' @export
 res_hist <- function(df, ...,
-                     x = "RES//Residual",
+                     x = pm_axis_res(),
                      xs = defx()) {
   cont_hist(df, x, xs, ...)
 }
@@ -17,26 +17,26 @@ res_hist <- function(df, ...,
 ##' @export
 ##' @rdname res_hist
 wres_hist <- function(df, ...,
-                      x = "WRES//Weighted residual",
+                      x = pm_axis_wres(),
                       y = "..density..") {
   res_hist(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
-cwres_hist <- function(df, ..., x = "CWRES//Conditional weighted residual") {
+cwres_hist <- function(df, ..., x = pm_axis_cwres()) {
   wres_hist(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
-cwresi_hist <- function(df, x = "CWRESI//Conditional weighted residual", ...) {
+cwresi_hist <- function(df, x = pm_axis_cwresi(), ...) {
   cwres_hist(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname res_hist
-npde_hist <- function(df, ..., x = "NPDE//NPDE") {
+npde_hist <- function(df, ..., x = pm_axis("npde")) {
   wres_hist(df, x = x, ...)
 }
 

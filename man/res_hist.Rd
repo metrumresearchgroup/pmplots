@@ -8,15 +8,15 @@
 \alias{npde_hist}
 \title{Histograms of residuals or NPDE}
 \usage{
-res_hist(df, ..., x = "RES//Residual", xs = defx())
+res_hist(df, ..., x = pm_axis_res(), xs = defx())
 
-wres_hist(df, ..., x = "WRES//Weighted residual", y = "..density..")
+wres_hist(df, ..., x = pm_axis_wres(), y = "..density..")
 
-cwres_hist(df, ..., x = "CWRES//Conditional weighted residual")
+cwres_hist(df, ..., x = pm_axis_cwres())
 
-cwresi_hist(df, x = "CWRESI//Conditional weighted residual", ...)
+cwresi_hist(df, x = pm_axis_cwresi(), ...)
 
-npde_hist(df, ..., x = "NPDE//NPDE")
+npde_hist(df, ..., x = pm_axis("npde"))
 }
 \arguments{
 \item{df}{data frame to plot}
