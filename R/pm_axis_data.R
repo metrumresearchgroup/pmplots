@@ -58,4 +58,4 @@ pm_axis_cwres <- function() mk_col_title("cwres")
 pm_axis_cwresi <- function() mk_col_title("cwresi")
 pm_axis_npde <- function() mk_col_title("npde")
 pm_axis_pred <- function() mk_col_title("pred")
-
+pm_axis_dv <- function() mk_col_title("dv")

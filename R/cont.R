@@ -65,14 +65,14 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##'
 ##'
 y_time <- function(df,
-                   x="TIME//Time {xunit}",
+                   x=pm_axis_time(),
                    y,
                    xunit="hr",
                    yname = NULL,
                    xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {
 
-  x <- glue::glue(x)
+  x <- glue_unit(x,xunit)
   y <- glue::glue(y)
 
   x <- col_label(x)
@@ -89,10 +89,6 @@ y_time <- function(df,
 
   xs$name <- x[2]
   ys$name <- y[2]
-
-  if(!is.null(xunit)) {
-    xs$name <- paste0(xs$name, " (", xunit, ")")
-  }
 
   x <- x[1]
   y <- y[1]

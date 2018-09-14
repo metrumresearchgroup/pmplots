@@ -39,12 +39,12 @@
 ##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))
 ##'
 ##' @export
-dv_time <- function(df, x=pm_axis("time"), y=pm_axis("dv"),
+dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
                     xunit = "hr",
                     yname = "DV", group = "ID",
                     xs=list(), ys=list(), log=FALSE, xby = NULL, ...) {
 
-  x <- glue::glue(x)
+  x <- glue_unit(x,xunit)
   y <- glue::glue(y)
 
   x <- col_label(x)

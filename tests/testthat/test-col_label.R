@@ -26,6 +26,9 @@ test_that("col_label", {
   x <- col_label("WT")
   expect_length(x,2)
   expect_identical(x, c("WT", "WT"))
+
+  expect_error(col_label("WT.2"))
+
 })
 
 

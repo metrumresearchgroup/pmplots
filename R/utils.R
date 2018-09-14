@@ -237,3 +237,12 @@ rot_y <- function(angle=30, hjust = 1) {
 .miss <- function(name,object) {
   !(name %in% names(object))
 }
+
+glue_unit <- function(x,xunit) {
+  if(is.null(xunit)) return(x)
+  if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
+  glue::glue(x)
+}
+
+
+

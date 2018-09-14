@@ -71,7 +71,7 @@ dv_ipred(df, loglog=TRUE, yname = .yname)
 ```
 
 ### Observed versus both PRED and IPRED
-```{r}
+```{r, fig.width = 6}
 dv_preds(df) %>% mrggdraw(ncol = 2)
 ```
 
@@ -87,7 +87,7 @@ res_time(df)
 ```
 
 ### Residuals versus time after first dose (`res_tafd`)
-```{r,eval=FALSE}
+```{r}
 res_tafd(df)
 ```
 
@@ -196,7 +196,7 @@ cwres_cont(df, x="WT//Weight (kg)")
 ```
 
 Vectorized version
-```{r, fig.height = 6, fig.width = 5}
+```{r, fig.height = 6, fig.width = 6}
 cwres_cont(df, covs) %>% 
   mrggdraw(ncol = 2)
 ```
@@ -361,14 +361,13 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
 
 ## Continuous variable by categorical variable (`cont_cat`)
 ```{r}
-cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
+cont_cat(id, x="STUDYc", y="WT")
 ```
 
 ## General histogram (`cont_hist`)
 Coming soon.
-```{r, include = FALSE}
-cont_hist(id, x = "WT // Weight (kg)") + 
-  facet_wrap(~STUDYc)
+```{r}
+cont_hist(id, x = "WT") + facet_wrap(~STUDYc)
 ```
 
 ## Split and plot (`split_plot`)

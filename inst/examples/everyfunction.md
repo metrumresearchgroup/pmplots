@@ -162,6 +162,8 @@ res_time(df)
 res_tafd(df)
 ```
 
+![](img/everyfunction--unnamed-chunk-11-1.png)
+
 ### Residuals versus time after dose (`res_tad`)
 
 ``` r
