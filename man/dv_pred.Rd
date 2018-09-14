@@ -7,7 +7,7 @@
 \title{Plot DV versus predicted values}
 \usage{
 dv_pred(df, x = pm_axis("pred"), y = pm_axis("dv"), yname = "value",
-  xname = yname, xs = list(), ys = list(), loglog = FALSE,
+  xname = "value", xs = list(), ys = list(), loglog = FALSE,
   scales = c("fixed", "free"), ...)
 
 dv_ipred(df, x = pm_axis("ipred"), ...)

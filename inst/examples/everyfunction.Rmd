@@ -18,12 +18,13 @@ knitr::opts_chunk$set(comment='.', message=FALSE, warning=FALSE,
 library(pmplots)
 library(dplyr)
 library(mrggsave)
+library(purrr)
 ```
 
 
 # Example data in the package
 ```{r}
-df <- pmplots_data() %>% filter(EVID==0) %>% mutate(CWRES = CWRESI)
+df <- pmplots_data() %>% filter(EVID==0,!is.na(PRED)) %>% mutate(CWRES = CWRESI)
 
 id <- distinct(df, ID, .keep_all=TRUE)
 
@@ -104,10 +105,15 @@ res_pred(df)
 
 ### RES versus continuous covariate (`res_cont`)
 
-This function is also vectorized in x.
 
 ```{r}
 res_cont(df, x="WT//Weight (kg)")
+```
+
+This function is also vectorized in x.
+
+```{r, fig.height = 6, fig.width = 6}
+c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% mrggpage %>% mrggdraw
 ```
 
 
@@ -118,8 +124,8 @@ res_cat(df, x="STUDYc//Study type")
 ```
 
 ### Residual histogram (`res_hist`)
-Coming soon.
-```{r,include = FALSE}
+
+```{r}
 res_hist(df)
 ```
 
@@ -365,9 +371,9 @@ cont_cat(id, x="STUDYc", y="WT")
 ```
 
 ## General histogram (`cont_hist`)
-Coming soon.
+
 ```{r}
-cont_hist(id, x = "WT") + facet_wrap(~STUDYc)
+cont_hist(id, x = "WT", bins = 20)
 ```
 
 ## Split and plot (`split_plot`)

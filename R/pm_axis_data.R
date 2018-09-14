@@ -36,7 +36,7 @@ pm_axis_data <- list(
     tafd = "Time after first dose {xunit}",
     pred = "Population predicted {xname}",
     ipred = "Individual predicted {xname}",
-    dv = "DV {yname}",
+    dv = "Observed {yname}",
     npde = "NPDE"
   )
 )

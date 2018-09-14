@@ -34,12 +34,14 @@
 ##' dv_preds(df, yname = "MyDrug (ng/mL)")
 ##'
 ##' @export
-dv_pred <- function(df, x=pm_axis("pred"),
-                    y=pm_axis("dv"), yname="value", xname=yname,
+dv_pred <- function(df, x=pm_axis("pred"), y=pm_axis("dv"),
+                    yname="value", xname="value",
                     xs = list(), ys = list(), loglog=FALSE,
                     scales = c("fixed", "free"), ...) {
 
   scales <- match.arg(scales)
+
+  if(missing(xname)) xname <- yname
 
   x <- glue::glue(x)
   y <- glue::glue(y)
