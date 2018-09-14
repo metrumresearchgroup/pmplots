@@ -23,7 +23,7 @@ library(mrggsave)
 
 # Example data in the package
 ```{r}
-df <- pmplots_data() %>% filter(EVID==0)
+df <- pmplots_data() %>% filter(EVID==0) %>% mutate(CWRES = CWRESI)
 
 id <- distinct(df, ID, .keep_all=TRUE)
 
@@ -161,8 +161,7 @@ wres_cat(df, x="STUDYc//Study type")
 ```
 
 ### Weighted residual histogram (`wres_hist`)
-Coming soon.
-```{r,include = FALSE}
+```{r}
 wres_hist(df)
 ```
 
@@ -220,8 +219,7 @@ cwres_cat(df, x = c("STUDYc//Study", "RF//Renal Function"))
 
 
 ### Conditional weighted residual histogram (`cwres_hist`)
-Coming soon.
-```{r, include = FALSE}
+```{r}
 cwres_hist(df)
 ```
 
@@ -234,6 +232,48 @@ cwres_pred(df)
 ```{r}
 cwres_q(df)
 ```
+
+
+# NPDE plots
+
+## NPDE versus TIME (`npde_time`, `npde_tad`, `npde_tafd`)
+
+```{r}
+npde_time(df)
+```
+
+## NPDE versus TAD (`npde_tad`)
+
+```{r}
+npde_tad(df)
+```
+
+## NPDE versus TAFD (`npde_tafd`)
+
+```{r}
+npde_tafd(df)
+```
+
+
+## NPDE versus PRED (`npde_pred`)
+
+```{r}
+npde_pred(df)
+```
+
+
+
+## QQ-plot with NPDE (`npde_q`)
+```{r}
+npde_q(df)
+```
+
+
+## NPDE histogram (`npde_hist`)
+```{r}
+npde_hist(df)
+```
+
 
 # ETA plots
 
@@ -399,38 +439,6 @@ dv_time(df, xs=a)
 ```{r}
 wres_time(df) + geom_3s()
 ```
-
-
-# Controlled input / output
-```{r}
-dd <- df
-
-dd$PRED <- 2*dd$DV
-dv_pred(dd)
-dd$IPRED <- 3*dd$DV
-dv_ipred(dd)
-dd$RES <- 2*dd$TIME
-res_time(dd)
-dd$WRES <- 10*dd$TIME
-wres_time(dd)
-dd$CWRES <- 100*dd$TIME
-cwres_time(dd)
-```
-
-
-
-```{r}
-cwres_cont(dd, x = "RES//Controlled")
-```
-
-Should be fairly flat
-```{r}
-set.seed(1001)
-dd$CWRESQ <- rnorm(nrow(dd))
-cwres_q(dd,x="CWRESQ")
-```
-
-
 
 
 

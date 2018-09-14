@@ -104,6 +104,7 @@ defy <- function(...) {
   x$oob <-  NULL
   x
 }
+
 ##' Default setting for discrete x-axis scale
 ##'
 ##' A named list of the formal arguments for \code{scale_x_discrete}.  This
@@ -166,13 +167,15 @@ split_col_label <- function(x,split="//") {
 col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
-    if(length(y)==2) return(y)
+    if(length(y)==2) return(trimws(y))
+  }
+  if(!grepl("[[:punct:]]",x)) {
+    return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }
 
 noline <- ggplot2::element_blank()
-
 
 merge.list <- function(x,y,...,open=FALSE,
                        warn=FALSE,context="object") {
@@ -193,9 +196,6 @@ merge.list <- function(x,y,...,open=FALSE,
   }
   x
 }
-
-
-
 
 combine_list <- function(left, right) {
   if(!all(is.list(left),is.list(right))) {
@@ -223,16 +223,17 @@ update_list <- function(left, right) {
 rot_x <- function(angle=30, hjust = 1) {
   theme(axis.text.x = element_text(angle = angle, hjust = hjust))
 }
+
 ##' @rdname rot_x
 ##' @export
 rot_y <- function(angle=30, hjust = 1) {
   theme(axis.text.y = element_text(angle = angle, hjust = hjust))
 }
 
-
 .has <- function(name,object) {
   name %in% names(object)
 }
+
 .miss <- function(name,object) {
   !(name %in% names(object))
 }
