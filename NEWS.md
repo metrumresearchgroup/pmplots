@@ -6,7 +6,6 @@
 - Added `res_hist`, `wres_hist`, and `cwres_hist` along with 
 the more general `cont_hist` functions for plotting residuals
 or other continuous variables as histograms
-- 
 - Vectorized `eta_cont`, `(cw)res_cont`, `eta_cat`, and
 `(cw)res_cat`; see function help for more details about 
 what this means
