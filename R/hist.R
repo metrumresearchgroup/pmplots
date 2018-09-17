@@ -17,6 +17,12 @@
 ##' @param ... passed to \code{geom_histogram} and \code{add_density}
 ##'
 ##'
+##' @examples
+##'
+##' df <- pmplots_data_id()
+##'
+##' cont_hist(df, x = "WT//Weight (kg)")
+##'
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",

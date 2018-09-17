@@ -30,7 +30,7 @@
 ##' be numeric.
 ##'
 ##' @examples
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- pmplots_data_obs()
 ##'
 ##' res_time(df)
 ##'
@@ -60,7 +60,7 @@ res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
 ##' \code{\link{y_time}}
 ##'
 ##' @examples
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- pmplots_data_obs()
 ##'
 ##' wres_time(df)
 ##'
@@ -95,7 +95,7 @@ wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
 ##' \code{\link{y_time}}
 ##'
 ##' @examples
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- pmplots_data_obs()
 ##'
 ##' cwresi_time(df)
 ##'
@@ -151,7 +151,7 @@ cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
 ##' aesthetics to use
 ##'
 ##' @examples
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- pmplots_data_obs()
 ##'
 ##' npde_time(df)
 ##'

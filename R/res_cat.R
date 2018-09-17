@@ -26,7 +26,7 @@
 ##'
 ##' @examples
 ##'
-##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##' df <- pmplots_data_obs()
 ##'
 ##' cwresi_cat(df, x="STUDYc//Study name")
 ##'

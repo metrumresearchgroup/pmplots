@@ -24,6 +24,12 @@ are a character vector (in col//title format), a list
 of plots is returned.  If both x and y are length 1,
 then a single plot object (not a list) is returned.
 }
+\examples{
+df <- pmplots_data_id()
+
+eta_cont(df, x = "WT//Weight (kg)", y = "ETA1//ETA-CL")
+
+}
 \seealso{
 \code{\link{eta_cat}}
 }
