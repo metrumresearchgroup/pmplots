@@ -96,12 +96,63 @@
       
     </div>
 
+    <div id="pmplots-0-1-0-9002" class="section level1">
+<h1 class="page-header">
+<a href="#pmplots-0-1-0-9002" class="anchor"></a>pmplots 0.1.0.9002</h1>
+<ul>
+<li>Added <code>res_hist</code>, <code>wres_hist</code>, and <code>cwres_hist</code> along with the more general <code>cont_hist</code> functions for plotting residuals or other continuous variables as histograms</li>
+<li>Vectorized <code>eta_cont</code>, <code>(cw)res_cont</code>, <code>eta_cat</code>, and <code>(cw)res_cat</code>; see function help for more details about what this means</li>
+<li>Added <code>cont_cont_list</code> and <code>cont_cat_list</code> as vectorized versions of <code>cont_cont</code> and <code>cont_cat</code>
+</li>
+<li>Added internal functions that facilitate the creation of vectorized plotting function calls</li>
+<li>Reorganized the R source files and split several composite help topics into more focused topics</li>
+<li>Added <code>pairs_plot</code> as a more-generic front end to <code>ggpairs</code>
+</li>
+<li>Dots are now passed through <code>eta_pairs</code> and <code>pairs_plot</code> to <code><a href="http://www.rdocumentation.org/packages/GGally/topics/ggpairs">GGally::ggpairs</a></code>; this allows users to pass in a mapping for colors etc</li>
+<li>Added arguments for <code>pairs_plot</code> to allow users to pass in custom functions for <code>upper</code> and <code>lower</code>
+</li>
+<li>For the default <code>lower</code> function in <code>pairs_plot</code>, the mapping object is checked for <code>smooth_color</code> and <code>smooth_lty</code> for more control over the smoothing line</li>
+<li>Remove <code>shk</code> argument to <code>pairs_plot</code>
+</li>
+<li>Re-configured code to handle user-supplied <code>xs</code> and <code>ys</code> information; axis titles respect user-supplied <code>name</code> settings for scales</li>
+<li>Added functions to <code>rot_x</code> and <code>rot_y</code> to rotate tick labels</li>
+<li>Added <code>scales</code> argument to <code>dv_pred</code> and <code>dv_ipred</code>; by default (<code>scales = "fixed"</code>), the x- and y-axis have the same limits; when <code>scales = "free"</code> limits are chosen by ggplot2 and will likely be different for x- and y-axis</li>
+<li>Fixed bug in <code>split_plot</code> when splitting by a factor that doesn’t have all level present</li>
+<li>Fixed bug in <code>wres_q</code> related to indexing a tibble</li>
+<li>Added functions to export look and feel: <code>pm_theme</code>, <code>pm_abline</code>, <code>pm_smooth</code>, <code>pm_hline</code>, <code>pm_histogram</code>; these functions help make the plots look consistent with other plots if you are making reference lines, smooths, etc; <code>pm_theme</code> is still just a wrapper around <code>theme_bw()</code>
+</li>
+<li>
+<code>eta_pairs</code> dispatches to <code>eta_hist</code> when there is only one eta in the mix #14</li>
+</ul>
+</div>
+    <div id="pmplots-0-1-0-9001" class="section level1">
+<h1 class="page-header">
+<a href="#pmplots-0-1-0-9001" class="anchor"></a>pmplots 0.1.0.9001</h1>
+<ul>
+<li>Fixed <code>logbr3</code> so that the values are sorted; this fixes an issue where the grid lines were not propoerly displayed with these breaks</li>
+<li>Fixed issue in <code>dv_time</code> and <code>dv_pred</code> when modifying the x-scale and y-scale through xs and ys arguments</li>
+<li>Changed <code>dv_time</code> and <code>dv_pred</code> so that breaks are at half-log units when <code>log = TRUE</code> or <code>loglog = TRUE</code>
+</li>
+</ul>
+</div>
+    <div id="pmplots-0-1-0" class="section level1">
+<h1 class="page-header">
+<a href="#pmplots-0-1-0" class="anchor"></a>pmplots 0.1.0</h1>
+<ul>
+<li>Initial validated version</li>
+<li>See the release <a href="https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0">here</a>
+</li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#pmplots-0-1-0-9002">0.1.0.9002</a></li>
+        <li><a href="#pmplots-0-1-0-9001">0.1.0.9001</a></li>
+        <li><a href="#pmplots-0-1-0">0.1.0</a></li>
       </ul>
     </div>
   </div>

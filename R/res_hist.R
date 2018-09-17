@@ -7,6 +7,11 @@
 ##' @param y what to use for the y-axis on the histogram; can be
 ##' \code{"..count.."} or \code{"..density.."}
 ##'
+##' @examples
+##' df <- pmplots_data_obs()
+##'
+##' cwresi_hist(df)
+##'
 ##' @export
 res_hist <- function(df, ...,
                      x = pm_axis_res(),

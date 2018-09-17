@@ -33,3 +33,9 @@ npde_hist(df, ..., x = pm_axis("npde"))
 \description{
 Histograms of residuals or NPDE
 }
+\examples{
+df <- pmplots_data_obs()
+
+cwresi_hist(df)
+
+}

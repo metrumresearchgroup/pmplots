@@ -26,7 +26,7 @@ qq_reg_data <- function(y) {
 ##'
 ##' @examples
 ##'
-##' df <- dplyr::filter(pmplots_data_obs(), EVID==0, !is.na(IPRED))
+##' df <- pmplots_data_obs()
 ##'
 ##' cwresi_q(df)
 ##'

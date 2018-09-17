@@ -17,6 +17,12 @@
 ##' @param ... passed to \code{geom_histogram} and \code{add_density}
 ##'
 ##'
+##' @examples
+##'
+##' data <- data.frame(WT = rnorm(1000,80,20))
+##'
+##' cont_hist(data, x = "WT//Weight (kg)")
+##'
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",

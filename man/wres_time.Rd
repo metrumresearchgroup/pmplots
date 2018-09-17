@@ -29,7 +29,7 @@ Plot weighted residuals versus time
 See \code{\link{res_time}} for other important implementation details.
 }
 \examples{
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- pmplots_data_obs()
 
 wres_time(df)
 

@@ -39,3 +39,11 @@ be plotted over the histogram using \code{\link{add_density}}}
 of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
 function that is called by other functions in pmplots.
 }
+\examples{
+
+data <- data.frame(WT = rnorm(1000,80,20))
+
+cont_hist(data, x = "WT//Weight (kg)")
+
+
+}

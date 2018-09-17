@@ -43,7 +43,7 @@ both the \code{x} and \code{y} columns must
 be numeric.
 }
 \examples{
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- pmplots_data_obs()
 
 res_time(df)
 

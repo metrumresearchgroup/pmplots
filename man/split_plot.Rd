@@ -20,7 +20,7 @@ Split and plot
 }
 \examples{
 
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- pmplots_data_obs()
 
 split_plot(df, sp="STUDYc", fun=dv_pred)
 

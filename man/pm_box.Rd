@@ -39,7 +39,7 @@ Summary numbers located below each box are described in
 \code{\link{boxwork}}.
 }
 \examples{
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- pmplots_data_obs()
 df <- dplyr::distinct(df, ID, .keep_all = TRUE)
 
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")

@@ -19,3 +19,7 @@ eta_col_labs(..., .eta_n = seq_along(labs), .prefix = "ETA-")
 \description{
 Make ETA labels and col-labels
 }
+\examples{
+eta_labs(CL, V2, KA)
+
+}

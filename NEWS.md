@@ -1,4 +1,4 @@
-# 0.1.0.9002
+# pmplots 0.1.0.9002
 - Added `res_hist`, `wres_hist`, and `cwres_hist` along with 
 the more general `cont_hist` functions for plotting residuals
 or other continuous variables as histograms
@@ -42,7 +42,7 @@ around `theme_bw()`
 - `eta_pairs` dispatches to `eta_hist` when there is only one eta 
 in the mix #14
 
-# 0.1.0.9001
+# pmplots 0.1.0.9001
 
 - Fixed `logbr3` so that the values are sorted; this 
 fixes an issue where the grid lines were not propoerly
@@ -55,6 +55,7 @@ breaks are at half-log units when `log = TRUE` or
 `loglog = TRUE`
 
 
-# 0.1.0
+# pmplots 0.1.0
 
-- Initial validated version
+- Initial validated version 
+- See the release [here](https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0)

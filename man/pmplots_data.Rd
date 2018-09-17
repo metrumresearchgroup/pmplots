@@ -15,3 +15,10 @@ pmplots_data_obs()
 \description{
 Example data sets
 }
+\examples{
+
+head(pmplots_data_obs())
+
+head(pmplots_data_id())
+
+}

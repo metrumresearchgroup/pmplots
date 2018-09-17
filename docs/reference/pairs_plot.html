@@ -165,14 +165,14 @@ are passed to <code><a href='eta_hist.html'>eta_hist</a></code> and that result 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='pmplots_data.html'>pmplots_data</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>)
-<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span>(<span class='no'>df</span>, <span class='no'>ID</span>, <span class='kw'>.keep_all</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pmplots_data.html'>pmplots_data_id</a></span>()
 
+<span class='no'>etas</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"ETA1//ETA-CL"</span>, <span class='st'>"ETA2//ETA-VC"</span>, <span class='st'>"ETA3//ETA-KA"</span>)
 
-<span class='fu'>eta_pairs</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>etas</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"ETA1//ETA-CL"</span>, <span class='st'>"ETA2//ETA-VC"</span>, <span class='st'>"ETA3//ETA-KA"</span>)
-)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: GGally</span></div><div class='img'><img src='pairs_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>eta_pairs</span>(<span class='no'>id</span>,<span class='no'>etas</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: GGally</span></div><div class='img'><img src='pairs_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>1000</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>1000</span>))
+
+<span class='fu'>pairs_plot</span>(<span class='no'>df</span>, <span class='fu'>c</span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>))</div><div class='img'><img src='pairs_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

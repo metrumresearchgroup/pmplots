@@ -51,7 +51,7 @@ second position.  In this case, \code{...} are
 passed to both functions.
 }
 \examples{
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- pmplots_data_obs()
 
 dv_pred(df)
 

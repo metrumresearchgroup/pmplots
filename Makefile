@@ -19,6 +19,9 @@ examples:
 	make readme
 	make exampler
 
+pkgdown:
+	Rscript -e "pkgdown::build_site()"
+
 ec:
 	echo ${VERSION}
 

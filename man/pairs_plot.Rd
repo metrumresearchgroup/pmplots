@@ -43,13 +43,14 @@ are passed to \code{\link{eta_hist}} and that result is returned.
 }
 \examples{
 
-df <- dplyr::filter(pmplots_data(), EVID==0)
-id <- dplyr::distinct(df, ID, .keep_all = TRUE)
+id <- pmplots_data_id()
 
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA")
 
-eta_pairs(
-  id,
-  etas = c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA")
-)
+eta_pairs(id,etas)
+
+df <- data.frame(x = rnorm(1000), y = rnorm(1000))
+
+pairs_plot(df, c("x", "y"))
 
 }

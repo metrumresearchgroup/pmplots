@@ -15,6 +15,11 @@
 ##'
 ##' @seealso \code{\link{eta_cat}}
 ##'
+##' @examples
+##' df <- pmplots_data_id()
+##'
+##' eta_cont(df, x = "WT//Weight (kg)", y = "ETA1//ETA-CL")
+##'
 ##' @export
 eta_cont <- function(df, x, y,...) {
   out <- list_plot_xy(df, x, y, cont_cont,...)
@@ -29,6 +34,9 @@ eta_cont <- function(df, x, y,...) {
 ##' @param ... unquoted parameter names
 ##' @param .prefix used to generate ETA axis label
 ##' @param .eta_n integer ETA numbers for which to form labels
+##'
+##' @examples
+##' eta_labs(CL, V2, KA)
 ##'
 ##' @export
 ##'
