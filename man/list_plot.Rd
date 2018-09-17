@@ -21,13 +21,16 @@ list_plot_xy(df, x, y, .fun = cont_cont, ...)
 
 \item{.fun}{the function to call}
 
-\item{...}{passed to \code{fun}}
+\item{...}{arguments passed to \code{fun}}
 }
 \value{
 a list of plots generated from \code{.fun}
 }
 \description{
-Apply a plotting function to a vector of x or y values
+\code{list_plot_x} vectorizes over the \code{x} value,
+\code{list_plot_y} vectorizes over the \code{y} value,
+and \code{list_plot_xy} vectorizes over \code{x} and
+\code{y}.
 }
 \details{
 This function was intended for use with functions

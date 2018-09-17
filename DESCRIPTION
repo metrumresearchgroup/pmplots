@@ -9,11 +9,14 @@ Authors@R: c(
 Maintainer: Kyle Baron <kyleb@metrumrg.com>
 Description: Very light wrappers around 'ggplot2' plotting code tailored for pharmacometric applications.
 License: GPL (>=2)
+BugReports: https://ghe.metrumrg.com/software/pmplots/issues
 Encoding: UTF-8
 LazyData: true
 Imports: 
   dplyr (>= 0.7.2),
-  rlang (>= 0.1.2)
+  rlang (>= 0.1.2),
+  glue, 
+  assertthat
 Suggests: testthat, GGally
 Depends: ggplot2 (>= 2.2.1)
 RoxygenNote: 6.0.1

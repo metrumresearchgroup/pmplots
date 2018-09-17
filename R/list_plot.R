@@ -20,11 +20,16 @@ multi_scatter_y <- function(df, x,  y, ... ) {
 
 ##' Apply a plotting function to a vector of x or y values
 ##'
+##' \code{list_plot_x} vectorizes over the \code{x} value,
+##' \code{list_plot_y} vectorizes over the \code{y} value,
+##' and \code{list_plot_xy} vectorizes over \code{x} and
+##' \code{y}.
+##'
 ##' @param df the plotting data set
 ##' @param x the x-column, as a col_label
 ##' @param y the y-column, as col_label
 ##' @param .fun the function to call
-##' @param ... passed to \code{fun}
+##' @param ... arguments passed to \code{fun}
 ##'
 ##' @return a list of plots generated from \code{.fun}
 ##'
@@ -32,6 +37,7 @@ multi_scatter_y <- function(df, x,  y, ... ) {
 ##' This function was intended for use with functions
 ##' that ultimately call \code{\link{cont_cont}} and
 ##' have continuous data on the x and y axes.
+##'
 ##'
 ##' @export
 ##' @rdname list_plot

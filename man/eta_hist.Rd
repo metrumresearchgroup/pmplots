@@ -5,7 +5,7 @@
 \title{ETA histograms}
 \usage{
 eta_hist(df, x, xs = defx(), fill = "black", col = "white", alpha = 0.6,
-  ...)
+  add_density = FALSE, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -19,6 +19,9 @@ eta_hist(df, x, xs = defx(), fill = "black", col = "white", alpha = 0.6,
 \item{col}{passed to \code{geom_histogram}}
 
 \item{alpha}{passed to \code{geom_histogram}}
+
+\item{add_density}{if \code{TRUE}, a normal density line will
+be plotted on top of the histogram via \code{\link{add_density}}}
 
 \item{...}{other arguments for \code{geom_histogram}}
 }

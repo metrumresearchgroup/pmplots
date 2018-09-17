@@ -18,12 +18,13 @@ knitr::opts_chunk$set(comment='.', message=FALSE, warning=FALSE,
 library(pmplots)
 library(dplyr)
 library(mrggsave)
+library(purrr)
 ```
 
 
 # Example data in the package
 ```{r}
-df <- pmplots_data() %>% filter(EVID==0)
+df <- pmplots_data() %>% filter(EVID==0,!is.na(PRED)) %>% mutate(CWRES = CWRESI)
 
 id <- distinct(df, ID, .keep_all=TRUE)
 
@@ -71,7 +72,7 @@ dv_ipred(df, loglog=TRUE, yname = .yname)
 ```
 
 ### Observed versus both PRED and IPRED
-```{r}
+```{r, fig.width = 6}
 dv_preds(df) %>% mrggdraw(ncol = 2)
 ```
 
@@ -87,7 +88,7 @@ res_time(df)
 ```
 
 ### Residuals versus time after first dose (`res_tafd`)
-```{r,eval=FALSE}
+```{r}
 res_tafd(df)
 ```
 
@@ -104,10 +105,15 @@ res_pred(df)
 
 ### RES versus continuous covariate (`res_cont`)
 
-This function is also vectorized in x.
 
 ```{r}
 res_cont(df, x="WT//Weight (kg)")
+```
+
+This function is also vectorized in x.
+
+```{r, fig.height = 6, fig.width = 6}
+c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% mrggpage %>% mrggdraw
 ```
 
 
@@ -118,8 +124,8 @@ res_cat(df, x="STUDYc//Study type")
 ```
 
 ### Residual histogram (`res_hist`)
-Coming soon.
-```{r,include = FALSE}
+
+```{r}
 res_hist(df)
 ```
 
@@ -161,8 +167,7 @@ wres_cat(df, x="STUDYc//Study type")
 ```
 
 ### Weighted residual histogram (`wres_hist`)
-Coming soon.
-```{r,include = FALSE}
+```{r}
 wres_hist(df)
 ```
 
@@ -197,7 +202,7 @@ cwres_cont(df, x="WT//Weight (kg)")
 ```
 
 Vectorized version
-```{r, fig.height = 6, fig.width = 5}
+```{r, fig.height = 6, fig.width = 6}
 cwres_cont(df, covs) %>% 
   mrggdraw(ncol = 2)
 ```
@@ -220,8 +225,7 @@ cwres_cat(df, x = c("STUDYc//Study", "RF//Renal Function"))
 
 
 ### Conditional weighted residual histogram (`cwres_hist`)
-Coming soon.
-```{r, include = FALSE}
+```{r}
 cwres_hist(df)
 ```
 
@@ -234,6 +238,48 @@ cwres_pred(df)
 ```{r}
 cwres_q(df)
 ```
+
+
+# NPDE plots
+
+## NPDE versus TIME (`npde_time`, `npde_tad`, `npde_tafd`)
+
+```{r}
+npde_time(df)
+```
+
+## NPDE versus TAD (`npde_tad`)
+
+```{r}
+npde_tad(df)
+```
+
+## NPDE versus TAFD (`npde_tafd`)
+
+```{r}
+npde_tafd(df)
+```
+
+
+## NPDE versus PRED (`npde_pred`)
+
+```{r}
+npde_pred(df)
+```
+
+
+
+## QQ-plot with NPDE (`npde_q`)
+```{r}
+npde_q(df)
+```
+
+
+## NPDE histogram (`npde_hist`)
+```{r}
+npde_hist(df)
+```
+
 
 # ETA plots
 
@@ -321,14 +367,13 @@ dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
 
 ## Continuous variable by categorical variable (`cont_cat`)
 ```{r}
-cont_cat(id, x="STUDYc//Study name", y="WT//Weight (kg)")
+cont_cat(id, x="STUDYc", y="WT")
 ```
 
 ## General histogram (`cont_hist`)
-Coming soon.
-```{r, include = FALSE}
-cont_hist(id, x = "WT // Weight (kg)") + 
-  facet_wrap(~STUDYc)
+
+```{r}
+cont_hist(id, x = "WT", bins = 20)
 ```
 
 ## Split and plot (`split_plot`)
@@ -399,38 +444,6 @@ dv_time(df, xs=a)
 ```{r}
 wres_time(df) + geom_3s()
 ```
-
-
-# Controlled input / output
-```{r}
-dd <- df
-
-dd$PRED <- 2*dd$DV
-dv_pred(dd)
-dd$IPRED <- 3*dd$DV
-dv_ipred(dd)
-dd$RES <- 2*dd$TIME
-res_time(dd)
-dd$WRES <- 10*dd$TIME
-wres_time(dd)
-dd$CWRES <- 100*dd$TIME
-cwres_time(dd)
-```
-
-
-
-```{r}
-cwres_cont(dd, x = "RES//Controlled")
-```
-
-Should be fairly flat
-```{r}
-set.seed(1001)
-dd$CWRESQ <- rnorm(nrow(dd))
-cwres_q(dd,x="CWRESQ")
-```
-
-
 
 
 

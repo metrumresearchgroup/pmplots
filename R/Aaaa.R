@@ -7,8 +7,10 @@
 ##' @importFrom ggplot2 stat_qq facet_wrap geom_histogram
 ##' @importFrom ggplot2 scale_color_brewer theme_bw theme_set
 ##' @importFrom ggplot2 element_text
-##' @importFrom stats as.formula qnorm quantile cor
-##' @importFrom rlang sym quo_text quos set_names
+##' @importFrom stats as.formula qnorm quantile cor dnorm
+##' @importFrom rlang sym quo_text quos set_names quo_name
+##' @importFrom glue glue
+##' @importFrom assertthat assert_that
 ##'
 NULL
 

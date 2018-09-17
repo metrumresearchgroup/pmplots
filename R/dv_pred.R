@@ -9,7 +9,6 @@
 ##' @param xs see \code{\link{defx}}
 ##' @param ys see \code{\link{defy}}
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
-##' @param prefix used internally
 ##' @param scales if \code{TRUE}, then the x- and y- axes will be forced
 ##' to have the same limits
 ##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_as}}
@@ -35,14 +34,23 @@
 ##' dv_preds(df, yname = "MyDrug (ng/mL)")
 ##'
 ##' @export
-dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
+dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
+                    yname="value", xname="value",
                     xs = list(), ys = list(), loglog=FALSE,
-                    prefix="Population", scales = c("fixed", "free"), ...) {
+                    scales = c("fixed", "free"), ...) {
 
   scales <- match.arg(scales)
 
-  require_numeric(df,x)
-  require_numeric(df,y)
+  if(missing(xname)) xname <- yname
+
+  x <- glue::glue(x)
+  y <- glue::glue(y)
+
+  x <- col_label(x)
+  y <- col_label(y)
+
+  require_numeric(df,x[1])
+  require_numeric(df,y[1])
 
   inx <- xs
   iny <- ys
@@ -50,12 +58,11 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(),ys)
 
-  if(.miss("name", inx)) {
-    xs$name <- paste0(prefix, " predicted ", xname)
-  }
-  if(.miss("name", iny)) {
-    ys$name <- paste0("Observed ", yname)
-  }
+  xs$name <- x[2]
+  ys$name <- y[2]
+
+  x <- x[1]
+  y <- y[1]
 
   if(loglog) {
     xs$trans <- "log"
@@ -97,8 +104,8 @@ dv_pred <- function(df, x="PRED", y="DV", xname=yname, yname="value",
 
 ##' @export
 ##' @rdname dv_pred
-dv_ipred <- function(df, x = "IPRED", ..., prefix = "Individual") {
-  out <- dv_pred(df, x = x, prefix=prefix, ...)
+dv_ipred <- function(df, x = pm_axis_ipred(), ...) {
+  out <- dv_pred(df, x = x, ...)
   layer_as(out,...)
 }
 

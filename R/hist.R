@@ -1,28 +1,40 @@
 ##' Generate a histogram plot
 ##'
 ##' \code{cont_hist_list} is a vectorized version
-##' of \code{cont_hist}.
+##' of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
+##' function that is called by other functions in pmplots.
 ##'
 ##' @param df the data frame containing plotting data
-##' @param x the x column
+##' @param x the x column for \code{geom_histogram}
+##' @param y what to use for the y-axis on the histogram; can be
+##' \code{"..count.."} or \code{"..density.."}
+##' @param add_density if \code{TRUE}, a normal density line will
+##' be plotted over the histogram using \code{\link{add_density}}
 ##' @param xs a list of information for the x axis
 ##' @param fill a character value passed to \code{geom_histogram}
 ##' @param col a character value passed to \code{geom_histogram}
 ##' @param alpha a numeric value passed to \code{geom_histogram}
-##' @param ... passed to \code{geom_histogram}
+##' @param ... passed to \code{geom_histogram} and \code{add_density}
 ##'
 ##'
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",
-                      col = "white", alpha = 0.6, ...) {
+                      col = "white", alpha = 0.6, y = "..count..",
+                      add_density = y=="..density..", ...) {
   xscale <- do.call("scale_x_continuous", xs)
   xx <- col_label(x)
   xscale$name <- xx[2]
   require_numeric(df,xx[1])
-  ggplot(data=df, aes_string(x = xx[1])) +
-    pm_histogram(..., col = col, fill = fill, alpha = alpha) +
+  out <-
+    ggplot(data=df, aes_string(x = xx[1])) +
+    pm_histogram(mapping = aes_string(y = y), ...,
+                 col = col, fill = fill, alpha = alpha) +
     xscale + pm_theme()
+  if(add_density) {
+    out <- out + add_density(...)
+  }
+  out
 }
 
 ##' @rdname cont_hist

@@ -57,7 +57,10 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 
 
   p <- ggplot(data=df, aes_string(x=x,y=y))
-  p <- p + geom_boxplot(fill=fill, alpha=alpha) + yscale + xscale
+  # p <- p + geom_point(aes_string(x = x, y = y),
+  #                     position = position_jitter(width = 0.25),
+  #                     col = "black", alpha = 0.6)
+  p <- p + geom_boxplot(fill=fill, alpha=alpha, ...) + yscale + xscale
   if(is.numeric(hline)) {
     p <- p + geom_hline(yintercept=hline,lwd=1, lty=2)
   }
@@ -95,7 +98,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ##'
 ##' @export
-cont_cat <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
+pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   x <- col_label(x)
   if(length(x)!=2) stop("invalid x value", call.=FALSE)
   y <- col_label(y)
@@ -107,8 +110,13 @@ cont_cat <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   boxwork(df,x[1],y[1],xs,ys,...)
 }
 
-##' @rdname cont_cat
+##' @rdname pm_box
 ##' @export
-cont_cat_list <- function(df, x, y, ...) {
+pm_box_list <- function(df, x, y, ...) {
   list_plot_xy(df, x, y, cont_cat, ...)
 }
+
+##' @rdname pm_box
+##' @export
+cont_cat <- pm_box
+

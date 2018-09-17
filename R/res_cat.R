@@ -22,17 +22,16 @@
 ##' Summary numbers located below each box are described in
 ##' \code{\link{boxwork}}.
 ##'
-##' @seealso \code{\link{boxwork}}
+##' @seealso \code{\link{boxwork}}, \code{\link{cont_cat}}
 ##'
 ##' @examples
 ##'
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
-##' cwres_cat(df, x="STUDYc//Study name")
+##' cwresi_cat(df, x="STUDYc//Study name")
 ##'
 ##' @export
-res_cat <- function(df, x, y="RES//Residual",
-                    hline=0, ...) {
+res_cat <- function(df, x, y=pm_axis_res(), hline=0, ...) {
   out <- list_plot_xy(df, x, y, .fun = cont_cat, hline = hline, ...)
   if(length(out)==1) return(out[[1]])
   return(out)
@@ -40,21 +39,19 @@ res_cat <- function(df, x, y="RES//Residual",
 
 ##' @export
 ##' @rdname res_cat
-wres_cat <- function(df, x, y="WRES//Weighted residual",
-                     hline=0, ...) {
+wres_cat <- function(df, x, y = pm_axis_wres(), hline=0, ...) {
   res_cat(df, x, y, hline, ...)
 }
 
 ##' @export
 ##' @rdname res_cat
-cwres_cat <- function(df, x, y="CWRES//Conditional weighted residual",
-                      hline=0, ...) {
+cwres_cat <- function(df, x, y = pm_axis_cwres(), hline=0, ...) {
   res_cat(df, x, y, hline, ...)
 }
 
 ##' @export
 ##' @rdname res_cat
-cwresi_cat <- function(df, x, y="CWRESI//Conditional weighted residual", ...) {
+cwresi_cat <- function(df, x, y = pm_axis_cwresi(), ...) {
   cwres_cat(df, x, y, ...)
 }
 

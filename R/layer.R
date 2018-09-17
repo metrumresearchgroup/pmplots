@@ -19,7 +19,9 @@
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0 & BLQ==0)
 ##'
-##' cwres_time(df) + geom_3s()
+##' cwresi_time(df) + geom_3s()
+##'
+##' pmplots:::gs()
 ##'
 ##'
 ##' @details
@@ -35,7 +37,11 @@
 ##'
 ##' \code{gs}, \code{ga}, and \code{gh} are helper functions to create
 ##' default arguments to \code{geom_smooth}, \code{geom_abline}, and
-##' \code{geom_hline}, respectively.  These functions are not exported.
+##' \code{geom_hline}, respectively.  The \code{gx} series
+##' of functions are not exported.
+##'
+##' @seealso \code{\link{pm_smooth}}, \code{\link{pm_hline}},
+##' \code{\link{pm_abline}}
 ##'
 ##' @name layer
 ##' @rdname layer
@@ -166,4 +172,42 @@ geom_3s <- function(lwd = 1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), .
 ##' @rdname geom_3s
 layer_3s <- function(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3,3), ...) {
   x + geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty,...)
+}
+
+
+##' Add a density curve to a plot
+##'
+##' For example, a plot a normal density over a histogram
+##' of conditional weighted residuals.
+##'
+##' @param fun passed to \code{ggplot2::stat_function}
+##' @param col passed to \code{ggplot2::stat_function}
+##' @param lwd passed to \code{ggplot2::stat_function}
+##' @param lty passed to \code{ggplot2::stat_function}
+##' @param x a \code{ggplot} object to which the density line will be added
+##' @param sd passed to \code{stats::dnorm}
+##' @param mean passed to \code{stats::dnorm}
+##' @param ... passed to \code{ggplot2::stat_function}
+##'
+##'
+add_density <- function(fun = dnorm, col = .ggblue, lwd = 1.5, lty = 2, ...) {
+  ggplot2::stat_function(fun = fun, col = col, lwd = lwd, lty = lty, ...)
+}
+
+##' @rdname add_density
+##' @export
+layer_dnorm <- function(x, sd = 1, mean = 0, ...) {
+  args <- list(mean = mean, sd = sd)
+  x + add_density(fun = dnorm, args = args, ...)
+}
+
+##' Input parameters for NPDE reference lines
+##'
+##' @param y used to set yintercept
+##' @param lwd width of reference lines
+##' @param ... other argument to set for \code{geom_hline}
+##'
+##' @export
+npde_ref <- function(y = c(-2,0,2), lwd = 1,...) {
+  c(list(yintercept = y, lwd = lwd),list(...))
 }

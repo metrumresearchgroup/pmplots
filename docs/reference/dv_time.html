@@ -18,13 +18,25 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Plot DV versus time — dv_time" />
+
+<meta property="og:description" content="Plot DV versus time" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,12 +59,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">pmplots</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">pmplots</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9002</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -60,11 +76,15 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -72,20 +92,29 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot DV versus time</h1>
+    
+    <div class="hidden name"><code>dv_time.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Plot DV versus time</p>
     
+    </div>
 
-    <pre class="usage"><span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"TIME"</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"DV"</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"hours"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"ID"</span>, <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='defx.html'>defx</a></span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'><a href='defy.html'>defy</a></span>(), <span class='kw'>log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_time</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_dv</a></span>(), <span class='kw'>xunit</span> <span class='kw'>=</span> <span class='st'>"hr"</span>,
+  <span class='kw'>yname</span> <span class='kw'>=</span> <span class='st'>"DV"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"ID"</span>, <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'>list</span>(), <span class='kw'>log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>xby</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='fu'>dv_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tafd</a></span>(), <span class='no'>...</span>)
+
+<span class='fu'>dv_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tad</a></span>(), <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -101,11 +130,11 @@
       <td><p>character name for y-axis data</p></td>
     </tr>
     <tr>
-      <th>unit</th>
+      <th>xunit</th>
       <td><p>time units; used to form x-axis label</p></td>
     </tr>
     <tr>
-      <th>what</th>
+      <th>yname</th>
       <td><p>used to form y-axis label</p></td>
     </tr>
     <tr>
@@ -125,22 +154,45 @@
       <td><p>if <code>TRUE</code>, y-axis will be log-transformed</p></td>
     </tr>
     <tr>
+      <th>xby</th>
+      <td><p>interval for x-axis breaks</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>passed to <code><a href='scatt.html'>scatt</a></code></p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Plots are generated using <code><a href='y_time.html'>y_time</a></code>,
+which then calls <code><a href='scatt.html'>scatt</a></code>.</p>
+<p>Since this function creates a scatter plot,
+both the <code>x</code> and <code>y</code> columns must
+be numeric.</p>
+<p>If the data set includes a <code>BLQ</code> column,
+the values in the <code>y</code> column are
+set to <code>NA</code> when <code>BLQ</code> is
+not equal to <code>0</code>.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='superset2.html'>superset2</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>)
-<span class='fu'>dv_time</span>(<span class='no'>df</span>)</div><div class='img'><img src='dv_time-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>log</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"STUDYc"</span>)</div><div class='img'><img src='dv_time-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='pmplots_data.html'>pmplots_data</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>)
+
+<span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>yname</span><span class='kw'>=</span><span class='st'>"MyDrug (ng/mL)"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_path).</span></div><div class='img'><img src='dv_time-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>yname</span><span class='kw'>=</span><span class='st'>"MyDrug (ng/mL)"</span>, <span class='kw'>xunit</span><span class='kw'>=</span><span class='st'>"day"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_path).</span></div><div class='img'><img src='dv_time-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>log</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"STUDYc"</span>)</div><div class='img'><img src='dv_time-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Add a rug</span>
+<span class='fu'>dv_time</span>(<span class='no'>df</span>) + <span class='fu'>geom_rug</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>BLQ</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_path).</span></div><div class='img'><img src='dv_time-4.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -153,11 +205,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

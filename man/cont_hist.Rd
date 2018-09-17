@@ -7,7 +7,7 @@
 \title{Generate a histogram plot}
 \usage{
 cont_hist(df, x, xs = defx(), fill = "black", col = "white",
-  alpha = 0.6, ...)
+  alpha = 0.6, y = "..count..", add_density = y == "..density..", ...)
 
 cont_hist_list(df, x, ...)
 
@@ -16,7 +16,7 @@ pm_histogram(..., col = "white", fill = "black", alpha = 0.6)
 \arguments{
 \item{df}{the data frame containing plotting data}
 
-\item{x}{the x column}
+\item{x}{the x column for \code{geom_histogram}}
 
 \item{xs}{a list of information for the x axis}
 
@@ -26,9 +26,16 @@ pm_histogram(..., col = "white", fill = "black", alpha = 0.6)
 
 \item{alpha}{a numeric value passed to \code{geom_histogram}}
 
-\item{...}{passed to \code{geom_histogram}}
+\item{y}{what to use for the y-axis on the histogram; can be
+\code{"..count.."} or \code{"..density.."}}
+
+\item{add_density}{if \code{TRUE}, a normal density line will
+be plotted over the histogram using \code{\link{add_density}}}
+
+\item{...}{passed to \code{geom_histogram} and \code{add_density}}
 }
 \description{
 \code{cont_hist_list} is a vectorized version
-of \code{cont_hist}.
+of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
+function that is called by other functions in pmplots.
 }

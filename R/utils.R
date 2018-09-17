@@ -104,6 +104,7 @@ defy <- function(...) {
   x$oob <-  NULL
   x
 }
+
 ##' Default setting for discrete x-axis scale
 ##'
 ##' A named list of the formal arguments for \code{scale_x_discrete}.  This
@@ -151,7 +152,16 @@ split_col_label <- function(x,split="//") {
 
 ##' Column // axis-label specification
 ##'
+##' The col-label specification is a way to identify a column
+##' in a data set that is to be used for plotting (the \code{col} piece) along
+##' with a label to be used for the axis data (the \code{label} piece).
+##'
 ##' @param x string encoding data column and axis title
+##'
+##' @details
+##' Typically, the \code{col} part is separated from the \code{label}
+##' part with a double front-slash.  So, to identify the column containing
+##' the weight covariate we might specify \code{WT//Weight (kg)}.
 ##'
 ##' @examples
 ##' col_label("CL // Clearance (L)")
@@ -166,13 +176,15 @@ split_col_label <- function(x,split="//") {
 col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
-    if(length(y)==2) return(y)
+    if(length(y)==2) return(trimws(y))
+  }
+  if(!grepl("[[:punct:]]",x)) {
+    return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }
 
 noline <- ggplot2::element_blank()
-
 
 merge.list <- function(x,y,...,open=FALSE,
                        warn=FALSE,context="object") {
@@ -193,9 +205,6 @@ merge.list <- function(x,y,...,open=FALSE,
   }
   x
 }
-
-
-
 
 combine_list <- function(left, right) {
   if(!all(is.list(left),is.list(right))) {
@@ -223,16 +232,26 @@ update_list <- function(left, right) {
 rot_x <- function(angle=30, hjust = 1) {
   theme(axis.text.x = element_text(angle = angle, hjust = hjust))
 }
+
 ##' @rdname rot_x
 ##' @export
 rot_y <- function(angle=30, hjust = 1) {
   theme(axis.text.y = element_text(angle = angle, hjust = hjust))
 }
 
-
 .has <- function(name,object) {
   name %in% names(object)
 }
+
 .miss <- function(name,object) {
   !(name %in% names(object))
 }
+
+glue_unit <- function(x,xunit) {
+  if(is.null(xunit)) return(x)
+  if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
+  glue::glue(x)
+}
+
+
+

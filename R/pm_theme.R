@@ -24,8 +24,9 @@ pm_smooths <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...
 
 ##' The standard pmplots theme
 ##'
-##' @param ... passed to \code{\link{gs}} (smooth), \code{\link{gh}} (hline),
-##' or \code{\link{ga}} (abline).
+##' @param ... arguments passed to \code{\link{gs}} (smooth),
+##' \code{\link{gh}} (hline), or \code{\link{ga}} (abline) and
+##' then to the appropriate \code{geom}.
 ##'
 ##' @details
 ##' \code{pm_theme} is an alias to \code{theme_bw}.
@@ -34,10 +35,14 @@ pm_smooths <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...
 ##'
 ##' data <- pmplots_data_obs()
 ##'
-##' ggplot(data,aes(PRED,DV)) + geom_point() +
-##'   pm_theme() + pm_smooth() + pm_abline()
+##' ggplot(data,aes(PRED,DV)) +
+##'   geom_point() +
+##'   pm_theme() +
+##'   pm_smooth(col = "firebrick") +
+##'   pm_abline()
 ##'
-##' @seealso \code{\link{pm_histogram}}
+##' @seealso \code{\link{pm_histogram}},
+##' \code{\link{theme_plain}}.
 ##'
 ##' @export
 pm_theme <- function() {

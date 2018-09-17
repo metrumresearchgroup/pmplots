@@ -15,8 +15,8 @@ pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, .
 }
 
 pairs_upper <- function(data, mapping, ...) {
-  x <- deparse(mapping$x)[1]
-  y <- deparse(mapping$y)[1]
+  x <- rlang::quo_name(mapping$x)[1]
+  y <- rlang::quo_name(mapping$y)[1]
   label <- as.character(signif(cor(data[,x],data[,y],use = "complete.obs"), digits=3))
 
   label <- paste0("Corr: ", label)
@@ -24,8 +24,6 @@ pairs_upper <- function(data, mapping, ...) {
     theme(panel.grid.major = ggplot2::element_blank(),
           panel.grid.minor = ggplot2::element_blank())
 }
-
-
 
 ##' Pairs plots using ggpairs
 ##'
@@ -44,6 +42,9 @@ pairs_upper <- function(data, mapping, ...) {
 ##' @details
 ##' This function requires the \code{GGally} package to be installed.
 ##'
+##' When the length of \code{etas} is one, arguments
+##' are passed to \code{\link{eta_hist}} and that result is returned.
+##'
 ##' @return
 ##' The result from a ggpairs call.
 ##'
@@ -53,17 +54,29 @@ pairs_upper <- function(data, mapping, ...) {
 ##' id <- dplyr::distinct(df, ID, .keep_all = TRUE)
 ##'
 ##'
-##' eta_pairs(id, c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA"))
+##' eta_pairs(
+##'   id,
+##'   etas = c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA")
+##' )
 ##'
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
-                      col="grey",
-                      upper_fun = pairs_upper, lower_fun = pairs_lower, ...) {
+                       col="grey",
+                       upper_fun = pairs_upper, lower_fun = pairs_lower, ...) {
 
   if(!requireNamespace("GGally")) {
     stop("this function requires that the GGally package be installed",
          call. = FALSE)
   }
+
+  if(length(etas)==1) {
+    ans <- eta_hist(
+      x, etas, bins = bins, alpha = alpha, fill = fill,
+      col = col, ...
+    )
+    return(ans)
+  }
+
   diag <- GGally::wrap("barDiag", bins = bins,
                        alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)

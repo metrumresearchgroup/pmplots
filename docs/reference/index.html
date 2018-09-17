@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Function reference" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,12 +56,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">pmplots</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">pmplots</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0.9002</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -60,11 +73,15 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -72,172 +89,288 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.1</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="boxwork.html">boxwork</a></code> </p>
-          </td>
-          <td><p>Make boxplots.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="col_label.html">col_label</a></code> </p>
-          </td>
-          <td><p>Column // axis-label specification</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cont_cat.html">cont_cat</a></code> <code><a href="cont_cat.html">eta_cat</a></code> </p>
-          </td>
-          <td><p>Plot continuous varible against categorical variable</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cont_cont.html">cont_cont</a></code> <code><a href="cont_cont.html">eta_cont</a></code> <code><a href="cont_cont.html">cwres_cont</a></code> </p>
-          </td>
-          <td><p>Plot continuous variable versus continuous variable</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cwres_cat.html">cwres_cat</a></code> </p>
-          </td>
-          <td><p>Plot CWRES versus categorical variable</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cwres_q.html">cwres_q</a></code> </p>
-          </td>
-          <td><p>QQ plot for conditional weighted residuals</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="defcx.html">defcx</a></code> </p>
-          </td>
-          <td><p>Default setting for discrete x-axis scale</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="defx.html">defx</a></code> </p>
-          </td>
-          <td><p>Default setting for x-axis scale</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="defy.html">defy</a></code> </p>
-          </td>
-          <td><p>Default setting for continuous y-axis scale</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="dv_pred.html">dv_pred</a></code> <code><a href="dv_pred.html">dv_ipred</a></code> </p>
-          </td>
-          <td><p>Plot DV versus predicted values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="dv_time.html">dv_time</a></code> </p>
-          </td>
-          <td><p>Plot DV versus time</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="eta_hist.html">eta_hist</a></code> </p>
-          </td>
-          <td><p>ETA histograms</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="log_scale.html">log_scale</a></code> </p>
-          </td>
-          <td><p>Scale information for log transformation.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="logbr.html">logbr</a></code> <code><a href="logbr.html">logbr3</a></code> </p>
-          </td>
-          <td><p>Create breaks on log scale</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="mrggsave.html">mrggsave</a></code> <code><a href="mrggsave.html">mrggdraw</a></code> </p>
-          </td>
-          <td><p>Save plot objects as .pdf file after labeling with Source graphic and Source code labels.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p></p>
-          </td>
-          <td><p>Plots for pharmacometrics.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="res_pred.html">res_pred</a></code> <code><a href="res_pred.html">cwres_pred</a></code> <code><a href="res_pred.html">wres_pred</a></code> </p>
-          </td>
-          <td><p>Residuals versus predicted values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="res_time.html">res_time</a></code> <code><a href="res_time.html">wres_time</a></code> <code><a href="res_time.html">cwres_time</a></code> <code><a href="res_time.html">cwres_tad</a></code> </p>
-          </td>
-          <td><p>Plot residuals versus time</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="scatt.html">scatt</a></code> </p>
-          </td>
-          <td><p>Scatter plot function.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="split_plot.html">split_plot</a></code> </p>
-          </td>
-          <td><p>Split and plot</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="superset2.html">superset2</a></code> <code><a href="superset2.html">superset2id</a></code> <code><a href="superset2.html">superset2obs</a></code> </p>
-          </td>
-          <td><p>superset2 data sets</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="theme_plain.html">theme_plain</a></code> </p>
-          </td>
-          <td><p>A plan ggplot2 theme.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="y_time.html">y_time</a></code> </p>
-          </td>
-          <td><p>Plot continuous data versus time.</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="add_density.html">add_density()</a></code> <code><a href="add_density.html">layer_dnorm()</a></code> </p>
+        </td>
+        <td><p>Add a density curve to a plot</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="boxwork.html">boxwork()</a></code> </p>
+        </td>
+        <td><p>Make boxplots</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="col_label.html">col_label()</a></code> </p>
+        </td>
+        <td><p>Column // axis-label specification</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cont_hist.html">cont_hist()</a></code> <code><a href="cont_hist.html">cont_hist_list()</a></code> <code><a href="cont_hist.html">pm_histogram()</a></code> </p>
+        </td>
+        <td><p>Generate a histogram plot</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cwres_time.html">cwres_time()</a></code> <code><a href="cwres_time.html">cwres_tafd()</a></code> <code><a href="cwres_time.html">cwres_tad()</a></code> <code><a href="cwres_time.html">cwresi_time()</a></code> <code><a href="cwres_time.html">cwresi_tafd()</a></code> <code><a href="cwres_time.html">cwresi_tad()</a></code> </p>
+        </td>
+        <td><p>Plot conditional weighted residuals versus time</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="def_col.html">def_col</a></code> </p>
+        </td>
+        <td><p>Default col labels</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="defcx.html">defcx()</a></code> </p>
+        </td>
+        <td><p>Default setting for discrete x-axis scale</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="defx.html">defx()</a></code> </p>
+        </td>
+        <td><p>Default setting for x-axis scale</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="defy.html">defy()</a></code> </p>
+        </td>
+        <td><p>Default setting for continuous y-axis scale</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dv_pred.html">dv_pred()</a></code> <code><a href="dv_pred.html">dv_ipred()</a></code> <code><a href="dv_pred.html">dv_preds()</a></code> </p>
+        </td>
+        <td><p>Plot DV versus predicted values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="dv_time.html">dv_time()</a></code> <code><a href="dv_time.html">dv_tafd()</a></code> <code><a href="dv_time.html">dv_tad()</a></code> </p>
+        </td>
+        <td><p>Plot DV versus time</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="eta_cat.html">eta_cat()</a></code> </p>
+        </td>
+        <td><p>Plot ETAs versus categorical variables</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="eta_cont.html">eta_cont()</a></code> </p>
+        </td>
+        <td><p>Plot ETAs versus continuous variables</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="eta_hist.html">eta_hist()</a></code> </p>
+        </td>
+        <td><p>ETA histograms</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="eta_labs.html">eta_labs()</a></code> <code><a href="eta_labs.html">eta_col_labs()</a></code> </p>
+        </td>
+        <td><p>Make ETA labels and col-labels</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="geom_3s.html">geom_3s()</a></code> <code><a href="geom_3s.html">layer_3s()</a></code> </p>
+        </td>
+        <td><p>Additional reference lines</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="layer.html">layer_hs()</a></code> <code><a href="layer.html">layer_sh()</a></code> <code><a href="layer.html">layer_as()</a></code> <code><a href="layer.html">layer_sa()</a></code> <code><a href="layer.html">layer_s()</a></code> <code><a href="layer.html">layer_a()</a></code> <code><a href="layer.html">layer_h()</a></code> <code><a href="layer.html">layer_dots()</a></code> <code><a href="layer.html">gs()</a></code> <code><a href="layer.html">ga()</a></code> <code><a href="layer.html">gh()</a></code> </p>
+        </td>
+        <td><p>Layer functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list_plot.html">list_plot_x()</a></code> <code><a href="list_plot.html">list_plot_y()</a></code> <code><a href="list_plot.html">list_plot_xy()</a></code> </p>
+        </td>
+        <td><p>Apply a plotting function to a vector of x or y values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="log_scale.html">log_scale()</a></code> </p>
+        </td>
+        <td><p>Scale information for log transformation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="logbr.html">logbr()</a></code> <code><a href="logbr.html">logbr3()</a></code> </p>
+        </td>
+        <td><p>Create breaks on log scale</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="npde_ref.html">npde_ref()</a></code> </p>
+        </td>
+        <td><p>Input parameters for NPDE reference lines</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="npde_time.html">npde_time()</a></code> <code><a href="npde_time.html">npde_tad()</a></code> <code><a href="npde_time.html">npde_tafd()</a></code> </p>
+        </td>
+        <td><p>Plot NPDE versus time</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pairs_plot.html">pairs_plot()</a></code> <code><a href="pairs_plot.html">eta_pairs()</a></code> </p>
+        </td>
+        <td><p>Pairs plots using ggpairs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pm_axis.html">pm_axis()</a></code> <code><a href="pm_axis.html">pm_axis_data</a></code> </p>
+        </td>
+        <td><p>Get defaults for plot axes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pm_axis_functions.html">pm_axis_tad()</a></code> <code><a href="pm_axis_functions.html">pm_axis_time()</a></code> <code><a href="pm_axis_functions.html">pm_axis_tafd()</a></code> <code><a href="pm_axis_functions.html">pm_axis_res()</a></code> <code><a href="pm_axis_functions.html">pm_axis_wres()</a></code> <code><a href="pm_axis_functions.html">pm_axis_cwres()</a></code> <code><a href="pm_axis_functions.html">pm_axis_cwresi()</a></code> <code><a href="pm_axis_functions.html">pm_axis_npde()</a></code> <code><a href="pm_axis_functions.html">pm_axis_pred()</a></code> <code><a href="pm_axis_functions.html">pm_axis_ipred()</a></code> <code><a href="pm_axis_functions.html">pm_axis_dv()</a></code> </p>
+        </td>
+        <td><p>Functions to generate axis data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pm_box.html">pm_box()</a></code> <code><a href="pm_box.html">pm_box_list()</a></code> <code><a href="pm_box.html">cont_cat()</a></code> </p>
+        </td>
+        <td><p>Plot continuous variable against a categorical variable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pm_scatter.html">pm_scatter()</a></code> <code><a href="pm_scatter.html">pm_scatter_list()</a></code> <code><a href="pm_scatter.html">cont_cont()</a></code> </p>
+        </td>
+        <td><p>Plot continuous variable versus continuous variable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pm_smooths.html">pm_smooths()</a></code> </p>
+        </td>
+        <td><p>Add loess line</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pm_theme.html">pm_theme()</a></code> <code><a href="pm_theme.html">pm_abline()</a></code> <code><a href="pm_theme.html">pm_smooth()</a></code> <code><a href="pm_theme.html">pm_hline()</a></code> </p>
+        </td>
+        <td><p>The standard pmplots theme</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pmplots.html">pmplots</a></code> </p>
+        </td>
+        <td><p>Plots for pharmacometrics</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pmplots_data.html">pmplots_data()</a></code> <code><a href="pmplots_data.html">pmplots_data_id()</a></code> <code><a href="pmplots_data.html">pmplots_data_obs()</a></code> </p>
+        </td>
+        <td><p>Example data sets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="res_cat.html">res_cat()</a></code> <code><a href="res_cat.html">wres_cat()</a></code> <code><a href="res_cat.html">cwres_cat()</a></code> <code><a href="res_cat.html">cwresi_cat()</a></code> </p>
+        </td>
+        <td><p>Plot residuals versus categorical variable</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="res_cont.html">res_cont()</a></code> <code><a href="res_cont.html">wres_cont()</a></code> <code><a href="res_cont.html">cwres_cont()</a></code> <code><a href="res_cont.html">cwresi_cont()</a></code> </p>
+        </td>
+        <td><p>Plot residuals versus continuous variables</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="res_hist.html">res_hist()</a></code> <code><a href="res_hist.html">wres_hist()</a></code> <code><a href="res_hist.html">cwres_hist()</a></code> <code><a href="res_hist.html">cwresi_hist()</a></code> <code><a href="res_hist.html">npde_hist()</a></code> </p>
+        </td>
+        <td><p>Histograms of residuals or NPDE</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="res_pred.html">res_pred()</a></code> <code><a href="res_pred.html">wres_pred()</a></code> <code><a href="res_pred.html">cwres_pred()</a></code> <code><a href="res_pred.html">cwresi_pred()</a></code> <code><a href="res_pred.html">npde_pred()</a></code> </p>
+        </td>
+        <td><p>Residuals or NPDE versus predicted values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="res_q.html">wres_q()</a></code> <code><a href="res_q.html">cwres_q()</a></code> <code><a href="res_q.html">cwresi_q()</a></code> <code><a href="res_q.html">npde_q()</a></code> </p>
+        </td>
+        <td><p>QQ plot for conditional residuals or NPDE</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="res_time.html">res_time()</a></code> <code><a href="res_time.html">res_tafd()</a></code> <code><a href="res_time.html">res_tad()</a></code> </p>
+        </td>
+        <td><p>Plot residuals versus time</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rot_x.html">rot_x()</a></code> <code><a href="rot_x.html">rot_y()</a></code> </p>
+        </td>
+        <td><p>Rotate axis text</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="scatt.html">scatt()</a></code> </p>
+        </td>
+        <td><p>Scatter plot function</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="split_plot.html">split_plot()</a></code> </p>
+        </td>
+        <td><p>Split and plot</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="theme_plain.html">theme_plain()</a></code> </p>
+        </td>
+        <td><p>A plain ggplot2 theme</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="wres_time.html">wres_time()</a></code> <code><a href="wres_time.html">wres_tafd()</a></code> <code><a href="wres_time.html">wres_tad()</a></code> </p>
+        </td>
+        <td><p>Plot weighted residuals versus time</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="y_time.html">y_time()</a></code> </p>
+        </td>
+        <td><p>Plot continuous data versus time</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -254,11 +387,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

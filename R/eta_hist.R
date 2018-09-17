@@ -7,6 +7,8 @@
 ##' @param fill passed to \code{geom_histogram}
 ##' @param col passed to \code{geom_histogram}
 ##' @param alpha passed to \code{geom_histogram}
+##' @param add_density if \code{TRUE}, a normal density line will
+##' be plotted on top of the histogram via \code{\link{add_density}}
 ##' @param ... other arguments for \code{geom_histogram}
 ##'
 ##' @details
@@ -24,10 +26,10 @@
 ##'
 ##' @export
 eta_hist <- function(df, x, xs=defx(), fill="black", col="white",
-                     alpha=0.6, ...) {
+                     alpha=0.6, add_density = FALSE, ...) {
   out <- vector(mode="list", length=length(x))
   for(i in seq_along(x)) {
-    out[[i]] <- cont_hist(df, x = x[i], xs, ...)
+    out[[i]] <- cont_hist(df, x = x[i], xs, add_density = add_density, ...)
   }
   if(length(out)==1) return(out[[1]])
   return(out)

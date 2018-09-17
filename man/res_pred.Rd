@@ -8,17 +8,16 @@
 \alias{npde_pred}
 \title{Residuals or NPDE versus predicted values}
 \usage{
-res_pred(df, x = "PRED", y = "RES", xname = "value", yname = "Residual",
+res_pred(df, x = pm_axis_pred(), y = pm_axis_res(), xname = "value",
   xs = defx(), ys = defy(), ...)
 
-wres_pred(df, ..., y = "WRES", yname = "Weighted residual")
+wres_pred(df, ..., y = pm_axis_wres())
 
-cwres_pred(df, ..., y = "CWRES", yname = "Conditional weighted residual")
+cwres_pred(df, ..., y = pm_axis_cwres())
 
-cwresi_pred(df, y = "CWRESI", ...)
+cwresi_pred(df, y = pm_axis_cwresi(), ...)
 
-npde_pred(df, ..., y = "NPDE",
-  yname = "Normalized prediction distribution error")
+npde_pred(df, ..., y = pm_axis_npde(), hline = npde_ref())
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -27,15 +26,16 @@ npde_pred(df, ..., y = "NPDE",
 
 \item{y}{character name for y-axis data}
 
-\item{xname}{used to form x-axis label}
-
-\item{yname}{used to form y-axis label}
+\item{xname}{glued into x-axis title}
 
 \item{xs}{see \code{\link{defx}}}
 
 \item{ys}{see \code{\link{defy}}}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_hs}}}
+
+\item{hline}{a list of parameters to pass to \code{geom_hline} specifying
+where to locate a horizontal reference line aesthetics to use}
 }
 \description{
 Residuals or NPDE versus predicted values
@@ -49,12 +49,15 @@ The y axis name is always the name of the residual
 (e.g. "Weighted residual").  Use the \code{xname} argument
 to add specific name and or unit to the dependent variable
 (see the example).
+
+A loess smooth and a horizontal reference line are
+layered on the plot.
 }
 \examples{
 
-df <- dplyr::filter(pmplots_data(), EVID==0)
+df <- dplyr::filter(pmplots_data_obs(), EVID==0)
 
-cwres_pred(df, xname="MyDrug (ng/mL)")
+cwresi_pred(df, xname="MyDrug (ng/mL)")
 
 
 }
