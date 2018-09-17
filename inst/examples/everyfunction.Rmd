@@ -138,7 +138,7 @@ wres_time(df)
 ```
 
 ### Weighted residuals versus time after first dose (`wres_tafd`)
-```{r,eval=FALSE}
+```{r}
 wres_tafd(df)
 ```
 
@@ -186,7 +186,7 @@ cwres_time(df)
 
 
 ### Conditional weighted residuals versus time after first dose (`cwres_tafd`)
-```{r,eval=FALSE}
+```{r}
 cwres_tafd(df)
 ```
 

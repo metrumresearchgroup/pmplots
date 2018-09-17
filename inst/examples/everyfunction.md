@@ -242,6 +242,8 @@ wres_time(df)
 wres_tafd(df)
 ```
 
+![](img/everyfunction--unnamed-chunk-19-1.png)
+
 ### Weighted residuals versus time after dose (`wres_tad`)
 
 ``` r
@@ -308,6 +310,8 @@ cwres_time(df)
 ``` r
 cwres_tafd(df)
 ```
+
+![](img/everyfunction--unnamed-chunk-27-1.png)
 
 ### CWRES versus time after dose (`cwres_tad`)
 
