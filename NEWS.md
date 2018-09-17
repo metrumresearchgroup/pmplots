@@ -1,5 +1,4 @@
 # pmplots 0.1.0.9002
-- 
 - Added non-exported functions to generate default col-label information 
 (see `?pm_axis_functions`)
 - Added `npde_time`, `npde_tad` and `npde_tafd`, 
