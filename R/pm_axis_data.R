@@ -51,6 +51,10 @@ mk_col_title <- function(what,sep="//") {
 
 ##' Functions to generate axis data
 ##'
+##' Please note that these functions are not exported from
+##' the pmplots namespace.  See the details section
+##' about how to call these functions.
+##'
 ##' @details
 ##' These functions call \code{pmplots:::mk_col_title}
 ##'

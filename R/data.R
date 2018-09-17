@@ -1,6 +1,12 @@
 
 ##' Example data sets
 ##'
+##' @examples
+##'
+##' head(pmplots_data_obs())
+##'
+##' head(pmplots_data_id())
+##'
 ##' @export
 pmplots_data <- function() {
   loc <- system.file(package="pmplots")
