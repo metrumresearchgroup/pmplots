@@ -1,20 +1,21 @@
 
-##' Plot residuals or NPDE versus time
+##' Plot residuals versus time
+##'
+##' These plots have \code{RES} on the y axis and
+##' some time-related column on the x-axis, including \code{TIME},
+##' \code{TAD}, or \code{TAFD}.
 ##'
 ##' @param df data set to plot
-##' @param x character name of x-axis data
-##' @param y character name of y-axis data
+##' @param x x-axis data in \code{\link{col_label}} format
+##' @param y y-axis data in \code{\link{col_label}} format
 ##' @param ... passed to \code{\link{y_time}} and
 ##' \code{\link{layer_hs}}
-##' @param hline a list of arguments to pass to \code{geom_hline} specifying
-##' aesthetics to use
+##'
 ##'
 ##' @seealso \code{\link{y_time}}, \code{\link{geom_3s}}
 ##'
 ##' @details
-##' Functions are provided for plotting \code{RES}, \code{WRES},
-##' and \code{CWRES} versus \code{TIME}, \code{TAFD}, and
-##' \code{TAD}.  Plots are generated using \code{\link{y_time}},
+##' Plots are generated using \code{\link{y_time}},
 ##' which then calls \code{\link{scatt}}.
 ##'
 ##' By default, the time unit is assumed
@@ -31,106 +32,150 @@
 ##' @examples
 ##' df <- dplyr::filter(pmplots_data(), EVID==0)
 ##'
-##' cwresi_time(df)
+##' res_time(df)
 ##'
-##' cwresi_time(df, yname = "CWRES")
-##'
-##' cwresi_time(df, xunit="day")
-##'
-##' wres_time(df, xby=48)
-##'
-##' wres_time(df) + geom_3s()
 ##'
 ##' @export
 res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {
-  out <- y_time(df, x=x, y=y, ...)
+  out <- y_time(df, x = x, y = y, ...)
   layer_hs(out,...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tafd <- function(df, x = pm_axis_tafd(), ...) {
-  res_time(df, x=x, ...)
+res_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_res(), ...) {
+  res_time(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
-res_tad <- function(df, x = pm_axis_tad(), ...) {
-  res_time(df, x = x, ...)
+res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
+  res_time(df, x = x, y = y, ...)
+}
+
+##' Plot weighted residuals versus time
+##'
+##' @inheritParams res_time
+##' @param ... passed to \code{\link{res_time}} and eventually to
+##' \code{\link{y_time}}
+##'
+##' @examples
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##'
+##' wres_time(df)
+##'
+##' @details
+##' See \code{\link{res_time}} for other important implementation details.
+##'
+##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
+##' \code{\link{npde_time}}
+##'
+##' @export
+##' @rdname wres_time
+wres_time <- function(df, x = pm_axis_time(), y = pm_axis_wres(), ...) {
+  res_time(df, x = x, y = y, ...)
 }
 
 ##' @export
-##' @rdname res_time
-wres_time <- function(df, x = pm_axis_time(),
-                      y = pm_axis_wres(), ...) {
-  res_time(df, x = x,  y = y, ...)
+##' @rdname wres_time
+wres_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_wres(), ...) {
+  wres_time(df, x = x, y = y, ...)
 }
 
 ##' @export
-##' @rdname res_time
-wres_tafd <- function(df, x = pm_axis_tafd(), ...) {
-  wres_time(df, x = x, ...)
+##' @rdname wres_time
+wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
+  wres_time(df,  x = x, y = y, ...)
+}
+
+##' Plot conditional weighted residuals versus time
+##'
+##' @inheritParams res_time
+##' @param ... passed to \code{\link{res_time}} and eventually to
+##' \code{\link{y_time}}
+##'
+##' @examples
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##'
+##' cwresi_time(df)
+##'
+##' @details
+##' See \code{\link{res_time}} for other important implementation details.
+##'
+##' @seealso \code{\link{res_time}}, \code{\link{wres_time}},
+##' \code{\link{npde_time}}
+##'
+##' @export
+##' @rdname cwres_time
+cwres_time <- function(df, x = pm_axis_time(), y = pm_axis_cwres(), ...) {
+  res_time(df, x = x, y = y, ...)
 }
 
 ##' @export
-##' @rdname res_time
-wres_tad <- function(df, x = pm_axis_tad(), ...) {
-  wres_time(df,  x = x, ...)
+##' @rdname cwres_time
+cwres_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_cwres(), ...) {
+  cwres_time(df, x = x, y = y, ...)
 }
 
 ##' @export
-##' @rdname res_time
-cwres_time <- function(df,
-                       x = pm_axis_time(),
-                       y = pm_axis_cwres(),
-                       ...) {
-  res_time(df, x=x, y=y, ...)
+##' @rdname cwres_time
+cwres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_cwres(), ...) {
+  cwres_time(df, x = x, y = y, ...)
+}
+
+
+##' @export
+##' @rdname cwres_time
+cwresi_time <- function(df, x = pm_axis_time(), y = pm_axis_cwresi(), ...) {
+  cwres_time(df, x = x, y = y, ... )
 }
 
 ##' @export
-##' @rdname res_time
-cwresi_time <- function(df, y = pm_axis_cwresi(), ...) {
-  cwres_time(df, y = y, ... )
+##' @rdname cwres_time
+cwresi_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_cwresi(), ...) {
+  cwres_tafd(df, x = x, y = y, ... )
 }
 
 ##' @export
-##' @rdname res_time
-cwres_tafd <- function(df, x = pm_axis_tafd(), ...) {
-  cwres_time(df, x=x, ...)
+##' @rdname cwres_time
+cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
+  cwres_tad(df, x = x, y = y, ... )
+}
+
+##' Plot NPDE versus time
+##'
+##' @inheritParams res_time
+##' @param ... passed to \code{\link{res_time}} and eventually to
+##' \code{\link{y_time}}
+##' @param hline a list of arguments to pass to \code{geom_hline} specifying
+##' aesthetics to use
+##'
+##' @examples
+##' df <- dplyr::filter(pmplots_data(), EVID==0)
+##'
+##' npde_time(df)
+##'
+##' @details
+##' See \code{\link{res_time}} for other important implementation details.
+##'
+##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
+##' \code{\link{wres_time}}
+##'
+##' @export
+##' @rdname npde_time
+##'
+npde_time <- function(df, x= pm_axis_time(), y  = pm_axis_npde(), ..., hline = npde_ref()) {
+  res_time(df, x = x, y = y, hline = hline, ...)
 }
 
 ##' @export
-##' @rdname res_time
-cwresi_tafd <- function(df, y = pm_axis_cwresi(), ...) {
-  cwres_tafd(df, y = y, ... )
+##' @rdname npde_time
+npde_tad <- function(df, x = pm_axis_tad(), y = pm_axis_npde(), ...) {
+  npde_time(df, x = x, y = y, ...)
 }
 
 ##' @export
-##' @rdname res_time
-cwres_tad <- function(df, x = pm_axis_tad(), ...) {
-  cwres_time(df, x=x, ...)
-}
-
-##' @export
-##' @rdname res_time
-cwresi_tad <- function(df, y = pm_axis_tad(), ...) {
-  cwres_tad(df, y = y, ... )
-}
-
-##' @export
-##' @rdname res_time
-npde_time <- function(df, y  = pm_axis_npde(), ..., hline = npde_ref()) {
-  res_time(df, y = y, hline = hline, ...)
-}
-
-##' @export
-##' @rdname res_time
-npde_tad <- function(df, x = pm_axis_tad(), ...) {
-  npde_time(df, x = x,...)
-}
-
-##' @export
-##' @rdname res_time
-npde_tafd <- function(df, x = pm_axis_tafd(), ...) {
-  npde_time(df, x = x, ...)
+##' @rdname npde_time
+npde_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_npde(), ...) {
+  npde_time(df, x = x, y = y, ...)
 }

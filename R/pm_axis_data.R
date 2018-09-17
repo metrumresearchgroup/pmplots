@@ -49,13 +49,34 @@ mk_col_title <- function(what,sep="//") {
   )
 }
 
+##' Functions to generate axis data
+##'
+##' @details
+##' These functions call \code{pmplots:::mk_col_title}
+##'
+##' @examples
+##' pmplots:::pm_axis_time()
+##'
+##' @rdname pm_axis_functions
+##' @name pm_axis_functions
 pm_axis_tad <- function() mk_col_title("tad")
+##' @rdname pm_axis_functions
 pm_axis_time <- function() mk_col_title("time")
+##' @rdname pm_axis_functions
 pm_axis_tafd <- function() mk_col_title("tafd")
+##' @rdname pm_axis_functions
 pm_axis_res <- function() mk_col_title("res")
+##' @rdname pm_axis_functions
 pm_axis_wres <- function() mk_col_title("wres")
+##' @rdname pm_axis_functions
 pm_axis_cwres <- function() mk_col_title("cwres")
+##' @rdname pm_axis_functions
 pm_axis_cwresi <- function() mk_col_title("cwresi")
+##' @rdname pm_axis_functions
 pm_axis_npde <- function() mk_col_title("npde")
+##' @rdname pm_axis_functions
 pm_axis_pred <- function() mk_col_title("pred")
+##' @rdname pm_axis_functions
+pm_axis_ipred <- function() mk_col_title("ipred")
+##' @rdname pm_axis_functions
 pm_axis_dv <- function() mk_col_title("dv")

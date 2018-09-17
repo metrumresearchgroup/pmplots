@@ -4,70 +4,31 @@
 \alias{res_time}
 \alias{res_tafd}
 \alias{res_tad}
-\alias{wres_time}
-\alias{wres_tafd}
-\alias{wres_tad}
-\alias{cwres_time}
-\alias{cwresi_time}
-\alias{cwres_tafd}
-\alias{cwresi_tafd}
-\alias{cwres_tad}
-\alias{cwresi_tad}
-\alias{npde_time}
-\alias{npde_tad}
-\alias{npde_tafd}
-\title{Plot residuals or NPDE versus time}
+\title{Plot residuals versus time}
 \usage{
 res_time(df, x = pm_axis_time(), y = pm_axis_res(), ...)
 
-res_tafd(df, x = pm_axis_tafd(), ...)
+res_tafd(df, x = pm_axis_tafd(), y = pm_axis_res(), ...)
 
-res_tad(df, x = pm_axis_tad(), ...)
-
-wres_time(df, x = pm_axis_time(), y = pm_axis_wres(), ...)
-
-wres_tafd(df, x = pm_axis_tafd(), ...)
-
-wres_tad(df, x = pm_axis_tad(), ...)
-
-cwres_time(df, x = pm_axis_time(), y = pm_axis_cwres(), ...)
-
-cwresi_time(df, y = pm_axis_cwresi(), ...)
-
-cwres_tafd(df, x = pm_axis_tafd(), ...)
-
-cwresi_tafd(df, y = pm_axis_cwresi(), ...)
-
-cwres_tad(df, x = pm_axis_tad(), ...)
-
-cwresi_tad(df, y = pm_axis_tad(), ...)
-
-npde_time(df, y = pm_axis_npde(), ..., hline = npde_ref())
-
-npde_tad(df, x = pm_axis_tad(), ...)
-
-npde_tafd(df, x = pm_axis_tafd(), ...)
+res_tad(df, x = pm_axis_tad(), y = pm_axis_res(), ...)
 }
 \arguments{
 \item{df}{data set to plot}
 
-\item{x}{character name of x-axis data}
+\item{x}{x-axis data in \code{\link{col_label}} format}
 
-\item{y}{character name of y-axis data}
+\item{y}{y-axis data in \code{\link{col_label}} format}
 
 \item{...}{passed to \code{\link{y_time}} and
 \code{\link{layer_hs}}}
-
-\item{hline}{a list of arguments to pass to \code{geom_hline} specifying
-aesthetics to use}
 }
 \description{
-Plot residuals or NPDE versus time
+These plots have \code{RES} on the y axis and
+some time-related column on the x-axis, including \code{TIME},
+\code{TAD}, or \code{TAFD}.
 }
 \details{
-Functions are provided for plotting \code{RES}, \code{WRES},
-and \code{CWRES} versus \code{TIME}, \code{TAFD}, and
-\code{TAD}.  Plots are generated using \code{\link{y_time}},
+Plots are generated using \code{\link{y_time}},
 which then calls \code{\link{scatt}}.
 
 By default, the time unit is assumed
@@ -84,15 +45,8 @@ be numeric.
 \examples{
 df <- dplyr::filter(pmplots_data(), EVID==0)
 
-cwresi_time(df)
+res_time(df)
 
-cwresi_time(df, yname = "CWRES")
-
-cwresi_time(df, xunit="day")
-
-wres_time(df, xby=48)
-
-wres_time(df) + geom_3s()
 
 }
 \seealso{

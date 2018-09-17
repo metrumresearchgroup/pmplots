@@ -1,7 +1,8 @@
 ##' Generate a histogram plot
 ##'
 ##' \code{cont_hist_list} is a vectorized version
-##' of \code{cont_hist}.
+##' of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
+##' function that is called by other functions in pmplots.
 ##'
 ##' @param df the data frame containing plotting data
 ##' @param x the x column for \code{geom_histogram}

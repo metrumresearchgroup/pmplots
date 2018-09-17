@@ -152,7 +152,16 @@ split_col_label <- function(x,split="//") {
 
 ##' Column // axis-label specification
 ##'
+##' The col-label specification is a way to identify a column
+##' in a data set that is to be used for plotting (the \code{col} piece) along
+##' with a label to be used for the axis data (the \code{label} piece).
+##'
 ##' @param x string encoding data column and axis title
+##'
+##' @details
+##' Typically, the \code{col} part is separated from the \code{label}
+##' part with a double front-slash.  So, to identify the column containing
+##' the weight covariate we might specify \code{WT//Weight (kg)}.
 ##'
 ##' @examples
 ##' col_label("CL // Clearance (L)")
