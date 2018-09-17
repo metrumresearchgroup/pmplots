@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot residuals versus continuous variables — res_cont • pmplots</title>
+<title>Functions to generate axis data — pm_axis_functions • pmplots</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Plot residuals versus continuous variables — res_cont" />
+<meta property="og:title" content="Functions to generate axis data — pm_axis_functions" />
 
-<meta property="og:description" content="These are vectorized functions; see details;" />
+<meta property="og:description" content="Functions to generate axis data" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -95,73 +95,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot residuals versus continuous variables</h1>
+    <h1>Functions to generate axis data</h1>
     
-    <div class="hidden name"><code>res_cont.Rd</code></div>
+    <div class="hidden name"><code>pm_axis_functions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>These are vectorized functions; see details;</p>
+    <p>Functions to generate axis data</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>res_cont</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_res</a></span>(), <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='defx.html'>defx</a></span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'><a href='defy.html'>defy</a></span>(), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>pm_axis_tad</span>()
 
-<span class='fu'>wres_cont</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_wres</a></span>(), <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='defx.html'>defx</a></span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'><a href='defy.html'>defy</a></span>(), <span class='no'>...</span>)
+<span class='fu'>pm_axis_time</span>()
 
-<span class='fu'>cwres_cont</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwres</a></span>(), <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='defx.html'>defx</a></span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'><a href='defy.html'>defy</a></span>(), <span class='no'>...</span>)
+<span class='fu'>pm_axis_tafd</span>()
 
-<span class='fu'>cwresi_cont</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwresi</a></span>(), <span class='no'>...</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df</th>
-      <td><p>data frame to plot</p></td>
-    </tr>
-    <tr>
-      <th>x</th>
-      <td><p>character col//title for x-axis data; see
-<code><a href='col_label.html'>col_label</a></code></p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>character col//title for y-axis data; see
-<code><a href='col_label.html'>col_label</a></code></p></td>
-    </tr>
-    <tr>
-      <th>xs</th>
-      <td><p>see <code><a href='defx.html'>defx</a></code></p></td>
-    </tr>
-    <tr>
-      <th>ys</th>
-      <td><p>see <code><a href='defy.html'>defy</a></code></p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>passed to <code><a href='scatt.html'>scatt</a></code>  and
-<code><a href='layer.html'>layer_hs</a></code></p></td>
-    </tr>
-    </table>
-    
+<span class='fu'>pm_axis_res</span>()
+
+<span class='fu'>pm_axis_wres</span>()
+
+<span class='fu'>pm_axis_cwres</span>()
+
+<span class='fu'>pm_axis_cwresi</span>()
+
+<span class='fu'>pm_axis_npde</span>()
+
+<span class='fu'>pm_axis_pred</span>()
+
+<span class='fu'>pm_axis_ipred</span>()
+
+<span class='fu'>pm_axis_dv</span>()</pre>
+        
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>These are vectorized functions; if either x or y
-are a character vector (in col//title format), a list
-of plots is returned.  If both x and y are length 1,
-then a single plot object (not a list) is returned.</p>
+    <p>These functions call <code>pmplots:::mk_col_title</code></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw pkg'>pmplots</span><span class='kw ns'>:::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/pmplots/topics/pm_axis_functions'>pm_axis_time</a></span>()</div><div class='output co'>#&gt; [1] "TIME//Time {xunit}"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

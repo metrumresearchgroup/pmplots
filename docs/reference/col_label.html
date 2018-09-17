@@ -32,7 +32,9 @@
 
 <meta property="og:title" content="Column // axis-label specification — col_label" />
 
-<meta property="og:description" content="Column // axis-label specification" />
+<meta property="og:description" content="The col-label specification is a way to identify a column
+in a data set that is to be used for plotting (the col piece) along
+with a label to be used for the axis data (the label piece)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -102,7 +104,9 @@
 
     <div class="ref-description">
     
-    <p>Column // axis-label specification</p>
+    <p>The col-label specification is a way to identify a column
+in a data set that is to be used for plotting (the <code>col</code> piece) along
+with a label to be used for the axis data (the <code>label</code> piece).</p>
     
     </div>
 
@@ -117,6 +121,12 @@
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Typically, the <code>col</code> part is separated from the <code>label</code>
+part with a double front-slash.  So, to identify the column containing
+the weight covariate we might specify <code>WT//Weight (kg)</code>.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>col_label</span>(<span class='st'>"CL // Clearance (L)"</span>)</div><div class='output co'>#&gt; [1] "CL"            "Clearance (L)"</div><div class='input'><span class='fu'>col_label</span>(<span class='st'>"CL//Clearance (L)"</span>)</div><div class='output co'>#&gt; [1] "CL"            "Clearance (L)"</div><div class='input'><span class='fu'>col_label</span>(<span class='st'>"CL $$ Clearance (L)"</span>)</div><div class='output co'>#&gt; [1] "CL"            "Clearance (L)"</div><div class='input'><span class='fu'>col_label</span>(<span class='st'>"CL !! Clearance (L)"</span>)</div><div class='output co'>#&gt; [1] "CL"            "Clearance (L)"</div><div class='input'><span class='fu'>col_label</span>(<span class='st'>"CL @@ Clearance (L)"</span>)</div><div class='output co'>#&gt; [1] "CL"            "Clearance (L)"</div><div class='input'>
@@ -126,7 +136,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

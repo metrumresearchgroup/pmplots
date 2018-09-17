@@ -63,60 +63,81 @@
 
     
     
-<div id="table-of-contents" class="section level1">
+<div id="note" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#table-of-contents" class="anchor"></a>Table of contents</h1></div>
-<ul>
-<li><a href="#basics">Basic functionality</a></li>
-<li>Other examples
-<ul>
-<li>Complete listing (validated version): <a href="https://ghe.metrumrg.com/software/pmplots/blob/426c6f570e7968a996525e1050162c8f494d85bb/inst/examples/everyfunction.html">everyfunction.md</a>
-</li>
-<li>Other examples: <a href="inst/examples/example1.html">example1.md</a>
-</li>
-</ul>
-</li>
-</ul>
+<a href="#note" class="anchor"></a>Note</h1></div>
+<p>This content is for the development version of pmplots, showing what is to come shortly. To view the previously-validated content, see <a href="https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0" class="uri">https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0</a></p>
 </div>
-<div id="basics" class="section level1">
+<div id="introduction" class="section level1">
 <h1 class="hasAnchor">
-<a href="#basics" class="anchor"></a>Basics</h1>
-<div id="simple-function-calls" class="section level2">
-<h2 class="hasAnchor">
-<a href="#simple-function-calls" class="anchor"></a>Simple function calls</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df, <span class="dt">yname=</span><span class="st">"NoDoze conc (ng/mL)"</span>)</code></pre></div>
+<a href="#introduction" class="anchor"></a>Introduction</h1>
+<p>pmplots provides functions to create basic plots for pharmacometrics which share a common look and feel. The design is to provide one function to make one plot and the function is named according to the plot it generates.</p>
+</div>
+<div id="default-behavior" class="section level1">
+<h1 class="hasAnchor">
+<a href="#default-behavior" class="anchor"></a>Default behavior</h1>
+<p>For example, to make a plot of NPDE versus time, we call</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/npde_time.html">npde_time</a></span>(df)</code></pre></div>
 <p><img src="inst/img/README-unnamed-chunk-2-1.png" width="480"></p>
-</div>
-<div id="add-a-title" class="section level2">
-<h2 class="hasAnchor">
-<a href="#add-a-title" class="anchor"></a>Add a title</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">title=</span><span class="st">"Lookie here!"</span>)</code></pre></div>
+<p>A plot of DV versus IPRED would be</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_ipred</a></span>(df)</code></pre></div>
 <p><img src="inst/img/README-unnamed-chunk-3-1.png" width="480"></p>
-</div>
-<div id="modify-the-axes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#modify-the-axes" class="anchor"></a>Modify the axes</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">xs=</span><span class="kw">list</span>(<span class="dt">br=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">240</span>,<span class="dv">24</span>)))</code></pre></div>
+<p>These functions assume defaults based on standard naming conventions. The intention is that, as far as it is possible, these functions are called with the data set as the single argument.</p>
+<p>Where there are no obvious defaults, some functions require extra specification for the input data. For example, to make a pairs plot for etas, you would call</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/pairs_plot.html">eta_pairs</a></span>(df, <span class="kw">c</span>(<span class="st">"ETA1//ETA-CL"</span>, <span class="st">"ETA2//ETA-V2"</span>))</code></pre></div>
 <p><img src="inst/img/README-unnamed-chunk-4-1.png" width="480"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">log=</span><span class="ot">TRUE</span>)</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-4-2.png" width="480"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_time.html">dv_time</a></span>(df, <span class="dt">yname=</span><span class="st">"NoDoze (mg/L)"</span>,
-        <span class="dt">ys =</span> <span class="kw">list</span>(<span class="dt">trans=</span><span class="st">"log"</span>, <span class="dt">breaks=</span><span class="kw"><a href="reference/logbr.html">logbr</a></span>()),
-        <span class="dt">xs =</span> <span class="kw">list</span>(<span class="dt">br=</span><span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">240</span>,<span class="dv">72</span>)))</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-4-3.png" width="480"></p>
-</div>
-<div id="faceting" class="section level2">
-<h2 class="hasAnchor">
-<a href="#faceting" class="anchor"></a>Faceting</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df) <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>STUDY, <span class="dt">ncol=</span><span class="dv">2</span>)</code></pre></div>
+<p>Or to plot CWRES versus weight</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/res_cont.html">cwresi_cont</a></span>(df, <span class="dt">x =</span> <span class="st">"WT//Weight (kg)"</span>)</code></pre></div>
 <p><img src="inst/img/README-unnamed-chunk-5-1.png" width="480"></p>
-</div>
-<div id="add-theme" class="section level2">
+<div id="col-label-format" class="section level2">
 <h2 class="hasAnchor">
-<a href="#add-theme" class="anchor"></a>Add theme</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_pred</a></span>(df) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/theme_plain.html">theme_plain</a></span>()</code></pre></div>
-<p><img src="inst/img/README-unnamed-chunk-6-1.png" width="480"></p>
+<a href="#col-label-format" class="anchor"></a><code>col-label</code> format</h2>
+<p>In the previous two examples, we had to identify both a column name to show where to find the input data as well as a column title or label to show what how to label the axis.</p>
+<p>This is known as <code>col-label</code> format. In this format, we specify the column name separated by a double front slash (e.g. “WT//Weight”).</p>
 </div>
+</div>
+<div id="customized-plots" class="section level1">
+<h1 class="hasAnchor">
+<a href="#customized-plots" class="anchor"></a>Customized plots</h1>
+<p>Beyond the default behavior, we can also add some customization to our plots.</p>
+<p>As a very basic example</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/cwres_time.html">cwresi_time</a></span>(df, <span class="dt">y =</span> <span class="st">"CWRESI//CWRES"</span>)</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-6-1.png" width="480"></p>
+<p>Here, we override the default y-axis data and provide a custom name.</p>
+<p>For the <code>_time</code> plots, we also have some arguments that can be invoked to customize the x-axis labels</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/cwres_time.html">cwresi_time</a></span>(df, <span class="dt">xby =</span> <span class="dv">24</span>)</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-7-1.png" width="480"></p>
+<p>Other customization can be made via the <code>xs</code> (x-axis) or <code>ys</code> (y-axis) arguments.</p>
+</div>
+<div id="access-pmplots-look-and-feel" class="section level1">
+<h1 class="hasAnchor">
+<a href="#access-pmplots-look-and-feel" class="anchor"></a>Access pmplots look and feel</h1>
+<p>Sometimes you need to customize a plot so far that it is no longer possible to do with the built in functions. In this case, you should consider building a plot and using some of the helper functions included in pmplots to get the same look and feel.</p>
+<p>For example, the basic plot might look like</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(TIME,CWRESI)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+
+p</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-8-1.png" width="480"></p>
+<p>But we can style it to look like other plots in the pmplots package</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/pm_theme.html">pm_theme</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/pm_theme.html">pm_hline</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/pm_theme.html">pm_smooth</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>STUDYc)</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-9-1.png" width="480"></p>
+</div>
+<div id="vectorized-plots" class="section level1">
+<h1 class="hasAnchor">
+<a href="#vectorized-plots" class="anchor"></a>Vectorized plots</h1>
+<p>Frequently, we’d like to make a set of plots that are common, except for a single attribute. For example, we’d like to plot CWRES versus sevaral different covariates. We can do that by passing input in vector form. For example</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mrggsave)
+
+covariates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"WT"</span>, <span class="st">"CRCL"</span>, <span class="st">"ALB"</span>)
+
+<span class="kw"><a href="reference/res_cont.html">cwresi_cont</a></span>(df, <span class="dt">x =</span> covariates, <span class="dt">y =</span> <span class="st">"CWRESI"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/mrggsave/topics/mrggpage">mrggpage</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/mrggsave/topics/mrggdraw">mrggdraw</a></span>()</code></pre></div>
+<p><img src="inst/img/README-unnamed-chunk-10-1.png" width="480"></p>
+<p>In this example, we pass in the x values as a vector and we get a list of plots back. These plots can then be saved individually or (as shown in the example) arranged onto a single page.</p>
+</div>
+<div id="function-reference" class="section level1">
+<h1 class="hasAnchor">
+<a href="#function-reference" class="anchor"></a>Function reference</h1>
+<p>Please see <a href="inst/examples/everyfunction.html" class="uri">inst/examples/everyfunction.md</a> for a comprehensive listing of functions and their corresponding output.</p>
 </div>
   </div>
 
@@ -124,7 +145,7 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="NA">NA</a>
+<li>Report a bug at <br><a href="https://ghe.metrumrg.com/software/pmplots/issues">https://​ghe.metrumrg.com/​software/​pmplots/​issues</a>
 </li>
 </ul>
 </div>
@@ -142,13 +163,7 @@
 </ul>
 </div>
 
-      <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a name="basics"></a></li>
-</ul>
-</div>
-</div>
+      </div>
 
 </div>
 

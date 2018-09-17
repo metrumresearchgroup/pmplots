@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot residuals or NPDE versus time — res_time • pmplots</title>
+<title>Plot residuals versus time — res_time • pmplots</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Plot residuals or NPDE versus time — res_time" />
+<meta property="og:title" content="Plot residuals versus time — res_time" />
 
-<meta property="og:description" content="Plot residuals or NPDE versus time" />
+<meta property="og:description" content="These plots have RES on the y axis and
+some time-related column on the x-axis, including TIME,
+TAD, or TAFD." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -95,46 +97,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot residuals or NPDE versus time</h1>
+    <h1>Plot residuals versus time</h1>
     
     <div class="hidden name"><code>res_time.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot residuals or NPDE versus time</p>
+    <p>These plots have <code>RES</code> on the y axis and
+some time-related column on the x-axis, including <code>TIME</code>,
+<code>TAD</code>, or <code>TAFD</code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>res_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_time</span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_res</span>(), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>res_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_time</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_res</a></span>(), <span class='no'>...</span>)
 
-<span class='fu'>res_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tafd</span>(), <span class='no'>...</span>)
+<span class='fu'>res_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tafd</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_res</a></span>(), <span class='no'>...</span>)
 
-<span class='fu'>res_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tad</span>(), <span class='no'>...</span>)
-
-<span class='fu'>wres_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_time</span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_wres</span>(), <span class='no'>...</span>)
-
-<span class='fu'>wres_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tafd</span>(), <span class='no'>...</span>)
-
-<span class='fu'>wres_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tad</span>(), <span class='no'>...</span>)
-
-<span class='fu'>cwres_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_time</span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_cwres</span>(), <span class='no'>...</span>)
-
-<span class='fu'>cwresi_time</span>(<span class='no'>df</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_cwresi</span>(), <span class='no'>...</span>)
-
-<span class='fu'>cwres_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tafd</span>(), <span class='no'>...</span>)
-
-<span class='fu'>cwresi_tafd</span>(<span class='no'>df</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_cwresi</span>(), <span class='no'>...</span>)
-
-<span class='fu'>cwres_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tad</span>(), <span class='no'>...</span>)
-
-<span class='fu'>cwresi_tad</span>(<span class='no'>df</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tad</span>(), <span class='no'>...</span>)
-
-<span class='fu'>npde_time</span>(<span class='no'>df</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>pm_axis_npde</span>(), <span class='no'>...</span>, <span class='kw'>hline</span> <span class='kw'>=</span> <span class='fu'><a href='npde_ref.html'>npde_ref</a></span>())
-
-<span class='fu'>npde_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tad</span>(), <span class='no'>...</span>)
-
-<span class='fu'>npde_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>pm_axis_tafd</span>(), <span class='no'>...</span>)</pre>
+<span class='fu'>res_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tad</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_res</a></span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,29 +125,22 @@
     </tr>
     <tr>
       <th>x</th>
-      <td><p>character name of x-axis data</p></td>
+      <td><p>x-axis data in <code><a href='col_label.html'>col_label</a></code> format</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>character name of y-axis data</p></td>
+      <td><p>y-axis data in <code><a href='col_label.html'>col_label</a></code> format</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>passed to <code><a href='y_time.html'>y_time</a></code> and
 <code><a href='layer.html'>layer_hs</a></code></p></td>
     </tr>
-    <tr>
-      <th>hline</th>
-      <td><p>a list of arguments to pass to <code>geom_hline</code> specifying
-aesthetics to use</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Functions are provided for plotting <code>RES</code>, <code>WRES</code>,
-and <code>CWRES</code> versus <code>TIME</code>, <code>TAFD</code>, and
-<code>TAD</code>.  Plots are generated using <code><a href='y_time.html'>y_time</a></code>,
+    <p>Plots are generated using <code><a href='y_time.html'>y_time</a></code>,
 which then calls <code><a href='scatt.html'>scatt</a></code>.</p>
 <p>By default, the time unit is assumed
 to be hours (<code>hr</code>).  See the <code>xunit</code> argument
@@ -186,11 +159,8 @@ be numeric.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='pmplots_data.html'>pmplots_data</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>)
 
-<span class='fu'>cwresi_time</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='res_time-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>cwresi_time</span>(<span class='no'>df</span>, <span class='kw'>yname</span> <span class='kw'>=</span> <span class='st'>"CWRES"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='res_time-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>cwresi_time</span>(<span class='no'>df</span>, <span class='kw'>xunit</span><span class='kw'>=</span><span class='st'>"day"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='res_time-3.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>wres_time</span>(<span class='no'>df</span>, <span class='kw'>xby</span><span class='kw'>=</span><span class='fl'>48</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='res_time-4.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>wres_time</span>(<span class='no'>df</span>) + <span class='fu'><a href='geom_3s.html'>geom_3s</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='res_time-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>res_time</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='res_time-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

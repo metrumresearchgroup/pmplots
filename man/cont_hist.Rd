@@ -36,5 +36,6 @@ be plotted over the histogram using \code{\link{add_density}}}
 }
 \description{
 \code{cont_hist_list} is a vectorized version
-of \code{cont_hist}.
+of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
+function that is called by other functions in pmplots.
 }

@@ -9,6 +9,7 @@ Authors@R: c(
 Maintainer: Kyle Baron <kyleb@metrumrg.com>
 Description: Very light wrappers around 'ggplot2' plotting code tailored for pharmacometric applications.
 License: GPL (>=2)
+BugReports: https://ghe.metrumrg.com/software/pmplots/issues
 Encoding: UTF-8
 LazyData: true
 Imports: 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Residuals or NPDE versus predicted values — res_pred • pmplots</title>
+<title>Plot conditional weighted residuals versus time — cwres_time • pmplots</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Residuals or NPDE versus predicted values — res_pred" />
+<meta property="og:title" content="Plot conditional weighted residuals versus time — cwres_time" />
 
-<meta property="og:description" content="Residuals or NPDE versus predicted values" />
+<meta property="og:description" content="Plot conditional weighted residuals versus time" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -95,89 +95,65 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Residuals or NPDE versus predicted values</h1>
+    <h1>Plot conditional weighted residuals versus time</h1>
     
-    <div class="hidden name"><code>res_pred.Rd</code></div>
+    <div class="hidden name"><code>cwres_time.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Residuals or NPDE versus predicted values</p>
+    <p>Plot conditional weighted residuals versus time</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>res_pred</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_pred</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_res</a></span>(), <span class='kw'>xname</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-  <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='defx.html'>defx</a></span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'><a href='defy.html'>defy</a></span>(), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>cwres_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_time</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwres</a></span>(), <span class='no'>...</span>)
 
-<span class='fu'>wres_pred</span>(<span class='no'>df</span>, <span class='no'>...</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_wres</a></span>())
+<span class='fu'>cwres_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tafd</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwres</a></span>(), <span class='no'>...</span>)
 
-<span class='fu'>cwres_pred</span>(<span class='no'>df</span>, <span class='no'>...</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwres</a></span>())
+<span class='fu'>cwres_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tad</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwres</a></span>(), <span class='no'>...</span>)
 
-<span class='fu'>cwresi_pred</span>(<span class='no'>df</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwresi</a></span>(), <span class='no'>...</span>)
+<span class='fu'>cwresi_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_time</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwresi</a></span>(), <span class='no'>...</span>)
 
-<span class='fu'>npde_pred</span>(<span class='no'>df</span>, <span class='no'>...</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_npde</a></span>(), <span class='kw'>hline</span> <span class='kw'>=</span> <span class='fu'><a href='npde_ref.html'>npde_ref</a></span>())</pre>
+<span class='fu'>cwresi_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tafd</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwresi</a></span>(), <span class='no'>...</span>)
+
+<span class='fu'>cwresi_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tad</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_cwresi</a></span>(), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>df</th>
-      <td><p>data frame to plot</p></td>
+      <td><p>data set to plot</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>character name for x-axis data</p></td>
+      <td><p>x-axis data in <code><a href='col_label.html'>col_label</a></code> format</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>character name for y-axis data</p></td>
-    </tr>
-    <tr>
-      <th>xname</th>
-      <td><p>glued into x-axis title</p></td>
-    </tr>
-    <tr>
-      <th>xs</th>
-      <td><p>see <code><a href='defx.html'>defx</a></code></p></td>
-    </tr>
-    <tr>
-      <th>ys</th>
-      <td><p>see <code><a href='defy.html'>defy</a></code></p></td>
+      <td><p>y-axis data in <code><a href='col_label.html'>col_label</a></code> format</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>passed to <code><a href='scatt.html'>scatt</a></code> and <code><a href='layer.html'>layer_hs</a></code></p></td>
-    </tr>
-    <tr>
-      <th>hline</th>
-      <td><p>a list of parameters to pass to <code>geom_hline</code> specifying
-where to locate a horizontal reference line aesthetics to use</p></td>
+      <td><p>passed to <code><a href='res_time.html'>res_time</a></code> and eventually to
+<code><a href='y_time.html'>y_time</a></code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Since this function creates a scatter plot,
-both the <code>x</code> and <code>y</code> columns must
-be numeric.</p>
-<p>The y axis name is always the name of the residual
-(e.g. "Weighted residual").  Use the <code>xname</code> argument
-to add specific name and or unit to the dependent variable
-(see the example).</p>
-<p>A loess smooth and a horizontal reference line are
-layered on the plot.</p>
+    <p>See <code><a href='res_time.html'>res_time</a></code> for other important implementation details.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='geom_3s.html'>geom_3s</a></code></p></div>
+    <div class='dont-index'><p><code><a href='res_time.html'>res_time</a></code>, <code><a href='wres_time.html'>wres_time</a></code>,
+<code><a href='npde_time.html'>npde_time</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='pmplots_data.html'>pmplots_data_obs</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>)
+    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='pmplots_data.html'>pmplots_data</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span>)
 
-<span class='fu'>cwresi_pred</span>(<span class='no'>df</span>, <span class='kw'>xname</span><span class='kw'>=</span><span class='st'>"MyDrug (ng/mL)"</span>)</div><div class='img'><img src='res_pred-1.png' alt='' width='700' height='433' /></div><div class='input'>
-
+<span class='fu'>cwresi_time</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 68 rows containing missing values (geom_point).</span></div><div class='img'><img src='cwres_time-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
