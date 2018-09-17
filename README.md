@@ -1,12 +1,19 @@
 pmplots
 ================
 
+-   [Note](#note)
 -   [Introduction](#introduction)
 -   [Default behavior](#default-behavior)
     -   [`col-label` format](#col-label-format)
 -   [Customized plots](#customized-plots)
 -   [Access pmplots look and feel](#access-pmplots-look-and-feel)
 -   [Vectorized plots](#vectorized-plots)
+-   [Function reference](#function-reference)
+
+Note
+====
+
+This content is for the development version of pmplots, showing what is to come shortly. To view the previously-validated content, see <https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0>
 
 Introduction
 ============
@@ -22,7 +29,7 @@ For example, to make a plot of NPDE versus time, we call
 npde_time(df)
 ```
 
-![](inst/img/README-unnamed-chunk-2-1.png)
+![](docs/img/README-unnamed-chunk-2-1.png)
 
 A plot of DV versus IPRED would be
 
@@ -30,7 +37,7 @@ A plot of DV versus IPRED would be
 dv_ipred(df)
 ```
 
-![](inst/img/README-unnamed-chunk-3-1.png)
+![](docs/img/README-unnamed-chunk-3-1.png)
 
 These functions assume defaults based on standard naming conventions. The intention is that, as far as it is possible, these functions are called with the data set as the single argument.
 
@@ -40,7 +47,7 @@ Where there are no obvious defaults, some functions require extra specification 
 eta_pairs(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
 ```
 
-![](inst/img/README-unnamed-chunk-4-1.png)
+![](docs/img/README-unnamed-chunk-4-1.png)
 
 Or to plot CWRES versus weight
 
@@ -48,7 +55,7 @@ Or to plot CWRES versus weight
 cwresi_cont(df, x = "WT//Weight (kg)")
 ```
 
-![](inst/img/README-unnamed-chunk-5-1.png)
+![](docs/img/README-unnamed-chunk-5-1.png)
 
 `col-label` format
 ------------------
@@ -68,7 +75,7 @@ As a very basic example
 cwresi_time(df, y = "CWRESI//CWRES")
 ```
 
-![](inst/img/README-unnamed-chunk-6-1.png)
+![](docs/img/README-unnamed-chunk-6-1.png)
 
 Here, we override the default y-axis data and provide a custom name.
 
@@ -78,7 +85,7 @@ For the `_time` plots, we also have some arguments that can be invoked to custom
 cwresi_time(df, xby = 24)
 ```
 
-![](inst/img/README-unnamed-chunk-7-1.png)
+![](docs/img/README-unnamed-chunk-7-1.png)
 
 Other customization can be made via the `xs` (x-axis) or `ys` (y-axis) arguments.
 
@@ -95,7 +102,7 @@ p <- ggplot(df, aes(TIME,CWRESI)) + geom_point()
 p
 ```
 
-![](inst/img/README-unnamed-chunk-8-1.png)
+![](docs/img/README-unnamed-chunk-8-1.png)
 
 But we can style it to look like other plots in the pmplots package
 
@@ -103,7 +110,7 @@ But we can style it to look like other plots in the pmplots package
 p + pm_theme() + pm_hline() + pm_smooth() + facet_wrap(~STUDYc)
 ```
 
-![](inst/img/README-unnamed-chunk-9-1.png)
+![](docs/img/README-unnamed-chunk-9-1.png)
 
 Vectorized plots
 ================
@@ -118,6 +125,11 @@ covariates <- c("WT", "CRCL", "ALB")
 cwresi_cont(df, x = covariates, y = "CWRESI") %>% mrggpage() %>% mrggdraw()
 ```
 
-![](inst/img/README-unnamed-chunk-10-1.png)
+![](docs/img/README-unnamed-chunk-10-1.png)
 
 In this example, we pass in the x values as a vector and we get a list of plots back. These plots can then be saved individually or (as shown in the example) arranged onto a single page.
+
+Function reference
+==================
+
+Please see [inst/examples/everyfunction.md](inst/examples/everyfunction.md) for a comprehensive listing of functions and their corresponding output.
