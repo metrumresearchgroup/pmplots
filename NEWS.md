@@ -1,7 +1,13 @@
 # pmplots 0.1.0.9002
+- 
+- Added non-exported functions to generate default col-label information 
+(see `?pm_axis_functions`)
+- Added `npde_time`, `npde_tad` and `npde_tafd`, 
+`npde_pred`, `npde_hist`, and `npde_q` functions
 - Added `res_hist`, `wres_hist`, and `cwres_hist` along with 
 the more general `cont_hist` functions for plotting residuals
 or other continuous variables as histograms
+- 
 - Vectorized `eta_cont`, `(cw)res_cont`, `eta_cat`, and
 `(cw)res_cat`; see function help for more details about 
 what this means
@@ -41,6 +47,8 @@ making reference lines, smooths, etc; `pm_theme` is still just a wrapper
 around `theme_bw()`
 - `eta_pairs` dispatches to `eta_hist` when there is only one eta 
 in the mix #14
+- A density line is by default plotted over histograms 
+for `cwres`, `wres`, and `npde`
 
 # pmplots 0.1.0.9001
 
