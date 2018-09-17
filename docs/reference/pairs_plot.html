@@ -167,10 +167,12 @@ are passed to <code><a href='eta_hist.html'>eta_hist</a></code> and that result 
     <pre class="examples"><div class='input'>
 <span class='no'>id</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pmplots_data.html'>pmplots_data_id</a></span>()
 
-
 <span class='no'>etas</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"ETA1//ETA-CL"</span>, <span class='st'>"ETA2//ETA-VC"</span>, <span class='st'>"ETA3//ETA-KA"</span>)
 
 <span class='fu'>eta_pairs</span>(<span class='no'>id</span>,<span class='no'>etas</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: GGally</span></div><div class='img'><img src='pairs_plot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>1000</span>), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>1000</span>))
+
+<span class='fu'>pairs_plot</span>(<span class='no'>df</span>, <span class='fu'>c</span>(<span class='st'>"x"</span>, <span class='st'>"y"</span>))</div><div class='img'><img src='pairs_plot-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

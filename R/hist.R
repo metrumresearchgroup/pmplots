@@ -19,9 +19,9 @@
 ##'
 ##' @examples
 ##'
-##' df <- pmplots_data_id()
+##' data <- data.frame(WT = rnorm(1000,80,20))
 ##'
-##' cont_hist(df, x = "WT//Weight (kg)")
+##' cont_hist(data, x = "WT//Weight (kg)")
 ##'
 ##'
 ##' @export

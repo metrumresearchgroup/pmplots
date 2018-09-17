@@ -52,10 +52,13 @@ pairs_upper <- function(data, mapping, ...) {
 ##'
 ##' id <- pmplots_data_id()
 ##'
-##'
 ##' etas <- c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA")
 ##'
 ##' eta_pairs(id,etas)
+##'
+##' df <- data.frame(x = rnorm(1000), y = rnorm(1000))
+##'
+##' pairs_plot(df, c("x", "y"))
 ##'
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
