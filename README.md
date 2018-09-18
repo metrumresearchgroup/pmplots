@@ -139,4 +139,4 @@ In this example, we pass in the x values as a vector and we get a list of plots 
 Function reference
 ==================
 
-Please see [inst/examples/everyfunction.md](http://ghe.metrumrg.com/software/pmplots/tree/master/inst/examples/everyfunction.md) for a comprehensive listing of functions and their corresponding output.
+Please see [inst/examples/everyfunction.md](https://ghe.metrumrg.com/software/pmplots/blob/master/inst/examples/everyfunction.md) for a comprehensive listing of functions and their corresponding output.
