@@ -147,7 +147,7 @@ example) arranged onto a single page.
 
 
 # Function reference
-Please see [inst/examples/everyfunction.md](http://ghe.metrumrg.com/software/pmplots/inst/examples/everyfunction.md)
+Please see [inst/examples/everyfunction.md](http://ghe.metrumrg.com/software/pmplots/tree/master/inst/examples/everyfunction.md)
 for a comprehensive listing of functions and their corresponding output.
 
 
