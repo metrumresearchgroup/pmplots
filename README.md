@@ -1,6 +1,7 @@
 pmplots
 ================
 
+-   [Additional Links](#additional-links)
 -   [Note](#note)
 -   [Introduction](#introduction)
 -   [Default behavior](#default-behavior)
@@ -9,6 +10,12 @@ pmplots
 -   [Access pmplots look and feel](#access-pmplots-look-and-feel)
 -   [Vectorized plots](#vectorized-plots)
 -   [Function reference](#function-reference)
+
+Additional Links
+================
+
+-   Browse source code: <https://ghe.metrumrg.com/software/pmplots>
+-   File an issue: <https://ghe.metrumrg.com/software/pmplots/issues>
 
 Note
 ====

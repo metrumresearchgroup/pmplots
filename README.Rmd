@@ -15,7 +15,6 @@ knitr::opts_chunk$set(warning=FALSE, fig.path="docs/img/README-",
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-library(Mmisc)
 library(GGally)
 library(pmplots)
 library(mrggsave)
@@ -24,11 +23,16 @@ df <- pmplots_data_obs()
 dfi <- filter(df, !is.na(IPRED)) %>% distinct(ID, .keep_all=TRUE)
 ```
 
+# Additional Links
+
+- Browse source code: https://ghe.metrumrg.com/software/pmplots
+- File an issue: https://ghe.metrumrg.com/software/pmplots/issues
+
+
 # Note
 This content is for the development version of pmplots, showing what is to 
 come shortly.  To view the previously-validated content, see
 https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0
-
 
 # Introduction
 
