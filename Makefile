@@ -32,7 +32,7 @@ all:
 
 travis:
 	make build
-	R CMD CHECK ${TARBALL} -o ${CHKDIR}
+	R CMD check ${TARBALL} -o ${CHKDIR}
 
 test:
 	make install
@@ -55,11 +55,11 @@ install-build:
 check:
 	make doc
 	make build
-	R CMD CHECK ${TARBALL} -o ${CHKDIR}
+	R CMD check ${TARBALL} -o ${CHKDIR}
 
 checkk:
 	make doc
 	make build
-	R CMD CHECK ${TARBALL} -o ${CHKDIR} --no-examples
+	R CMD check ${TARBALL} -o ${CHKDIR} --no-examples
 
 
