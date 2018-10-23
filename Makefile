@@ -32,7 +32,7 @@ all:
 
 travis:
 	make build
-	R CMD check ${TARBALL} -o ${CHKDIR}
+	R CMD check --no-manual ${TARBALL} -o ${CHKDIR}
 
 test:
 	make install
