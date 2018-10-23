@@ -17,4 +17,4 @@ pandoc: false
 
 script:
   - export _R_CHECK_FORCE_SUGGESTS_=0
-  - make check
+  - make travis
