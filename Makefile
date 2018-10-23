@@ -30,6 +30,10 @@ all:
 	make build
 	make install
 
+travis:
+	make build
+	R CMD CHECK ${TARBALL} -o ${CHKDIR}
+
 test:
 	make install
 	Rscript -e 'testthat:::test_dir("tests")'
