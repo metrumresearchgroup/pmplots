@@ -180,6 +180,13 @@ col_label <- function(x) {
 parse_label <- function(x) {
   if(substr(x,1,2)=="!!") {
     x <- parse(text=substr(x,3,nchar(x)))
+    return(x)
+  }
+  if(charcount(x,"$") >= 2) {
+    if(!requireNamespace("latex2exp",quietly=TRUE)) {
+      return(x)
+    }
+    return(latex2exp::TeX(x))
   }
   x
 }
@@ -257,4 +264,13 @@ glue_unit <- function(x,xunit) {
   if(is.null(xunit)) return(x)
   if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
   glue::glue(x)
+}
+
+
+charcount <- function(x,w,fx=TRUE) {
+  nchar(x) - nchar(gsub(w,"",x,fixed=fx))
+}
+
+charthere <- function(x,w,fx=TRUE) {
+  grepl(w,x,fixed=fx)
 }
