@@ -49,6 +49,9 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
   x <- col_label(x)
   y <- col_label(y)
 
+  xlab <- x[2]
+  ylab <- y[2]
+
   require_numeric(df,x[1])
   require_numeric(df,y[1])
 
@@ -58,11 +61,9 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(),ys)
 
-  xs$name <- x[2]
-  ys$name <- y[2]
-
   x <- x[1]
   y <- y[1]
+
 
   if(loglog) {
     xs$trans <- "log"
@@ -99,7 +100,7 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
 
   out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
 
-  layer_as(out, ...)
+  layer_as(out, ...) + pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export

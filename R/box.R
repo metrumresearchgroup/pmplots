@@ -55,7 +55,6 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
   yscale <- do.call("scale_y_continuous", ys)
   xscale <- do.call("scale_x_discrete", xs)
 
-
   p <- ggplot(data=df, aes_string(x=x,y=y))
   # p <- p + geom_point(aes_string(x = x, y = y),
   #                     position = position_jitter(width = 0.25),
@@ -105,9 +104,7 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   if(length(x)!=2) stop("invalid y value", call.=FALSE)
   require_numeric(df,y[1])
   require_discrete(df,x[1])
-  xs$name <- x[2]
-  ys$name <- y[2]
-  boxwork(df,x[1],y[1],xs,ys,...)
+  boxwork(df,x[1],y[1],xs,ys,...) + pm_labs(x = x[2], y = y[2])
 }
 
 ##' @rdname pm_box

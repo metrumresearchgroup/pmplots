@@ -50,6 +50,9 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
   x <- col_label(x)
   y <- col_label(y)
 
+  xlab <- x[2]
+  ylab <- y[2]
+
   df <- as.data.frame(df)
 
   require_numeric(df,x[1])
@@ -60,9 +63,6 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
 
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(),ys)
-
-  xs$name <- x[2]
-  ys$name <- y[2]
 
   x <- x[1]
   y <- y[1]
@@ -87,7 +87,8 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
     xs$breaks <- seq(0,max(df[,x]),xby)
   }
 
-  scatt(df,x,y,xs=xs,ys=ys,smooth=FALSE,group=group,...)
+  scatt(df,x,y,xs=xs,ys=ys,smooth=FALSE,group=group,...) +
+    pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export

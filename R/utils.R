@@ -146,7 +146,7 @@ log_scale <- function(br=logbr(),...) {
 }
 
 split_col_label <- function(x,split="//") {
-  y <- strsplit(x, split=split,fixed=TRUE)[[1]]
+  y <- strsplit(x,split=split,fixed=TRUE)[[1]]
   sapply(y,FUN=trimws, USE.NAMES=FALSE)
 }
 
@@ -167,13 +167,42 @@ split_col_label <- function(x,split="//") {
 col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
-    if(length(y)==2) return(trimws(y))
+    if(length(y)==2) {
+      return(trimws(y))
+    }
   }
   if(!grepl("[[:punct:]]",x)) {
     return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }
+
+parse_label <- function(x) {
+  if(substr(x,1,2)=="!!") {
+    x <- parse(text=substr(x,3,nchar(x)))
+    return(x)
+  }
+  if(look_for_tex(x)) {
+    if(requireNamespace("latex2exp",quietly=TRUE)) {
+      return(latex2exp::TeX(x))
+    }
+  }
+  x
+}
+
+look_for_tex <- function(x) {
+  if(getOption("pmplots_TeX_labels",FALSE)) {
+    return(TRUE)
+  }
+  charcount(x,"$") >= 2
+}
+
+
+pm_labs <- function(...) {
+  x <- lapply(list(...), parse_label)
+  do.call(ggplot2::labs,x)
+}
+
 
 noline <- ggplot2::element_blank()
 
@@ -242,4 +271,13 @@ glue_unit <- function(x,xunit) {
   if(is.null(xunit)) return(x)
   if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
   glue::glue(x)
+}
+
+
+charcount <- function(x,w,fx=TRUE) {
+  nchar(x) - nchar(gsub(w,"",x,fixed=fx))
+}
+
+charthere <- function(x,w,fx=TRUE) {
+  grepl(w,x,fixed=fx)
 }

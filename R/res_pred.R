@@ -46,18 +46,18 @@ res_pred <- function(df,
   x <- col_label(x)
   y <- col_label(y)
 
+  xlab <- x[2]
+  ylab <- y[2]
+
   require_numeric(df,x[1])
   require_numeric(df,y[1])
-
-  xs$name <- x[2]
-  ys$name <- y[2]
 
   x <- x[1]
   y <- y[1]
 
   out <- scatt(df, x, y, xs, ys, ...)
 
-  layer_hs(out,...)
+  layer_hs(out,...) + pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export
