@@ -11,3 +11,4 @@ inst/examples
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
+^\.travis\.yml$

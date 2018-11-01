@@ -13,7 +13,7 @@
 ##' split_plot(df, sp="STUDYc", fun=dv_pred)
 ##'
 ##' @export
-split_plot <- function(df, sp, fun = "cont_cont",...) {
+split_plot <- function(df, sp, fun,...) {
   require_column(df,sp)
   l <- split(df, df[[sp]], drop = TRUE)
   form <- as.formula(paste0("~",sp))

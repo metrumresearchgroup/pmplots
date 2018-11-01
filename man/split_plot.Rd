@@ -4,7 +4,7 @@
 \alias{split_plot}
 \title{Split and plot}
 \usage{
-split_plot(df, sp, fun = "cont_cont", ...)
+split_plot(df, sp, fun, ...)
 }
 \arguments{
 \item{df}{data frame to split and plot}
