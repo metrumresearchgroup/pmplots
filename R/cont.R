@@ -78,6 +78,9 @@ y_time <- function(df,
   x <- col_label(x)
   y <- col_label(y)
 
+  xlab <- x[2]
+  ylab <- y[2]
+
   require_numeric(df,x[1])
   require_numeric(df,y[1])
 
@@ -86,9 +89,6 @@ y_time <- function(df,
 
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(), ys)
-
-  xs$name <- x[2]
-  ys$name <- y[2]
 
   x <- x[1]
   y <- y[1]
@@ -102,7 +102,7 @@ y_time <- function(df,
     ys$breaks <- logbr3()
   }
 
-  scatt(df, x, y, xs=xs, ys=ys, ...)
+  scatt(df, x, y, xs=xs, ys=ys, ...) + labs(x = xlab, y = ylab)
 
 }
 
@@ -145,11 +145,11 @@ y_time <- function(df,
 pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
   y <- col_label(y)
   x <- col_label(x)
-  ys$name <- y[2]
-  xs$name <- x[2]
+  xlab <- x[2]
+  ylab <- y[2]
   require_numeric(df, x[1])
   require_numeric(df, y[1])
-  scatt(df,x[1],y[1],xs,ys,...)
+  scatt(df,x[1],y[1],xs,ys,...) + labs(x = xlab, y = ylab)
 }
 
 ##' @rdname pm_scatter

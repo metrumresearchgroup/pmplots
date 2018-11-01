@@ -48,6 +48,7 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
 
   x <- col_label(x)
   y <- col_label(y)
+
   xlab <- x[2]
   ylab <- y[2]
 

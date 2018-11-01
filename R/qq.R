@@ -35,13 +35,12 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
 
   require_numeric(df,x)
   if(is.null(abline)) abline <- qq_reg_data(df[[x]])
-  xs$name <- "Standard normal quantile"
-  ys$name <- paste0(x, " distribution quantile")
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   p <- ggplot(data=df, aes_string(sample=x))
   p <- p + stat_qq(color=.ggblue, alpha=1, distribution=qnorm)
   p <- p + xscale + yscale
+  p <- p + labs(x = "Standard normal quantile", y = paste0(x, " distribution quantile"))
   if(!is.null(abline)) {
     p <- p + geom_abline(intercept=abline[1], slope=abline[2])
   }
