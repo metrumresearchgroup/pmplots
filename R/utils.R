@@ -178,7 +178,7 @@ col_label <- function(x) {
 }
 
 parse_label <- function(x) {
-  if(substr(x,1,2)=="#!") {
+  if(substr(x,1,2)=="!!") {
     x <- parse(text=substr(x,3,nchar(x)))
   }
   x
