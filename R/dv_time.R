@@ -88,7 +88,7 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
   }
 
   scatt(df,x,y,xs=xs,ys=ys,smooth=FALSE,group=group,...) +
-    labs(x = xlab, y = ylab)
+    pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export

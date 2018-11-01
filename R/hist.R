@@ -35,7 +35,7 @@ cont_hist <- function(df, x, xs = defx(), fill = "black",
     ggplot(data=df, aes_string(x = xx[1])) +
     pm_histogram(mapping = aes_string(y = y), ...,
                  col = col, fill = fill, alpha = alpha) +
-    xscale + pm_theme() + labs(x = xx[2])
+    xscale + pm_theme() + pm_labs(x = xx[2])
   if(add_density) {
     out <- out + add_density(...)
   }

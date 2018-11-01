@@ -146,7 +146,7 @@ log_scale <- function(br=logbr(),...) {
 }
 
 split_col_label <- function(x,split="//") {
-  y <- strsplit(x, split=split,fixed=TRUE)[[1]]
+  y <- strsplit(x,split=split,fixed=TRUE)[[1]]
   sapply(y,FUN=trimws, USE.NAMES=FALSE)
 }
 
@@ -167,13 +167,28 @@ split_col_label <- function(x,split="//") {
 col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
-    if(length(y)==2) return(trimws(y))
+    if(length(y)==2) {
+      return(trimws(y))
+    }
   }
   if(!grepl("[[:punct:]]",x)) {
     return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }
+
+parse_label <- function(x) {
+  if(substr(x,1,2)=="#!") {
+    x <- parse(text=substr(x,3,nchar(x)))
+  }
+  x
+}
+
+pm_labs <- function(...) {
+  x <- lapply(list(...), parse_label)
+  do.call(ggplot2::labs,x)
+}
+
 
 noline <- ggplot2::element_blank()
 

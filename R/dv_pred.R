@@ -100,7 +100,7 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
 
   out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
 
-  layer_as(out, ...) + labs(x = xlab, y = ylab)
+  layer_as(out, ...) + pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export
