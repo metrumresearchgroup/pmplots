@@ -182,14 +182,21 @@ parse_label <- function(x) {
     x <- parse(text=substr(x,3,nchar(x)))
     return(x)
   }
-  if(charcount(x,"$") >= 2) {
-    if(!requireNamespace("latex2exp",quietly=TRUE)) {
-      return(x)
+  if(look_for_tex(x)) {
+    if(requireNamespace("latex2exp",quietly=TRUE)) {
+      return(latex2exp::TeX(x))
     }
-    return(latex2exp::TeX(x))
   }
   x
 }
+
+look_for_tex <- function(x) {
+  if(getOption("pmplots_TeX_labels",FALSE)) {
+    return(TRUE)
+  }
+  charcount(x,"$") >= 2
+}
+
 
 pm_labs <- function(...) {
   x <- lapply(list(...), parse_label)
