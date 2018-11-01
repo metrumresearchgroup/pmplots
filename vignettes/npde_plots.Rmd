@@ -1,0 +1,62 @@
+---
+title: "NPDE Plots"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{NPDE Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Set up
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+
+data <- pmplots_data_obs()
+```
+
+# NPDE versus time
+```{r}
+npde_time(data)
+
+npde_tad(data)
+```
+
+
+
+# NPDE versus PRED
+
+```{r}
+npde_pred(data)
+```
+
+
+# NPDE histogram
+```{r}
+npde_hist(data)
+```
+
+# NPDE QQ plot
+```{r}
+npde_q(data)
+```
+
+# NPDE versus categorical variable
+
+```{r}
+cont_cat(data, x = "STUDYc", y = "NPDE") + pm_hline()
+```
+
+# NPDE versus continuous variables
+
+```{r}
+cont_cont(data, x= "WT//Weight (kg)", y = "NPDE") + 
+  pm_hline() + pm_smooth()
+```
+

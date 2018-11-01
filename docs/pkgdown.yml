@@ -3,5 +3,6 @@ pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   customize: customize.html
+  npde_plots: npde_plots.html
   residual_plots: residual_plots.html
 
