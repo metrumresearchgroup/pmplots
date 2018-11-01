@@ -19,6 +19,9 @@
 ##'
 ##' @export
 split_plot <- function(df, fun, sp = get_split_col(df), ...) {
+  if(length(sp) != 1) {
+    stop("Only one grouping or split variable is allowed.")
+  }
   require_column(df,sp)
   l <- split(df, df[[sp]], drop = TRUE)
   form <- as.formula(paste0("~",sp))
@@ -31,11 +34,8 @@ split_plot <- function(df, fun, sp = get_split_col(df), ...) {
 
 get_split_col <- function(df) {
   if(!is_grouped_df(df)) {
-    stop("Please pass in a grouped data frame or specify the sp argument.")
+    stop("Either pass a grouped data frame or specify the sp argument.")
   }
   gr <- as.character(groups(df))
-  if(length(gr) != 1) {
-    stop("Please specify exactly one grouping variable")
-  }
   return(gr)
 }
