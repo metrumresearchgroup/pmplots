@@ -4,14 +4,17 @@
 \alias{split_plot}
 \title{Split and plot}
 \usage{
-split_plot(df, sp, fun, ...)
+split_plot(df, fun, sp = get_split_col(df), ...)
 }
 \arguments{
 \item{df}{data frame to split and plot}
 
-\item{sp}{character name of column to split}
-
 \item{fun}{function to use to plot}
+
+\item{sp}{character name of column to split; if \code{df} is a
+grouped data frame, leave this argument missing and the; regardless
+of how this is specified, \code{sp} should name a single column
+split column will be determined from the groups}
 
 \item{...}{passed to \code{fun}}
 }
@@ -22,6 +25,8 @@ Split and plot
 
 df <- pmplots_data_obs()
 
-split_plot(df, sp="STUDYc", fun=dv_pred)
+require(dplyr)
+
+df \%>\% group_by(STUDYc) \%>\% split_plot(dv_pred)
 
 }
