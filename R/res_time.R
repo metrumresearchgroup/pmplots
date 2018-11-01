@@ -32,7 +32,7 @@
 ##' @examples
 ##' df <- pmplots_data_obs()
 ##'
-##' res_time(df)
+##' cwresi_time(df)
 ##'
 ##'
 ##' @export

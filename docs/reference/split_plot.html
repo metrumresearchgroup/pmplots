@@ -76,6 +76,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/customize.html">Customizing Plots</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -106,7 +118,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>split_plot</span>(<span class='no'>df</span>, <span class='no'>sp</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"cont_cont"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>split_plot</span>(<span class='no'>df</span>, <span class='no'>fun</span>, <span class='kw'>sp</span> <span class='kw'>=</span> <span class='fu'>get_split_col</span>(<span class='no'>df</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -116,12 +128,15 @@
       <td><p>data frame to split and plot</p></td>
     </tr>
     <tr>
-      <th>sp</th>
-      <td><p>character name of column to split</p></td>
-    </tr>
-    <tr>
       <th>fun</th>
       <td><p>function to use to plot</p></td>
+    </tr>
+    <tr>
+      <th>sp</th>
+      <td><p>character name of column to split; if <code>df</code> is a
+grouped data frame, leave this argument missing and the; regardless
+of how this is specified, <code>sp</code> should name a single column
+split column will be determined from the groups</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -134,7 +149,13 @@
     <pre class="examples"><div class='input'>
 <span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pmplots_data.html'>pmplots_data_obs</a></span>()
 
-<span class='fu'>split_plot</span>(<span class='no'>df</span>, <span class='kw'>sp</span><span class='kw'>=</span><span class='st'>"STUDYc"</span>, <span class='kw'>fun</span><span class='kw'>=</span><span class='no'>dv_pred</span>)</div><div class='output co'>#&gt; $SAD</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_smooth).</span></div><div class='img'><img src='split_plot-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+<span class='fu'>require</span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: dplyr</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
+<span class='no'>df</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='http://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>STUDYc</span>) <span class='kw'>%&gt;%</span> <span class='fu'>split_plot</span>(<span class='no'>dv_pred</span>)</div><div class='output co'>#&gt; $SAD</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1 rows containing missing values (geom_smooth).</span></div><div class='img'><img src='split_plot-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; $MAD</div><div class='img'><img src='split_plot-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; $Renal</div><div class='img'><img src='split_plot-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; $Hepatic</div><div class='img'><img src='split_plot-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'>

@@ -40,3 +40,9 @@ are a character vector (in col//title format), a list
 of plots is returned.  If both x and y are length 1,
 then a single plot object (not a list) is returned.
 }
+\examples{
+data <- pmplots_data_obs()
+
+wres_cont(data, x = "CRCL//Creatinine clearance")
+
+}

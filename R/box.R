@@ -91,8 +91,8 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' @seealso \code{\link{boxwork}}
 ##'
 ##' @examples
-##' df <- pmplots_data_obs()
-##' df <- dplyr::distinct(df, ID, .keep_all = TRUE)
+##' df <- pmplots_data_obs_id()
+##'
 ##'
 ##' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 ##'

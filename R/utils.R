@@ -248,6 +248,11 @@ update_list <- function(left, right) {
 ##' @param angle passed to \code{ggplot::element_text}
 ##' @param hjust passed to \code{ggplot::element_text}
 ##'
+##' @examples
+##' data <- pmplots_data_obs()
+##'
+##' dv_pred(data) + rot_x()
+##'
 ##' @export
 rot_x <- function(angle=30, hjust = 1) {
   theme(axis.text.x = element_text(angle = angle, hjust = hjust))

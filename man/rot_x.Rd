@@ -17,3 +17,9 @@ rot_y(angle = 30, hjust = 1)
 \description{
 Rotate axis text
 }
+\examples{
+data <- pmplots_data_obs()
+
+dv_pred(data) + rot_x()
+
+}

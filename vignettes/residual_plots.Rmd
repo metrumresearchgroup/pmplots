@@ -1,0 +1,67 @@
+---
+title: "Residual Plots"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Residual Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Set up
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+
+data <- pmplots_data_obs()
+```
+
+# Residuals versus time
+```{r}
+res_time(data)
+
+wres_time(data)
+
+cwresi_time(data)
+
+cwresi_tad(data, xby = 24)
+```
+
+
+
+# Residuals versus PRED
+
+```{r}
+res_pred(data)
+wres_pred(data)
+cwresi_pred(data)
+```
+
+
+# Residual histogram
+```{r}
+cwresi_hist(data)
+```
+
+# Residual QQ plot
+```{r}
+cwresi_q(data)
+```
+
+# Residuals versus categorical variable
+
+```{r}
+wres_cat(data, x  = "STUDYc//Study")
+```
+
+# Residuals versus continuous variables
+
+```{r}
+cwresi_cont(data, x= "WT//Weight (kg)")
+```
+

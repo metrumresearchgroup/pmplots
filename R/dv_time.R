@@ -33,7 +33,6 @@
 ##'
 ##' dv_time(df, yname="MyDrug (ng/mL)", xunit="day")
 ##'
-##' dv_time(df, log=TRUE, col="STUDYc")
 ##'
 ##' # Add a rug
 ##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))

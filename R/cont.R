@@ -132,8 +132,7 @@ y_time <- function(df,
 ##' @seealso \code{\link{scatt}}
 ##'
 ##' @examples
-##' df <- pmplots_data_obs()
-##' df <- dplyr::distinct(df, ID, .keep_all = TRUE)
+##' df <- pmplots_data_obs_id()
 ##'
 ##' pm_scatter(
 ##'   df,

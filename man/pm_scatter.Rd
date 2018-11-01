@@ -37,8 +37,7 @@ both the \code{x} and \code{y} columns must
 be numeric.
 }
 \examples{
-df <- pmplots_data_obs()
-df <- dplyr::distinct(df, ID, .keep_all = TRUE)
+df <- pmplots_data_obs_id()
 
 pm_scatter(
   df,

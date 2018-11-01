@@ -23,6 +23,16 @@ df <- pmplots_data_obs()
 dfi <- filter(df, !is.na(IPRED)) %>% distinct(ID, .keep_all=TRUE)
 ```
 
+
+## Installation
+
+```{r}
+
+repos <- c("https://metrumresearchgroup.github.io/r_validated", options()$repos)
+
+install.packages("omplots", repos = unique(repos), type = "source", destdir = NULL)
+```
+
 # Additional Links
 
 - Browse source code: https://ghe.metrumrg.com/software/pmplots
@@ -80,7 +90,7 @@ where to find the input data as well as a column title or label to show
 what how to label the axis. 
 
 This is known as `col-label` format.  In this format, we specify 
-the column name separated by a double front slash (e.g. "WT//Weight"). 
+the column name separated by a double front slash (e.g. `WT//Weight`). 
 
 
 # Customized plots

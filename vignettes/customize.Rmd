@@ -1,0 +1,71 @@
+---
+title: "Customizing Plots"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Customizing Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Set up
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+
+data <- pmplots_data_obs()
+```
+
+# A default plot
+```{r}
+dv_pred(data)
+```
+
+
+## Customize the axis label
+
+```{r}
+dv_ipred(data) + labs(x = "Predicted concentration (mg/L)")
+```
+
+## Add Greek symbols to an axis label
+
+There are a couple of ways to do this.  The easiest is to have the
+[latex2exp](https://CRAN.R-project.org/package=latex2exp) package installed and write the TeX right in the label. 
+
+```{r}
+dv_pred(data, x = "IPRED//Predicted concentration ($\\mu$g/mL)")
+```
+
+Otherwise, you can trigger R plotmath by putting `!!` at the 
+start of the column label
+
+```{r}
+dv_pred(data, x = "IPRED//!!'Predicted concentration (' * mu * 'g/mL)'")
+```
+
+## Add a run number or other annotation to the plot
+
+```{r}
+dv_pred(data) + labs(subtitle = "Run 1001")
+```
+
+# Adopt the pmplots look and feel
+
+
+At some point, you might have to create a plot outside of pmplots, 
+but you still want to adopt the pmplots look and feel.  
+```{r}
+p <- ggplot(data = data, aes(PRED,DV)) + geom_point()
+p
+```
+
+Use these helpers to style the plot
+```{r}
+p + pm_theme() + pm_abline() + pm_smooth()
+```
+

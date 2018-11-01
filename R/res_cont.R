@@ -19,6 +19,11 @@
 ##' of plots is returned.  If both x and y are length 1,
 ##' then a single plot object (not a list) is returned.
 ##'
+##' @examples
+##' data <- pmplots_data_obs()
+##'
+##' wres_cont(data, x = "CRCL//Creatinine clearance")
+##'
 ##' @export
 res_cont <- function(df, x, y=pm_axis_res(),
                      xs=defx(), ys=defy(), ...) {
