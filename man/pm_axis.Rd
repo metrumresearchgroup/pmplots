@@ -18,7 +18,7 @@ pm_axis_data
 Get defaults for plot axes
 }
 \examples{
-pm_axis(cwres)
+pm_axis("cwres")
 
 }
 \keyword{datasets}

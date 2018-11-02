@@ -17,3 +17,12 @@ Arrange a list of plots in a grid
 \details{
 The cowplot package must be installed to use this function.
 }
+\examples{
+
+data <- pmplots_data_obs()
+
+plot <- wres_cont(data, x = c("WT", "ALB"))
+
+pm_grid(plot)
+
+}

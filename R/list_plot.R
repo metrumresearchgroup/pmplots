@@ -82,6 +82,14 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @details
 ##' The cowplot package must be installed to use this function.
 ##'
+##' @examples
+##'
+##' data <- pmplots_data_obs()
+##'
+##' plot <- wres_cont(data, x = c("WT", "ALB"))
+##'
+##' pm_grid(plot)
+##'
 ##' @export
 pm_grid <- function(x, ...) {
   if(!requireNamespace("cowplot")) {

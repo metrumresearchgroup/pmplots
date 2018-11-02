@@ -39,7 +39,7 @@ Summary numbers located below each box are described in
 \code{\link{boxwork}}.
 }
 \examples{
-df <- pmplots_data_obs_id()
+df <- pmplots_data_id()
 
 
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")

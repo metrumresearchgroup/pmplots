@@ -4,7 +4,7 @@
 ##' @param what the axis identifier
 ##'
 ##' @examples
-##' pm_axis(cwres)
+##' pm_axis("cwres")
 ##'
 ##' @export
 pm_axis <- function(what) {
