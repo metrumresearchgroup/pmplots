@@ -44,3 +44,7 @@ be numeric.
 The \code{xby} argument is provided for
 convenience to set breaks for time scales.
 }
+\seealso{
+\code{\link{res_time}}, \code{\link{cwres_time}},
+\code{\link{wres_time}}, \code{\link{npde_time}}
+}

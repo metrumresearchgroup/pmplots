@@ -32,10 +32,23 @@ cwresi_tad(df, x = pm_axis_tad(), y = pm_axis_cwresi(), ...)
 \code{\link{y_time}}}
 }
 \description{
-Plot conditional weighted residuals versus time
+Uses \code{\link{y_time}} to create the plots.  Please see that
+help topic and details here for other arguments to customize the plot.
 }
 \details{
-See \code{\link{res_time}} for other important implementation details.
+Plots are generated using \code{\link{y_time}},
+which then calls \code{\link{scatt}}.
+
+By default, the time unit is assumed
+to be hours (\code{hr}).  See the \code{xunit} argument
+to \code{\link{y_time}} to change the time unit.
+
+See the \code{xby} argument to \code{\link{y_time}} for a
+convenient way to change the breaks for the x-axis (time).
+
+Since this function creates a scatter plot,
+both the \code{x} and \code{y} columns must
+be numeric.
 }
 \examples{
 df <- pmplots_data_obs()

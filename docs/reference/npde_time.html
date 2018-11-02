@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Plot NPDE versus time — npde_time" />
 
-<meta property="og:description" content="Plot NPDE versus time" />
+<meta property="og:description" content="Uses y_time to create the plots.  Please see that
+help topic and details here for other arguments to customize the plot." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,6 +99,9 @@
     <li>
       <a href="../articles/residual_plots.html">Residual Plots</a>
     </li>
+    <li>
+      <a href="../articles/start.html">Get Started</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -126,7 +130,8 @@
 
     <div class="ref-description">
     
-    <p>Plot NPDE versus time</p>
+    <p>Uses <code><a href='y_time.html'>y_time</a></code> to create the plots.  Please see that
+help topic and details here for other arguments to customize the plot.</p>
     
     </div>
 
@@ -166,7 +171,16 @@ aesthetics to use</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>See <code><a href='res_time.html'>res_time</a></code> for other important implementation details.</p>
+    <p>Plots are generated using <code><a href='y_time.html'>y_time</a></code>,
+which then calls <code><a href='scatt.html'>scatt</a></code>.</p>
+<p>By default, the time unit is assumed
+to be hours (<code>hr</code>).  See the <code>xunit</code> argument
+to <code><a href='y_time.html'>y_time</a></code> to change the time unit.</p>
+<p>See the <code>xby</code> argument to <code><a href='y_time.html'>y_time</a></code> for a
+convenient way to change the breaks for the x-axis (time).</p>
+<p>Since this function creates a scatter plot,
+both the <code>x</code> and <code>y</code> columns must
+be numeric.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

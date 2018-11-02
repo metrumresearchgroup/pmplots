@@ -25,7 +25,9 @@ res_tad(df, x = pm_axis_tad(), y = pm_axis_res(), ...)
 \description{
 These plots have \code{RES} on the y axis and
 some time-related column on the x-axis, including \code{TIME},
-\code{TAD}, or \code{TAFD}.
+\code{TAD}, or \code{TAFD}. Uses \code{\link{y_time}} to create the plots.
+Please see that help topic and details here for other arguments to
+customize the plot.
 }
 \details{
 Plots are generated using \code{\link{y_time}},

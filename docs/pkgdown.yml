@@ -7,4 +7,5 @@ articles:
   eta: eta.html
   npde_plots: npde_plots.html
   residual_plots: residual_plots.html
+  start: start.html
 

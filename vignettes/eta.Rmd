@@ -50,8 +50,6 @@ eta_hist(data,etas) %>% grid_plot()
 ```
 
 
-
-
 # ETA Pairs
 ```{r}
 eta_pairs(data,etas)
@@ -61,3 +59,10 @@ eta_pairs(data,etas)
 ```{r}
 eta_cat(data, x = "STUDYc", y = etas) %>% grid_plot()
 ```
+
+
+# ETA versus continuous variable
+```{r}
+eta_cont(data, x = "WT", y = etas) %>% grid_plot()
+```
+

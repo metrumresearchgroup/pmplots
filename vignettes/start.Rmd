@@ -1,0 +1,151 @@
+---
+title: "Get Started"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Get Started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Set up
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+```
+
+# Example data
+
+There is an example data set embedded in pmplots
+```{r}
+data <- pmplots_data_obs()
+```
+
+pmplots is designed to work with data sets that have columns named according
+to certain expectations.  So we tend to look for these types of columns
+```{r}
+select(data, ID, TIME, DV, IPRED, ETA1, CWRESI)
+```
+
+You might already have NONMEM modeling results with these column names. When
+the data set has these names, pmplots will work more automatically with 
+the data set, requiring less manual input from the user.
+
+Other columns that we have in the examples can be named according to 
+your choosing
+
+```{r}
+select(data, WT, ALB, STUDY, STUDYc, CRCL)
+```
+
+
+# Your first plot
+
+With the data setup like this, we can make a plot of DV versus PRED
+very easily
+
+```{r}
+dv_pred(data)
+```
+
+This plots `dv` versus `pred` and the name of the function indicates
+what will come out.  pmplots can make this plot because there are columns
+called `DV` and `PRED` in the data set
+
+```{r}
+select(data, DV, PRED)
+```
+
+The overall philosophy of the package is to pass in data with these
+expected column names and receive a plot back.  We will see how we can 
+customize some aspects of the plots.  But overall, the idea is that the 
+function determines the look and feel of the plot.  If you find yourself 
+wanting a lot of creative customization then the suggestion is to 
+work with plain old ggplot2 to make the plot
+
+# Other plots
+There are a lot of plotting functions in pmplots, but the naming is systematic
+so that you can know the output from the name. 
+
+Similarly, 
+
+```{r}
+cwresi_time(data)
+```
+
+gives you conditional weighted residuals versus time. 
+
+
+And you can get different types of histogram plots
+```{r}
+cwresi_hist(data)
+```
+
+# Specifying data and axis title
+
+Let's look at `cwresi_time` function and look at the basic inputs
+for the plot
+
+```{r}
+formals(cwresi_time)[1:3]
+```
+
+The first argument is `df` , the data set in data.frame format. The second 
+argument is `x` or what goes on the x-axis, and third `y`, what goes on 
+the `y` axis.  The defaults for these arguments are the output from internal 
+pmplots functions
+
+```{r}
+pmplots:::pm_axis_time()
+```
+
+```{r}
+pmplots:::pm_axis_cwresi()
+```
+
+For `x`, we have the name of the column in the data set (`TIME`) followed 
+by a double-front-slash (`//`) and then the name that we want to go on 
+the x-axis (`Time`).  Similarly for y, the data is in column `CWRESI` and 
+we want the y-axis title to be `Conditional weighted residual`. 
+
+This is called `col_label` format, and is a simple way to pass in both pieces 
+of data. 
+
+If we wanted to modify either the data column name or the name 
+of the axis title, simply provide a replacement for the default
+
+```{r}
+cwresi_time(data, y = "CWRESI//Some other axis title")
+```
+
+And if you omit the title from the `col_label`, the title will be the column 
+name
+```{r}
+cwresi_time(data, y = "CWRESI")
+```
+
+
+Notice that the `x` argument had another piece in it ... `{xunit}`
+```{r}
+pmplots:::pm_axis_time()
+```
+
+Looking at the `y_time` help topic, we see that `xunit` is the 
+time unit for these plots.  So, if our data has time unit 
+of days, we can change that aspect of the plot
+```{r}
+cwresi_time(data, xunit = "days")
+```
+
+
+
+
+
+
+
+
+

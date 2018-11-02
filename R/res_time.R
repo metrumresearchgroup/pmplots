@@ -3,7 +3,9 @@
 ##'
 ##' These plots have \code{RES} on the y axis and
 ##' some time-related column on the x-axis, including \code{TIME},
-##' \code{TAD}, or \code{TAFD}.
+##' \code{TAD}, or \code{TAFD}. Uses \code{\link{y_time}} to create the plots.
+##' Please see that help topic and details here for other arguments to
+##' customize the plot.
 ##'
 ##' @param df data set to plot
 ##' @param x x-axis data in \code{\link{col_label}} format
@@ -55,7 +57,12 @@ res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
 
 ##' Plot weighted residuals versus time
 ##'
+##' Uses \code{\link{y_time}} to create the plots.  Please see that
+##' help topic and details here for other arguments to customize the plot.
+##'
 ##' @inheritParams res_time
+##' @inherit res_time details
+##'
 ##' @param ... passed to \code{\link{res_time}} and eventually to
 ##' \code{\link{y_time}}
 ##'
@@ -63,9 +70,6 @@ res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
 ##' df <- pmplots_data_obs()
 ##'
 ##' wres_time(df)
-##'
-##' @details
-##' See \code{\link{res_time}} for other important implementation details.
 ##'
 ##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
 ##' \code{\link{npde_time}}
@@ -90,7 +94,12 @@ wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
 
 ##' Plot conditional weighted residuals versus time
 ##'
+##' Uses \code{\link{y_time}} to create the plots.  Please see that
+##' help topic and details here for other arguments to customize the plot.
+##'
 ##' @inheritParams res_time
+##' @inherit res_time details
+##'
 ##' @param ... passed to \code{\link{res_time}} and eventually to
 ##' \code{\link{y_time}}
 ##'
@@ -98,9 +107,6 @@ wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
 ##' df <- pmplots_data_obs()
 ##'
 ##' cwresi_time(df)
-##'
-##' @details
-##' See \code{\link{res_time}} for other important implementation details.
 ##'
 ##' @seealso \code{\link{res_time}}, \code{\link{wres_time}},
 ##' \code{\link{npde_time}}
@@ -144,7 +150,12 @@ cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
 
 ##' Plot NPDE versus time
 ##'
+##' Uses \code{\link{y_time}} to create the plots.  Please see that
+##' help topic and details here for other arguments to customize the plot.
+##'
 ##' @inheritParams res_time
+##' @inherit res_time details
+##'
 ##' @param ... passed to \code{\link{res_time}} and eventually to
 ##' \code{\link{y_time}}
 ##' @param hline a list of arguments to pass to \code{geom_hline} specifying
@@ -154,9 +165,6 @@ cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
 ##' df <- pmplots_data_obs()
 ##'
 ##' npde_time(df)
-##'
-##' @details
-##' See \code{\link{res_time}} for other important implementation details.
 ##'
 ##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
 ##' \code{\link{wres_time}}

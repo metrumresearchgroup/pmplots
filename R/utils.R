@@ -286,3 +286,20 @@ charcount <- function(x,w,fx=TRUE) {
 charthere <- function(x,w,fx=TRUE) {
   grepl(w,x,fixed=fx)
 }
+
+search_cwres_i <- function(col_name, data) {
+  if(col_name %in% names(data)) {
+    return(col_name)
+  }
+  if(col_name=="CWRES") {
+    if("CWRESI" %in% names(data)) {
+      return("CWRESI")
+    }
+  }
+  if(col_name=="CWRESI") {
+    if("CWRES" %in% names(data)) {
+      return("CWRES")
+    }
+  }
+  return(col_name)
+}

@@ -63,6 +63,8 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##' The \code{xby} argument is provided for
 ##' convenience to set breaks for time scales.
 ##'
+##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
+##' \code{\link{wres_time}}, \code{\link{npde_time}}
 ##'
 y_time <- function(df,
                    x=pm_axis_time(),
