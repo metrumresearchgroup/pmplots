@@ -12,3 +12,4 @@ inst/examples
 ^\.Rproj\.user$
 ^docs$
 ^\.travis\.yml$
+vignettes
