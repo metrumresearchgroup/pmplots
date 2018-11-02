@@ -61,6 +61,9 @@
       <a href="../articles/eta.html">ETA Plots</a>
     </li>
     <li>
+      <a href="../articles/list_plots.html">Vectorized Plots</a>
+    </li>
+    <li>
       <a href="../articles/npde_plots.html">NPDE Plots</a>
     </li>
     <li>
@@ -111,39 +114,36 @@ data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplot
 
 etas</code></pre></div>
 <pre><code>## [1] "ETA1//ETA-CL" "ETA2//ETA-VC" "ETA3//ETA-KA"</code></pre>
-<p>Note that very frequently, ETA plots come back as a list of plots, one for each ETA. In our examples, we’ll use the cowplot package to arrange the plots into a grid.</p>
-<p>We’ll make a special version of <code>plot_grid</code> that will make the piping a little smoother</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(cowplot)
-
-grid_plot &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw"><a href="http://www.rdocumentation.org/packages/cowplot/topics/plot_grid">plot_grid</a></span>(<span class="dt">plotlist=</span>x)</code></pre></div>
+<p>Note that very frequently, ETA plots come back as a list of plots, one for each ETA.</p>
 </div>
 <div id="eta-histogram" class="section level1">
 <h1 class="hasAnchor">
 <a href="#eta-histogram" class="anchor"></a>ETA histogram</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/eta_hist.html">eta_hist</a></span>(data,etas) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">grid_plot</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/eta_hist.html">eta_hist</a></span>(data,etas) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
+<pre><code>## Loading required namespace: cowplot</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="eta_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="eta_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div id="eta-pairs" class="section level1">
 <h1 class="hasAnchor">
 <a href="#eta-pairs" class="anchor"></a>ETA Pairs</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pairs_plot.html">eta_pairs</a></span>(data,etas)</code></pre></div>
 <pre><code>## Loading required namespace: GGally</code></pre>
-<p><img src="eta_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="eta_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 <div id="eta-versus-categorical-variable" class="section level1">
 <h1 class="hasAnchor">
 <a href="#eta-versus-categorical-variable" class="anchor"></a>ETA versus categorical variable</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/eta_cat.html">eta_cat</a></span>(data, <span class="dt">x =</span> <span class="st">"STUDYc"</span>, <span class="dt">y =</span> etas) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">grid_plot</span>()</code></pre></div>
-<p><img src="eta_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/eta_cat.html">eta_cat</a></span>(data, <span class="dt">x =</span> <span class="st">"STUDYc"</span>, <span class="dt">y =</span> etas) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
+<p><img src="eta_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 <div id="eta-versus-continuous-variable" class="section level1">
 <h1 class="hasAnchor">
 <a href="#eta-versus-continuous-variable" class="anchor"></a>ETA versus continuous variable</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/eta_cont.html">eta_cont</a></span>(data, <span class="dt">x =</span> <span class="st">"WT"</span>, <span class="dt">y =</span> etas) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">grid_plot</span>()</code></pre></div>
-<p><img src="eta_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/eta_cont.html">eta_cont</a></span>(data, <span class="dt">x =</span> <span class="st">"WT"</span>, <span class="dt">y =</span> etas) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
+<p><img src="eta_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
   </div>
 

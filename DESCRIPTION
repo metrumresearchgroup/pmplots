@@ -17,7 +17,7 @@ Imports:
   rlang (>= 0.1.2),
   glue, 
   assertthat
-Suggests: testthat, GGally, latex2exp, knitr
+Suggests: testthat, GGally, latex2exp, knitr, cowplot
 Depends: ggplot2 (>= 3.0.0)
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr

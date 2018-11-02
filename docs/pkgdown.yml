@@ -5,6 +5,7 @@ articles:
   customize: customize.html
   dv: dv.html
   eta: eta.html
+  list_plots: list_plots.html
   npde_plots: npde_plots.html
   residual_plots: residual_plots.html
   start: start.html

@@ -61,6 +61,9 @@
       <a href="../articles/eta.html">ETA Plots</a>
     </li>
     <li>
+      <a href="../articles/list_plots.html">Vectorized Plots</a>
+    </li>
+    <li>
       <a href="../articles/npde_plots.html">NPDE Plots</a>
     </li>
     <li>
@@ -123,6 +126,7 @@ data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplot
 <a href="#add-greek-symbols-to-an-axis-label" class="anchor"></a>Add Greek symbols to an axis label</h2>
 <p>There are a couple of ways to do this. The easiest is to have the <a href="https://CRAN.R-project.org/package=latex2exp">latex2exp</a> package installed and write the TeX right in the label.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data, <span class="dt">x =</span> <span class="st">"IPRED//Predicted concentration ($</span><span class="ch">\\</span><span class="st">mu$g/mL)"</span>)</code></pre></div>
+<pre><code>## Loading required namespace: latex2exp</code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Otherwise, you can trigger R plotmath by putting <code>!!</code> at the start of the column label</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data, <span class="dt">x =</span> <span class="st">"IPRED//!!'Predicted concentration (' * mu * 'g/mL)'"</span>)</code></pre></div>

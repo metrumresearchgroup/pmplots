@@ -24,3 +24,12 @@ News can be found [here](news.md)
 - [NPDE plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/npde_plots.html)
 - [Dependent variable plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/dv.html)
 - [ETA plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/eta.html)
+- [Vectorized plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/list_plots.html)
+
+## Suggested packages
+
+Consider installing the [cowplot](https://CRAN.R-project.org/package=cowplot) 
+package to help arranging plots on a page.  Also, consider installing
+[latex2exp](https://CRAN.R-project.org/package=latex2exp) to allow you to 
+use latex in axis titles.
+

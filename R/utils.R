@@ -183,7 +183,7 @@ parse_label <- function(x) {
     return(x)
   }
   if(look_for_tex(x)) {
-    if(requireNamespace("latex2exp",quietly=TRUE)) {
+    if(requireNamespace("latex2exp")) {
       return(latex2exp::TeX(x))
     }
   }

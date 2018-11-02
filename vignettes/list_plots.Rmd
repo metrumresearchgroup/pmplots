@@ -1,0 +1,100 @@
+---
+title: "Vectorized Plots"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Vectorized Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Set up
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+
+data <- pmplots_data_obs()
+```
+
+
+# Vectorized plots
+
+Some pmplots functions have been vectorized so that you can pass in 
+a vector of inputs and get a list of plots back.  This is a convenience 
+feature that allows you to quickly make several plots.  The intended use
+is to arrange those plots in a single page or multiple pages for display.
+
+For example, we can plot `WRES` versus `WT`
+```{r}
+wres_cont(data, x = "WT")
+```
+
+If we wanted to vectorize this plot and look at `WRES` versus
+`WT`, `ALB`, `CRCL`, and `AST` we would write
+
+```{r}
+wres_cont(data, x = c("WT", "ALB", "CRCL", "AST"))
+```
+
+And we get a list of plots back.  This list can be arranged on the fly with
+```{r}
+covs <- c(
+  "WT//Weight (kg)", "ALB//Albumin", 
+  "CRCL//Creatinine clearance", "AST//Aspartate aminotransferase"
+)
+
+wres_cont(data, x = covs) %>% pm_grid()
+```
+
+
+In this example, we also made the vector of inputs full `col_label` specification.
+
+Another example are the `eta_cont` plots
+
+```{r}
+id <- pmplots_data_id()
+
+
+eta_cont(data, x = covs, y = "ETA1//ETA-CL") %>% pm_grid()
+```
+
+
+
+# What plots are vectorized?
+
+Basically any plot where the user is required to identify the column 
+for plotting.  So in the example, `wres_cont` asks the user to specify 
+what the continuous variable is for the x-axis.  This plot is vectorized. 
+Same with `wres_cat`
+
+```{r}
+wres_cat(data, x = c("STUDYc", "CPc")) %>% pm_grid()
+```
+
+
+In contrast, `dv_pred` is hard-wired to look for `DV` and `PRED`.  It is 
+designed to look for only one thing on each axis.  This plot is not vectorized.
+
+You can use `pm_scatter_list` _as_ a vectorized function to vectorize
+anyting.  So this allows us to do
+
+```{r}
+pm_scatter_list(data, y  = "WRES", x = c("PRED", "IPRED", "TIME")) %>% pm_grid()
+```
+
+Or just use `lapply` or  `purrr::map`
+
+```{r}
+lapply(c("PRED", "IPRED", "TIME"), wres_cont, df = data, y = "WRES") %>% pm_grid()
+```
+
+
+
+Please see the help topic for each function to know if that 
+function is vectorized or not.  
+
+
