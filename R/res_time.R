@@ -75,8 +75,11 @@ res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
 ##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
 ##' \code{\link{npde_time}}
 ##'
-##' @export
+##' @return A single plot.
+##'
 ##' @rdname wres_time
+##' @export
+##'
 wres_time <- function(df, x = pm_axis_time(), y = pm_axis_wres(), ...) {
   res_time(df, x = x, y = y, ...)
 }
@@ -112,8 +115,11 @@ wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
 ##' @seealso \code{\link{res_time}}, \code{\link{wres_time}},
 ##' \code{\link{npde_time}}
 ##'
-##' @export
+##' @return A single plot.
+##'
 ##' @rdname cwres_time
+##' @export
+##'
 cwres_time <- function(df, x = pm_axis_time(), y = pm_axis_cwres(), ...) {
   res_time(df, x = x, y = y, ...)
 }
@@ -170,21 +176,22 @@ cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
 ##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
 ##' \code{\link{wres_time}}
 ##'
-##' @export
-##' @rdname npde_time
+##' @return A single plot.
 ##'
+##' @rdname npde_time
+##' @export
 npde_time <- function(df, x= pm_axis_time(), y  = pm_axis_npde(), ..., hline = npde_ref()) {
   res_time(df, x = x, y = y, hline = hline, ...)
 }
 
-##' @export
 ##' @rdname npde_time
+##' @export
 npde_tad <- function(df, x = pm_axis_tad(), y = pm_axis_npde(), ...) {
   npde_time(df, x = x, y = y, ...)
 }
 
-##' @export
 ##' @rdname npde_time
+##' @export
 npde_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_npde(), ...) {
   npde_time(df, x = x, y = y, ...)
 }

@@ -22,6 +22,9 @@ wres_tad(df, x = pm_axis_tad(), y = pm_axis_wres(), ...)
 \item{...}{passed to \code{\link{res_time}} and eventually to
 \code{\link{y_time}}}
 }
+\value{
+A single plot.
+}
 \description{
 Uses \code{\link{y_time}} to create the plots.  Please see that
 help topic and details here for other arguments to customize the plot.

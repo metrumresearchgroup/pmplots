@@ -26,6 +26,9 @@ npde_tafd(df, x = pm_axis_tafd(), y = pm_axis_npde(), ...)
 \item{hline}{a list of arguments to pass to \code{geom_hline} specifying
 aesthetics to use}
 }
+\value{
+A single plot.
+}
 \description{
 Uses \code{\link{y_time}} to create the plots.  Please see that
 help topic and details here for other arguments to customize the plot.
