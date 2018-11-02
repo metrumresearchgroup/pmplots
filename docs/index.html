@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -85,107 +85,38 @@
 
       
       </header><div class="row">
-  <div class="col-md-9 contents">
-    
-
-    
-    
+  <div class="contents col-md-9">
+    <div id="pmplots" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#pmplots" class="anchor"></a>pmplots</h1></div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"https://metrumresearchgroup.github.io/r_validated"</span>, <span class="kw">options</span>()<span class="op">$</span>repos)
 
-<span class="kw">install.packages</span>(<span class="st">"omplots"</span>, <span class="dt">repos =</span> <span class="kw">unique</span>(repos), <span class="dt">type =</span> <span class="st">"source"</span>, <span class="dt">destdir =</span> <span class="ot">NULL</span>)</code></pre></div>
+<span class="kw">install.packages</span>(<span class="st">"pmplots"</span>, <span class="dt">repos =</span> <span class="kw">unique</span>(repos), <span class="dt">type =</span> <span class="st">"source"</span>, <span class="dt">destdir =</span> <span class="ot">NULL</span>)</code></pre></div>
 </div>
-<div id="additional-links" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#additional-links" class="anchor"></a>Additional Links</h1></div>
+<div id="news" class="section level2">
+<h2 class="hasAnchor">
+<a href="#news" class="anchor"></a>News</h2>
+<p>News can be found <a href="news.html">here</a></p>
+</div>
+<div id="vignettes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#vignettes" class="anchor"></a>Vignettes</h2>
 <ul>
-<li>Browse source code: <a href="https://ghe.metrumrg.com/software/pmplots" class="uri">https://ghe.metrumrg.com/software/pmplots</a>
-</li>
-<li>File an issue: <a href="https://ghe.metrumrg.com/software/pmplots/issues" class="uri">https://ghe.metrumrg.com/software/pmplots/issues</a>
-</li>
+<li><a href="https://ghe.metrumrg.com/pages/software/pmplots/articles/start.html">Get started</a></li>
+<li><a href="https://ghe.metrumrg.com/pages/software/pmplots/articles/customize.html">Customize your plot</a></li>
+<li><a href="https://ghe.metrumrg.com/pages/software/pmplots/articles/residual_plots.html">Residual plots</a></li>
+<li><a href="https://ghe.metrumrg.com/pages/software/pmplots/articles/npde_plots.html">NPDE plots</a></li>
+<li><a href="https://ghe.metrumrg.com/pages/software/pmplots/articles/dv.html">Dependent variable plots</a></li>
+<li><a href="https://ghe.metrumrg.com/pages/software/pmplots/articles/eta.html">ETA plots</a></li>
 </ul>
 </div>
-<div id="note" class="section level1">
-<h1 class="hasAnchor">
-<a href="#note" class="anchor"></a>Note</h1>
-<p>This content is for the development version of pmplots, showing what is to come shortly. To view the previously-validated content, see <a href="https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0" class="uri">https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0</a></p>
-</div>
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>pmplots provides functions to create basic plots for pharmacometrics which share a common look and feel. The design is to provide one function to make one plot and the function is named according to the plot it generates.</p>
-</div>
-<div id="default-behavior" class="section level1">
-<h1 class="hasAnchor">
-<a href="#default-behavior" class="anchor"></a>Default behavior</h1>
-<p>For example, to make a plot of NPDE versus time, we call</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/npde_time.html">npde_time</a></span>(df)</code></pre></div>
-<p><img src="img/README-unnamed-chunk-3-1.png" width="480"></p>
-<p>A plot of DV versus IPRED would be</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/dv_pred.html">dv_ipred</a></span>(df)</code></pre></div>
-<p><img src="img/README-unnamed-chunk-4-1.png" width="480"></p>
-<p>These functions assume defaults based on standard naming conventions. The intention is that, as far as it is possible, these functions are called with the data set as the single argument.</p>
-<p>Where there are no obvious defaults, some functions require extra specification for the input data. For example, to make a pairs plot for etas, you would call</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/pairs_plot.html">eta_pairs</a></span>(df, <span class="kw">c</span>(<span class="st">"ETA1//ETA-CL"</span>, <span class="st">"ETA2//ETA-V2"</span>))</code></pre></div>
-<p><img src="img/README-unnamed-chunk-5-1.png" width="480"></p>
-<p>Or to plot CWRES versus weight</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/res_cont.html">cwresi_cont</a></span>(df, <span class="dt">x =</span> <span class="st">"WT//Weight (kg)"</span>)</code></pre></div>
-<p><img src="img/README-unnamed-chunk-6-1.png" width="480"></p>
-<div id="col-label-format" class="section level2">
-<h2 class="hasAnchor">
-<a href="#col-label-format" class="anchor"></a><code>col-label</code> format</h2>
-<p>In the previous two examples, we had to identify both a column name to show where to find the input data as well as a column title or label to show what how to label the axis.</p>
-<p>This is known as <code>col-label</code> format. In this format, we specify the column name separated by a double front slash (e.g. <code>WT//Weight</code>).</p>
-</div>
-</div>
-<div id="customized-plots" class="section level1">
-<h1 class="hasAnchor">
-<a href="#customized-plots" class="anchor"></a>Customized plots</h1>
-<p>Beyond the default behavior, we can also add some customization to our plots.</p>
-<p>As a very basic example</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/cwres_time.html">cwresi_time</a></span>(df, <span class="dt">y =</span> <span class="st">"CWRESI//CWRES"</span>)</code></pre></div>
-<p><img src="img/README-unnamed-chunk-7-1.png" width="480"></p>
-<p>Here, we override the default y-axis data and provide a custom name.</p>
-<p>For the <code>_time</code> plots, we also have some arguments that can be invoked to customize the x-axis labels</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/cwres_time.html">cwresi_time</a></span>(df, <span class="dt">xby =</span> <span class="dv">24</span>)</code></pre></div>
-<p><img src="img/README-unnamed-chunk-8-1.png" width="480"></p>
-<p>Other customization can be made via the <code>xs</code> (x-axis) or <code>ys</code> (y-axis) arguments.</p>
-</div>
-<div id="access-pmplots-look-and-feel" class="section level1">
-<h1 class="hasAnchor">
-<a href="#access-pmplots-look-and-feel" class="anchor"></a>Access pmplots look and feel</h1>
-<p>Sometimes you need to customize a plot so far that it is no longer possible to do with the built in functions. In this case, you should consider building a plot and using some of the helper functions included in pmplots to get the same look and feel.</p>
-<p>For example, the basic plot might look like</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(TIME,CWRESI)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
-
-p</code></pre></div>
-<p><img src="img/README-unnamed-chunk-9-1.png" width="480"></p>
-<p>But we can style it to look like other plots in the pmplots package</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/pm_theme.html">pm_theme</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/pm_theme.html">pm_hline</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/pm_theme.html">pm_smooth</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_wrap</span>(<span class="op">~</span>STUDYc)</code></pre></div>
-<p><img src="img/README-unnamed-chunk-10-1.png" width="480"></p>
-</div>
-<div id="vectorized-plots" class="section level1">
-<h1 class="hasAnchor">
-<a href="#vectorized-plots" class="anchor"></a>Vectorized plots</h1>
-<p>Frequently, we’d like to make a set of plots that are common, except for a single attribute. For example, we’d like to plot CWRES versus sevaral different covariates. We can do that by passing input in vector form. For example</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(mrggsave)
-
-covariates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"WT"</span>, <span class="st">"CRCL"</span>, <span class="st">"ALB"</span>)
-
-<span class="kw"><a href="reference/res_cont.html">cwresi_cont</a></span>(df, <span class="dt">x =</span> covariates, <span class="dt">y =</span> <span class="st">"CWRESI"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/mrggsave/topics/mrggpage">mrggpage</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/mrggsave/topics/mrggdraw">mrggdraw</a></span>()</code></pre></div>
-<p><img src="img/README-unnamed-chunk-11-1.png" width="480"></p>
-<p>In this example, we pass in the x values as a vector and we get a list of plots back. These plots can then be saved individually or (as shown in the example) arranged onto a single page.</p>
-</div>
-<div id="function-reference" class="section level1">
-<h1 class="hasAnchor">
-<a href="#function-reference" class="anchor"></a>Function reference</h1>
-<p>Please see <a href="https://ghe.metrumrg.com/software/pmplots/blob/master/inst/examples/everyfunction.html">inst/examples/everyfunction.md</a> for a comprehensive listing of functions and their corresponding output.</p>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -207,8 +138,7 @@ covariates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="
 </ul>
 </div>
 
-      </div>
-
+  </div>
 </div>
 
 
