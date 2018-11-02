@@ -30,6 +30,9 @@ npde_hist(df, ..., x = pm_axis("npde"))
 \item{y}{what to use for the y-axis on the histogram; can be
 \code{"..count.."} or \code{"..density.."}}
 }
+\value{
+A single plot.
+}
 \description{
 Histograms of residuals or NPDE
 }

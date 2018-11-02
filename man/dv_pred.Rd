@@ -36,6 +36,9 @@ to have the same limits}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
 }
+\value{
+A single plot.
+}
 \description{
 Plot DV versus predicted values
 }

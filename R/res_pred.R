@@ -32,6 +32,7 @@
 ##'
 ##' cwresi_pred(df, xname="MyDrug (ng/mL)")
 ##'
+##' @return A single plot.
 ##'
 ##' @export
 res_pred <- function(df,

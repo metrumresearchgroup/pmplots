@@ -17,6 +17,8 @@
 ##' both the \code{x} and \code{y} columns must
 ##' be numeric.
 ##'
+##' @return A single plot.
+##'
 ##' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
                   title = NULL, group=NULL, col=NULL,
@@ -62,6 +64,8 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 ##'
 ##' The \code{xby} argument is provided for
 ##' convenience to set breaks for time scales.
+##'
+##' @return A single plot.
 ##'
 ##' @seealso \code{\link{res_time}}, \code{\link{cwres_time}},
 ##' \code{\link{wres_time}}, \code{\link{npde_time}}
@@ -129,6 +133,8 @@ y_time <- function(df,
 ##' be numeric.
 ##'
 ##'
+##' @return \code{pm_scatter} returns a single plot;
+##' \code{pm_scatter_list} returns a list of plots.
 ##'
 ##'
 ##' @seealso \code{\link{scatt}}

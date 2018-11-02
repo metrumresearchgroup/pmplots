@@ -24,6 +24,10 @@
 ##'
 ##' wres_cont(data, x = "CRCL//Creatinine clearance")
 ##'
+##' @return A single plot when a single value for \code{x}
+##' and \code{y} are supplied; a list of plots of either \code{x}
+##' or \code{y} have length greater than 1.
+##'
 ##' @export
 res_cont <- function(df, x, y=pm_axis_res(),
                      xs=defx(), ys=defy(), ...) {

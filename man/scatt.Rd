@@ -29,6 +29,9 @@ scatt(df, x, y, xs = defx(), ys = defy(), title = NULL, group = NULL,
 
 \item{...}{not used}
 }
+\value{
+A single plot.
+}
 \description{
 Scatter plot function
 }

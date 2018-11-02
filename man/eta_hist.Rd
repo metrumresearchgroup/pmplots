@@ -25,6 +25,11 @@ be plotted on top of the histogram via \code{\link{add_density}}}
 
 \item{...}{other arguments for \code{geom_histogram}}
 }
+\value{
+A single plot when a single value for \code{x}
+and \code{y} are supplied; a list of plots of either \code{x}
+or \code{y} have length greater than 1.
+}
 \description{
 ETA histograms
 }

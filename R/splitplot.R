@@ -17,6 +17,8 @@
 ##'
 ##' df %>% group_by(STUDYc) %>% split_plot(dv_pred)
 ##'
+##' @return A list of plots.
+##'
 ##' @export
 split_plot <- function(df, fun, sp = get_split_col(df), ...) {
   if(length(sp) != 1) {

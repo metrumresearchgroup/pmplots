@@ -18,6 +18,9 @@ split column will be determined from the groups}
 
 \item{...}{passed to \code{fun}}
 }
+\value{
+A list of plots.
+}
 \description{
 Split and plot
 }

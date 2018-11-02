@@ -36,6 +36,7 @@
 ##'
 ##' cwresi_time(df)
 ##'
+##' @return A single plot.
 ##'
 ##' @export
 res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {

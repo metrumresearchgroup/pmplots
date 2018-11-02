@@ -30,6 +30,8 @@ qq_reg_data <- function(y) {
 ##'
 ##' cwresi_q(df)
 ##'
+##' @return A single plot.
+##'
 ##' @export
 wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
 

@@ -23,6 +23,7 @@
 ##'
 ##' cont_hist(data, x = "WT//Weight (kg)")
 ##'
+##' @return A single plot.
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",

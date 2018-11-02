@@ -34,6 +34,9 @@ be plotted over the histogram using \code{\link{add_density}}}
 
 \item{...}{passed to \code{geom_histogram} and \code{add_density}}
 }
+\value{
+A single plot.
+}
 \description{
 \code{cont_hist_list} is a vectorized version
 of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
@@ -44,6 +47,5 @@ function that is called by other functions in pmplots.
 data <- data.frame(WT = rnorm(1000,80,20))
 
 cont_hist(data, x = "WT//Weight (kg)")
-
 
 }

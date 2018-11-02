@@ -21,6 +21,10 @@
 ##'
 ##' eta_cat(df, x = "STUDYc//Study", y = "ETA1//ETA-CL")
 ##'
+##' @return A single plot when a single value for \code{x}
+##' and \code{y} are supplied; a list of plots of either \code{x}
+##' or \code{y} have length greater than 1.
+##'
 ##' @export
 eta_cat <- function(df, x, y, hline=0, ...) {
   out <- list_plot_xy(df,x,y,.fun = cont_cat, hline = hline, ...)

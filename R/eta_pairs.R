@@ -46,7 +46,7 @@ pairs_upper <- function(data, mapping, ...) {
 ##' are passed to \code{\link{eta_hist}} and that result is returned.
 ##'
 ##' @return
-##' The result from a ggpairs call.
+##' The result from a \code{ggpairs} call (a single plot).
 ##'
 ##' @examples
 ##'

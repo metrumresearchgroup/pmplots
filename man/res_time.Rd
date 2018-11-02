@@ -22,6 +22,9 @@ res_tad(df, x = pm_axis_tad(), y = pm_axis_res(), ...)
 \item{...}{passed to \code{\link{y_time}} and
 \code{\link{layer_hs}}}
 }
+\value{
+A single plot.
+}
 \description{
 These plots have \code{RES} on the y axis and
 some time-related column on the x-axis, including \code{TIME},
@@ -48,7 +51,6 @@ be numeric.
 df <- pmplots_data_obs()
 
 cwresi_time(df)
-
 
 }
 \seealso{

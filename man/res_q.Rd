@@ -30,6 +30,9 @@ npde_q(df, x = "NPDE", ...)
 
 \item{...}{arguments passed back to \code{wres_q}}
 }
+\value{
+A single plot.
+}
 \description{
 QQ plot for conditional residuals or NPDE
 }

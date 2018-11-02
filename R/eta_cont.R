@@ -20,6 +20,10 @@
 ##'
 ##' eta_cont(df, x = "WT//Weight (kg)", y = "ETA1//ETA-CL")
 ##'
+##' @return A single plot when a single value for \code{x}
+##' and \code{y} are supplied; a list of plots of either \code{x}
+##' or \code{y} have length greater than 1.
+##'
 ##' @export
 eta_cont <- function(df, x, y,...) {
   out <- list_plot_xy(df, x, y, cont_cont,...)

@@ -31,6 +31,11 @@ cwresi_cont(df, x, y = pm_axis_cwresi(), ...)
 \item{...}{passed to \code{\link{scatt}}  and
 \code{\link{layer_hs}}}
 }
+\value{
+A single plot when a single value for \code{x}
+and \code{y} are supplied; a list of plots of either \code{x}
+or \code{y} have length greater than 1.
+}
 \description{
 These are vectorized functions; see details;
 }

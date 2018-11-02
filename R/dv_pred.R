@@ -33,6 +33,8 @@
 ##'
 ##' dv_preds(df, yname = "MyDrug (ng/mL)")
 ##'
+##' @return A single plot.
+##'
 ##' @export
 dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
                     yname="value", xname="value",

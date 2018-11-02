@@ -37,6 +37,9 @@ dv_tad(df, x = pm_axis_tad(), ...)
 
 \item{...}{passed to \code{\link{scatt}}}
 }
+\value{
+A single plot.
+}
 \description{
 Plot DV versus time
 }

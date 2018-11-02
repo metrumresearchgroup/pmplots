@@ -23,6 +23,10 @@
 ##'
 ##' eta_hist(df, etas)
 ##'
+##' @return A single plot when a single value for \code{x}
+##' and \code{y} are supplied; a list of plots of either \code{x}
+##' or \code{y} have length greater than 1.
+##'
 ##' @export
 eta_hist <- function(df, x, xs=defx(), fill="black", col="white",
                      alpha=0.6, add_density = FALSE, ...) {

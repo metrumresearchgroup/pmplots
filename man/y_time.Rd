@@ -28,6 +28,9 @@ y_time(df, x = pm_axis_time(), y, xunit = "hr", yname = NULL,
 
 \item{...}{passed to \code{\link{scatt}}}
 }
+\value{
+A single plot.
+}
 \description{
 Plot continuous data versus time
 }

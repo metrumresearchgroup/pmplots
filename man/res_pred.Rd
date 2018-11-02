@@ -37,6 +37,9 @@ npde_pred(df, ..., y = pm_axis_npde(), hline = npde_ref())
 \item{hline}{a list of parameters to pass to \code{geom_hline} specifying
 where to locate a horizontal reference line aesthetics to use}
 }
+\value{
+A single plot.
+}
 \description{
 Residuals or NPDE versus predicted values
 }
@@ -58,7 +61,6 @@ layered on the plot.
 df <- pmplots_data_obs()
 
 cwresi_pred(df, xname="MyDrug (ng/mL)")
-
 
 }
 \seealso{

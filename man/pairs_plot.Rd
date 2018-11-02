@@ -30,7 +30,7 @@ eta_pairs(...)
 \item{...}{passed to \code{GGally::ggpairs}}
 }
 \value{
-The result from a ggpairs call.
+The result from a \code{ggpairs} call (a single plot).
 }
 \description{
 Pairs plots using ggpairs

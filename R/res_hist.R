@@ -12,6 +12,8 @@
 ##'
 ##' cwresi_hist(df)
 ##'
+##' @return A single plot.
+##'
 ##' @export
 res_hist <- function(df, ...,
                      x = pm_axis_res(),

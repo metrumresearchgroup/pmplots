@@ -25,6 +25,10 @@ cont_cont(df, x, y, xs = defx(), ys = defy(), ...)
 
 \item{...}{passed to \code{\link{scatt}}  and \code{\link{layer_hs}}}
 }
+\value{
+\code{pm_scatter} returns a single plot;
+\code{pm_scatter_list} returns a list of plots.
+}
 \description{
 This function is primarily called by other functions.
 \code{pm_scatter} is an alias to \code{cont_cont} and should be

@@ -17,6 +17,11 @@ eta_cat(df, x, y, hline = 0, ...)
 
 \item{...}{other arguments passed to \code{\link{cont_cat}}}
 }
+\value{
+A single plot when a single value for \code{x}
+and \code{y} are supplied; a list of plots of either \code{x}
+or \code{y} have length greater than 1.
+}
 \description{
 This is a vectorized function; see details.
 }
