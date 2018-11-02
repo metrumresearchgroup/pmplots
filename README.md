@@ -1,9 +1,10 @@
 pmplots
 ================
 
+## Browse source code at 
+https://ghe.metrumrg.com/software/pmplots
 
-Installation
-------------
+## Installation
 
 ``` r
 repos <- c("https://metrumresearchgroup.github.io/r_validated", options()$repos)
