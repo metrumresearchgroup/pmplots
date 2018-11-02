@@ -43,8 +43,7 @@ doc:
 	Rscript -e 'library(devtools); document()'
 
 build:
-	R CMD build --md5 $(PKGDIR)
-
+	R CMD build --no-build-vignettes --md5 $(PKGDIR)
 
 install:
 	R CMD INSTALL --install-tests ${TARBALL}

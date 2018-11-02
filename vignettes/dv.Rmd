@@ -1,0 +1,40 @@
+---
+title: "Dependent Variable Plots"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Dependent Variable Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+# Set up
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+
+data <- pmplots_data_obs()
+```
+
+
+# DV versus PRED
+
+```{r}
+dv_pred(data)
+```
+
+# DV versus IPRED
+
+```{r}
+dv_ipred(data)
+```
+
+# DV versus TIME
+```{r}
+dv_time(data)
+```
+
