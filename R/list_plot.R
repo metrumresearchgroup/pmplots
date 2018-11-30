@@ -1,20 +1,20 @@
-multi_scatter_x <- function(df, x, y,  ... ) {
-  out <- vector(mode = "list", length = length(x))
-  for(i in seq_along(x)) {
-    out[[i]] <- cont_cont(df = df, x = x[i], y = y, ...)
-  }
-  out <- lapply(out, layer_hs)
-  out
-}
-
-multi_scatter_y <- function(df, x,  y, ... ) {
-  out <- vector(mode="list", length=length(y))
-  for(i in seq_along(y)) {
-    out[[i]] <- cont_cont(df,x = x, y = y[i], ...)
-  }
-  out <- lapply(out, layer_hs, ...)
-  return(out)
-}
+# multi_scatter_x <- function(df, x, y,  ... ) {
+#   out <- vector(mode = "list", length = length(x))
+#   for(i in seq_along(x)) {
+#     out[[i]] <- cont_cont(df = df, x = x[i], y = y, ...)
+#   }
+#   out <- lapply(out, layer_hs)
+#   out
+# }
+#
+# multi_scatter_y <- function(df, x,  y, ... ) {
+#   out <- vector(mode="list", length=length(y))
+#   for(i in seq_along(y)) {
+#     out[[i]] <- cont_cont(df,x = x, y = y[i], ...)
+#   }
+#   out <- lapply(out, layer_hs, ...)
+#   return(out)
+# }
 
 
 

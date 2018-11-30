@@ -56,7 +56,6 @@ layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
     if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
     x <- x + do.call(geom_smooth,smooth)
   }
-
   x
 }
 
@@ -117,7 +116,7 @@ layer_a <- function(...) {
 ##' @export
 ##' @rdname layer
 layer_h <- function(...) {
-  layer_hs(..., smooth = FALSE)
+  layer_hs(..., smooth = NULL)
 }
 
 ##' @export
