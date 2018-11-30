@@ -29,6 +29,8 @@ test_that("col_label", {
 
   expect_error(col_label("WT.2"))
 
+  expect_is(pmplots:::parse_label("!! foo"), "expression")
+  expect_is(pmplots:::parse_label("foo $\\mu$"), "expression")
 })
 
 

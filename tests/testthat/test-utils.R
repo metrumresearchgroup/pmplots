@@ -24,6 +24,8 @@ test_that("def", {
   x <- defy(breaks = c(1,2,3))
   expect_equal(x$breaks, c(1,2,3))
   expect_equal(x$position, "left")
+  x <- defcx()
+  expect_equal(x$position, "bottom")
 })
 
 test_that("logbr", {
@@ -34,5 +36,12 @@ test_that("logbr", {
 
 })
 
+test_that("char", {
+  expect_true(pmplots:::charthere("kyle", "k"))
+  expect_equal(pmplots:::charcount("mississippi", "i"),4)
+})
 
-
+test_that("search col name", {
+  a <- pmplots:::search_cwres_i("CWRES", data)
+  expect_equal(a,"CWRESI")
+})
