@@ -81,6 +81,10 @@ test_that("every function", {
   expect_labels(p, "IPRED", "DV")
   expect_titles(p, "Individual predicted value", "Observed value")
 
+  p <- dv_preds(df)
+  expect_is(p,"list")
+  expect_equal(length(p),2)
+
   p <- res_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "RES")
@@ -203,7 +207,9 @@ test_that("every function", {
 
   p <- eta_pairs(
     df,
-    c("ETA1", "ETA2")
+    c("ETA1", "ETA2"),
+    smooth_color = "red",
+    smooth_lty=1
   )
   expect_is(p, "gg")
 
@@ -220,6 +226,9 @@ test_that("every function", {
   p2 <- pairs_plot(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
   expect_equal(p,p2)
 })
+
+
+
 
 test_that("Axis title customization", {
   p <- cwresi_time(df, xunit="min")
