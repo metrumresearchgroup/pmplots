@@ -2,7 +2,7 @@ library(testthat)
 
 context("test-utils")
 data <- pmplots_data_obs()
-p <- dv_time(df)
+p <- dv_time(data)
 
 test_that("log scale", {
   x <- log_scale()
