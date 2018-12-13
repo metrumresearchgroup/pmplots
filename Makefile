@@ -5,6 +5,7 @@ TARBALL=${PACKAGE}_${VERSION}.tar.gz
 PKGDIR=.
 CHKDIR=.
 
+
 covr:
 		Rscript -e 'covr::package_coverage(".")'
 
