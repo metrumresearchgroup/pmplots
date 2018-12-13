@@ -23,7 +23,7 @@ examples:
 	make exampler
 
 pkgdown:
-	Rscript -e "pkgdown::build_site()"
+	Rscript -e "options(pkdown.internet = FALSE); pkgdown::build_site()"
 
 ec:
 	echo ${VERSION}
@@ -63,5 +63,3 @@ checkk:
 	make doc
 	make build
 	R CMD check ${TARBALL} -o ${CHKDIR} --no-examples
-
-

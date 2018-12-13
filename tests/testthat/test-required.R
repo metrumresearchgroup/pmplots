@@ -6,9 +6,9 @@ df <- dplyr::filter(pmplots_data(),EVID==0)
 
 test_that("Functions fail when col doesn't exist", {
 
-  df$CWRES <- NULL
+  df$WRES <- NULL
   df$IPRED <- NULL
-  expect_error(cwres_time(df),regexp = "CWRES is required in the data set")
+  expect_error(wres_time(df),regexp = "WRES is required in the data set")
 
   expect_error(dv_ipred(df), regexp = "IPRED is required in the data set")
 
