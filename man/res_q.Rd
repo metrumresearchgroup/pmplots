@@ -8,8 +8,7 @@
 \alias{npde_q}
 \title{QQ plot for conditional residuals or NPDE}
 \usage{
-wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = NULL,
-  ...)
+wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = NULL, ...)
 
 cwres_q(df, x = "CWRES", ...)
 

@@ -14,7 +14,6 @@
 ##' @param fill a character value passed to \code{geom_histogram}
 ##' @param col a character value passed to \code{geom_histogram}
 ##' @param alpha a numeric value passed to \code{geom_histogram}
-##' @param add_layers extra layers will be added only if \code{TRUE}
 ##' @param ... passed to \code{geom_histogram} and \code{add_density}
 ##'
 ##'
@@ -29,7 +28,7 @@
 ##' @export
 cont_hist <- function(df, x, xs = defx(), fill = "black",
                       col = "white", alpha = 0.6, y = "..count..",
-                      add_density = y=="..density..", add_layers=TRUE, ...) {
+                      add_density = y=="..density..", ...) {
   xscale <- do.call("scale_x_continuous", xs)
   xx <- col_label(x)
   require_numeric(df,xx[1])
@@ -38,7 +37,7 @@ cont_hist <- function(df, x, xs = defx(), fill = "black",
     pm_histogram(mapping = aes_string(y = y), ...,
                  col = col, fill = fill, alpha = alpha) +
     xscale + pm_theme() + pm_labs(x = xx[2])
-  if(add_density & add_layers) {
+  if(add_density) {
     out <- out + add_density(...)
   }
   out

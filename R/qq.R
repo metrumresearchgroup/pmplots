@@ -52,7 +52,6 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
 ##' @export
 ##' @rdname res_q
 cwres_q <- function(df, x="CWRES", ...) {
-  if(no_cwres(df)) df <- supplement_cwres(df)
   wres_q(df, x, ...)
 }
 

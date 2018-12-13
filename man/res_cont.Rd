@@ -5,7 +5,6 @@
 \alias{wres_cont}
 \alias{cwres_cont}
 \alias{cwresi_cont}
-\alias{npde_cont}
 \title{Plot residuals versus continuous variables}
 \usage{
 res_cont(df, x, y = pm_axis_res(), xs = defx(), ys = defy(), ...)
@@ -15,8 +14,6 @@ wres_cont(df, x, y = pm_axis_wres(), xs = defx(), ys = defy(), ...)
 cwres_cont(df, x, y = pm_axis_cwres(), xs = defx(), ys = defy(), ...)
 
 cwresi_cont(df, x, y = pm_axis_cwresi(), ...)
-
-npde_cont(df, x, y = pm_axis_npde(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}

@@ -5,9 +5,6 @@ TARBALL=${PACKAGE}_${VERSION}.tar.gz
 PKGDIR=.
 CHKDIR=.
 
-covr:
-		Rscript -e 'covr::package_coverage(".")'
-
 everyfun:
 	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.Rmd")'
 
@@ -23,7 +20,7 @@ examples:
 	make exampler
 
 pkgdown:
-	Rscript -e "options(pkdown.internet = FALSE); pkgdown::build_site()"
+	Rscript -e "pkgdown::build_site()"
 
 ec:
 	echo ${VERSION}
@@ -63,3 +60,5 @@ checkk:
 	make doc
 	make build
 	R CMD check ${TARBALL} -o ${CHKDIR} --no-examples
+
+
