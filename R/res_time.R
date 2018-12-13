@@ -41,7 +41,7 @@
 ##' @export
 res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {
   out <- y_time(df, x = x, y = y, ...)
-  layer_hs(out, ...)
+  layer_hs(out,...)
 }
 
 ##' @export
@@ -121,21 +121,18 @@ wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
 ##' @export
 ##'
 cwres_time <- function(df, x = pm_axis_time(), y = pm_axis_cwres(), ...) {
-  if(no_cwres(df)) df <- supplement_cwres(df)
   res_time(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname cwres_time
 cwres_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_cwres(), ...) {
-  if(no_cwres(df)) df <- supplement_cwres(df)
   cwres_time(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname cwres_time
 cwres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_cwres(), ...) {
-  if(no_cwres(df)) df <- supplement_cwres(df)
   cwres_time(df, x = x, y = y, ...)
 }
 

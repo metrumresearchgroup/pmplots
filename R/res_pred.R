@@ -70,7 +70,6 @@ wres_pred <- function(df, ..., y=pm_axis_wres()) {
 ##' @export
 ##' @rdname res_pred
 cwres_pred <- function(df, ..., y=pm_axis_cwres()) {
-  if(no_cwres(df)) df <- supplement_cwres(df)
   res_pred(df, y = y, ...)
 }
 
