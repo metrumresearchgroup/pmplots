@@ -7,8 +7,7 @@
 \title{Generate a histogram plot}
 \usage{
 cont_hist(df, x, xs = defx(), fill = "black", col = "white",
-  alpha = 0.6, y = "..count..", add_density = y == "..density..",
-  add_layers = TRUE, ...)
+  alpha = 0.6, y = "..count..", add_density = y == "..density..", ...)
 
 cont_hist_list(df, x, ...)
 
@@ -32,8 +31,6 @@ pm_histogram(..., col = "white", fill = "black", alpha = 0.6)
 
 \item{add_density}{if \code{TRUE}, a normal density line will
 be plotted over the histogram using \code{\link{add_density}}}
-
-\item{add_layers}{extra layers will be added only if \code{TRUE}}
 
 \item{...}{passed to \code{geom_histogram} and \code{add_density}}
 }

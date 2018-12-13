@@ -2,37 +2,37 @@
 % Please edit documentation in R/layer.R
 \name{layer}
 \alias{layer}
-\alias{layer_h}
-\alias{layer_s}
-\alias{layer_a}
 \alias{layer_hs}
 \alias{layer_sh}
 \alias{layer_as}
 \alias{layer_sa}
+\alias{layer_s}
+\alias{layer_a}
+\alias{layer_h}
 \alias{layer_dots}
 \alias{gs}
 \alias{ga}
 \alias{gh}
 \title{Layer functions}
 \usage{
-layer_h(x, hline = gh(), add_layers = TRUE, ...)
+layer_hs(x, smooth = gs(), hline = gh(), ...)
 
-layer_s(x, smooth = gs(), add_layers = TRUE, ...)
+layer_sh(x, smooth = gs(), hline = gh(), ...)
 
-layer_a(x, abline = ga(), add_layers = TRUE, ...)
+layer_as(x, smooth = gs(), abline = ga(), ...)
 
-layer_hs(x, ...)
+layer_sa(x, smooth = gs(), abline = ga(), ...)
 
-layer_sh(x, ...)
+layer_s(...)
 
-layer_as(x, ...)
+layer_a(...)
 
-layer_sa(x, ...)
+layer_h(...)
 
 layer_dots(x, ...)
 
-gs(method = "loess", se = FALSE, lty = 2, lwd = 1.35,
-  col = .ggblue, ...)
+gs(method = "loess", se = FALSE, lty = 2, lwd = 1.35, col = .ggblue,
+  ...)
 
 ga(intercept = 0, slope = 1, lwd = 1.35, col = "darkgrey", ...)
 
@@ -41,15 +41,11 @@ gh(yintercept = 0, lwd = 1.35, col = "darkgrey", ...)
 \arguments{
 \item{x}{a \code{ggplot} object}
 
+\item{smooth}{list of arguments for \code{geom_smooth}}
+
 \item{hline}{list of arguments for \code{geom_hline}}
 
-\item{add_layers}{if \code{FALSE} no layers are added from
-\code{layer_s}, \code{layer_a}, \code{layer_h}, or
-combinations}
-
 \item{...}{passed to layering functions and geoms}
-
-\item{smooth}{list of arguments for \code{geom_smooth}}
 
 \item{abline}{list of arguments for \code{geom_abline}}
 

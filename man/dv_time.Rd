@@ -7,8 +7,8 @@
 \title{Plot DV versus time}
 \usage{
 dv_time(df, x = pm_axis_time(), y = pm_axis_dv(), xunit = "hr",
-  yname = "DV", group = "ID", xs = list(), ys = list(),
-  log = FALSE, xby = NULL, ...)
+  yname = "DV", group = "ID", xs = list(), ys = list(), log = FALSE,
+  xby = NULL, ...)
 
 dv_tafd(df, x = pm_axis_tafd(), ...)
 

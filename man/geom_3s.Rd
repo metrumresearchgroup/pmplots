@@ -5,11 +5,11 @@
 \alias{layer_3s}
 \title{Additional reference lines}
 \usage{
-geom_3s(lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3,
-  3), ...)
+geom_3s(lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3, 3),
+  ...)
 
-layer_3s(x, lwd = 1.35, lty = 1, col = "darkgrey",
-  yintercept = c(-3, 3), ...)
+layer_3s(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3,
+  3), ...)
 }
 \arguments{
 \item{lwd}{passed to \code{geom_hline}}
