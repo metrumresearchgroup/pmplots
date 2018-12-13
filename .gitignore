@@ -1,9 +1,9 @@
 .DS_Store
 README.html
-test*.R
+test.R
 pmplots.Rcheck
 *.tar.gz
-test-*.R
+test.R
 .Rproj.user
 .Rhistory
 .RData

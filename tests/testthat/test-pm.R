@@ -3,6 +3,7 @@ library(testthat)
 context("test-pm")
 
 df <- pmplots_data_obs()
+df[["CWRES"]] <- df[["CWRESI"]]
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 require(rlang)
 
@@ -41,14 +42,22 @@ test_that("check", {
 })
 
 
-test_that("every function", {
-
+test_that("dv time", {
   p <- dv_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "DV")
   expect_titles(p, "Time (hr)", "Observed DV")
+  p <- dv_tad(df)
+  expect_is(p,"gg")
+  p <- dv_tafd(df)
+  expect_is(p,"gg")
+  p <- dv_tafd(df,log = TRUE)
+  expect_is(p,"gg")
+  p <- dv_tad(df,log = TRUE)
+  expect_is(p,"gg")
+})
 
-
+test_that("dv pred", {
   p <- dv_pred(df, yname="NoDoze (ng/ml)")
   expect_is(p, "gg")
   expect_labels(p, "PRED", "DV")
@@ -58,7 +67,6 @@ test_that("every function", {
   expect_is(p, "gg")
   expect_labels(p, "IPRED", "DV")
   expect_titles(p, "Individual predicted value", "Observed value")
-
 
   p <- dv_pred(df,loglog=TRUE)
   expect_is(p, "gg")
@@ -70,36 +78,15 @@ test_that("every function", {
   expect_labels(p, "IPRED", "DV")
   expect_titles(p, "Individual predicted value", "Observed value")
 
-  p <- res_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "RES")
-  expect_titles(p, "Time (hr)", "Residual")
+  p <- dv_preds(df)
+  expect_is(p,"list")
+  expect_equal(length(p),2)
+})
 
-  p <- wres_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "WRES")
-  expect_titles(p, "Time (hr)", "Weighted residual")
 
-  p <- cwresi_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "CWRESI")
-  expect_titles(p, "Time (hr)", "Conditional weighted residual")
 
-  p <- res_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "RES")
-  expect_titles(p, "Time after dose (hr)", "Residual")
 
-  p <- wres_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "WRES")
-  expect_titles(p, "Time after dose (hr)", "Weighted residual")
-
-  p <- cwresi_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "CWRESI")
-  expect_titles(p, "Time after dose (hr)", "Conditional weighted residual")
-
+test_that("red pred", {
   p <- res_pred(df)
   expect_is(p, "gg")
   expect_labels(p, "PRED", "RES")
@@ -114,7 +101,9 @@ test_that("every function", {
   expect_is(p, "gg")
   expect_labels(p, "PRED", "CWRESI")
   expect_titles(p, "Population predicted value", "Conditional weighted residual")
+})
 
+test_that("res cont", {
   p <- cwresi_cont(df, x="WT//Weight (kg)")
   expect_is(p, "gg")
   expect_labels(p, "WT", "CWRESI")
@@ -122,6 +111,22 @@ test_that("every function", {
 
   expect_error(cwres_cont(df, x="WT/Weight (kg)"))
 
+  p <- res_cont(df, "WT")
+  expect_is(p,"gg")
+
+  p <- cwres_cont(df,"WT")
+  expect_is(p,"gg")
+
+  p <- wres_cont(df, "WT")
+  expect_is(p,"gg")
+
+  p <- res_cont(df, x = c("WT", "ALB"))
+  expect_is(p, "list")
+  expect_equal(length(p), 2)
+})
+
+
+test_that("res cat", {
   p <- res_cat(df, x="STUDYc//Study")
   expect_is(p, "gg")
   expect_labels(p, "STUDYc", "RES")
@@ -136,7 +141,9 @@ test_that("every function", {
   expect_is(p, "gg")
   expect_labels(p, "STUDYc", "CWRESI")
   expect_titles(p, "Study", "Conditional weighted residual")
+})
 
+test_that("eta cat cont hist", {
   p <- eta_hist(df,etas)
   expect_is(p, "list")
   p <- p[[1]]
@@ -151,23 +158,14 @@ test_that("every function", {
   expect_is(p, "list")
   expect_labels(p[[2]], "STUDYc", "ETA2")
   expect_titles(p[[2]], "Study", "ETA-V2")
-
-
-  p <- npde_time(df)
+  p <- eta_cat(df, x = "STUDYc", y = etas[1])
   expect_is(p, "gg")
-  expect_labels(p, "TIME", "NPDE")
-  expect_titles(p, "Time (hr)", "NPDE")
+})
 
-  p <- npde_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "NPDE")
-  expect_titles(p, "Time after dose (hr)", "NPDE")
 
-  p <- npde_tafd(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAFD", "NPDE")
-  expect_titles(p, "Time after first dose (hr)", "NPDE")
 
+
+test_that("res hist", {
   p <- wres_hist(df)
   expect_is(p, "gg")
   expect_x(p, "WRES", "Weighted residual")
@@ -175,21 +173,46 @@ test_that("every function", {
   p <- cwresi_hist(df)
   expect_is(p, "gg")
   expect_x(p, "CWRESI", "Conditional weighted residual")
+})
+
+
+test_that("eta pairs", {
+  p <- eta_pairs(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
+  expect_is(p,"ggmatrix")
+
+  p2 <- pairs_plot(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
+  expect_equal(p,p2)
 
   p <- eta_pairs(df, "ETA1//ETA-CL")
   expect_is(p, "gg")
   expect_x(p, "ETA1", "ETA-CL")
 
-  # p <- eta_pairs(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
-  # expect_is(p, "ggmatrix")
-  # expect_identical(p$xAxisLabels, c("ETA-CL", "ETA-V2"))
-  #
-  # p <- cwresi_q(df)
-  # expect_identical(p$labels$sample, "CWRESI")
-  # expect_identical(p$plot_env$xscale$name, "Standard normal quantile")
-  # expect_identical(p$plot_env$yscale$name, "CWRESI distribution quantile")
+  p2 <- pairs_plot(df, c("ETA1", "ETA2"))
+  expect_is(p2,"gg")
 
+  p <- eta_pairs(
+    df,
+    c("ETA1", "ETA2"),
+    smooth_color = "red",
+    smooth_lty=1
+  )
+  expect_is(p, "gg")
+
+  x <- pmplots:::pairs_lower(
+    df,
+    aes(x = TIME,y=DV, smooth_lty=2,smooth_colour="green")
+  )
+  expect_is(x,"gg")
+  x <- pmplots:::pairs_upper(df, aes(x = TIME,y=DV,smooth_lty=2))
+  expect_is(x,"gg")
 })
+
+test_that("qq", {
+  expect_is(cwresi_q(df),"gg")
+  expect_is(wres_q(df),"gg")
+  expect_is(npde_q(df),"gg")
+})
+
 
 test_that("Axis title customization", {
   p <- cwresi_time(df, xunit="min")

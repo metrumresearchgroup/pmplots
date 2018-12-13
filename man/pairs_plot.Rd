@@ -6,7 +6,7 @@
 \title{Pairs plots using ggpairs}
 \usage{
 pairs_plot(x, etas, bins = 15, alpha = 0.6, fill = "black",
-  col = "grey", upper_fun = pairs_upper, lower_fun = pairs_lower, ...)
+  col = "grey", upper_fun = NULL, lower_fun = NULL, ...)
 
 eta_pairs(...)
 }

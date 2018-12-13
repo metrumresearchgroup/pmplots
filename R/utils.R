@@ -1,6 +1,16 @@
 
 .stop <- function(...) stop(..., call.=FALSE)
 
+supplement_cwres <- function(x) {
+  if("CWRES" %in% names(x)) return(x)
+  if("CWRESI" %in% names(x)) {
+    message("Creating CWRES column from CWRESI")
+    x[["CWRES"]] <- x[["CWRESI"]]
+    return(x)
+  }
+  return(x)
+}
+
 require_discrete <- function(df,x) {
   require_column(df,x)
   cl <- class(unlist(df[1,x],use.names=FALSE))
@@ -34,7 +44,6 @@ require_columns <- function(df,...) {
   }
   return(invisible(NULL))
 }
-
 
 get_limits <- function(df,x,y) {
   range(c(df[,x],df[,y]),na.rm=TRUE)
@@ -197,12 +206,10 @@ look_for_tex <- function(x) {
   charcount(x,"$") >= 2
 }
 
-
 pm_labs <- function(...) {
   x <- lapply(list(...), parse_label)
   do.call(ggplot2::labs,x)
 }
-
 
 noline <- ggplot2::element_blank()
 
@@ -268,6 +275,10 @@ rot_y <- function(angle=30, hjust = 1) {
   name %in% names(object)
 }
 
+no_cwres <- function(object) {
+  !("CWRES" %in% names(object))
+}
+
 .miss <- function(name,object) {
   !(name %in% names(object))
 }
@@ -277,7 +288,6 @@ glue_unit <- function(x,xunit) {
   if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
   glue::glue(x)
 }
-
 
 charcount <- function(x,w,fx=TRUE) {
   nchar(x) - nchar(gsub(w,"",x,fixed=fx))

@@ -6,6 +6,9 @@
 ##' @param smooth list of arguments for \code{geom_smooth}
 ##' @param hline list of arguments for \code{geom_hline}
 ##' @param abline list of arguments for \code{geom_abline}
+##' @param add_layers if \code{FALSE} no layers are added from
+##' \code{layer_s}, \code{layer_a}, \code{layer_h}, or
+##' combinations
 ##' @param method passed to the appropriate \code{geom_}
 ##' @param se passed to the appropriate \code{geom_}
 ##' @param lty passed to the appropriate \code{geom_}
@@ -47,26 +50,8 @@
 ##' @rdname layer
 ##'
 ##' @export
-layer_hs <- function(x, smooth = gs(), hline = gh(), ...) {
-  if(!is.null(hline)) {
-    if(!missing(hline)) hline <- combine_list(gh(),hline)
-    x <- x + do.call(geom_hline,hline)
-  }
-  if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
-    x <- x + do.call(geom_smooth,smooth)
-  }
-
-  x
-}
-
-##' @export
-##' @rdname layer
-layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
-  if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
-    x <- x + do.call(geom_smooth,smooth)
-  }
+layer_h <- function(x, hline = gh(), add_layers = TRUE, ...) {
+  if(!add_layers) return(x)
   if(!is.null(hline)) {
     if(!missing(hline)) hline <- combine_list(gh(),hline)
     x <- x + do.call(geom_hline,hline)
@@ -76,11 +61,8 @@ layer_sh <- function(x, smooth = gs(), hline = gh(), ...) {
 
 ##' @export
 ##' @rdname layer
-layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
-  if(!is.null(abline)) {
-    if(!missing(abline)) abline <- combine_list(ga(),abline)
-    x <- x + do.call(geom_abline,abline)
-  }
+layer_s <- function(x, smooth = gs(), add_layers = TRUE,  ...) {
+  if(!add_layers) return(x)
   if(!is.null(smooth)) {
     if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
     x <- x + do.call(geom_smooth,smooth)
@@ -90,11 +72,8 @@ layer_as <- function(x, smooth = gs(), abline = ga(), ...) {
 
 ##' @export
 ##' @rdname layer
-layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
-  if(!is.null(smooth)) {
-    if(!missing(smooth)) smooth <- combine_list(gs(),smooth)
-    x <- x + do.call(geom_smooth,smooth)
-  }
+layer_a <- function(x, abline = ga(), add_layers = TRUE, ...) {
+  if(!add_layers) return(x)
   if(!is.null(abline)) {
     if(!missing(abline)) abline <- combine_list(ga(),abline)
     x <- x + do.call(geom_abline,abline)
@@ -104,20 +83,26 @@ layer_sa <- function(x, smooth = gs(), abline = ga(), ...) {
 
 ##' @export
 ##' @rdname layer
-layer_s <- function(...) {
-  layer_sa(..., abline = NULL)
+layer_hs <- function(x, ...) {
+  layer_s(layer_h(x,...),...)
 }
 
 ##' @export
 ##' @rdname layer
-layer_a <- function(...) {
-  layer_sa(..., smooth = NULL)
+layer_sh <- function(x, ...) {
+  layer_h(layer_s(x,...), ...)
 }
 
 ##' @export
 ##' @rdname layer
-layer_h <- function(...) {
-  layer_hs(..., smooth = FALSE)
+layer_as <- function(x, ...) {
+  layer_s(layer_a(x,...), ...)
+}
+
+##' @export
+##' @rdname layer
+layer_sa <- function(x, ...) {
+  layer_a(layer_s(x,...), ...)
 }
 
 ##' @export

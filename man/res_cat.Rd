@@ -5,6 +5,7 @@
 \alias{wres_cat}
 \alias{cwres_cat}
 \alias{cwresi_cat}
+\alias{npde_cat}
 \title{Plot residuals versus categorical variable}
 \usage{
 res_cat(df, x, y = pm_axis_res(), hline = 0, ...)
@@ -14,6 +15,8 @@ wres_cat(df, x, y = pm_axis_wres(), hline = 0, ...)
 cwres_cat(df, x, y = pm_axis_cwres(), hline = 0, ...)
 
 cwresi_cat(df, x, y = pm_axis_cwresi(), ...)
+
+npde_cat(df, x, y = pm_axis_npde(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}
