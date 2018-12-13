@@ -94,7 +94,7 @@
       <h1>Vectorized Plots</h1>
                         <h4 class="author">Kyle Baron</h4>
             
-            <h4 class="date">2018-12-12</h4>
+            <h4 class="date">2018-12-13</h4>
       
       
       <div class="hidden name"><code>list_plots.Rmd</code></div>
@@ -106,20 +106,20 @@
 <div id="set-up" class="section level1">
 <h1 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+
+data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</code></pre></div>
 </div>
 <div id="vectorized-plots" class="section level1">
 <h1 class="hasAnchor">
 <a href="#vectorized-plots" class="anchor"></a>Vectorized plots</h1>
 <p>Some pmplots functions have been vectorized so that you can pass in a vector of inputs and get a list of plots back. This is a convenience feature that allows you to quickly make several plots. The intended use is to arrange those plots in a single page or multiple pages for display.</p>
 <p>For example, we can plot <code>WRES</code> versus <code>WT</code></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/res_cont.html">wres_cont</a></span>(data, <span class="dt">x =</span> <span class="st">"WT"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/res_cont.html">wres_cont</a></span>(data, <span class="dt">x =</span> <span class="st">"WT"</span>)</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <p>If we wanted to vectorize this plot and look at <code>WRES</code> versus <code>WT</code>, <code>ALB</code>, <code>CRCL</code>, and <code>AST</code> we would write</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/res_cont.html">wres_cont</a></span>(data, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"WT"</span>, <span class="st">"ALB"</span>, <span class="st">"CRCL"</span>, <span class="st">"AST"</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/res_cont.html">wres_cont</a></span>(data, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"WT"</span>, <span class="st">"ALB"</span>, <span class="st">"CRCL"</span>, <span class="st">"AST"</span>))</code></pre></div>
 <pre><code>## [[1]]</code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <pre><code>## 
@@ -132,34 +132,34 @@
 ## [[4]]</code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-3-4.png" width="700"></p>
 <p>And we get a list of plots back. This list can be arranged on the fly with</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">covs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(</a>
-<a class="sourceLine" id="cb8-2" title="2">  <span class="st">"WT//Weight (kg)"</span>, <span class="st">"ALB//Albumin"</span>, </a>
-<a class="sourceLine" id="cb8-3" title="3">  <span class="st">"CRCL//Creatinine clearance"</span>, <span class="st">"AST//Aspartate aminotransferase"</span></a>
-<a class="sourceLine" id="cb8-4" title="4">)</a>
-<a class="sourceLine" id="cb8-5" title="5"></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="kw"><a href="../reference/res_cont.html">wres_cont</a></span>(data, <span class="dt">x =</span> covs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">covs &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(
+  <span class="st">"WT//Weight (kg)"</span>, <span class="st">"ALB//Albumin"</span>, 
+  <span class="st">"CRCL//Creatinine clearance"</span>, <span class="st">"AST//Aspartate aminotransferase"</span>
+)
+
+<span class="kw"><a href="../reference/res_cont.html">wres_cont</a></span>(data, <span class="dt">x =</span> covs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <pre><code>## Loading required namespace: cowplot</code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>In this example, we also made the vector of inputs full <code>col_label</code> specification.</p>
 <p>Another example are the <code>eta_cont</code> plots</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_id</a></span>()</a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3"></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="kw"><a href="../reference/eta_cont.html">eta_cont</a></span>(data, <span class="dt">x =</span> covs, <span class="dt">y =</span> <span class="st">"ETA1//ETA-CL"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_id</a></span>()
+
+
+<span class="kw"><a href="../reference/eta_cont.html">eta_cont</a></span>(data, <span class="dt">x =</span> covs, <span class="dt">y =</span> <span class="st">"ETA1//ETA-CL"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 <div id="what-plots-are-vectorized" class="section level1">
 <h1 class="hasAnchor">
 <a href="#what-plots-are-vectorized" class="anchor"></a>What plots are vectorized?</h1>
 <p>Basically any plot where the user is required to identify the column for plotting. So in the example, <code>wres_cont</code> asks the user to specify what the continuous variable is for the x-axis. This plot is vectorized. Same with <code>wres_cat</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/res_cat.html">wres_cat</a></span>(data, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"STUDYc"</span>, <span class="st">"CPc"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/res_cat.html">wres_cat</a></span>(data, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"STUDYc"</span>, <span class="st">"CPc"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>In contrast, <code>dv_pred</code> is hard-wired to look for <code>DV</code> and <code>PRED</code>. It is designed to look for only one thing on each axis. This plot is not vectorized.</p>
 <p>You can use <code>pm_scatter_list</code> <em>as</em> a vectorized function to vectorize anyting. So this allows us to do</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/pm_scatter.html">pm_scatter_list</a></span>(data, <span class="dt">y  =</span> <span class="st">"WRES"</span>, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pm_scatter.html">pm_scatter_list</a></span>(data, <span class="dt">y  =</span> <span class="st">"WRES"</span>, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<p>Or just use <code>lapply</code> or <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span>), wres_cont, <span class="dt">df =</span> data, <span class="dt">y =</span> <span class="st">"WRES"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</a></code></pre></div>
+<p>Or just use <code>lapply</code> or <code><a href="https://www.rdocumentation.org/packages/purrr/topics/map">purrr::map</a></code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span>), wres_cont, <span class="dt">df =</span> data, <span class="dt">y =</span> <span class="st">"WRES"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Please see the help topic for each function to know if that function is vectorized or not.</p>
 </div>

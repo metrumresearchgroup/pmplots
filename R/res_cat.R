@@ -60,3 +60,9 @@ cwresi_cat <- function(df, x, y = pm_axis_cwresi(), ...) {
   cwres_cat(df, x, y, ...)
 }
 
+##' @export
+##' @rdname res_cat
+npde_cat <- function(df, x, y = pm_axis_npde(), ...) {
+  res_cat(df, x, y, ...)
+}
+

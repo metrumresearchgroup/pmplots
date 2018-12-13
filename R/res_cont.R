@@ -56,3 +56,10 @@ cwres_cont <- function(df, x, y=pm_axis_cwres(), xs=defx(), ys=defy(),...) {
 cwresi_cont <- function(df, x, y=pm_axis_cwresi(), ...) {
   cwres_cont(df, x = x, y = y, ...)
 }
+
+##' @export
+##' @rdname res_cont
+npde_cont <- function(df, x, y=pm_axis_npde(), ...) {
+  res_cont(df, x = x, y = y, ...)
+}
+

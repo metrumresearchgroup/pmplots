@@ -94,7 +94,7 @@
       <h1>Get Started</h1>
                         <h4 class="author">Kyle Baron</h4>
             
-            <h4 class="date">2018-12-12</h4>
+            <h4 class="date">2018-12-13</h4>
       
       
       <div class="hidden name"><code>start.Rmd</code></div>
@@ -106,16 +106,16 @@
 <div id="set-up" class="section level1">
 <h1 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</code></pre></div>
 </div>
 <div id="example-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-data" class="anchor"></a>Example data</h1>
 <p>There is an example data set embedded in pmplots</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</code></pre></div>
 <p>pmplots is designed to work with data sets that have columns named according to certain expectations. So we tend to look for these types of columns</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, ID, TIME, DV, IPRED, ETA1, CWRESI)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, ID, TIME, DV, IPRED, ETA1, CWRESI)</code></pre></div>
 <pre><code>## # A tibble: 3,142 x 6
 ##       ID  TIME    DV IPRED    ETA1  CWRESI
 ##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -132,7 +132,7 @@
 ## # ... with 3,132 more rows</code></pre>
 <p>You might already have NONMEM modeling results with these column names. When the data set has these names, pmplots will work more automatically with the data set, requiring less manual input from the user.</p>
 <p>Other columns that we have in the examples can be named according to your choosing</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, WT, ALB, STUDY, STUDYc, CRCL)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, WT, ALB, STUDY, STUDYc, CRCL)</code></pre></div>
 <pre><code>## # A tibble: 3,142 x 5
 ##       WT   ALB STUDY STUDYc  CRCL
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -152,10 +152,10 @@
 <h1 class="hasAnchor">
 <a href="#your-first-plot" class="anchor"></a>Your first plot</h1>
 <p>With the data setup like this, we can make a plot of DV versus PRED very easily</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data)</code></pre></div>
 <p><img src="start_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>This plots <code>dv</code> versus <code>pred</code> and the name of the function indicates what will come out. pmplots can make this plot because there are columns called <code>DV</code> and <code>PRED</code> in the data set</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, DV, PRED)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, DV, PRED)</code></pre></div>
 <pre><code>## # A tibble: 3,142 x 2
 ##       DV  PRED
 ##    &lt;dbl&gt; &lt;dbl&gt;
@@ -177,12 +177,12 @@
 <a href="#other-plots" class="anchor"></a>Other plots</h1>
 <p>There are a lot of plotting functions in pmplots, but the naming is systematic so that you can know the output from the name.</p>
 <p>Similarly,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data)</code></pre></div>
 <pre><code>## Creating CWRES column from CWRESI</code></pre>
 <p><img src="start_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>gives you conditional weighted residuals versus time.</p>
 <p>And you can get different types of histogram plots</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw"><a href="../reference/res_hist.html">cwresi_hist</a></span>(data)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/res_hist.html">cwresi_hist</a></span>(data)</code></pre></div>
 <pre><code>## Creating CWRES column from CWRESI</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="start_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
@@ -191,7 +191,7 @@
 <h1 class="hasAnchor">
 <a href="#specifying-data-and-axis-title" class="anchor"></a>Specifying data and axis title</h1>
 <p>Let’s look at <code>cwresi_time</code> function and look at the basic inputs for the plot</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/formals">formals</a></span>(cwresi_time)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/formals">formals</a></span>(cwresi_time)[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
 <pre><code>## $df
 ## 
 ## 
@@ -201,25 +201,25 @@
 ## $y
 ## pm_axis_cwresi()</code></pre>
 <p>The first argument is <code>df</code> , the data set in data.frame format. The second argument is <code>x</code> or what goes on the x-axis, and third <code>y</code>, what goes on the <code>y</code> axis. The defaults for these arguments are the output from internal pmplots functions</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">pmplots<span class="op">:::</span><span class="kw"><a href="../reference/pm_axis_functions.html">pm_axis_time</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pmplots<span class="op">:::</span><span class="kw"><a href="../reference/pm_axis_functions.html">pm_axis_time</a></span>()</code></pre></div>
 <pre><code>## [1] "TIME//Time {xunit}"</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">pmplots<span class="op">:::</span><span class="kw"><a href="../reference/pm_axis_functions.html">pm_axis_cwresi</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pmplots<span class="op">:::</span><span class="kw"><a href="../reference/pm_axis_functions.html">pm_axis_cwresi</a></span>()</code></pre></div>
 <pre><code>## [1] "CWRESI//Conditional weighted residual"</code></pre>
 <p>For <code>x</code>, we have the name of the column in the data set (<code>TIME</code>) followed by a double-front-slash (<code>//</code>) and then the name that we want to go on the x-axis (<code>Time</code>). Similarly for y, the data is in column <code>CWRESI</code> and we want the y-axis title to be <code>Conditional weighted residual</code>.</p>
 <p>This is called <code>col_label</code> format, and is a simple way to pass in both pieces of data.</p>
 <p>If we wanted to modify either the data column name or the name of the axis title, simply provide a replacement for the default</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data, <span class="dt">y =</span> <span class="st">"CWRESI//Some other axis title"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data, <span class="dt">y =</span> <span class="st">"CWRESI//Some other axis title"</span>)</code></pre></div>
 <pre><code>## Creating CWRES column from CWRESI</code></pre>
 <p><img src="start_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>And if you omit the title from the <code>col_label</code>, the title will be the column name</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data, <span class="dt">y =</span> <span class="st">"CWRESI"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data, <span class="dt">y =</span> <span class="st">"CWRESI"</span>)</code></pre></div>
 <pre><code>## Creating CWRES column from CWRESI</code></pre>
 <p><img src="start_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <p>Notice that the <code>x</code> argument had another piece in it … <code>{xunit}</code></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">pmplots<span class="op">:::</span><span class="kw"><a href="../reference/pm_axis_functions.html">pm_axis_time</a></span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pmplots<span class="op">:::</span><span class="kw"><a href="../reference/pm_axis_functions.html">pm_axis_time</a></span>()</code></pre></div>
 <pre><code>## [1] "TIME//Time {xunit}"</code></pre>
 <p>Looking at the <code>y_time</code> help topic, we see that <code>xunit</code> is the time unit for these plots. So, if our data has time unit of days, we can change that aspect of the plot</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data, <span class="dt">xunit =</span> <span class="st">"days"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cwres_time.html">cwresi_time</a></span>(data, <span class="dt">xunit =</span> <span class="st">"days"</span>)</code></pre></div>
 <pre><code>## Creating CWRES column from CWRESI</code></pre>
 <p><img src="start_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 </div>
