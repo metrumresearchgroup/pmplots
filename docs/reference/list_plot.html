@@ -34,8 +34,9 @@
 
 <meta property="og:description" content="list_plot_x vectorizes over the x value,
 list_plot_y vectorizes over the y value,
-and list_plot_xy vectorizes over x and
-y." />
+list_plot_xy vectorizes over x and
+then y, and list_plot_yx vectorizes over
+y before x." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,8 +140,9 @@ y." />
     
     <p><code>list_plot_x</code> vectorizes over the <code>x</code> value,
 <code>list_plot_y</code> vectorizes over the <code>y</code> value,
-and <code>list_plot_xy</code> vectorizes over <code>x</code> and
-<code>y</code>.</p>
+<code>list_plot_xy</code> vectorizes over <code>x</code> and
+then <code>y</code>, and <code>list_plot_yx</code> vectorizes over
+<code>y</code> before <code>x</code>.</p>
     
     </div>
 
@@ -148,7 +150,9 @@ and <code>list_plot_xy</code> vectorizes over <code>x</code> and
 
 <span class='fu'>list_plot_y</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>.fun</span> <span class='kw'>=</span> <span class='no'>cont_cont</span>, <span class='no'>...</span>)
 
-<span class='fu'>list_plot_xy</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>.fun</span> <span class='kw'>=</span> <span class='no'>cont_cont</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>list_plot_xy</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>.fun</span> <span class='kw'>=</span> <span class='no'>cont_cont</span>, <span class='no'>...</span>)
+
+<span class='fu'>list_plot_yx</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>.fun</span> <span class='kw'>=</span> <span class='no'>cont_cont</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

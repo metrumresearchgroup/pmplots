@@ -138,19 +138,19 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>layer_hs</span>(<span class='no'>x</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fu'>gs</span>(), <span class='kw'>hline</span> <span class='kw'>=</span> <span class='fu'>gh</span>(), <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>layer_h</span>(<span class='no'>x</span>, <span class='kw'>hline</span> <span class='kw'>=</span> <span class='fu'>gh</span>(), <span class='kw'>add_layers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>layer_sh</span>(<span class='no'>x</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fu'>gs</span>(), <span class='kw'>hline</span> <span class='kw'>=</span> <span class='fu'>gh</span>(), <span class='no'>...</span>)
+<span class='fu'>layer_s</span>(<span class='no'>x</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fu'>gs</span>(), <span class='kw'>add_layers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>layer_as</span>(<span class='no'>x</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fu'>gs</span>(), <span class='kw'>abline</span> <span class='kw'>=</span> <span class='fu'>ga</span>(), <span class='no'>...</span>)
+<span class='fu'>layer_a</span>(<span class='no'>x</span>, <span class='kw'>abline</span> <span class='kw'>=</span> <span class='fu'>ga</span>(), <span class='kw'>add_layers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
-<span class='fu'>layer_sa</span>(<span class='no'>x</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fu'>gs</span>(), <span class='kw'>abline</span> <span class='kw'>=</span> <span class='fu'>ga</span>(), <span class='no'>...</span>)
+<span class='fu'>layer_hs</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='fu'>layer_s</span>(<span class='no'>...</span>)
+<span class='fu'>layer_sh</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='fu'>layer_a</span>(<span class='no'>...</span>)
+<span class='fu'>layer_as</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='fu'>layer_h</span>(<span class='no'>...</span>)
+<span class='fu'>layer_sa</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='fu'>layer_dots</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
@@ -169,16 +169,22 @@
       <td><p>a <code>ggplot</code> object</p></td>
     </tr>
     <tr>
-      <th>smooth</th>
-      <td><p>list of arguments for <code>geom_smooth</code></p></td>
-    </tr>
-    <tr>
       <th>hline</th>
       <td><p>list of arguments for <code>geom_hline</code></p></td>
     </tr>
     <tr>
+      <th>add_layers</th>
+      <td><p>if <code>FALSE</code> no layers are added from
+<code>layer_s</code>, <code>layer_a</code>, <code>layer_h</code>, or
+combinations</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>passed to layering functions and geoms</p></td>
+    </tr>
+    <tr>
+      <th>smooth</th>
+      <td><p>list of arguments for <code>geom_smooth</code></p></td>
     </tr>
     <tr>
       <th>abline</th>
@@ -243,7 +249,7 @@ of functions are not exported.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='fu'><a href='pmplots_data.html'>pmplots_data</a></span>(), <span class='no'>EVID</span><span class='kw'>==</span><span class='fl'>0</span> <span class='kw'>&amp;</span> <span class='no'>BLQ</span><span class='kw'>==</span><span class='fl'>0</span>)
 
-<span class='fu'><a href='cwres_time.html'>cwresi_time</a></span>(<span class='no'>df</span>) + <span class='fu'><a href='geom_3s.html'>geom_3s</a></span>()</div><div class='img'><img src='layer-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='cwres_time.html'>cwresi_time</a></span>(<span class='no'>df</span>) + <span class='fu'><a href='geom_3s.html'>geom_3s</a></span>()</div><div class='output co'>#&gt; <span class='message'>Creating CWRES column from CWRESI</span></div><div class='img'><img src='layer-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='kw pkg'>pmplots</span><span class='kw ns'>:::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/pmplots/topics/layer'>gs</a></span>()</div><div class='output co'>#&gt; $method
 #&gt; [1] "loess"
 #&gt; 

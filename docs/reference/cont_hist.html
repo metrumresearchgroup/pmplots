@@ -144,7 +144,7 @@ function that is called by other functions in pmplots.</p>
 
     <pre class="usage"><span class='fu'>cont_hist</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='defx.html'>defx</a></span>(), <span class='kw'>fill</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"white"</span>,
   <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.6</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"..count.."</span>, <span class='kw'>add_density</span> <span class='kw'>=</span> <span class='no'>y</span> <span class='kw'>==</span> <span class='st'>"..density.."</span>,
-  <span class='no'>...</span>)
+  <span class='kw'>add_layers</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
 
 <span class='fu'>cont_hist_list</span>(<span class='no'>df</span>, <span class='no'>x</span>, <span class='no'>...</span>)
 
@@ -186,6 +186,10 @@ function that is called by other functions in pmplots.</p>
       <th>add_density</th>
       <td><p>if <code>TRUE</code>, a normal density line will
 be plotted over the histogram using <code><a href='add_density.html'>add_density</a></code></p></td>
+    </tr>
+    <tr>
+      <th>add_layers</th>
+      <td><p>extra layers will be added only if <code>TRUE</code></p></td>
     </tr>
     <tr>
       <th>...</th>
