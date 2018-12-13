@@ -50,6 +50,7 @@ wres_cat <- function(df, x, y = pm_axis_wres(), hline=0, ...) {
 ##' @export
 ##' @rdname res_cat
 cwres_cat <- function(df, x, y = pm_axis_cwres(), hline=0, ...) {
+  if(no_cwres(df)) df <- supplement_cwres(df)
   res_cat(df, x, y, hline, ...)
 }
 

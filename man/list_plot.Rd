@@ -4,6 +4,7 @@
 \alias{list_plot_x}
 \alias{list_plot_y}
 \alias{list_plot_xy}
+\alias{list_plot_yx}
 \title{Apply a plotting function to a vector of x or y values}
 \usage{
 list_plot_x(df, x, y, .fun = cont_cont, ...)
@@ -11,6 +12,8 @@ list_plot_x(df, x, y, .fun = cont_cont, ...)
 list_plot_y(df, x, y, .fun = cont_cont, ...)
 
 list_plot_xy(df, x, y, .fun = cont_cont, ...)
+
+list_plot_yx(df, x, y, .fun = cont_cont, ...)
 }
 \arguments{
 \item{df}{the plotting data set}
@@ -29,8 +32,9 @@ a list of plots generated from \code{.fun}
 \description{
 \code{list_plot_x} vectorizes over the \code{x} value,
 \code{list_plot_y} vectorizes over the \code{y} value,
-and \code{list_plot_xy} vectorizes over \code{x} and
-\code{y}.
+\code{list_plot_xy} vectorizes over \code{x} and
+then \code{y}, and \code{list_plot_yx} vectorizes over
+\code{y} before \code{x}.
 }
 \details{
 This function was intended for use with functions

@@ -84,40 +84,6 @@ test_that("dv pred", {
 })
 
 
-test_that("res time", {
-
-
-  p <- res_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "RES")
-  expect_titles(p, "Time (hr)", "Residual")
-
-  p <- wres_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "WRES")
-  expect_titles(p, "Time (hr)", "Weighted residual")
-
-  p <- cwresi_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "CWRESI")
-  expect_titles(p, "Time (hr)", "Conditional weighted residual")
-
-  p <- res_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "RES")
-  expect_titles(p, "Time after dose (hr)", "Residual")
-
-  p <- wres_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "WRES")
-  expect_titles(p, "Time after dose (hr)", "Weighted residual")
-
-  p <- cwresi_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "CWRESI")
-  expect_titles(p, "Time after dose (hr)", "Conditional weighted residual")
-
-})
 
 
 test_that("red pred", {
@@ -197,22 +163,7 @@ test_that("eta cat cont hist", {
 })
 
 
-test_that("npde", {
-  p <- npde_time(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TIME", "NPDE")
-  expect_titles(p, "Time (hr)", "NPDE")
 
-  p <- npde_tad(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAD", "NPDE")
-  expect_titles(p, "Time after dose (hr)", "NPDE")
-
-  p <- npde_tafd(df)
-  expect_is(p, "gg")
-  expect_labels(p, "TAFD", "NPDE")
-  expect_titles(p, "Time after first dose (hr)", "NPDE")
-})
 
 test_that("res hist", {
   p <- wres_hist(df)

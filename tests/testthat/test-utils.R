@@ -4,6 +4,12 @@ context("test-utils")
 data <- pmplots_data_obs()
 p <- dv_time(data)
 
+test_that("CWRESI gets subbed for CWRES", {
+  data$CWRES <- NULL
+  expect_is(cwres_time(data), "gg")
+  expect_message(cwres_time(data),"Creating CWRES column from CWRESI")
+})
+
 test_that("log scale", {
   x <- log_scale()
   expect_is(x, "list")

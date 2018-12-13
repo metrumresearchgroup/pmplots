@@ -47,6 +47,7 @@ wres_cont <- function(df, x, y=pm_axis_wres(),
 ##' @export
 ##' @rdname res_cont
 cwres_cont <- function(df, x, y=pm_axis_cwres(), xs=defx(), ys=defy(),...) {
+  if(no_cwres(df)) df <- supplement_cwres(df)
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }
 

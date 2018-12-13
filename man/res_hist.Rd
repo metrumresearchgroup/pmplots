@@ -39,6 +39,6 @@ Histograms of residuals or NPDE
 \examples{
 df <- pmplots_data_obs()
 
-cwresi_hist(df)
+cwres_hist(df)
 
 }
