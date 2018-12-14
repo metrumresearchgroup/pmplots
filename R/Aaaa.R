@@ -26,33 +26,31 @@ globalVariables(c("ID", "n", "IPRED"))
 ##'
 ##' @section Look and feel:
 ##'
-##' See the \code{\link{pm_theme}} help topic for functions you
+##' See the [pmtheme] help topic for functions you
 ##' can use to replicate the look and feel of plots generated
 ##' by this package.
 ##'
-##' @details
+##' @section Function listing:
 ##'
-##' Help topics:
-##'
-##' \itemize{
-##'
-##' \item \code{\link{res_time}} Plots of residuals versus time
-##' \item \code{\link{dv_pred}} Plots of observed data versus predictions
-##' \item \code{\link{dv_time}} Plots of observed values versus time
-##' \item \code{\link{res_pred}} Plots of residuals versus predictions
-##' \item \code{\link{res_q}} Q-Q plots for residuals
-##' \item \code{\link{eta_hist}}, \code{\link{eta_pairs}}, \code{\link{eta_cont}},
-##'        \code{\link{eta_cat}} Plots for ETA
-##' \item \code{\link{split_plot}} split and plot
-##' \item \code{\link{cont_cont}} Plots for continuous variables
-##' \item \code{\link{layer}} Functions for adding layers to plots like
-##'        reference or smoothing lines
-##'
-##' }
-##'
-##'
+##' - Residuals versus time
+##'   - [res_time], [res_tad], [res_tafd]
+##'   - [wres_time], [wres_tad], [wres_tad]
+##'   - [cwres_time], [cwres_tad], [cwres_tafd]
+##' - Residuals versus PRED
+##'   - [res_pred], [wres_pred], [cwres_pred]
+##' - Residuals versus covariates
+##'   - [res_cont], [wres_cont], [cwres_cont]
+##'   - [res_cat], [wres_cat], [cwres_cat]
+##' - NPDE plots
+##'   - [npde_time], [npde_tad], [npde_tafd]
+##'   - [npde_pred]
+##'   - [npde_hist]
+##'   - [npde_q]
+##'   - [npde_cont]
+##'   - [npde_cat]
 ##'
 ##' @rdname pmplots
 ##' @name pmplots
+##' @md
 NULL
 

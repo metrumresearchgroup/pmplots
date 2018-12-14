@@ -24,14 +24,16 @@ library(purrr)
 
 # Example data in the package
 ```{r}
-df <- pmplots_data() %>% filter(EVID==0,!is.na(PRED)) %>% mutate(CWRES = CWRESI)
+df <- pmplots_data_obs() %>% mutate(CWRES = CWRESI)
 
-id <- distinct(df, ID, .keep_all=TRUE)
+id <- pmplots_data_id()
 
 dayx <- defx(breaks = seq(0,168,24))
+
 .yname <- "NoDoz (ng/mL)"
 
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+
 covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
 
 ```
@@ -46,10 +48,21 @@ Override the `df` and `id` objects in the above chunk
 
 This is a way to specify the column name for source
 data along with the axis label
+
+```{r}
 col_label("CL//Clearance (L)")
+```
+
+When only the column is given, then the column name will be 
+used for the column title:
+
+```{r}
+col_label("WT")
+```
 
 
 # Observed vs predicted
+
 ## Observed versus population predicted (`dv_pred`)
 
 ```{r}
@@ -104,7 +117,6 @@ res_pred(df)
 ```
 
 ### RES versus continuous covariate (`res_cont`)
-
 
 ```{r}
 res_cont(df, x="WT//Weight (kg)")
@@ -267,7 +279,17 @@ npde_tafd(df)
 npde_pred(df)
 ```
 
+## NPDE versus continuous variable (`npde_cont`)
 
+```{r}
+npde_cont(df, "WT")
+```
+
+## NPDE versus categorical variable (`npde_cat`)
+
+```{r}
+npde_cat(df, "STUDYc")
+```
 
 ## QQ-plot with NPDE (`npde_q`)
 ```{r}
@@ -292,8 +314,7 @@ covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
 
 ### Grouped by eta
 ```{r, fig.width=6, fig.height=7}
-eta_cont(id, x=covs,y=etas[2]) %>% 
-  mrggdraw(ncol = 2)
+eta_cont(id, x=covs,y=etas[2]) %>% pm_grid()
 ```
 
 ### Grouped by covariate
@@ -310,7 +331,7 @@ p <- eta_cat(id, x="STUDYc//Study type", y=etas)
 
 
 ```{r, fig.width=6, fig.height=7}
-mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
+pm_grid(p)
 ```
 
 ## ETA histograms (`eta_hist`)
@@ -322,7 +343,7 @@ p <- eta_hist(id,etas, bins=10)
 ```
 
 ```{r,fig.width=6, fig.height=7}
-mrggdraw(p, ncol=2, arrange=TRUE, script="everyfunction.R")
+pm_grid(p)
 ```
 
 
@@ -382,7 +403,7 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 ```
 
 ```{r,fig.width=6, fig.height=7}
-mrggdraw(p, ncol = 2)
+pm_grid(p)
 ```
 
 
@@ -415,9 +436,13 @@ dv_pred(df, abline=NULL)
 dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
-
 ```{r}
 cwres_time(df, hline = NULL)
+```
+
+### Drop all extra layers
+```{r}
+dv_pred(df, add_layers=FALSE)
 ```
 
 ## Custom breaks
@@ -443,6 +468,49 @@ dv_time(df, xs=a)
 
 ```{r}
 wres_time(df) + geom_3s()
+```
+
+# Replicate look and feel
+
+```{r}
+p <- ggplot(df, aes(IPRED,DV)) + geom_point()
+
+p
+```
+
+## Theme
+
+```{r}
+p + pm_theme()
+```
+
+### Plain
+```{r}
+p + theme_plain()
+```
+
+## Smooth
+
+```{r}
+p + pm_smooth()
+```
+
+## Abline
+
+```{r}
+p + pm_abline()
+```
+
+
+## Horizontal reference line
+
+```{r}
+ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
+```
+
+## Rotate x and y axis labels
+```{r}
+dv_pred(df) + rot_x(angle = 90) + rot_y()
 ```
 
 

@@ -186,6 +186,14 @@ col_label <- function(x) {
   .stop("invalid 'column // label' specification:\n  ", x)
 }
 
+col_labels <- function(x) {
+  x <- lapply(x, col_label)
+  values <- sapply(x, "[",1)
+  names <- sapply(x,"[",2)
+  names(values) <- names
+  values
+}
+
 parse_label <- function(x) {
   if(substr(x,1,2)=="!!") {
     x <- parse(text=substr(x,3,nchar(x)))

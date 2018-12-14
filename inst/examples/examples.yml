@@ -1,0 +1,52 @@
+objects:
+  - data
+  - etas
+  - id
+plots:
+  - [res, time, res_time(data)]
+  - [wres, time, wres_time(data)]
+  - [cwres, time, cwres_time(data)]
+  - [res, tad, res_tad(data)]
+  - [wres, tad, wres_tad(data)]
+  - [cwres, tad, cwres_tad(data)]
+  - [res, tafd, res_tafd(data)]
+  - [wres, tafd, res_tafd(data)]
+  - [cwres, tafd, cwres_tafd(data)]
+  - [res, none, res_hist(data)]
+  - [wres, none, wres_hist(data)]
+  - [cwres, none, cwres_hist(data)]
+  - [wres, q, wres_q(data)]
+  - [cwres, q, cwres_q(data)]
+  - [res, cont, 'res_cont(data, x = "WT//Weight (kg)")']
+  - [wres, cont, 'wres_cont(data, x = "WT//Weight (kg)")']
+  - [cwres, cont, 'cwres_cont(data, x = "WT//Weight (kg)")']
+  - [res, pred, res_pred(data)]
+  - [wres, pred, wres_pred(data)]
+  - [cwres, pred, cwres_pred(data)]
+  - [res, cat, 'res_cat(data, x = "STUDYc//Study")']
+  - [wres, cat, 'wres_cat(data, x = "STUDYc//Study")']
+  - [cwres, cat, 'cwres_cat(data, x = "STUDYc//Study")']
+  - [dv, time, dv_time(data)]
+  - [dv, tad, dv_tad(data)]
+  - [dv, tafd, dv_tafd(data)]
+  - [dv, pred, dv_pred(data)]
+  - [dv, ipred, dv_ipred(data)]
+  - [dv, multiple, dv_preds(data)]
+  - [npde, time, npde_time(data)]
+  - [npde, tad, npde_tad(data)]
+  - [npde, tafd, npde_tafd(data)]
+  - [npde, pred, npde_pred(data)]
+  - [npde, q, npde_q(data)]
+  - [npde, cont, 'npde_cont(data, x = "WT//Weight (kg)")']
+  - [npde, cat, 'npde_cat(data, x = "STUDYc//Study")']
+  - [cont, cont, 'cont_cont(id, x = "WT", y = "BMI")']
+  - [cont, cat, 'cont_cat(id, x = "STUDYc", y = "WT")']
+  - [cont, hist, 'cont_hist(id, x = "WT")']
+  - [eta, hist, 'eta_hist(id, etas)']
+  - [eta, pairs, 'eta_pairs(id, etas)']
+  - [eta, cont, 'eta_cont(id, x = "WT", y = etas)']
+  - [eta, cat, 'eta_cat(id, x = "STUDYc", y = etas)']
+
+
+
+

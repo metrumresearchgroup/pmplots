@@ -6,30 +6,41 @@
 \description{
 Plots for pharmacometrics
 }
-\details{
-Help topics:
-
-\itemize{
-
-\item \code{\link{res_time}} Plots of residuals versus time
-\item \code{\link{dv_pred}} Plots of observed data versus predictions
-\item \code{\link{dv_time}} Plots of observed values versus time
-\item \code{\link{res_pred}} Plots of residuals versus predictions
-\item \code{\link{res_q}} Q-Q plots for residuals
-\item \code{\link{eta_hist}}, \code{\link{eta_pairs}}, \code{\link{eta_cont}},
-       \code{\link{eta_cat}} Plots for ETA
-\item \code{\link{split_plot}} split and plot
-\item \code{\link{cont_cont}} Plots for continuous variables
-\item \code{\link{layer}} Functions for adding layers to plots like
-       reference or smoothing lines
-
-}
-}
 \section{Look and feel}{
 
 
-See the \code{\link{pm_theme}} help topic for functions you
+See the \link{pmtheme} help topic for functions you
 can use to replicate the look and feel of plots generated
 by this package.
+}
+
+\section{Function listing}{
+
+\itemize{
+\item Residuals versus time
+\itemize{
+\item \link{res_time}, \link{res_tad}, \link{res_tafd}
+\item \link{wres_time}, \link{wres_tad}, \link{wres_tad}
+\item \link{cwres_time}, \link{cwres_tad}, \link{cwres_tafd}
+}
+\item Residuals versus PRED
+\itemize{
+\item \link{res_pred}, \link{wres_pred}, \link{cwres_pred}
+}
+\item Residuals versus covariates
+\itemize{
+\item \link{res_cont}, \link{wres_cont}, \link{cwres_cont}
+\item \link{res_cat}, \link{wres_cat}, \link{cwres_cat}
+}
+\item NPDE plots
+\itemize{
+\item \link{npde_time}, \link{npde_tad}, \link{npde_tafd}
+\item \link{npde_pred}
+\item \link{npde_hist}
+\item \link{npde_q}
+\item \link{npde_cont}
+\item \link{npde_cat}
+}
+}
 }
 
