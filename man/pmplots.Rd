@@ -9,7 +9,7 @@ Plots for pharmacometrics
 \section{Look and feel}{
 
 
-See the \link{pmtheme} help topic for functions you
+See the \link{pm_theme} help topic for functions you
 can use to replicate the look and feel of plots generated
 by this package.
 }

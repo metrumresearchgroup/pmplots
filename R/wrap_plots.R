@@ -7,8 +7,7 @@
 ##'
 ##' @param df data frame to plot
 ##' @param x x-axis data in [col_label] format
-##' @param columns y-axis data in [col_label] format; expecting
-##' a vector of `col_label` values
+##' @param y y-axis data in [col_label] format
 ##' @param ... passed to `fun`
 ##' @param fun the plotting function
 ##' @param title a title to use for the axis with faceting groups
@@ -39,9 +38,9 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
     multi_x <- TRUE
     y <- y[1]
     to_melt <- col_labels(x)
-    df <- gather(df, variable, value, to_melt, factor_key=TRUE)
+    df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
     if(use_labels) {
-      df <- mutate(df, variable = factor(variable, labels = names(to_melt)))
+      df <- mutate(df, variable = factor(.data["variable"], labels = names(to_melt)))
     }
 
     if(!is.null(title)) {
@@ -55,9 +54,9 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
     if(multi_x) stop("Either columns or x must be length 1.", call.=FALSE)
     x <- x[1]
     to_melt <- col_labels(y)
-    df <- gather(df, variable, value, to_melt, factor_key=TRUE)
+    df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
     if(use_labels) {
-      df <- mutate(df, variable = factor(variable, labels = names(to_melt)))
+      df <- mutate(df, variable = factor(.data["variable"], labels = names(to_melt)))
     }
     if(!is.null(title)) {
       y <- paste0("value", "//", title)
@@ -91,9 +90,9 @@ wrap_eta_cont <- function(df, x, y, scales="fixed", ...) {
 ##' @export
 wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL, use_labels=FALSE, ...) {
   x <- col_labels(x)
-  df <- gather(df, variable, value, x, factor_key=TRUE)
+  df <- gather(df, "variable", "value", x, factor_key=TRUE)
   if(use_labels) {
-    df <- mutate(df, variable = factor(variable, labels=names(x)))
+    df <- mutate(df, variable = factor(.data["variable"], labels=names(x)))
   }
   if(is.null(title)) {
     x <- "value"
@@ -105,7 +104,7 @@ wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL, use_labe
 
 ##' @rdname wrap_plots
 ##' @export
-wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname = "", scales="fixed") {
+wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", scales="fixed") {
   x <- c(pm_axis_pred(), pm_axis_ipred())
   for(i in seq_along(x)) x[i] <- glue(x[i])
   wrap_cont_cont(

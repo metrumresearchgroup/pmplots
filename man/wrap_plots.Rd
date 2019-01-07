@@ -22,13 +22,14 @@ wrap_eta_cont(df, x, y, scales = "fixed", ...)
 wrap_hist(df, x, title = NULL, scales = "free_x", ncol = NULL,
   use_labels = FALSE, ...)
 
-wrap_dv_preds(df, ..., title = "Predicted {yname}", xname = "",
-  scales = "fixed")
+wrap_dv_preds(df, ..., title = "Predicted {yname}", scales = "fixed")
 }
 \arguments{
 \item{df}{data frame to plot}
 
 \item{x}{x-axis data in \link{col_label} format}
+
+\item{y}{y-axis data in \link{col_label} format}
 
 \item{...}{passed to \code{fun}}
 
@@ -42,9 +43,6 @@ wrap_dv_preds(df, ..., title = "Predicted {yname}", xname = "",
 
 \item{use_labels}{if \code{TRUE}, the label part of \code{col_label} will
 be used in the strip; the column name is used otherwise}
-
-\item{columns}{y-axis data in \link{col_label} format; expecting
-a vector of \code{col_label} values}
 }
 \description{
 For these plots, data sets made long with respect to several

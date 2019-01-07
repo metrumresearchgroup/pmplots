@@ -1,6 +1,21 @@
 
 .stop <- function(...) stop(..., call.=FALSE)
 
+##' Add `CWRES` column from `CWRESI` if needed
+##'
+##' The intention here is to make sure there is a `CWRES` column if applicable
+##' so that the `cwres` variant functions can be used rather than the
+##' `cwresi` variants.
+##'
+##' @details
+##' If `CWRESI` was tabled out, then a `CWRES` column is added.  No change
+##' is made in case there is already a `CWRES` column.  This function is
+##' called with every call to a  `cwresi` variant, so, ideally, the user
+##' can call this function once upon loading the data.
+##'
+##' @param x a data frame
+##' @md
+##' @export
 supplement_cwres <- function(x) {
   if("CWRES" %in% names(x)) return(x)
   if("CWRESI" %in% names(x)) {
