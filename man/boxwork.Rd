@@ -49,4 +49,8 @@ that box.  An error will be generated if \code{ID} does
 not exist in the plotting data frame when \code{shown} is
 \code{TRUE}.  When \code{N} is equal to \code{n} in the
 summary, only \code{n} is shown.
+
+The summaries will not be correct if the plot is eventually faceted by
+another variable in the data set.  In this case, either use
+\code{shown=FALSE} or create the plot with \code{\link{split_plot}}.
 }
