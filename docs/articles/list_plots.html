@@ -94,7 +94,7 @@
       <h1>Vectorized Plots</h1>
                         <h4 class="author">Kyle Baron</h4>
             
-            <h4 class="date">2018-12-13</h4>
+            <h4 class="date">2019-01-07</h4>
       
       
       <div class="hidden name"><code>list_plots.Rmd</code></div>
@@ -158,7 +158,7 @@ data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplot
 <p>You can use <code>pm_scatter_list</code> <em>as</em> a vectorized function to vectorize anyting. So this allows us to do</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/pm_scatter.html">pm_scatter_list</a></span>(data, <span class="dt">y  =</span> <span class="st">"WRES"</span>, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
-<p>Or just use <code>lapply</code> or <code><a href="https://www.rdocumentation.org/packages/purrr/topics/map">purrr::map</a></code></p>
+<p>Or just use <code>lapply</code> or <code><a href="https://purrr.tidyverse.org/reference/map.html">purrr::map</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span>), wres_cont, <span class="dt">df =</span> data, <span class="dt">y =</span> <span class="st">"WRES"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/pm_grid.html">pm_grid</a></span>()</code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 <p>Please see the help topic for each function to know if that function is vectorized or not.</p>

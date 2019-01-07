@@ -206,6 +206,9 @@ that box.  An error will be generated if <code>ID</code> does
 not exist in the plotting data frame when <code>shown</code> is
 <code>TRUE</code>.  When <code>N</code> is equal to <code>n</code> in the
 summary, only <code>n</code> is shown.</p>
+<p>The summaries will not be correct if the plot is eventually faceted by
+another variable in the data set.  In this case, either use
+<code>shown=FALSE</code> or create the plot with <code><a href='split_plot.html'>split_plot</a></code>.</p>
     
 
   </div>

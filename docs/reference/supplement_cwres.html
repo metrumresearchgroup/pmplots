@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot DV versus time — dv_time • pmplots</title>
+<title>Add <code>CWRES</code> column from <code>CWRESI</code> if needed — supplement_cwres • pmplots</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,11 @@
 
 
 
-<meta property="og:title" content="Plot DV versus time — dv_time" />
+<meta property="og:title" content="Add <code>CWRES</code> column from <code>CWRESI</code> if needed — supplement_cwres" />
 
-<meta property="og:description" content="Plot DV versus time" />
+<meta property="og:description" content="The intention here is to make sure there is a CWRES column if applicable
+so that the cwres variant functions can be used rather than the
+cwresi variants." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,112 +129,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot DV versus time</h1>
+    <h1>Add <code>CWRES</code> column from <code>CWRESI</code> if needed</h1>
     
-    <div class="hidden name"><code>dv_time.Rd</code></div>
+    <div class="hidden name"><code>supplement_cwres.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Plot DV versus time</p>
+    <p>The intention here is to make sure there is a <code>CWRES</code> column if applicable
+so that the <code>cwres</code> variant functions can be used rather than the
+<code>cwresi</code> variants.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_time</a></span>(), <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_dv</a></span>(), <span class='kw'>xunit</span> <span class='kw'>=</span> <span class='st'>"hr"</span>,
-  <span class='kw'>yname</span> <span class='kw'>=</span> <span class='st'>"DV"</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"ID"</span>, <span class='kw'>xs</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(), <span class='kw'>ys</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(),
-  <span class='kw'>log</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>xby</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
-
-<span class='fu'>dv_tafd</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tafd</a></span>(), <span class='no'>...</span>)
-
-<span class='fu'>dv_tad</span>(<span class='no'>df</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='pm_axis_functions.html'>pm_axis_tad</a></span>(), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>supplement_cwres</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df</th>
-      <td><p>data frame to plot</p></td>
-    </tr>
-    <tr>
       <th>x</th>
-      <td><p>character name for x-axis data</p></td>
-    </tr>
-    <tr>
-      <th>y</th>
-      <td><p>character name for y-axis data</p></td>
-    </tr>
-    <tr>
-      <th>xunit</th>
-      <td><p>time units; used to form x-axis label</p></td>
-    </tr>
-    <tr>
-      <th>yname</th>
-      <td><p>used to form y-axis label</p></td>
-    </tr>
-    <tr>
-      <th>group</th>
-      <td><p>passed to <code><a href='scatt.html'>scatt</a></code></p></td>
-    </tr>
-    <tr>
-      <th>xs</th>
-      <td><p>see <code><a href='defx.html'>defx</a></code></p></td>
-    </tr>
-    <tr>
-      <th>ys</th>
-      <td><p>see <code><a href='defy.html'>defy</a></code></p></td>
-    </tr>
-    <tr>
-      <th>log</th>
-      <td><p>if <code>TRUE</code>, y-axis will be log-transformed</p></td>
-    </tr>
-    <tr>
-      <th>xby</th>
-      <td><p>interval for x-axis breaks</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>passed to <code><a href='scatt.html'>scatt</a></code></p></td>
+      <td><p>a data frame</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A single plot.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Plots are generated using <code><a href='y_time.html'>y_time</a></code>,
-which then calls <code><a href='scatt.html'>scatt</a></code>.</p>
-<p>Since this function creates a scatter plot,
-both the <code>x</code> and <code>y</code> columns must
-be numeric.</p>
-<p>If the data set includes a <code>BLQ</code> column,
-the values in the <code>y</code> column are
-set to <code>NA</code> when <code>BLQ</code> is
-not equal to <code>0</code>.</p>
+    <p>If <code>CWRESI</code> was tabled out, then a <code>CWRES</code> column is added.  No change
+is made in case there is already a <code>CWRES</code> column.  This function is
+called with every call to a  <code>cwresi</code> variant, so, ideally, the user
+can call this function once upon loading the data.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pmplots_data.html'>pmplots_data_obs</a></span>()
-
-<span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>yname</span><span class='kw'>=</span><span class='st'>"MyDrug (ng/mL)"</span>)</div><div class='img'><img src='dv_time-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'>dv_time</span>(<span class='no'>df</span>, <span class='kw'>yname</span><span class='kw'>=</span><span class='st'>"MyDrug (ng/mL)"</span>, <span class='kw'>xunit</span><span class='kw'>=</span><span class='st'>"day"</span>)</div><div class='img'><img src='dv_time-2.png' alt='' width='700' height='433' /></div><div class='input'>
-
-<span class='co'># Add a rug</span>
-<span class='fu'>dv_time</span>(<span class='no'>df</span>) + <span class='fu'>geom_rug</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>x</span>, <span class='no'>BLQ</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>))</div><div class='img'><img src='dv_time-3.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

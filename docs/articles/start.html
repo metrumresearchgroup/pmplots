@@ -94,7 +94,7 @@
       <h1>Get Started</h1>
                         <h4 class="author">Kyle Baron</h4>
             
-            <h4 class="date">2018-12-13</h4>
+            <h4 class="date">2019-01-07</h4>
       
       
       <div class="hidden name"><code>start.Rmd</code></div>
@@ -115,7 +115,7 @@
 <p>There is an example data set embedded in pmplots</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</code></pre></div>
 <p>pmplots is designed to work with data sets that have columns named according to certain expectations. So we tend to look for these types of columns</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, ID, TIME, DV, IPRED, ETA1, CWRESI)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, ID, TIME, DV, IPRED, ETA1, CWRESI)</code></pre></div>
 <pre><code>## # A tibble: 3,142 x 6
 ##       ID  TIME    DV IPRED    ETA1  CWRESI
 ##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -132,7 +132,7 @@
 ## # ... with 3,132 more rows</code></pre>
 <p>You might already have NONMEM modeling results with these column names. When the data set has these names, pmplots will work more automatically with the data set, requiring less manual input from the user.</p>
 <p>Other columns that we have in the examples can be named according to your choosing</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, WT, ALB, STUDY, STUDYc, CRCL)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, WT, ALB, STUDY, STUDYc, CRCL)</code></pre></div>
 <pre><code>## # A tibble: 3,142 x 5
 ##       WT   ALB STUDY STUDYc  CRCL
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;  &lt;dbl&gt;
@@ -155,7 +155,7 @@
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data)</code></pre></div>
 <p><img src="start_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <p>This plots <code>dv</code> versus <code>pred</code> and the name of the function indicates what will come out. pmplots can make this plot because there are columns called <code>DV</code> and <code>PRED</code> in the data set</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, DV, PRED)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(data, DV, PRED)</code></pre></div>
 <pre><code>## # A tibble: 3,142 x 2
 ##       DV  PRED
 ##    &lt;dbl&gt; &lt;dbl&gt;

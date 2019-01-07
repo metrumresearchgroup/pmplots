@@ -190,7 +190,10 @@ the <code>x</code> column must be character, factor
 or logical and <code>y</code> column must
 be numeric.</p>
 <p>Summary numbers located below each box are described in
-<code><a href='boxwork.html'>boxwork</a></code>.</p>
+<code><a href='boxwork.html'>boxwork</a></code>.  The summaries will not be correct if the plot
+is eventually faceted by another variable in the data set.  In this case,
+either use <code>shown=FALSE</code> or create the plot with
+<code><a href='split_plot.html'>split_plot</a></code>.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
