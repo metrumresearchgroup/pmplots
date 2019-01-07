@@ -22,7 +22,8 @@ wrap_eta_cont(df, x, y, scales = "fixed", ...)
 wrap_hist(df, x, title = NULL, scales = "free_x", ncol = NULL,
   use_labels = FALSE, ...)
 
-wrap_dv_preds(df, ..., title = "Predicted {yname}", scales = "fixed")
+wrap_dv_preds(df, ..., title = "Predicted {yname}", xname = "",
+  scales = "fixed")
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -43,6 +44,8 @@ wrap_dv_preds(df, ..., title = "Predicted {yname}", scales = "fixed")
 
 \item{use_labels}{if \code{TRUE}, the label part of \code{col_label} will
 be used in the strip; the column name is used otherwise}
+
+\item{xname}{placeholder}
 }
 \description{
 For these plots, data sets made long with respect to several

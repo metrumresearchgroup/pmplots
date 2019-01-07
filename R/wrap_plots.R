@@ -15,6 +15,7 @@
 ##' @param ncol passed to `facet_wrap`
 ##' @param use_labels if `TRUE`, the label part of `col_label` will
 ##' be used in the strip; the column name is used otherwise
+##' @param xname placeholder
 ##'
 ##' @details
 ##'
@@ -40,7 +41,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
     to_melt <- col_labels(x)
     df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
     if(use_labels) {
-      df <- mutate(df, variable = factor(.data["variable"], labels = names(to_melt)))
+      df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
     }
 
     if(!is.null(title)) {
@@ -56,7 +57,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
     to_melt <- col_labels(y)
     df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
     if(use_labels) {
-      df <- mutate(df, variable = factor(.data["variable"], labels = names(to_melt)))
+      df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
     }
     if(!is.null(title)) {
       y <- paste0("value", "//", title)
@@ -92,7 +93,7 @@ wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL, use_labe
   x <- col_labels(x)
   df <- gather(df, "variable", "value", x, factor_key=TRUE)
   if(use_labels) {
-    df <- mutate(df, variable = factor(.data["variable"], labels=names(x)))
+    df <- mutate(df, variable = factor(.data[["variable"]], labels=names(x)))
   }
   if(is.null(title)) {
     x <- "value"
@@ -104,7 +105,7 @@ wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL, use_labe
 
 ##' @rdname wrap_plots
 ##' @export
-wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", scales="fixed") {
+wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales="fixed") {
   x <- c(pm_axis_pred(), pm_axis_ipred())
   for(i in seq_along(x)) x[i] <- glue(x[i])
   wrap_cont_cont(
