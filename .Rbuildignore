@@ -8,8 +8,7 @@ inst/exdata/run102.RDS
 Makefile
 ^.*\.html$
 inst/img
-inst/examples/img
-inst/examples/.*\.html
+inst/examples/img/
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$

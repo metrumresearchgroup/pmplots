@@ -38,7 +38,7 @@ Available functions: pmplots
     -   [CWRES versus population predicted (`cwres_pred`)](#cwres-versus-population-predicted-cwres_pred)
     -   [CWRES QQ plot (`cwres_q`)](#cwres-qq-plot-cwres_q)
 -   [NPDE plots](#npde-plots)
-    -   [NPDE versus TIME (`npde_time`, `npde_tad`, `npde_tafd`)](#npde-versus-time-npde_time-npde_tad-npde_tafd)
+    -   [NPDE versus TIME (`npde_time`)](#npde-versus-time-npde_time)
     -   [NPDE versus TAD (`npde_tad`)](#npde-versus-tad-npde_tad)
     -   [NPDE versus TAFD (`npde_tafd`)](#npde-versus-tafd-npde_tafd)
     -   [NPDE versus PRED (`npde_pred`)](#npde-versus-pred-npde_pred)
@@ -473,8 +473,8 @@ cwres_q(df)
 NPDE plots
 ==========
 
-NPDE versus TIME (`npde_time`, `npde_tad`, `npde_tafd`)
--------------------------------------------------------
+NPDE versus TIME (`npde_time`)
+------------------------------
 
 ``` r
 npde_time(df)

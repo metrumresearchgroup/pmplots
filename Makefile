@@ -9,7 +9,7 @@ covr:
 		Rscript inst/script/covr.R
 
 everyfun:
-	Rscript inst/script/make_pmplots_complete.R
+	Rscript  -e 'rmarkdown::render("inst/examples/pmplots_complete.Rmd")'
 
 readme:
 	Rscript -e 'library(rmarkdown)' -e 'render("README.Rmd")'
@@ -40,7 +40,7 @@ test:
 
 .PHONY: doc
 doc:
-	Rscript -e 'library(devtools); document()'
+	Rscript inst/script/document.R
 
 build:
 	R CMD build --no-build-vignettes --md5 $(PKGDIR)

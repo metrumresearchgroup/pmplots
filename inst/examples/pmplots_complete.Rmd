@@ -314,7 +314,7 @@ cwres_q(df)
 
 # NPDE plots
 
-## NPDE versus TIME (`npde_time`, `npde_tad`, `npde_tafd`)
+## NPDE versus TIME (`npde_time`)
 
 ```{r}
 npde_time(df)
