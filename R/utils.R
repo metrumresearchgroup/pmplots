@@ -344,6 +344,7 @@ parse_eval <- function(x) {
 ##' Arrange a list of plots in a grid
 ##'
 ##' @param x a list of plots
+##' @param ncol passed to \code{\link[cowplot]{plot_grid}}
 ##' @param ... passed to \code{\link[cowplot]{plot_grid}}
 ##'
 ##' @details

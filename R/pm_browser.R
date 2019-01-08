@@ -1,14 +1,15 @@
 # nocov start
 
-##' pmplots browser
+##' pmplots browser object
 ##'
 ##' @param quiet if `TRUE` then a summary of available plots
 ##' will be printed
+##' @param title if `TRUE`, plotting code will be added as the plot title
 ##' @param x output from `pm_browser`
 ##' @param plot_name the name of a plot to show
-##'
+##' @seealso \code{\link{pm_gadget}}
 ##' @export
-pm_browser <- function(quiet=FALSE) {
+pm_browser <- function(quiet=FALSE,title=TRUE) {
   assert_that(requireNamespace("yaml"))
   loc <- system.file("examples", "examples.yml", package="pmplots")
   data <- pmplots_data_obs() %>% mutate(CWRES = .data[["CWRESI"]])
@@ -21,7 +22,7 @@ pm_browser <- function(quiet=FALSE) {
     suppressWarnings(
       out %>%
         mutate(gg = lapply(.data[["call"]], parse_eval)) %>%
-        mutate(gg = map2(.data[["gg"]], .data[["call"]], .f=add_title)) %>%
+        mutate(gg = map2(.data[["gg"]], .data[["call"]], .f=add_title,title=title)) %>%
         mutate(time = .data[["x"]] %in% c("time", "tad", "tafd")) %>%
         mutate(res = .data[["y"]] %in% c("res", "wres", "cwres", "cwresi")) %>%
         mutate(wrap = grepl("wrap", .data[["call"]])) %>%
@@ -39,7 +40,8 @@ pm_browser <- function(quiet=FALSE) {
   return(invisible(out))
 }
 
-add_title <- function(plot,call) {
+add_title <- function(plot,call,title) {
+  if(!title) return(plot)
   plot + ggtitle(call)
 }
 
@@ -66,5 +68,57 @@ pm_browser_show <- function(x, plot_name=NULL) {
   })
   return(invisible(x))
 }
+
+##' pmplots browser gadget
+##' @seealso \code{\link{pm_browser}}
+##' @export
+pm_gadget <- function() {
+
+  assert_that(requireNamespace("shiny"))
+  assert_that(requireNamespace("miniUI"))
+
+  x <- pm_browser(quiet = TRUE,title=FALSE)
+
+  ui <- miniUI::miniPage(
+    miniUI::gadgetTitleBar("Plot Browser", left=NULL),
+    miniUI::miniContentPanel(
+      shiny::selectInput("plot_name", "Choose a plot",
+                  choices = x[["name"]]),
+      shiny::plotOutput("plot", height = "67%"),
+      shiny::verbatimTextOutput("code"),
+      padding=24
+    )
+  )
+
+  server <- function(input, output, session) {
+    foo <- shiny::reactive({
+      filter(x, .data[["name"]]==input$plot_name)
+    })
+
+    # Render the plot
+    output$plot <- shiny::renderPlot({
+      # Plot the data with x/y vars indicated by the caller.
+      foo() %>% pull(.data[["gg"]])
+    }, res = 120)
+    output$code <- shiny::renderText({
+      this <- foo()
+      cll <- this[["call"]]
+      x <- NULL
+      y <- NULL
+      if(grepl("(id", cll, fixed=TRUE)) {
+        x <- "id <- pmplots_data_id()\n"
+      }
+      if(grepl("(data", cll, fixed=TRUE)) {
+        y <- "data <- pmplots_data_obs()\n"
+      }
+      return(paste0(c(y,x,cll), collapse = "\n"))
+    })
+    shiny::observeEvent(input$done, {
+      shiny::stopApp(invisible(NULL))
+    })
+  }
+  shiny::runGadget(ui, server)
+}
+
 
 # nocov end

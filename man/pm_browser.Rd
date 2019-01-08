@@ -3,9 +3,9 @@
 \name{pm_browser}
 \alias{pm_browser}
 \alias{pm_browser_show}
-\title{pmplots browser}
+\title{pmplots browser object}
 \usage{
-pm_browser(quiet = FALSE)
+pm_browser(quiet = FALSE, title = TRUE)
 
 pm_browser_show(x, plot_name = NULL)
 }
@@ -13,10 +13,15 @@ pm_browser_show(x, plot_name = NULL)
 \item{quiet}{if `TRUE` then a summary of available plots
 will be printed}
 
+\item{title}{if `TRUE`, plotting code will be added as the plot title}
+
 \item{x}{output from `pm_browser`}
 
 \item{plot_name}{the name of a plot to show}
 }
 \description{
-pmplots browser
+pmplots browser object
+}
+\seealso{
+\code{\link{pm_gadget}}
 }

@@ -407,7 +407,7 @@ dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 
 ### histogram
 ```{r}
-wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10)
+wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 ```
 
 ### eta
@@ -416,8 +416,8 @@ wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
 ```
 
 ### DV/PRED, DV/IPRED
-```{r}
-wrap_dv_preds(df)
+```{r, fig.height=7}
+wrap_dv_preds(df, ncol=1)
 ```
 
 
@@ -433,7 +433,7 @@ wrap_eta_cont(
 ```
 ## Residuals
 ```{r}
-wrap_res_time(df, y = c("RES", "CWRES", "NPDE"))
+wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 ```
 
 

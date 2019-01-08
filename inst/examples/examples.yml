@@ -10,7 +10,7 @@ plots:
   wres_time:
     y: wres
     x: time
-    call: res_time(data)
+    call: wres_time(data)
   cwres_time:
     y: cwres
     x: time
@@ -155,6 +155,10 @@ plots:
     y: eta
     x: cont
     call: wrap_eta_cont(data, y = "ETA1", x = c("WT", "ALB", "SCR"), scales = "free")
+  wrap_dv_preds:
+    y: dv
+    x: pred
+    call: wrap_dv_preds(data)
   wres_q:
     y: wres
     x: q

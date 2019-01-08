@@ -639,7 +639,7 @@ Wrapped plots
 ### histogram
 
 ``` r
-wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10)
+wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 ```
 
 ![](img/everyfunction--unnamed-chunk-61-1.png)
@@ -655,7 +655,7 @@ wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
 ### DV/PRED, DV/IPRED
 
 ``` r
-wrap_dv_preds(df)
+wrap_dv_preds(df, ncol=1)
 ```
 
 ![](img/everyfunction--unnamed-chunk-63-1.png)
@@ -675,7 +675,7 @@ wrap_eta_cont(
 ![](img/everyfunction--unnamed-chunk-64-1.png) \#\# Residuals
 
 ``` r
-wrap_res_time(df, y = c("RES", "CWRES", "NPDE"))
+wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 ```
 
 ![](img/everyfunction--unnamed-chunk-65-1.png)
