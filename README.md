@@ -26,6 +26,7 @@ News can be found [here](news.md)
 - [Dependent variable plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/dv.html)
 - [ETA plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/eta.html)
 - [Vectorized plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/list_plots.html)
+- [Wrapped or faceted plots](https://ghe.metrumrg.com/pages/software/pmplots/articles/wrapped_plots.html)
 
 ## Suggested packages
 

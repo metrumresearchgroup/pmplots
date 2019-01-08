@@ -17,7 +17,8 @@ Imports:
   rlang (>= 0.1.2),
   glue, 
   assertthat, 
-  tidyr
-Suggests: testthat, GGally, latex2exp, knitr, cowplot
+  tidyr, 
+  purrr
+Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml
 Depends: ggplot2 (>= 3.0.0)
 RoxygenNote: 6.1.1

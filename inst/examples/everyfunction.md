@@ -3,6 +3,7 @@ Available functions
 
 -   [Example data in the package](#example-data-in-the-package)
 -   [`col//title` specification](#coltitle-specification)
+    -   [Fill in `CWRES` if it doesn't exist](#fill-in-cwres-if-it-doesnt-exist)
 -   [Observed vs predicted](#observed-vs-predicted)
     -   [Observed versus population predicted (`dv_pred`)](#observed-versus-population-predicted-dv_pred)
         -   [Observed versus population predicted - log/log](#observed-versus-population-predicted---loglog)
@@ -56,13 +57,22 @@ Available functions
     -   [Basic plot](#basic-plot)
     -   [Faceted](#faceted)
     -   [log-Scale](#log-scale)
+    -   [Wrapped plots](#wrapped-plots)
+        -   [histogram](#histogram)
+        -   [eta](#eta)
+        -   [DV/PRED, DV/IPRED](#dvpred-dvipred)
+        -   [Use labels in the strip](#use-labels-in-the-strip)
 -   [Data summary](#data-summary)
     -   [Continuous variable by categorical variable (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
     -   [General histogram (`cont_hist`)](#general-histogram-cont_hist)
     -   [Split and plot (`split_plot`)](#split-and-plot-split_plot)
 -   [Some customization](#some-customization)
+    -   [Greek letters in axis title](#greek-letters-in-axis-title)
     -   [Modify x-axis](#modify-x-axis)
     -   [Modify y-axis](#modify-y-axis)
+    -   [Add layers](#add-layers)
+        -   [smooth](#smooth)
+        -   [abline](#abline)
     -   [Drop extra layers](#drop-extra-layers)
         -   [Drop all extra layers](#drop-all-extra-layers)
     -   [Custom breaks](#custom-breaks)
@@ -70,10 +80,12 @@ Available functions
 -   [Replicate look and feel](#replicate-look-and-feel)
     -   [Theme](#theme)
         -   [Plain](#plain)
-    -   [Smooth](#smooth)
-    -   [Abline](#abline)
+    -   [Smooth](#smooth-1)
+    -   [Abline](#abline-1)
     -   [Horizontal reference line](#horizontal-reference-line)
     -   [Rotate x and y axis labels](#rotate-x-and-y-axis-labels)
+-   [Standard axis titles](#standard-axis-titles)
+-   [Log breaks](#log-breaks)
 
 ``` r
 library(pmplots)
@@ -92,7 +104,7 @@ id <- pmplots_data_id()
 
 dayx <- defx(breaks = seq(0,168,24))
 
-.yname <- "NoDoz (ng/mL)"
+.yname <- "MRG1557 (ng/mL)"
 
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 
@@ -123,6 +135,23 @@ col_label("WT")
 ```
 
     . [1] "WT" "WT"
+
+Fill in `CWRES` if it doesn't exist
+-----------------------------------
+
+``` r
+dat <- mutate(df, CWRES = NULL)
+
+cwresi_time(df)
+```
+
+![](img/everyfunction--unnamed-chunk-6-1.png)
+
+``` r
+cwres_time(dat)
+```
+
+![](img/everyfunction--unnamed-chunk-6-2.png)
 
 Observed vs predicted
 =====================
@@ -164,7 +193,7 @@ dv_ipred(df, loglog=TRUE, yname = .yname)
 ### Observed versus both PRED and IPRED
 
 ``` r
-dv_preds(df) %>% mrggdraw(ncol = 2)
+dv_preds(df) %>% pm_grid(ncol=2)
 ```
 
 ![](img/everyfunction--unnamed-chunk-11-1.png)
@@ -218,7 +247,7 @@ res_cont(df, x="WT//Weight (kg)")
 This function is also vectorized in x.
 
 ``` r
-c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% mrggpage %>% mrggdraw
+c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% pm_grid()
 ```
 
 ![](img/everyfunction--unnamed-chunk-17-1.png)
@@ -358,8 +387,7 @@ cwres_cont(df, x="WT//Weight (kg)")
 Vectorized version
 
 ``` r
-cwres_cont(df, covs) %>% 
-  mrggdraw(ncol = 2)
+cwres_cont(df, covs) %>%  pm_grid(ncol=2)
 ```
 
 ![](img/everyfunction--unnamed-chunk-32-1.png)
@@ -514,8 +542,7 @@ eta_cont(id, x=covs,y=etas[2]) %>% pm_grid()
 ### Grouped by covariate
 
 ``` r
-eta_cont(id, x=covs[1], y=etas) %>%
-  mrggdraw(ncol = 2)
+eta_cont(id, x=covs[1], y=etas) %>% pm_grid(ncol=2)
 ```
 
 ![](img/everyfunction--unnamed-chunk-49-1.png)
@@ -576,21 +603,82 @@ Faceted
 -------
 
 ``` r
-dv_time(df, yname="NoDoze (ng/mL)") +
-  facet_wrap(~DOSE, scales="free_x")
+dv_time(df, yname="MRG1557 (ng/mL)") + facet_wrap(~DOSE, scales="free_x")
 ```
 
 ![](img/everyfunction--unnamed-chunk-57-1.png)
+
+**NOTE** this will not work as you expect; the labels are wrong.
+
+``` r
+cwres_cat(df, x = "STUDYc") + facet_wrap(~CPc)
+```
+
+![](img/everyfunction--unnamed-chunk-58-1.png)
+
+The only way to get this right is
+
+``` r
+cwres_cat(df, x = "STUDYc", shown=FALSE) + facet_wrap(~CPc)
+```
+
+![](img/everyfunction--unnamed-chunk-59-1.png)
 
 log-Scale
 ---------
 
 ``` r
-dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
-  facet_wrap(~STUDYc)
+dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 ```
 
-![](img/everyfunction--unnamed-chunk-58-1.png)
+![](img/everyfunction--unnamed-chunk-60-1.png)
+
+Wrapped plots
+-------------
+
+### histogram
+
+``` r
+wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10)
+```
+
+![](img/everyfunction--unnamed-chunk-61-1.png)
+
+### eta
+
+``` r
+wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
+```
+
+![](img/everyfunction--unnamed-chunk-62-1.png)
+
+### DV/PRED, DV/IPRED
+
+``` r
+wrap_dv_preds(df)
+```
+
+![](img/everyfunction--unnamed-chunk-63-1.png)
+
+### Use labels in the strip
+
+``` r
+wrap_eta_cont(
+  df, 
+  y = "ETA1", 
+  x = c("WT//Weight (kg)", "ALB//Albumin (g/dL)"),
+  scales="free_x", 
+  use_labels=TRUE
+)
+```
+
+![](img/everyfunction--unnamed-chunk-64-1.png) \#\# Residuals
+
+``` r
+wrap_res_time(df, y = c("RES", "CWRES", "NPDE"))
+```
+
+![](img/everyfunction--unnamed-chunk-65-1.png)
 
 Data summary
 ============
@@ -602,7 +690,7 @@ Continuous variable by categorical variable (`cont_cat`)
 cont_cat(id, x="STUDYc", y="WT")
 ```
 
-![](img/everyfunction--unnamed-chunk-59-1.png)
+![](img/everyfunction--unnamed-chunk-66-1.png)
 
 General histogram (`cont_hist`)
 -------------------------------
@@ -611,7 +699,7 @@ General histogram (`cont_hist`)
 cont_hist(id, x = "WT", bins = 20)
 ```
 
-![](img/everyfunction--unnamed-chunk-60-1.png)
+![](img/everyfunction--unnamed-chunk-67-1.png)
 
 Split and plot (`split_plot`)
 -----------------------------
@@ -624,10 +712,19 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 pm_grid(p)
 ```
 
-![](img/everyfunction--unnamed-chunk-62-1.png)
+![](img/everyfunction--unnamed-chunk-69-1.png)
 
 Some customization
 ==================
+
+Greek letters in axis title
+---------------------------
+
+``` r
+dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
+```
+
+![](img/everyfunction--unnamed-chunk-70-1.png)
 
 Modify x-axis
 -------------
@@ -638,7 +735,7 @@ a <- list(trans="log", breaks = logbr3())
 dv_time(df, xs=a)
 ```
 
-![](img/everyfunction--unnamed-chunk-63-1.png)
+![](img/everyfunction--unnamed-chunk-71-1.png)
 
 Modify y-axis
 -------------
@@ -647,7 +744,36 @@ Modify y-axis
 dv_time(df, ys=a, yname="Y-axis name")
 ```
 
-![](img/everyfunction--unnamed-chunk-64-1.png)
+![](img/everyfunction--unnamed-chunk-72-1.png)
+
+Add layers
+----------
+
+``` r
+p <- ggplot(df, aes(PRED,DV))  + geom_point() + pm_theme()
+```
+
+### smooth
+
+``` r
+layer_s(p)
+```
+
+![](img/everyfunction--unnamed-chunk-74-1.png)
+
+### abline
+
+``` r
+layer_a(p)
+```
+
+![](img/everyfunction--unnamed-chunk-75-1.png)
+
+``` r
+layer_h(cwres_time(df,add_layers=FALSE))
+```
+
+![](img/everyfunction--unnamed-chunk-76-1.png)
 
 Drop extra layers
 -----------------
@@ -656,25 +782,25 @@ Drop extra layers
 dv_pred(df, smooth=NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-65-1.png)
+![](img/everyfunction--unnamed-chunk-77-1.png)
 
 ``` r
 dv_pred(df, abline=NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-66-1.png)
-
-``` r
-dv_pred(df, abline=NULL, smooth = NULL)
-```
-
-![](img/everyfunction--unnamed-chunk-67-1.png)
+![](img/everyfunction--unnamed-chunk-78-1.png)
 
 ``` r
 cwres_time(df, hline = NULL)
 ```
 
-![](img/everyfunction--unnamed-chunk-68-1.png)
+![](img/everyfunction--unnamed-chunk-79-1.png)
+
+``` r
+dv_pred(df, abline=NULL, smooth = NULL)
+```
+
+![](img/everyfunction--unnamed-chunk-80-1.png)
 
 ### Drop all extra layers
 
@@ -682,7 +808,7 @@ cwres_time(df, hline = NULL)
 dv_pred(df, add_layers=FALSE)
 ```
 
-![](img/everyfunction--unnamed-chunk-69-1.png)
+![](img/everyfunction--unnamed-chunk-81-1.png)
 
 Custom breaks
 -------------
@@ -693,7 +819,7 @@ Default breaks:
 dv_time(df)
 ```
 
-![](img/everyfunction--unnamed-chunk-70-1.png)
+![](img/everyfunction--unnamed-chunk-82-1.png)
 
 Break every 3 days
 
@@ -701,7 +827,7 @@ Break every 3 days
 dv_time(df, xby=72)
 ```
 
-![](img/everyfunction--unnamed-chunk-71-1.png)
+![](img/everyfunction--unnamed-chunk-83-1.png)
 
 Custom breaks and limits
 
@@ -710,7 +836,7 @@ a <- list(br = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 
-![](img/everyfunction--unnamed-chunk-72-1.png)
+![](img/everyfunction--unnamed-chunk-84-1.png)
 
 Extra reference lines to \[C\]WRES plots
 ----------------------------------------
@@ -719,7 +845,7 @@ Extra reference lines to \[C\]WRES plots
 wres_time(df) + geom_3s()
 ```
 
-![](img/everyfunction--unnamed-chunk-73-1.png)
+![](img/everyfunction--unnamed-chunk-85-1.png)
 
 Replicate look and feel
 =======================
@@ -730,7 +856,7 @@ p <- ggplot(df, aes(IPRED,DV)) + geom_point()
 p
 ```
 
-![](img/everyfunction--unnamed-chunk-74-1.png)
+![](img/everyfunction--unnamed-chunk-86-1.png)
 
 Theme
 -----
@@ -739,7 +865,7 @@ Theme
 p + pm_theme()
 ```
 
-![](img/everyfunction--unnamed-chunk-75-1.png)
+![](img/everyfunction--unnamed-chunk-87-1.png)
 
 ### Plain
 
@@ -747,7 +873,7 @@ p + pm_theme()
 p + theme_plain()
 ```
 
-![](img/everyfunction--unnamed-chunk-76-1.png)
+![](img/everyfunction--unnamed-chunk-88-1.png)
 
 Smooth
 ------
@@ -756,7 +882,7 @@ Smooth
 p + pm_smooth()
 ```
 
-![](img/everyfunction--unnamed-chunk-77-1.png)
+![](img/everyfunction--unnamed-chunk-89-1.png)
 
 Abline
 ------
@@ -765,7 +891,7 @@ Abline
 p + pm_abline()
 ```
 
-![](img/everyfunction--unnamed-chunk-78-1.png)
+![](img/everyfunction--unnamed-chunk-90-1.png)
 
 Horizontal reference line
 -------------------------
@@ -774,7 +900,7 @@ Horizontal reference line
 ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
 ```
 
-![](img/everyfunction--unnamed-chunk-79-1.png)
+![](img/everyfunction--unnamed-chunk-91-1.png)
 
 Rotate x and y axis labels
 --------------------------
@@ -783,4 +909,86 @@ Rotate x and y axis labels
 dv_pred(df) + rot_x(angle = 90) + rot_y()
 ```
 
-![](img/everyfunction--unnamed-chunk-80-1.png)
+![](img/everyfunction--unnamed-chunk-92-1.png)
+
+Standard axis titles
+====================
+
+``` r
+pm_axis_time()
+```
+
+    . [1] "TIME//Time {xunit}"
+
+``` r
+pm_axis_tad()
+```
+
+    . [1] "TAD//Time after dose {xunit}"
+
+``` r
+pm_axis_tafd()
+```
+
+    . [1] "TAFD//Time after first dose {xunit}"
+
+``` r
+pm_axis_res()
+```
+
+    . [1] "RES//Residual"
+
+``` r
+pm_axis_wres()
+```
+
+    . [1] "WRES//Weighted residual"
+
+``` r
+pm_axis_cwres()
+```
+
+    . [1] "CWRES//Conditional weighted residual"
+
+``` r
+pm_axis_npde()
+```
+
+    . [1] "NPDE//NPDE"
+
+``` r
+pm_axis_dv()
+```
+
+    . [1] "DV//Observed {yname}"
+
+``` r
+pm_axis_pred()
+```
+
+    . [1] "PRED//Population predicted {xname}"
+
+``` r
+pm_axis_ipred()
+```
+
+    . [1] "IPRED//Individual predicted {xname}"
+
+Log breaks
+==========
+
+``` r
+logbr3()
+```
+
+    .  [1] 1e-10 3e-10 1e-09 3e-09 1e-08 3e-08 1e-07 3e-07 1e-06 3e-06 1e-05
+    . [12] 3e-05 1e-04 3e-04 1e-03 3e-03 1e-02 3e-02 1e-01 3e-01 1e+00 3e+00
+    . [23] 1e+01 3e+01 1e+02 3e+02 1e+03 3e+03 1e+04 3e+04 1e+05 3e+05 1e+06
+    . [34] 3e+06 1e+07 3e+07 1e+08 3e+08 1e+09 3e+09 1e+10 3e+10
+
+``` r
+logbr()
+```
+
+    .  [1] 1e-10 1e-09 1e-08 1e-07 1e-06 1e-05 1e-04 1e-03 1e-02 1e-01 1e+00
+    . [12] 1e+01 1e+02 1e+03 1e+04 1e+05 1e+06 1e+07 1e+08 1e+09 1e+10

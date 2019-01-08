@@ -1,6 +1,6 @@
 ##' @importFrom dplyr filter as_data_frame arrange n_distinct
 ##' @importFrom dplyr group_by filter ungroup summarize distinct
-##' @importFrom dplyr groups is_grouped_df mutate .data
+##' @importFrom dplyr groups is_grouped_df mutate .data rename %>%
 ##' @importFrom grDevices pdf dev.off
 ##' @importFrom ggplot2 ggplot aes_string geom_boxplot geom_line
 ##' @importFrom ggplot2 ggtitle theme geom_point geom_smooth
@@ -13,6 +13,7 @@
 ##' @importFrom glue glue
 ##' @importFrom assertthat assert_that
 ##' @importFrom tidyr gather
+##' @importFrom purrr map2 map map_df
 ##'
 NULL
 

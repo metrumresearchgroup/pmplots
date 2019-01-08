@@ -336,3 +336,7 @@ search_cwres_i <- function(col_name, data) {
   }
   return(col_name)
 }
+
+parse_eval <- function(x) {
+  eval(parse(text = x),envir=parent.frame(2))
+}

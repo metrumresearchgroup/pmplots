@@ -23,14 +23,14 @@ library(purrr)
 
 
 # Example data in the package
-```{r}
+```{r global}
 df <- pmplots_data_obs() %>% mutate(CWRES = CWRESI)
 
 id <- pmplots_data_id()
 
 dayx <- defx(breaks = seq(0,168,24))
 
-.yname <- "NoDoz (ng/mL)"
+.yname <- "MRG1557 (ng/mL)"
 
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 
@@ -61,6 +61,17 @@ col_label("WT")
 ```
 
 
+## Fill in `CWRES` if it doesn't exist
+```{r}
+dat <- mutate(df, CWRES = NULL)
+
+cwresi_time(df)
+
+cwres_time(dat)
+```
+
+
+
 # Observed vs predicted
 
 ## Observed versus population predicted (`dv_pred`)
@@ -86,7 +97,7 @@ dv_ipred(df, loglog=TRUE, yname = .yname)
 
 ### Observed versus both PRED and IPRED
 ```{r, fig.width = 6}
-dv_preds(df) %>% mrggdraw(ncol = 2)
+dv_preds(df) %>% pm_grid(ncol=2)
 ```
 
 
@@ -125,7 +136,7 @@ res_cont(df, x="WT//Weight (kg)")
 This function is also vectorized in x.
 
 ```{r, fig.height = 6, fig.width = 6}
-c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% mrggpage %>% mrggdraw
+c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% pm_grid()
 ```
 
 
@@ -215,8 +226,7 @@ cwres_cont(df, x="WT//Weight (kg)")
 
 Vectorized version
 ```{r, fig.height = 6, fig.width = 6}
-cwres_cont(df, covs) %>% 
-  mrggdraw(ncol = 2)
+cwres_cont(df, covs) %>%  pm_grid(ncol=2)
 ```
 
 
@@ -319,8 +329,7 @@ eta_cont(id, x=covs,y=etas[2]) %>% pm_grid()
 
 ### Grouped by covariate
 ```{r, fig.width=6, fig.height=7}
-eta_cont(id, x=covs[1], y=etas) %>%
-  mrggdraw(ncol = 2)
+eta_cont(id, x=covs[1], y=etas) %>% pm_grid(ncol=2)
 ```
 
 ## ETA by categorical covariates (`eta_cat`)
@@ -372,16 +381,61 @@ dv_time(df, yname = .yname)
 ## Faceted
 
 ```{r,fig.width=6, fig.height=7}
-dv_time(df, yname="NoDoze (ng/mL)") +
-  facet_wrap(~DOSE, scales="free_x")
+dv_time(df, yname="MRG1557 (ng/mL)") + facet_wrap(~DOSE, scales="free_x")
+```
+
+
+__NOTE__ this will not work as you expect; the labels are wrong.  
+```{r}
+cwres_cat(df, x = "STUDYc") + facet_wrap(~CPc)
+```
+
+The only way to get this right is
+
+```{r}
+cwres_cat(df, x = "STUDYc", shown=FALSE) + facet_wrap(~CPc)
 ```
 
 
 ## log-Scale
 ```{r,fig.width=6, fig.height=6}
-dv_time(df, yname="NoDoze (ng/mL)", log=TRUE) +
-  facet_wrap(~STUDYc)
+dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 ```
+
+
+## Wrapped plots
+
+### histogram
+```{r}
+wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10)
+```
+
+### eta
+```{r}
+wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
+```
+
+### DV/PRED, DV/IPRED
+```{r}
+wrap_dv_preds(df)
+```
+
+
+### Use labels in the strip
+```{r}
+wrap_eta_cont(
+  df, 
+  y = "ETA1", 
+  x = c("WT//Weight (kg)", "ALB//Albumin (g/dL)"),
+  scales="free_x", 
+  use_labels=TRUE
+)
+```
+## Residuals
+```{r}
+wrap_res_time(df, y = c("RES", "CWRES", "NPDE"))
+```
+
 
 
 # Data summary
@@ -409,6 +463,12 @@ pm_grid(p)
 
 # Some customization
 
+## Greek letters in axis title
+```{r}
+dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
+```
+
+
 ## Modify x-axis
 
 ```{r}
@@ -423,6 +483,27 @@ dv_time(df, ys=a, yname="Y-axis name")
 ```
 
 
+## Add layers
+
+```{r}
+p <- ggplot(df, aes(PRED,DV))  + geom_point() + pm_theme()
+```
+
+### smooth
+```{r}
+layer_s(p)
+```
+
+### abline
+```{r}
+layer_a(p)
+```
+
+```{r}
+layer_h(cwres_time(df,add_layers=FALSE))
+```
+
+
 ## Drop extra layers
 ```{r}
 dv_pred(df, smooth=NULL)
@@ -433,11 +514,12 @@ dv_pred(df, abline=NULL)
 ```
 
 ```{r}
-dv_pred(df, abline=NULL, smooth = NULL)
+cwres_time(df, hline = NULL)
 ```
 
+
 ```{r}
-cwres_time(df, hline = NULL)
+dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
 ### Drop all extra layers
@@ -513,6 +595,27 @@ ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
 dv_pred(df) + rot_x(angle = 90) + rot_y()
 ```
 
+# Standard axis titles
 
+```{r}
+pm_axis_time()
+pm_axis_tad()
+pm_axis_tafd()
+pm_axis_res()
+pm_axis_wres()
+pm_axis_cwres()
+pm_axis_npde()
+pm_axis_dv()
+pm_axis_pred()
+pm_axis_ipred()
+```
+
+# Log breaks
+```{r}
+logbr3()
+```
+```{r}
+logbr()
+```
 
 
