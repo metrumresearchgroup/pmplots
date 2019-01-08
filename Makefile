@@ -6,16 +6,13 @@ PKGDIR=.
 CHKDIR=.
 
 covr:
-		Rscript inst/script/covr.R 
+		Rscript inst/script/covr.R
 
 everyfun:
-	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.Rmd")'
+	Rscript inst/script/make_pmplots_complete.R
 
 readme:
 	Rscript -e 'library(rmarkdown)' -e 'render("README.Rmd")'
-
-exampler:
-	Rscript -e 'rmarkdown::render("inst/examples/example1.R")'
 
 examples:
 	make everyfun
@@ -63,3 +60,10 @@ checkk:
 	make doc
 	make build
 	R CMD check ${TARBALL} -o ${CHKDIR} --no-examples
+
+testing:
+	make doc
+	make build
+	cp ${TARBALL} ../../qualification/pmplots_qualification/testing/${TARBALL}
+	cd ../../qualification/pmplots_qualification/testing/ && git commit -am "testing update" && git push
+
