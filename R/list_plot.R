@@ -71,26 +71,3 @@ list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
 }
 
 
-##' Arrange a list of plots in a grid
-##'
-##' @param x a list of plots
-##' @param ... passed to \code{\link[cowplot]{plot_grid}}
-##'
-##' @details
-##' The cowplot package must be installed to use this function.
-##'
-##' @examples
-##'
-##' data <- pmplots_data_obs()
-##'
-##' plot <- wres_cont(data, x = c("WT", "ALB"))
-##'
-##' pm_grid(plot)
-##'
-##' @export
-pm_grid <- function(x, ...) {
-  if(!requireNamespace("cowplot")) {
-    stop("Please install the cowplot package to use this function.")
-  }
-  cowplot::plot_grid(plotlist=x, ...)
-}

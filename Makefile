@@ -6,7 +6,7 @@ PKGDIR=.
 CHKDIR=.
 
 covr:
-		Rscript -e 'covr::package_coverage(".")'
+		Rscript inst/script/covr.R 
 
 everyfun:
 	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.Rmd")'

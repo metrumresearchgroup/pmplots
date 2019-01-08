@@ -1,3 +1,5 @@
+# nocov start
+
 ##' pmplots browser
 ##'
 ##' @param quiet if `TRUE` then a summary of available plots
@@ -65,3 +67,4 @@ pm_browser_show <- function(x, plot_name=NULL) {
   return(invisible(x))
 }
 
+# nocov end

@@ -12,7 +12,6 @@ repos <- c("https://metrumresearchgroup.github.io/r_validated", options()$repos)
 install.packages("pmplots", repos = unique(repos), type = "source", destdir = NULL)
 ```
 
-
 ## News
 
 News can be found [here](news.md)
