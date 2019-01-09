@@ -4,12 +4,12 @@
 \alias{log_scale}
 \title{Scale information for log transformation}
 \usage{
-log_scale(br = logbr(), ...)
+log_scale(breaks = NULL, ...)
 }
 \arguments{
-\item{br}{breaks}
+\item{breaks}{breaks}
 
-\item{...}{additional parameters}
+\item{...}{additional scale parameters}
 }
 \description{
 Scale information for log transformation

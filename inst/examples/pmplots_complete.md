@@ -153,6 +153,8 @@ cwresi_time(df)
 cwres_time(dat)
 ```
 
+    . Creating CWRES column from CWRESI
+
 ![](img/pmplots_complete--unnamed-chunk-6-2.png)
 
 Observed vs predicted
@@ -867,7 +869,7 @@ dv_time(df, xby=72)
 Custom breaks and limits
 
 ``` r
-a <- list(br = seq(0,240,48), limits=c(0,240))
+a <- list(breaks = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 

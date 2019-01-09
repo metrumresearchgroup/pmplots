@@ -38,7 +38,7 @@ require_numeric <- function(df,x) {
   require_column(df,x)
   cl <- class(unlist(df[1,x],use.names=FALSE))
   if(!is.element(cl,c("numeric","integer"))) {
-     .stop("column ", x, " is required to be numeric")
+    .stop("column ", x, " is required to be numeric")
   }
   return(invisible(NULL))
 }
@@ -66,13 +66,17 @@ get_limits <- function(df,x,y) {
 
 ##' Create breaks on log scale
 ##'
+##' @param from smallest break on log10 scale (see default value)
+##' @param to largetst break on log10 scale (see default value)
+##'
 ##' @examples
 ##' logbr()
+##' logbr(-5,8)
 ##' logbr3()
 ##'
 ##' @export
-logbr <- function() {
-  10^seq(-10,10)
+logbr <- function(from=-10,to=10) {
+  10^seq(from,to)
 }
 ##' @export
 ##' @rdname logbr
@@ -80,6 +84,33 @@ logbr3 <- function() {
   x <- logbr()
   sort(c(x,3*x))
 }
+
+##' Identity and log scale helpers
+##'
+##' @param breaks passed to scale function
+##' @param limits passed to scale function
+##' @param trans passed to scale function
+##' @param ... passed to scale function
+##'
+##' @export
+pm_log <- function(breaks = NULL, limits=NULL, trans = "log10", ...) {
+  ans <- list(trans = trans,...)
+  ans[["breaks"]] <- breaks
+  ans[["limits"]] <- limits
+  ans
+}
+
+##' @rdname pm_log
+##' @export
+pm_ident <- function(breaks, limits = range(breaks), ...) {
+  ans <- list(...)
+  ans[["breaks"]] <- breaks
+  ans[["limits"]] <- limits
+  ans
+}
+
+
+
 
 ##' Default setting for x-axis scale
 ##'
@@ -157,16 +188,17 @@ defcx <- function(...) {
 
 ##' Scale information for log transformation
 ##'
-##' @param br breaks
-##' @param ... additional parameters
+##' @param breaks breaks
+##' @param ... additional scale parameters
 ##'
 ##' @examples
 ##' log_scale()
 ##'
 ##' @export
-log_scale <- function(br=logbr(),...) {
-  x <- list(trans="log",breaks=logbr())
-  c(x,list(...))
+log_scale <- function(breaks=NULL,...) {
+  ans <- list(trans="log10",...)
+  ans[["breaks"]] <- breaks
+  ans
 }
 
 split_col_label <- function(x,split="//") {

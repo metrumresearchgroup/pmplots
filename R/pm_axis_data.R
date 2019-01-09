@@ -95,3 +95,4 @@ pm_axis_ipred <- function() mk_col_title("ipred")
 ##' @rdname pm_axis_functions
 ##' @export
 pm_axis_dv <- function() mk_col_title("dv")
+

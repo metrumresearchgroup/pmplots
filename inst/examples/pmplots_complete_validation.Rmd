@@ -5,14 +5,18 @@ date: ""
 output:
   github_document:
     toc: true
+params:
+  form_only: FALSE
 ---
 
 ## Setup and packages
 
 ```{r, echo=FALSE}
+
 knitr::opts_chunk$set(
   comment='.', message=FALSE, warning=FALSE,
   fig.path="img/pmplots_complete--",
+  eval = !params$form_only,
   fig.width=4, fig.height=4
 )
 ```
@@ -69,7 +73,7 @@ col_label("WT")
 \newpage
 
 ### Fill in `CWRES` if it doesn't exist
-```{r}
+```{r, message = TRUE}
 dat <- mutate(df, CWRES = NULL)
 
 cwresi_time(df)
@@ -631,14 +635,18 @@ Default breaks:
 dv_time(df)
 ```
 
+\newpage
+
 Break every 3 days
 ```{r}
 dv_time(df, xby=72)
 ```
 
+\newpage
+
 Custom breaks and limits
 ```{r}
-a <- list(br = seq(0,240,48), limits=c(0,240))
+a <- list(breaks = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 
