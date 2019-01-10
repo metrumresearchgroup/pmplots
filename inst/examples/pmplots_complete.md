@@ -92,7 +92,6 @@ Setup and packages
 ``` r
 library(pmplots)
 library(dplyr)
-library(mrggsave)
 library(purrr)
 ```
 
