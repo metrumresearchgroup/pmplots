@@ -1,6 +1,31 @@
 
 .stop <- function(...) stop(..., call.=FALSE)
 
+##' Add `CWRES` column from `CWRESI` if needed
+##'
+##' The intention here is to make sure there is a `CWRES` column if applicable
+##' so that the `cwres` variant functions can be used rather than the
+##' `cwresi` variants.
+##'
+##' @details
+##' If `CWRESI` was tabled out, then a `CWRES` column is added.  No change
+##' is made in case there is already a `CWRES` column.  This function is
+##' called with every call to a  `cwresi` variant, so, ideally, the user
+##' can call this function once upon loading the data.
+##'
+##' @param x a data frame
+##' @md
+##' @export
+supplement_cwres <- function(x) {
+  if("CWRES" %in% names(x)) return(x)
+  if("CWRESI" %in% names(x)) {
+    message("Creating CWRES column from CWRESI")
+    x[["CWRES"]] <- x[["CWRESI"]]
+    return(x)
+  }
+  return(x)
+}
+
 require_discrete <- function(df,x) {
   require_column(df,x)
   cl <- class(unlist(df[1,x],use.names=FALSE))
@@ -13,7 +38,7 @@ require_numeric <- function(df,x) {
   require_column(df,x)
   cl <- class(unlist(df[1,x],use.names=FALSE))
   if(!is.element(cl,c("numeric","integer"))) {
-     .stop("column ", x, " is required to be numeric")
+    .stop("column ", x, " is required to be numeric")
   }
   return(invisible(NULL))
 }
@@ -35,20 +60,23 @@ require_columns <- function(df,...) {
   return(invisible(NULL))
 }
 
-
 get_limits <- function(df,x,y) {
   range(c(df[,x],df[,y]),na.rm=TRUE)
 }
 
 ##' Create breaks on log scale
 ##'
+##' @param from smallest break on log10 scale (see default value)
+##' @param to largetst break on log10 scale (see default value)
+##'
 ##' @examples
 ##' logbr()
+##' logbr(-5,8)
 ##' logbr3()
 ##'
 ##' @export
-logbr <- function() {
-  10^seq(-10,10)
+logbr <- function(from=-10,to=10) {
+  10^seq(from,to)
 }
 ##' @export
 ##' @rdname logbr
@@ -56,6 +84,33 @@ logbr3 <- function() {
   x <- logbr()
   sort(c(x,3*x))
 }
+
+##' Identity and log scale helpers
+##'
+##' @param breaks passed to scale function
+##' @param limits passed to scale function
+##' @param trans passed to scale function
+##' @param ... passed to scale function
+##'
+##' @export
+pm_log <- function(breaks = NULL, limits=NULL, trans = "log10", ...) {
+  ans <- list(trans = trans,...)
+  ans[["breaks"]] <- breaks
+  ans[["limits"]] <- limits
+  ans
+}
+
+##' @rdname pm_log
+##' @export
+pm_ident <- function(breaks, limits = range(breaks), ...) {
+  ans <- list(...)
+  ans[["breaks"]] <- breaks
+  ans[["limits"]] <- limits
+  ans
+}
+
+
+
 
 ##' Default setting for x-axis scale
 ##'
@@ -133,16 +188,17 @@ defcx <- function(...) {
 
 ##' Scale information for log transformation
 ##'
-##' @param br breaks
-##' @param ... additional parameters
+##' @param breaks breaks
+##' @param ... additional scale parameters
 ##'
 ##' @examples
 ##' log_scale()
 ##'
 ##' @export
-log_scale <- function(br=logbr(),...) {
-  x <- list(trans="log",breaks=logbr())
-  c(x,list(...))
+log_scale <- function(breaks=NULL,...) {
+  ans <- list(trans="log10",...)
+  ans[["breaks"]] <- breaks
+  ans
 }
 
 split_col_label <- function(x,split="//") {
@@ -177,6 +233,14 @@ col_label <- function(x) {
   .stop("invalid 'column // label' specification:\n  ", x)
 }
 
+col_labels <- function(x) {
+  x <- lapply(x, col_label)
+  values <- sapply(x, "[",1)
+  names <- sapply(x,"[",2)
+  names(values) <- names
+  values
+}
+
 parse_label <- function(x) {
   if(substr(x,1,2)=="!!") {
     x <- parse(text=substr(x,3,nchar(x)))
@@ -197,12 +261,10 @@ look_for_tex <- function(x) {
   charcount(x,"$") >= 2
 }
 
-
 pm_labs <- function(...) {
   x <- lapply(list(...), parse_label)
   do.call(ggplot2::labs,x)
 }
-
 
 noline <- ggplot2::element_blank()
 
@@ -268,6 +330,10 @@ rot_y <- function(angle=30, hjust = 1) {
   name %in% names(object)
 }
 
+no_cwres <- function(object) {
+  !("CWRES" %in% names(object))
+}
+
 .miss <- function(name,object) {
   !(name %in% names(object))
 }
@@ -277,7 +343,6 @@ glue_unit <- function(x,xunit) {
   if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
   glue::glue(x)
 }
-
 
 charcount <- function(x,w,fx=TRUE) {
   nchar(x) - nchar(gsub(w,"",x,fixed=fx))
@@ -303,3 +368,33 @@ search_cwres_i <- function(col_name, data) {
   }
   return(col_name)
 }
+
+parse_eval <- function(x) {
+  eval(parse(text = x),envir=parent.frame(2))
+}
+
+##' Arrange a list of plots in a grid
+##'
+##' @param x a list of plots
+##' @param ncol passed to \code{\link[cowplot]{plot_grid}}
+##' @param ... passed to \code{\link[cowplot]{plot_grid}}
+##'
+##' @details
+##' The cowplot package must be installed to use this function.
+##'
+##' @examples
+##'
+##' data <- pmplots_data_obs()
+##'
+##' plot <- wres_cont(data, x = c("WT", "ALB"))
+##'
+##' pm_grid(plot)
+##'
+##' @export
+pm_grid <- function(x, ..., ncol=2) {
+  if(!requireNamespace("cowplot")) {
+    stop("Please install the cowplot package to use this function.")
+  }
+  cowplot::plot_grid(plotlist=x, ..., ncol = ncol)
+}
+

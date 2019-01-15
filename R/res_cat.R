@@ -20,7 +20,10 @@
 ##' be numeric.
 ##'
 ##' Summary numbers located below each box are described in
-##' \code{\link{boxwork}}.
+##' \code{\link{boxwork}}.  The summaries will not be correct if the plot
+##' is eventually faceted by another variable in the data set.  In this case,
+##' either use \code{shown=FALSE} or create the plot with
+##' \code{\link{split_plot}}.
 ##'
 ##' @seealso \code{\link{boxwork}}, \code{\link{cont_cat}}
 ##'
@@ -33,6 +36,7 @@
 ##' @return A single plot when a single value for \code{x}
 ##' and \code{y} are supplied; a list of plots of either \code{x}
 ##' or \code{y} have length greater than 1.
+##' @md
 ##'
 ##' @export
 res_cat <- function(df, x, y=pm_axis_res(), hline=0, ...) {
@@ -50,6 +54,7 @@ wres_cat <- function(df, x, y = pm_axis_wres(), hline=0, ...) {
 ##' @export
 ##' @rdname res_cat
 cwres_cat <- function(df, x, y = pm_axis_cwres(), hline=0, ...) {
+  if(no_cwres(df)) df <- supplement_cwres(df)
   res_cat(df, x, y, hline, ...)
 }
 
@@ -57,5 +62,11 @@ cwres_cat <- function(df, x, y = pm_axis_cwres(), hline=0, ...) {
 ##' @rdname res_cat
 cwresi_cat <- function(df, x, y = pm_axis_cwresi(), ...) {
   cwres_cat(df, x, y, ...)
+}
+
+##' @export
+##' @rdname res_cat
+npde_cat <- function(df, x, y = pm_axis_npde(), ...) {
+  res_cat(df, x, y, ...)
 }
 

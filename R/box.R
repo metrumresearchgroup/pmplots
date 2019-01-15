@@ -39,6 +39,10 @@ box_labels <- function(df, x, y) {
 ##' \code{TRUE}.  When \code{N} is equal to \code{n} in the
 ##' summary, only \code{n} is shown.
 ##'
+##' The summaries will not be correct if the plot is eventually faceted by
+##' another variable in the data set.  In this case, either use
+##' \code{shown=FALSE} or create the plot with \code{\link{split_plot}}.
+##'
 ##' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
                     alpha=1, hline = NULL, title=NULL, shown = TRUE, ...) {
@@ -86,7 +90,10 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 ##' be numeric.
 ##'
 ##' Summary numbers located below each box are described in
-##' \code{\link{boxwork}}.
+##' \code{\link{boxwork}}.  The summaries will not be correct if the plot
+##' is eventually faceted by another variable in the data set.  In this case,
+##' either use \code{shown=FALSE} or create the plot with
+##' \code{\link{split_plot}}.
 ##'
 ##' @seealso \code{\link{boxwork}}
 ##'

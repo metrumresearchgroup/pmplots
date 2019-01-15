@@ -1,7 +1,7 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.1.0.9002
+Version: 0.2.0
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person("Metrum Research Group LLC", role =  c("cph"))
@@ -16,8 +16,9 @@ Imports:
   dplyr (>= 0.7.2),
   rlang (>= 0.1.2),
   glue, 
-  assertthat
-Suggests: testthat, GGally, latex2exp, knitr, cowplot
+  assertthat, 
+  tidyr, 
+  purrr
+Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny
 Depends: ggplot2 (>= 3.0.0)
-RoxygenNote: 6.0.1
-
+RoxygenNote: 6.1.1

@@ -1,10 +1,12 @@
 pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, ...) {
 
-  if(is.character(mapping$smooth_color)){
-    smooth_color <- mapping$smooth_color
+  mapping_list <- rlang::as_list(mapping)
+
+  if(is.character(mapping_list$smooth_colour)){
+    smooth_color <- mapping_list$smooth_colour
   }
-  if(is.numeric(mapping$smooth_lty)) {
-    smooth_lty <- mapping$smooth_lty
+  if(is.numeric(mapping_list$smooth_lty)) {
+    smooth_lty <- mapping_list$smooth_lty
   }
 
   ggplot(data = data, mapping = mapping) +
@@ -63,11 +65,19 @@ pairs_upper <- function(data, mapping, ...) {
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
                        col="grey",
-                       upper_fun = pairs_upper, lower_fun = pairs_lower, ...) {
+                       upper_fun = NULL, lower_fun = NULL, ...) {
 
   if(!requireNamespace("GGally")) {
     stop("this function requires that the GGally package be installed",
          call. = FALSE)
+  }
+
+  if(is.null(upper_fun)) {
+    upper_fun <- pairs_upper
+  }
+
+  if(is.null(lower_fun)) {
+    lower_fun <- pairs_lower
   }
 
   if(length(etas)==1) {
@@ -89,7 +99,7 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
   for(col in cols) {
     require_numeric(x,col)
   }
-  GGally::ggpairs(x, ...,
+  GGally::ggpairs(x, aes(...),
                   columns=cols,
                   columnLabels=labs,
                   upper = list(continuous = pairs_upper),

@@ -6,16 +6,13 @@ PKGDIR=.
 CHKDIR=.
 
 covr:
-		Rscript -e 'covr::package_coverage(".")'
+		Rscript inst/script/covr.R
 
 everyfun:
-	Rscript -e 'rmarkdown::render("inst/examples/everyfunction.Rmd")'
+	Rscript  -e 'rmarkdown::render("inst/examples/pmplots_complete.Rmd")'
 
 readme:
 	Rscript -e 'library(rmarkdown)' -e 'render("README.Rmd")'
-
-exampler:
-	Rscript -e 'rmarkdown::render("inst/examples/example1.R")'
 
 examples:
 	make everyfun
@@ -23,7 +20,7 @@ examples:
 	make exampler
 
 pkgdown:
-	Rscript -e "pkgdown::build_site()"
+	Rscript -e "options(pkdown.internet = FALSE); pkgdown::build_site()"
 
 ec:
 	echo ${VERSION}
@@ -43,7 +40,7 @@ test:
 
 .PHONY: doc
 doc:
-	Rscript -e 'library(devtools); document()'
+	Rscript inst/script/document.R
 
 build:
 	R CMD build --no-build-vignettes --md5 $(PKGDIR)
@@ -64,4 +61,9 @@ checkk:
 	make build
 	R CMD check ${TARBALL} -o ${CHKDIR} --no-examples
 
+testing:
+	make doc
+	make build
+	cp ${TARBALL} ../../qualification/pmplots_qualification/testing/${TARBALL}
+	cd ../../qualification/pmplots_qualification/testing/ && git commit -am "testing update" && git push
 

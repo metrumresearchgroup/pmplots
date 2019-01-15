@@ -5,6 +5,7 @@
 \alias{wres_cat}
 \alias{cwres_cat}
 \alias{cwresi_cat}
+\alias{npde_cat}
 \title{Plot residuals versus categorical variable}
 \usage{
 res_cat(df, x, y = pm_axis_res(), hline = 0, ...)
@@ -14,6 +15,8 @@ wres_cat(df, x, y = pm_axis_wres(), hline = 0, ...)
 cwres_cat(df, x, y = pm_axis_cwres(), hline = 0, ...)
 
 cwresi_cat(df, x, y = pm_axis_cwresi(), ...)
+
+npde_cat(df, x, y = pm_axis_npde(), ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -46,7 +49,10 @@ or logical and \code{y} column must
 be numeric.
 
 Summary numbers located below each box are described in
-\code{\link{boxwork}}.
+\code{\link{boxwork}}.  The summaries will not be correct if the plot
+is eventually faceted by another variable in the data set.  In this case,
+either use \code{shown=FALSE} or create the plot with
+\code{\link{split_plot}}.
 }
 \examples{
 

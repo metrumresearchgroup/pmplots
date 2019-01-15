@@ -14,6 +14,12 @@
 ##' of plots is returned.  If both x and y are length 1,
 ##' then a single plot object (not a list) is returned.
 ##'
+##' Summary numbers located below each box are described in
+##' \code{\link{boxwork}}.  The summaries will not be correct if the plot
+##' is eventually faceted by another variable in the data set.  In this case,
+##' either use \code{shown=FALSE} or create the plot with
+##' \code{\link{split_plot}}.
+##'
 ##' @seealso \code{\link{eta_cont}}
 ##'
 ##' @examples

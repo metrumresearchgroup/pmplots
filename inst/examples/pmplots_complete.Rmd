@@ -1,0 +1,741 @@
+---
+title: "Available functions: pmplots"
+author: ""
+date: ""
+output:
+  github_document:
+    toc: true
+params:
+  form_only: FALSE
+---
+
+# Setup and packages
+
+```{r, echo=FALSE}
+
+knitr::opts_chunk$set(
+  comment='.', message=FALSE, warning=FALSE,
+  fig.path="img/pmplots_complete--",
+  eval = !params$form_only,
+  fig.width=4, fig.height=4
+)
+```
+
+
+```{r}
+library(pmplots)
+library(dplyr)
+library(purrr)
+```
+
+\newpage
+
+# Example data in the package
+```{r global}
+df <- pmplots_data_obs() %>% mutate(CWRES = CWRESI)
+
+id <- pmplots_data_id()
+
+dayx <- defx(breaks = seq(0,168,24))
+
+.yname <- "MRG1557 (ng/mL)"
+
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+
+covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
+
+```
+
+Override the `df` and `id` objects in the above chunk
+```{r}
+## Nothing here
+```
+
+\newpage
+
+# `col//title` specification
+
+This is a way to specify the column name for source
+data along with the axis label
+
+```{r}
+col_label("CL//Clearance (L)")
+```
+
+When only the column is given, then the column name will be 
+used for the column title:
+
+```{r}
+col_label("WT")
+```
+
+\newpage
+
+## Fill in `CWRES` if it doesn't exist
+```{r, message = TRUE}
+dat <- mutate(df, CWRES = NULL)
+
+cwresi_time(df)
+
+cwres_time(dat)
+```
+
+\newpage
+
+# Observed vs predicted
+
+## Observed versus population predicted (`dv_pred`)
+
+```{r}
+dv_pred(df, yname = .yname)
+```
+
+\newpage
+
+## Observed versus population predicted - log/log
+```{r}
+dv_pred(df, loglog=TRUE, yname = .yname)
+```
+
+\newpage
+
+## Observed versus individual predicted (`dv_ipred`)
+```{r}
+dv_ipred(df, yname=.yname)
+```
+
+\newpage
+
+## Observed versus individual predicted - log/log
+```{r}
+dv_ipred(df, loglog=TRUE, yname = .yname)
+```
+
+\newpage
+
+## Observed versus both PRED and IPRED
+```{r, fig.width = 6}
+dv_preds(df) %>% pm_grid(ncol=2)
+```
+
+\newpage
+
+# Residual plots
+
+
+## Residuals versus time (`res_time`)
+```{r}
+res_time(df)
+```
+
+\newpage
+
+## Residuals versus time after first dose (`res_tafd`)
+```{r}
+res_tafd(df)
+```
+
+\newpage
+
+## Residuals versus time after dose (`res_tad`)
+```{r}
+res_tad(df)
+```
+
+\newpage
+
+## Residuals versus population predicted (`res_pred`)
+```{r}
+res_pred(df)
+```
+
+\newpage
+
+## RES versus continuous covariate (`res_cont`)
+
+```{r}
+res_cont(df, x="WT//Weight (kg)")
+```
+
+This function is also vectorized in x.
+
+```{r, fig.height = 6, fig.width = 6}
+c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% pm_grid()
+```
+
+\newpage
+
+## RES by categorical covariate (`res_cat`)
+```{r}
+dplyr::count(df, STUDYc)
+res_cat(df, x="STUDYc//Study type")
+```
+
+\newpage
+
+## Residual histogram (`res_hist`)
+
+```{r}
+res_hist(df)
+```
+
+\newpage
+
+# Weighted residuals
+
+## Weighted residuals versus time (`wres_time`)
+```{r}
+wres_time(df) 
+```
+
+\newpage
+
+## Weighted residuals versus time after first dose (`wres_tafd`)
+```{r}
+wres_tafd(df)
+```
+
+\newpage
+
+## Weighted residuals versus time after dose (`wres_tad`)
+```{r}
+wres_tad(df)
+```
+
+\newpage
+
+## Weighted esiduals versus population predicted (`wres_pred`)
+```{r}
+wres_pred(df)
+```
+
+\newpage
+
+## WRES versus continuous covariate (`wres_cont`)
+
+This function is also vectorized in x.
+
+```{r}
+wres_cont(df, x="WT//Weight (kg)")
+```
+
+\newpage
+
+## WRES by categorical covariate (`wres_cat`)
+```{r}
+wres_cat(df, x="STUDYc//Study type")
+```
+
+\newpage
+
+## Weighted residual histogram (`wres_hist`)
+```{r}
+wres_hist(df)
+```
+
+\newpage
+
+## WRES QQ plot (`wres_q`)
+```{r}
+wres_q(df)
+```
+
+\newpage
+
+# Conditional weighted residuals (CWRES)
+
+## CWRES versus time (`cwres_time`)
+```{r}
+cwres_time(df)
+```
+
+\newpage
+
+## Conditional weighted residuals versus time after first dose (`cwres_tafd`)
+```{r}
+cwres_tafd(df)
+```
+
+\newpage
+
+## CWRES versus time after dose (`cwres_tad`)
+```{r}
+cwres_tad(df)
+```
+
+\newpage
+
+## CWRES versus continuous covariate (`cwres_cont`)
+```{r}
+cwres_cont(df, x="WT//Weight (kg)")
+```
+
+Vectorized version
+```{r, fig.height = 6, fig.width = 6}
+cwres_cont(df, covs) %>%  pm_grid(ncol=2)
+```
+
+\newpage
+
+## CWRES by categorical covariate (`cwres_cat`)
+```{r}
+cwres_cat(df, x="STUDYc//Study type")
+```
+
+```{r}
+cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
+```
+
+Vectorized version
+
+```{r}
+cwres_cat(df, x = c("STUDYc//Study", "RF//Renal Function"))
+```
+
+\newpage
+
+## Conditional weighted residual histogram (`cwres_hist`)
+```{r}
+cwres_hist(df)
+```
+
+\newpage
+
+## CWRES versus population predicted (`cwres_pred`)
+```{r}
+cwres_pred(df)
+```
+
+\newpage
+
+## CWRES QQ plot (`cwres_q`)
+```{r}
+cwres_q(df)
+```
+
+\newpage
+
+# NPDE plots
+
+## NPDE versus TIME (`npde_time`)
+
+```{r}
+npde_time(df)
+```
+
+\newpage
+
+## NPDE versus TAD (`npde_tad`)
+
+```{r}
+npde_tad(df)
+```
+
+\newpage
+
+## NPDE versus TAFD (`npde_tafd`)
+
+```{r}
+npde_tafd(df)
+```
+
+\newpage
+
+## NPDE versus PRED (`npde_pred`)
+
+```{r}
+npde_pred(df)
+```
+
+\newpage
+
+## NPDE versus continuous variable (`npde_cont`)
+
+```{r}
+npde_cont(df, "WT")
+```
+
+\newpage
+
+## NPDE versus categorical variable (`npde_cat`)
+
+```{r}
+npde_cat(df, "STUDYc")
+```
+
+\newpage
+
+## QQ-plot with NPDE (`npde_q`)
+```{r}
+npde_q(df)
+```
+
+\newpage
+
+## NPDE histogram (`npde_hist`)
+```{r}
+npde_hist(df)
+```
+
+\newpage
+
+# ETA plots
+
+```{r}
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
+```
+
+\newpage
+
+## ETA versus continuous covariates (`eta_cont`)
+
+Grouped by eta
+```{r, fig.width=6, fig.height=7}
+eta_cont(id, x=covs,y=etas[2]) %>% pm_grid()
+```
+
+Grouped by covariate
+```{r, fig.width=6, fig.height=7}
+eta_cont(id, x=covs[1], y=etas) %>% pm_grid(ncol=2)
+```
+
+\newpage
+
+## ETA by categorical covariates (`eta_cat`)
+
+```{r}
+p <- eta_cat(id, x="STUDYc//Study type", y=etas)
+```
+
+```{r, fig.width=6, fig.height=7}
+pm_grid(p)
+```
+
+\newpage
+
+## ETA histograms (`eta_hist`)
+
+
+```{r}
+etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
+p <- eta_hist(id,etas, bins=10)
+```
+
+```{r,fig.width=6, fig.height=7}
+pm_grid(p)
+```
+
+\newpage
+
+## ETA pairs plot (`eta_pairs`)
+
+```{r}
+p <- eta_pairs(id,etas)
+```
+
+
+```{r,fig.width=6, fig.height=7}
+print(p)
+```
+
+\newpage
+
+# DV versus time (`dv_time`)
+
+## Basic plot
+
+```{r}
+dv_time(df, yname = .yname)
+```
+
+\newpage
+
+## Faceted
+
+```{r,fig.width=6, fig.height=7}
+dv_time(df, yname="MRG1557 (ng/mL)") + facet_wrap(~DOSE, scales="free_x")
+```
+
+
+__NOTE__ this will not work as you expect; the labels are wrong.  
+```{r}
+cwres_cat(df, x = "STUDYc") + facet_wrap(~CPc)
+```
+
+The only way to get this right is
+
+```{r}
+cwres_cat(df, x = "STUDYc", shown=FALSE) + facet_wrap(~CPc)
+```
+
+\newpage
+
+## log-Scale
+```{r,fig.width=6, fig.height=6}
+dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
+```
+
+\newpage
+
+# Wrapped plots
+
+## histogram
+```{r}
+wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
+```
+
+\newpage
+
+## eta
+```{r}
+wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
+```
+
+\newpage
+
+## DV/PRED, DV/IPRED
+```{r, fig.height=7}
+wrap_dv_preds(df, ncol=1)
+```
+
+\newpage
+
+## Use labels in the strip
+```{r}
+wrap_eta_cont(
+  df, 
+  y = "ETA1", 
+  x = c("WT//Weight (kg)", "ALB//Albumin (g/dL)"),
+  scales="free_x", 
+  use_labels=TRUE
+)
+```
+
+\newpage
+
+## Residuals
+```{r}
+wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
+```
+
+\newpage
+
+# Data summary
+
+## Continuous variable by categorical variable (`cont_cat`)
+```{r}
+cont_cat(id, x="STUDYc", y="WT")
+```
+
+\newpage
+
+## General histogram (`cont_hist`)
+
+```{r}
+cont_hist(id, x = "WT", bins = 20)
+```
+
+\newpage
+
+## Split and plot (`split_plot`)
+```{r}
+p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
+```
+
+```{r,fig.width=6, fig.height=7}
+pm_grid(p)
+```
+
+\newpage
+
+# Some customization
+
+## Greek letters in axis title
+```{r}
+dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
+```
+
+\newpage
+
+## Modify x-axis
+
+```{r}
+a <- list(trans="log", breaks = logbr3())
+
+dv_time(df, xs=a)
+```
+
+\newpage
+
+## Modify y-axis
+```{r}
+dv_time(df, ys=a, yname="Y-axis name")
+```
+
+\newpage
+
+# Add layers
+
+```{r}
+p <- ggplot(df, aes(PRED,DV))  + geom_point() + pm_theme()
+```
+
+\newpage
+
+## smooth
+```{r}
+layer_s(p)
+```
+
+\newpage
+
+## abline
+```{r}
+layer_a(p)
+```
+
+```{r}
+layer_h(cwres_time(df,add_layers=FALSE))
+```
+
+\newpage
+
+## Drop extra layers
+```{r}
+dv_pred(df, smooth=NULL)
+```
+
+```{r}
+dv_pred(df, abline=NULL)
+```
+
+```{r}
+cwres_time(df, hline = NULL)
+```
+
+```{r}
+dv_pred(df, abline=NULL, smooth = NULL)
+```
+
+\newpage
+
+## Drop all extra layers
+```{r}
+dv_pred(df, add_layers=FALSE)
+```
+
+\newpage
+
+# Custom breaks
+
+Default breaks:
+```{r}
+dv_time(df)
+```
+
+\newpage
+
+Break every 3 days
+```{r}
+dv_time(df, xby=72)
+```
+
+\newpage
+
+Custom breaks and limits
+```{r}
+a <- list(breaks = seq(0,240,48), limits=c(0,240))
+dv_time(df, xs=a)
+```
+
+\newpage
+
+# Extra reference lines to [C]WRES plots
+
+```{r}
+wres_time(df) + geom_3s()
+```
+
+\newpage
+
+# Replicate look and feel
+
+```{r}
+p <- ggplot(df, aes(IPRED,DV)) + geom_point()
+
+p
+```
+
+\newpage
+
+## Theme
+
+```{r}
+p + pm_theme()
+```
+
+\newpage
+
+## Plain
+```{r}
+p + theme_plain()
+```
+
+\newpage
+
+## Smooth
+
+```{r}
+p + pm_smooth()
+```
+
+\newpage
+
+## Abline
+
+```{r}
+p + pm_abline()
+```
+
+\newpage
+
+## Horizontal reference line
+
+```{r}
+ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
+```
+
+\newpage
+
+## Rotate x and y axis labels
+```{r}
+dv_pred(df) + rot_x(angle = 90) + rot_y()
+```
+
+\newpage
+
+# Standard axis titles
+
+```{r}
+pm_axis_time()
+pm_axis_tad()
+pm_axis_tafd()
+pm_axis_res()
+pm_axis_wres()
+pm_axis_cwres()
+pm_axis_npde()
+pm_axis_dv()
+pm_axis_pred()
+pm_axis_ipred()
+```
+
+\newpage
+
+# Log breaks
+```{r}
+logbr3()
+```
+```{r}
+logbr()
+```

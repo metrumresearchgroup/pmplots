@@ -4,8 +4,8 @@
 \alias{boxwork}
 \title{Make boxplots}
 \usage{
-boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white", alpha = 1,
-  hline = NULL, title = NULL, shown = TRUE, ...)
+boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white",
+  alpha = 1, hline = NULL, title = NULL, shown = TRUE, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -49,4 +49,8 @@ that box.  An error will be generated if \code{ID} does
 not exist in the plotting data frame when \code{shown} is
 \code{TRUE}.  When \code{N} is equal to \code{n} in the
 summary, only \code{n} is shown.
+
+The summaries will not be correct if the plot is eventually faceted by
+another variable in the data set.  In this case, either use
+\code{shown=FALSE} or create the plot with \code{\link{split_plot}}.
 }

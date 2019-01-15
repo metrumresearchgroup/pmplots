@@ -8,8 +8,6 @@ theme_plain <- function(...) {
                    plot.margin=margin(0.5,0.5,1,0.5,unit="cm"),...)
 }
 
-
-
 ##' Add loess line
 ##' @param method passed to \code{geom_smooth}
 ##' @param se passed to \code{geom_smooth}

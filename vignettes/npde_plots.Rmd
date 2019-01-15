@@ -50,13 +50,12 @@ npde_q(data)
 # NPDE versus categorical variable
 
 ```{r}
-cont_cat(data, x = "STUDYc", y = "NPDE") + pm_hline()
+npde_cat(data, x = "STUDYc", y = "NPDE")
 ```
 
 # NPDE versus continuous variables
 
 ```{r}
-cont_cont(data, x= "WT//Weight (kg)", y = "NPDE") + 
-  pm_hline() + pm_smooth()
+npde_cont(data, x= "WT//Weight (kg)", y = "NPDE")
 ```
 

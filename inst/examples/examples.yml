@@ -1,0 +1,185 @@
+objects:
+  - data
+  - etas
+  - id
+plots:
+  res_time:
+    y: res
+    x: time
+    call: res_time(data)
+  wres_time:
+    y: wres
+    x: time
+    call: wres_time(data)
+  cwres_time:
+    y: cwres
+    x: time
+    call: cwres_time(data)
+  res_tad:
+    y: res
+    x: tad
+    call: res_tad(data)
+  wres_tad:
+    y: wres
+    x: tad
+    call: wres_tad(data)
+  cwres_tad:
+    y: cwres
+    x: tad
+    call: cwres_tad(data)
+  res_tafd:
+    y: res
+    x: tafd
+    call: res_tafd(data)
+  wres_tafd:
+    y: wres
+    x: tafd
+    call: wres_tafd(data)
+  cwres_tafd:
+    y: cwres
+    x: tafd
+    call: cwres_tafd(data)
+  npde_time:
+    y: npde
+    x: time
+    call: npde_time(data)
+  npde_tad:
+    y: npde
+    x: tad
+    call: npde_tad(data)
+  npde_tafd:
+    y: npde
+    x: tafd
+    call: npde_tafd(data)
+  res_pred:
+    y: res
+    x: pred
+    call: res_pred(data)
+  wres_pred:
+    y: wres
+    x: pred
+    call: wres_pred(data)
+  cwres_pred:
+    y: cwres
+    x: pred
+    call: cwres_pred(data)
+  res_cont:
+    y: res
+    x: cont
+    call: res_cont(data, x = "WT//Weight (kg)")
+  wres_cont:
+    y: wres
+    x: cont
+    call: wres_cont(data, x = "WT//Weight (kg)")
+  cwres_cont:
+    y: cwres
+    x: cont
+    call: cwres_cont(data, x = "WT//Weight (kg)")
+  npde_cont:
+    y: npde
+    x: cont
+    call: npde_cont(data, x = "WT//Weight (kg)")
+  res_cat:
+    y: res
+    x: cat
+    call: res_cat(data, x = "STUDYc//Study")
+  wres_cat:
+    y: wres
+    x: cat
+    call: wres_cat(data, x = "STUDYc//Study")
+  cwres_cat:
+    y: cwres
+    x: cat
+    call: cwres_cat(data, x = "STUDYc//Study")
+  npde_cat:
+    y: npde
+    x: cat
+    call: npde_cat(data, x = "STUDYc//Study")
+  res_hist:
+    y: "<none>"
+    x: res
+    call: res_hist(data)
+  wres_hist:
+    y: "<none>"
+    x: wres
+    call: wres_hist(data)
+  cwres_hist:
+    y: "<none>"
+    x: cwres
+    call: cwres_hist(data)
+  npde_hist:
+    y: "<none>"
+    x: npde
+    call: npde_hist(data)
+  dv_pred:
+    y: dv
+    x: pred
+    call: dv_pred(data)
+  dv_ipred:
+    y: dv
+    x: ipred
+    call: dv_ipred(data)
+  dv_time:
+    y: dv
+    x: time
+    call: dv_time(data)
+  dv_tad:
+    y: dv
+    x: tad
+    call: dv_tad(data)
+  eta_cont:
+    y: eta
+    x: cont
+    call: eta_cont(id, x = "WT", y = c("ETA1", "ETA2")) %>% pm_grid()
+  eta_cat:
+    y: eta
+    x: cat
+    call: eta_cat(id, x = "STUDYc", y = c("ETA1", "ETA2")) %>% pm_grid()
+  eta_pairs:
+    y: eta
+    x: eta
+    call: eta_pairs(id, c("ETA1", "ETA2", "ETA3"))
+  eta_hist:
+    y: "<none>"
+    x: eta
+    call: eta_hist(id, c("ETA1", "ETA2", "ETA3")) %>% pm_grid()
+  wrap_hist:
+    y: "<none>"
+    x: eta
+    call: wrap_hist(id, x = c("ETA1", "ETA2", "ETA3"), ncol=2)
+  wrap_res_time:
+    y: res
+    x: time
+    call: wrap_res_time(data, y= c("WRES", "CWRES", "NPDE"), scales = "free")
+  wrap_eta_cont:
+    y: eta
+    x: cont
+    call: wrap_eta_cont(data, y = "ETA1", x = c("WT", "ALB", "SCR"), scales = "free")
+  wrap_dv_preds:
+    y: dv
+    x: pred
+    call: wrap_dv_preds(data)
+  wres_q:
+    y: wres
+    x: q
+    call: wres_q(data)
+  cwres_q:
+    y: cwres
+    x: q
+    call: cwres_q(data)
+  npde_q:
+    y: npde
+    x: q
+    call: npde_q(data)
+  pm_histogram:
+    y: WT
+    x: "<none>"
+    call: ggplot(data = data) + pm_histogram(aes(x=WT))
+  split_plot:
+    y: cont
+    x: cont
+    call: data %>% group_by(STUDYc) %>% split_plot(dv_pred) %>% pm_grid()
+
+
+
+
