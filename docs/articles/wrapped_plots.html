@@ -97,7 +97,7 @@
       <h1>Wrapped / Faceted Plots</h1>
                         <h4 class="author">Kyle Baron</h4>
             
-            <h4 class="date">2019-01-07</h4>
+            <h4 class="date">2019-01-16</h4>
       
       
       <div class="hidden name"><code>wrapped_plots.Rmd</code></div>
@@ -109,15 +109,15 @@
 <div id="set-up" class="section level1">
 <h1 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a></code></pre></div>
 </div>
 <div id="example-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-data" class="anchor"></a>Example data</h1>
 <p>There is are example data sets embedded in pmplots</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()
-id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_id</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</a>
+<a class="sourceLine" id="cb2-2" title="2">id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_id</a></span>()</a></code></pre></div>
 </div>
 <div id="rationale" class="section level1">
 <h1 class="hasAnchor">
@@ -132,7 +132,7 @@ id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_
 <a href="#wrap_res_time" class="anchor"></a><code>wrap_res_time</code>
 </h2>
 <p>Enter a vector of column names (or <code>col_label</code>) for the y argument</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/wrap_plots.html">wrap_res_time</a></span>(data, <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CWRESI"</span>, <span class="st">"WRES"</span>))</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/wrap_plots.html">wrap_res_time</a></span>(data, <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CWRESI"</span>, <span class="st">"WRES"</span>))</a></code></pre></div>
 <p><img src="wrapped_plots_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div id="wrap_eta_cont" class="section level2">
@@ -140,22 +140,22 @@ id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_
 <a href="#wrap_eta_cont" class="anchor"></a><code>wrap_eta_cont</code>
 </h2>
 <p>Here, enter a vector for the x argument</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/wrap_plots.html">wrap_eta_cont</a></span>(
-  id, 
-  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"WT//WT (kg)"</span>, <span class="st">"BMI//BMI (kg/m2)"</span>, <span class="st">"ALB//ALB (g/dL)"</span>), 
-  <span class="dt">y =</span> <span class="st">"ETA1//ETA-CL"</span>, 
-  <span class="dt">scales=</span><span class="st">"free_x"</span>, 
-  <span class="dt">use_labels=</span><span class="ot">TRUE</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="../reference/wrap_plots.html">wrap_eta_cont</a></span>(</a>
+<a class="sourceLine" id="cb4-2" title="2">  id, </a>
+<a class="sourceLine" id="cb4-3" title="3">  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"WT//WT (kg)"</span>, <span class="st">"BMI//BMI (kg/m2)"</span>, <span class="st">"ALB//ALB (g/dL)"</span>), </a>
+<a class="sourceLine" id="cb4-4" title="4">  <span class="dt">y =</span> <span class="st">"ETA1//ETA-CL"</span>, </a>
+<a class="sourceLine" id="cb4-5" title="5">  <span class="dt">scales=</span><span class="st">"free_x"</span>, </a>
+<a class="sourceLine" id="cb4-6" title="6">  <span class="dt">use_labels=</span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb4-7" title="7">)</a></code></pre></div>
 <p><img src="wrapped_plots_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>In this example, we enter labels along with column names and request that the labels be used for the shingle.</p>
 <p>We can facet on x or y</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/wrap_plots.html">wrap_eta_cont</a></span>(
-  id, 
-  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"WT"</span>, <span class="st">"ALB"</span>), 
-  <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ETA1"</span>, <span class="st">"ETA2"</span>, <span class="st">"ETA3"</span>),
-  <span class="dt">scales=</span><span class="st">"free_x"</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/wrap_plots.html">wrap_eta_cont</a></span>(</a>
+<a class="sourceLine" id="cb5-2" title="2">  id, </a>
+<a class="sourceLine" id="cb5-3" title="3">  <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"WT"</span>, <span class="st">"ALB"</span>), </a>
+<a class="sourceLine" id="cb5-4" title="4">  <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ETA1"</span>, <span class="st">"ETA2"</span>, <span class="st">"ETA3"</span>),</a>
+<a class="sourceLine" id="cb5-5" title="5">  <span class="dt">scales=</span><span class="st">"free_x"</span></a>
+<a class="sourceLine" id="cb5-6" title="6">)</a></code></pre></div>
 <p><img src="wrapped_plots_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 <div id="wrap_hist" class="section level2">
@@ -163,14 +163,14 @@ id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_
 <a href="#wrap_hist" class="anchor"></a><code>wrap_hist</code>
 </h2>
 <p>Create a histogram with vector x column names</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/wrap_plots.html">wrap_hist</a></span>(data, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CWRESI"</span>, <span class="st">"WRES"</span>))</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="../reference/wrap_plots.html">wrap_hist</a></span>(data, <span class="dt">x =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CWRESI"</span>, <span class="st">"WRES"</span>))</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="wrapped_plots_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 <div id="dv-vs-pred-and-dv-vs-ipred" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dv-vs-pred-and-dv-vs-ipred" class="anchor"></a>DV vs pred and DV vs ipred</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/wrap_plots.html">wrap_dv_preds</a></span>(data, <span class="dt">yname =</span> <span class="st">"MRG1557"</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/wrap_plots.html">wrap_dv_preds</a></span>(data, <span class="dt">yname =</span> <span class="st">"MRG1557"</span>)</a></code></pre></div>
 <p><img src="wrapped_plots_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
 </div>
