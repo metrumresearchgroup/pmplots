@@ -97,7 +97,7 @@
       <h1>Customizing Plots</h1>
                         <h4 class="author">Kyle Baron</h4>
             
-            <h4 class="date">2019-01-07</h4>
+            <h4 class="date">2019-01-16</h4>
       
       
       <div class="hidden name"><code>customize.Rmd</code></div>
@@ -109,37 +109,37 @@
 <div id="set-up" class="section level1">
 <h1 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
-
-data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(pmplots)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4">data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span>()</a></code></pre></div>
 </div>
 <div id="a-default-plot" class="section level1">
 <h1 class="hasAnchor">
 <a href="#a-default-plot" class="anchor"></a>A default plot</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data)</a></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <div id="customize-the-axis-label" class="section level2">
 <h2 class="hasAnchor">
 <a href="#customize-the-axis-label" class="anchor"></a>Customize the axis label</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_ipred</a></span>(data) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Predicted concentration (mg/L)"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="../reference/dv_pred.html">dv_ipred</a></span>(data) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">"Predicted concentration (mg/L)"</span>)</a></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div id="add-greek-symbols-to-an-axis-label" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-greek-symbols-to-an-axis-label" class="anchor"></a>Add Greek symbols to an axis label</h2>
 <p>There are a couple of ways to do this. The easiest is to have the <a href="https://CRAN.R-project.org/package=latex2exp">latex2exp</a> package installed and write the TeX right in the label.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data, <span class="dt">x =</span> <span class="st">"IPRED//Predicted concentration ($</span><span class="ch">\\</span><span class="st">mu$g/mL)"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data, <span class="dt">x =</span> <span class="st">"IPRED//Predicted concentration ($</span><span class="ch">\\</span><span class="st">mu$g/mL)"</span>)</a></code></pre></div>
 <pre><code>## Loading required namespace: latex2exp</code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Otherwise, you can trigger R plotmath by putting <code>!!</code> at the start of the column label</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data, <span class="dt">x =</span> <span class="st">"IPRED//!!'Predicted concentration (' * mu * 'g/mL)'"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data, <span class="dt">x =</span> <span class="st">"IPRED//!!'Predicted concentration (' * mu * 'g/mL)'"</span>)</a></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 <div id="add-a-run-number-or-other-annotation-to-the-plot" class="section level2">
 <h2 class="hasAnchor">
 <a href="#add-a-run-number-or-other-annotation-to-the-plot" class="anchor"></a>Add a run number or other annotation to the plot</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">"Run 1001"</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="../reference/dv_pred.html">dv_pred</a></span>(data) <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="st">"Run 1001"</span>)</a></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 </div>
@@ -147,11 +147,11 @@ data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pmplot
 <h1 class="hasAnchor">
 <a href="#adopt-the-pmplots-look-and-feel" class="anchor"></a>Adopt the pmplots look and feel</h1>
 <p>At some point, you might have to create a plot outside of pmplots, but you still want to adopt the pmplots look and feel.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> data, <span class="kw">aes</span>(PRED,DV)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
-p</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> data, <span class="kw">aes</span>(PRED,DV)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a>
+<a class="sourceLine" id="cb8-2" title="2">p</a></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>Use these helpers to style the plot</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/pm_theme.html">pm_theme</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/pm_theme.html">pm_abline</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/pm_theme.html">pm_smooth</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/pm_theme.html">pm_theme</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/pm_theme.html">pm_abline</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/pm_theme.html">pm_smooth</a></span>()</a></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
   </div>
