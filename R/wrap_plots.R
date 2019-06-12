@@ -56,7 +56,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
   }
 
   if(length(y) > 1) {
-    if(multi_x) stop("Either columns or x must be length 1.", call.=FALSE)
+    if(multi_x) stop("either columns or x must be length 1.", call.=FALSE)
     x <- x[1]
     to_melt <- col_labels(y)
     df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
