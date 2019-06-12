@@ -5,7 +5,6 @@
 - `parse_label` and `label_parse_label` are exported
 
 # pmplots 0.2.0
-
 - Qualification under CR-88 and released to r_validated
 
 # pmplots 0.1.0.9002
