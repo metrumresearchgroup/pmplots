@@ -1,6 +1,6 @@
 # pmplots 0.2.0.9001
 - Add `label_fun` function to `pairs_plot` allowing strip labels to incorporate
-  expressions (#45)
+  expressions via `pmplots:::label_parse` (#45)
 
 # pmplots 0.2.0
 
