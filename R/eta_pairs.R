@@ -37,27 +37,26 @@ label_parse_label <- function(x) {
 
 ##' Pairs plots using ggpairs
 ##'
-##'
+##' This funciton is a wrapper to [GGally::ggpairs] with customized
+##' functions for upper and lower off-diagonal panels.
 ##'
 ##' @param x plotting data.frame
-##' @param etas character col//label for pairs data; see \code{\link{col_label}}
-##' @param bins passed to \code{geom_histogram}
-##' @param alpha passed to \code{geom_histogram}
-##' @param fill passed to \code{geom_histogram}
-##' @param col passed to \code{geom_histogram}
-##' @param label_fun labeler function
-##' @param upper_fun function to use for \code{upper} argument
-##' @param lower_fun function to use for \code{lower} argument
-##' @param ... passed to \code{GGally::ggpairs}
+##' @param etas character `col//label` for pairs data; see [col_label]
+##' @param bins passed to [ggplot2::geom_histogram]
+##' @param alpha passed to [ggplot2::geom_histogram]
+##' @param fill passed to [ggplot2::geom_histogram]
+##' @param col passed to [ggplot2::geom_histogram]
+##' @param label_fun labeler function; the default is based on
+##' @param upper_fun function to use for `upper` argument
+##' @param lower_fun function to use for `lower` argument
+##' @param ... passed to [GGally::ggpairs]
 ##'
-##' @details
-##' This function requires the \code{GGally} package to be installed.
+##' @details This function requires the `GGally` package to be installed.
 ##'
-##' When the length of \code{etas} is one, arguments
-##' are passed to \code{\link{eta_hist}} and that result is returned.
+##' When the length of `etas` is one, arguments are passed to [eta_hist] and
+##' that result is returned.
 ##'
-##' @return
-##' The result from a \code{ggpairs} call (a single plot).
+##' @return The result from a `ggpairs` call (a single plot).
 ##'
 ##' @examples
 ##'
@@ -70,7 +69,7 @@ label_parse_label <- function(x) {
 ##' df <- data.frame(x = rnorm(1000), y = rnorm(1000))
 ##'
 ##' pairs_plot(df, c("x", "y"))
-##'
+##' @md
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
                        col="grey", label_fun = label_parse_label,
