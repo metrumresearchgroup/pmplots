@@ -11,7 +11,8 @@
 \title{Faceted plots}
 \usage{
 wrap_cont_cont(df, x, y, ..., fun = cont_cont, title = NULL,
-  scales = "free_y", ncol = NULL, use_labels = FALSE)
+  scales = "free_y", ncol = NULL, use_labels = FALSE,
+  label_fun = label_parse_label)
 
 wrap_cont_time(df, ..., x = pm_axis_time())
 
@@ -20,7 +21,7 @@ wrap_res_time(df, ..., x = pm_axis_time())
 wrap_eta_cont(df, x, y, scales = "fixed", ...)
 
 wrap_hist(df, x, title = NULL, scales = "free_x", ncol = NULL,
-  use_labels = FALSE, ...)
+  use_labels = FALSE, label_fun = label_parse_label, ...)
 
 wrap_dv_preds(df, ..., title = "Predicted {yname}", xname = "",
   scales = "fixed")
@@ -49,7 +50,8 @@ be used in the strip; the column name is used otherwise}
 }
 \description{
 For these plots, data sets made long with respect to several
-y-axis variables and then plotted and faceted with \code{facet_wrap}.
+y-axis variables and then plotted and faceted with
+\link[ggplot2:facet_wrap]{ggplot2::facet_wrap}.
 }
 \details{
 \code{wrap_cont_cont} is a general function used by the others to

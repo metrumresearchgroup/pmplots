@@ -28,13 +28,6 @@ pairs_upper <- function(data, mapping, ...) {
           panel.grid.minor = ggplot2::element_blank())
 }
 
-label_parse_label <- function(x) {
-  x <- lapply(x, as.character)
-  lapply(x, function(values) {
-    lapply(values, parse_label)
-  })
-}
-
 ##' Pairs plots using ggpairs
 ##'
 ##' This funciton is a wrapper to [GGally::ggpairs] with customized
@@ -46,7 +39,9 @@ label_parse_label <- function(x) {
 ##' @param alpha passed to [ggplot2::geom_histogram]
 ##' @param fill passed to [ggplot2::geom_histogram]
 ##' @param col passed to [ggplot2::geom_histogram]
-##' @param label_fun labeler function; the default is based on
+##' @param label_fun labeler function that gets passed to [GGally::ggpairs];
+##' the default is based on [pmplots:::parse_label] and thus allows latex
+##' expressions in the label (see examples)
 ##' @param upper_fun function to use for `upper` argument
 ##' @param lower_fun function to use for `lower` argument
 ##' @param ... passed to [GGally::ggpairs]
@@ -69,6 +64,11 @@ label_parse_label <- function(x) {
 ##' df <- data.frame(x = rnorm(1000), y = rnorm(1000))
 ##'
 ##' pairs_plot(df, c("x", "y"))
+##'
+##' df2 <- dplyr::tibble(x = rnorm(100), y = x^2)
+##'
+##' pairs_plot(df2, c("x//x", "y//x$^2$"))
+##'
 ##' @md
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",

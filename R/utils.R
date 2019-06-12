@@ -254,6 +254,13 @@ parse_label <- function(x) {
   x
 }
 
+label_parse_label <- function(x) {
+  x <- lapply(x, as.character)
+  lapply(x, function(values) {
+    lapply(values, parse_label)
+  })
+}
+
 look_for_tex <- function(x) {
   if(getOption("pmplots_TeX_labels",FALSE)) {
     return(TRUE)

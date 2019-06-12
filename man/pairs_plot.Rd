@@ -24,7 +24,9 @@ eta_pairs(...)
 
 \item{col}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
 
-\item{label_fun}{labeler function; the default is based on}
+\item{label_fun}{labeler function that gets passed to \link[GGally:ggpairs]{GGally::ggpairs};
+the default is based on \link[pmplots:::parse_label]{pmplots::::parse_label} and thus allows latex
+expressions in the label (see examples)}
 
 \item{upper_fun}{function to use for \code{upper} argument}
 
@@ -56,4 +58,9 @@ eta_pairs(id,etas)
 df <- data.frame(x = rnorm(1000), y = rnorm(1000))
 
 pairs_plot(df, c("x", "y"))
+
+df2 <- dplyr::tibble(x = rnorm(100), y = x^2)
+
+pairs_plot(df2, c("x//x", "y//x$^2$"))
+
 }

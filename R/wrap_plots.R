@@ -2,7 +2,8 @@
 ##' Faceted plots
 ##'
 ##' For these plots, data sets made long with respect to several
-##' y-axis variables and then plotted and faceted with `facet_wrap`.
+##' y-axis variables and then plotted and faceted with
+##' [ggplot2::facet_wrap].
 ##'
 ##'
 ##' @param df data frame to plot
@@ -32,7 +33,8 @@
 ##' @export
 wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
                            title = NULL, scales = "free_y",
-                           ncol = NULL, use_labels = FALSE) {
+                           ncol = NULL, use_labels = FALSE,
+                           label_fun = label_parse_label) {
   multi_x <- FALSE
 
   if(length(x) > 1) {
@@ -66,7 +68,8 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
     }
   }
 
-  fun(df, x = x, y = y, ...) + facet_wrap(~variable, scales = scales, ncol = ncol)
+  fun(df, x = x, y = y, ...) +
+    facet_wrap(~variable, scales = scales, ncol = ncol, labeller=label_fun)
 }
 
 ##' @rdname wrap_plots
@@ -89,7 +92,8 @@ wrap_eta_cont <- function(df, x, y, scales="fixed", ...) {
 
 ##' @rdname wrap_plots
 ##' @export
-wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL, use_labels=FALSE, ...) {
+wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL,
+                      use_labels=FALSE, label_fun = label_parse_label, ...) {
   x <- col_labels(x)
   df <- gather(df, "variable", "value", x, factor_key=TRUE)
   if(use_labels) {
@@ -100,7 +104,8 @@ wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL, use_labe
   } else {
     x <- paste0("value//", title)
   }
-  cont_hist(df, x = x, ...) + facet_wrap(~variable, scales = scales, ncol=ncol)
+  cont_hist(df, x = x, ...) +
+    facet_wrap(~variable, scales = scales, ncol=ncol, labeller=label_fun)
 }
 
 ##' @rdname wrap_plots
