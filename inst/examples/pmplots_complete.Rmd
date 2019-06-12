@@ -551,12 +551,31 @@ pm_grid(p)
 
 # Some customization
 
-## Greek letters in axis title
+## Latex (including Greek letters) in axis title
 ```{r}
 dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
 ```
 
 \newpage
+
+## Latex in pairs plot
+
+```{r, fig.width=6}
+data <- dplyr::tibble(m = rnorm(100), s = rnorm(100), n = rnorm(100))
+
+x <- c("m//$\\mu$", "s//$\\sigma$", "n//$\\nu$")
+
+pairs_plot(data,x)
+```
+
+## Latex in wrapped plots
+
+```{r, fig.width=6}
+y <- c("WT//Weight (kg)", "BMI//BMI (kg/m$^2$)", "SCR//SCR (g/dL)")
+
+wrap_cont_time(df, y = y, use_labels=TRUE)
+```
+
 
 ## Modify x-axis
 
@@ -619,6 +638,15 @@ dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
 \newpage
+
+## Modify layer specs
+
+For example, change the values of argument for `geom_smooth`
+
+```{r}
+cwres_time(df, smooth = list(method = "loess", span = 0.1, se=TRUE))
+```
+
 
 ## Drop all extra layers
 ```{r}
