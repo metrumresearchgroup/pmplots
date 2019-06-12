@@ -40,7 +40,7 @@ pairs_upper <- function(data, mapping, ...) {
 ##' @param fill passed to [ggplot2::geom_histogram]
 ##' @param col passed to [ggplot2::geom_histogram]
 ##' @param label_fun labeler function that gets passed to [GGally::ggpairs];
-##' the default is based on [pmplots:::parse_label] and thus allows latex
+##' the default is based on [parse_label] and thus allows latex
 ##' expressions in the label (see examples)
 ##' @param upper_fun function to use for `upper` argument
 ##' @param lower_fun function to use for `lower` argument

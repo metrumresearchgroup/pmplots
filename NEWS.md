@@ -2,6 +2,7 @@
 - Add `label_fun` function to `pairs_plot`, `wrap_cont_cont` and 
   `wrap_hist` allowing strip labels to incorporate
   expressions via `pmplots:::label_parse` (#45)
+- `parse_label` and `label_parse_label` are exported
 
 # pmplots 0.2.0
 

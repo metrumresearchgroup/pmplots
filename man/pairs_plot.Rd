@@ -25,7 +25,7 @@ eta_pairs(...)
 \item{col}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
 
 \item{label_fun}{labeler function that gets passed to \link[GGally:ggpairs]{GGally::ggpairs};
-the default is based on \link[pmplots:::parse_label]{pmplots::::parse_label} and thus allows latex
+the default is based on \link{parse_label} and thus allows latex
 expressions in the label (see examples)}
 
 \item{upper_fun}{function to use for \code{upper} argument}

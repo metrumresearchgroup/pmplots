@@ -16,6 +16,8 @@
 ##' @param ncol passed to `facet_wrap`
 ##' @param use_labels if `TRUE`, the label part of `col_label` will
 ##' be used in the strip; the column name is used otherwise
+##' @param label_fun labeller function; passed to [ggplot::facet_wrap]; the
+##' default is based on [parse_label] and allows latex markup in the label
 ##' @param xname placeholder
 ##'
 ##' @details
