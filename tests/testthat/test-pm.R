@@ -207,6 +207,11 @@ test_that("eta pairs", {
   expect_is(x,"gg")
 })
 
+test_that("pairs_plot with latex", {
+  x <- pairs_plot(df, c("ETA1//ETA$_1$", "ETA2//ETA$_2$", "ETA3//ETA3"))
+  expect_is(x,"gg")
+})
+
 test_that("qq", {
   expect_is(cwresi_q(df),"gg")
   expect_is(wres_q(df),"gg")
