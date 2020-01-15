@@ -12,8 +12,9 @@
 ##' @importFrom rlang sym quo_text quos set_names quo_name as_list
 ##' @importFrom glue glue
 ##' @importFrom assertthat assert_that
-##' @importFrom tidyr gather
+##' @importFrom tidyr gather pivot_longer
 ##' @importFrom purrr map2 map map_df
+##' @importFrom forcats fct_inorder
 ##'
 NULL
 

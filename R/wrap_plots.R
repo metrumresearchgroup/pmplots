@@ -16,7 +16,7 @@
 #' @param ncol passed to `facet_wrap`
 #' @param use_labels if `TRUE`, the label part of `col_label` will
 #' be used in the strip; the column name is used otherwise
-#' @param label_fun labeller function; passed to [ggplot::facet_wrap]; the
+#' @param label_fun labeller function; passed to [ggplot2::facet_wrap]; the
 #' default is based on [parse_label] and allows latex markup in the label
 #' @param xname placeholder
 #'
@@ -48,7 +48,8 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
   if(multi_x) {
     y <- y[1]
     to_melt <- col_labels(x)
-    df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
+    df <- pivot_longer(df, cols = to_melt, names_to = "variable", values_to = "value")
+    df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
     if(use_labels) {
       df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
     }
@@ -63,12 +64,13 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
   if(multi_y) {
     x <- x[1]
     to_melt <- col_labels(y)
-    df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
+    df <- pivot_longer(df, cols = to_melt,names_to =  "variable", values_to = "value")
+    df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
     if(use_labels) {
       df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
     }
     if(!is.null(title)) {
-      y <- paste0("value", "//", title)
+      y <- paste0("value//", title)
     } else {
       y <- "value"
     }

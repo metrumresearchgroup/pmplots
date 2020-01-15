@@ -273,3 +273,8 @@ test_that("eta labs", {
   expect_identical(x, c(`ETA-CL` = "ETA1//ETA-CL", `ETA-KA` = "ETA2//ETA-KA"))
 })
 
+test_that("pairs plot with expression", {
+  p <- pairs_plot(df, c("CWRES", "WRES", "DV//Conc ($\\mu$M)"))
+  expect_is(p, "gg")
+
+})

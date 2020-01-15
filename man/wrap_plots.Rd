@@ -68,7 +68,7 @@ wrap_dv_preds(
 \item{use_labels}{if \code{TRUE}, the label part of \code{col_label} will
 be used in the strip; the column name is used otherwise}
 
-\item{label_fun}{labeller function; passed to \link[ggplot:facet_wrap]{ggplot::facet_wrap}; the
+\item{label_fun}{labeller function; passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}; the
 default is based on \link{parse_label} and allows latex markup in the label}
 
 \item{xname}{placeholder}
