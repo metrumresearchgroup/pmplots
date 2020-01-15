@@ -4,8 +4,14 @@
 \alias{pm_smooths}
 \title{Add loess line}
 \usage{
-pm_smooths(method = "loess", se = FALSE, lty = 2, lwd = 1.3,
-  col = .ggblue, ...)
+pm_smooths(
+  method = "loess",
+  se = FALSE,
+  lty = 2,
+  lwd = 1.3,
+  col = .ggblue,
+  ...
+)
 }
 \arguments{
 \item{method}{passed to \code{geom_smooth}}

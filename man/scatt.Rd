@@ -4,9 +4,18 @@
 \alias{scatt}
 \title{Scatter plot function}
 \usage{
-scatt(df, x, y, xs = defx(), ys = defy(), title = NULL,
-  group = NULL, col = NULL, scale_col = scale_color_brewer(palette =
-  "Set2", name = ""), ...)
+scatt(
+  df,
+  x,
+  y,
+  xs = defx(),
+  ys = defy(),
+  title = NULL,
+  group = NULL,
+  col = NULL,
+  scale_col = scale_color_brewer(palette = "Set2", name = ""),
+  ...
+)
 }
 \arguments{
 \item{df}{data frame to plot}

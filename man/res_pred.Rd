@@ -8,8 +8,15 @@
 \alias{npde_pred}
 \title{Residuals or NPDE versus predicted values}
 \usage{
-res_pred(df, x = pm_axis_pred(), y = pm_axis_res(), xname = "value",
-  xs = defx(), ys = defy(), ...)
+res_pred(
+  df,
+  x = pm_axis_pred(),
+  y = pm_axis_res(),
+  xname = "value",
+  xs = defx(),
+  ys = defy(),
+  ...
+)
 
 wres_pred(df, ..., y = pm_axis_wres())
 

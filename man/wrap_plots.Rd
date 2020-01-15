@@ -10,9 +10,18 @@
 \alias{wrap_dv_preds}
 \title{Faceted plots}
 \usage{
-wrap_cont_cont(df, x, y, ..., fun = cont_cont, title = NULL,
-  scales = "free_y", ncol = NULL, use_labels = FALSE,
-  label_fun = label_parse_label)
+wrap_cont_cont(
+  df,
+  x,
+  y,
+  ...,
+  fun = cont_cont,
+  title = NULL,
+  scales = "free_y",
+  ncol = NULL,
+  use_labels = FALSE,
+  label_fun = label_parse_label
+)
 
 wrap_cont_time(df, ..., x = pm_axis_time())
 
@@ -20,11 +29,24 @@ wrap_res_time(df, ..., x = pm_axis_time())
 
 wrap_eta_cont(df, x, y, scales = "fixed", ...)
 
-wrap_hist(df, x, title = NULL, scales = "free_x", ncol = NULL,
-  use_labels = FALSE, label_fun = label_parse_label, ...)
+wrap_hist(
+  df,
+  x,
+  title = NULL,
+  scales = "free_x",
+  ncol = NULL,
+  use_labels = FALSE,
+  label_fun = label_parse_label,
+  ...
+)
 
-wrap_dv_preds(df, ..., title = "Predicted {yname}", xname = "",
-  scales = "fixed")
+wrap_dv_preds(
+  df,
+  ...,
+  title = "Predicted {yname}",
+  xname = "",
+  scales = "fixed"
+)
 }
 \arguments{
 \item{df}{data frame to plot}

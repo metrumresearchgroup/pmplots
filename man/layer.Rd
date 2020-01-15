@@ -31,8 +31,7 @@ layer_sa(x, ...)
 
 layer_dots(x, ...)
 
-gs(method = "loess", se = FALSE, lty = 2, lwd = 1.35,
-  col = .ggblue, ...)
+gs(method = "loess", se = FALSE, lty = 2, lwd = 1.35, col = .ggblue, ...)
 
 ga(intercept = 0, slope = 1, lwd = 1.35, col = "darkgrey", ...)
 

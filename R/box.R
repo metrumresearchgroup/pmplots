@@ -71,7 +71,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 #' Plot continuous variable against a categorical variable
 #'
 #' This function is primarily called by other functions.
-#' \code{cont_cat_list} is a vectorized version of \code{cont_cat}.
+#' \code{pm_box_list} is a vectorized version of \code{cont_cat}.
 #'
 #' @param df data frame to plot
 #' @param x character col//title for x-axis data; see \code{\link{col_label}}

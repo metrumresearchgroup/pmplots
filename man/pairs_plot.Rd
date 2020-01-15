@@ -5,16 +5,25 @@
 \alias{eta_pairs}
 \title{Pairs plots using ggpairs}
 \usage{
-pairs_plot(x, etas, bins = 15, alpha = 0.6, fill = "black",
-  col = "grey", label_fun = label_parse_label, upper_fun = NULL,
-  lower_fun = NULL, ...)
+pairs_plot(
+  x,
+  etas,
+  bins = 15,
+  alpha = 0.6,
+  fill = "black",
+  col = "grey",
+  label_fun = label_parse_label,
+  upper_fun = NULL,
+  lower_fun = NULL,
+  ...
+)
 
 eta_pairs(...)
 }
 \arguments{
 \item{x}{plotting data.frame}
 
-\item{etas}{character \code{col//label} for pairs data; see \link{col_label}}
+\item{etas}{character \verb{col//label} for pairs data; see \link{col_label}}
 
 \item{bins}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
 

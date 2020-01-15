@@ -21,7 +21,7 @@ Imports:
   purrr
 Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny
 Depends: ggplot2 (>= 3.0.0)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Collate: 
     'Aaaa.R'
     'box.R'
