@@ -435,7 +435,7 @@ chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
   if(!(nchunk <= ntot)) {
     stop("nchunk must be <= number of IDs")
   }
-  nper <- ceiling(ntot/nchunk)
+  nper <- nchunk#ceiling(nchunk/ntot)
   a <- rep(seq(nchunk), each = nper, length.out = ntot)
   sp <- a[match(id,ids)]
   if(is.character(mark)) {
