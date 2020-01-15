@@ -7,8 +7,10 @@
 #'
 #'
 #' @param df data frame to plot
-#' @param x x-axis data in [col_label] format
-#' @param y y-axis data in [col_label] format
+#' @param x x-axis data in [col_label] format; if `y` has length greater than 1,
+#' then `x` must be length equal to 1
+#' @param y y-axis data in [col_label] format; if `x` has length greater than 1,
+#' then `y` must be length equal to 1
 #' @param ... passed to `fun`
 #' @param fun the plotting function
 #' @param title a title to use for the axis with faceting groups
@@ -28,6 +30,9 @@
 #' plots several different residuals (or NPDE) versus time. `wrap_eta_cont`
 #' plots etas versus a continuous covariate. `wrap_hist` creates a faceted
 #' histogram plot.
+#'
+#' For all plots, either `x` or `y` may contain multiple columns, but an error
+#' will be generated if both `x` and `y` list multiple columns.
 #'
 #' @md
 #' @rdname wrap_plots

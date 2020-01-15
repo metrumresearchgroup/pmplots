@@ -51,9 +51,11 @@ wrap_dv_preds(
 \arguments{
 \item{df}{data frame to plot}
 
-\item{x}{x-axis data in \link{col_label} format}
+\item{x}{x-axis data in \link{col_label} format; if \code{y} has length greater than 1,
+then \code{x} must be length equal to 1}
 
-\item{y}{y-axis data in \link{col_label} format}
+\item{y}{y-axis data in \link{col_label} format; if \code{x} has length greater than 1,
+then \code{y} must be length equal to 1}
 
 \item{...}{passed to \code{fun}}
 
@@ -85,4 +87,7 @@ plots several continuous variables versus time.  \code{wrap_res_time}
 plots several different residuals (or NPDE) versus time. \code{wrap_eta_cont}
 plots etas versus a continuous covariate. \code{wrap_hist} creates a faceted
 histogram plot.
+
+For all plots, either \code{x} or \code{y} may contain multiple columns, but an error
+will be generated if both \code{x} and \code{y} list multiple columns.
 }
