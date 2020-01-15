@@ -14,6 +14,8 @@ dv_pred_ipred_impl <- function(df,
                           font_size = 6,
                           margin = 2,
                           legend.position = "top",
+                          ncol = NULL,
+                          nrow = NULL,
                           fun = NULL
                           ) {
 
@@ -39,7 +41,7 @@ dv_pred_ipred_impl <- function(df,
         margin = marg
       )
     ) +
-    facet_wrap(fac) +
+    facet_wrap(fac,ncol = ncol, nrow = nrow) +
     scale_y_log10() +
     scale_x_continuous(breaks = xbreaks) +
     ylab(yl) + xlab(xl) +
