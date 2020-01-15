@@ -11,9 +11,6 @@ covr:
 everyfun:
 	Rscript  -e 'rmarkdown::render("inst/examples/pmplots_complete.Rmd")'
 
-readme:
-	Rscript -e 'library(rmarkdown)' -e 'render("README.Rmd")'
-
 examples:
 	make everyfun
 	make readme

@@ -1,3 +1,4 @@
+
 pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, ...) {
 
   mapping_list <- rlang::as_list(mapping)
@@ -29,26 +30,28 @@ pairs_upper <- function(data, mapping, ...) {
 
 ##' Pairs plots using ggpairs
 ##'
-##'
+##' This funciton is a wrapper to [GGally::ggpairs] with customized
+##' functions for upper and lower off-diagonal panels.
 ##'
 ##' @param x plotting data.frame
-##' @param etas character col//label for pairs data; see \code{\link{col_label}}
-##' @param bins passed to \code{geom_histogram}
-##' @param alpha passed to \code{geom_histogram}
-##' @param fill passed to \code{geom_histogram}
-##' @param col passed to \code{geom_histogram}
-##' @param upper_fun function to use for \code{upper} argument
-##' @param lower_fun function to use for \code{lower} argument
-##' @param ... passed to \code{GGally::ggpairs}
+##' @param etas character `col//label` for pairs data; see [col_label]
+##' @param bins passed to [ggplot2::geom_histogram]
+##' @param alpha passed to [ggplot2::geom_histogram]
+##' @param fill passed to [ggplot2::geom_histogram]
+##' @param col passed to [ggplot2::geom_histogram]
+##' @param label_fun labeler function that gets passed to [GGally::ggpairs];
+##' the default is based on [parse_label] and thus allows latex
+##' expressions in the label (see examples)
+##' @param upper_fun function to use for `upper` argument
+##' @param lower_fun function to use for `lower` argument
+##' @param ... passed to [GGally::ggpairs]
 ##'
-##' @details
-##' This function requires the \code{GGally} package to be installed.
+##' @details This function requires the `GGally` package to be installed.
 ##'
-##' When the length of \code{etas} is one, arguments
-##' are passed to \code{\link{eta_hist}} and that result is returned.
+##' When the length of `etas` is one, arguments are passed to [eta_hist] and
+##' that result is returned.
 ##'
-##' @return
-##' The result from a \code{ggpairs} call (a single plot).
+##' @return The result from a `ggpairs` call (a single plot).
 ##'
 ##' @examples
 ##'
@@ -62,9 +65,14 @@ pairs_upper <- function(data, mapping, ...) {
 ##'
 ##' pairs_plot(df, c("x", "y"))
 ##'
+##' df2 <- dplyr::tibble(x = rnorm(100), y = x^2)
+##'
+##' pairs_plot(df2, c("x//x", "y//x$^2$"))
+##'
+##' @md
 ##' @export
 pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
-                       col="grey",
+                       col="grey", label_fun = label_parse_label,
                        upper_fun = NULL, lower_fun = NULL, ...) {
 
   if(!requireNamespace("GGally")) {
@@ -96,15 +104,20 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
   labs <- sapply(etal, "[[", 2L)
   cols <- unique(cols)
   labs <- unique(labs)
+
   for(col in cols) {
     require_numeric(x,col)
   }
-  GGally::ggpairs(x, aes(...),
-                  columns=cols,
-                  columnLabels=labs,
-                  upper = list(continuous = pairs_upper),
-                  diag = list(continuous = diag),
-                  lower = list(continuous = pairs_lower)) + pm_theme()
+
+  GGally::ggpairs(
+    x, aes(...),
+    columns=cols,
+    columnLabels=labs,
+    labeller = label_fun,
+    upper = list(continuous = pairs_upper),
+    diag = list(continuous = diag),
+    lower = list(continuous = pairs_lower)
+  ) + pm_theme()
 }
 
 ##' @rdname pairs_plot

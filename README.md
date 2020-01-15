@@ -16,6 +16,11 @@ install.packages("pmplots", repos = unique(repos), type = "source", destdir = NU
 
 News can be found [here](news.md)
 
+## Function and workflow overview
+
+A functions and features (code + output) listing is available at 
+[pmplots_complete.md](https://ghe.metrumrg.com/software/pmplots/blob/master/inst/examples/pmplots_complete.md).  
+
 ## Vignettes
 
 - [Get started](https://ghe.metrumrg.com/pages/software/pmplots/articles/start.html)

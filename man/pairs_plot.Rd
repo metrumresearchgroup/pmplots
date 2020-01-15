@@ -6,40 +6,46 @@
 \title{Pairs plots using ggpairs}
 \usage{
 pairs_plot(x, etas, bins = 15, alpha = 0.6, fill = "black",
-  col = "grey", upper_fun = NULL, lower_fun = NULL, ...)
+  col = "grey", label_fun = label_parse_label, upper_fun = NULL,
+  lower_fun = NULL, ...)
 
 eta_pairs(...)
 }
 \arguments{
 \item{x}{plotting data.frame}
 
-\item{etas}{character col//label for pairs data; see \code{\link{col_label}}}
+\item{etas}{character \code{col//label} for pairs data; see \link{col_label}}
 
-\item{bins}{passed to \code{geom_histogram}}
+\item{bins}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
 
-\item{alpha}{passed to \code{geom_histogram}}
+\item{alpha}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
 
-\item{fill}{passed to \code{geom_histogram}}
+\item{fill}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
 
-\item{col}{passed to \code{geom_histogram}}
+\item{col}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+
+\item{label_fun}{labeler function that gets passed to \link[GGally:ggpairs]{GGally::ggpairs};
+the default is based on \link{parse_label} and thus allows latex
+expressions in the label (see examples)}
 
 \item{upper_fun}{function to use for \code{upper} argument}
 
 \item{lower_fun}{function to use for \code{lower} argument}
 
-\item{...}{passed to \code{GGally::ggpairs}}
+\item{...}{passed to \link[GGally:ggpairs]{GGally::ggpairs}}
 }
 \value{
 The result from a \code{ggpairs} call (a single plot).
 }
 \description{
-Pairs plots using ggpairs
+This funciton is a wrapper to \link[GGally:ggpairs]{GGally::ggpairs} with customized
+functions for upper and lower off-diagonal panels.
 }
 \details{
 This function requires the \code{GGally} package to be installed.
 
-When the length of \code{etas} is one, arguments
-are passed to \code{\link{eta_hist}} and that result is returned.
+When the length of \code{etas} is one, arguments are passed to \link{eta_hist} and
+that result is returned.
 }
 \examples{
 
@@ -52,5 +58,9 @@ eta_pairs(id,etas)
 df <- data.frame(x = rnorm(1000), y = rnorm(1000))
 
 pairs_plot(df, c("x", "y"))
+
+df2 <- dplyr::tibble(x = rnorm(100), y = x^2)
+
+pairs_plot(df2, c("x//x", "y//x$^2$"))
 
 }

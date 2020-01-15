@@ -241,6 +241,14 @@ col_labels <- function(x) {
   values
 }
 
+#' Parse the label part of a col_label
+#'
+#' @param x a character string
+#'
+#' @examples
+#' parse_label("foo $\\mu$")
+#'
+#' @export
 parse_label <- function(x) {
   if(substr(x,1,2)=="!!") {
     x <- parse(text=substr(x,3,nchar(x)))
@@ -252,6 +260,15 @@ parse_label <- function(x) {
     }
   }
   x
+}
+
+#' @rdname parse_label
+#' @export
+label_parse_label <- function(x) {
+  x <- lapply(x, as.character)
+  lapply(x, function(values) {
+    lapply(values, parse_label)
+  })
 }
 
 look_for_tex <- function(x) {

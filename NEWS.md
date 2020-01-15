@@ -1,3 +1,12 @@
+# pmplots 0.2.0.9001
+- Add `label_fun` function to `pairs_plot`, `wrap_cont_cont` and 
+  `wrap_hist` allowing strip labels to incorporate
+  expressions via `pmplots:::label_parse` (#45)
+- `parse_label` and `label_parse_label` are exported
+
+# pmplots 0.2.0
+- Qualification under CR-88 and released to r_validated
+
 # pmplots 0.1.0.9002
 - Added non-exported functions to generate default col-label information 
 (see `?pm_axis_functions`)
