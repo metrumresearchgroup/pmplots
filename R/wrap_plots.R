@@ -37,10 +37,15 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
                            title = NULL, scales = "free_y",
                            ncol = NULL, use_labels = FALSE,
                            label_fun = label_parse_label) {
-  multi_x <- FALSE
+  multi_x <- length(x) > 1
+  multi_y <- length(y) > 1
 
-  if(length(x) > 1) {
-    multi_x <- TRUE
+  if(multi_x && multi_y) {
+    stop("either x or y may have length > 1, not both.",call.=FALSE)
+  }
+
+
+  if(multi_x) {
     y <- y[1]
     to_melt <- col_labels(x)
     df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
@@ -49,14 +54,13 @@ wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
     }
 
     if(!is.null(title)) {
-      x <- paste0("value", "//", title)
+      x <- paste0("value//", title)
     } else {
       x <- "value"
     }
   }
 
-  if(length(y) > 1) {
-    if(multi_x) stop("either columns or x must be length 1.", call.=FALSE)
+  if(multi_y) {
     x <- x[1]
     to_melt <- col_labels(y)
     df <- gather(df, "variable", "value", to_melt, factor_key=TRUE)
