@@ -16,23 +16,29 @@ dv_pred_ipred_impl <- function(df,
                                margin = 2,
                                legend.position = "top",
                                pred_lty = 2,
-                               lwd = 1,
+                               ipred_lty = 1,
+                               lwd = 0.7,
                                size = 2,
+                               dv_shape = 1,
                                dv_line = FALSE,
-                               scales = "fixed",
-                               log_y = TRUE,
+                               dv_lwd = 0.5,
+                               scales = "free",
+                               log_y = FALSE,
+                               use_theme = theme_plain(),
+                               dv_color = "black",
+                               ipred_color = "firebrick",
+                               pred_color = "darkslateblue",
                                ncol = NULL,
                                nrow = NULL,
                                fun = NULL) {
 
-  df[["ONES"]] <- 1
-  df[["TWOS"]] <- 2
-  col <- ggthemes::ptol_pal()(3)
-
   show_dv <- TRUE
   show_ipred <- TRUE
   show_pred <- TRUE
-
+  ycols <- character(0)
+  clrs <- character(0)
+  lnes <- integer(0)
+  shapes <- integer(0)
   if(is.null(dv)) {
     dv <- col_label("DV")
     yl <- dv[2]
@@ -43,6 +49,13 @@ dv_pred_ipred_impl <- function(df,
     yl <- dv[2]
     dv <- dv[1]
     require_numeric(df,dv)
+    ycols <- c(ycols,dv)
+    clrs <- c(clrs, dv_color)
+    shapes <- c(shapes,dv_shape)
+    lnes <- c(lnes,0)
+    if(anyNA(df[[dv]])) {
+      warning("[pmplots] removed missing values in dv column",call.=FALSE)
+    }
   }
   if(is.null(ipred)) {
     ipred <- col_label("IPRED")[1]
@@ -50,6 +63,13 @@ dv_pred_ipred_impl <- function(df,
   } else {
     ipred <- col_label(ipred)[1]
     require_numeric(df,ipred)
+    ycols <- c(ycols, ipred)
+    clrs <- c(clrs,ipred_color)
+    lnes <- c(lnes,ipred_lty)
+    shapes <- c(shapes,NA)
+    if(anyNA(df[[ipred]])) {
+      warning("[pmplots] removed missing values in ipred column",call.=FALSE)
+    }
   }
   if(is.null(pred)) {
     pred <- col_label("PRED")[1]
@@ -57,9 +77,17 @@ dv_pred_ipred_impl <- function(df,
   } else {
     pred <- col_label(pred)[1]
     require_numeric(df,pred)
+    ycols <- c(ycols,pred)
+    clrs <- c(clrs,pred_color)
+    lnes <- c(lnes,pred_lty)
+    shapes <- c(shapes,NA)
+    if(anyNA(df[[pred]])) {
+      warning("[pmplots] removed missing values in pred column",call.=FALSE)
+    }
   }
-
-
+  if(length(ycols)==0) {
+    stop("no y columns to plot",call.=FALSE)
+  }
   x <- col_label(x)
   xl <- glue_unit(x[2],xunit)
   x <- x[1]
@@ -70,48 +98,41 @@ dv_pred_ipred_impl <- function(df,
 
   marg <- margin(margin,0,margin,0,unit = "pt")
   fac <- as.formula(paste0("~",id_col))
+  df <- df[,c(id_col,x,ycols),drop=FALSE]
+  df <- pivot_longer(df,cols = ycols,values_to="value",names_to="name")
 
-  p <- ggplot(df, aes(x = !!sym(x)))
+  p <-
+    ggplot(df, aes(x=.data[[x]],y=.data[["value"]])) +
+    ggplot2::scale_color_manual(name="", values = clrs) +
+    ggplot2::scale_linetype_manual(name="", values=lnes) +
+    ggplot2::scale_shape_manual(name="", values = shapes) +
+    geom_point(aes(shape=.data[["name"]],col=.data[["name"]]),na.rm=TRUE,size=size) +
+    geom_line(aes(lty=.data[["name"]],col=.data[["name"]]),lwd=lwd)
 
-  col_labels <- shape_labels <- character(0)
-
-  if(show_dv) {
-    if(dv_line) p <- p + geom_line(data = df,aes(y=DV), lwd = lwd, col = "darkgrey")
-    p <- p + geom_point(aes(y = DV,shape=factor(ONES)),size=size)
-    shape_labels <- "DV"
-  }
-  if(show_pred) {
-    p <- p + geom_line(aes(y = PRED,col = factor(ONES)),lty=pred_lty,lwd=lwd)
-    col_labels <- "PRED"
-  }
-  if(show_ipred) {
-    p <- p + geom_line(aes(y = IPRED,col = factor(TWOS)),lwd=lwd)
-    col_labels <- c(col_labels,"IPRED")
+  if(dv_line) {
+    dfline <- dplyr::filter(df,.data[["name"]]==dv)
+    p <- p + geom_line(data = dfline,col = dv_color, lwd = dv_lwd)
   }
 
   p <-
     p +
-    pm_theme() +
+    facet_wrap(fac,ncol = ncol, nrow = nrow,scales = scales) +
+    scale_x_continuous(breaks = xbreaks) +
+    ylab(yl) + xlab(xl) + rot_x(angle = angle)
+
+  if(log_y) p <- p + scale_y_log10()
+  p <- p + use_theme
+  if(is.function(fun)) p <- fun(p)
+  p <-
+    p +
     theme(
       legend.position = legend.position,
       strip.text = element_text(
         size = font_size,
         margin = marg
       )
-    ) +
-    facet_wrap(fac,ncol = ncol, nrow = nrow,scales = scales) +
-    scale_x_continuous(breaks = xbreaks) +
-    ylab(yl) + xlab(xl) + rot_x(angle = angle)
-
-  if(length(col_labels) > 0) {
-    p <- p + ggthemes::scale_color_ptol(name="", labels = col_labels)
-  }
-  if(length(shape_labels) > 0) {
-    p <- p + scale_shape_discrete(name = "", solid=FALSE, labels = shape_labels)
-  }
-  if(log_y) p <- p + scale_y_log10()
+    )
   p
-
 }
 
 #' @export
@@ -120,4 +141,9 @@ dv_pred_ipred <- function(data, ..., fun = NULL, id_per_plot = 9,id_col = "USUBJ
   out <- lapply(ans, dv_pred_ipred_impl, ...,  id_col = id_col)
   if(is.function(fun)) out <- lapply(out, fun)
   out
+}
+
+#' @export
+do_dv_pred_ipred <- function(data, options) {
+  do.call(dv_pred_ipred,c(list(data = data, options)))
 }

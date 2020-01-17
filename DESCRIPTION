@@ -19,8 +19,7 @@ Imports:
   assertthat, 
   tidyr, 
   purrr,
-  forcats, 
-  ggthemes
+  forcats
 Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny
 Depends: ggplot2 (>= 3.0.0)
 RoxygenNote: 7.0.2
