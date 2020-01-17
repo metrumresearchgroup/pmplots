@@ -415,7 +415,6 @@ pm_grid <- function(x, ..., ncol=2) {
   cowplot::plot_grid(plotlist=x, ..., ncol = ncol)
 }
 
-#' @export
 chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
   if(!is.data.frame(data)) {
     stop("data argument must be a data.frame")
@@ -435,8 +434,8 @@ chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
   if(!(nchunk <= ntot)) {
     stop("nchunk must be <= number of IDs")
   }
-  nper <- nchunk#ceiling(nchunk/ntot)
-  a <- rep(seq(nchunk), each = nper, length.out = ntot)
+  nper <- ceiling(ntot/nchunk)
+  a <- rep(seq(nper), each = nchunk, length.out = ntot)
   sp <- a[match(id,ids)]
   if(is.character(mark)) {
     data[[mark]] <- sp
