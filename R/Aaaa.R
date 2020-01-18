@@ -7,7 +7,7 @@
 #' @importFrom ggplot2 geom_abline geom_hline margin
 #' @importFrom ggplot2 stat_qq facet_wrap geom_histogram
 #' @importFrom ggplot2 scale_color_brewer theme_bw theme_set
-#' @importFrom ggplot2 element_text labs aes waiver
+#' @importFrom ggplot2 element_text labs aes waiver rel
 #' @importFrom ggplot2 scale_shape_discrete scale_x_continuous scale_y_log10
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list

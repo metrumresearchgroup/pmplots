@@ -42,6 +42,8 @@
 #' @param dv_color color to use for `DV` points
 #' @param ipred_color color to use for `IPRED` line
 #' @param pred_color color to use for `PRED` line
+#' @param axis.text.rel relative text size for axis text; use this to selectively
+#' decrease font size for axis tick labels
 #' @param fun a function accepting a gg object as arugment and returning
 #' an updated gg object; experimental
 #'
@@ -50,13 +52,16 @@
 #' if both `nrow` and `ncol` are supplied and numeric, `id_per_plot` will be set
 #' to `nrow*ncol`.
 #'
+#' @examples
 #'
+#' data <- pmplots_data_obs()
 #'
+#' p <- dv_pred_ipred(data, ylab="Concentration (ng/mL)", nrow=3, ncol=3)
 #'
 #' @md
 #' @export
 dv_pred_ipred <- function(data, ...,id_per_plot = 9,
-                          id_col = "USUBJID",nrow = NULL, ncol = NULL, fun=NULL) {
+                          id_col = "ID",nrow = NULL, ncol = NULL, fun=NULL) {
   if(is.numeric(nrow) && is.numeric(ncol)) {
     if(!missing(id_per_plot) & id_per_plot != nrow*ncol) {
       warning("updating id_per_plot to ", nrow*ncol,call.=FALSE)
@@ -82,7 +87,7 @@ dv_pred_ipred_impl <- function(data,
                                xunit = "hr",
                                xlab  = NULL,
                                ylab  = NULL,
-                               angle = 0,
+                               angle = NULL,
                                font_size = 5,
                                margin = 1,
                                legend.position = "top",
@@ -101,6 +106,7 @@ dv_pred_ipred_impl <- function(data,
                                pred_color = "darkslateblue",
                                ncol = NULL,
                                nrow = NULL,
+                               axis.text.rel = NULL,
                                fun = NULL) {
 
   show_dv <- TRUE
@@ -171,6 +177,7 @@ dv_pred_ipred_impl <- function(data,
   if(is.character(xlab)) xl <- xlab
 
   marg <- margin(margin,0,margin,0,unit = "pt")
+  strip.text = element_text(size = font_size,margin=marg)
   fac <- as.formula(paste0("~",id_col))
   data <- data[,c(id_col,x,ycols),drop=FALSE]
   data <- pivot_longer(data,cols = ycols,values_to="value",names_to="name")
@@ -195,17 +202,21 @@ dv_pred_ipred_impl <- function(data,
     ylab(yl) + xlab(xl)
 
   if(log_y) p <- p + scale_y_log10()
-  p <- p + use_theme
-  p <-
-    p +
+
+  if(is.numeric(angle)) p <- p + rot_x(angle)
+
+  use_theme <-
+    use_theme +
     theme(
       legend.position = legend.position,
-      strip.text = element_text(
-        size = font_size,
-        margin = marg
-      )
+      strip.text = strip.text
     )
-  p + rot_x(angle = angle)
+  if(is.numeric(axis.text.rel)) {
+    axtx <- element_text(size=ggplot2::rel(axis.text.rel))
+    use_theme <- use_theme + theme(axis.text = axtx)
+  }
+
+  p + use_theme
 }
 
 #' @param options a named list of options to pass to [dv_pred_ipred]

@@ -7,7 +7,7 @@
 \alias{pm_hline}
 \title{The standard pmplots theme}
 \usage{
-pm_theme()
+pm_theme(...)
 
 pm_abline(...)
 
