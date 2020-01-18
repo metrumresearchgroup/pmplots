@@ -102,6 +102,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
 #'
 #' @export
 pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
+  if(length(x) > 1 || length(y) > 1) {
+    return(pm_box_list(df,x,y,xs=xs,ys=ys,...))
+  }
   x <- col_label(x)
   if(length(x)!=2) stop("invalid x value", call.=FALSE)
   y <- col_label(y)

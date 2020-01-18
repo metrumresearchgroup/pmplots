@@ -150,6 +150,9 @@ y_time <- function(df,
 #'
 #' @export
 pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
+  if(length(x) > 1 || length(y) > 1) {
+    return(pm_scatter_list(df,x,y,xs=xs,ys=ys,...))
+  }
   y <- col_label(y)
   x <- col_label(x)
   xlab <- x[2]
@@ -164,8 +167,6 @@ pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
 pm_scatter_list <- function(df, x, y, ...) {
   list_plot_xy(df, x, y, cont_cont, ...)
 }
-
-
 
 #' @rdname pm_scatter
 #' @export
