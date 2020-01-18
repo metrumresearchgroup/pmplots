@@ -8,12 +8,12 @@
 \usage{
 dv_pred_ipred(
   data,
-  ...,
   id_per_plot = 9,
   id_col = "ID",
   nrow = NULL,
   ncol = NULL,
-  fun = NULL
+  fun = NULL,
+  ...
 )
 
 dv_pred_ipred_impl(
@@ -50,12 +50,10 @@ dv_pred_ipred_impl(
   fun = NULL
 )
 
-do_dv_pred_ipred(data, options)
+do_dv_pred_ipred(data, options = list())
 }
 \arguments{
 \item{data}{the data frame to plot}
-
-\item{...}{additional arguments passed to \link{dv_pred_ipred_impl}}
 
 \item{id_per_plot}{number of subjects to include in each page}
 
@@ -68,6 +66,8 @@ be displayed in the plot strip}
 
 \item{fun}{a function accepting a gg object as arugment and returning
 an updated gg object; experimental}
+
+\item{...}{additional arguments passed to \link{dv_pred_ipred_impl}}
 
 \item{x}{the time-axis column, in \link{col_label} format; the title portion is
 used for the x-axis title along with \code{xunit}; seel also the \code{xlab} argument}

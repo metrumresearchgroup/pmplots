@@ -60,8 +60,8 @@
 #'
 #' @md
 #' @export
-dv_pred_ipred <- function(data, ...,id_per_plot = 9,
-                          id_col = "ID",nrow = NULL, ncol = NULL, fun=NULL) {
+dv_pred_ipred <- function(data, id_per_plot = 9,
+                          id_col = "ID",nrow = NULL, ncol = NULL, fun=NULL,...) {
   if(is.numeric(nrow) && is.numeric(ncol)) {
     if(!missing(id_per_plot) & id_per_plot != nrow*ncol) {
       warning("updating id_per_plot to ", nrow*ncol,call.=FALSE)
@@ -222,6 +222,7 @@ dv_pred_ipred_impl <- function(data,
 #' @param options a named list of options to pass to [dv_pred_ipred]
 #' @rdname dv_pred_ipred
 #' @export
-do_dv_pred_ipred <- function(data, options) {
-  do.call(dv_pred_ipred,c(list(data = data, options)))
+do_dv_pred_ipred <- function(data, options=list()) {
+  options[["data"]] <- data
+  do.call(dv_pred_ipred,options)
 }
