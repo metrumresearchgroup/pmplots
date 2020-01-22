@@ -478,6 +478,20 @@ dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 
 \newpage
 
+# DV-PRED-IPRED
+
+- This returns a list of plots; we show only one here (the first 9 IDs) 
+as an example
+
+```{r}
+dd1 <- filter(df, ID <=9)
+
+dv_pred_ipred(dd1, nrow = 3, ncol = 3, ylab = "Concentration (ng/mL)", log_y=TRUE)
+```
+
+
+\newpage
+
 # Wrapped plots
 
 ## histogram
@@ -518,6 +532,16 @@ wrap_eta_cont(
 ```{r}
 wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 ```
+
+\newpage
+
+# Vectorized plots
+
+```{r}
+pm_scatter(df, x = "TIME", y = c("RES", "WRES", "CWRES"))
+```
+
+
 
 \newpage
 
