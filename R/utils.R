@@ -415,3 +415,30 @@ pm_grid <- function(x, ..., ncol=2) {
   cowplot::plot_grid(plotlist=x, ..., ncol = ncol)
 }
 
+chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
+  if(!is.data.frame(data)) {
+    stop("data argument must be a data.frame")
+  }
+  if(!exists(id_col,data)) {
+    stop(sprintf("chunking column %s does not exist in data", id_col))
+  }
+  if(!is.numeric(nchunk)) {
+    stop("nchunk must be numeric")
+  }
+  if(!(nchunk > 0)) {
+    stop("nchunk must be greater than zero")
+  }
+  id <- data[[id_col]]
+  ids <- unique(id)
+  ntot <- length(ids)
+  if(!(nchunk <= ntot)) {
+    stop("nchunk must be <= number of IDs")
+  }
+  nper <- ceiling(ntot/nchunk)
+  a <- rep(seq(nper), each = nchunk, length.out = ntot)
+  sp <- a[match(id,ids)]
+  if(is.character(mark)) {
+    data[[mark]] <- sp
+  }
+  split.data.frame(data, sp)
+}

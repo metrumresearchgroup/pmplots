@@ -4,8 +4,7 @@
 ##' @export
 theme_plain <- function(...) {
   ggplot2::theme_bw() +
-    ggplot2::theme(panel.grid.major=noline,panel.grid.minor=noline,
-                   plot.margin=margin(0.5,0.5,1,0.5,unit="cm"),...)
+    ggplot2::theme(panel.grid.major=noline,panel.grid.minor=noline,...)
 }
 
 ##' Add loess line
@@ -43,8 +42,8 @@ pm_smooths <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...
 ##' \code{\link{theme_plain}}.
 ##'
 ##' @export
-pm_theme <- function() {
-  theme_bw()
+pm_theme <- function(...) {
+  theme_bw(...)
 }
 
 ##' @rdname pm_theme

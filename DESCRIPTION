@@ -30,6 +30,7 @@ Collate:
     'data.R'
     'dv_pred.R'
     'dv_time.R'
+    'dv_pred_ipred.R'
     'eta_cat.R'
     'eta_cont.R'
     'eta_hist.R'

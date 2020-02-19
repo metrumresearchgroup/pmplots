@@ -276,5 +276,17 @@ test_that("eta labs", {
 test_that("pairs plot with expression", {
   p <- pairs_plot(df, c("CWRES", "WRES", "DV//Conc ($\\mu$M)"))
   expect_is(p, "gg")
-
 })
+
+test_that("dv_pred_ipred issue-6", {
+  df <- filter(df, ID <= 15)
+  p <- dv_pred_ipred(df, ncol = 3, nrow = 5)
+  expect_is(p,"list")
+  expect_is(p[[1]],"gg")
+  p2 <- do_dv_pred_ipred(df, options = list(nrow = 5, ncol =3))
+  expect_equivalent(p,p2)
+  expect_error(dv_pred_ipred(df, id_col = "USUBJID"))
+  df[["DV"]][10] <- NA_real_
+  expect_warning(dv_pred_ipred(df),regexp="removed missing values in dv column")
+})
+
