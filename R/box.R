@@ -21,7 +21,11 @@ box_labels <- function(df, x, y) {
 #' @param title passed to \code{ggtitle}
 #' @param shown if \code{TRUE} provide a numeric summary of each
 #' box (see details)
-#' @param ... not used
+#' @param points show points in back of transparent boxes; if \code{TRUE},
+#' a default display of points is made on top of boxes; also may be passed as
+#' a list of arguments to pass to \code{geom_point}; see details
+#' @param outlier.shape passed to \code{geom_boxplot}
+#' @param ... arguments passed to \code{geom_boxplot}
 #'
 #' @details
 #' Since this function creates a boxplot,
@@ -43,9 +47,22 @@ box_labels <- function(df, x, y) {
 #' another variable in the data set.  In this case, either use
 #' \code{shown=FALSE} or create the plot with \code{\link{split_plot}}.
 #'
+#' When the user passes the \code{points} argument, \code{outlier.shape} is
+#' automatically switched to \code{NA} so that outlier points are only plotted
+#' once.  The \code{fill} argument is also set to \code{NA}, so that boxes become
+#' transparent, showing the points.
+#'
+#' When the user sets \code{points} to \code{TRUE}, grey points are shown
+#' in back of transparent boxes and the points are jittered in the x-direction.
+#' The user can customize the display of the points by passing a list of
+#' arguments for \code{geom_point} (for example, change the color, transparency,
+#' size, jitter amount, etc).
+#'
+#'
 #' @export
 boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
-                    alpha=1, hline = NULL, title=NULL, shown = TRUE, ...) {
+                    alpha=1, hline = NULL, title=NULL, shown = TRUE,
+                    points = NULL, outlier.shape = 19, ...) {
 
   if(shown) {
     require_column(df, "ID")
@@ -60,7 +77,21 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
   xscale <- do.call("scale_x_discrete", xs)
 
   p <- ggplot(data=df, aes_string(x=x,y=y))
-  p <- p + geom_boxplot(fill=fill, alpha=alpha, ...) + yscale + xscale
+
+  do_points <- !missing(points) & !is.null(points)
+  if(do_points) {
+    outlier.shape <- NA
+    fill <- NA
+    def <- list(col = "grey", position  = "jitter")
+    if(is.list(points)) {
+      points <- combine_list(def,points)
+    } else {
+      points <- def
+    }
+    p <- p + do.call(geom_point,points)
+  }
+  p <- p + geom_boxplot(fill=fill, alpha=alpha, outlier.shape = outlier.shape, ...)
+  p <- p + yscale + xscale
   if(is.numeric(hline)) {
     p <- p + geom_hline(yintercept=hline,lwd=1, lty=2)
   }
