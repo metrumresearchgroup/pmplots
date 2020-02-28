@@ -5,7 +5,7 @@
 \alias{rot_y}
 \title{Rotate axis text}
 \usage{
-rot_x(angle = 30, hjust = 1, vjust = NULL, ...)
+rot_x(angle = 30, hjust = 1, vjust = NULL, flip_text = FALSE, ...)
 
 rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
 }
@@ -16,6 +16,11 @@ rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
 
 \item{vjust}{passed to \link[ggplot:element_text]{ggplot::element_text}}
 
+\item{flip_text}{if \code{TRUE}, then x-axis tick labels are rotated 90 degrees
+with \code{vjust} set to 0.5 and \code{hjust} set to 0; \code{hjust} is changed only if
+the argument is not passed by the user; this argument only applies to
+\code{rot_x}}
+
 \item{...}{pased to \link[ggplot:element_text]{ggplot::element_text}}
 }
 \description{
@@ -25,5 +30,9 @@ Rotate axis text
 data <- pmplots_data_obs()
 
 dv_pred(data) + rot_x()
+
+\dontrun{
+cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE)
+}
 
 }

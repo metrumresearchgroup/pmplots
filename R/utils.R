@@ -327,6 +327,10 @@ update_list <- function(left, right) {
 ##' @param angle passed to [ggplot::element_text]
 ##' @param hjust passed to [ggplot::element_text]
 ##' @param vjust passed to [ggplot::element_text]
+##' @param flip_text if `TRUE`, then x-axis tick labels are rotated 90 degrees
+##' with `vjust` set to 0.5 and `hjust` set to 0; `hjust` is changed only if
+##' the argument is not passed by the user; this argument only applies to
+##' `rot_x`
 ##' @param ... pased to [ggplot::element_text]
 ##'
 ##' @examples
@@ -334,9 +338,18 @@ update_list <- function(left, right) {
 ##'
 ##' dv_pred(data) + rot_x()
 ##'
+##' \dontrun{
+##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE)
+##' }
+##'
 ##' @md
 ##' @export
-rot_x <- function(angle=30, hjust = 1, vjust = NULL, ...) {
+rot_x <- function(angle=30, hjust = 1, vjust = NULL, flip_text = FALSE, ...) {
+  if(flip_text) {
+    angle <- 90
+    vjust <- 0.5
+    if(missing(hjust)) hjust <- 0
+  }
   x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
   theme(axis.text.x=x)
 }
