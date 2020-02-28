@@ -340,6 +340,7 @@ update_list <- function(left, right) {
 ##'
 ##' \dontrun{
 ##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE, hjust = 1)
 ##' }
 ##'
 ##' @md
