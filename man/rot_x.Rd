@@ -21,7 +21,7 @@ with \code{vjust} set to 0.5 and \code{hjust} set to 0; \code{hjust} is changed 
 the argument is not passed by the user; this argument only applies to
 \code{rot_x}}
 
-\item{...}{pased to \link[ggplot:element_text]{ggplot::element_text}}
+\item{...}{pased to \link[ggplot2:element_text]{ggplot2::element_text}}
 }
 \description{
 Rotate axis text

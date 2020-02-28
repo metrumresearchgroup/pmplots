@@ -331,7 +331,7 @@ update_list <- function(left, right) {
 ##' with `vjust` set to 0.5 and `hjust` set to 0; `hjust` is changed only if
 ##' the argument is not passed by the user; this argument only applies to
 ##' `rot_x`
-##' @param ... pased to [ggplot::element_text]
+##' @param ... pased to [ggplot2::element_text]
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
