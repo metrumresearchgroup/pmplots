@@ -324,23 +324,28 @@ update_list <- function(left, right) {
 
 ##' Rotate axis text
 ##'
-##' @param angle passed to \code{ggplot::element_text}
-##' @param hjust passed to \code{ggplot::element_text}
+##' @param angle passed to [ggplot::element_text]
+##' @param hjust passed to [ggplot::element_text]
+##' @param vjust passed to [ggplot::element_text]
+##' @param ... pased to [ggplot::element_text]
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
 ##'
 ##' dv_pred(data) + rot_x()
 ##'
+##' @md
 ##' @export
-rot_x <- function(angle=30, hjust = 1) {
-  theme(axis.text.x = element_text(angle = angle, hjust = hjust))
+rot_x <- function(angle=30, hjust = 1, vjust = NULL, ...) {
+  x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+  theme(axis.text.x=x)
 }
 
 ##' @rdname rot_x
 ##' @export
-rot_y <- function(angle=30, hjust = 1) {
-  theme(axis.text.y = element_text(angle = angle, hjust = hjust))
+rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
+  y <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+  theme(axis.text.y=y)
 }
 
 .has <- function(name,object) {

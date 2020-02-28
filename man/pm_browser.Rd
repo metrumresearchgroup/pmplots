@@ -10,12 +10,12 @@ pm_browser(quiet = FALSE, title = TRUE)
 pm_browser_show(x, plot_name = NULL)
 }
 \arguments{
-\item{quiet}{if `TRUE` then a summary of available plots
+\item{quiet}{if \code{TRUE} then a summary of available plots
 will be printed}
 
-\item{title}{if `TRUE`, plotting code will be added as the plot title}
+\item{title}{if \code{TRUE}, plotting code will be added as the plot title}
 
-\item{x}{output from `pm_browser`}
+\item{x}{output from \code{pm_browser}}
 
 \item{plot_name}{the name of a plot to show}
 }

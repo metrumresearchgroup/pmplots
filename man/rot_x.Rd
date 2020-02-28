@@ -5,14 +5,18 @@
 \alias{rot_y}
 \title{Rotate axis text}
 \usage{
-rot_x(angle = 30, hjust = 1)
+rot_x(angle = 30, hjust = 1, vjust = NULL, ...)
 
-rot_y(angle = 30, hjust = 1)
+rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
 }
 \arguments{
-\item{angle}{passed to \code{ggplot::element_text}}
+\item{angle}{passed to \link[ggplot:element_text]{ggplot::element_text}}
 
-\item{hjust}{passed to \code{ggplot::element_text}}
+\item{hjust}{passed to \link[ggplot:element_text]{ggplot::element_text}}
+
+\item{vjust}{passed to \link[ggplot:element_text]{ggplot::element_text}}
+
+\item{...}{pased to \link[ggplot:element_text]{ggplot::element_text}}
 }
 \description{
 Rotate axis text
