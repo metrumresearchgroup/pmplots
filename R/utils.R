@@ -324,23 +324,42 @@ update_list <- function(left, right) {
 
 ##' Rotate axis text
 ##'
-##' @param angle passed to \code{ggplot::element_text}
-##' @param hjust passed to \code{ggplot::element_text}
+##' @param angle passed to [ggplot2::element_text]
+##' @param hjust passed to [ggplot2::element_text]
+##' @param vjust passed to [ggplot2::element_text]
+##' @param flip_text if `TRUE`, then x-axis tick labels are rotated 90 degrees
+##' with `vjust` set to 0.5 and `hjust` set to 0; `hjust` is changed only if
+##' the argument is not passed by the user; this argument only applies to
+##' `rot_x`
+##' @param ... pased to [ggplot2::element_text]
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
 ##'
 ##' dv_pred(data) + rot_x()
 ##'
+##' \dontrun{
+##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE, hjust = 1)
+##' }
+##'
+##' @md
 ##' @export
-rot_x <- function(angle=30, hjust = 1) {
-  theme(axis.text.x = element_text(angle = angle, hjust = hjust))
+rot_x <- function(angle=30, hjust = 1, vjust = NULL, flip_text = FALSE, ...) {
+  if(flip_text) {
+    angle <- 90
+    vjust <- 0.5
+    if(missing(hjust)) hjust <- 0
+  }
+  x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+  theme(axis.text.x=x)
 }
 
 ##' @rdname rot_x
 ##' @export
-rot_y <- function(angle=30, hjust = 1) {
-  theme(axis.text.y = element_text(angle = angle, hjust = hjust))
+rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
+  y <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+  theme(axis.text.y=y)
 }
 
 .has <- function(name,object) {

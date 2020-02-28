@@ -128,7 +128,7 @@ but the label portion is discarded}
 \item{axis.text.rel}{relative text size for axis text; use this to selectively
 decrease font size for axis tick labels}
 
-\item{options}{a named list of options to pass to [dv_pred_ipred]}
+\item{options}{a named list of options to pass to \link{dv_pred_ipred}}
 }
 \description{
 \code{DV} is plotted with a symbol while \code{PRED} and \code{IPRED} are plotted with lines.
