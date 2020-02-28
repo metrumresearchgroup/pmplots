@@ -324,9 +324,9 @@ update_list <- function(left, right) {
 
 ##' Rotate axis text
 ##'
-##' @param angle passed to [ggplot::element_text]
-##' @param hjust passed to [ggplot::element_text]
-##' @param vjust passed to [ggplot::element_text]
+##' @param angle passed to [ggplot2::element_text]
+##' @param hjust passed to [ggplot2::element_text]
+##' @param vjust passed to [ggplot2::element_text]
 ##' @param flip_text if `TRUE`, then x-axis tick labels are rotated 90 degrees
 ##' with `vjust` set to 0.5 and `hjust` set to 0; `hjust` is changed only if
 ##' the argument is not passed by the user; this argument only applies to
