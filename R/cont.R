@@ -4,21 +4,24 @@
 #' @param df data frame to plot
 #' @param x character name for x-axis data
 #' @param y character name for y-axis data
-#' @param xs see \code{\link{defx}}
-#' @param ys see \code{\link{defy}}
-#' @param title character, passed to \code{ggtitle}
+#' @param xs see [defx]
+#' @param ys see [defy]
+#' @param title character, passed to [ggplot2::ggtitle]
 #' @param group character name of grouping variable
-#' @param col not used
-#' @param scale_col not used
+#' @param col character name of variable to color the points
+#' @param scale_col discrete scale to use for coloring the points (see default)
+#' @param plot_id if `TRUE` then subject IDs are plotted rather than points;
+#' see the `size` argument - the size may need to be increased when plotting IDs
+#' @param size passed to [ggplot2::geom_point] or [ggplot2::geom_text]
 #' @param ... not used
 #'
 #' @details
 #' Since this function creates a scatter plot,
-#' both the \code{x} and \code{y} columns must
+#' both the `x` and `y` columns must
 #' be numeric.
 #'
 #' @return A single plot.
-#'
+#' @md
 #' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
                   title = NULL, group=NULL, col=NULL, plot_id = FALSE,
@@ -28,18 +31,14 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
-
   locol <- .ggblue
-
   p <- ggplot(data=df,aes_string(x,y,col=col))
-
   if(plot_id) {
     require_column(df,"ID")
     p <- p + geom_text(aes_string(label="ID"), size = size)
   } else {
     p <- p + geom_point(size = size)
   }
-
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
   if(is.character(title)) p <- p + ggtitle(title)
   p + xscale + yscale + pm_theme()
