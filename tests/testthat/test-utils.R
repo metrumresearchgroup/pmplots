@@ -49,6 +49,7 @@ test_that("char", {
 })
 
 test_that("search col name", {
+  data$CWRES <- NULL
   a <- pmplots:::search_cwres_i("CWRES", data)
   expect_equal(a,"CWRESI")
 })
