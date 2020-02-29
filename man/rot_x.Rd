@@ -5,7 +5,7 @@
 \alias{rot_y}
 \title{Rotate axis text}
 \usage{
-rot_x(angle = 30, hjust = 1, vjust = NULL, flip_text = FALSE, ...)
+rot_x(angle = 30, hjust = 1, vjust = NULL, vertical = FALSE, ...)
 
 rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
 }
@@ -16,15 +16,22 @@ rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
 
 \item{vjust}{passed to \link[ggplot2:element_text]{ggplot2::element_text}}
 
-\item{flip_text}{if \code{TRUE}, then x-axis tick labels are rotated 90 degrees
-with \code{vjust} set to 0.5 and \code{hjust} set to 0; \code{hjust} is changed only if
-the argument is not passed by the user; this argument only applies to
-\code{rot_x}}
+\item{vertical}{if \code{TRUE}, then x-axis tick labels are rotated 90 degrees
+with \code{vjust} set to 0.5 and \code{hjust} set to 0; when \code{vertical} is set to
+\code{TRUE}, then \code{hjust} can be passed as character string that must match
+either \code{top} (then \code{hjust} is set to 1) or \code{bottom} (then \code{hjust} is set to
+0}
 
 \item{...}{pased to \link[ggplot2:element_text]{ggplot2::element_text}}
 }
 \description{
 Rotate axis text
+}
+\details{
+If x-axis tick labels do not have enough space, consider using
+\code{vert = TRUE}.  By default, the tick labels will be justified up to the
+x-axis line.  Use \code{hjust = "b"} or \code{hjust = "bottom"} (with \code{vert = TRUE})
+to justify the axis labels toward the bottom margin of the plot.
 }
 \examples{
 data <- pmplots_data_obs()
@@ -32,8 +39,8 @@ data <- pmplots_data_obs()
 dv_pred(data) + rot_x()
 
 \dontrun{
-cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE)
-cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE, hjust = 1)
+cwres_cat(data, x = "CPc") + rot_x(vert = TRUE)
+cwres_cat(data, x = "CPc") + rot_x(vert = TRUE, hjust = "b")
 }
 
 }

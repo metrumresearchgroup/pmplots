@@ -58,7 +58,7 @@ test_that("args are passed to rot_x and rot_y", {
   expect_is(p, "gg")
   p <- dv_time(data) + rot_y(hjust = 0, vjust = 0)
   expect_is(p, "gg")
-  p <- dv_time(data) + rot_x(flip_text = TRUE)
+  p <- dv_time(data) + rot_x(vert = TRUE)
   expect_is(p, "gg")
 })
 
