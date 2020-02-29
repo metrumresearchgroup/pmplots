@@ -21,7 +21,8 @@
 #'
 #' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
-                  title = NULL, group=NULL, col=NULL,
+                  title = NULL, group=NULL, col=NULL, plot_id = FALSE,
+                  size = 2,
                   scale_col = scale_color_brewer(palette="Set2", name=""),
                   ... ) {
 
@@ -30,12 +31,18 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 
   locol <- .ggblue
 
-  p <- ggplot(data=df,aes_string(x,y,col=col)) + geom_point() +
-    xscale + yscale
+  p <- ggplot(data=df,aes_string(x,y,col=col))
+
+  if(plot_id) {
+    require_column(df,"ID")
+    p <- p + geom_text(aes_string(label="ID"), size = size)
+  } else {
+    p <- p + geom_point(size = size)
+  }
 
   if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
   if(is.character(title)) p <- p + ggtitle(title)
-  p + pm_theme()
+  p + xscale + yscale + pm_theme()
 }
 
 #' Plot continuous data versus time
