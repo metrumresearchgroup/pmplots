@@ -327,11 +327,17 @@ update_list <- function(left, right) {
 ##' @param angle passed to [ggplot2::element_text]
 ##' @param hjust passed to [ggplot2::element_text]
 ##' @param vjust passed to [ggplot2::element_text]
-##' @param flip_text if `TRUE`, then x-axis tick labels are rotated 90 degrees
-##' with `vjust` set to 0.5 and `hjust` set to 0; `hjust` is changed only if
-##' the argument is not passed by the user; this argument only applies to
-##' `rot_x`
+##' @param vertical if `TRUE`, then x-axis tick labels are rotated 90 degrees
+##' with `vjust` set to 0.5 and `hjust` set to 0; when `vertical` is set to
+##' `TRUE`, then `hjust` can be passed as character string that must match
+##' either `top` (then `hjust` is set to 1) or `bottom` (then `hjust` is set to
+##' 0
 ##' @param ... pased to [ggplot2::element_text]
+##'
+##' @details If x-axis tick labels do not have enough space, consider using
+##' `vert = TRUE`.  By default, the tick labels will be justified up to the
+##' x-axis line.  Use `hjust = "b"` or `hjust = "bottom"` (with `vert = TRUE`)
+##' to justify the axis labels toward the bottom margin of the plot.
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
@@ -339,17 +345,24 @@ update_list <- function(left, right) {
 ##' dv_pred(data) + rot_x()
 ##'
 ##' \dontrun{
-##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE)
-##' cwres_cat(data, x = "CPc") + rot_x(flip_text = TRUE, hjust = 1)
+##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE, hjust = "b")
 ##' }
 ##'
 ##' @md
 ##' @export
-rot_x <- function(angle=30, hjust = 1, vjust = NULL, flip_text = FALSE, ...) {
-  if(flip_text) {
+rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
+  if(vertical) {
+
+    if(is.character(hjust)) {
+      hjust <- match.arg(hjust, c("top", "bottom"))
+      if(hjust=="top") hjust <- 1
+      if(hjust=="bottom") hjust <- 0
+    } else {
+      if(missing(hjust)) hjust <- 1
+    }
     angle <- 90
     vjust <- 0.5
-    if(missing(hjust)) hjust <- 0
   }
   x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
   theme(axis.text.x=x)
