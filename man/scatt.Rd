@@ -14,7 +14,7 @@ scatt(
   group = NULL,
   col = NULL,
   plot_id = FALSE,
-  size = 2,
+  size = pm_opts$scatter.size,
   scale_col = scale_color_brewer(palette = "Set2", name = ""),
   ...
 )

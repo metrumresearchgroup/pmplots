@@ -5,7 +5,13 @@
 \alias{layer_dnorm}
 \title{Add a density curve to a plot}
 \usage{
-add_density(fun = dnorm, col = .ggblue, lwd = 1.5, lty = 2, ...)
+add_density(
+  fun = dnorm,
+  col = pm_opts$density.col,
+  lwd = pm_opts$density.lwd,
+  lty = pm_opts$density.lty,
+  ...
+)
 
 layer_dnorm(x, sd = 1, mean = 0, ...)
 }

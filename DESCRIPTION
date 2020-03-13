@@ -51,3 +51,4 @@ Collate:
     'res_time.R'
     'splitplot.R'
     'wrap_plots.R'
+    'opts.R'

@@ -31,11 +31,24 @@ layer_sa(x, ...)
 
 layer_dots(x, ...)
 
-gs(method = "loess", se = FALSE, lty = 2, lwd = 1.35, col = .ggblue, ...)
+gs(
+  method = "loess",
+  se = FALSE,
+  lty = pm_opts$smooth.lty,
+  lwd = pm_opts$smooth.lwd,
+  col = pm_opts$smooth.col,
+  ...
+)
 
-ga(intercept = 0, slope = 1, lwd = 1.35, col = "darkgrey", ...)
+ga(
+  intercept = 0,
+  slope = 1,
+  lwd = pm_opts$abline.lwd,
+  col = pm_opts$abline.col,
+  ...
+)
 
-gh(yintercept = 0, lwd = 1.35, col = "darkgrey", ...)
+gh(yintercept = 0, lwd = pm_opts$hline.lwd, col = pm_opts$hline.col, ...)
 }
 \arguments{
 \item{x}{a \code{ggplot} object}
