@@ -8,7 +8,7 @@ y_time(
   df,
   x = pm_axis_time(),
   y,
-  xunit = "hr",
+  xunit = pm_opts$time.unit,
   yname = NULL,
   xs = list(),
   ys = list(),

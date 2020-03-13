@@ -4,25 +4,32 @@
 \name{pm_opts}
 \alias{pm_opts}
 \alias{pm_options}
-\title{Set plot options}
-\format{An object of class \code{environment} of length 18.}
+\alias{.pm}
+\title{Set global plot options}
+\format{An object of class \code{environment} of length 22.}
 \usage{
 pm_options(
-  line.col = "#3366FF",
   smooth.lwd = 1.35,
-  smooth.col = line.col,
+  smooth.col = .ggblue,
   smooth.lty = 2,
+  smooth.method = "loess",
   scatter.size = 1.5,
-  density.col = line.col,
+  scatter.col = "black",
   density.lwd = 1.35,
-  denstiy.lty = 2,
+  density.col = .ggblue,
+  density.lty = 2,
   hline.lwd = 1.35,
   hline.col = "darkgrey",
+  hline.lty = 1,
   abline.lwd = 1.35,
-  abline.col = "darkgrey"
+  abline.col = "darkgrey",
+  abline.lty = 1,
+  time.unit = "hr"
 )
 
 pm_opts
+
+.pm
 }
 \arguments{
 \item{smooth.lwd}{line width for smoother}
@@ -31,9 +38,38 @@ pm_opts
 
 \item{smooth.lty}{line type for smoother}
 
+\item{smooth.method}{method to use for creating smoother}
+
 \item{scatter.size}{point size for scatter plot}
+
+\item{scatter.col}{character name of color for scatter plot}
+
+\item{density.lwd}{line width for density plot on histogram}
+
+\item{density.col}{line color for density plot on histogram}
+
+\item{density.lty}{line type for density plot on histogram}
+
+\item{hline.lwd}{line width for horizontal reference line; see \link{layer_h}
+and \link{gh}}
+
+\item{hline.col}{line color for horizontal reference line; see \link{layer_h}
+and \link{gh}}
+
+\item{abline.lwd}{line width for diagonal reference line; see \link{layer_a}
+and \link{ga}}
+
+\item{abline.col}{line color for diagonal refrence line; see \link{layer_a}
+and \link{ga}}
+
+\item{abline.lty}{line type for diagonal reference line; see \link{layer_a}
+and \link{ga}}
+
+\item{time.unit}{default time unit}
+
+\item{lty}{line type for horizontal reference line; see \link{layer_h} and \link{gh}}
 }
 \description{
-Set plot options
+Set global plot options
 }
 \keyword{datasets}

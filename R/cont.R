@@ -32,6 +32,7 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   locol <- .ggblue
+  if(is.null(col)) col <- glue("I('{scatter.col}')",.envir = pm_opts)
   p <- ggplot(data=df,aes_string(x,y,col=col))
   if(plot_id) {
     require_column(df,"ID")
@@ -79,7 +80,7 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 y_time <- function(df,
                    x=pm_axis_time(),
                    y,
-                   xunit="hr",
+                   xunit=pm_opts$time.unit,
                    yname = NULL,
                    xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {

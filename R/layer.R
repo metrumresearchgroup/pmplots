@@ -125,19 +125,22 @@ gs <- function(method=pm_opts$smooth.method, se=FALSE, lty=pm_opts$smooth.lty,
 }
 
 ##' @rdname layer
-ga <- function(intercept=0, slope=1, lwd = pm_opts$abline.lwd,
+ga <- function(intercept=0, slope=1,
+               lwd = pm_opts$abline.lwd,
+               lty = pm_opts$abline.lty,
                col=pm_opts$abline.col,...) {
   args <- list(...)
-  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd)
+  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd,lty=lty)
   update_list(def,args)
 }
 
 ##' @rdname layer
 gh <- function(yintercept=0,
                lwd = pm_opts$hline.lwd,
+               lty = pm_opts$hline.lty,
                col = pm_opts$hline.col,...) {
   args <- list(...)
-  def <- list(yintercept=yintercept,lwd=lwd,col=col)
+  def <- list(yintercept=yintercept,lwd=lwd,col=col,lty=lty)
   update_list(def,args)
 }
 
