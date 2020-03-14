@@ -94,7 +94,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
     }
     p <- p + do.call(geom_point,points)
   }
-  p <- p + geom_boxplot(fill=fill, alpha=alpha, outlier.shape = outlier.shape, ...)
+  p <- p + geom_boxplot(fill=fill, alpha = alpha, outlier.shape = outlier.shape, ...)
   p <- p + yscale + xscale
   if(is.numeric(hline)) {
     p <- p + geom_hline(

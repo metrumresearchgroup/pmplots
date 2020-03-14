@@ -45,6 +45,7 @@ pm_axis_data <- list(
   short = list(
     cwres = "CWRES",
     cwresi = "CWRESI",
+    res = "RES",
     wres = "WRES",
     time = "Time {xunit}",
     tad = "TAD",
