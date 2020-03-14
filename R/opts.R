@@ -34,6 +34,7 @@
 #' @param qq.col point color for qq plots
 #' @param qq.alpha alpha value for qq plots
 #' @param qq.size point size for qq plots
+#' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
 #'
 #' @details
@@ -91,6 +92,7 @@ pm_options <- function(smooth.lwd = 1.35,
                        qq.col = .ggblue,
                        qq.alpha = 1,
                        qq.size = 1.35,
+                       axis.title.short = FALSE,
                        time.unit = "hr") {
   set <- function(...) {
     x <- list(...)

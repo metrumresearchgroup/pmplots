@@ -6,7 +6,7 @@
 \alias{pm_options}
 \alias{pm}
 \title{Set global plot options}
-\format{An object of class \code{environment} of length 35.}
+\format{An object of class \code{environment} of length 36.}
 \usage{
 pm_options(
   smooth.lwd = 1.35,
@@ -36,6 +36,7 @@ pm_options(
   qq.col = .ggblue,
   qq.alpha = 1,
   qq.size = 1.35,
+  axis.title.short = FALSE,
   time.unit = "hr"
 )
 
@@ -103,6 +104,8 @@ and \link{ga}}
 \item{qq.alpha}{alpha value for qq plots}
 
 \item{qq.size}{point size for qq plots}
+
+\item{axis.title.short}{shorten standard axis titles}
 
 \item{time.unit}{default time unit}
 }
