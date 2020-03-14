@@ -1,5 +1,7 @@
 
-pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, ...) {
+pairs_lower <- function(data, mapping,
+                        smooth_color = opts$smooth.col,
+                        smooth_lty = opts$smooth.lty, ...) {
 
   mapping_list <- rlang::as_list(mapping)
 
@@ -12,8 +14,13 @@ pairs_lower <- function(data, mapping, smooth_color = .ggblue, smooth_lty = 2, .
 
   ggplot(data = data, mapping = mapping) +
     geom_point() +
-    geom_smooth(method = "loess", color = smooth_color, lty = smooth_lty,
-                se = FALSE, lwd = 1.3)
+    geom_smooth(
+      method = opts$smooth.method,
+      color = smooth_color,
+      lty = smooth_lty,
+      se = FALSE,
+      lwd = opts$smooth.lwd
+    )
 
 }
 
@@ -21,7 +28,6 @@ pairs_upper <- function(data, mapping, ...) {
   x <- rlang::quo_name(mapping$x)[1]
   y <- rlang::quo_name(mapping$y)[1]
   label <- as.character(signif(cor(data[,x],data[,y],use = "complete.obs"), digits=3))
-
   label <- paste0("Corr: ", label)
   GGally::ggally_text(label = label) +
     theme(panel.grid.major = ggplot2::element_blank(),
@@ -34,7 +40,7 @@ pairs_upper <- function(data, mapping, ...) {
 ##' functions for upper and lower off-diagonal panels.
 ##'
 ##' @param x plotting data.frame
-##' @param etas character `col//label` for pairs data; see [col_label]
+##' @param y character `col//label` for pairs data; see [col_label]
 ##' @param bins passed to [ggplot2::geom_histogram]
 ##' @param alpha passed to [ggplot2::geom_histogram]
 ##' @param fill passed to [ggplot2::geom_histogram]
@@ -71,8 +77,11 @@ pairs_upper <- function(data, mapping, ...) {
 ##'
 ##' @md
 ##' @export
-pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
-                       col="grey", label_fun = label_parse_label,
+pairs_plot <- function(x, y, bins = 15,
+                       alpha = opts$histogram.alpha,
+                       fill = opts$histogram.fill,
+                       col = opts$histogram.col,
+                       label_fun = label_parse_label,
                        upper_fun = NULL, lower_fun = NULL, ...) {
 
   if(!requireNamespace("GGally")) {
@@ -88,9 +97,9 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
     lower_fun <- pairs_lower
   }
 
-  if(length(etas)==1) {
+  if(length(y)==1) {
     ans <- eta_hist(
-      x, etas, bins = bins, alpha = alpha, fill = fill,
+      x, y, bins = bins, alpha = alpha, fill = fill,
       col = col, ...
     )
     return(ans)
@@ -99,7 +108,7 @@ pairs_plot <- function(x, etas, bins = 15, alpha = 0.6, fill = "black",
   diag <- GGally::wrap("barDiag", bins = bins,
                        alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)
-  etal <- lapply(etas, col_label)
+  etal <- lapply(y, col_label)
   cols <- sapply(etal, "[[", 1L)
   labs <- sapply(etal, "[[", 2L)
   cols <- unique(cols)

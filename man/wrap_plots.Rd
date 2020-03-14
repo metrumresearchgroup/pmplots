@@ -15,7 +15,7 @@ wrap_cont_cont(
   x,
   y,
   ...,
-  fun = cont_cont,
+  fun = pm_scatter,
   title = NULL,
   scales = "free_y",
   ncol = NULL,

@@ -22,7 +22,7 @@
 ##' @export
 split_plot <- function(df, fun, sp = get_split_col(df), ...) {
   if(length(sp) != 1) {
-    stop("Only one grouping or split variable is allowed.")
+    stop("only one grouping or split variable is allowed.")
   }
   require_column(df,sp)
   l <- split(df, df[[sp]], drop = TRUE)
@@ -36,7 +36,7 @@ split_plot <- function(df, fun, sp = get_split_col(df), ...) {
 
 get_split_col <- function(df) {
   if(!is_grouped_df(df)) {
-    stop("Either pass a grouped data frame or specify the sp argument.")
+    stop("either pass a grouped data frame or specify the sp argument.")
   }
   gr <- as.character(groups(df))
   return(gr)

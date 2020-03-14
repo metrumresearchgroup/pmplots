@@ -4,9 +4,9 @@
 \name{pm_opts}
 \alias{pm_opts}
 \alias{pm_options}
-\alias{.pm}
+\alias{pm}
 \title{Set global plot options}
-\format{An object of class \code{environment} of length 22.}
+\format{An object of class \code{environment} of length 34.}
 \usage{
 pm_options(
   smooth.lwd = 1.35,
@@ -24,12 +24,23 @@ pm_options(
   abline.lwd = 1.35,
   abline.col = "darkgrey",
   abline.lty = 1,
+  histogram.fill = "black",
+  histogram.alpha = 0.6,
+  histogram.col = "white",
+  boxplot.fill = "white",
+  boxplot.alpha = 1,
+  boxplot.outlier.shape = 19,
+  qq.color = .ggblue,
+  qq.alpha = 1,
+  pairs.col = "white",
+  pairs.fill = "grey",
+  pairs.alpha = 0.6,
   time.unit = "hr"
 )
 
 pm_opts
 
-.pm
+pm
 }
 \arguments{
 \item{smooth.lwd}{line width for smoother}

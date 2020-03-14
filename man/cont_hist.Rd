@@ -10,9 +10,6 @@ cont_hist(
   df,
   x,
   xs = defx(),
-  fill = "black",
-  col = "white",
-  alpha = 0.6,
   y = "..count..",
   add_density = y == "..density..",
   add_layers = TRUE,
@@ -21,7 +18,12 @@ cont_hist(
 
 cont_hist_list(df, x, ...)
 
-pm_histogram(..., col = "white", fill = "black", alpha = 0.6)
+pm_histogram(
+  ...,
+  col = opts$histogram.col,
+  fill = opts$histogram.fill,
+  alpha = opts$histogram.alpha
+)
 }
 \arguments{
 \item{df}{the data frame containing plotting data}
@@ -29,12 +31,6 @@ pm_histogram(..., col = "white", fill = "black", alpha = 0.6)
 \item{x}{the x column for \code{geom_histogram}}
 
 \item{xs}{a list of information for the x axis}
-
-\item{fill}{a character value passed to \code{geom_histogram}}
-
-\item{col}{a character value passed to \code{geom_histogram}}
-
-\item{alpha}{a numeric value passed to \code{geom_histogram}}
 
 \item{y}{what to use for the y-axis on the histogram; can be
 \code{"..count.."} or \code{"..density.."}}
@@ -45,6 +41,12 @@ be plotted over the histogram using \code{\link{add_density}}}
 \item{add_layers}{extra layers will be added only if \code{TRUE}}
 
 \item{...}{passed to \code{geom_histogram} and \code{add_density}}
+
+\item{col}{a character value passed to \code{geom_histogram}}
+
+\item{fill}{a character value passed to \code{geom_histogram}}
+
+\item{alpha}{a numeric value passed to \code{geom_histogram}}
 }
 \value{
 A single plot.

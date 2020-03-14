@@ -33,14 +33,15 @@ qq_reg_data <- function(y) {
 ##' @return A single plot.
 ##'
 ##' @export
-wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
+wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
+                   col = opts$qq.col, alpha = opts$qq.alpha, ...) {
 
   require_numeric(df,x)
   if(is.null(abline)) abline <- qq_reg_data(df[[x]])
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   p <- ggplot(data=df, aes_string(sample=x))
-  p <- p + stat_qq(color=.ggblue, alpha=1, distribution=qnorm)
+  p <- p + stat_qq(color=col, alpha=alpha, distribution=qnorm)
   p <- p + xscale + yscale
   p <- p + pm_labs(x = "Standard normal quantile", y = paste0(x, " distribution quantile"))
   if(!is.null(abline)) {

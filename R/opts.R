@@ -39,6 +39,17 @@ pm_options <- function(smooth.lwd = 1.35,
                        abline.lwd = 1.35,
                        abline.col = "darkgrey",
                        abline.lty = 1,
+                       histogram.fill = "black",
+                       histogram.alpha = 0.6,
+                       histogram.col = "white",
+                       boxplot.fill = "white",
+                       boxplot.alpha = 1,
+                       boxplot.outlier.shape = 19,
+                       qq.color = .ggblue,
+                       qq.alpha = 1,
+                       pairs.col = "white",
+                       pairs.fill = "grey",
+                       pairs.alpha = 0.6,
                        time.unit = "hr") {
   set <- function(...) {
     x <- list(...)
@@ -58,8 +69,19 @@ pm_options <- function(smooth.lwd = 1.35,
     return(invisible(NULL))
   }
   mget <- function(x) base::mget(x,envir=self)
+  as.list <- function() {
+    ans <- base::as.list.environment(self)
+    ans$defaults <- NULL
+    ans$self <- NULL
+    ans$set <- NULL
+    ans$get <- NULL
+    ans$reset <- NULL
+    ans$mget <- NULL
+    ans$as.list <- NULL
+    ans
+  }
   self <- environment()
-  defaults <- as.list(environment())
+  defaults <- base::as.list.environment(environment())
   self
 }
 
@@ -68,4 +90,6 @@ pm_options <- function(smooth.lwd = 1.35,
 pm_opts <- pm_options()
 #' @rdname pm_opts
 #' @export
-.pm <- pm_opts
+pm <- pm_opts
+opts <- pm_opts
+

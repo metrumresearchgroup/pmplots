@@ -78,9 +78,9 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 #' \code{\link{wres_time}}, \code{\link{npde_time}}
 #'
 y_time <- function(df,
-                   x=pm_axis_time(),
+                   x = pm_axis_time(),
                    y,
-                   xunit=pm_opts$time.unit,
+                   xunit = opts$time.unit,
                    yname = NULL,
                    xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {

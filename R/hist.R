@@ -27,16 +27,15 @@
 ##' @return A single plot.
 ##'
 ##' @export
-cont_hist <- function(df, x, xs = defx(), fill = "black",
-                      col = "white", alpha = 0.6, y = "..count..",
+cont_hist <- function(df, x, xs = defx(),
+                      y = "..count..",
                       add_density = y=="..density..", add_layers=TRUE, ...) {
   xscale <- do.call("scale_x_continuous", xs)
   xx <- col_label(x)
   require_numeric(df,xx[1])
   out <-
     ggplot(data=df, aes_string(x = xx[1])) +
-    pm_histogram(mapping = aes_string(y = y), ...,
-                 col = col, fill = fill, alpha = alpha) +
+    pm_histogram(mapping = aes_string(y = y), ...) +
     xscale + pm_theme() + pm_labs(x = xx[2])
   if(add_density & add_layers) {
     out <- out + add_density(...)
@@ -52,7 +51,9 @@ cont_hist_list <- function(df, x, ...) {
 
 ##' @rdname cont_hist
 ##' @export
-pm_histogram <- function(... , col = "white", fill = "black",
-                         alpha = 0.6) {
+pm_histogram <- function(... ,
+                         col = opts$histogram.col,
+                         fill = opts$histogram.fill,
+                         alpha = opts$histogram.alpha) {
   geom_histogram(..., col = col, fill = fill, alpha = alpha)
 }

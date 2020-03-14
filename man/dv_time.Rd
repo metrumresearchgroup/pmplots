@@ -10,7 +10,7 @@ dv_time(
   df,
   x = pm_axis_time(),
   y = pm_axis_dv(),
-  xunit = "hr",
+  xunit = opts$time.unit,
   yname = "DV",
   group = "ID",
   xs = list(),
