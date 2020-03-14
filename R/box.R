@@ -97,7 +97,12 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   p <- p + geom_boxplot(fill=fill, alpha=alpha, outlier.shape = outlier.shape, ...)
   p <- p + yscale + xscale
   if(is.numeric(hline)) {
-    p <- p + geom_hline(yintercept=hline, lwd=1, lty=2)
+    p <- p + geom_hline(
+      yintercept = hline,
+      lwd = opts$boxplot.hline.lwd,
+      lty = opts$boxplot.hline.lty,
+      col = opts$boxplot.hline.col
+    )
   }
   if(is.character(title)) p <- p + ggtitle(title)
   p + pm_theme()

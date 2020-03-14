@@ -6,7 +6,7 @@
 \alias{pm_options}
 \alias{pm}
 \title{Set global plot options}
-\format{An object of class \code{environment} of length 34.}
+\format{An object of class \code{environment} of length 35.}
 \usage{
 pm_options(
   smooth.lwd = 1.35,
@@ -29,12 +29,13 @@ pm_options(
   histogram.col = "white",
   boxplot.fill = "white",
   boxplot.alpha = 1,
+  boxplot.hline.lwd = 1,
+  boxplot.hline.lty = 2,
+  boxplot.hline.col = "black",
   boxplot.outlier.shape = 19,
-  qq.color = .ggblue,
+  qq.col = .ggblue,
   qq.alpha = 1,
-  pairs.col = "white",
-  pairs.fill = "grey",
-  pairs.alpha = 0.6,
+  qq.size = 1.35,
   time.unit = "hr"
 )
 
@@ -67,6 +68,9 @@ and \link{gh}}
 \item{hline.col}{line color for horizontal reference line; see \link{layer_h}
 and \link{gh}}
 
+\item{hline.lty}{line type for horizontal reference line; see \link{layer_h}
+and \link{gh}}
+
 \item{abline.lwd}{line width for diagonal reference line; see \link{layer_a}
 and \link{ga}}
 
@@ -76,11 +80,60 @@ and \link{ga}}
 \item{abline.lty}{line type for diagonal reference line; see \link{layer_a}
 and \link{ga}}
 
-\item{time.unit}{default time unit}
+\item{histogram.fill}{fill color for histograms}
 
-\item{lty}{line type for horizontal reference line; see \link{layer_h} and \link{gh}}
+\item{histogram.alpha}{alpha value for histograms}
+
+\item{histogram.col}{line color for histograms}
+
+\item{boxplot.fill}{fill color for histograms}
+
+\item{boxplot.alpha}{alpha value for boxplots}
+
+\item{boxplot.hline.lwd}{line width for horizantal reference line}
+
+\item{boxplot.hline.lty}{line type for horizontal reference line}
+
+\item{boxplot.hline.col}{line color for horizontal reference line}
+
+\item{boxplot.outlier.shape}{shape for outliers in boxplots}
+
+\item{qq.col}{point color for qq plots}
+
+\item{qq.alpha}{alpha value for qq plots}
+
+\item{qq.size}{point size for qq plots}
+
+\item{time.unit}{default time unit}
 }
 \description{
 Set global plot options
+}
+\details{
+\link{pm} and \link{pm_opts} both refer to the same environment. Global options can
+be set in the environment with \code{pm$set(name = value)}.  Values can be
+extracted with \code{pm$get("name")}.  Because it is an environment, the \code{$}
+operator can also be used to get and set values (see examples).
+
+Other methods in the environment include \code{pm$as.list()}, \code{pm$mget()}.
+\code{pm$self} refers to the environment itself. A list of default settings can
+be obtained with \code{pm$defaults}.
+}
+\examples{
+
+pm$set(smooth.lwd = 2)
+
+pm$smooth.lwd
+
+pm$smooth.lwd <- 1.3
+
+pm$smooth.lwd
+
+pm$get("smooth.lwd")
+
+pm$reset()
+
+x <- pm$as.list()
+
 }
 \keyword{datasets}

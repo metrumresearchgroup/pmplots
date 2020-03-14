@@ -14,14 +14,54 @@
 #' and [gh]
 #' @param hline.col line color for horizontal reference line; see [layer_h]
 #' and [gh]
-#' @param lty line type for horizontal reference line; see [layer_h] and [gh]
+#' @param hline.lty line type for horizontal reference line; see [layer_h]
+#' and [gh]
 #' @param abline.lwd line width for diagonal reference line; see [layer_a]
 #' and [ga]
 #' @param abline.col line color for diagonal refrence line; see [layer_a]
 #' and [ga]
 #' @param abline.lty line type for diagonal reference line; see [layer_a]
 #' and [ga]
+#' @param histogram.fill fill color for histograms
+#' @param histogram.alpha alpha value for histograms
+#' @param histogram.col line color for histograms
+#' @param boxplot.fill fill color for histograms
+#' @param boxplot.alpha alpha value for boxplots
+#' @param boxplot.hline.lwd line width for horizantal reference line
+#' @param boxplot.hline.lty line type for horizontal reference line
+#' @param boxplot.hline.col line color for horizontal reference line
+#' @param boxplot.outlier.shape shape for outliers in boxplots
+#' @param qq.col point color for qq plots
+#' @param qq.alpha alpha value for qq plots
+#' @param qq.size point size for qq plots
 #' @param time.unit default time unit
+#'
+#' @details
+#' [pm] and [pm_opts] both refer to the same environment. Global options can
+#' be set in the environment with `pm$set(name = value)`.  Values can be
+#' extracted with `pm$get("name")`.  Because it is an environment, the `$`
+#' operator can also be used to get and set values (see examples).
+#'
+#' Other methods in the environment include `pm$as.list()`, `pm$mget()`.
+#' `pm$self` refers to the environment itself. A list of default settings can
+#' be obtained with `pm$defaults`.
+#'
+#' @examples
+#'
+#' pm$set(smooth.lwd = 2)
+#'
+#' pm$smooth.lwd
+#'
+#' pm$smooth.lwd <- 1.3
+#'
+#' pm$smooth.lwd
+#'
+#' pm$get("smooth.lwd")
+#'
+#' pm$reset()
+#'
+#' x <- pm$as.list()
+#'
 #' @md
 #' @name pm_opts
 pm_options <- function(smooth.lwd = 1.35,
@@ -44,12 +84,13 @@ pm_options <- function(smooth.lwd = 1.35,
                        histogram.col = "white",
                        boxplot.fill = "white",
                        boxplot.alpha = 1,
+                       boxplot.hline.lwd = 1,
+                       boxplot.hline.lty = 2,
+                       boxplot.hline.col = "black",
                        boxplot.outlier.shape = 19,
-                       qq.color = .ggblue,
+                       qq.col = .ggblue,
                        qq.alpha = 1,
-                       pairs.col = "white",
-                       pairs.fill = "grey",
-                       pairs.alpha = 0.6,
+                       qq.size = 1.35,
                        time.unit = "hr") {
   set <- function(...) {
     x <- list(...)
@@ -61,10 +102,6 @@ pm_options <- function(smooth.lwd = 1.35,
     self[[x]]
   }
   reset <- function() {
-    save <- c("defaults", names(defaults))
-    all <- ls(self,all.names=TRUE)
-    dump <- setdiff(all,save)
-    if(length(dump) > 0) rm(list=dump, envir = self)
     for(k in names(defaults)) assign(k,defaults[[k]],envir=self)
     return(invisible(NULL))
   }
@@ -81,7 +118,7 @@ pm_options <- function(smooth.lwd = 1.35,
     ans
   }
   self <- environment()
-  defaults <- base::as.list.environment(environment())
+  defaults <- as.list()
   self
 }
 
