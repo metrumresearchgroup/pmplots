@@ -42,7 +42,7 @@ test_that("extra layers", {
 
 test_that("gh", {
   x <- pmplots:::gh()
-  expect_identical(names(x), c("yintercept", "lwd", "col"))
+  expect_identical(names(x), c("yintercept", "lwd", "col", "lty"))
   expect_identical(x$yintercept,0)
   expect_identical(x$lwd,1.35)
   expect_identical(x$col,"darkgrey")
@@ -58,10 +58,11 @@ test_that("gs", {
   expect_identical(x$lwd,1.35)
   expect_identical(x$col,"#3366FF")
 })
+
 test_that("ga", {
   x <- pmplots:::ga()
   expect_is(x,"list")
-  expect_identical(names(x), c("intercept", "slope", "col", "lwd"))
+  expect_identical(names(x), c("intercept", "slope", "col", "lwd", "lty"))
   expect_identical(x$lwd,1.35)
   expect_identical(x$col,"darkgrey")
   expect_identical(x$slope,1)

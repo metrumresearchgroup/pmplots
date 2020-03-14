@@ -35,7 +35,10 @@
 ##'
 ##'
 ##' # Add a rug
-##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))
+##'
+##' df <- pmplots_data()
+##'
+##' dv_time(df) + geom_rug(data = ~ dplyr::filter(.x,BLQ > 0))
 ##'
 ##' @return A single plot.
 ##'
