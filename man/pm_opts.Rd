@@ -113,10 +113,17 @@ and \link{ga}}
 Set global plot options
 }
 \details{
-\link{pm} and \link{pm_opts} both refer to the same environment. Global options can
-be set in the environment with \code{pm$set(name = value)}.  Values can be
-extracted with \code{pm$get("name")}.  Because it is an environment, the \code{$}
-operator can also be used to get and set values (see examples).
+\link{pm} and \link{pm_opts} both refer to the same environment.
+
+Global options can
+be set in the environment with \code{pm$set(name = value)}.  There is also
+a \code{.list} argument to \code{pm$set} that allows you to pass in a named list of
+options to set (e.g. \code{pm$set(.list = list(smooth.col="red4"))}).
+
+Values can be extracted with \code{pm$get("name")}.
+
+Because it is an environment, the \code{$} operator can also be used to get and
+set values (see examples).
 
 Other methods in the environment include \code{pm$as.list()}, \code{pm$mget()}.
 \code{pm$self} refers to the environment itself. A list of default settings can
@@ -137,6 +144,12 @@ pm$get("smooth.lwd")
 pm$reset()
 
 x <- pm$as.list()
+
+\dontrun{
+ defs <- pm$defaults
+ defs$smooth.col <- "firebrick"
+ pm$set(.list = defs)
+}
 
 }
 \keyword{datasets}

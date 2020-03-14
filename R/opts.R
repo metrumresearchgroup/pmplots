@@ -38,10 +38,17 @@
 #' @param time.unit default time unit
 #'
 #' @details
-#' [pm] and [pm_opts] both refer to the same environment. Global options can
-#' be set in the environment with `pm$set(name = value)`.  Values can be
-#' extracted with `pm$get("name")`.  Because it is an environment, the `$`
-#' operator can also be used to get and set values (see examples).
+#' [pm] and [pm_opts] both refer to the same environment.
+#'
+#' Global options can
+#' be set in the environment with `pm$set(name = value)`.  There is also
+#' a `.list` argument to `pm$set` that allows you to pass in a named list of
+#' options to set (e.g. `pm$set(.list = list(smooth.col="red4"))`).
+#'
+#' Values can be extracted with `pm$get("name")`.
+#'
+#' Because it is an environment, the `$` operator can also be used to get and
+#' set values (see examples).
 #'
 #' Other methods in the environment include `pm$as.list()`, `pm$mget()`.
 #' `pm$self` refers to the environment itself. A list of default settings can
@@ -62,6 +69,12 @@
 #' pm$reset()
 #'
 #' x <- pm$as.list()
+#'
+#' \dontrun{
+#'  defs <- pm$defaults
+#'  defs$smooth.col <- "firebrick"
+#'  pm$set(.list = defs)
+#' }
 #'
 #' @md
 #' @name pm_opts
@@ -94,8 +107,12 @@ pm_options <- function(smooth.lwd = 1.35,
                        qq.size = 1.35,
                        axis.title.short = FALSE,
                        time.unit = "hr") {
-  set <- function(...) {
-    x <- list(...)
+  set <- function(..., .list = NULL) {
+    if(is.list(.list)) {
+      x <- .list
+    } else {
+      x <- list(...)
+    }
     if(length(x)==0) invisible(NULL)
     for(k in names(x)) assign(k,x[[k]],envir=self)
     return(invisible(NULL))
