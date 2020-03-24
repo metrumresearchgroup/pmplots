@@ -40,4 +40,18 @@ test_that("opt reset", {
 
 test_that("set internal data", {
   expect_warning(pm$self <- "foobar", "is not a valid option to set")
+  expect_warning(pm$set <- 1235, "is not a valid option to set")
 })
+
+test_that("as.list", {
+  a <- as.list(pm)
+  b <- pm$defaults[names(a)]
+  expect_identical(a,b)
+})
+
+test_that("bracket dot pm_opts", {
+  a <- pm["scatter.size", "smooth.lty"]
+  b <- pm$defaults[names(a)]
+  expect_identical(a,b)
+})
+

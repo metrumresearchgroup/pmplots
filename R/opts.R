@@ -152,6 +152,18 @@ pm_options <- function(smooth.lwd = 1.35,
 }
 
 #' @export
+`[.pm_opts` <- function(x,i,...,exact=TRUE) {
+  i <- as.character(i)
+  dots <- as.character(list(...))
+  x$mget(c(i,dots))
+}
+
+#' @export
+as.list.pm_opts <- function(x,...) {
+  x$as.list()
+}
+
+#' @export
 print.pm_opts <- function(x,...) {
   cat(str(x))
 }

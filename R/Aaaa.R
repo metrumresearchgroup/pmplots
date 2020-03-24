@@ -17,6 +17,7 @@
 #' @importFrom tidyr gather pivot_longer
 #' @importFrom purrr map2 map map_df
 #' @importFrom forcats fct_inorder
+#' @importFrom utils str
 #'
 NULL
 
