@@ -38,3 +38,6 @@ test_that("opt reset", {
   expect_false(a==b)
 })
 
+test_that("set internal data", {
+  expect_warning(pm$self <- "foobar", "is not a valid option to set")
+})

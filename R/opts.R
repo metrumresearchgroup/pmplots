@@ -138,7 +138,22 @@ pm_options <- function(smooth.lwd = 1.35,
   }
   self <- environment()
   defaults <- as.list()
-  self
+  structure(self, class = c("pm_opts", "environment"))
+}
+
+#' @export
+`$<-.pm_opts` <- function(x,i,value) {
+  if(!(i %in% names(x[["defaults"]]))) {
+    warning(glue("'{i}' is not a valid option to set"),call.=FALSE)
+    return(invisible(x))
+  }
+  assign(i,value,envir=x)
+  return(invisible(x))
+}
+
+#' @export
+print.pm_opts <- function(x,...) {
+  cat(str(x))
 }
 
 #' @rdname pm_opts
