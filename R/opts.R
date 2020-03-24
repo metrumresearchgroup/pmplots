@@ -50,9 +50,13 @@
 #' Because it is an environment, the `$` operator can also be used to get and
 #' set values (see examples).
 #'
-#' Other methods in the environment include `pm$as.list()`, `pm$mget()`.
-#' `pm$self` refers to the environment itself. A list of default settings can
-#' be obtained with `pm$defaults`.
+#' Other methods in the environment include `pm$as.list()`, `pm$mget()`,
+#' `pm$reset()`.  `pm$self` refers to the environment itself. A list of
+#' default settings can be obtained with `pm$defaults`.  Methods for the
+#' `pm_opts` object include: [print.pm_opts], [as.list.pm_opts],
+#' [`$<-.pm_opts`].
+#'
+#'
 #'
 #' @examples
 #'
@@ -141,6 +145,16 @@ pm_options <- function(smooth.lwd = 1.35,
   structure(self, class = c("pm_opts", "environment"))
 }
 
+#' Assign a pmplots option
+#'
+#' @param x the `pm_opts` object
+#' @param i the name of the option to set
+#' @param value the value to set
+#'
+#' @examples
+#'
+#' pm$scatter.size <- 4
+#'
 #' @export
 `$<-.pm_opts` <- function(x,i,value) {
   if(!(i %in% names(x[["defaults"]]))) {
@@ -151,6 +165,16 @@ pm_options <- function(smooth.lwd = 1.35,
   return(invisible(x))
 }
 
+#' Extract multiple pmplots options
+#'
+#' @param x the `pm_opts` object
+#' @param i a character option name to extract
+#' @param ... other option names to extract
+#' @param exact not used
+#'
+#' @examples
+#' pm["scatter.size", "time.unit"]
+#'
 #' @export
 `[.pm_opts` <- function(x,i,...,exact=TRUE) {
   i <- as.character(i)
@@ -158,11 +182,26 @@ pm_options <- function(smooth.lwd = 1.35,
   x$mget(c(i,dots))
 }
 
+#' Coerce pm_opts object to a list
+#'
+#' @param x the `pm_opts` object
+#' @param ... not used
+#'
+#' @examples
+#' x <- as.list(pm)
+#'
 #' @export
 as.list.pm_opts <- function(x,...) {
   x$as.list()
 }
 
+#' Print the pm_opts object
+#'
+#' @param x the `pm_opts` object
+#' @param ... not used
+#' @examples
+#' pm
+#'
 #' @export
 print.pm_opts <- function(x,...) {
   cat(str(x))

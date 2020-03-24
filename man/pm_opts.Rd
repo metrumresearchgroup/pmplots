@@ -125,9 +125,11 @@ Values can be extracted with \code{pm$get("name")}.
 Because it is an environment, the \code{$} operator can also be used to get and
 set values (see examples).
 
-Other methods in the environment include \code{pm$as.list()}, \code{pm$mget()}.
-\code{pm$self} refers to the environment itself. A list of default settings can
-be obtained with \code{pm$defaults}.
+Other methods in the environment include \code{pm$as.list()}, \code{pm$mget()},
+\code{pm$reset()}.  \code{pm$self} refers to the environment itself. A list of
+default settings can be obtained with \code{pm$defaults}.  Methods for the
+\code{pm_opts} object include: \link{print.pm_opts}, \link{as.list.pm_opts},
+\code{\link{$<-.pm_opts}}.
 }
 \examples{
 
