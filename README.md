@@ -6,11 +6,7 @@ https://ghe.metrumrg.com/software/pmplots
 
 ## Installation
 
-``` r
-repos <- c("https://metrumresearchgroup.github.io/r_validated", options()$repos)
-
-install.packages("pmplots", repos = unique(repos), type = "source", destdir = NULL)
-```
+TODO(devin) pmplots is available on MPN
 
 ## News
 
