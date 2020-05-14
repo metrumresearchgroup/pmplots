@@ -6,7 +6,11 @@
 \alias{pm_options}
 \alias{pm}
 \title{Set global plot options}
-\format{An object of class \code{pm_opts} (inherits from \code{environment}) of length 36.}
+\format{
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 36.
+
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 36.
+}
 \usage{
 pm_options(
   smooth.lwd = 1.35,

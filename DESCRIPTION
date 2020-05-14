@@ -1,7 +1,7 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.2.0.9001
+Version: 0.2.0.9002
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person("Metrum Research Group", role =  c("cph"))
@@ -22,7 +22,7 @@ Imports:
   forcats
 Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny
 Depends: ggplot2 (>= 3.0.0)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'
