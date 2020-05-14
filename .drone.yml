@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: yspec
+name: pmplots
 
 steps:
 - name: Pull mpn container from ECR
