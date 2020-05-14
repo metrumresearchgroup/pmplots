@@ -18,9 +18,7 @@ steps:
   environment:
     R_LIBS_USER: "/opt/rpkgs/3.6/2020-01-29"
   commands:
-  - /opt/R/3.6.2/bin/R -e "devtools::test()"
   - /opt/R/3.6.2/bin/R -e "devtools::check()"
-
 
 - name: R35
   image: "906087756158.dkr.ecr.us-east-1.amazonaws.com/mpn:2020-01-29"
@@ -28,7 +26,6 @@ steps:
   environment:
     R_LIBS_USER: "/opt/rpkgs/3.5/2020-01-29"
   commands:
-  - /opt/R/3.5.3/bin/R -e "devtools::test()"
   - /opt/R/3.5.3/bin/R -e "devtools::check()"
 
 - name: release
