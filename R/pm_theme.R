@@ -15,7 +15,9 @@ theme_plain <- function(...) {
 ##' @param col passed to \code{geom_smooth}
 ##' @param ... passed to \code{geom_smooth}
 ##' @export
-pm_smooths <- function(method="loess", se=FALSE, lty=2, lwd=1.3, col=.ggblue,...) {
+pm_smooths <- function(method=opts$smooth.method, se=FALSE,
+                       lty=opts$smooth.lty, lwd=opts$smooth.lwd,
+                       col=opts$smooth.col,...) {
   geom_smooth(method=method,se=se,lty=lty,lwd=lwd,col=col)
 }
 

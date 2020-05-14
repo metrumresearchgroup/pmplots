@@ -5,11 +5,11 @@
 \title{Add loess line}
 \usage{
 pm_smooths(
-  method = "loess",
+  method = opts$smooth.method,
   se = FALSE,
-  lty = 2,
-  lwd = 1.3,
-  col = .ggblue,
+  lty = opts$smooth.lty,
+  lwd = opts$smooth.lwd,
+  col = opts$smooth.col,
   ...
 )
 }

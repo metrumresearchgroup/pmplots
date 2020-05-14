@@ -60,9 +60,13 @@ box_labels <- function(df, x, y) {
 #'
 #'
 #' @export
-boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
-                    alpha=1, hline = NULL, title=NULL, shown = TRUE,
-                    points = NULL, outlier.shape = 19, ...) {
+boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
+                    fill = opts$boxplot.fill,
+                    alpha = opts$boxplot.alpha,
+                    hline = NULL, title = NULL, shown = TRUE,
+                    points = NULL,
+                    outlier.shape = opts$boxplot.outlier.shape,
+                    ...) {
 
   if(shown) {
     require_column(df, "ID")
@@ -90,10 +94,15 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(), fill="white",
     }
     p <- p + do.call(geom_point,points)
   }
-  p <- p + geom_boxplot(fill=fill, alpha=alpha, outlier.shape = outlier.shape, ...)
+  p <- p + geom_boxplot(fill=fill, alpha = alpha, outlier.shape = outlier.shape, ...)
   p <- p + yscale + xscale
   if(is.numeric(hline)) {
-    p <- p + geom_hline(yintercept=hline,lwd=1, lty=2)
+    p <- p + geom_hline(
+      yintercept = hline,
+      lwd = opts$boxplot.hline.lwd,
+      lty = opts$boxplot.hline.lty,
+      col = opts$boxplot.hline.col
+    )
   }
   if(is.character(title)) p <- p + ggtitle(title)
   p + pm_theme()

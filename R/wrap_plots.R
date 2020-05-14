@@ -38,7 +38,7 @@
 #' @rdname wrap_plots
 #' @name wrap_plots
 #' @export
-wrap_cont_cont <- function(df, x, y, ..., fun=cont_cont,
+wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
                            title = NULL, scales = "free_y",
                            ncol = NULL, use_labels = FALSE,
                            label_fun = label_parse_label) {

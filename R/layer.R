@@ -117,23 +117,30 @@ layer_dots <- function(x,...) {
 
 
 ##' @rdname layer
-gs <- function(method="loess", se=FALSE, lty=2, lwd=1.35, col = .ggblue,...) {
+gs <- function(method=pm_opts$smooth.method, se=FALSE, lty=pm_opts$smooth.lty,
+               lwd=pm_opts$smooth.lwd, col = pm_opts$smooth.col,...) {
   args <- list(...)
   def <- list(method=method,se=se,lty=lty,lwd=lwd,col=col)
   update_list(def,args)
 }
 
 ##' @rdname layer
-ga <- function(intercept=0, slope=1, lwd=1.35, col="darkgrey",...) {
+ga <- function(intercept=0, slope=1,
+               lwd = pm_opts$abline.lwd,
+               lty = pm_opts$abline.lty,
+               col=pm_opts$abline.col,...) {
   args <- list(...)
-  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd)
+  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd,lty=lty)
   update_list(def,args)
 }
 
 ##' @rdname layer
-gh <- function(yintercept=0, lwd=1.35, col="darkgrey",...) {
+gh <- function(yintercept=0,
+               lwd = pm_opts$hline.lwd,
+               lty = pm_opts$hline.lty,
+               col = pm_opts$hline.col,...) {
   args <- list(...)
-  def <- list(yintercept=yintercept,lwd=lwd,col=col)
+  def <- list(yintercept=yintercept,lwd=lwd,col=col,lty=lty)
   update_list(def,args)
 }
 
@@ -175,7 +182,10 @@ layer_3s <- function(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3
 ##' @param ... passed to \code{ggplot2::stat_function}
 ##'
 ##'
-add_density <- function(fun = dnorm, col = .ggblue, lwd = 1.5, lty = 2, ...) {
+add_density <- function(fun = dnorm,
+                        col = pm_opts$density.col,
+                        lwd = pm_opts$density.lwd,
+                        lty = pm_opts$density.lty, ...) {
   ggplot2::stat_function(fun = fun, col = col, lwd = lwd, lty = lty, ...)
 }
 

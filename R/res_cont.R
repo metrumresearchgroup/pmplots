@@ -29,8 +29,7 @@
 ##' or \code{y} have length greater than 1.
 ##'
 ##' @export
-res_cont <- function(df, x, y=pm_axis_res(),
-                     xs=defx(), ys=defy(), ...) {
+res_cont <- function(df, x, y=pm_axis_res(), xs=defx(), ys=defy(), ...) {
   out <- list_plot_xy(df, x, y, xs = xs, ys = ys, ...)
   out <- lapply(out, layer_hs, ...)
   if(length(out)==1) return(out[[1]])
@@ -39,8 +38,7 @@ res_cont <- function(df, x, y=pm_axis_res(),
 
 ##' @export
 ##' @rdname res_cont
-wres_cont <- function(df, x, y=pm_axis_wres(),
-                      xs=defx(), ys=defy(),...) {
+wres_cont <- function(df, x, y=pm_axis_wres(), xs=defx(), ys=defy(),...) {
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }
 

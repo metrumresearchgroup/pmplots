@@ -10,13 +10,13 @@ boxwork(
   y,
   xs = defcx(),
   ys = defy(),
-  fill = "white",
-  alpha = 1,
+  fill = opts$boxplot.fill,
+  alpha = opts$boxplot.alpha,
   hline = NULL,
   title = NULL,
   shown = TRUE,
   points = NULL,
-  outlier.shape = 19,
+  outlier.shape = opts$boxplot.outlier.shape,
   ...
 )
 }

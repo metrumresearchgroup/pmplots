@@ -41,14 +41,28 @@ pm_axis_data <- list(
     ipred = "Individual predicted {xname}",
     dv = "Observed {yname}",
     npde = "NPDE"
+  ),
+  short = list(
+    cwres = "CWRES",
+    cwresi = "CWRESI",
+    res = "RES",
+    wres = "WRES",
+    time = "Time {xunit}",
+    tad = "TAD",
+    tafd = "TAFD",
+    pred = "PRED",
+    ipred = "IPRED",
+    dv = "Observed",
+    npde = "NPDE"
   )
 )
 
 mk_col_title <- function(what,sep="//") {
+  title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
   paste0(
     pm_axis_data[["col"]][[what]],
     sep,
-    pm_axis_data[["title"]][[what]]
+    pm_axis_data[[title]][[what]]
   )
 }
 

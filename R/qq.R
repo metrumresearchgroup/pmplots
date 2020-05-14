@@ -16,6 +16,9 @@ qq_reg_data <- function(y) {
 ##' @param ys see \code{\link{defy}}
 ##' @param abline numeric vector with two elements to be passed to
 ##' \code{geom_abline}
+##' @param col color for points
+##' @param alpha alpha value for points
+##' @param size size for points
 ##' @param ... arguments passed back to \code{wres_q}
 ##'
 ##' @details
@@ -33,14 +36,16 @@ qq_reg_data <- function(y) {
 ##' @return A single plot.
 ##'
 ##' @export
-wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL, ...) {
+wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
+                   col = opts$qq.col, alpha = opts$qq.alpha,
+                   size = opts$qq.size, ...) {
 
   require_numeric(df,x)
   if(is.null(abline)) abline <- qq_reg_data(df[[x]])
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   p <- ggplot(data=df, aes_string(sample=x))
-  p <- p + stat_qq(color=.ggblue, alpha=1, distribution=qnorm)
+  p <- p + stat_qq(color=col, alpha=alpha, distribution=qnorm,size=size)
   p <- p + xscale + yscale
   p <- p + pm_labs(x = "Standard normal quantile", y = paste0(x, " distribution quantile"))
   if(!is.null(abline)) {

@@ -25,13 +25,14 @@
 #' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
                   title = NULL, group=NULL, col=NULL, plot_id = FALSE,
-                  size = 2,
+                  size = pm_opts$scatter.size,
                   scale_col = scale_color_brewer(palette="Set2", name=""),
                   ... ) {
 
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   locol <- .ggblue
+  if(is.null(col)) col <- glue("I('{scatter.col}')",.envir = pm_opts)
   p <- ggplot(data=df,aes_string(x,y,col=col))
   if(plot_id) {
     require_column(df,"ID")
@@ -77,9 +78,9 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 #' \code{\link{wres_time}}, \code{\link{npde_time}}
 #'
 y_time <- function(df,
-                   x=pm_axis_time(),
+                   x = pm_axis_time(),
                    y,
-                   xunit="hr",
+                   xunit = opts$time.unit,
                    yname = NULL,
                    xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {

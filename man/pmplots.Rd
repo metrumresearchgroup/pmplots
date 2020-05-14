@@ -17,11 +17,16 @@ by this package.
 \section{Function listing}{
 
 \itemize{
+\item Basic plots
+\itemize{
+\item \link{pm_scatter}, \link{pm_box}, \link{pairs_plot}, \link{split_plot}
+}
 \item Residuals versus time
 \itemize{
 \item \link{res_time}, \link{res_tad}, \link{res_tafd}
 \item \link{wres_time}, \link{wres_tad}, \link{wres_tad}
 \item \link{cwres_time}, \link{cwres_tad}, \link{cwres_tafd}
+\item \link{cwresi_time}, \link{cwresi_tad}, \link{cwresi_tafd}
 }
 \item Residuals versus PRED
 \itemize{
@@ -40,6 +45,51 @@ by this package.
 \item \link{npde_q}
 \item \link{npde_cont}
 \item \link{npde_cat}
+}
+\item Pairs plots
+\itemize{
+\item \link{eta_pairs}, \link{pairs_plot}
+}
+\item QQ plots
+\itemize{
+\item \link{wres_q}, \link{cwres_q}, \link{cwresi_q}, \link{res_q}
+}
+\item Histograms
+\itemize{
+\item \link{cont_hist}, \link{eta_hist}, \link{cwres_hist}, \link{cwresi_hist}
+}
+\item List plots
+\itemize{
+\item \link{pm_box_list}, \link{pm_scatter_list}
+\item \link{list_plot_x}, \link{list_plot_y}, \link{list_plot_xy}
+\item \link{cont_hist_list}
+}
+\item Faceted plots
+\itemize{
+\item \link{wrap_cont_cont}, \link{wrap_cont_time}, \link{wrap_dv_preds}, \link{wrap_eta_cont}
+\item \link{wrap_hist}
+}
+\item Other plots
+\itemize{
+\item \link{dv_pred_ipred}
+}
+\item Layers
+\itemize{
+\item smooth: \link{layer_s}, hline: \link{layer_h}, abline: \link{layer_a}
+\item combinations: \link{layer_sa}, \link{layer_sh}
+}
+\item Customization
+\itemize{
+\item \link{pm_opts}
+\item \link{rot_x}, \link{rot_y}, \link{pm_theme}, \link{theme_plain}
+}
+\item Arrangement
+\itemize{
+\item \link{pm_grid}
+}
+\item Example data sets
+\itemize{
+\item \link{pmplots_data}, \link{pmplots_data_obs}, \link{pmplots_data_id}
 }
 }
 }
