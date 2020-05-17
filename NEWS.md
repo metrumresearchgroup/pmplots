@@ -3,6 +3,8 @@
   `wrap_hist` allowing strip labels to incorporate
   expressions via `pmplots:::label_parse` (#45)
 - `parse_label` and `label_parse_label` are exported
+- Add option system
+
 
 # pmplots 0.2.0
 - Qualification under CR-88 and released to r_validated
