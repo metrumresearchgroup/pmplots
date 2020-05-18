@@ -14,4 +14,5 @@ inst/examples/img/
 ^docs$
 ^\.travis\.yml$
 vignettes
-.drone.yml
+\.drone\.yml
+_pkgdown\.yml
