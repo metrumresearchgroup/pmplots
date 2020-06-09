@@ -1,27 +1,15 @@
 
-pairs_lower <- function(data, mapping,
-                        smooth_color = opts$smooth.col,
-                        smooth_lty = opts$smooth.lty, ...) {
-
-  mapping_list <- rlang::as_list(mapping)
-
-  if(is.character(mapping_list$smooth_colour)){
-    smooth_color <- mapping_list$smooth_colour
-  }
-  if(is.numeric(mapping_list$smooth_lty)) {
-    smooth_lty <- mapping_list$smooth_lty
-  }
+pairs_lower <- function(data, mapping, ...) {
 
   ggplot(data = data, mapping = mapping) +
-    geom_point() +
+    geom_point(col=opts$scatter.col,size=opts$scatter.size) +
     geom_smooth(
       method = opts$smooth.method,
-      color = smooth_color,
-      lty = smooth_lty,
+      color = opts$smooth.col,
+      lty = opts$smooth.lty,
       se = FALSE,
       lwd = opts$smooth.lwd
     )
-
 }
 
 pairs_upper <- function(data, mapping, ...) {
@@ -37,7 +25,8 @@ pairs_upper <- function(data, mapping, ...) {
 ##' Pairs plots using ggpairs
 ##'
 ##' This funciton is a wrapper to [GGally::ggpairs] with customized
-##' functions for upper and lower off-diagonal panels.
+##' functions for upper and lower off-diagonal panels. See details for help
+##' on customizing some aspects of the off-diagonal plots.
 ##'
 ##' @param x plotting data.frame
 ##' @param y character `col//label` for pairs data; see [col_label]
@@ -56,6 +45,11 @@ pairs_upper <- function(data, mapping, ...) {
 ##'
 ##' When the length of `etas` is one, arguments are passed to [eta_hist] and
 ##' that result is returned.
+##'
+##' Use the options object to modify aspects of the smoother line:
+##' `smooth.col`, `smooth.lwd`, `smooth.lty`, `smooth.method`.  Also, use the
+##' options object to control aspects of the points: `scatter.col`,
+##' `scatter.size`.
 ##'
 ##' @return The result from a `ggpairs` call (a single plot).
 ##'

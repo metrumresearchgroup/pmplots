@@ -48,13 +48,19 @@ The result from a \code{ggpairs} call (a single plot).
 }
 \description{
 This funciton is a wrapper to \link[GGally:ggpairs]{GGally::ggpairs} with customized
-functions for upper and lower off-diagonal panels.
+functions for upper and lower off-diagonal panels. See details for help
+on customizing some aspects of the off-diagonal plots.
 }
 \details{
 This function requires the \code{GGally} package to be installed.
 
 When the length of \code{etas} is one, arguments are passed to \link{eta_hist} and
 that result is returned.
+
+Use the options object to modify aspects of the smoother line:
+\code{smooth.col}, \code{smooth.lwd}, \code{smooth.lty}, \code{smooth.method}.  Also, use the
+options object to control aspects of the points: \code{scatter.col},
+\code{scatter.size}.
 }
 \examples{
 
