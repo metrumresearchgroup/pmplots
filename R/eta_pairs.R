@@ -123,8 +123,9 @@ pairs_plot <- function(x, y, bins = 15,
   ) + pm_theme()
 }
 
-##' @rdname pairs_plot
-##' @export
-eta_pairs <- function(...) {
-  pairs_plot(...)
+#' @param etas character `col//label` for pairs data; see [col_label]
+#' @rdname pairs_plot
+#' @export
+eta_pairs <- function(x,etas,...) {
+  pairs_plot(x = x, y = etas, ...)
 }

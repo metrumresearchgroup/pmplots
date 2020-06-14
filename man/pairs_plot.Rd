@@ -18,7 +18,7 @@ pairs_plot(
   ...
 )
 
-eta_pairs(...)
+eta_pairs(x, etas, ...)
 }
 \arguments{
 \item{x}{plotting data.frame}
@@ -42,6 +42,8 @@ expressions in the label (see examples)}
 \item{lower_fun}{function to use for \code{lower} argument}
 
 \item{...}{passed to \link[GGally:ggpairs]{GGally::ggpairs}}
+
+\item{etas}{character \verb{col//label} for pairs data; see \link{col_label}}
 }
 \value{
 The result from a \code{ggpairs} call (a single plot).
