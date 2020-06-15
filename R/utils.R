@@ -227,7 +227,7 @@ col_label <- function(x) {
       return(trimws(y))
     }
   }
-  if(!grepl("[[:punct:]]",x)) {
+  if(!grepl("[ ()/$!@]",x)) {
     return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
