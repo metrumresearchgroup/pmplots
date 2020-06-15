@@ -100,14 +100,14 @@ test_that("red pred", {
   p <- cwresi_pred(df)
   expect_is(p, "gg")
   expect_labels(p, "PRED", "CWRESI")
-  expect_titles(p, "Population predicted value", "Conditional weighted residual")
+  expect_titles(p, "Population predicted value", "CWRES with interaction")
 })
 
 test_that("res cont", {
   p <- cwresi_cont(df, x="WT//Weight (kg)")
   expect_is(p, "gg")
   expect_labels(p, "WT", "CWRESI")
-  expect_titles(p, "Weight (kg)", "Conditional weighted residual")
+  expect_titles(p, "Weight (kg)", "CWRES with interaction")
 
   expect_error(cwres_cont(df, x="WT/Weight (kg)"))
 
@@ -140,7 +140,7 @@ test_that("res cat", {
   p <- cwresi_cat(df, x="STUDYc//Study")
   expect_is(p, "gg")
   expect_labels(p, "STUDYc", "CWRESI")
-  expect_titles(p, "Study", "Conditional weighted residual")
+  expect_titles(p, "Study", "CWRES with interaction")
 })
 
 test_that("eta cat cont hist", {
@@ -172,7 +172,7 @@ test_that("res hist", {
 
   p <- cwresi_hist(df)
   expect_is(p, "gg")
-  expect_x(p, "CWRESI", "Conditional weighted residual")
+  expect_x(p, "CWRESI", "CWRES with interaction")
 })
 
 
@@ -221,13 +221,13 @@ test_that("qq", {
 
 test_that("Axis title customization", {
   p <- cwresi_time(df, xunit="min")
-  expect_titles(p, "Time (min)", "Conditional weighted residual")
+  expect_titles(p, "Time (min)", "CWRES with interaction")
 
   p <- cwresi_time(df, x = "TIME//Study time {xunit}")
-  expect_titles(p, "Study time (hr)", "Conditional weighted residual")
+  expect_titles(p, "Study time (hr)", "CWRES with interaction")
 
   p <- cwresi_time(df, x = "TIME//Study time (seconds)")
-  expect_titles(p, "Study time (seconds)", "Conditional weighted residual")
+  expect_titles(p, "Study time (seconds)", "CWRES with interaction")
 
 })
 

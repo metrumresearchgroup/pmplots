@@ -52,7 +52,7 @@ test_that("res time", {
   p <- cwresi_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "CWRESI")
-  expect_titles(p, "Time (hr)", "Conditional weighted residual")
+  expect_titles(p, "Time (hr)", "CWRES with interaction")
 
   p <- cwres_time(df)
   expect_is(p, "gg")
@@ -72,7 +72,7 @@ test_that("res time", {
   p <- cwresi_tad(df)
   expect_is(p, "gg")
   expect_labels(p, "TAD", "CWRESI")
-  expect_titles(p, "Time after dose (hr)", "Conditional weighted residual")
+  expect_titles(p, "Time after dose (hr)", "CWRES with interaction")
 
   p <- cwres_tad(df)
   expect_is(p, "gg")
@@ -92,7 +92,7 @@ test_that("res time", {
   p <- cwresi_tafd(df)
   expect_is(p, "gg")
   expect_labels(p, "TAFD", "CWRESI")
-  expect_titles(p, "Time after first dose (hr)", "Conditional weighted residual")
+  expect_titles(p, "Time after first dose (hr)", "CWRES with interaction")
 
   p <- cwres_tafd(df)
   expect_is(p, "gg")
