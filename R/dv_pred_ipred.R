@@ -121,12 +121,10 @@ dv_pred_ipred_impl <- function(data,
   }
   if(is.null(dv)) {
     dv <- col_label("DV")
-    yl <- dv[2]
     dv <- dv[1]
     show_dv <- FALSE
   } else {
     dv <- col_label(dv)
-    yl <- dv[2]
     dv <- dv[1]
     require_numeric(data,dv)
     ycols <- c(ycols,dv)
@@ -170,20 +168,21 @@ dv_pred_ipred_impl <- function(data,
   }
   x <- col_label(x)
   xl <- glue_unit(x[2],xunit)
-  x <- x[1]
-  yl <- dv[2]
-  require_numeric(data,x)
+  x <-x[1]
+  yl <- "value"
+
+  require_numeric(data,x[1])
   if(is.character(ylab)) yl <- ylab
   if(is.character(xlab)) xl <- xlab
 
   marg <- margin(margin,0,margin,0,unit = "pt")
   strip.text = element_text(size = font_size,margin=marg)
   fac <- as.formula(paste0("~",id_col))
-  data <- data[,c(id_col,x,ycols),drop=FALSE]
-  data <- pivot_longer(data,cols = ycols,values_to="value",names_to="name")
+  data <- data[,c(id_col,x[1],ycols),drop=FALSE]
+  data <- pivot_longer(data,cols = unname(ycols),values_to="value",names_to="name")
 
   p <-
-    ggplot(data, aes(x=.data[[x]],y=.data[["value"]])) +
+    ggplot(data, aes(x=.data[[x[1]]],y=.data[["value"]])) +
     ggplot2::scale_color_manual(name="", values = clrs) +
     ggplot2::scale_linetype_manual(name="", values=lnes) +
     ggplot2::scale_shape_manual(name="", values = shapes) +
