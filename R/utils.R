@@ -391,8 +391,7 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
 }
 
 no_cwres <- function(object) {
-  ans <- !("CWRES" %in% names(object))
-  ans
+  !("CWRES" %in% names(object))
 }
 
 .miss <- function(name,object) {
