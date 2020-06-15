@@ -53,7 +53,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
   if(multi_x) {
     y <- y[1]
     to_melt <- col_labels(x)
-    df <- pivot_longer(df, cols = to_melt, names_to = "variable", values_to = "value")
+    df <- pivot_longer(df, cols = unname(to_melt), names_to = "variable", values_to = "value")
     df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
     if(use_labels) {
       df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
@@ -69,7 +69,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
   if(multi_y) {
     x <- x[1]
     to_melt <- col_labels(y)
-    df <- pivot_longer(df, cols = to_melt,names_to =  "variable", values_to = "value")
+    df <- pivot_longer(df, cols = unname(to_melt), names_to =  "variable", values_to = "value")
     df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
     if(use_labels) {
       df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
@@ -100,7 +100,7 @@ wrap_res_time <- function(df, ..., x = pm_axis_time()) {
 #' @rdname wrap_plots
 #' @export
 wrap_eta_cont <- function(df, x, y, scales="fixed", ...) {
-  wrap_cont_cont(df, x, y=y, fun = eta_cont, scales = scales, ...)
+  wrap_cont_cont(df, x, y = y, fun = eta_cont, scales = scales, ...)
 }
 
 #' @rdname wrap_plots

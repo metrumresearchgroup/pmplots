@@ -1,6 +1,17 @@
 
 .stop <- function(...) stop(..., call.=FALSE)
 
+warn_cwres <- function(data) {
+  warning("CWRES column does not exist in this data frame",call.=FALSE)
+  return(invisible(NULL))
+}
+
+warn_cwresi <- function(data) {
+  warning("CWRESI column does not exist in this data frame",call.=FALSE)
+  return(invisible(NULL))
+}
+
+
 ##' Add `CWRES` column from `CWRESI` if needed
 ##'
 ##' The intention here is to make sure there is a `CWRES` column if applicable
@@ -380,7 +391,8 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
 }
 
 no_cwres <- function(object) {
-  !("CWRES" %in% names(object))
+  ans <- !("CWRES" %in% names(object))
+  ans
 }
 
 .miss <- function(name,object) {
