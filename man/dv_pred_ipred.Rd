@@ -28,7 +28,7 @@ dv_pred_ipred_impl(
   xlab = NULL,
   ylab = NULL,
   angle = NULL,
-  font_size = 5,
+  font_size = 7,
   margin = 1,
   legend.position = "top",
   pred_lty = 2,

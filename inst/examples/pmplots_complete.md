@@ -86,12 +86,14 @@ Available functions: pmplots
       - [Basic plot](#basic-plot)
       - [Faceted](#faceted)
       - [log-Scale](#log-scale)
+  - [DV-PRED-IPRED](#dv-pred-ipred)
   - [Wrapped plots](#wrapped-plots)
       - [histogram](#histogram)
       - [eta](#eta)
       - [DV/PRED, DV/IPRED](#dvpred-dvipred)
       - [Use labels in the strip](#use-labels-in-the-strip)
       - [Residuals](#residuals)
+  - [Vectorized plots](#vectorized-plots)
   - [Data summary](#data-summary)
       - [Continuous variable by categorical variable
         (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
@@ -104,6 +106,8 @@ Available functions: pmplots
       - [Latex in wrapped plots](#latex-in-wrapped-plots)
       - [Modify x-axis](#modify-x-axis)
       - [Modify y-axis](#modify-y-axis)
+      - [Flip coordinates when labels get
+        cramped](#flip-coordinates-when-labels-get-cramped)
   - [Add layers](#add-layers)
       - [smooth](#smooth)
       - [abline](#abline)
@@ -181,6 +185,8 @@ dat <- mutate(df, CWRES = NULL)
 cwresi_time(df)
 ```
 
+    . `geom_smooth()` using formula 'y ~ x'
+
 ![](img/pmplots_complete--unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
@@ -188,6 +194,7 @@ cwres_time(dat)
 ```
 
     . Creating CWRES column from CWRESI
+    . `geom_smooth()` using formula 'y ~ x'
 
 ![](img/pmplots_complete--unnamed-chunk-6-2.png)<!-- -->
 
@@ -594,7 +601,7 @@ pm_grid(p)
 ## ETA pairs plot (`eta_pairs`)
 
 ``` r
-p <- eta_pairs(id,etas)
+p <- eta_pairs(id, etas)
 ```
 
 ``` r
@@ -629,8 +636,7 @@ cwres_cat(df, x = "STUDYc") + facet_wrap(~CPc)
 
 ![](img/pmplots_complete--unnamed-chunk-58-1.png)<!-- -->
 
-The only way to get this right
-is
+The only way to get this right is
 
 ``` r
 cwres_cat(df, x = "STUDYc", shown=FALSE) + facet_wrap(~CPc)
@@ -646,6 +652,28 @@ dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 
 ![](img/pmplots_complete--unnamed-chunk-60-1.png)<!-- -->
 
+# DV-PRED-IPRED
+
+  - This returns a list of plots; we show only one here (the first 9
+    IDs) as an example
+
+<!-- end list -->
+
+``` r
+dd1 <- filter(df, ID <= 15)
+
+dv_pred_ipred(dd1, nrow = 3, ncol = 3, ylab = "Concentration (ng/mL)", log_y=TRUE)
+```
+
+    . $`1`
+
+![](img/pmplots_complete--unnamed-chunk-61-1.png)<!-- -->
+
+    . 
+    . $`2`
+
+![](img/pmplots_complete--unnamed-chunk-61-2.png)<!-- -->
+
 # Wrapped plots
 
 ## histogram
@@ -654,7 +682,7 @@ dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-61-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-62-1.png)<!-- -->
 
 ## eta
 
@@ -662,7 +690,7 @@ wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-62-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-63-1.png)<!-- -->
 
 ## DV/PRED, DV/IPRED
 
@@ -670,7 +698,7 @@ wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
 wrap_dv_preds(df, ncol=1)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-63-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-64-1.png)<!-- -->
 
 ## Use labels in the strip
 
@@ -684,7 +712,7 @@ wrap_eta_cont(
 )
 ```
 
-![](img/pmplots_complete--unnamed-chunk-64-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-65-1.png)<!-- -->
 
 ## Residuals
 
@@ -692,7 +720,27 @@ wrap_eta_cont(
 wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-65-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-66-1.png)<!-- -->
+
+# Vectorized plots
+
+``` r
+pm_scatter(df, x = "TIME", y = c("RES", "WRES", "CWRES"))
+```
+
+    . [[1]]
+
+![](img/pmplots_complete--unnamed-chunk-67-1.png)<!-- -->
+
+    . 
+    . [[2]]
+
+![](img/pmplots_complete--unnamed-chunk-67-2.png)<!-- -->
+
+    . 
+    . [[3]]
+
+![](img/pmplots_complete--unnamed-chunk-67-3.png)<!-- -->
 
 # Data summary
 
@@ -702,7 +750,7 @@ wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 cont_cat(id, x="STUDYc", y="WT")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-66-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-68-1.png)<!-- -->
 
 ## General histogram (`cont_hist`)
 
@@ -710,7 +758,7 @@ cont_cat(id, x="STUDYc", y="WT")
 cont_hist(id, x = "WT", bins = 20)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-67-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-69-1.png)<!-- -->
 
 ## Split and plot (`split_plot`)
 
@@ -722,7 +770,7 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 pm_grid(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-69-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-71-1.png)<!-- -->
 
 # Some customization
 
@@ -732,7 +780,7 @@ pm_grid(p)
 dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-70-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-72-1.png)<!-- -->
 
 ## Latex in pairs plot
 
@@ -744,7 +792,7 @@ x <- c("m//$\\mu$", "s//$\\sigma$", "n//$\\nu$")
 pairs_plot(data,x)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-71-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-73-1.png)<!-- -->
 
 ## Latex in wrapped plots
 
@@ -754,7 +802,7 @@ y <- c("WT//Weight (kg)", "BMI//BMI (kg/m$^2$)", "SCR//SCR (g/dL)")
 wrap_cont_time(df, y = y, use_labels=TRUE)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-72-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-74-1.png)<!-- -->
 
 ## Modify x-axis
 
@@ -764,7 +812,7 @@ a <- list(trans="log", breaks = logbr3())
 dv_time(df, xs=a)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-73-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-75-1.png)<!-- -->
 
 ## Modify y-axis
 
@@ -772,7 +820,33 @@ dv_time(df, xs=a)
 dv_time(df, ys=a, yname="Y-axis name")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-74-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-76-1.png)<!-- -->
+
+## Flip coordinates when labels get cramped
+
+If this is too cramped
+
+``` r
+cont_cat(
+  id, 
+  y = c("WT", "BMI", "ALB", "CRCL"), 
+  x = "STUDYc"
+) %>% pm_grid()
+```
+
+![](img/pmplots_complete--unnamed-chunk-77-1.png)<!-- -->
+
+Try this
+
+``` r
+cont_cat(
+  id, 
+  y = c("WT", "BMI", "ALB", "CRCL"), 
+  x = "STUDYc"
+) %>% map(~.x+coord_flip()) %>% pm_grid()
+```
+
+![](img/pmplots_complete--unnamed-chunk-78-1.png)<!-- -->
 
 # Add layers
 
@@ -786,7 +860,7 @@ p <- ggplot(df, aes(PRED,DV))  + geom_point() + pm_theme()
 layer_s(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-76-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-80-1.png)<!-- -->
 
 ## abline
 
@@ -794,13 +868,13 @@ layer_s(p)
 layer_a(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-77-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-81-1.png)<!-- -->
 
 ``` r
 layer_h(cwres_time(df,add_layers=FALSE))
 ```
 
-![](img/pmplots_complete--unnamed-chunk-78-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-82-1.png)<!-- -->
 
 ## Drop extra layers
 
@@ -808,25 +882,25 @@ layer_h(cwres_time(df,add_layers=FALSE))
 dv_pred(df, smooth=NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-79-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-83-1.png)<!-- -->
 
 ``` r
 dv_pred(df, abline=NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-80-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-84-1.png)<!-- -->
 
 ``` r
 cwres_time(df, hline = NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-81-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-85-1.png)<!-- -->
 
 ``` r
 dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-82-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-86-1.png)<!-- -->
 
 ## Modify layer specs
 
@@ -836,7 +910,7 @@ For example, change the values of argument for `geom_smooth`
 cwres_time(df, smooth = list(method = "loess", span = 0.1, se=TRUE))
 ```
 
-![](img/pmplots_complete--unnamed-chunk-83-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-87-1.png)<!-- -->
 
 ## Drop all extra layers
 
@@ -844,7 +918,7 @@ cwres_time(df, smooth = list(method = "loess", span = 0.1, se=TRUE))
 dv_pred(df, add_layers=FALSE)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-84-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-88-1.png)<!-- -->
 
 # Custom breaks
 
@@ -854,7 +928,7 @@ Default breaks:
 dv_time(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-85-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-89-1.png)<!-- -->
 
 Break every 3 days
 
@@ -862,7 +936,7 @@ Break every 3 days
 dv_time(df, xby=72)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-86-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-90-1.png)<!-- -->
 
 Custom breaks and limits
 
@@ -871,7 +945,7 @@ a <- list(breaks = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-87-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-91-1.png)<!-- -->
 
 # Extra reference lines to \[C\]WRES plots
 
@@ -879,7 +953,7 @@ dv_time(df, xs=a)
 wres_time(df) + geom_3s()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-88-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-92-1.png)<!-- -->
 
 # Replicate look and feel
 
@@ -889,7 +963,7 @@ p <- ggplot(df, aes(IPRED,DV)) + geom_point()
 p
 ```
 
-![](img/pmplots_complete--unnamed-chunk-89-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-93-1.png)<!-- -->
 
 ## Theme
 
@@ -897,7 +971,7 @@ p
 p + pm_theme()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-90-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-94-1.png)<!-- -->
 
 ## Plain
 
@@ -905,7 +979,7 @@ p + pm_theme()
 p + theme_plain()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-91-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-95-1.png)<!-- -->
 
 ## Smooth
 
@@ -913,7 +987,7 @@ p + theme_plain()
 p + pm_smooth()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-92-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-96-1.png)<!-- -->
 
 ## Abline
 
@@ -921,7 +995,7 @@ p + pm_smooth()
 p + pm_abline()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-93-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-97-1.png)<!-- -->
 
 ## Horizontal reference line
 
@@ -929,7 +1003,7 @@ p + pm_abline()
 ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-94-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-98-1.png)<!-- -->
 
 ## Rotate x and y axis labels
 
@@ -937,7 +1011,7 @@ ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
 dv_pred(df) + rot_x(angle = 90) + rot_y()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-95-1.png)<!-- -->
+![](img/pmplots_complete--unnamed-chunk-99-1.png)<!-- -->
 
 # Standard axis titles
 
@@ -978,6 +1052,12 @@ pm_axis_cwres()
     . [1] "CWRES//Conditional weighted residual"
 
 ``` r
+pm_axis_cwresi()
+```
+
+    . [1] "CWRESI//CWRES with interaction"
+
+``` r
 pm_axis_npde()
 ```
 
@@ -1007,14 +1087,14 @@ pm_axis_ipred()
 logbr3()
 ```
 
-    .  [1] 1e-10 3e-10 1e-09 3e-09 1e-08 3e-08 1e-07 3e-07 1e-06 3e-06 1e-05
-    . [12] 3e-05 1e-04 3e-04 1e-03 3e-03 1e-02 3e-02 1e-01 3e-01 1e+00 3e+00
-    . [23] 1e+01 3e+01 1e+02 3e+02 1e+03 3e+03 1e+04 3e+04 1e+05 3e+05 1e+06
-    . [34] 3e+06 1e+07 3e+07 1e+08 3e+08 1e+09 3e+09 1e+10 3e+10
+    .  [1] 1e-10 3e-10 1e-09 3e-09 1e-08 3e-08 1e-07 3e-07 1e-06 3e-06 1e-05 3e-05
+    . [13] 1e-04 3e-04 1e-03 3e-03 1e-02 3e-02 1e-01 3e-01 1e+00 3e+00 1e+01 3e+01
+    . [25] 1e+02 3e+02 1e+03 3e+03 1e+04 3e+04 1e+05 3e+05 1e+06 3e+06 1e+07 3e+07
+    . [37] 1e+08 3e+08 1e+09 3e+09 1e+10 3e+10
 
 ``` r
 logbr()
 ```
 
-    .  [1] 1e-10 1e-09 1e-08 1e-07 1e-06 1e-05 1e-04 1e-03 1e-02 1e-01 1e+00
-    . [12] 1e+01 1e+02 1e+03 1e+04 1e+05 1e+06 1e+07 1e+08 1e+09 1e+10
+    .  [1] 1e-10 1e-09 1e-08 1e-07 1e-06 1e-05 1e-04 1e-03 1e-02 1e-01 1e+00 1e+01
+    . [13] 1e+02 1e+03 1e+04 1e+05 1e+06 1e+07 1e+08 1e+09 1e+10
