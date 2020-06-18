@@ -12,7 +12,6 @@
 - Refactor `col_label` so that punctuation in `col//label` does not 
   result in error #72
 
-
 # pmplots 0.2.0
 - Qualification under CR-88 and released to r_validated
 
