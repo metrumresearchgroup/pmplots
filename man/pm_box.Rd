@@ -47,6 +47,9 @@ df <- pmplots_data_id()
 
 cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 
+set.seed(12345)
+cont_cat(df, x="STUDYc", y="WT", points = list(width  = 0.1))
+
 }
 \seealso{
 \code{\link{boxwork}}

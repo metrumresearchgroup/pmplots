@@ -140,6 +140,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
 #'
 #' cont_cat(df, x="STUDYc//Study name", y="WT//Weight (kg)")
 #'
+#' set.seed(12345)
+#' cont_cat(df, x="STUDYc", y="WT", points = list(width  = 0.1))
+#'
 #' @export
 pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   if(length(x) > 1 || length(y) > 1) {
