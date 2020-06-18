@@ -4,8 +4,21 @@
 \alias{boxwork}
 \title{Make boxplots}
 \usage{
-boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white",
-  alpha = 1, hline = NULL, title = NULL, shown = TRUE, ...)
+boxwork(
+  df,
+  x,
+  y,
+  xs = defcx(),
+  ys = defy(),
+  fill = opts$boxplot.fill,
+  alpha = opts$boxplot.alpha,
+  hline = NULL,
+  title = NULL,
+  shown = TRUE,
+  points = NULL,
+  outlier.shape = opts$boxplot.outlier.shape,
+  ...
+)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -29,7 +42,13 @@ boxwork(df, x, y, xs = defcx(), ys = defy(), fill = "white",
 \item{shown}{if \code{TRUE} provide a numeric summary of each
 box (see details)}
 
-\item{...}{not used}
+\item{points}{show points in back of transparent boxes; if \code{TRUE},
+a default display of points is made on top of boxes; also may be passed as
+a list of arguments to pass to \code{geom_point}; see details}
+
+\item{outlier.shape}{passed to \code{geom_boxplot}}
+
+\item{...}{arguments passed to \code{geom_boxplot}}
 }
 \description{
 Make boxplots
@@ -53,4 +72,15 @@ summary, only \code{n} is shown.
 The summaries will not be correct if the plot is eventually faceted by
 another variable in the data set.  In this case, either use
 \code{shown=FALSE} or create the plot with \code{\link{split_plot}}.
+
+When the user passes the \code{points} argument, \code{outlier.shape} is
+automatically switched to \code{NA} so that outlier points are only plotted
+once.  The \code{fill} argument is also set to \code{NA}, so that boxes become
+transparent, showing the points.
+
+When the user sets \code{points} to \code{TRUE}, grey points are shown
+in back of transparent boxes and the points are jittered in the x-direction.
+The user can customize the display of the points by passing a list of
+arguments for \code{geom_point} (for example, change the color, transparency,
+size, jitter amount, etc).
 }

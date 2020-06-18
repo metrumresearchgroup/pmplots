@@ -8,8 +8,17 @@
 \alias{npde_q}
 \title{QQ plot for conditional residuals or NPDE}
 \usage{
-wres_q(df, x = "WRES", xs = defx(), ys = defy(), abline = NULL,
-  ...)
+wres_q(
+  df,
+  x = "WRES",
+  xs = defx(),
+  ys = defy(),
+  abline = NULL,
+  col = opts$qq.col,
+  alpha = opts$qq.alpha,
+  size = opts$qq.size,
+  ...
+)
 
 cwres_q(df, x = "CWRES", ...)
 
@@ -28,6 +37,12 @@ npde_q(df, x = "NPDE", ...)
 
 \item{abline}{numeric vector with two elements to be passed to
 \code{geom_abline}}
+
+\item{col}{color for points}
+
+\item{alpha}{alpha value for points}
+
+\item{size}{size for points}
 
 \item{...}{arguments passed back to \code{wres_q}}
 }

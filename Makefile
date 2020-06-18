@@ -5,6 +5,10 @@ TARBALL=${PACKAGE}_${VERSION}.tar.gz
 PKGDIR=.
 CHKDIR=.
 
+drone:
+	R CMD build --no-build-vignettes --md5
+	R CMD check ${TARBALL}
+
 covr:
 		Rscript inst/script/covr.R
 

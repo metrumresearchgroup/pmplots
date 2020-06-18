@@ -6,9 +6,18 @@
 \alias{dv_preds}
 \title{Plot DV versus predicted values}
 \usage{
-dv_pred(df, x = pm_axis_pred(), y = pm_axis_dv(), yname = "value",
-  xname = "value", xs = list(), ys = list(), loglog = FALSE,
-  scales = c("fixed", "free"), ...)
+dv_pred(
+  df,
+  x = pm_axis_pred(),
+  y = pm_axis_dv(),
+  yname = "value",
+  xname = "value",
+  xs = list(),
+  ys = list(),
+  loglog = FALSE,
+  scales = c("fixed", "free"),
+  ...
+)
 
 dv_ipred(df, x = pm_axis_ipred(), ...)
 

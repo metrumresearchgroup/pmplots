@@ -4,8 +4,7 @@
 \alias{eta_hist}
 \title{ETA histograms}
 \usage{
-eta_hist(df, x, xs = defx(), fill = "black", col = "white",
-  alpha = 0.6, add_density = FALSE, ...)
+eta_hist(df, x, xs = defx(), add_density = FALSE, ...)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -13,12 +12,6 @@ eta_hist(df, x, xs = defx(), fill = "black", col = "white",
 \item{x}{character col//label for x-axis data; see \code{\link{col_label}}}
 
 \item{xs}{see \code{\link{defx}}}
-
-\item{fill}{passed to \code{geom_histogram}}
-
-\item{col}{passed to \code{geom_histogram}}
-
-\item{alpha}{passed to \code{geom_histogram}}
 
 \item{add_density}{if \code{TRUE}, a normal density line will
 be plotted on top of the histogram via \code{\link{add_density}}}

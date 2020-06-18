@@ -1,6 +1,17 @@
 
 .stop <- function(...) stop(..., call.=FALSE)
 
+warn_cwres <- function(data) {
+  warning("CWRES column does not exist in this data frame",call.=FALSE)
+  return(invisible(NULL))
+}
+
+warn_cwresi <- function(data) {
+  warning("CWRESI column does not exist in this data frame",call.=FALSE)
+  return(invisible(NULL))
+}
+
+
 ##' Add `CWRES` column from `CWRESI` if needed
 ##'
 ##' The intention here is to make sure there is a `CWRES` column if applicable
@@ -227,7 +238,7 @@ col_label <- function(x) {
       return(trimws(y))
     }
   }
-  if(!grepl("[[:punct:]]",x)) {
+  if(!grepl("[ ()/$!@]",x)) {
     return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
@@ -241,6 +252,14 @@ col_labels <- function(x) {
   values
 }
 
+#' Parse the label part of a col_label
+#'
+#' @param x a character string
+#'
+#' @examples
+#' parse_label("foo $\\mu$")
+#'
+#' @export
 parse_label <- function(x) {
   if(substr(x,1,2)=="!!") {
     x <- parse(text=substr(x,3,nchar(x)))
@@ -252,6 +271,15 @@ parse_label <- function(x) {
     }
   }
   x
+}
+
+#' @rdname parse_label
+#' @export
+label_parse_label <- function(x) {
+  x <- lapply(x, as.character)
+  lapply(x, function(values) {
+    lapply(values, parse_label)
+  })
 }
 
 look_for_tex <- function(x) {
@@ -307,23 +335,55 @@ update_list <- function(left, right) {
 
 ##' Rotate axis text
 ##'
-##' @param angle passed to \code{ggplot::element_text}
-##' @param hjust passed to \code{ggplot::element_text}
+##' @param angle passed to [ggplot2::element_text]
+##' @param hjust passed to [ggplot2::element_text]
+##' @param vjust passed to [ggplot2::element_text]
+##' @param vertical if `TRUE`, then x-axis tick labels are rotated 90 degrees
+##' with `vjust` set to 0.5 and `hjust` set to 0; when `vertical` is set to
+##' `TRUE`, then `hjust` can be passed as character string that must match
+##' either `top` (then `hjust` is set to 1) or `bottom` (then `hjust` is set to
+##' 0
+##' @param ... pased to [ggplot2::element_text]
+##'
+##' @details If x-axis tick labels do not have enough space, consider using
+##' `vert = TRUE`.  By default, the tick labels will be justified up to the
+##' x-axis line.  Use `hjust = "b"` or `hjust = "bottom"` (with `vert = TRUE`)
+##' to justify the axis labels toward the bottom margin of the plot.
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
 ##'
 ##' dv_pred(data) + rot_x()
 ##'
+##' \dontrun{
+##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE, hjust = "b")
+##' }
+##'
+##' @md
 ##' @export
-rot_x <- function(angle=30, hjust = 1) {
-  theme(axis.text.x = element_text(angle = angle, hjust = hjust))
+rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
+  if(vertical) {
+
+    if(is.character(hjust)) {
+      hjust <- match.arg(hjust, c("top", "bottom"))
+      if(hjust=="top") hjust <- 1
+      if(hjust=="bottom") hjust <- 0
+    } else {
+      if(missing(hjust)) hjust <- 1
+    }
+    angle <- 90
+    vjust <- 0.5
+  }
+  x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+  theme(axis.text.x=x)
 }
 
 ##' @rdname rot_x
 ##' @export
-rot_y <- function(angle=30, hjust = 1) {
-  theme(axis.text.y = element_text(angle = angle, hjust = hjust))
+rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
+  y <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+  theme(axis.text.y=y)
 }
 
 .has <- function(name,object) {
@@ -398,3 +458,30 @@ pm_grid <- function(x, ..., ncol=2) {
   cowplot::plot_grid(plotlist=x, ..., ncol = ncol)
 }
 
+chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
+  if(!is.data.frame(data)) {
+    stop("data argument must be a data.frame")
+  }
+  if(!exists(id_col,data)) {
+    stop(sprintf("chunking column %s does not exist in data", id_col))
+  }
+  if(!is.numeric(nchunk)) {
+    stop("nchunk must be numeric")
+  }
+  if(!(nchunk > 0)) {
+    stop("nchunk must be greater than zero")
+  }
+  id <- data[[id_col]]
+  ids <- unique(id)
+  ntot <- length(ids)
+  if(!(nchunk <= ntot)) {
+    stop("nchunk must be <= number of IDs")
+  }
+  nper <- ceiling(ntot/nchunk)
+  a <- rep(seq(nper), each = nchunk, length.out = ntot)
+  sp <- a[match(id,ids)]
+  if(is.character(mark)) {
+    data[[mark]] <- sp
+  }
+  split.data.frame(data, sp)
+}

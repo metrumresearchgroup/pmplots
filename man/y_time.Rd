@@ -4,8 +4,18 @@
 \alias{y_time}
 \title{Plot continuous data versus time}
 \usage{
-y_time(df, x = pm_axis_time(), y, xunit = "hr", yname = NULL,
-  xs = list(), ys = list(), log = FALSE, xby = NULL, ...)
+y_time(
+  df,
+  x = pm_axis_time(),
+  y,
+  xunit = opts$time.unit,
+  yname = NULL,
+  xs = list(),
+  ys = list(),
+  log = FALSE,
+  xby = NULL,
+  ...
+)
 }
 \arguments{
 \item{df}{data frame to plot}

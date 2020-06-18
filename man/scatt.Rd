@@ -4,9 +4,20 @@
 \alias{scatt}
 \title{Scatter plot function}
 \usage{
-scatt(df, x, y, xs = defx(), ys = defy(), title = NULL,
-  group = NULL, col = NULL, scale_col = scale_color_brewer(palette =
-  "Set2", name = ""), ...)
+scatt(
+  df,
+  x,
+  y,
+  xs = defx(),
+  ys = defy(),
+  title = NULL,
+  group = NULL,
+  col = NULL,
+  plot_id = FALSE,
+  size = pm_opts$scatter.size,
+  scale_col = scale_color_brewer(palette = "Set2", name = ""),
+  ...
+)
 }
 \arguments{
 \item{df}{data frame to plot}
@@ -15,17 +26,22 @@ scatt(df, x, y, xs = defx(), ys = defy(), title = NULL,
 
 \item{y}{character name for y-axis data}
 
-\item{xs}{see \code{\link{defx}}}
+\item{xs}{see \link{defx}}
 
-\item{ys}{see \code{\link{defy}}}
+\item{ys}{see \link{defy}}
 
-\item{title}{character, passed to \code{ggtitle}}
+\item{title}{character, passed to \link[ggplot2:ggtitle]{ggplot2::ggtitle}}
 
 \item{group}{character name of grouping variable}
 
-\item{col}{not used}
+\item{col}{character name of variable to color the points}
 
-\item{scale_col}{not used}
+\item{plot_id}{if \code{TRUE} then subject IDs are plotted rather than points;
+see the \code{size} argument - the size may need to be increased when plotting IDs}
+
+\item{size}{passed to \link[ggplot2:geom_point]{ggplot2::geom_point} or \link[ggplot2:geom_text]{ggplot2::geom_text}}
+
+\item{scale_col}{discrete scale to use for coloring the points (see default)}
 
 \item{...}{not used}
 }

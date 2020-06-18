@@ -10,7 +10,9 @@
 ##' @export
 pmplots_data <- function() {
   loc <- system.file(package="pmplots")
-  readRDS(file=file.path(loc,"exdata", "pmplots_data.RDS"))
+  ans <- readRDS(file=file.path(loc,"exdata", "pmplots_data.RDS"))
+  ans$CWRES <- ans$CWRESI
+  ans
 }
 ##' @export
 ##' @rdname pmplots_data
@@ -22,6 +24,7 @@ pmplots_data_id <- function() {
 ##' @rdname pmplots_data
 pmplots_data_obs <- function() {
   loc <- system.file(package="pmplots")
-  dplyr::filter(readRDS(file=file.path(loc,"exdata", "pmplots_data_obs.RDS")),
-                !is.na(IPRED))
+  ans <- readRDS(file=file.path(loc,"exdata", "pmplots_data_obs.RDS"))
+  ans$CWRES <- ans$CWRESI
+  dplyr::filter(ans, !is.na(IPRED))
 }

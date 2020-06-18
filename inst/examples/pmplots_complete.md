@@ -1,93 +1,133 @@
 Available functions: pmplots
 ================
 
--   [Setup and packages](#setup-and-packages)
--   [Example data in the package](#example-data-in-the-package)
--   [`col//title` specification](#coltitle-specification)
-    -   [Fill in `CWRES` if it doesn't exist](#fill-in-cwres-if-it-doesnt-exist)
--   [Observed vs predicted](#observed-vs-predicted)
-    -   [Observed versus population predicted (`dv_pred`)](#observed-versus-population-predicted-dv_pred)
-    -   [Observed versus population predicted - log/log](#observed-versus-population-predicted---loglog)
-    -   [Observed versus individual predicted (`dv_ipred`)](#observed-versus-individual-predicted-dv_ipred)
-    -   [Observed versus individual predicted - log/log](#observed-versus-individual-predicted---loglog)
-    -   [Observed versus both PRED and IPRED](#observed-versus-both-pred-and-ipred)
--   [Residual plots](#residual-plots)
-    -   [Residuals versus time (`res_time`)](#residuals-versus-time-res_time)
-    -   [Residuals versus time after first dose (`res_tafd`)](#residuals-versus-time-after-first-dose-res_tafd)
-    -   [Residuals versus time after dose (`res_tad`)](#residuals-versus-time-after-dose-res_tad)
-    -   [Residuals versus population predicted (`res_pred`)](#residuals-versus-population-predicted-res_pred)
-    -   [RES versus continuous covariate (`res_cont`)](#res-versus-continuous-covariate-res_cont)
-    -   [RES by categorical covariate (`res_cat`)](#res-by-categorical-covariate-res_cat)
-    -   [Residual histogram (`res_hist`)](#residual-histogram-res_hist)
--   [Weighted residuals](#weighted-residuals)
-    -   [Weighted residuals versus time (`wres_time`)](#weighted-residuals-versus-time-wres_time)
-    -   [Weighted residuals versus time after first dose (`wres_tafd`)](#weighted-residuals-versus-time-after-first-dose-wres_tafd)
-    -   [Weighted residuals versus time after dose (`wres_tad`)](#weighted-residuals-versus-time-after-dose-wres_tad)
-    -   [Weighted esiduals versus population predicted (`wres_pred`)](#weighted-esiduals-versus-population-predicted-wres_pred)
-    -   [WRES versus continuous covariate (`wres_cont`)](#wres-versus-continuous-covariate-wres_cont)
-    -   [WRES by categorical covariate (`wres_cat`)](#wres-by-categorical-covariate-wres_cat)
-    -   [Weighted residual histogram (`wres_hist`)](#weighted-residual-histogram-wres_hist)
-    -   [WRES QQ plot (`wres_q`)](#wres-qq-plot-wres_q)
--   [Conditional weighted residuals (CWRES)](#conditional-weighted-residuals-cwres)
-    -   [CWRES versus time (`cwres_time`)](#cwres-versus-time-cwres_time)
-    -   [Conditional weighted residuals versus time after first dose (`cwres_tafd`)](#conditional-weighted-residuals-versus-time-after-first-dose-cwres_tafd)
-    -   [CWRES versus time after dose (`cwres_tad`)](#cwres-versus-time-after-dose-cwres_tad)
-    -   [CWRES versus continuous covariate (`cwres_cont`)](#cwres-versus-continuous-covariate-cwres_cont)
-    -   [CWRES by categorical covariate (`cwres_cat`)](#cwres-by-categorical-covariate-cwres_cat)
-    -   [Conditional weighted residual histogram (`cwres_hist`)](#conditional-weighted-residual-histogram-cwres_hist)
-    -   [CWRES versus population predicted (`cwres_pred`)](#cwres-versus-population-predicted-cwres_pred)
-    -   [CWRES QQ plot (`cwres_q`)](#cwres-qq-plot-cwres_q)
--   [NPDE plots](#npde-plots)
-    -   [NPDE versus TIME (`npde_time`)](#npde-versus-time-npde_time)
-    -   [NPDE versus TAD (`npde_tad`)](#npde-versus-tad-npde_tad)
-    -   [NPDE versus TAFD (`npde_tafd`)](#npde-versus-tafd-npde_tafd)
-    -   [NPDE versus PRED (`npde_pred`)](#npde-versus-pred-npde_pred)
-    -   [NPDE versus continuous variable (`npde_cont`)](#npde-versus-continuous-variable-npde_cont)
-    -   [NPDE versus categorical variable (`npde_cat`)](#npde-versus-categorical-variable-npde_cat)
-    -   [QQ-plot with NPDE (`npde_q`)](#qq-plot-with-npde-npde_q)
-    -   [NPDE histogram (`npde_hist`)](#npde-histogram-npde_hist)
--   [ETA plots](#eta-plots)
-    -   [ETA versus continuous covariates (`eta_cont`)](#eta-versus-continuous-covariates-eta_cont)
-    -   [ETA by categorical covariates (`eta_cat`)](#eta-by-categorical-covariates-eta_cat)
-    -   [ETA histograms (`eta_hist`)](#eta-histograms-eta_hist)
-    -   [ETA pairs plot (`eta_pairs`)](#eta-pairs-plot-eta_pairs)
--   [DV versus time (`dv_time`)](#dv-versus-time-dv_time)
-    -   [Basic plot](#basic-plot)
-    -   [Faceted](#faceted)
-    -   [log-Scale](#log-scale)
--   [Wrapped plots](#wrapped-plots)
-    -   [histogram](#histogram)
-    -   [eta](#eta)
-    -   [DV/PRED, DV/IPRED](#dvpred-dvipred)
-    -   [Use labels in the strip](#use-labels-in-the-strip)
-    -   [Residuals](#residuals)
--   [Data summary](#data-summary)
-    -   [Continuous variable by categorical variable (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
-    -   [General histogram (`cont_hist`)](#general-histogram-cont_hist)
-    -   [Split and plot (`split_plot`)](#split-and-plot-split_plot)
--   [Some customization](#some-customization)
-    -   [Greek letters in axis title](#greek-letters-in-axis-title)
-    -   [Modify x-axis](#modify-x-axis)
-    -   [Modify y-axis](#modify-y-axis)
--   [Add layers](#add-layers)
-    -   [smooth](#smooth)
-    -   [abline](#abline)
-    -   [Drop extra layers](#drop-extra-layers)
-    -   [Drop all extra layers](#drop-all-extra-layers)
--   [Custom breaks](#custom-breaks)
--   [Extra reference lines to \[C\]WRES plots](#extra-reference-lines-to-cwres-plots)
--   [Replicate look and feel](#replicate-look-and-feel)
-    -   [Theme](#theme)
-    -   [Plain](#plain)
-    -   [Smooth](#smooth-1)
-    -   [Abline](#abline-1)
-    -   [Horizontal reference line](#horizontal-reference-line)
-    -   [Rotate x and y axis labels](#rotate-x-and-y-axis-labels)
--   [Standard axis titles](#standard-axis-titles)
--   [Log breaks](#log-breaks)
+  - [Setup and packages](#setup-and-packages)
+  - [Example data in the package](#example-data-in-the-package)
+  - [`col//title` specification](#coltitle-specification)
+      - [Fill in `CWRES` if it doesn’t
+        exist](#fill-in-cwres-if-it-doesnt-exist)
+  - [Observed vs predicted](#observed-vs-predicted)
+      - [Observed versus population predicted
+        (`dv_pred`)](#observed-versus-population-predicted-dv_pred)
+      - [Observed versus population predicted -
+        log/log](#observed-versus-population-predicted---loglog)
+      - [Observed versus individual predicted
+        (`dv_ipred`)](#observed-versus-individual-predicted-dv_ipred)
+      - [Observed versus individual predicted -
+        log/log](#observed-versus-individual-predicted---loglog)
+      - [Observed versus both PRED and
+        IPRED](#observed-versus-both-pred-and-ipred)
+  - [Residual plots](#residual-plots)
+      - [Residuals versus time
+        (`res_time`)](#residuals-versus-time-res_time)
+      - [Residuals versus time after first dose
+        (`res_tafd`)](#residuals-versus-time-after-first-dose-res_tafd)
+      - [Residuals versus time after dose
+        (`res_tad`)](#residuals-versus-time-after-dose-res_tad)
+      - [Residuals versus population predicted
+        (`res_pred`)](#residuals-versus-population-predicted-res_pred)
+      - [RES versus continuous covariate
+        (`res_cont`)](#res-versus-continuous-covariate-res_cont)
+      - [RES by categorical covariate
+        (`res_cat`)](#res-by-categorical-covariate-res_cat)
+      - [Residual histogram (`res_hist`)](#residual-histogram-res_hist)
+  - [Weighted residuals](#weighted-residuals)
+      - [Weighted residuals versus time
+        (`wres_time`)](#weighted-residuals-versus-time-wres_time)
+      - [Weighted residuals versus time after first dose
+        (`wres_tafd`)](#weighted-residuals-versus-time-after-first-dose-wres_tafd)
+      - [Weighted residuals versus time after dose
+        (`wres_tad`)](#weighted-residuals-versus-time-after-dose-wres_tad)
+      - [Weighted esiduals versus population predicted
+        (`wres_pred`)](#weighted-esiduals-versus-population-predicted-wres_pred)
+      - [WRES versus continuous covariate
+        (`wres_cont`)](#wres-versus-continuous-covariate-wres_cont)
+      - [WRES by categorical covariate
+        (`wres_cat`)](#wres-by-categorical-covariate-wres_cat)
+      - [Weighted residual histogram
+        (`wres_hist`)](#weighted-residual-histogram-wres_hist)
+      - [WRES QQ plot (`wres_q`)](#wres-qq-plot-wres_q)
+  - [Conditional weighted residuals
+    (CWRES)](#conditional-weighted-residuals-cwres)
+      - [CWRES versus time
+        (`cwres_time`)](#cwres-versus-time-cwres_time)
+      - [Conditional weighted residuals versus time after first dose
+        (`cwres_tafd`)](#conditional-weighted-residuals-versus-time-after-first-dose-cwres_tafd)
+      - [CWRES versus time after dose
+        (`cwres_tad`)](#cwres-versus-time-after-dose-cwres_tad)
+      - [CWRES versus continuous covariate
+        (`cwres_cont`)](#cwres-versus-continuous-covariate-cwres_cont)
+      - [CWRES by categorical covariate
+        (`cwres_cat`)](#cwres-by-categorical-covariate-cwres_cat)
+      - [Conditional weighted residual histogram
+        (`cwres_hist`)](#conditional-weighted-residual-histogram-cwres_hist)
+      - [CWRES versus population predicted
+        (`cwres_pred`)](#cwres-versus-population-predicted-cwres_pred)
+      - [CWRES QQ plot (`cwres_q`)](#cwres-qq-plot-cwres_q)
+  - [NPDE plots](#npde-plots)
+      - [NPDE versus TIME (`npde_time`)](#npde-versus-time-npde_time)
+      - [NPDE versus TAD (`npde_tad`)](#npde-versus-tad-npde_tad)
+      - [NPDE versus TAFD (`npde_tafd`)](#npde-versus-tafd-npde_tafd)
+      - [NPDE versus PRED (`npde_pred`)](#npde-versus-pred-npde_pred)
+      - [NPDE versus continuous variable
+        (`npde_cont`)](#npde-versus-continuous-variable-npde_cont)
+      - [NPDE versus categorical variable
+        (`npde_cat`)](#npde-versus-categorical-variable-npde_cat)
+      - [QQ-plot with NPDE (`npde_q`)](#qq-plot-with-npde-npde_q)
+      - [NPDE histogram (`npde_hist`)](#npde-histogram-npde_hist)
+  - [ETA plots](#eta-plots)
+      - [ETA versus continuous covariates
+        (`eta_cont`)](#eta-versus-continuous-covariates-eta_cont)
+      - [ETA by categorical covariates
+        (`eta_cat`)](#eta-by-categorical-covariates-eta_cat)
+      - [ETA histograms (`eta_hist`)](#eta-histograms-eta_hist)
+      - [ETA pairs plot (`eta_pairs`)](#eta-pairs-plot-eta_pairs)
+  - [DV versus time (`dv_time`)](#dv-versus-time-dv_time)
+      - [Basic plot](#basic-plot)
+      - [Faceted](#faceted)
+      - [log-Scale](#log-scale)
+  - [DV-PRED-IPRED](#dv-pred-ipred)
+  - [Wrapped plots](#wrapped-plots)
+      - [histogram](#histogram)
+      - [eta](#eta)
+      - [DV/PRED, DV/IPRED](#dvpred-dvipred)
+      - [Use labels in the strip](#use-labels-in-the-strip)
+      - [Residuals](#residuals)
+  - [Vectorized plots](#vectorized-plots)
+  - [Data summary](#data-summary)
+      - [Continuous variable by categorical variable
+        (`cont_cat`)](#continuous-variable-by-categorical-variable-cont_cat)
+      - [General histogram (`cont_hist`)](#general-histogram-cont_hist)
+      - [Split and plot (`split_plot`)](#split-and-plot-split_plot)
+  - [Some customization](#some-customization)
+      - [Latex (including Greek letters) in axis
+        title](#latex-including-greek-letters-in-axis-title)
+      - [Latex in pairs plot](#latex-in-pairs-plot)
+      - [Latex in wrapped plots](#latex-in-wrapped-plots)
+      - [Modify x-axis](#modify-x-axis)
+      - [Modify y-axis](#modify-y-axis)
+      - [Flip coordinates when labels get
+        cramped](#flip-coordinates-when-labels-get-cramped)
+  - [Add layers](#add-layers)
+      - [smooth](#smooth)
+      - [abline](#abline)
+      - [Drop extra layers](#drop-extra-layers)
+      - [Modify layer specs](#modify-layer-specs)
+      - [Drop all extra layers](#drop-all-extra-layers)
+  - [Custom breaks](#custom-breaks)
+  - [Extra reference lines to \[C\]WRES
+    plots](#extra-reference-lines-to-cwres-plots)
+  - [Replicate look and feel](#replicate-look-and-feel)
+      - [Theme](#theme)
+      - [Plain](#plain)
+      - [Smooth](#smooth-1)
+      - [Abline](#abline-1)
+      - [Horizontal reference line](#horizontal-reference-line)
+      - [Rotate x and y axis labels](#rotate-x-and-y-axis-labels)
+  - [Standard axis titles](#standard-axis-titles)
+  - [Log breaks](#log-breaks)
 
-Setup and packages
-==================
+# Setup and packages
 
 ``` r
 library(pmplots)
@@ -95,8 +135,7 @@ library(dplyr)
 library(purrr)
 ```
 
-Example data in the package
-===========================
+# Example data in the package
 
 ``` r
 df <- pmplots_data_obs() %>% mutate(CWRES = CWRESI)
@@ -118,10 +157,10 @@ Override the `df` and `id` objects in the above chunk
 ## Nothing here
 ```
 
-`col//title` specification
-==========================
+# `col//title` specification
 
-This is a way to specify the column name for source data along with the axis label
+This is a way to specify the column name for source data along with the
+axis label
 
 ``` r
 col_label("CL//Clearance (L)")
@@ -129,7 +168,8 @@ col_label("CL//Clearance (L)")
 
     . [1] "CL"            "Clearance (L)"
 
-When only the column is given, then the column name will be used for the column title:
+When only the column is given, then the column name will be used for the
+column title:
 
 ``` r
 col_label("WT")
@@ -137,8 +177,7 @@ col_label("WT")
 
     . [1] "WT" "WT"
 
-Fill in `CWRES` if it doesn't exist
------------------------------------
+## Fill in `CWRES` if it doesn’t exist
 
 ``` r
 dat <- mutate(df, CWRES = NULL)
@@ -146,111 +185,102 @@ dat <- mutate(df, CWRES = NULL)
 cwresi_time(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-6-1.png)
+    . `geom_smooth()` using formula 'y ~ x'
+
+![](img/pmplots_complete--unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 cwres_time(dat)
 ```
 
     . Creating CWRES column from CWRESI
+    . `geom_smooth()` using formula 'y ~ x'
 
-![](img/pmplots_complete--unnamed-chunk-6-2.png)
+![](img/pmplots_complete--unnamed-chunk-6-2.png)<!-- -->
 
-Observed vs predicted
-=====================
+# Observed vs predicted
 
-Observed versus population predicted (`dv_pred`)
-------------------------------------------------
+## Observed versus population predicted (`dv_pred`)
 
 ``` r
 dv_pred(df, yname = .yname)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-7-1.png)
+![](img/pmplots_complete--unnamed-chunk-7-1.png)<!-- -->
 
-Observed versus population predicted - log/log
-----------------------------------------------
+## Observed versus population predicted - log/log
 
 ``` r
 dv_pred(df, loglog=TRUE, yname = .yname)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-8-1.png)
+![](img/pmplots_complete--unnamed-chunk-8-1.png)<!-- -->
 
-Observed versus individual predicted (`dv_ipred`)
--------------------------------------------------
+## Observed versus individual predicted (`dv_ipred`)
 
 ``` r
 dv_ipred(df, yname=.yname)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-9-1.png)
+![](img/pmplots_complete--unnamed-chunk-9-1.png)<!-- -->
 
-Observed versus individual predicted - log/log
-----------------------------------------------
+## Observed versus individual predicted - log/log
 
 ``` r
 dv_ipred(df, loglog=TRUE, yname = .yname)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-10-1.png)
+![](img/pmplots_complete--unnamed-chunk-10-1.png)<!-- -->
 
-Observed versus both PRED and IPRED
------------------------------------
+## Observed versus both PRED and IPRED
 
 ``` r
 dv_preds(df) %>% pm_grid(ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-11-1.png)
+![](img/pmplots_complete--unnamed-chunk-11-1.png)<!-- -->
 
-Residual plots
-==============
+# Residual plots
 
-Residuals versus time (`res_time`)
-----------------------------------
+## Residuals versus time (`res_time`)
 
 ``` r
 res_time(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-12-1.png)
+![](img/pmplots_complete--unnamed-chunk-12-1.png)<!-- -->
 
-Residuals versus time after first dose (`res_tafd`)
----------------------------------------------------
+## Residuals versus time after first dose (`res_tafd`)
 
 ``` r
 res_tafd(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-13-1.png)
+![](img/pmplots_complete--unnamed-chunk-13-1.png)<!-- -->
 
-Residuals versus time after dose (`res_tad`)
---------------------------------------------
+## Residuals versus time after dose (`res_tad`)
 
 ``` r
 res_tad(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-14-1.png)
+![](img/pmplots_complete--unnamed-chunk-14-1.png)<!-- -->
 
-Residuals versus population predicted (`res_pred`)
---------------------------------------------------
+## Residuals versus population predicted (`res_pred`)
 
 ``` r
 res_pred(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-15-1.png)
+![](img/pmplots_complete--unnamed-chunk-15-1.png)<!-- -->
 
-RES versus continuous covariate (`res_cont`)
---------------------------------------------
+## RES versus continuous covariate (`res_cont`)
 
 ``` r
 res_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-16-1.png)
+![](img/pmplots_complete--unnamed-chunk-16-1.png)<!-- -->
 
 This function is also vectorized in x.
 
@@ -258,10 +288,9 @@ This function is also vectorized in x.
 c("WT", "CRCL", "AST") %>% map(.f = partial(res_cont,df)) %>% pm_grid()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-17-1.png)
+![](img/pmplots_complete--unnamed-chunk-17-1.png)<!-- -->
 
-RES by categorical covariate (`res_cat`)
-----------------------------------------
+## RES by categorical covariate (`res_cat`)
 
 ``` r
 dplyr::count(df, STUDYc)
@@ -279,132 +308,118 @@ dplyr::count(df, STUDYc)
 res_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-18-1.png)
+![](img/pmplots_complete--unnamed-chunk-18-1.png)<!-- -->
 
-Residual histogram (`res_hist`)
--------------------------------
+## Residual histogram (`res_hist`)
 
 ``` r
 res_hist(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-19-1.png)
+![](img/pmplots_complete--unnamed-chunk-19-1.png)<!-- -->
 
-Weighted residuals
-==================
+# Weighted residuals
 
-Weighted residuals versus time (`wres_time`)
---------------------------------------------
+## Weighted residuals versus time (`wres_time`)
 
 ``` r
 wres_time(df) 
 ```
 
-![](img/pmplots_complete--unnamed-chunk-20-1.png)
+![](img/pmplots_complete--unnamed-chunk-20-1.png)<!-- -->
 
-Weighted residuals versus time after first dose (`wres_tafd`)
--------------------------------------------------------------
+## Weighted residuals versus time after first dose (`wres_tafd`)
 
 ``` r
 wres_tafd(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-21-1.png)
+![](img/pmplots_complete--unnamed-chunk-21-1.png)<!-- -->
 
-Weighted residuals versus time after dose (`wres_tad`)
-------------------------------------------------------
+## Weighted residuals versus time after dose (`wres_tad`)
 
 ``` r
 wres_tad(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-22-1.png)
+![](img/pmplots_complete--unnamed-chunk-22-1.png)<!-- -->
 
-Weighted esiduals versus population predicted (`wres_pred`)
------------------------------------------------------------
+## Weighted esiduals versus population predicted (`wres_pred`)
 
 ``` r
 wres_pred(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-23-1.png)
+![](img/pmplots_complete--unnamed-chunk-23-1.png)<!-- -->
 
-WRES versus continuous covariate (`wres_cont`)
-----------------------------------------------
+## WRES versus continuous covariate (`wres_cont`)
 
-This function is also vectorized in x.
+This function is also vectorized in
+x.
 
 ``` r
 wres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-24-1.png)
+![](img/pmplots_complete--unnamed-chunk-24-1.png)<!-- -->
 
-WRES by categorical covariate (`wres_cat`)
-------------------------------------------
+## WRES by categorical covariate (`wres_cat`)
 
 ``` r
 wres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-25-1.png)
+![](img/pmplots_complete--unnamed-chunk-25-1.png)<!-- -->
 
-Weighted residual histogram (`wres_hist`)
------------------------------------------
+## Weighted residual histogram (`wres_hist`)
 
 ``` r
 wres_hist(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-26-1.png)
+![](img/pmplots_complete--unnamed-chunk-26-1.png)<!-- -->
 
-WRES QQ plot (`wres_q`)
------------------------
+## WRES QQ plot (`wres_q`)
 
 ``` r
 wres_q(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-27-1.png)
+![](img/pmplots_complete--unnamed-chunk-27-1.png)<!-- -->
 
-Conditional weighted residuals (CWRES)
-======================================
+# Conditional weighted residuals (CWRES)
 
-CWRES versus time (`cwres_time`)
---------------------------------
+## CWRES versus time (`cwres_time`)
 
 ``` r
 cwres_time(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-28-1.png)
+![](img/pmplots_complete--unnamed-chunk-28-1.png)<!-- -->
 
-Conditional weighted residuals versus time after first dose (`cwres_tafd`)
---------------------------------------------------------------------------
+## Conditional weighted residuals versus time after first dose (`cwres_tafd`)
 
 ``` r
 cwres_tafd(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-29-1.png)
+![](img/pmplots_complete--unnamed-chunk-29-1.png)<!-- -->
 
-CWRES versus time after dose (`cwres_tad`)
-------------------------------------------
+## CWRES versus time after dose (`cwres_tad`)
 
 ``` r
 cwres_tad(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-30-1.png)
+![](img/pmplots_complete--unnamed-chunk-30-1.png)<!-- -->
 
-CWRES versus continuous covariate (`cwres_cont`)
-------------------------------------------------
+## CWRES versus continuous covariate (`cwres_cont`)
 
 ``` r
 cwres_cont(df, x="WT//Weight (kg)")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-31-1.png)
+![](img/pmplots_complete--unnamed-chunk-31-1.png)<!-- -->
 
 Vectorized version
 
@@ -412,22 +427,21 @@ Vectorized version
 cwres_cont(df, covs) %>%  pm_grid(ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-32-1.png)
+![](img/pmplots_complete--unnamed-chunk-32-1.png)<!-- -->
 
-CWRES by categorical covariate (`cwres_cat`)
---------------------------------------------
+## CWRES by categorical covariate (`cwres_cat`)
 
 ``` r
 cwres_cat(df, x="STUDYc//Study type")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-33-1.png)
+![](img/pmplots_complete--unnamed-chunk-33-1.png)<!-- -->
 
 ``` r
 cwres_cat(df, x="STUDYc//Study type", shown=FALSE)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-34-1.png)
+![](img/pmplots_complete--unnamed-chunk-34-1.png)<!-- -->
 
 Vectorized version
 
@@ -437,125 +451,111 @@ cwres_cat(df, x = c("STUDYc//Study", "RF//Renal Function"))
 
     . [[1]]
 
-![](img/pmplots_complete--unnamed-chunk-35-1.png)
+![](img/pmplots_complete--unnamed-chunk-35-1.png)<!-- -->
 
     . 
     . [[2]]
 
-![](img/pmplots_complete--unnamed-chunk-35-2.png)
+![](img/pmplots_complete--unnamed-chunk-35-2.png)<!-- -->
 
-Conditional weighted residual histogram (`cwres_hist`)
-------------------------------------------------------
+## Conditional weighted residual histogram (`cwres_hist`)
 
 ``` r
 cwres_hist(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-36-1.png)
+![](img/pmplots_complete--unnamed-chunk-36-1.png)<!-- -->
 
-CWRES versus population predicted (`cwres_pred`)
-------------------------------------------------
+## CWRES versus population predicted (`cwres_pred`)
 
 ``` r
 cwres_pred(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-37-1.png)
+![](img/pmplots_complete--unnamed-chunk-37-1.png)<!-- -->
 
-CWRES QQ plot (`cwres_q`)
--------------------------
+## CWRES QQ plot (`cwres_q`)
 
 ``` r
 cwres_q(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-38-1.png)
+![](img/pmplots_complete--unnamed-chunk-38-1.png)<!-- -->
 
-NPDE plots
-==========
+# NPDE plots
 
-NPDE versus TIME (`npde_time`)
-------------------------------
+## NPDE versus TIME (`npde_time`)
 
 ``` r
 npde_time(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-39-1.png)
+![](img/pmplots_complete--unnamed-chunk-39-1.png)<!-- -->
 
-NPDE versus TAD (`npde_tad`)
-----------------------------
+## NPDE versus TAD (`npde_tad`)
 
 ``` r
 npde_tad(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-40-1.png)
+![](img/pmplots_complete--unnamed-chunk-40-1.png)<!-- -->
 
-NPDE versus TAFD (`npde_tafd`)
-------------------------------
+## NPDE versus TAFD (`npde_tafd`)
 
 ``` r
 npde_tafd(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-41-1.png)
+![](img/pmplots_complete--unnamed-chunk-41-1.png)<!-- -->
 
-NPDE versus PRED (`npde_pred`)
-------------------------------
+## NPDE versus PRED (`npde_pred`)
 
 ``` r
 npde_pred(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-42-1.png)
+![](img/pmplots_complete--unnamed-chunk-42-1.png)<!-- -->
 
-NPDE versus continuous variable (`npde_cont`)
----------------------------------------------
+## NPDE versus continuous variable (`npde_cont`)
 
 ``` r
 npde_cont(df, "WT")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-43-1.png)
+![](img/pmplots_complete--unnamed-chunk-43-1.png)<!-- -->
 
-NPDE versus categorical variable (`npde_cat`)
----------------------------------------------
+## NPDE versus categorical variable (`npde_cat`)
 
 ``` r
 npde_cat(df, "STUDYc")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-44-1.png)
+![](img/pmplots_complete--unnamed-chunk-44-1.png)<!-- -->
 
-QQ-plot with NPDE (`npde_q`)
-----------------------------
+## QQ-plot with NPDE (`npde_q`)
 
 ``` r
 npde_q(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-45-1.png)
+![](img/pmplots_complete--unnamed-chunk-45-1.png)<!-- -->
 
-NPDE histogram (`npde_hist`)
-----------------------------
+## NPDE histogram (`npde_hist`)
 
 ``` r
 npde_hist(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-46-1.png)
+![](img/pmplots_complete--unnamed-chunk-46-1.png)<!-- -->
 
-ETA plots
-=========
+# ETA plots
 
 ``` r
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 covs <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "SCR//Creatinine (mg/dL)")
 ```
 
-ETA versus continuous covariates (`eta_cont`)
----------------------------------------------
+## ETA versus continuous covariates (`eta_cont`)
 
 Grouped by eta
 
@@ -563,7 +563,7 @@ Grouped by eta
 eta_cont(id, x=covs,y=etas[2]) %>% pm_grid()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-48-1.png)
+![](img/pmplots_complete--unnamed-chunk-48-1.png)<!-- -->
 
 Grouped by covariate
 
@@ -571,10 +571,9 @@ Grouped by covariate
 eta_cont(id, x=covs[1], y=etas) %>% pm_grid(ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-49-1.png)
+![](img/pmplots_complete--unnamed-chunk-49-1.png)<!-- -->
 
-ETA by categorical covariates (`eta_cat`)
------------------------------------------
+## ETA by categorical covariates (`eta_cat`)
 
 ``` r
 p <- eta_cat(id, x="STUDYc//Study type", y=etas)
@@ -584,10 +583,9 @@ p <- eta_cat(id, x="STUDYc//Study type", y=etas)
 pm_grid(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-51-1.png)
+![](img/pmplots_complete--unnamed-chunk-51-1.png)<!-- -->
 
-ETA histograms (`eta_hist`)
----------------------------
+## ETA histograms (`eta_hist`)
 
 ``` r
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
@@ -598,41 +596,37 @@ p <- eta_hist(id,etas, bins=10)
 pm_grid(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-53-1.png)
+![](img/pmplots_complete--unnamed-chunk-53-1.png)<!-- -->
 
-ETA pairs plot (`eta_pairs`)
-----------------------------
+## ETA pairs plot (`eta_pairs`)
 
 ``` r
-p <- eta_pairs(id,etas)
+p <- eta_pairs(id, etas)
 ```
 
 ``` r
 print(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-55-1.png)
+![](img/pmplots_complete--unnamed-chunk-55-1.png)<!-- -->
 
-DV versus time (`dv_time`)
-==========================
+# DV versus time (`dv_time`)
 
-Basic plot
-----------
+## Basic plot
 
 ``` r
 dv_time(df, yname = .yname)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-56-1.png)
+![](img/pmplots_complete--unnamed-chunk-56-1.png)<!-- -->
 
-Faceted
--------
+## Faceted
 
 ``` r
 dv_time(df, yname="MRG1557 (ng/mL)") + facet_wrap(~DOSE, scales="free_x")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-57-1.png)
+![](img/pmplots_complete--unnamed-chunk-57-1.png)<!-- -->
 
 **NOTE** this will not work as you expect; the labels are wrong.
 
@@ -640,7 +634,7 @@ dv_time(df, yname="MRG1557 (ng/mL)") + facet_wrap(~DOSE, scales="free_x")
 cwres_cat(df, x = "STUDYc") + facet_wrap(~CPc)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-58-1.png)
+![](img/pmplots_complete--unnamed-chunk-58-1.png)<!-- -->
 
 The only way to get this right is
 
@@ -648,49 +642,65 @@ The only way to get this right is
 cwres_cat(df, x = "STUDYc", shown=FALSE) + facet_wrap(~CPc)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-59-1.png)
+![](img/pmplots_complete--unnamed-chunk-59-1.png)<!-- -->
 
-log-Scale
----------
+## log-Scale
 
 ``` r
 dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-60-1.png)
+![](img/pmplots_complete--unnamed-chunk-60-1.png)<!-- -->
 
-Wrapped plots
-=============
+# DV-PRED-IPRED
 
-histogram
----------
+  - This returns a list of plots; we show only one here (the first 9
+    IDs) as an example
+
+<!-- end list -->
+
+``` r
+dd1 <- filter(df, ID <= 15)
+
+dv_pred_ipred(dd1, nrow = 3, ncol = 3, ylab = "Concentration (ng/mL)", log_y=TRUE)
+```
+
+    . $`1`
+
+![](img/pmplots_complete--unnamed-chunk-61-1.png)<!-- -->
+
+    . 
+    . $`2`
+
+![](img/pmplots_complete--unnamed-chunk-61-2.png)<!-- -->
+
+# Wrapped plots
+
+## histogram
 
 ``` r
 wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-61-1.png)
+![](img/pmplots_complete--unnamed-chunk-62-1.png)<!-- -->
 
-eta
----
+## eta
 
 ``` r
 wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-62-1.png)
+![](img/pmplots_complete--unnamed-chunk-63-1.png)<!-- -->
 
-DV/PRED, DV/IPRED
------------------
+## DV/PRED, DV/IPRED
 
 ``` r
 wrap_dv_preds(df, ncol=1)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-63-1.png)
+![](img/pmplots_complete--unnamed-chunk-64-1.png)<!-- -->
 
-Use labels in the strip
------------------------
+## Use labels in the strip
 
 ``` r
 wrap_eta_cont(
@@ -702,40 +712,55 @@ wrap_eta_cont(
 )
 ```
 
-![](img/pmplots_complete--unnamed-chunk-64-1.png)
+![](img/pmplots_complete--unnamed-chunk-65-1.png)<!-- -->
 
-Residuals
----------
+## Residuals
 
 ``` r
 wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-65-1.png)
+![](img/pmplots_complete--unnamed-chunk-66-1.png)<!-- -->
 
-Data summary
-============
+# Vectorized plots
 
-Continuous variable by categorical variable (`cont_cat`)
---------------------------------------------------------
+``` r
+pm_scatter(df, x = "TIME", y = c("RES", "WRES", "CWRES"))
+```
+
+    . [[1]]
+
+![](img/pmplots_complete--unnamed-chunk-67-1.png)<!-- -->
+
+    . 
+    . [[2]]
+
+![](img/pmplots_complete--unnamed-chunk-67-2.png)<!-- -->
+
+    . 
+    . [[3]]
+
+![](img/pmplots_complete--unnamed-chunk-67-3.png)<!-- -->
+
+# Data summary
+
+## Continuous variable by categorical variable (`cont_cat`)
 
 ``` r
 cont_cat(id, x="STUDYc", y="WT")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-66-1.png)
+![](img/pmplots_complete--unnamed-chunk-68-1.png)<!-- -->
 
-General histogram (`cont_hist`)
--------------------------------
+## General histogram (`cont_hist`)
 
 ``` r
 cont_hist(id, x = "WT", bins = 20)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-67-1.png)
+![](img/pmplots_complete--unnamed-chunk-69-1.png)<!-- -->
 
-Split and plot (`split_plot`)
------------------------------
+## Split and plot (`split_plot`)
 
 ``` r
 p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
@@ -745,22 +770,41 @@ p <- split_plot(df, sp="STUDYc", fun=dv_ipred)
 pm_grid(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-69-1.png)
+![](img/pmplots_complete--unnamed-chunk-71-1.png)<!-- -->
 
-Some customization
-==================
+# Some customization
 
-Greek letters in axis title
----------------------------
+## Latex (including Greek letters) in axis title
 
 ``` r
 dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-70-1.png)
+![](img/pmplots_complete--unnamed-chunk-72-1.png)<!-- -->
 
-Modify x-axis
--------------
+## Latex in pairs plot
+
+``` r
+data <- dplyr::tibble(m = rnorm(100), s = rnorm(100), n = rnorm(100))
+
+x <- c("m//$\\mu$", "s//$\\sigma$", "n//$\\nu$")
+
+pairs_plot(data,x)
+```
+
+![](img/pmplots_complete--unnamed-chunk-73-1.png)<!-- -->
+
+## Latex in wrapped plots
+
+``` r
+y <- c("WT//Weight (kg)", "BMI//BMI (kg/m$^2$)", "SCR//SCR (g/dL)")
+
+wrap_cont_time(df, y = y, use_labels=TRUE)
+```
+
+![](img/pmplots_complete--unnamed-chunk-74-1.png)<!-- -->
+
+## Modify x-axis
 
 ``` r
 a <- list(trans="log", breaks = logbr3())
@@ -768,86 +812,115 @@ a <- list(trans="log", breaks = logbr3())
 dv_time(df, xs=a)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-71-1.png)
+![](img/pmplots_complete--unnamed-chunk-75-1.png)<!-- -->
 
-Modify y-axis
--------------
+## Modify y-axis
 
 ``` r
 dv_time(df, ys=a, yname="Y-axis name")
 ```
 
-![](img/pmplots_complete--unnamed-chunk-72-1.png)
+![](img/pmplots_complete--unnamed-chunk-76-1.png)<!-- -->
 
-Add layers
-==========
+## Flip coordinates when labels get cramped
+
+If this is too cramped
+
+``` r
+cont_cat(
+  id, 
+  y = c("WT", "BMI", "ALB", "CRCL"), 
+  x = "STUDYc"
+) %>% pm_grid()
+```
+
+![](img/pmplots_complete--unnamed-chunk-77-1.png)<!-- -->
+
+Try this
+
+``` r
+cont_cat(
+  id, 
+  y = c("WT", "BMI", "ALB", "CRCL"), 
+  x = "STUDYc"
+) %>% map(~.x+coord_flip()) %>% pm_grid()
+```
+
+![](img/pmplots_complete--unnamed-chunk-78-1.png)<!-- -->
+
+# Add layers
 
 ``` r
 p <- ggplot(df, aes(PRED,DV))  + geom_point() + pm_theme()
 ```
 
-smooth
-------
+## smooth
 
 ``` r
 layer_s(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-74-1.png)
+![](img/pmplots_complete--unnamed-chunk-80-1.png)<!-- -->
 
-abline
-------
+## abline
 
 ``` r
 layer_a(p)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-75-1.png)
+![](img/pmplots_complete--unnamed-chunk-81-1.png)<!-- -->
 
 ``` r
 layer_h(cwres_time(df,add_layers=FALSE))
 ```
 
-![](img/pmplots_complete--unnamed-chunk-76-1.png)
+![](img/pmplots_complete--unnamed-chunk-82-1.png)<!-- -->
 
-Drop extra layers
------------------
+## Drop extra layers
 
 ``` r
 dv_pred(df, smooth=NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-77-1.png)
+![](img/pmplots_complete--unnamed-chunk-83-1.png)<!-- -->
 
 ``` r
 dv_pred(df, abline=NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-78-1.png)
+![](img/pmplots_complete--unnamed-chunk-84-1.png)<!-- -->
 
 ``` r
 cwres_time(df, hline = NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-79-1.png)
+![](img/pmplots_complete--unnamed-chunk-85-1.png)<!-- -->
 
 ``` r
 dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-80-1.png)
+![](img/pmplots_complete--unnamed-chunk-86-1.png)<!-- -->
 
-Drop all extra layers
----------------------
+## Modify layer specs
+
+For example, change the values of argument for `geom_smooth`
+
+``` r
+cwres_time(df, smooth = list(method = "loess", span = 0.1, se=TRUE))
+```
+
+![](img/pmplots_complete--unnamed-chunk-87-1.png)<!-- -->
+
+## Drop all extra layers
 
 ``` r
 dv_pred(df, add_layers=FALSE)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-81-1.png)
+![](img/pmplots_complete--unnamed-chunk-88-1.png)<!-- -->
 
-Custom breaks
-=============
+# Custom breaks
 
 Default breaks:
 
@@ -855,7 +928,7 @@ Default breaks:
 dv_time(df)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-82-1.png)
+![](img/pmplots_complete--unnamed-chunk-89-1.png)<!-- -->
 
 Break every 3 days
 
@@ -863,7 +936,7 @@ Break every 3 days
 dv_time(df, xby=72)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-83-1.png)
+![](img/pmplots_complete--unnamed-chunk-90-1.png)<!-- -->
 
 Custom breaks and limits
 
@@ -872,19 +945,17 @@ a <- list(breaks = seq(0,240,48), limits=c(0,240))
 dv_time(df, xs=a)
 ```
 
-![](img/pmplots_complete--unnamed-chunk-84-1.png)
+![](img/pmplots_complete--unnamed-chunk-91-1.png)<!-- -->
 
-Extra reference lines to \[C\]WRES plots
-========================================
+# Extra reference lines to \[C\]WRES plots
 
 ``` r
 wres_time(df) + geom_3s()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-85-1.png)
+![](img/pmplots_complete--unnamed-chunk-92-1.png)<!-- -->
 
-Replicate look and feel
-=======================
+# Replicate look and feel
 
 ``` r
 p <- ggplot(df, aes(IPRED,DV)) + geom_point()
@@ -892,64 +963,57 @@ p <- ggplot(df, aes(IPRED,DV)) + geom_point()
 p
 ```
 
-![](img/pmplots_complete--unnamed-chunk-86-1.png)
+![](img/pmplots_complete--unnamed-chunk-93-1.png)<!-- -->
 
-Theme
------
+## Theme
 
 ``` r
 p + pm_theme()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-87-1.png)
+![](img/pmplots_complete--unnamed-chunk-94-1.png)<!-- -->
 
-Plain
------
+## Plain
 
 ``` r
 p + theme_plain()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-88-1.png)
+![](img/pmplots_complete--unnamed-chunk-95-1.png)<!-- -->
 
-Smooth
-------
+## Smooth
 
 ``` r
 p + pm_smooth()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-89-1.png)
+![](img/pmplots_complete--unnamed-chunk-96-1.png)<!-- -->
 
-Abline
-------
+## Abline
 
 ``` r
 p + pm_abline()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-90-1.png)
+![](img/pmplots_complete--unnamed-chunk-97-1.png)<!-- -->
 
-Horizontal reference line
--------------------------
+## Horizontal reference line
 
 ``` r
 ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-91-1.png)
+![](img/pmplots_complete--unnamed-chunk-98-1.png)<!-- -->
 
-Rotate x and y axis labels
---------------------------
+## Rotate x and y axis labels
 
 ``` r
 dv_pred(df) + rot_x(angle = 90) + rot_y()
 ```
 
-![](img/pmplots_complete--unnamed-chunk-92-1.png)
+![](img/pmplots_complete--unnamed-chunk-99-1.png)<!-- -->
 
-Standard axis titles
-====================
+# Standard axis titles
 
 ``` r
 pm_axis_time()
@@ -988,6 +1052,12 @@ pm_axis_cwres()
     . [1] "CWRES//Conditional weighted residual"
 
 ``` r
+pm_axis_cwresi()
+```
+
+    . [1] "CWRESI//CWRES with interaction"
+
+``` r
 pm_axis_npde()
 ```
 
@@ -1011,21 +1081,20 @@ pm_axis_ipred()
 
     . [1] "IPRED//Individual predicted {xname}"
 
-Log breaks
-==========
+# Log breaks
 
 ``` r
 logbr3()
 ```
 
-    .  [1] 1e-10 3e-10 1e-09 3e-09 1e-08 3e-08 1e-07 3e-07 1e-06 3e-06 1e-05
-    . [12] 3e-05 1e-04 3e-04 1e-03 3e-03 1e-02 3e-02 1e-01 3e-01 1e+00 3e+00
-    . [23] 1e+01 3e+01 1e+02 3e+02 1e+03 3e+03 1e+04 3e+04 1e+05 3e+05 1e+06
-    . [34] 3e+06 1e+07 3e+07 1e+08 3e+08 1e+09 3e+09 1e+10 3e+10
+    .  [1] 1e-10 3e-10 1e-09 3e-09 1e-08 3e-08 1e-07 3e-07 1e-06 3e-06 1e-05 3e-05
+    . [13] 1e-04 3e-04 1e-03 3e-03 1e-02 3e-02 1e-01 3e-01 1e+00 3e+00 1e+01 3e+01
+    . [25] 1e+02 3e+02 1e+03 3e+03 1e+04 3e+04 1e+05 3e+05 1e+06 3e+06 1e+07 3e+07
+    . [37] 1e+08 3e+08 1e+09 3e+09 1e+10 3e+10
 
 ``` r
 logbr()
 ```
 
-    .  [1] 1e-10 1e-09 1e-08 1e-07 1e-06 1e-05 1e-04 1e-03 1e-02 1e-01 1e+00
-    . [12] 1e+01 1e+02 1e+03 1e+04 1e+05 1e+06 1e+07 1e+08 1e+09 1e+10
+    .  [1] 1e-10 1e-09 1e-08 1e-07 1e-06 1e-05 1e-04 1e-03 1e-02 1e-01 1e+00 1e+01
+    . [13] 1e+02 1e+03 1e+04 1e+05 1e+06 1e+07 1e+08 1e+09 1e+10

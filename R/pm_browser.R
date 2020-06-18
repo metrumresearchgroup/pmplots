@@ -26,7 +26,7 @@ pm_browser <- function(quiet=FALSE,title=TRUE) {
         mutate(time = .data[["x"]] %in% c("time", "tad", "tafd")) %>%
         mutate(res = .data[["y"]] %in% c("res", "wres", "cwres", "cwresi")) %>%
         mutate(wrap = grepl("wrap", .data[["call"]])) %>%
-        mutate(n = seq(n())) %>%
+        mutate(n = seq(dplyr::n())) %>%
         mutate(name = names(x0$plots))
     )
   )

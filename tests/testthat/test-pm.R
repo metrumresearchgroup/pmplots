@@ -100,14 +100,14 @@ test_that("red pred", {
   p <- cwresi_pred(df)
   expect_is(p, "gg")
   expect_labels(p, "PRED", "CWRESI")
-  expect_titles(p, "Population predicted value", "Conditional weighted residual")
+  expect_titles(p, "Population predicted value", "CWRES with interaction")
 })
 
 test_that("res cont", {
   p <- cwresi_cont(df, x="WT//Weight (kg)")
   expect_is(p, "gg")
   expect_labels(p, "WT", "CWRESI")
-  expect_titles(p, "Weight (kg)", "Conditional weighted residual")
+  expect_titles(p, "Weight (kg)", "CWRES with interaction")
 
   expect_error(cwres_cont(df, x="WT/Weight (kg)"))
 
@@ -140,7 +140,7 @@ test_that("res cat", {
   p <- cwresi_cat(df, x="STUDYc//Study")
   expect_is(p, "gg")
   expect_labels(p, "STUDYc", "CWRESI")
-  expect_titles(p, "Study", "Conditional weighted residual")
+  expect_titles(p, "Study", "CWRES with interaction")
 })
 
 test_that("eta cat cont hist", {
@@ -172,7 +172,7 @@ test_that("res hist", {
 
   p <- cwresi_hist(df)
   expect_is(p, "gg")
-  expect_x(p, "CWRESI", "Conditional weighted residual")
+  expect_x(p, "CWRESI", "CWRES with interaction")
 })
 
 
@@ -207,6 +207,11 @@ test_that("eta pairs", {
   expect_is(x,"gg")
 })
 
+test_that("pairs_plot with latex", {
+  x <- pairs_plot(df, c("ETA1//ETA$_1$", "ETA2//ETA$_2$", "ETA3//ETA3"))
+  expect_is(x,"gg")
+})
+
 test_that("qq", {
   expect_is(cwresi_q(df),"gg")
   expect_is(wres_q(df),"gg")
@@ -216,13 +221,13 @@ test_that("qq", {
 
 test_that("Axis title customization", {
   p <- cwresi_time(df, xunit="min")
-  expect_titles(p, "Time (min)", "Conditional weighted residual")
+  expect_titles(p, "Time (min)", "CWRES with interaction")
 
   p <- cwresi_time(df, x = "TIME//Study time {xunit}")
-  expect_titles(p, "Study time (hr)", "Conditional weighted residual")
+  expect_titles(p, "Study time (hr)", "CWRES with interaction")
 
   p <- cwresi_time(df, x = "TIME//Study time (seconds)")
-  expect_titles(p, "Study time (seconds)", "Conditional weighted residual")
+  expect_titles(p, "Study time (seconds)", "CWRES with interaction")
 
 })
 
@@ -266,5 +271,22 @@ test_that("eta labs", {
 
   x <- eta_col_labs(CL, KA)
   expect_identical(x, c(`ETA-CL` = "ETA1//ETA-CL", `ETA-KA` = "ETA2//ETA-KA"))
+})
+
+test_that("pairs plot with expression", {
+  p <- pairs_plot(df, c("CWRES", "WRES", "DV//Conc ($\\mu$M)"))
+  expect_is(p, "gg")
+})
+
+test_that("dv_pred_ipred issue-6", {
+  df <- filter(df, ID <= 15)
+  p <- dv_pred_ipred(df, ncol = 3, nrow = 5)
+  expect_is(p,"list")
+  expect_is(p[[1]],"gg")
+  p2 <- do_dv_pred_ipred(df, options = list(nrow = 5, ncol =3))
+  expect_equivalent(p,p2)
+  expect_error(dv_pred_ipred(df, id_col = "USUBJID"))
+  df[["DV"]][10] <- NA_real_
+  expect_warning(dv_pred_ipred(df),regexp="removed missing values in dv column")
 })
 

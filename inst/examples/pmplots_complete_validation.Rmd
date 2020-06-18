@@ -431,7 +431,7 @@ pm_grid(p)
 ### ETA pairs plot (`eta_pairs`)
 
 ```{r}
-p <- eta_pairs(id,etas)
+p <- eta_pairs(id, etas)
 ```
 
 
@@ -478,6 +478,20 @@ dv_time(df, yname="MRG1557 (ng/mL)", log=TRUE) + facet_wrap(~STUDYc)
 
 \newpage
 
+## DV-PRED-IPRED
+
+- This returns a list of plots; we show only one here (the first 9 IDs) 
+as an example
+
+```{r, fig.height = 6, fig.width=6}
+dd1 <- filter(df, ID <= 15)
+
+dv_pred_ipred(dd1, nrow = 3, ncol = 3, ylab = "Concentration (ng/mL)", log_y=TRUE)
+```
+
+
+\newpage
+
 ## Wrapped plots
 
 ### histogram
@@ -521,6 +535,16 @@ wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 
 \newpage
 
+## Vectorized plots
+
+```{r}
+pm_scatter(df, x = "TIME", y = c("RES", "WRES", "CWRES"))
+```
+
+
+
+\newpage
+
 ## Data summary
 
 ### Continuous variable by categorical variable (`cont_cat`)
@@ -551,12 +575,31 @@ pm_grid(p)
 
 ## Some customization
 
-### Greek letters in axis title
+### Latex (including Greek letters) in axis title
 ```{r}
 dv_pred(df, x = "PRED//Concentration ($\\mu$g)")
 ```
 
 \newpage
+
+### Latex in pairs plot
+
+```{r, fig.width=6}
+data <- dplyr::tibble(m = rnorm(100), s = rnorm(100), n = rnorm(100))
+
+x <- c("m//$\\mu$", "s//$\\sigma$", "n//$\\nu$")
+
+pairs_plot(data,x)
+```
+
+### Latex in wrapped plots
+
+```{r, fig.width=6}
+y <- c("WT//Weight (kg)", "BMI//BMI (kg/m$^2$)", "SCR//SCR (g/dL)")
+
+wrap_cont_time(df, y = y, use_labels=TRUE)
+```
+
 
 ### Modify x-axis
 
@@ -573,7 +616,30 @@ dv_time(df, xs=a)
 dv_time(df, ys=a, yname="Y-axis name")
 ```
 
-\newpage
+### Flip coordinates when labels get cramped
+
+If this is too cramped
+
+```{r}
+cont_cat(
+  id, 
+  y = c("WT", "BMI", "ALB", "CRCL"), 
+  x = "STUDYc"
+) %>% pm_grid()
+
+```
+
+Try this
+
+```{r, fig.height = 5}
+cont_cat(
+  id, 
+  y = c("WT", "BMI", "ALB", "CRCL"), 
+  x = "STUDYc"
+) %>% map(~.x+coord_flip()) %>% pm_grid()
+
+```
+
 
 ## Add layers
 
@@ -619,6 +685,15 @@ dv_pred(df, abline=NULL, smooth = NULL)
 ```
 
 \newpage
+
+### Modify layer specs
+
+For example, change the values of argument for `geom_smooth`
+
+```{r}
+cwres_time(df, smooth = list(method = "loess", span = 0.1, se=TRUE))
+```
+
 
 ### Drop all extra layers
 ```{r}
@@ -724,6 +799,7 @@ pm_axis_tafd()
 pm_axis_res()
 pm_axis_wres()
 pm_axis_cwres()
+pm_axis_cwresi()
 pm_axis_npde()
 pm_axis_dv()
 pm_axis_pred()

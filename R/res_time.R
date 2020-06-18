@@ -183,7 +183,8 @@ cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
 ##'
 ##' @rdname npde_time
 ##' @export
-npde_time <- function(df, x= pm_axis_time(), y  = pm_axis_npde(), ..., hline = npde_ref()) {
+npde_time <- function(df, x= pm_axis_time(), y  = pm_axis_npde(), ...,
+                      hline = npde_ref()) {
   res_time(df, x = x, y = y, hline = hline, ...)
 }
 

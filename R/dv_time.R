@@ -35,13 +35,16 @@
 ##'
 ##'
 ##' # Add a rug
-##' dv_time(df) + geom_rug(data = function(x) dplyr::filter(x, BLQ > 0))
+##'
+##' df <- pmplots_data()
+##'
+##' dv_time(df) + geom_rug(data = ~ dplyr::filter(.x,BLQ > 0))
 ##'
 ##' @return A single plot.
 ##'
 ##' @export
 dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
-                    xunit = "hr",
+                    xunit = opts$time.unit,
                     yname = "DV", group = "ID",
                     xs=list(), ys=list(), log=FALSE, xby = NULL, ...) {
 

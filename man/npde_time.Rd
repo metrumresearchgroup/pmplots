@@ -6,8 +6,7 @@
 \alias{npde_tafd}
 \title{Plot NPDE versus time}
 \usage{
-npde_time(df, x = pm_axis_time(), y = pm_axis_npde(), ...,
-  hline = npde_ref())
+npde_time(df, x = pm_axis_time(), y = pm_axis_npde(), ..., hline = npde_ref())
 
 npde_tad(df, x = pm_axis_tad(), y = pm_axis_npde(), ...)
 

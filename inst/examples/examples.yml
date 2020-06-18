@@ -172,9 +172,17 @@ plots:
     x: q
     call: npde_q(data)
   pm_histogram:
-    y: WT
+    y: covariate
     x: "<none>"
     call: ggplot(data = data) + pm_histogram(aes(x=WT))
+  pm_scatter:
+    y: residual
+    x: time
+    call: pm_scatter(data, x= "TIME", y = "CWRES")
+  pm_box:
+    y: residual
+    x: covariate
+    call: pm_box(data, x = "STUDYc", y = "CWRES")
   split_plot:
     y: cont
     x: cont

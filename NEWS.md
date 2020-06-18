@@ -1,3 +1,20 @@
+# pmplots 0.3.1
+- Add `label_fun` function to `pairs_plot`, `wrap_cont_cont` and 
+  `wrap_hist` allowing strip labels to incorporate
+  expressions via `pmplots:::label_parse` #45
+- `parse_label` and `label_parse_label` are exported
+- Add option system #70
+- Add better control over tick label rotation and justification #60
+- Optionally plot subject ID rather than points in scatter plots #63
+- CWRESI plots now have default axis title "CWRES with interaction" #87
+- Add dv_pred_ipred plot function #89
+- Optionally overlay points on top of boxplots #13
+- Refactor `col_label` so that punctuation in `col//label` does not 
+  result in error #72
+
+# pmplots 0.2.0
+- Qualification under CR-88 and released to r_validated
+
 # pmplots 0.1.0.9002
 - Added non-exported functions to generate default col-label information 
 (see `?pm_axis_functions`)
