@@ -6,7 +6,7 @@ output:
   rmarkdown::html_vignette: 
     keep_md: true
 vignette: >
-  %\VignetteIndexEntry{Get Started}
+  %\VignetteIndexEntry{Wrapped / Faceted Plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -69,7 +69,7 @@ We can facet on x or y
 ```{r}
 wrap_eta_cont(
   id, 
-  x = c("WT", "ALB"), 
+  x = "WT", 
   y = c("ETA1", "ETA2", "ETA3"),
   scales="free_x"
 )
