@@ -23,7 +23,7 @@ A functions and features (code + output) listing is available at
 - [Customize your plot](https://metrumresearchgroup.github.io/pmplots/articles/customize.html)
 - [Residual plots](https://metrumresearchgroup.github.io/pmplots/articles/residual_plots.html)
 - [NPDE plots](https://metrumresearchgroup.github.io/pmplots/articles/npde_plots.html)
-- [Dependent variable plots](metrumresearchgroup.github.io/pmplots/articles/dv.html)
+- [Dependent variable plots](https://metrumresearchgroup.github.io/pmplots/articles/dv.html)
 - [ETA plots](https://metrumresearchgroup.github.io/pmplots/articles/eta.html)
 - [Vectorized plots](https://metrumresearchgroup.github.io/pmplots/articles/list_plots.html)
 - [Wrapped or faceted plots](https://metrumresearchgroup.github.io/pmplots/articles/wrapped_plots.html)

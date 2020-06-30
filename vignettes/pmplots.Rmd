@@ -1,12 +1,12 @@
 ---
-title: "Get Started"
+title: "pmplots"
 author: "Kyle Baron"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette: 
     keep_md: true
 vignette: >
-  %\VignetteIndexEntry{Get Started}
+  %\VignetteIndexEntry{pmplots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

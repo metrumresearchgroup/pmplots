@@ -7,8 +7,8 @@ articles:
   eta: eta.html
   list_plots: list_plots.html
   npde_plots: npde_plots.html
+  pmplots: pmplots.html
   residual_plots: residual_plots.html
-  start: start.html
   wrapped_plots: wrapped_plots.html
-last_built: 2020-06-30T02:03Z
+last_built: 2020-06-30T13:44Z
 
