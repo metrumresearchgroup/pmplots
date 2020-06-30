@@ -97,4 +97,3 @@ breaks are at half-log units when `log = TRUE` or
 # pmplots 0.1.0
 
 - Initial validated version 
-- See the release [here](https://ghe.metrumrg.com/software/pmplots/releases/tag/v0.1.0)
