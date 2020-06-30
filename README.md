@@ -19,14 +19,14 @@ A functions and features (code + output) listing is available at
 
 ## Vignettes
 
-- [Get started](https://github.com/metrumresearchgroup/pmplots/articles/start.html)
-- [Customize your plot](https://github.com/metrumresearchgroup/pmplots/articles/customize.html)
-- [Residual plots](https://github.com/metrumresearchgroup/pmplots/articles/residual_plots.html)
-- [NPDE plots](https://github.com/metrumresearchgroup/pmplots/articles/npde_plots.html)
-- [Dependent variable plots](https://github.com/metrumresearchgroup/pmplots/articles/dv.html)
-- [ETA plots](https://github.com/metrumresearchgroup/pmplots/articles/eta.html)
-- [Vectorized plots](https://github.com/metrumresearhcgroup/pmplots/articles/list_plots.html)
-- [Wrapped or faceted plots](https://github.com/metrumresearchgroup/pmplots/articles/wrapped_plots.html)
+- [Get started](https://metrumresearchgroup.github.io/pmplots/articles/start.html)
+- [Customize your plot](https://metrumresearchgroup.github.io/pmplots/articles/customize.html)
+- [Residual plots](https://metrumresearchgroup.github.io/pmplots/articles/residual_plots.html)
+- [NPDE plots](https://metrumresearchgroup.github.io/pmplots/articles/npde_plots.html)
+- [Dependent variable plots](metrumresearchgroup.github.io/pmplots/articles/dv.html)
+- [ETA plots](https://metrumresearchgroup.github.io/pmplots/articles/eta.html)
+- [Vectorized plots](https://metrumresearchgroup.github.io/pmplots/articles/list_plots.html)
+- [Wrapped or faceted plots](https://metrumresearchgroup.github.io/pmplots/articles/wrapped_plots.html)
 
 ## Suggested packages
 
