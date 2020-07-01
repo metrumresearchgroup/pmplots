@@ -1,6 +1,5 @@
 
 pairs_lower <- function(data, mapping, ...) {
-
   ggplot(data = data, mapping = mapping) +
     geom_point(col=opts$scatter.col,size=opts$scatter.size) +
     geom_smooth(
@@ -99,7 +98,7 @@ pairs_plot <- function(x, y, bins = 15,
     return(ans)
   }
 
-  diag <- GGally::wrap("barDiag", bins = bins,
+  diag_fun <- GGally::wrap("barDiag", bins = bins,
                        alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)
   etal <- lapply(y, col_label)
@@ -117,9 +116,9 @@ pairs_plot <- function(x, y, bins = 15,
     columns=cols,
     columnLabels=labs,
     labeller = label_fun,
-    upper = list(continuous = pairs_upper),
-    diag = list(continuous = diag),
-    lower = list(continuous = pairs_lower)
+    upper = list(continuous = upper_fun),
+    diag = list(continuous = diag_fun),
+    lower = list(continuous = lower_fun)
   ) + pm_theme()
 }
 
