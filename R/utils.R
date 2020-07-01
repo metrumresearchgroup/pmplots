@@ -485,3 +485,5 @@ chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
   }
   split.data.frame(data, sp)
 }
+
+force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')

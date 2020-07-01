@@ -27,3 +27,27 @@ test_that("upper and lower funs are used in pairs plots", {
   p <- eta_pairs(df, etas = etas, upper_fun = upper)
   expect_error(print(p), "passing upper plot")
 })
+
+test_that("options to control correlation panels", {
+  p0 <- eta_pairs(df, etas = etas)
+  pm_opts$pairs.cor.col <- "black"
+  p <- eta_pairs(df, etas = etas)
+  expect_false(identical(p0,p))
+  pm_opts$reset()
+  pm_opts$pairs.cor.size <- 10
+  p <- eta_pairs(df, etas = etas)
+  expect_false(identical(p0,p))
+  pm_opts$reset()
+  pm_opts$pairs.cor.shown <- TRUE
+  p <- eta_pairs(df, etas = etas)
+  expect_false(identical(p0,p))
+  pm_opts$reset()
+  pm_opts$pairs.cor.digits <- 3
+  p <- eta_pairs(df, etas = etas)
+  expect_false(identical(p0,p))
+  pm_opts$reset()
+  pm_opts$pairs.cor.fontface <- "plain"
+  p <- eta_pairs(df, etas = etas)
+  expect_false(identical(p0,p))
+  pm_opts$reset()
+})
