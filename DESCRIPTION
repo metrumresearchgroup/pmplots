@@ -7,9 +7,11 @@ Authors@R: c(
        person("Metrum Research Group", role =  c("cph"))
        )
 Maintainer: Kyle Baron <kyleb@metrumrg.com>
-Description: Very light wrappers around 'ggplot2' plotting code tailored for pharmacometric applications.
+Description: Very light wrappers around 'ggplot2' plotting code tailored for 
+    pharmacometric applications.
 License: GPL (>=2)
-BugReports: https://ghe.metrumrg.com/software/pmplots/issues
+URL: https://github.com/metrumresearchgroup/pmplots/
+BugReports: https://github.com/metrumresearchgroup/pmplots/issues
 Encoding: UTF-8
 LazyData: true
 Imports: 
