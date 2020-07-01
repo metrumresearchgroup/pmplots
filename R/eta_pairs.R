@@ -14,11 +14,22 @@ pairs_lower <- function(data, mapping, ...) {
 pairs_upper <- function(data, mapping, ...) {
   x <- rlang::quo_name(mapping$x)[1]
   y <- rlang::quo_name(mapping$y)[1]
-  label <- as.character(signif(cor(data[,x],data[,y],use = "complete.obs"), digits=3))
-  label <- paste0("Corr: ", label)
-  GGally::ggally_text(label = label) +
-    theme(panel.grid.major = ggplot2::element_blank(),
-          panel.grid.minor = ggplot2::element_blank())
+  corr <- cor(data[,x],data[,y],use = "complete.obs")
+  label <- force_digits(corr,digits=opts$pairs.cor.digits)
+  label <- paste0(opts$pairs.cor.prefix, label)
+  if(isTRUE(opts$pairs.cor.shown)) {
+    n <- sum((!is.na(data[,x])) & (!is.na(data[,y])))
+    label <- paste0(label, "\n", paste0("(n=",n,")"))
+  }
+
+  GGally::ggally_text(
+    label = label,
+    size = opts$pairs.cor.size,
+    col = opts$pairs.cor.col,
+    fontface = opts$pairs.cor.fontface
+  ) + theme(
+      panel.grid = ggplot2::element_blank()
+    )
 }
 
 ##' Pairs plots using ggpairs
@@ -99,7 +110,7 @@ pairs_plot <- function(x, y, bins = 15,
   }
 
   diag_fun <- GGally::wrap("barDiag", bins = bins,
-                       alpha = alpha, fill=fill, col=col)
+                           alpha = alpha, fill=fill, col=col)
   x <- as.data.frame(x)
   etal <- lapply(y, col_label)
   cols <- sapply(etal, "[[", 1L)

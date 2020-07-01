@@ -34,6 +34,17 @@
 #' @param qq.col point color for qq plots
 #' @param qq.alpha alpha value for qq plots
 #' @param qq.size point size for qq plots
+#' @param pairs.cor.size font size for correlation text in upper panels of pairs
+#' plots
+#' @param pairs.cor.prefix prefix for correlation text in upper panels of pairs
+#' plots
+#' @param pairs.cor.col color for correlation text in upper panels of pairs plots
+#' @param pairs.cor.fontface font face for correlation text in upper panels of
+#' pairs plots
+#' @param pairs.cor.digits number of digits to show when reporting correlation
+#' in upper panels of pairs plots
+#' @param pairs.cor.shown if `TRUE`, then report the number of non-missing
+#' observations used to calculate correltion in upper panels of pairs plots
 #' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
 #'
@@ -109,6 +120,12 @@ pm_options <- function(smooth.lwd = 1.35,
                        qq.col = .ggblue,
                        qq.alpha = 1,
                        qq.size = 1.35,
+                       pairs.cor.size = 3,
+                       pairs.cor.prefix = "corr\n",
+                       pairs.cor.col = .ggblue,
+                       pairs.cor.fontface = "bold",
+                       pairs.cor.digits = 2,
+                       pairs.cor.shown = TRUE,
                        axis.title.short = FALSE,
                        time.unit = "hr") {
   set <- function(..., .list = NULL) {
