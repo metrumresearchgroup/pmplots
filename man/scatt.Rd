@@ -30,7 +30,7 @@ scatt(
 
 \item{ys}{see \link{defy}}
 
-\item{title}{character, passed to \link[ggplot2:ggtitle]{ggplot2::ggtitle}}
+\item{title}{character, passed to \link[ggplot2:labs]{ggplot2::ggtitle}}
 
 \item{group}{character name of grouping variable}
 
