@@ -132,5 +132,36 @@ wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales
   )
 }
 
+#' @rdname wrap_plots
+#' @name wrap_plots
+#' @export
+wrap_cont_cat <- function(df, x, y, ..., fun = pm_box,
+                           title = NULL, scales = "free_y",
+                           ncol = NULL, use_labels = FALSE,
+                           label_fun = label_parse_label) {
+  multi_x <- length(x) > 1
+  multi_y <- length(y) > 1
 
+  if(multi_x) {
+    stop("please specify only one x column to plot",call.=FALSE)
+  }
+
+  if(multi_y) {
+    x <- x[1]
+    to_melt <- col_labels(y)
+    df <- pivot_longer(df, cols = unname(to_melt), names_to =  "variable", values_to = "value")
+    df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
+    if(use_labels) {
+      df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
+    }
+    if(!is.null(title)) {
+      y <- paste0("value//", title)
+    } else {
+      y <- "value"
+    }
+  }
+
+  fun(df, x = x, y = y, ..., shown=FALSE) +
+    facet_wrap(~variable, scales = scales, ncol = ncol, labeller=label_fun)
+}
 

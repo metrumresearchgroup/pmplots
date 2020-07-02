@@ -64,6 +64,11 @@ test_that("wrap with expression", {
   expect_is(p,"gg")
 })
 
+test_that("wrap_cont_cat", {
+  p <- wrap_cont_cat(df, y = c("WRES", "NPDE"), x = "STUDYc")
+  expect_is(p, "gg")
 
+  expect_error(wrap_cont_cat(df, x = c("STUDYc", "CPc"), y = c("CWRES", "WRES")))
+})
 
 

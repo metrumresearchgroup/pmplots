@@ -8,6 +8,7 @@
 \alias{wrap_eta_cont}
 \alias{wrap_hist}
 \alias{wrap_dv_preds}
+\alias{wrap_cont_cat}
 \title{Faceted plots}
 \usage{
 wrap_cont_cont(
@@ -46,6 +47,19 @@ wrap_dv_preds(
   title = "Predicted {yname}",
   xname = "",
   scales = "fixed"
+)
+
+wrap_cont_cat(
+  df,
+  x,
+  y,
+  ...,
+  fun = pm_box,
+  title = NULL,
+  scales = "free_y",
+  ncol = NULL,
+  use_labels = FALSE,
+  label_fun = label_parse_label
 )
 }
 \arguments{
