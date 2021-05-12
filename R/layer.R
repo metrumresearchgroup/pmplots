@@ -203,6 +203,6 @@ layer_dnorm <- function(x, sd = 1, mean = 0, ...) {
 ##' @param ... other argument to set for \code{geom_hline}
 ##'
 ##' @export
-npde_ref <- function(y = -1 lwd = 1,...) {
+npde_ref <- function(y = 0, lwd = 1,...) {
   c(list(yintercept = y, lwd = lwd),list(...))
 }
