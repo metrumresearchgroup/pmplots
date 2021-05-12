@@ -38,8 +38,9 @@
 ##' @export
 dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
                     yname="value", xname="value",
-                    xs = list(), ys = list(), loglog=FALSE,
-                    scales = c("fixed", "free"), ...) {
+                    xs = list(), ys = list(), loglog = FALSE,
+                    scales = c("fixed", "free"),
+                    logbr = c("full", "half"), ...) {
 
   scales <- match.arg(scales)
 
@@ -66,25 +67,30 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
   x <- x[1]
   y <- y[1]
 
-
   if(loglog) {
     xs$trans <- "log"
     ys$trans <- "log"
+    logbr <- match.arg(logbr)
+    if(logbr=="half") {
+      log_breaks <- logbr3()
+    } else {
+      log_breaks <- logbr()
+    }
   }
 
   if(xs$trans %in% c("log", "log10")) {
     xkp <- df[,x] > 0
-    df <- dplyr::filter(df,xkp)
+    df <- dplyr::filter(df, xkp)
     if(.miss("breaks", inx)) {
-      xs$breaks <- logbr3()
+      xs$breaks <- log_breaks
     }
   }
 
   if(ys$trans %in% c("log", "log10")) {
     ykp <- df[,y] > 0
-    df <- dplyr::filter(df,ykp)
+    df <- dplyr::filter(df, ykp)
     if(.miss("breaks", iny)) {
-      ys$breaks <- logbr3()
+      ys$breaks <- log_breaks
     }
   }
 
