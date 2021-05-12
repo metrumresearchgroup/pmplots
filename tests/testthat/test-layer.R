@@ -72,5 +72,5 @@ test_that("npde_ref", {
   x <- npde_ref()
   expect_is(x,"list")
   expect_identical(names(x), c("yintercept", "lwd"))
-  expect_identical(x$yintercept,c(-2,0,2))
+  expect_identical(x$yintercept, 0)
 })
