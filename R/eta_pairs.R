@@ -1,7 +1,5 @@
-
-pairs_lower <- function(data, mapping, ...) {
-  ggplot(data = data, mapping = mapping) +
-    geom_point(col=opts$scatter.col,size=opts$scatter.size) +
+pairs_lower_plot <- function(p) {
+  p + geom_point(col = opts$scatter.col, size = opts$scatter.size) +
     geom_smooth(
       method = opts$smooth.method,
       color = opts$smooth.col,
@@ -9,6 +7,11 @@ pairs_lower <- function(data, mapping, ...) {
       se = FALSE,
       lwd = opts$smooth.lwd
     )
+}
+
+pairs_lower <- function(data, mapping, lower_plot = pairs_lower_plot, ...) {
+  p <- ggplot(data = data, mapping = mapping)
+  lower_plot(p)
 }
 
 pairs_upper <- function(data, mapping, ...) {
@@ -21,15 +24,14 @@ pairs_upper <- function(data, mapping, ...) {
     n <- sum((!is.na(data[,x])) & (!is.na(data[,y])))
     label <- paste0(label, "\n", paste0("(n=",n,")"))
   }
-
   GGally::ggally_text(
     label = label,
     size = opts$pairs.cor.size,
     col = opts$pairs.cor.col,
     fontface = opts$pairs.cor.fontface
   ) + theme(
-      panel.grid = ggplot2::element_blank()
-    )
+    panel.grid = ggplot2::element_blank()
+  )
 }
 
 #' Pairs plots using ggpairs
@@ -47,6 +49,9 @@ pairs_upper <- function(data, mapping, ...) {
 #' @param label_fun labeler function that gets passed to [GGally::ggpairs()];
 #' the default is based on [parse_label()] and thus allows latex
 #' expressions in the label (see examples)
+#' @param lower_plot function to create plots in the lower triangle; the
+#' should accept a single argument (a `gg` object) and return a `gg` object;
+#' see [pairs_lower_plot()] as an example
 #' @param upper_fun function to use for `upper` argument
 #' @param lower_fun function to use for `lower` argument
 #' @param ... passed to [GGally::ggpairs()]
@@ -86,7 +91,9 @@ pairs_plot <- function(x, y, bins = 15,
                        fill = opts$histogram.fill,
                        col = opts$histogram.col,
                        label_fun = label_parse_label,
-                       upper_fun = NULL, lower_fun = NULL, ...) {
+                       lower_plot = pairs_lower_plot,
+                       upper_fun = NULL,
+                       lower_fun = NULL, ...) {
 
   if(!requireNamespace("GGally")) {
     stop("this function requires that the GGally package be installed",
@@ -109,8 +116,22 @@ pairs_plot <- function(x, y, bins = 15,
     return(ans)
   }
 
-  diag_fun <- GGally::wrap("barDiag", bins = bins,
-                           alpha = alpha, fill=fill, col=col)
+  stopifnot(is.function(lower_plot))
+  stopifnot(length(formals(lower_plot))==1)
+
+  diag_fun <- GGally::wrap(
+    "barDiag",
+    bins = bins,
+    alpha = alpha,
+    fill = fill,
+    col = col
+  )
+
+  lower_fun <- GGally::wrap(
+    lower_fun,
+    lower_plot = lower_plot
+  )
+
   x <- as.data.frame(x)
   etal <- lapply(y, col_label)
   cols <- sapply(etal, "[[", 1L)
@@ -124,8 +145,8 @@ pairs_plot <- function(x, y, bins = 15,
 
   GGally::ggpairs(
     x, aes(...),
-    columns=cols,
-    columnLabels=labs,
+    columns = cols,
+    columnLabels = labs,
     labeller = label_fun,
     upper = list(continuous = upper_fun),
     diag = list(continuous = diag_fun),
@@ -133,9 +154,9 @@ pairs_plot <- function(x, y, bins = 15,
   ) + pm_theme()
 }
 
-#' @param etas character `col//label` for pairs data; see [col_label]
+#' @param etas character `col//label` for pairs data; see [col_label()]
 #' @rdname pairs_plot
 #' @export
-eta_pairs <- function(x,etas,...) {
+eta_pairs <- function(x, etas, ...) {
   pairs_plot(x = x, y = etas, ...)
 }

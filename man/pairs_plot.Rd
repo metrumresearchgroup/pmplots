@@ -13,6 +13,7 @@ pairs_plot(
   fill = opts$histogram.fill,
   col = opts$histogram.col,
   label_fun = label_parse_label,
+  lower_plot = pairs_lower_plot,
   upper_fun = NULL,
   lower_fun = NULL,
   ...
@@ -37,13 +38,17 @@ eta_pairs(x, etas, ...)
 the default is based on \code{\link[=parse_label]{parse_label()}} and thus allows latex
 expressions in the label (see examples)}
 
+\item{lower_plot}{function to create plots in the lower triangle; the
+should accept a single argument (a \code{gg} object) and return a \code{gg} object;
+see \code{\link[=pairs_lower_plot]{pairs_lower_plot()}} as an example}
+
 \item{upper_fun}{function to use for \code{upper} argument}
 
 \item{lower_fun}{function to use for \code{lower} argument}
 
 \item{...}{passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}}
 
-\item{etas}{character \verb{col//label} for pairs data; see \link{col_label}}
+\item{etas}{character \verb{col//label} for pairs data; see \code{\link[=col_label]{col_label()}}}
 }
 \value{
 The result from a \code{ggpairs} call (a single plot).
