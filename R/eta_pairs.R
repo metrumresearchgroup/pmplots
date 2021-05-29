@@ -1,3 +1,24 @@
+#' Default plots for lower diagonal
+#'
+#' @param p a `gg` object
+#'
+#' @details
+#' - the function should take one argument (a `gg` object`)
+#' - modify that object to render the data; this is typically using
+#'   [ggplot2::geom_point()]
+#' - add aesthetics or layers as you would for any `ggplot` workflow
+#'
+#' @return
+#' A `gg` object, modified
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' p <- ggplot(data = data, aes(WT, BMI))
+#' p
+#' pmplots:::pairs_lower_plot(p)
+#'
+#' @md
+#' @keywords internal
 pairs_lower_plot <- function(p) {
   p + geom_point(col = opts$scatter.col, size = opts$scatter.size) +
     geom_smooth(
@@ -42,10 +63,13 @@ pairs_upper <- function(data, mapping, ...) {
 #'
 #' @param x plotting data.frame
 #' @param y character `col//label` for pairs data; see [col_label()]
-#' @param bins passed to [ggplot2::geom_histogram()]
-#' @param alpha passed to [ggplot2::geom_histogram()]
-#' @param fill passed to [ggplot2::geom_histogram()]
-#' @param col passed to [ggplot2::geom_histogram()]
+#' @param bins passed to [ggplot2::geom_histogram()] to render the diagonal
+#' @param alpha passed to [ggplot2::geom_histogram()] or
+#' [ggplot2::geom_density()] to render the diagonal
+#' @param fill passed to [ggplot2::geom_histogram()] or
+#' [ggplot2::geom_density()] to render the diagonal
+#' @param col passed to [ggplot2::geom_histogram()] or
+#' [ggplot2::geom_density()] to render the diagonal
 #' @param label_fun labeler function that gets passed to [GGally::ggpairs()];
 #' the default is based on [parse_label()] and thus allows latex
 #' expressions in the label (see examples)
@@ -54,6 +78,8 @@ pairs_upper <- function(data, mapping, ...) {
 #' see [pairs_lower_plot()] as an example
 #' @param upper_fun function to use for `upper` argument
 #' @param lower_fun function to use for `lower` argument
+#' @param diag how to render data on the diagonal; options are limited to those
+#' accepted by [GGally::ggpairs()] for `continuous` data (see that help topic)
 #' @param ... passed to [GGally::ggpairs()]
 #'
 #' @details This function requires the `GGally` package to be installed.
@@ -93,7 +119,8 @@ pairs_plot <- function(x, y, bins = 15,
                        label_fun = label_parse_label,
                        lower_plot = pairs_lower_plot,
                        upper_fun = NULL,
-                       lower_fun = NULL, ...) {
+                       lower_fun = NULL,
+                       diag = c("barDiag", "densityDiag", "blankDiag"), ...) {
 
   if(!requireNamespace("GGally")) {
     stop("this function requires that the GGally package be installed",
@@ -110,17 +137,22 @@ pairs_plot <- function(x, y, bins = 15,
 
   if(length(y)==1) {
     ans <- eta_hist(
-      x, y, bins = bins, alpha = alpha, fill = fill,
-      col = col, ...
+      x, y, bins = bins, alpha = alpha, fill = fill, col = col,
+      ...
     )
     return(ans)
   }
 
-  stopifnot(is.function(lower_plot))
-  stopifnot(length(formals(lower_plot))==1)
+  assert_that(is.function(lower_plot))
+  assert_that(
+    length(formals(lower_plot))==1,
+    msg = "the `lower_plot` function should have exactly one argument"
+  )
+
+  diag <- match.arg(diag)
 
   diag_fun <- GGally::wrap(
-    "barDiag",
+    diag,
     bins = bins,
     alpha = alpha,
     fill = fill,

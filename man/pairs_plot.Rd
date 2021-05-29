@@ -16,6 +16,7 @@ pairs_plot(
   lower_plot = pairs_lower_plot,
   upper_fun = NULL,
   lower_fun = NULL,
+  diag = c("barDiag", "densityDiag", "blankDiag"),
   ...
 )
 
@@ -26,13 +27,16 @@ eta_pairs(x, etas, ...)
 
 \item{y}{character \verb{col//label} for pairs data; see \code{\link[=col_label]{col_label()}}}
 
-\item{bins}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
+\item{bins}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} to render the diagonal}
 
-\item{alpha}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
+\item{alpha}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}
 
-\item{fill}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
+\item{fill}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}
 
-\item{col}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
+\item{col}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}
 
 \item{label_fun}{labeler function that gets passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}};
 the default is based on \code{\link[=parse_label]{parse_label()}} and thus allows latex
@@ -45,6 +49,9 @@ see \code{\link[=pairs_lower_plot]{pairs_lower_plot()}} as an example}
 \item{upper_fun}{function to use for \code{upper} argument}
 
 \item{lower_fun}{function to use for \code{lower} argument}
+
+\item{diag}{how to render data on the diagonal; options are limited to those
+accepted by \code{\link[GGally:ggpairs]{GGally::ggpairs()}} for \code{continuous} data (see that help topic)}
 
 \item{...}{passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}}
 
