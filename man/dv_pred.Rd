@@ -12,10 +12,11 @@ dv_pred(
   y = pm_axis_dv(),
   yname = "value",
   xname = "value",
-  xs = list(),
   ys = list(),
+  xs = ys,
   loglog = FALSE,
-  scales = c("fixed", "free"),
+  scales = c("fixed", "free", "null"),
+  logbr = c("full", "half", "null"),
   ...
 )
 
@@ -34,14 +35,21 @@ dv_preds(df, ...)
 
 \item{xname}{used to form x-axis label}
 
-\item{xs}{see \code{\link{defx}}}
-
 \item{ys}{see \code{\link{defy}}}
+
+\item{xs}{see \code{\link{defx}}; note that \code{xs} defaults to \code{ys} so (by
+default) the scale configuration will be identical; pass both \code{xs} and \code{ys}
+to have them independently configured}
 
 \item{loglog}{if \code{TRUE}, x- and y-axes will be log-transformed}
 
 \item{scales}{if \code{TRUE}, then the x- and y- axes will be forced
 to have the same limits}
+
+\item{logbr}{when using log scale, should the tick marks be at \code{full}-log
+intervals or \code{half}-log intervals? If you pass \code{null}, the default scales
+will be used (which might be identical to \code{full}). Use \code{xs} and \code{ys} to
+pass custom scales.}
 
 \item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
 }

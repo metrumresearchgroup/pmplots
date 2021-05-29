@@ -4,13 +4,19 @@
 ##' @param df data frame to plot
 ##' @param x character name for x-axis data
 ##' @param y character name for y-axis data
-##' @param xname used to form x-axis label
 ##' @param yname used to form y-axis label
-##' @param xs see \code{\link{defx}}
+##' @param xname used to form x-axis label
 ##' @param ys see \code{\link{defy}}
+##' @param xs see \code{\link{defx}}; note that `xs` defaults to `ys` so (by
+##' default) the scale configuration will be identical; pass both `xs` and `ys`
+##' to have them independently configured
 ##' @param loglog if \code{TRUE}, x- and y-axes will be log-transformed
 ##' @param scales if \code{TRUE}, then the x- and y- axes will be forced
 ##' to have the same limits
+##' @param logbr when using log scale, should the tick marks be at `full`-log
+##' intervals or `half`-log intervals? If you pass `null`, the default scales
+##' will be used (which might be identical to `full`). Use `xs` and `ys` to
+##' pass custom scales.
 ##' @param ... passed to \code{\link{scatt}} and \code{\link{layer_as}}
 ##'
 ##' @details
@@ -36,11 +42,11 @@
 ##' @return A single plot.
 ##'
 ##' @export
-dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
-                    yname="value", xname="value",
-                    xs = list(), ys = list(), loglog = FALSE,
-                    scales = c("fixed", "free"),
-                    logbr = c("full", "half"), ...) {
+dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
+                    yname = "value", xname = "value",
+                    ys = list(), xs = ys, loglog = FALSE,
+                    scales = c("fixed", "free", "null"),
+                    logbr = c("full", "half", "null"), ...) {
 
   scales <- match.arg(scales)
 
@@ -68,13 +74,17 @@ dv_pred <- function(df, x=pm_axis_pred(), y=pm_axis_dv(),
   y <- y[1]
 
   if(loglog) {
-    xs$trans <- "log"
-    ys$trans <- "log"
+    xs$trans <- "log10"
+    ys$trans <- "log10"
     logbr <- match.arg(logbr)
     if(logbr=="half") {
       log_breaks <- logbr3()
-    } else {
+    }
+    if(logbr=="full") {
       log_breaks <- logbr()
+    }
+    if(logbr=="null") {
+      log_breaks <- NULL
     }
   }
 
