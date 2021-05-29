@@ -64,14 +64,14 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
   xlab <- x[2]
   ylab <- y[2]
 
-  require_numeric(df,x[1])
-  require_numeric(df,y[1])
+  require_numeric(df, x[1])
+  require_numeric(df, y[1])
 
   inx <- xs
   iny <- ys
 
-  xs <- update_list(defx(),xs)
-  ys <- update_list(defy(),ys)
+  xs <- update_list(defx(), xs)
+  ys <- update_list(defy(), ys)
 
   x <- x[1]
   y <- y[1]
@@ -80,13 +80,13 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
     xs$trans <- "log10"
     ys$trans <- "log10"
     logbr <- match.arg(logbr)
-    if(logbr=="half") {
+    if(logbr == "half") {
       log_breaks <- logbr3()
     }
-    if(logbr=="full") {
+    if(logbr == "full") {
       log_breaks <- logbr()
     }
-    if(logbr=="null") {
+    if(logbr == "null") {
       log_breaks <- NULL
     }
   }
@@ -108,7 +108,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
   }
 
   if(scales == "fixed") {
-    lim <- get_limits(df,x,y)
+    lim <- get_limits(df, x, y)
 
     if(.miss("limits", inx)) {
       xs$limits <- lim
