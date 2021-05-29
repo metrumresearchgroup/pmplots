@@ -23,25 +23,25 @@ eta_pairs(x, etas, ...)
 \arguments{
 \item{x}{plotting data.frame}
 
-\item{y}{character \verb{col//label} for pairs data; see \link{col_label}}
+\item{y}{character \verb{col//label} for pairs data; see \code{\link[=col_label]{col_label()}}}
 
-\item{bins}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{bins}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
 
-\item{alpha}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{alpha}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
 
-\item{fill}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{fill}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
 
-\item{col}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{col}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}}
 
-\item{label_fun}{labeler function that gets passed to \link[GGally:ggpairs]{GGally::ggpairs};
-the default is based on \link{parse_label} and thus allows latex
+\item{label_fun}{labeler function that gets passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}};
+the default is based on \code{\link[=parse_label]{parse_label()}} and thus allows latex
 expressions in the label (see examples)}
 
 \item{upper_fun}{function to use for \code{upper} argument}
 
 \item{lower_fun}{function to use for \code{lower} argument}
 
-\item{...}{passed to \link[GGally:ggpairs]{GGally::ggpairs}}
+\item{...}{passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}}
 
 \item{etas}{character \verb{col//label} for pairs data; see \link{col_label}}
 }
@@ -49,14 +49,14 @@ expressions in the label (see examples)}
 The result from a \code{ggpairs} call (a single plot).
 }
 \description{
-This funciton is a wrapper to \link[GGally:ggpairs]{GGally::ggpairs} with customized
+This funciton is a wrapper to \code{\link[GGally:ggpairs]{GGally::ggpairs()}} with customized
 functions for upper and lower off-diagonal panels. See details for help
 on customizing some aspects of the off-diagonal plots.
 }
 \details{
 This function requires the \code{GGally} package to be installed.
 
-When the length of \code{etas} is one, arguments are passed to \link{eta_hist} and
+When the length of \code{etas} is one, arguments are passed to \code{\link[=eta_hist]{eta_hist()}} and
 that result is returned.
 
 Use the options object to modify aspects of the smoother line:
