@@ -2,7 +2,7 @@
 % Please edit documentation in R/eta_pairs.R
 \name{pairs_lower_plot}
 \alias{pairs_lower_plot}
-\title{Default plots for lower diagonal}
+\title{Default plots for lower triangle}
 \usage{
 pairs_lower_plot(p)
 }
@@ -13,7 +13,7 @@ pairs_lower_plot(p)
 A \code{gg} object, modified
 }
 \description{
-Default plots for lower diagonal
+Default plots for lower triangle
 }
 \details{
 \itemize{

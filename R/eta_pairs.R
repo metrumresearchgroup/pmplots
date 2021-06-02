@@ -1,4 +1,4 @@
-#' Default plots for lower diagonal
+#' Default plots for lower triangle
 #'
 #' @param p a `gg` object
 #'
@@ -57,7 +57,7 @@ pairs_upper <- function(data, mapping, ...) {
 
 #' Pairs plots using ggpairs
 #'
-#' This funciton is a wrapper to [GGally::ggpairs()] with customized
+#' This function is a wrapper to [GGally::ggpairs()] with customized
 #' functions for upper and lower off-diagonal panels. See details for help
 #' on customizing some aspects of the off-diagonal plots.
 #'
@@ -70,14 +70,18 @@ pairs_upper <- function(data, mapping, ...) {
 #' [ggplot2::geom_density()] to render the diagonal
 #' @param col passed to [ggplot2::geom_histogram()] or
 #' [ggplot2::geom_density()] to render the diagonal
-#' @param label_fun labeler function that gets passed to [GGally::ggpairs()];
+#' @param label_fun labeller function that gets passed to [GGally::ggpairs()];
 #' the default is based on [parse_label()] and thus allows latex
 #' expressions in the label (see examples)
 #' @param lower_plot function to create plots in the lower triangle; the
 #' should accept a single argument (a `gg` object) and return a `gg` object;
-#' see [pairs_lower_plot()] as an example
+#' see [pairs_lower_plot()] as an example; you probably want to use this
+#' argument (rather than `lower_fun`) if you want to customize how the
+#' plots on the lower triangle look
 #' @param upper_fun function to use for `upper` argument
-#' @param lower_fun function to use for `lower` argument
+#' @param lower_fun function to use for `lower` argument; if you want to
+#' customize how the plots on the lower triangle look, you probably want to
+#' use the `lower_plot` argument
 #' @param diag how to render data on the diagonal; options are limited to those
 #' accepted by [GGally::ggpairs()] for `continuous` data (see that help topic)
 #' @param ... passed to [GGally::ggpairs()]
