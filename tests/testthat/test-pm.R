@@ -81,10 +81,14 @@ test_that("dv pred", {
   p <- dv_preds(df)
   expect_is(p,"list")
   expect_equal(length(p),2)
+
+  form <- formals(dv_pred)
+  expect_equal(form$logbr,  expr(c("full", "half", "null")))
+  p1 <- dv_pred(df, logbr="null", loglog = TRUE)
+  expect_is(p1, "gg")
+  p2 <- dv_pred(df, logbr="full", loglog = TRUE)
+  expect_is(p2, "gg")
 })
-
-
-
 
 test_that("red pred", {
   p <- res_pred(df)
