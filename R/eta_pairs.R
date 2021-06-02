@@ -154,7 +154,6 @@ pairs_plot <- function(x, y, bins = 15,
   )
 
   diag <- match.arg(diag)
-
   diag_fun <- GGally::wrap(
     diag,
     bins = bins,
@@ -171,13 +170,12 @@ pairs_plot <- function(x, y, bins = 15,
   x <- as.data.frame(x)
   etal <- lapply(y, col_label)
   cols <- sapply(etal, "[[", 1L)
-  labs <- sapply(etal, "[[", 2L)
   cols <- unique(cols)
-  labs <- unique(labs)
-
   for(col in cols) {
     require_numeric(x,col)
   }
+  labs <- sapply(etal, "[[", 2L)
+  labs <- unique(labs)
 
   GGally::ggpairs(
     x, aes(...),
