@@ -3,13 +3,13 @@
 #'
 #' For these plots, data sets made long with respect to several
 #' y-axis variables and then plotted and faceted with
-#' [ggplot2::facet_wrap].
+#' [ggplot2::facet_wrap()].
 #'
 #'
 #' @param df data frame to plot
-#' @param x x-axis data in [col_label] format; if `y` has length greater than 1,
+#' @param x x-axis data in [col_label()] format; if `y` has length greater than 1,
 #' then `x` must be length equal to 1
-#' @param y y-axis data in [col_label] format; if `x` has length greater than 1,
+#' @param y y-axis data in [col_label()] format; if `x` has length greater than 1,
 #' then `y` must be length equal to 1
 #' @param ... passed to `fun`
 #' @param fun the plotting function
@@ -18,8 +18,8 @@
 #' @param ncol passed to `facet_wrap`
 #' @param use_labels if `TRUE`, the label part of `col_label` will
 #' be used in the strip; the column name is used otherwise
-#' @param label_fun labeller function; passed to [ggplot2::facet_wrap]; the
-#' default is based on [parse_label] and allows latex markup in the label
+#' @param label_fun labeller function; passed to [ggplot2::facet_wrap()]; the
+#' default is based on [parse_label()] and allows latex markup in the label
 #' @param xname placeholder
 #'
 #' @details
@@ -30,6 +30,10 @@
 #' plots several different residuals (or NPDE) versus time. `wrap_eta_cont`
 #' plots etas versus a continuous covariate. `wrap_hist` creates a faceted
 #' histogram plot.
+#'
+#' For all plots, both `x` and `y` should name numeric data columns with the
+#' exception of `wrap_cont_cat` which expects `x` to name a categorical
+#' data column (the data are sent to [pm_box()] by default)..
 #'
 #' For all plots, either `x` or `y` may contain multiple columns, but an error
 #' will be generated if both `x` and `y` list multiple columns.
@@ -157,7 +161,12 @@ wrap_cont_cat <- function(df, x, y, ..., fun = pm_box,
 
   x <- x[1]
   to_melt <- col_labels(y)
-  df <- pivot_longer(df, cols = unname(to_melt), names_to =  "variable", values_to = "value")
+  df <- pivot_longer(
+    df,
+    cols = all_of(unname(to_melt)),
+    names_to =  "variable",
+    values_to = "value"
+  )
   df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
   if(use_labels) {
     df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
