@@ -1,4 +1,4 @@
-#' @importFrom dplyr filter as_data_frame arrange n_distinct n all_of
+#' @importFrom dplyr filter as_data_frame arrange n_distinct n
 #' @importFrom dplyr group_by filter ungroup summarize distinct pull
 #' @importFrom dplyr groups is_grouped_df mutate .data rename %>%
 #' @importFrom grDevices pdf dev.off

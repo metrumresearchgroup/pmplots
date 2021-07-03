@@ -163,7 +163,7 @@ wrap_cont_cat <- function(df, x, y, ..., fun = pm_box,
   to_melt <- col_labels(y)
   df <- pivot_longer(
     df,
-    cols = all_of(unname(to_melt)),
+    cols = unname(to_melt),
     names_to =  "variable",
     values_to = "value"
   )
