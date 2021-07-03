@@ -12,10 +12,11 @@ dv_pred(
   y = pm_axis_dv(),
   yname = "value",
   xname = "value",
-  xs = list(),
   ys = list(),
+  xs = ys,
   loglog = FALSE,
-  scales = c("fixed", "free"),
+  scales = c("fixed", "free", "null"),
+  logbr = c("full", "half", "null"),
   ...
 )
 
@@ -34,33 +35,39 @@ dv_preds(df, ...)
 
 \item{xname}{used to form x-axis label}
 
-\item{xs}{see \code{\link{defx}}}
+\item{ys}{see \code{\link[=defy]{defy()}}}
 
-\item{ys}{see \code{\link{defy}}}
+\item{xs}{see \code{\link[=defx]{defx()}}; note that \code{xs} defaults to \code{ys} so (by
+default) the scale configuration will be identical; pass both \code{xs} and \code{ys}
+to have them independently configured}
 
 \item{loglog}{if \code{TRUE}, x- and y-axes will be log-transformed}
 
 \item{scales}{if \code{TRUE}, then the x- and y- axes will be forced
 to have the same limits}
 
-\item{...}{passed to \code{\link{scatt}} and \code{\link{layer_as}}}
+\item{logbr}{when using log scale, should the tick marks be at \code{full}-log
+intervals or \code{half}-log intervals? If you pass \code{null}, the default scales
+will be used (which might be identical to \code{full}). Use \code{xs} and \code{ys} to
+pass custom scales.}
+
+\item{...}{passed to \code{\link[=scatt]{scatt()}} and \code{\link[=layer_as]{layer_as()}}}
 }
 \value{
-A single plot.
+\code{dv_pred} and \code{dv_ipred} return a single plot; \code{dv_preds} returns a list
+of plots.
 }
 \description{
-Plot DV versus predicted values
+Plots for \code{DV} versus population or individual predicted values. \code{dv_preds}
+makes both plots and returns them as a list (more in \code{details}).
 }
 \details{
-Since this function creates a scatter plot,
-both the \code{x} and \code{y} columns must
-be numeric.
+Since this function creates a scatter plot, both the \code{x} and \code{y} columns
+must be numeric.
 
-\code{dv_preds} returns a list of two plots, with
-the result of \code{dv_pred} in the first position
-and the result of \code{dv_ipred} in the
-second position.  In this case, \code{...} are
-passed to both functions.
+\code{dv_preds} returns a list of two plots, with the result of \code{dv_pred} in the
+first position and the result of \code{dv_ipred} in the second position.  In
+this case, \code{...} are passed to both functions.
 }
 \examples{
 df <- pmplots_data_obs()
