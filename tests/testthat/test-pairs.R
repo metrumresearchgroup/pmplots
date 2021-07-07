@@ -28,6 +28,26 @@ test_that("upper and lower funs are used in pairs plots", {
   expect_error(print(p), "passing upper plot")
 })
 
+test_that("use lower_plot to draw scatter plot in lower panels", {
+  lower <- function(p) {
+    stop("draw using lower_plot")
+  }
+  p <- eta_pairs(df, etas = etas, lower_plot = lower)
+  expect_error(print(p), "draw using lower_plot")
+  lower2 <- function(p,q) {}
+  expect_error(
+    eta_pairs(df, etas = etas, lower_plot = lower2),
+    "the `lower_plot` function should have exactly one argument"
+  )
+})
+
+test_that("select different diagonal renderings", {
+  p <- pairs_plot(df, y = etas, diag = "barDiag")
+  expect_is(p, "ggmatrix")
+  p <- pairs_plot(df, y = etas, diag = "densityDiag")
+  expect_is(p, "ggmatrix")
+})
+
 test_that("options to control correlation panels", {
   p0 <- eta_pairs(df, etas = etas)
   pm_opts$pairs.cor.col <- "black"

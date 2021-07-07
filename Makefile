@@ -34,6 +34,9 @@ all:
 	make build
 	make install
 
+spelling:
+	Rscript -e "spelling::spell_check_package()"
+
 travis:
 	make build
 	R CMD check --no-manual ${TARBALL} -o ${CHKDIR}
