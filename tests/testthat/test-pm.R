@@ -185,7 +185,7 @@ test_that("eta pairs", {
   expect_is(p,"ggmatrix")
 
   p2 <- pairs_plot(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
-  expect_equal(p,p2)
+  expect_equal(p$gg,p2$gg)
 
   p <- eta_pairs(df, "ETA1//ETA-CL")
   expect_is(p, "gg")

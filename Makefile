@@ -20,6 +20,9 @@ examples:
 	make readme
 	make exampler
 
+spelling:
+	Rscript -e "spelling::spell_check_package()"
+
 pkgdown:
 	Rscript -e "options(pkdown.internet = FALSE); pkgdown::build_site()"
 
