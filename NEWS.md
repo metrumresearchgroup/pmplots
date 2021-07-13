@@ -1,3 +1,5 @@
+# pmplots (development version)
+
 # pmplots 0.3.1
 - Add `label_fun` function to `pairs_plot`, `wrap_cont_cont` and 
   `wrap_hist` allowing strip labels to incorporate
