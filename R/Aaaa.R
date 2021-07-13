@@ -32,56 +32,57 @@ globalVariables(c("ID", "n", "IPRED"))
 #'
 #' @section Look and feel:
 #'
-#' See the [pm_theme] help topic for functions you
+#' See the [pm_theme()] help topic for functions you
 #' can use to replicate the look and feel of plots generated
 #' by this package.
 #'
 #' @section Function listing:
 #'
 #' - Basic plots
-#'   - [pm_scatter], [pm_box], [pairs_plot], [split_plot]
+#'   - [pm_scatter()], [pm_box()], [pairs_plot()], [split_plot()]
 #' - Residuals versus time
-#'   - [res_time], [res_tad], [res_tafd]
-#'   - [wres_time], [wres_tad], [wres_tad]
-#'   - [cwres_time], [cwres_tad], [cwres_tafd]
-#'   - [cwresi_time], [cwresi_tad], [cwresi_tafd]
+#'   - [res_time()], [res_tad()], [res_tafd()]
+#'   - [wres_time()], [wres_tad()], [wres_tad()]
+#'   - [cwres_time()], [cwres_tad()], [cwres_tafd()]
+#'   - [cwresi_time()], [cwresi_tad()], [cwresi_tafd()]
 #' - Residuals versus PRED
-#'   - [res_pred], [wres_pred], [cwres_pred]
+#'   - [res_pred()], [wres_pred()], [cwres_pred()]
 #' - Residuals versus covariates
-#'   - [res_cont], [wres_cont], [cwres_cont]
-#'   - [res_cat], [wres_cat], [cwres_cat]
+#'   - [res_cont()], [wres_cont()], [cwres_cont()]
+#'   - [res_cat()], [wres_cat()], [cwres_cat()]
 #' - NPDE plots
-#'   - [npde_time], [npde_tad], [npde_tafd]
-#'   - [npde_pred]
-#'   - [npde_hist]
-#'   - [npde_q]
-#'   - [npde_cont]
-#'   - [npde_cat]
+#'   - [npde_time()], [npde_tad()], [npde_tafd()]
+#'   - [npde_pred()]
+#'   - [npde_hist()]
+#'   - [npde_q()]
+#'   - [npde_cont()]
+#'   - [npde_cat()]
 #' - Pairs plots
-#'   - [eta_pairs], [pairs_plot]
+#'   - [eta_pairs()], [pairs_plot()]
 #' - QQ plots
-#'   - [wres_q], [cwres_q], [cwresi_q], [res_q]
+#'   - [wres_q()], [cwres_q()], [cwresi_q()], [res_q()]
 #' - Histograms
-#'   - [cont_hist], [eta_hist], [cwres_hist], [cwresi_hist]
+#'   - [cont_hist()], [eta_hist()], [cwres_hist()], [cwresi_hist()]
 #' - List plots
-#'   - [pm_box_list], [pm_scatter_list]
-#'   - [list_plot_x], [list_plot_y], [list_plot_xy]
-#'   - [cont_hist_list]
+#'   - [pm_box_list()], [pm_scatter_list()]
+#'   - [list_plot_x()], [list_plot_y()], [list_plot_xy()]
+#'   - [cont_hist_list()]
 #' - Faceted plots
-#'   - [wrap_cont_cont], [wrap_cont_time], [wrap_dv_preds], [wrap_eta_cont]
-#'   - [wrap_hist]
+#'   - [wrap_cont_cont()], [wrap_cont_time()], [wrap_dv_preds()], [wrap_eta_cont()]
+#'   - [wrap_hist()]
+#'   - [wrap_cont_cat()]
 #' - Other plots
-#'   - [dv_pred_ipred]
+#'   - [dv_pred_ipred()]
 #' - Layers
-#'   - smooth: [layer_s], hline: [layer_h], abline: [layer_a]
-#'   - combinations: [layer_sa], [layer_sh]
+#'   - smooth: [layer_s()], hline: [layer_h()], abline: [layer_a()]
+#'   - combinations: [layer_sa()], [layer_sh()]
 #' - Customization
-#'   - [pm_opts]
-#'   - [rot_x], [rot_y], [pm_theme], [theme_plain]
+#'   - [pm_opts()]
+#'   - [rot_x()], [rot_y()], [pm_theme()], [theme_plain()]
 #' - Arrangement
 #'   - [pm_grid]
 #' - Example data sets
-#'   - [pmplots_data], [pmplots_data_obs], [pmplots_data_id]
+#'   - [pmplots_data()], [pmplots_data_obs()], [pmplots_data_id()]
 #'
 #'
 #' @rdname pmplots
