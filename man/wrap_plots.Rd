@@ -54,7 +54,6 @@ wrap_cont_cat(
   x,
   y,
   ...,
-  fun = pm_box,
   title = NULL,
   scales = "free_y",
   ncol = NULL,
@@ -92,19 +91,31 @@ default is based on \code{\link[=parse_label]{parse_label()}} and allows latex m
 \description{
 For these plots, data sets made long with respect to several
 y-axis variables and then plotted and faceted with
-\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}.
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}. \code{wrap_cont_cont} is a general function used by
+the others to create faceted plots of two continuous variables.
+\code{wrap_cont_time} plots several continuous variables versus time.
+\code{wrap_res_time} plots several different residuals (or NPDE) versus time.
+\code{wrap_eta_cont} plots etas versus a continuous covariate. \code{wrap_hist}
+creates a faceted histogram plot. \code{wrap_cont_cat} plots continuous versus
+categorical data as a boxplot.
 }
 \details{
-\code{wrap_cont_cont} is a general function used by the others to
-create faceted plots of two continuous variables.  \code{wrap_cont_time}
-plots several continuous variables versus time.  \code{wrap_res_time}
-plots several different residuals (or NPDE) versus time. \code{wrap_eta_cont}
-plots etas versus a continuous covariate. \code{wrap_hist} creates a faceted
-histogram plot.
+The following functions are called (as \code{fun}) to make each wrapped plot
+\itemize{
+\item \code{wrap_cont_cont} calls \code{\link[=pm_scatter]{pm_scatter()}}
+\item \code{wrap_cont_time} calls \code{\link[=y_time]{y_time()}}
+\item \code{wrap_res_time} calls \code{\link[=res_time]{res_time()}}
+\item \code{wrap_eta_cont} calls \code{\link[=eta_cont]{eta_cont()}}
+\item \code{wrap_hist} calls \code{\link[=cont_hist]{cont_hist()}}
+\item \code{wrap_cont_cat} calls \code{\link[=pm_box]{pm_box()}};
+}
 
 For all plots, both \code{x} and \code{y} should name numeric data columns with the
 exception of \code{wrap_cont_cat} which expects \code{x} to name a categorical
-data column (the data are sent to \code{\link[=pm_box]{pm_box()}} by default)..
+data column (the data are sent to \code{\link[=pm_box]{pm_box()}}).
+
+When \code{\link[=pm_box]{pm_box()}} is called by \code{wrap_cont_cat}, the \code{shown} argument will be
+forced to the value \code{FALSE}.
 
 For all plots, either \code{x} or \code{y} may contain multiple columns, but an error
 will be generated if both \code{x} and \code{y} list multiple columns.
