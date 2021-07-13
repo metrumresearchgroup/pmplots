@@ -433,29 +433,58 @@ parse_eval <- function(x) {
   eval(parse(text = x),envir=parent.frame(2))
 }
 
-##' Arrange a list of plots in a grid
-##'
-##' @param x a list of plots
-##' @param ncol passed to \code{\link[cowplot]{plot_grid}}
-##' @param ... passed to \code{\link[cowplot]{plot_grid}}
-##'
-##' @details
-##' The cowplot package must be installed to use this function.
-##'
-##' @examples
-##'
-##' data <- pmplots_data_obs()
-##'
-##' plot <- wres_cont(data, x = c("WT", "ALB"))
-##'
-##' pm_grid(plot)
-##'
-##' @export
+#' Arrange a list of plots in a grid using patchwork
+#'
+#' @param x a list of plots
+#' @param ncol passed to [cowplot::plot_grid()]
+#' @param ... passed to [cowplot::plot_grid()]
+#'
+#' @details
+#' The `cowplot` package must be installed to use this function.
+#'
+#' @examples
+#'
+#' data <- pmplots_data_obs()
+#'
+#' plot <- wres_cont(data, x = c("WT", "ALB"))
+#'
+#' pm_grid(plot)
+#'
+#' @seealso [pm_wrap()]
+#' @md
+#' @export
 pm_grid <- function(x, ..., ncol=2) {
   if(!requireNamespace("cowplot")) {
     stop("Please install the cowplot package to use this function.")
   }
   cowplot::plot_grid(plotlist=x, ..., ncol = ncol)
+}
+
+#' Arrange a list of plots in a grid using patchwork
+#'
+#' @param x a list of plots
+#' @param ncol passed to [patchwork::wrap_plots()]
+#' @param ... passed to [patchwork::wrap_plots()]
+#'
+#' @details
+#' The `patchwork` package must be installed to use this function.
+#'
+#' @examples
+#'
+#' data <- pmplots_data_obs()
+#'
+#' plot <- wres_cont(data, x = c("WT", "ALB"))
+#'
+#' pm_wrap(plot)
+#'
+#' @seealso [pm_wrap()]
+#' @md
+#' @export
+pm_wrap <- function(x, ncol = 2,  ...) {
+  if(!requireNamespace("patchwork")) {
+    stop("Please install the patchwork package to use this function.")
+  }
+  patchwork::wrap_plots(x, ncol = ncol, ...)
 }
 
 chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {

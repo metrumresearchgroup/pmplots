@@ -11,6 +11,10 @@ test_that("pm_grid", {
   expect_is(pm_grid(list(p,p)), "gg")
 })
 
+test_that("pm_wrap", {
+  expect_is(pm_wrap(list(p,p)), "gg")
+})
+
 x <- c("WT", "CRCL", "ALB")
 y <- c("SCR", "AAG")
 
@@ -28,5 +32,3 @@ test_that("list_plot_xy", {
   p <- list_plot_xy(df, x, y)
   expect_equal(length(p), length(y)*length(x))
 })
-
-
