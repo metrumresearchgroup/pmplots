@@ -1,5 +1,30 @@
 # pmplots (development version)
 
+- `pairs_plot()` and `eta_pairs()` now will properly call user-supplied
+  functions for creating panels on the upper and lower triangle 
+  (#2)
+
+- The upper panels in `pairs_plot()` and `eta_pairs()` are not customizable
+  using `pm_opts()` (#6)
+  
+- The reference lines at -3 and 3 on the y-axis of `npde` plots are no longer
+  drawn by default (#22)
+  
+- `dv_pred()` and `dv_ipred()` gain an argument (`logbr`) that lets the user 
+  pick the interval for tick marks when `loglog` plots are drawn; options are: 
+  "full" (full log units - 10, 100 ,1000), "half" (half log unitsa - 30, 100, 
+  300) or "null" (let ggplot decide); the default is now to show full log unit
+  breaks rather than half log unit breaks (#21)
+
+- `pairs_plot()` gains an argument (`lower_plot`) which lets the user 
+  more easily customize the scatter plot that usually appears on the lower
+  triangle (#26)
+
+- `wrap_cont_cat()` is a new wrap function that lets the user make 
+  faceted plots of continuous variables versus categorical variables; 
+  (#14)
+
+
 # pmplots 0.3.1
 - Add `label_fun` function to `pairs_plot`, `wrap_cont_cont` and 
   `wrap_hist` allowing strip labels to incorporate
