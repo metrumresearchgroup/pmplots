@@ -494,16 +494,44 @@ dv_pred_ipred(dd1, nrow = 3, ncol = 3, ylab = "Concentration (ng/mL)", log_y=TRU
 
 # Wrapped plots
 
-## histogram
+## Histogram
 ```{r}
 wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 ```
 
 \newpage
 
-## eta
+## ETA versus continuous
 ```{r}
 wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
+```
+
+\newpage
+
+## Continuous on categorical
+
+```{r}
+wrap_cont_cat(df, y = c("WT", "CRCL", "AAG"), x = "STUDYc", ncol = 2) 
+```
+
+## Continuous on continuous
+
+```{r}
+wrap_cont_cont(df, y = "CWRES" , x = c("WT", "CRCL", "AAG"), ncol = 2, scales="free_x") 
+```
+
+
+## Residuals versus time
+
+```{r}
+wrap_res_time(df, y = c("RES", "WRES", "CWRES"), ncol = 2, scales="free_y") 
+```
+
+## DV versus pred
+
+```{r}
+wrap_dv_preds(df, yname = "MyDrug Concentration (ng/mL)", ncol = 1) 
+
 ```
 
 \newpage
@@ -532,6 +560,34 @@ wrap_eta_cont(
 ```{r}
 wrap_res_time(df, y = c("RES", "CWRES", "NPDE"), ncol=2)
 ```
+
+\newpage
+
+# Pairs plots
+
+This is a simple wrapper around `GGally::ggpairs` with some customizations that 
+have been developed internally at Metrum over the years.
+
+```{r}
+pairs_plot(id, c("WT//Weight", "ALB//Albumin", "SCR//Serum creat"))
+```
+
+## Customized lower triangle
+
+Pass a function that customizes the scatter plots on the lower triangle. This 
+function should accept a gg object and add a geom to it
+
+```{r}
+my_lower <- function(p) {
+  p + geom_point(aes(color = STUDYc)) + 
+    geom_smooth(se = FALSE, color = "black")
+}
+```
+
+```{r}
+pairs_plot(id, c("WT", "ALB"), lower_plot = my_lower)
+```
+
 
 \newpage
 
@@ -784,11 +840,24 @@ ggplot(df, aes(TIME,CWRES)) + geom_point() + pm_hline()
 \newpage
 
 ## Rotate x and y axis labels
+
+### Specify the angle
 ```{r}
 dv_pred(df) + rot_x(angle = 90) + rot_y()
 ```
 
 \newpage
+
+### Rotate to vertical
+
+We are typically rotating the tick labels on the x-axis and frequently it 
+is convenient to ask for a totally vertical rendering
+
+```{r}
+cwres_cat(df, x = "STUDYc") + 
+  facet_wrap(~CPc) + rot_x(vertical = TRUE)
+```
+
 
 # Standard axis titles
 

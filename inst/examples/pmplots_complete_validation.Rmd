@@ -494,17 +494,26 @@ dv_pred_ipred(dd1, nrow = 3, ncol = 3, ylab = "Concentration (ng/mL)", log_y=TRU
 
 ## Wrapped plots
 
-### histogram
+### Histogram
 ```{r}
 wrap_hist(df, x = c("WT", "ALB", "SCR"), scales = "free", bins=10, ncol=2)
 ```
 
 \newpage
 
-### eta
+### ETA versus continuous
 ```{r}
 wrap_eta_cont(df, y = "ETA1", x = c("WT", "ALB"), scales="free_x")
 ```
+
+\newpage
+
+### Continuous on categorical
+
+```{r}
+##wrap_cont_cat(df, y = c("WT", "
+```
+
 
 \newpage
 
