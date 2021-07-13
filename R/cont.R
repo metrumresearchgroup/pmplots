@@ -60,7 +60,7 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
 #'
 #' @details
 #'
-#' This function is intented for internal use.
+#' This function is intended for internal use.
 #'
 #' When the y-axis label needs a unit, include it in
 #' the \code{yname} specification.

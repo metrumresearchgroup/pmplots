@@ -20,14 +20,8 @@ examples:
 	make readme
 	make exampler
 
-spelling:
-	Rscript -e "spelling::spell_check_package()"
-
 pkgdown:
 	Rscript -e "options(pkdown.internet = FALSE); pkgdown::build_site()"
-
-ec:
-	echo ${VERSION}
 
 all:
 	make doc
@@ -37,9 +31,12 @@ all:
 spelling:
 	Rscript -e "spelling::spell_check_package()"
 
-travis:
-	make build
-	R CMD check --no-manual ${TARBALL} -o ${CHKDIR}
+bump-dev:
+	Rscript -e 'usethis::use_version("dev")'
+
+tag-version:
+	git tag $(VERSION)
+	git push origin $(VERSION)
 
 test:
 	make install

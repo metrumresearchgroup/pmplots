@@ -12,7 +12,7 @@ logbr3()
 \arguments{
 \item{from}{smallest break on log10 scale (see default value)}
 
-\item{to}{largetst break on log10 scale (see default value)}
+\item{to}{largest break on log10 scale (see default value)}
 }
 \description{
 Create breaks on log scale

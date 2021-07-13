@@ -64,13 +64,13 @@ be displayed in the plot strip}
 
 \item{ncol}{number of columns in the plot grid; passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}}
 
-\item{fun}{a function accepting a gg object as arugment and returning
+\item{fun}{a function accepting a gg object as argument and returning
 an updated gg object; experimental}
 
 \item{...}{additional arguments passed to \link{dv_pred_ipred_impl}}
 
 \item{x}{the time-axis column, in \link{col_label} format; the title portion is
-used for the x-axis title along with \code{xunit}; seel also the \code{xlab} argument}
+used for the x-axis title along with \code{xunit}; see also the \code{xlab} argument}
 
 \item{dv}{the \code{DV} column, in \link{col_label} format; the title portion is used
 for the y-axis title; see also the \code{ylab} argument}

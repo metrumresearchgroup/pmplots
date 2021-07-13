@@ -85,7 +85,7 @@ and \link{gh}}
 \item{abline.lwd}{line width for diagonal reference line; see \link{layer_a}
 and \link{ga}}
 
-\item{abline.col}{line color for diagonal refrence line; see \link{layer_a}
+\item{abline.col}{line color for diagonal reference line; see \link{layer_a}
 and \link{ga}}
 
 \item{abline.lty}{line type for diagonal reference line; see \link{layer_a}
@@ -101,7 +101,7 @@ and \link{ga}}
 
 \item{boxplot.alpha}{alpha value for boxplots}
 
-\item{boxplot.hline.lwd}{line width for horizantal reference line}
+\item{boxplot.hline.lwd}{line width for horizontal reference line}
 
 \item{boxplot.hline.lty}{line type for horizontal reference line}
 
@@ -130,7 +130,7 @@ pairs plots}
 in upper panels of pairs plots}
 
 \item{pairs.cor.shown}{if \code{TRUE}, then report the number of non-missing
-observations used to calculate correltion in upper panels of pairs plots}
+observations used to calculate correlation in upper panels of pairs plots}
 
 \item{axis.title.short}{shorten standard axis titles}
 

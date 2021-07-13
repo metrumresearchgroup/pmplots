@@ -22,7 +22,7 @@ with \code{vjust} set to 0.5 and \code{hjust} set to 0; when \code{vertical} is 
 either \code{top} (then \code{hjust} is set to 1) or \code{bottom} (then \code{hjust} is set to
 0}
 
-\item{...}{pased to \link[ggplot2:element]{ggplot2::element_text}}
+\item{...}{passed to \link[ggplot2:element]{ggplot2::element_text}}
 }
 \description{
 Rotate axis text
