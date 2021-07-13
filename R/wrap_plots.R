@@ -3,7 +3,13 @@
 #'
 #' For these plots, data sets made long with respect to several
 #' y-axis variables and then plotted and faceted with
-#' [ggplot2::facet_wrap()].
+#' [ggplot2::facet_wrap()]. `wrap_cont_cont` is a general function used by
+#' the others to create faceted plots of two continuous variables.
+#' `wrap_cont_time` plots several continuous variables versus time.
+#' `wrap_res_time` plots several different residuals (or NPDE) versus time.
+#' `wrap_eta_cont` plots etas versus a continuous covariate. `wrap_hist`
+#' creates a faceted histogram plot. `wrap_cont_cat` plots continuous versus
+#' categorical data as a boxplot.
 #'
 #'
 #' @param df data frame to plot
@@ -24,16 +30,21 @@
 #'
 #' @details
 #'
-#' `wrap_cont_cont` is a general function used by the others to
-#' create faceted plots of two continuous variables.  `wrap_cont_time`
-#' plots several continuous variables versus time.  `wrap_res_time`
-#' plots several different residuals (or NPDE) versus time. `wrap_eta_cont`
-#' plots etas versus a continuous covariate. `wrap_hist` creates a faceted
-#' histogram plot.
+#' The following functions are called (as `fun`) to make each wrapped plot
+#'
+#' - `wrap_cont_cont` calls [pm_scatter()]
+#' - `wrap_cont_time` calls [y_time()]
+#' - `wrap_res_time` calls [res_time()]
+#' - `wrap_eta_cont` calls [eta_cont()]
+#' - `wrap_hist` calls [cont_hist()]
+#' - `wrap_cont_cat` calls [pm_box()];
 #'
 #' For all plots, both `x` and `y` should name numeric data columns with the
 #' exception of `wrap_cont_cat` which expects `x` to name a categorical
-#' data column (the data are sent to [pm_box()] by default)..
+#' data column (the data are sent to [pm_box()]).
+#'
+#' When [pm_box()] is called by `wrap_cont_cat`, the `shown` argument will be
+#' forced to the value `FALSE`.
 #'
 #' For all plots, either `x` or `y` may contain multiple columns, but an error
 #' will be generated if both `x` and `y` list multiple columns.
@@ -52,7 +63,6 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
   if(multi_x && multi_y) {
     stop("either x or y may have length > 1, not both.",call.=FALSE)
   }
-
 
   if(multi_x) {
     y <- y[1]
@@ -103,14 +113,14 @@ wrap_res_time <- function(df, ..., x = pm_axis_time()) {
 
 #' @rdname wrap_plots
 #' @export
-wrap_eta_cont <- function(df, x, y, scales="fixed", ...) {
+wrap_eta_cont <- function(df, x, y, scales = "fixed", ...) {
   wrap_cont_cont(df, x, y = y, fun = eta_cont, scales = scales, ...)
 }
 
 #' @rdname wrap_plots
 #' @export
-wrap_hist <- function(df, x, title =NULL, scales = "free_x", ncol=NULL,
-                      use_labels=FALSE, label_fun = label_parse_label, ...) {
+wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
+                      use_labels = FALSE, label_fun = label_parse_label, ...) {
   x <- col_labels(x)
   df <- gather(df, "variable", "value", x, factor_key=TRUE)
   if(use_labels) {
@@ -139,7 +149,7 @@ wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales
 #' @rdname wrap_plots
 #' @name wrap_plots
 #' @export
-wrap_cont_cat <- function(df, x, y, ..., fun = pm_box,
+wrap_cont_cat <- function(df, x, y, ...,
                           title = NULL, scales = "free_y",
                           ncol = NULL, use_labels = FALSE,
                           label_fun = label_parse_label) {
@@ -152,7 +162,7 @@ wrap_cont_cat <- function(df, x, y, ..., fun = pm_box,
       .f = wrap_cont_cat,
       df = df,
       y = y, ...,
-      fun = fun, title = title,
+      title = title,
       scales = scales, ncol = ncol, use_labels = TRUE,
       label_fun = label_parse_label
     )
@@ -177,7 +187,6 @@ wrap_cont_cat <- function(df, x, y, ..., fun = pm_box,
     y <- "value"
   }
 
-  fun(df, x = x, y = y, ..., shown=FALSE) +
-    facet_wrap(~variable, scales = scales, ncol = ncol, labeller=label_fun)
+  pm_box(df, x = x, y = y, ..., shown = FALSE) +
+    facet_wrap(~variable, scales = scales, ncol = ncol, labeller = label_fun)
 }
-

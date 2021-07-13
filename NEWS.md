@@ -12,7 +12,7 @@
   
 - `dv_pred()` and `dv_ipred()` gain an argument (`logbr`) that lets the user 
   pick the interval for tick marks when `loglog` plots are drawn; options are: 
-  "full" (full log units - 10, 100 ,1000), "half" (half log unitsa - 30, 100, 
+  "full" (full log units - 10, 100 ,1000), "half" (half log units - 30, 100, 
   300) or "null" (let ggplot decide); the default is now to show full log unit
   breaks rather than half log unit breaks (#21)
 
