@@ -1,4 +1,4 @@
-# pmplots (development version)
+# pmplots 0.3.2
 
 - `pairs_plot()` and `eta_pairs()` now will properly call user-supplied
   functions for creating panels on the upper and lower triangle 
