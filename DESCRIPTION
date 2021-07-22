@@ -1,16 +1,19 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.3.1
+Version: 0.3.2
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person("Metrum Research Group", role =  c("cph"))
        )
 Maintainer: Kyle Baron <kyleb@metrumrg.com>
-Description: Very light wrappers around 'ggplot2' plotting code tailored for pharmacometric applications.
+Description: Very light wrappers around 'ggplot2' plotting code tailored for 
+    pharmacometric applications.
 License: GPL (>=2)
-BugReports: https://ghe.metrumrg.com/software/pmplots/issues
+URL: https://github.com/metrumresearchgroup/pmplots/
+BugReports: https://github.com/metrumresearchgroup/pmplots/issues
 Encoding: UTF-8
+Language: en-US
 LazyData: true
 Imports: 
   dplyr (>= 0.7.2),
@@ -22,7 +25,7 @@ Imports:
   forcats
 Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny
 Depends: ggplot2 (>= 3.0.0)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'

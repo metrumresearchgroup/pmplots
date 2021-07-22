@@ -78,7 +78,7 @@ get_limits <- function(df,x,y) {
 ##' Create breaks on log scale
 ##'
 ##' @param from smallest break on log10 scale (see default value)
-##' @param to largetst break on log10 scale (see default value)
+##' @param to largest break on log10 scale (see default value)
 ##'
 ##' @examples
 ##' logbr()
@@ -343,7 +343,7 @@ update_list <- function(left, right) {
 ##' `TRUE`, then `hjust` can be passed as character string that must match
 ##' either `top` (then `hjust` is set to 1) or `bottom` (then `hjust` is set to
 ##' 0
-##' @param ... pased to [ggplot2::element_text]
+##' @param ... passed to [ggplot2::element_text]
 ##'
 ##' @details If x-axis tick labels do not have enough space, consider using
 ##' `vert = TRUE`.  By default, the tick labels will be justified up to the
@@ -485,3 +485,5 @@ chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
   }
   split.data.frame(data, sp)
 }
+
+force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')

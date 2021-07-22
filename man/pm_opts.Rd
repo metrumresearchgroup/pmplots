@@ -7,9 +7,9 @@
 \alias{pm}
 \title{Set global plot options}
 \format{
-An object of class \code{pm_opts} (inherits from \code{environment}) of length 36.
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 42.
 
-An object of class \code{pm_opts} (inherits from \code{environment}) of length 36.
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 42.
 }
 \usage{
 pm_options(
@@ -40,6 +40,12 @@ pm_options(
   qq.col = .ggblue,
   qq.alpha = 1,
   qq.size = 1.35,
+  pairs.cor.size = 3,
+  pairs.cor.prefix = "corr\\n",
+  pairs.cor.col = .ggblue,
+  pairs.cor.fontface = "bold",
+  pairs.cor.digits = 2,
+  pairs.cor.shown = TRUE,
   axis.title.short = FALSE,
   time.unit = "hr"
 )
@@ -79,7 +85,7 @@ and \link{gh}}
 \item{abline.lwd}{line width for diagonal reference line; see \link{layer_a}
 and \link{ga}}
 
-\item{abline.col}{line color for diagonal refrence line; see \link{layer_a}
+\item{abline.col}{line color for diagonal reference line; see \link{layer_a}
 and \link{ga}}
 
 \item{abline.lty}{line type for diagonal reference line; see \link{layer_a}
@@ -95,7 +101,7 @@ and \link{ga}}
 
 \item{boxplot.alpha}{alpha value for boxplots}
 
-\item{boxplot.hline.lwd}{line width for horizantal reference line}
+\item{boxplot.hline.lwd}{line width for horizontal reference line}
 
 \item{boxplot.hline.lty}{line type for horizontal reference line}
 
@@ -108,6 +114,23 @@ and \link{ga}}
 \item{qq.alpha}{alpha value for qq plots}
 
 \item{qq.size}{point size for qq plots}
+
+\item{pairs.cor.size}{font size for correlation text in upper panels of pairs
+plots}
+
+\item{pairs.cor.prefix}{prefix for correlation text in upper panels of pairs
+plots}
+
+\item{pairs.cor.col}{color for correlation text in upper panels of pairs plots}
+
+\item{pairs.cor.fontface}{font face for correlation text in upper panels of
+pairs plots}
+
+\item{pairs.cor.digits}{number of digits to show when reporting correlation
+in upper panels of pairs plots}
+
+\item{pairs.cor.shown}{if \code{TRUE}, then report the number of non-missing
+observations used to calculate correlation in upper panels of pairs plots}
 
 \item{axis.title.short}{shorten standard axis titles}
 

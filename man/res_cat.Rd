@@ -25,7 +25,7 @@ npde_cat(df, x, y = pm_axis_npde(), ...)
 
 \item{y}{character col//title for y-axis data; see \code{\link{col_label}}}
 
-\item{hline}{where to draw horizontal refrence line}
+\item{hline}{where to draw horizontal reference line}
 
 \item{...}{passed to \code{\link{cont_cat}}}
 }

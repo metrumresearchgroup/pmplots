@@ -10,7 +10,7 @@
 #' @param ncol number of columns in the plot grid; passed to [ggplot2::facet_wrap]
 #' @param nrow number of rows in the plot grid; passed to [ggplot2::facet_wrap]
 #' @param x the time-axis column, in [col_label] format; the title portion is
-#' used for the x-axis title along with `xunit`; seel also the `xlab` argument
+#' used for the x-axis title along with `xunit`; see also the `xlab` argument
 #' @param dv the `DV` column, in [col_label] format; the title portion is used
 #' for the y-axis title; see also the `ylab` argument
 #' @param pred the name of the `PRED` column; [col_label] format is allowed, but
@@ -44,7 +44,7 @@
 #' @param pred_color color to use for `PRED` line
 #' @param axis.text.rel relative text size for axis text; use this to selectively
 #' decrease font size for axis tick labels
-#' @param fun a function accepting a gg object as arugment and returning
+#' @param fun a function accepting a gg object as argument and returning
 #' an updated gg object; experimental
 #'
 #' @details

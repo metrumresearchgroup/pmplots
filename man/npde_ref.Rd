@@ -4,7 +4,7 @@
 \alias{npde_ref}
 \title{Input parameters for NPDE reference lines}
 \usage{
-npde_ref(y = c(-2, 0, 2), lwd = 1, ...)
+npde_ref(y = 0, lwd = 1, ...)
 }
 \arguments{
 \item{y}{used to set yintercept}

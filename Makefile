@@ -23,17 +23,20 @@ examples:
 pkgdown:
 	Rscript -e "options(pkdown.internet = FALSE); pkgdown::build_site()"
 
-ec:
-	echo ${VERSION}
-
 all:
 	make doc
 	make build
 	make install
 
-travis:
-	make build
-	R CMD check --no-manual ${TARBALL} -o ${CHKDIR}
+spelling:
+	Rscript -e "spelling::spell_check_package()"
+
+bump-dev:
+	Rscript -e 'usethis::use_version("dev")'
+
+tag-version:
+	git tag $(VERSION)
+	git push origin $(VERSION)
 
 test:
 	make install

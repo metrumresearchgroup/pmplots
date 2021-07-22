@@ -5,7 +5,7 @@
 ##' @param df data frame to plot
 ##' @param x character col//title for x-axis data; see \code{\link{col_label}}
 ##' @param y character col//title for y-axis data; see \code{\link{col_label}}
-##' @param hline where to draw horizontal refrence line
+##' @param hline where to draw horizontal reference line
 ##' @param ... passed to \code{\link{cont_cat}}
 ##'
 ##' @details

@@ -80,7 +80,7 @@ In contrast, `dv_pred` is hard-wired to look for `DV` and `PRED`.  It is
 designed to look for only one thing on each axis.  This plot is not vectorized.
 
 You can use `pm_scatter_list` _as_ a vectorized function to vectorize
-anyting.  So this allows us to do
+anything.  So this allows us to do
 
 ```{r}
 pm_scatter_list(data, y  = "WRES", x = c("PRED", "IPRED", "TIME")) %>% pm_grid()

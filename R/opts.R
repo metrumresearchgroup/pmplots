@@ -18,7 +18,7 @@
 #' and [gh]
 #' @param abline.lwd line width for diagonal reference line; see [layer_a]
 #' and [ga]
-#' @param abline.col line color for diagonal refrence line; see [layer_a]
+#' @param abline.col line color for diagonal reference line; see [layer_a]
 #' and [ga]
 #' @param abline.lty line type for diagonal reference line; see [layer_a]
 #' and [ga]
@@ -27,13 +27,24 @@
 #' @param histogram.col line color for histograms
 #' @param boxplot.fill fill color for histograms
 #' @param boxplot.alpha alpha value for boxplots
-#' @param boxplot.hline.lwd line width for horizantal reference line
+#' @param boxplot.hline.lwd line width for horizontal reference line
 #' @param boxplot.hline.lty line type for horizontal reference line
 #' @param boxplot.hline.col line color for horizontal reference line
 #' @param boxplot.outlier.shape shape for outliers in boxplots
 #' @param qq.col point color for qq plots
 #' @param qq.alpha alpha value for qq plots
 #' @param qq.size point size for qq plots
+#' @param pairs.cor.size font size for correlation text in upper panels of pairs
+#' plots
+#' @param pairs.cor.prefix prefix for correlation text in upper panels of pairs
+#' plots
+#' @param pairs.cor.col color for correlation text in upper panels of pairs plots
+#' @param pairs.cor.fontface font face for correlation text in upper panels of
+#' pairs plots
+#' @param pairs.cor.digits number of digits to show when reporting correlation
+#' in upper panels of pairs plots
+#' @param pairs.cor.shown if `TRUE`, then report the number of non-missing
+#' observations used to calculate correlation in upper panels of pairs plots
 #' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
 #'
@@ -109,6 +120,12 @@ pm_options <- function(smooth.lwd = 1.35,
                        qq.col = .ggblue,
                        qq.alpha = 1,
                        qq.size = 1.35,
+                       pairs.cor.size = 3,
+                       pairs.cor.prefix = "corr\n",
+                       pairs.cor.col = .ggblue,
+                       pairs.cor.fontface = "bold",
+                       pairs.cor.digits = 2,
+                       pairs.cor.shown = TRUE,
                        axis.title.short = FALSE,
                        time.unit = "hr") {
   set <- function(..., .list = NULL) {

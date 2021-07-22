@@ -81,10 +81,14 @@ test_that("dv pred", {
   p <- dv_preds(df)
   expect_is(p,"list")
   expect_equal(length(p),2)
+
+  form <- formals(dv_pred)
+  expect_equal(form$logbr,  expr(c("full", "half", "null")))
+  p1 <- dv_pred(df, logbr="null", loglog = TRUE)
+  expect_is(p1, "gg")
+  p2 <- dv_pred(df, logbr="full", loglog = TRUE)
+  expect_is(p2, "gg")
 })
-
-
-
 
 test_that("red pred", {
   p <- res_pred(df)
@@ -181,7 +185,7 @@ test_that("eta pairs", {
   expect_is(p,"ggmatrix")
 
   p2 <- pairs_plot(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
-  expect_equal(p,p2)
+  expect_equal(p$gg,p2$gg)
 
   p <- eta_pairs(df, "ETA1//ETA-CL")
   expect_is(p, "gg")

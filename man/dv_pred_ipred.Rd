@@ -64,13 +64,13 @@ be displayed in the plot strip}
 
 \item{ncol}{number of columns in the plot grid; passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}}
 
-\item{fun}{a function accepting a gg object as arugment and returning
+\item{fun}{a function accepting a gg object as argument and returning
 an updated gg object; experimental}
 
 \item{...}{additional arguments passed to \link{dv_pred_ipred_impl}}
 
 \item{x}{the time-axis column, in \link{col_label} format; the title portion is
-used for the x-axis title along with \code{xunit}; seel also the \code{xlab} argument}
+used for the x-axis title along with \code{xunit}; see also the \code{xlab} argument}
 
 \item{dv}{the \code{DV} column, in \link{col_label} format; the title portion is used
 for the y-axis title; see also the \code{ylab} argument}
@@ -81,28 +81,28 @@ the label portion is discarded}
 \item{ipred}{the name of the \code{IPRED} column; \link{col_label} format is allowed,
 but the label portion is discarded}
 
-\item{xbreaks}{x-axis breaks; passed to \link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous}}
+\item{xbreaks}{x-axis breaks; passed to \link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous}}
 
 \item{xunit}{used to form x-axis title only if \code{xlab} is not provided}
 
-\item{xlab}{x-axis title; if not \code{NULL}, passed to \link[ggplot2:xlab]{ggplot2::xlab}}
+\item{xlab}{x-axis title; if not \code{NULL}, passed to \link[ggplot2:labs]{ggplot2::xlab}}
 
-\item{ylab}{y-axis title; if not \code{NULL}, passed to \link[ggplot2:ylab]{ggplot2::ylab}}
+\item{ylab}{y-axis title; if not \code{NULL}, passed to \link[ggplot2:labs]{ggplot2::ylab}}
 
 \item{angle}{rotation angle for x-axis tick labels; passed to \link{rot_x}}
 
 \item{font_size}{the font size for strip text}
 
 \item{margin}{the top and bottom margin for the plot strip; passed to
-\link[ggplot2:margin]{ggplot2::margin} as \code{t} and \code{b}}
+\link[ggplot2:element]{ggplot2::margin} as \code{t} and \code{b}}
 
 \item{legend.position}{passed to \link[ggplot2:theme]{ggplot2::theme}}
 
-\item{pred_lty}{\code{PRED} linetype; passed to \link[ggplot2:geom_line]{ggplot2::geom_line}}
+\item{pred_lty}{\code{PRED} linetype; passed to \link[ggplot2:geom_path]{ggplot2::geom_line}}
 
-\item{ipred_lty}{\code{IPRED} linetype; passed to \link[ggplot2:geom_line]{ggplot2::geom_line}}
+\item{ipred_lty}{\code{IPRED} linetype; passed to \link[ggplot2:geom_path]{ggplot2::geom_line}}
 
-\item{lwd}{line width for \code{PRED} and \code{IPRED}; passed to \link[ggplot2:geom_line]{ggplot2::geom_line}}
+\item{lwd}{line width for \code{PRED} and \code{IPRED}; passed to \link[ggplot2:geom_path]{ggplot2::geom_line}}
 
 \item{size}{size of shape for \code{DV}; passed to \link[ggplot2:geom_point]{ggplot2::geom_point}}
 
@@ -111,7 +111,7 @@ but the label portion is discarded}
 \item{dv_line}{logical; if \code{TRUE} then a line is added to the plot connecting
 \code{DV} points}
 
-\item{dv_lwd}{line width for \code{DV}; passed to \link[ggplot2:geom_line]{ggplot2::geom_line} as \code{lwd}}
+\item{dv_lwd}{line width for \code{DV}; passed to \link[ggplot2:geom_path]{ggplot2::geom_line} as \code{lwd}}
 
 \item{scales}{passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}}
 

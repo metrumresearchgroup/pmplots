@@ -13,8 +13,10 @@ pairs_plot(
   fill = opts$histogram.fill,
   col = opts$histogram.col,
   label_fun = label_parse_label,
+  lower_plot = pairs_lower_plot,
   upper_fun = NULL,
   lower_fun = NULL,
+  diag = c("barDiag", "densityDiag", "blankDiag"),
   ...
 )
 
@@ -23,40 +25,54 @@ eta_pairs(x, etas, ...)
 \arguments{
 \item{x}{plotting data.frame}
 
-\item{y}{character \verb{col//label} for pairs data; see \link{col_label}}
+\item{y}{character \verb{col//label} for pairs data; see \code{\link[=col_label]{col_label()}}}
 
-\item{bins}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{bins}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} to render the diagonal}
 
-\item{alpha}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{alpha}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}
 
-\item{fill}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{fill}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}
 
-\item{col}{passed to \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}}
+\item{col}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
+\code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}
 
-\item{label_fun}{labeler function that gets passed to \link[GGally:ggpairs]{GGally::ggpairs};
-the default is based on \link{parse_label} and thus allows latex
+\item{label_fun}{labeller function that gets passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}};
+the default is based on \code{\link[=parse_label]{parse_label()}} and thus allows latex
 expressions in the label (see examples)}
+
+\item{lower_plot}{function to create plots in the lower triangle; the
+should accept a single argument (a \code{gg} object) and return a \code{gg} object;
+see \code{\link[=pairs_lower_plot]{pairs_lower_plot()}} as an example; you probably want to use this
+argument (rather than \code{lower_fun}) if you want to customize how the
+plots on the lower triangle look}
 
 \item{upper_fun}{function to use for \code{upper} argument}
 
-\item{lower_fun}{function to use for \code{lower} argument}
+\item{lower_fun}{function to use for \code{lower} argument; if you want to
+customize how the plots on the lower triangle look, you probably want to
+use the \code{lower_plot} argument}
 
-\item{...}{passed to \link[GGally:ggpairs]{GGally::ggpairs}}
+\item{diag}{how to render data on the diagonal; options are limited to those
+accepted by \code{\link[GGally:ggpairs]{GGally::ggpairs()}} for \code{continuous} data (see that help topic)}
 
-\item{etas}{character \verb{col//label} for pairs data; see \link{col_label}}
+\item{...}{passed to \code{\link[GGally:ggpairs]{GGally::ggpairs()}}}
+
+\item{etas}{character \verb{col//label} for pairs data; see \code{\link[=col_label]{col_label()}}}
 }
 \value{
 The result from a \code{ggpairs} call (a single plot).
 }
 \description{
-This funciton is a wrapper to \link[GGally:ggpairs]{GGally::ggpairs} with customized
+This function is a wrapper to \code{\link[GGally:ggpairs]{GGally::ggpairs()}} with customized
 functions for upper and lower off-diagonal panels. See details for help
 on customizing some aspects of the off-diagonal plots.
 }
 \details{
 This function requires the \code{GGally} package to be installed.
 
-When the length of \code{etas} is one, arguments are passed to \link{eta_hist} and
+When the length of \code{etas} is one, arguments are passed to \code{\link[=eta_hist]{eta_hist()}} and
 that result is returned.
 
 Use the options object to modify aspects of the smoother line:

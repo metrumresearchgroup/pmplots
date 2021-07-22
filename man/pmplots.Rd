@@ -9,7 +9,7 @@ Plots for pharmacometrics
 \section{Look and feel}{
 
 
-See the \link{pm_theme} help topic for functions you
+See the \code{\link[=pm_theme]{pm_theme()}} help topic for functions you
 can use to replicate the look and feel of plots generated
 by this package.
 }
@@ -19,69 +19,70 @@ by this package.
 \itemize{
 \item Basic plots
 \itemize{
-\item \link{pm_scatter}, \link{pm_box}, \link{pairs_plot}, \link{split_plot}
+\item \code{\link[=pm_scatter]{pm_scatter()}}, \code{\link[=pm_box]{pm_box()}}, \code{\link[=pairs_plot]{pairs_plot()}}, \code{\link[=split_plot]{split_plot()}}
 }
 \item Residuals versus time
 \itemize{
-\item \link{res_time}, \link{res_tad}, \link{res_tafd}
-\item \link{wres_time}, \link{wres_tad}, \link{wres_tad}
-\item \link{cwres_time}, \link{cwres_tad}, \link{cwres_tafd}
-\item \link{cwresi_time}, \link{cwresi_tad}, \link{cwresi_tafd}
+\item \code{\link[=res_time]{res_time()}}, \code{\link[=res_tad]{res_tad()}}, \code{\link[=res_tafd]{res_tafd()}}
+\item \code{\link[=wres_time]{wres_time()}}, \code{\link[=wres_tad]{wres_tad()}}, \code{\link[=wres_tad]{wres_tad()}}
+\item \code{\link[=cwres_time]{cwres_time()}}, \code{\link[=cwres_tad]{cwres_tad()}}, \code{\link[=cwres_tafd]{cwres_tafd()}}
+\item \code{\link[=cwresi_time]{cwresi_time()}}, \code{\link[=cwresi_tad]{cwresi_tad()}}, \code{\link[=cwresi_tafd]{cwresi_tafd()}}
 }
 \item Residuals versus PRED
 \itemize{
-\item \link{res_pred}, \link{wres_pred}, \link{cwres_pred}
+\item \code{\link[=res_pred]{res_pred()}}, \code{\link[=wres_pred]{wres_pred()}}, \code{\link[=cwres_pred]{cwres_pred()}}
 }
 \item Residuals versus covariates
 \itemize{
-\item \link{res_cont}, \link{wres_cont}, \link{cwres_cont}
-\item \link{res_cat}, \link{wres_cat}, \link{cwres_cat}
+\item \code{\link[=res_cont]{res_cont()}}, \code{\link[=wres_cont]{wres_cont()}}, \code{\link[=cwres_cont]{cwres_cont()}}
+\item \code{\link[=res_cat]{res_cat()}}, \code{\link[=wres_cat]{wres_cat()}}, \code{\link[=cwres_cat]{cwres_cat()}}
 }
 \item NPDE plots
 \itemize{
-\item \link{npde_time}, \link{npde_tad}, \link{npde_tafd}
-\item \link{npde_pred}
-\item \link{npde_hist}
-\item \link{npde_q}
-\item \link{npde_cont}
-\item \link{npde_cat}
+\item \code{\link[=npde_time]{npde_time()}}, \code{\link[=npde_tad]{npde_tad()}}, \code{\link[=npde_tafd]{npde_tafd()}}
+\item \code{\link[=npde_pred]{npde_pred()}}
+\item \code{\link[=npde_hist]{npde_hist()}}
+\item \code{\link[=npde_q]{npde_q()}}
+\item \code{\link[=npde_cont]{npde_cont()}}
+\item \code{\link[=npde_cat]{npde_cat()}}
 }
 \item Pairs plots
 \itemize{
-\item \link{eta_pairs}, \link{pairs_plot}
+\item \code{\link[=eta_pairs]{eta_pairs()}}, \code{\link[=pairs_plot]{pairs_plot()}}
 }
 \item QQ plots
 \itemize{
-\item \link{wres_q}, \link{cwres_q}, \link{cwresi_q}, \link{res_q}
+\item \code{\link[=wres_q]{wres_q()}}, \code{\link[=cwres_q]{cwres_q()}}, \code{\link[=cwresi_q]{cwresi_q()}}, \code{\link[=res_q]{res_q()}}
 }
 \item Histograms
 \itemize{
-\item \link{cont_hist}, \link{eta_hist}, \link{cwres_hist}, \link{cwresi_hist}
+\item \code{\link[=cont_hist]{cont_hist()}}, \code{\link[=eta_hist]{eta_hist()}}, \code{\link[=cwres_hist]{cwres_hist()}}, \code{\link[=cwresi_hist]{cwresi_hist()}}
 }
 \item List plots
 \itemize{
-\item \link{pm_box_list}, \link{pm_scatter_list}
-\item \link{list_plot_x}, \link{list_plot_y}, \link{list_plot_xy}
-\item \link{cont_hist_list}
+\item \code{\link[=pm_box_list]{pm_box_list()}}, \code{\link[=pm_scatter_list]{pm_scatter_list()}}
+\item \code{\link[=list_plot_x]{list_plot_x()}}, \code{\link[=list_plot_y]{list_plot_y()}}, \code{\link[=list_plot_xy]{list_plot_xy()}}
+\item \code{\link[=cont_hist_list]{cont_hist_list()}}
 }
 \item Faceted plots
 \itemize{
-\item \link{wrap_cont_cont}, \link{wrap_cont_time}, \link{wrap_dv_preds}, \link{wrap_eta_cont}
-\item \link{wrap_hist}
+\item \code{\link[=wrap_cont_cont]{wrap_cont_cont()}}, \code{\link[=wrap_cont_time]{wrap_cont_time()}}, \code{\link[=wrap_dv_preds]{wrap_dv_preds()}}, \code{\link[=wrap_eta_cont]{wrap_eta_cont()}}
+\item \code{\link[=wrap_hist]{wrap_hist()}}
+\item \code{\link[=wrap_cont_cat]{wrap_cont_cat()}}
 }
 \item Other plots
 \itemize{
-\item \link{dv_pred_ipred}
+\item \code{\link[=dv_pred_ipred]{dv_pred_ipred()}}
 }
 \item Layers
 \itemize{
-\item smooth: \link{layer_s}, hline: \link{layer_h}, abline: \link{layer_a}
-\item combinations: \link{layer_sa}, \link{layer_sh}
+\item smooth: \code{\link[=layer_s]{layer_s()}}, hline: \code{\link[=layer_h]{layer_h()}}, abline: \code{\link[=layer_a]{layer_a()}}
+\item combinations: \code{\link[=layer_sa]{layer_sa()}}, \code{\link[=layer_sh]{layer_sh()}}
 }
 \item Customization
 \itemize{
-\item \link{pm_opts}
-\item \link{rot_x}, \link{rot_y}, \link{pm_theme}, \link{theme_plain}
+\item \code{\link[=pm_opts]{pm_opts()}}
+\item \code{\link[=rot_x]{rot_x()}}, \code{\link[=rot_y]{rot_y()}}, \code{\link[=pm_theme]{pm_theme()}}, \code{\link[=theme_plain]{theme_plain()}}
 }
 \item Arrangement
 \itemize{
@@ -89,7 +90,7 @@ by this package.
 }
 \item Example data sets
 \itemize{
-\item \link{pmplots_data}, \link{pmplots_data_obs}, \link{pmplots_data_id}
+\item \code{\link[=pmplots_data]{pmplots_data()}}, \code{\link[=pmplots_data_obs]{pmplots_data_obs()}}, \code{\link[=pmplots_data_id]{pmplots_data_id()}}
 }
 }
 }

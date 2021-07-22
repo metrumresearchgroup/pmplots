@@ -10,11 +10,11 @@ rot_x(angle = 30, hjust = 1, vjust = NULL, vertical = FALSE, ...)
 rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
 }
 \arguments{
-\item{angle}{passed to \link[ggplot2:element_text]{ggplot2::element_text}}
+\item{angle}{passed to \link[ggplot2:element]{ggplot2::element_text}}
 
-\item{hjust}{passed to \link[ggplot2:element_text]{ggplot2::element_text}}
+\item{hjust}{passed to \link[ggplot2:element]{ggplot2::element_text}}
 
-\item{vjust}{passed to \link[ggplot2:element_text]{ggplot2::element_text}}
+\item{vjust}{passed to \link[ggplot2:element]{ggplot2::element_text}}
 
 \item{vertical}{if \code{TRUE}, then x-axis tick labels are rotated 90 degrees
 with \code{vjust} set to 0.5 and \code{hjust} set to 0; when \code{vertical} is set to
@@ -22,7 +22,7 @@ with \code{vjust} set to 0.5 and \code{hjust} set to 0; when \code{vertical} is 
 either \code{top} (then \code{hjust} is set to 1) or \code{bottom} (then \code{hjust} is set to
 0}
 
-\item{...}{pased to \link[ggplot2:element_text]{ggplot2::element_text}}
+\item{...}{passed to \link[ggplot2:element]{ggplot2::element_text}}
 }
 \description{
 Rotate axis text

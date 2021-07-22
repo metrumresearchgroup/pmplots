@@ -31,7 +31,7 @@ id <- pmplots_data_id()
 For most applications, pmplots does not reshape your data frame; it works with 
 what you pass in.  However, for some applications, it is convenient to have a 
 diagnostic plot that is faceted by a categorical variable in the data set.  This 
-vignette demostrates the faceted plots that are available.  This faceting support
+vignette demonstrates the faceted plots that are available.  This faceting support
 is for a focused set of plots only.  Users should generally either create facets 
 own or use the `split_plot` function for other applications.
 
