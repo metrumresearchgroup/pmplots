@@ -89,7 +89,7 @@ id <- pmplots_data_id()
 cont_cat(id, x = "STUDYc", y = c("WT", "SCR", "AAG")) %>% pm_grid()
 ```
 
-```{r, pairs, fig.height = 6, fig.width = 6}
+```{r, pairs, fig.width = 4.5, fig.width = 6}
 pairs_plot(id, y = c("WT//Weight (kg)", "SCR//Creat (mg/dL)", "BMI//BMI (kg/m2)"))
 ```
 
