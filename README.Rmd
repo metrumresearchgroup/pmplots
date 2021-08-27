@@ -10,7 +10,9 @@ knitr::opts_chunk$set(
   comment = ".",
   fig.path = "man/figures/README-",
   warning = FALSE, 
-  message = FALSE
+  message = FALSE,
+  fig.width = 5, 
+  fig.height = 4
 )
 ```
 
@@ -82,18 +84,18 @@ cwres_q(data)
 
 ## Exploratory plots
 
-```{r, cont_cat}
+```{r, cont_cat, fig.height = 5, fig.width = 7}
 id <- pmplots_data_id()
 cont_cat(id, x = "STUDYc", y = c("WT", "SCR", "AAG")) %>% pm_grid()
 ```
 
-```{r, pairs}
+```{r, pairs, fig.height = 6, fig.width = 6}
 pairs_plot(id, y = c("WT//Weight (kg)", "SCR//Creat (mg/dL)", "BMI//BMI (kg/m2)"))
 ```
 
 ## Some faceted versions
 
-```{r, facet_example}
+```{r, facet_example, fig.height = 5, fig.width = 7}
 wrap_cont_time(data, y = c("RES","WRES", "CWRES", "NPDE"), ncol = 2)
 ```
 
