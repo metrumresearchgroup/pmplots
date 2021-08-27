@@ -13,6 +13,5 @@ inst/examples/img/
 ^\.Rproj\.user$
 ^docs$
 ^\.travis\.yml$
-vignettes
 \.drone\.yml
 _pkgdown\.yml
