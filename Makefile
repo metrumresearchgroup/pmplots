@@ -68,3 +68,5 @@ check:
 	make build
 	R CMD check ${TARBALL} -o ${CHKDIR}
 
+readme:
+	Rscript -e 'rmarkdown::render("README.Rmd")'
