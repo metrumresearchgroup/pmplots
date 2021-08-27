@@ -100,10 +100,6 @@ wrap_cont_time(data, y = c("RES","WRES", "CWRES", "NPDE"), ncol = 2)
 ```
 
 
-## Customization
-
-This can all be customized.
-
 # Function and workflow overview
 
 A functions and features (code + output) listing is available at 

@@ -102,10 +102,6 @@ wrap_cont_time(data, y = c("RES","WRES", "CWRES", "NPDE"), ncol = 2)
 
 ![](man/figures/README-facet_example-1.png)<!-- -->
 
-## Customization
-
-This can all be customized.
-
 # Function and workflow overview
 
 A functions and features (code + output) listing is available at
