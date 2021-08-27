@@ -26,25 +26,76 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("metrumresearchgroup/pmplots")
 ```
 
-## Example
+## Examples
 
 ``` r
 library(pmplots)
-#> Loading required package: ggplot2
+library(dplyr)
+
 data <- pmplots_data_obs()
 ```
 
 The default pmplots behavior is to expect names following NONMEM
-convention
+convention, for exammple `DV` refers to observed values, `PRED` refers
+to population predicted values. With that convention, we can easily make
+observed versus predicted plots
 
 ``` r
-dv_pred(data)
-#> `geom_smooth()` using formula 'y ~ x'
+dv_pred(data, yname = "MyDrug (ng/ml)")
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-dv_pred-1.png" width="100%" />
 
-## Function and workflow overview
+## NPDE plots
+
+``` r
+npde_time(data)
+```
+
+<img src="man/figures/README-npde_time-1.png" width="100%" />
+
+``` r
+npde_pred(data)
+```
+
+<img src="man/figures/README-npde_pred-1.png" width="100%" />
+
+## QQ plots
+
+``` r
+cwres_q(data)
+```
+
+<img src="man/figures/README-cwres_q-1.png" width="100%" />
+
+## Exploratory plots
+
+``` r
+id <- pmplots_data_id()
+cont_cat(id, x = "STUDYc", y = c("WT", "SCR", "AAG")) %>% pm_grid()
+```
+
+<img src="man/figures/README-cont_cat-1.png" width="100%" />
+
+``` r
+pairs_plot(id, y = c("WT//Weight (kg)", "SCR//Creat (mg/dL)", "BMI//BMI (kg/m2)"))
+```
+
+<img src="man/figures/README-pairs-1.png" width="100%" />
+
+## Some faceted versions
+
+``` r
+wrap_cont_time(data, y = c("RES","WRES", "CWRES", "NPDE"), ncol = 2)
+```
+
+<img src="man/figures/README-facet_example-1.png" width="100%" />
+
+## Customization
+
+This can all be customized.
+
+# Function and workflow overview
 
 A functions and features (code + output) listing is available at
 [pmplots\_complete.md](https://github.com/metrumresearchgroup/pmplots/blob/master/inst/examples/pmplots_complete.md).
