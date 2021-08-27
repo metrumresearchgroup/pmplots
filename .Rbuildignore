@@ -15,3 +15,4 @@ inst/examples/img/
 ^\.travis\.yml$
 \.drone\.yml
 _pkgdown\.yml
+vignettes/complete\.Rmd

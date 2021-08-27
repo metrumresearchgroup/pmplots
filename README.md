@@ -19,7 +19,12 @@ mpn <- "https://mpn.metworx.com/snapshots/stable/2021-06-20"
 install.packages("pmplots", repos = mpn)
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+This installs from a specific, dated snapshot. Please check
+<https://mpn.metworx.com/docs/snapshots/> for the most recent snapshot
+date.
+
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -45,6 +50,12 @@ dv_pred(data, yname = "MyDrug (ng/ml)")
 ```
 
 ![](man/figures/README-dv_pred-1.png)<!-- -->
+
+``` r
+dv_pred(data, loglog = TRUE)
+```
+
+![](man/figures/README-dv_pred_log-1.png)<!-- -->
 
 ## NPDE plots
 
