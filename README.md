@@ -44,7 +44,7 @@ observed versus predicted plots
 dv_pred(data, yname = "MyDrug (ng/ml)")
 ```
 
-<img src="man/figures/README-dv_pred-1.png" width="100%" />
+![](man/figures/README-dv_pred-1.png)<!-- -->
 
 ## NPDE plots
 
@@ -52,13 +52,13 @@ dv_pred(data, yname = "MyDrug (ng/ml)")
 npde_time(data)
 ```
 
-<img src="man/figures/README-npde_time-1.png" width="100%" />
+![](man/figures/README-npde_time-1.png)<!-- -->
 
 ``` r
 npde_pred(data)
 ```
 
-<img src="man/figures/README-npde_pred-1.png" width="100%" />
+![](man/figures/README-npde_pred-1.png)<!-- -->
 
 ## QQ plots
 
@@ -66,7 +66,7 @@ npde_pred(data)
 cwres_q(data)
 ```
 
-<img src="man/figures/README-cwres_q-1.png" width="100%" />
+![](man/figures/README-cwres_q-1.png)<!-- -->
 
 ## Exploratory plots
 
@@ -75,13 +75,13 @@ id <- pmplots_data_id()
 cont_cat(id, x = "STUDYc", y = c("WT", "SCR", "AAG")) %>% pm_grid()
 ```
 
-<img src="man/figures/README-cont_cat-1.png" width="100%" />
+![](man/figures/README-cont_cat-1.png)<!-- -->
 
 ``` r
 pairs_plot(id, y = c("WT//Weight (kg)", "SCR//Creat (mg/dL)", "BMI//BMI (kg/m2)"))
 ```
 
-<img src="man/figures/README-pairs-1.png" width="100%" />
+![](man/figures/README-pairs-1.png)<!-- -->
 
 ## Some faceted versions
 
@@ -89,7 +89,7 @@ pairs_plot(id, y = c("WT//Weight (kg)", "SCR//Creat (mg/dL)", "BMI//BMI (kg/m2)"
 wrap_cont_time(data, y = c("RES","WRES", "CWRES", "NPDE"), ncol = 2)
 ```
 
-<img src="man/figures/README-facet_example-1.png" width="100%" />
+![](man/figures/README-facet_example-1.png)<!-- -->
 
 ## Customization
 
