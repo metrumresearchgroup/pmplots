@@ -66,6 +66,11 @@ install-build:
 check:
 	make doc
 	make build
+	R CMD check  --ignore-vignettes ${TARBALL} -o ${CHKDIR}
+
+check-package:
+	make doc
+	make build-vignettes
 	R CMD check ${TARBALL} -o ${CHKDIR}
 
 readme:
