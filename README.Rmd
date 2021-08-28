@@ -42,6 +42,8 @@ You can install the development version from [GitHub](https://github.com/) with:
 # install.packages("devtools")
 devtools::install_github("metrumresearchgroup/pmplots")
 ```
+
+
 ## Examples
 
 ```{r, message = FALSE, warning = FALSE}
@@ -53,7 +55,7 @@ data <- pmplots_data_obs()
 
 
 The default pmplots behavior is to expect names following NONMEM convention, 
-for exammple `DV` refers to observed values, `PRED` refers to population 
+for example `DV` refers to observed values, `PRED` refers to population 
 predicted values. With that convention, we can easily make observed versus 
 predicted plots
 

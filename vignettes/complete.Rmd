@@ -229,7 +229,7 @@ wres_tad(df)
 
 \newpage
 
-## Weighted esiduals versus population predicted (`wres_pred`)
+## Weighted residuals versus population predicted (`wres_pred`)
 ```{r}
 wres_pred(df)
 ```

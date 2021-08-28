@@ -41,8 +41,8 @@ data <- pmplots_data_obs()
 ```
 
 The default pmplots behavior is to expect names following NONMEM
-convention, for exammple `DV` refers to observed values, `PRED` refers
-to population predicted values. With that convention, we can easily make
+convention, for example `DV` refers to observed values, `PRED` refers to
+population predicted values. With that convention, we can easily make
 observed versus predicted plots
 
 ``` r

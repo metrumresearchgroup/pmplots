@@ -29,7 +29,6 @@ npde_tad(data)
 ```
 
 
-
 # NPDE versus PRED
 
 ```{r}
@@ -50,12 +49,12 @@ npde_q(data)
 # NPDE versus categorical variable
 
 ```{r}
-npde_cat(data, x = "STUDYc", y = "NPDE")
+npde_cat(data, x = "STUDYc")
 ```
 
 # NPDE versus continuous variables
 
 ```{r}
-npde_cont(data, x= "WT//Weight (kg)", y = "NPDE")
+npde_cont(data, x= "WT//Weight (kg)")
 ```
 
