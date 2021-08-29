@@ -1,4 +1,9 @@
-# pmplots (development version)
+# pmplots 0.3.3
+
+- Add vignettes into package (#37)
+
+- Re-work README (#37)
+
 
 # pmplots 0.3.2
 
