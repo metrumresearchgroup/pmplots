@@ -6,13 +6,13 @@ inst/exdata/run102.RDS
 ^mrglogo\.pdf$
 ^.*\.tar\.gz$
 Makefile
-^.*\.html$
 inst/img
-inst/examples/img/
+inst/examples/img
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
 ^\.travis\.yml$
-vignettes
 \.drone\.yml
 _pkgdown\.yml
+vignettes/complete\.Rmd
+vignettes/*\.pdf

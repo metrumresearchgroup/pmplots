@@ -28,6 +28,11 @@ all:
 	make build
 	make install
 
+package:
+	make doc
+	make build-vignettes
+	make install
+
 spelling:
 	Rscript -e "spelling::spell_check_package()"
 
@@ -49,6 +54,9 @@ doc:
 build:
 	R CMD build --no-build-vignettes --md5 $(PKGDIR)
 
+build-vignettes:
+	R CMD build --md5 $(PKGDIR)
+
 install:
 	R CMD INSTALL --install-tests ${TARBALL}
 
@@ -58,16 +66,12 @@ install-build:
 check:
 	make doc
 	make build
+	R CMD check  --ignore-vignettes ${TARBALL} -o ${CHKDIR}
+
+check-package:
+	make doc
+	make build-vignettes
 	R CMD check ${TARBALL} -o ${CHKDIR}
 
-checkk:
-	make doc
-	make build
-	R CMD check ${TARBALL} -o ${CHKDIR} --no-examples
-
-testing:
-	make doc
-	make build
-	cp ${TARBALL} ../../qualification/pmplots_qualification/testing/${TARBALL}
-	cd ../../qualification/pmplots_qualification/testing/ && git commit -am "testing update" && git push
-
+readme:
+	Rscript -e 'rmarkdown::render("README.Rmd")'

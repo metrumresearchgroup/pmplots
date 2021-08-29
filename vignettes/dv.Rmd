@@ -20,7 +20,6 @@ library(dplyr)
 data <- pmplots_data_obs()
 ```
 
-
 # DV versus PRED
 
 ```{r}
@@ -33,8 +32,16 @@ dv_pred(data)
 dv_ipred(data)
 ```
 
+# Combined DV versus PRED and IPRED
+
+```{r}
+wrap_dv_preds(data, loglog = TRUE, ncol = 1, yname = "DrugName (ng/mL)")
+```
+
+
 # DV versus TIME
 ```{r}
 dv_time(data)
+```
 ```
 

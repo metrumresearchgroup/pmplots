@@ -1,0 +1,70 @@
+--- 
+title: "Specifying col//label"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Specifying col//label}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, message = FALSE, warning = FALSE}
+library(pmplots)
+library(dplyr)
+```
+
+
+`col//label` is a way to select the column name in the data set to use
+for plotting as well as the label to use for the axis in the plot. This is 
+a simple data structure that pmplots parses and uses under the hood. Don't
+worry about calling `col_label()` yourself; we'll just use it here to illustrate.
+
+If we want to use weight from the data set and give it a nice name, we can 
+use the `col//label` format
+
+```{r}
+x <- "WT // Weight (kg)"
+```
+
+Here, we've put the column name to the left of  `//` and the axis label name
+to the right. pmplots will parse it like this
+
+```{r}
+col_label(x)
+```
+
+and use the first item to select data from the data frame and the second to 
+label your plot. 
+
+If you are making a simple plot and don't want to add an additional label, 
+pmplots will just use the column name as the axis label.
+
+```{r}
+col_label("WT")
+```
+
+You can use alternative separators
+
+```{r}
+col_label("WT @@ Weight")
+```
+
+You can also include TeX code in the label part which can be utilized in certain
+plots
+
+```{r}
+col_label("DV // Concentration ($\\mu$g/mL)")
+```
+
+Note: you need the latex2exp package installed to make this work. 
+
+In the plot it would look like 
+
+```{r}
+dv_pred(pmplots_data_obs(), yname = "Concentration ($\\mu$g/mL)")
+```
+
+

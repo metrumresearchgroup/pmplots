@@ -33,12 +33,13 @@ cwresi_tad(data, xby = 24)
 ```
 
 
-
 # Residuals versus PRED
 
 ```{r}
 res_pred(data)
+
 wres_pred(data)
+
 cwresi_pred(data)
 ```
 
@@ -62,6 +63,6 @@ wres_cat(data, x  = "STUDYc//Study")
 # Residuals versus continuous variables
 
 ```{r}
-cwresi_cont(data, x= "WT//Weight (kg)")
+cwresi_cont(data, x = "WT//Weight (kg)")
 ```
 
