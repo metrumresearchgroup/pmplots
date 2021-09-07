@@ -25,17 +25,17 @@ data <- pmplots_data_obs()
 dv_pred(data)
 ```
 
-
 ## Customize the axis label
 
 ```{r}
-dv_ipred(data) + labs(x = "Predicted concentration (mg/L)")
+dv_pred(data) + labs(x = "Predicted concentration (mg/L)")
 ```
 
 ## Add Greek symbols to an axis label
 
 There are a couple of ways to do this.  The easiest is to have the
-[latex2exp](https://CRAN.R-project.org/package=latex2exp) package installed and write the TeX right in the label. 
+[latex2exp](https://CRAN.R-project.org/package=latex2exp) package installed and
+write the TeX right in the label. 
 
 ```{r}
 dv_pred(data, x = "IPRED//Predicted concentration ($\\mu$g/mL)")
@@ -56,7 +56,6 @@ dv_pred(data) + labs(subtitle = "Run 1001")
 
 # Adopt the pmplots look and feel
 
-
 At some point, you might have to create a plot outside of pmplots, 
 but you still want to adopt the pmplots look and feel.  
 ```{r}
@@ -67,5 +66,72 @@ p
 Use these helpers to style the plot
 ```{r}
 p + pm_theme() + pm_abline() + pm_smooth()
+```
+
+# Customize the axis 
+
+If you start with this plot 
+
+```{r}
+dv_time(data)
+```
+
+you can use the `xs` and `ys` arguments to customize the x or y axis.  Pass 
+a list of named data that corresponds to arguments that you would pass to 
+`ggplot2::scale_x_continuous()` or `ggplot2::scale_y_continuous()`. For example we can set
+the breaks like this
+
+```{r}
+dv_time(data, xs = list(breaks = seq(0,240,30)))
+```
+
+But note there is an easier way using `xby` argument for any of the `*_time()` 
+plots
+
+```{r, eval = FALSE}
+dv_time(data, xby = 30)
+```
+
+You can put the y-axis on log scale
+
+```{r}
+dv_time(data, ys = list(trans = "log10"))
+```
+
+Again note there is a `log` argument to this function that lets us do this 
+more conveniently
+
+```{r, eval = FALSE}
+dv_time(data, log = TRUE)
+```
+
+While we've had some convenient shortcuts built into some of the functions, this 
+should illustrate how you can control anything related to the axis scales 
+in your plot. 
+
+Specifically not that you should not do this
+```{r}
+dv_time(data) + scale_y_continuous(trans = "log10")
+```
+
+This will result in a warning and clobber the scale that pmplots set. Always
+customize the axis through `xs` and `ys`.
+
+
+
+# Rotate axis labels
+
+Use `rot_x()` or `rot_y()` and specify the angle to rotate the tick labels
+
+```{r}
+cont_cat(data, x = "STUDYc", y = "NPDE") + rot_x(30)
+```
+
+
+or just set `vertical = TRUE` for `rot_x()`
+
+```{r}
+cont_cat(data, x = "STUDYc", y = "NPDE") + 
+  rot_x(vertical = TRUE)
 ```
 

@@ -63,7 +63,6 @@ eta_cont(data, x = covs, y = "ETA1//ETA-CL") %>% pm_grid()
 ```
 
 
-
 # What plots are vectorized?
 
 Basically any plot where the user is required to identify the column 

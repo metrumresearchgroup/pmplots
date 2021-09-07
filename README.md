@@ -1,37 +1,116 @@
-pmplots
-================
 
-## Browse source code at 
-https://github.com/metrumresearchgroup/pmplots
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# pmplots <img align="right" src = "man/figures/metrum_pmplots_git_logo.png" width="135px">
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of pmplots is to create exploratory and diagnostic plots
+commonly used in pharmacometrics.
 
 ## Installation
 
-TODO(devin) pmplots is available on MPN
+You can install the released version of pmplots from
+[MPN](https://mpn.metworx.com/docs/) with:
 
-## News
+``` r
+mpn <- "https://mpn.metworx.com/snapshots/stable/2021-06-20"
+install.packages("pmplots", repos = mpn)
+```
 
-News can be found [here](news.md)
+This installs from a specific, dated snapshot. Please check
+<https://mpn.metworx.com/docs/snapshots/> for the most recent snapshot
+date.
 
-## Function and workflow overview
+You can install the development version from
+[GitHub](https://github.com/) with:
 
-A functions and features (code + output) listing is available at 
-[pmplots_complete.md](https://github.com/metrumresearchgroup/pmplots/blob/master/inst/examples/pmplots_complete.md).  
+``` r
+# install.packages("devtools")
+devtools::install_github("metrumresearchgroup/pmplots")
+```
 
-## Vignettes
+## Examples
 
-- [Get started](https://metrumresearchgroup.github.io/pmplots/articles/start.html)
-- [Customize your plot](https://metrumresearchgroup.github.io/pmplots/articles/customize.html)
-- [Residual plots](https://metrumresearchgroup.github.io/pmplots/articles/residual_plots.html)
-- [NPDE plots](https://metrumresearchgroup.github.io/pmplots/articles/npde_plots.html)
-- [Dependent variable plots](https://metrumresearchgroup.github.io/pmplots/articles/dv.html)
-- [ETA plots](https://metrumresearchgroup.github.io/pmplots/articles/eta.html)
-- [Vectorized plots](https://metrumresearchgroup.github.io/pmplots/articles/list_plots.html)
-- [Wrapped or faceted plots](https://metrumresearchgroup.github.io/pmplots/articles/wrapped_plots.html)
+``` r
+library(pmplots)
+library(dplyr)
 
-## Suggested packages
+data <- pmplots_data_obs()
+```
 
-Consider installing the [cowplot](https://CRAN.R-project.org/package=cowplot) 
-package to help arranging plots on a page.  Also, consider installing
-[latex2exp](https://CRAN.R-project.org/package=latex2exp) to allow you to 
-use latex in axis titles.
+The default pmplots behavior is to expect names following NONMEM
+convention, for example `DV` refers to observed values, `PRED` refers to
+population predicted values. With that convention, we can easily make
+observed versus predicted plots
 
+``` r
+dv_pred(data, yname = "MyDrug (ng/ml)")
+```
+
+![](man/figures/README-dv_pred-1.png)<!-- -->
+
+``` r
+dv_pred(data, loglog = TRUE)
+```
+
+![](man/figures/README-dv_pred_log-1.png)<!-- -->
+
+## NPDE plots
+
+``` r
+npde_time(data)
+```
+
+![](man/figures/README-npde_time-1.png)<!-- -->
+
+``` r
+npde_pred(data)
+```
+
+![](man/figures/README-npde_pred-1.png)<!-- -->
+
+## QQ plots
+
+``` r
+cwres_q(data)
+```
+
+![](man/figures/README-cwres_q-1.png)<!-- -->
+
+## Exploratory plots
+
+``` r
+id <- pmplots_data_id()
+cont_cat(id, x = "STUDYc", y = c("WT", "SCR", "AAG")) %>% pm_grid()
+```
+
+![](man/figures/README-cont_cat-1.png)<!-- -->
+
+``` r
+pairs_plot(id, y = c("WT//Weight (kg)", "SCR//Creat (mg/dL)", "BMI//BMI (kg/m2)"))
+```
+
+![](man/figures/README-pairs-1.png)<!-- -->
+
+## Some faceted versions
+
+``` r
+wrap_cont_time(data, y = c("RES","WRES", "CWRES", "NPDE"), ncol = 2)
+```
+
+![](man/figures/README-facet_example-1.png)<!-- -->
+
+# Function and workflow overview
+
+A functions and features (code + output) listing is available at
+[pmplots\_complete.md](https://github.com/metrumresearchgroup/pmplots/blob/master/inst/examples/pmplots_complete.md).
+
+# Suggested packages
+
+Consider installing the
+[cowplot](https://CRAN.R-project.org/package=cowplot) package to help
+arranging plots on a page. Also, consider installing
+[latex2exp](https://CRAN.R-project.org/package=latex2exp) to allow you
+to use latex in axis titles.

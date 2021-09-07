@@ -31,7 +31,8 @@ etas
 
 
 Note that very frequently, ETA plots come back as a list of plots, 
-one for each ETA.  
+one for each ETA. You can combine them together into a single plot using 
+`pm_grid()` or `patchwork::wrap_plots()`.
 
 
 # ETA histogram
@@ -42,7 +43,7 @@ eta_hist(data,etas) %>% pm_grid()
 
 # ETA Pairs
 ```{r}
-eta_pairs(data,etas)
+eta_pairs(data, etas)
 ```
 
 # ETA versus categorical variable

@@ -1,3 +1,10 @@
+# pmplots 0.3.3
+
+- Add vignettes into package (#37)
+
+- Re-work README (#37)
+
+
 # pmplots 0.3.2
 
 - `pairs_plot()` and `eta_pairs()` now will properly call user-supplied
