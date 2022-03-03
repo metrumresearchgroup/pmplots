@@ -86,7 +86,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   if(do_points) {
     outlier.shape <- NA
     fill <- NA
-    def <- list(col = "grey", position  = "jitter")
+    def <- list(col = "grey", position  = position_jitter(height = 0))
     if(is.list(points)) {
       points <- combine_list(def,points)
     } else {
