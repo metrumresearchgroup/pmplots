@@ -56,7 +56,10 @@ box_labels <- function(df, x, y) {
 #' in back of transparent boxes and the points are jittered in the x-direction.
 #' The user can customize the display of the points by passing a list of
 #' arguments for \code{geom_point} (for example, change the color, transparency,
-#' size, jitter amount, etc).
+#' size, jitter amount, etc). The user can also pass \code{jitter_width} to
+#' set the amount of jitter in the x-direction while keeping jitter in the
+#' y-direction zero. Passing \code{jitter_width} will override any other
+#' value passed under \code{position} in the \code{points} list.
 #'
 #'
 #' @export
@@ -88,7 +91,12 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
     fill <- NA
     def <- list(col = "grey", position  = position_jitter(height = 0))
     if(is.list(points)) {
-      points <- combine_list(def,points)
+      if("jitter_width" %in% names(points)) {
+        w <- points[["jitter_width"]]
+        points[["jitter_width"]] <- NULL
+        points$position <- position_jitter(height = 0, width = w)
+      }
+      points <- combine_list(def, points)
     } else {
       points <- def
     }
