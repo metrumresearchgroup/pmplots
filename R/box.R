@@ -56,10 +56,11 @@ box_labels <- function(df, x, y) {
 #' in back of transparent boxes and the points are jittered in the x-direction.
 #' The user can customize the display of the points by passing a list of
 #' arguments for \code{geom_point} (for example, change the color, transparency,
-#' size, jitter amount, etc). The user can also pass \code{jitter_width} to
-#' set the amount of jitter in the x-direction while keeping jitter in the
-#' y-direction zero. Passing \code{jitter_width} will override any other
-#' value passed under \code{position} in the \code{points} list.
+#' size, jitter amount, etc). The user can also pass \code{jitter_width} in
+#' the \code{points} list to set the amount of jitter in the x-direction while
+#' keeping jitter in the y-direction zero. Passing \code{jitter_width} will
+#' override any other value passed under \code{position} in the \code{points}
+#' list.
 #'
 #'
 #' @export
