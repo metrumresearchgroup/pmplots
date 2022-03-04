@@ -2,20 +2,38 @@
 % Please edit documentation in R/utils.R
 \name{parse_label}
 \alias{parse_label}
+\alias{look_for_tex}
+\alias{label_tex}
 \alias{label_parse_label}
 \title{Parse the label part of a col_label}
 \usage{
 parse_label(x)
 
+look_for_tex(x)
+
+label_tex(x)
+
 label_parse_label(x)
 }
 \arguments{
-\item{x}{a character string}
+\item{x}{Data frame of labels.}
 }
 \description{
-Parse the label part of a col_label
+This function can be passed to the \code{labeller} argument of
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} or \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}. Labels are processed
+using \code{\link[=parse_label]{parse_label()}}.
+}
+\details{
+The label can include TeX math expressions (more common) or plotmath.
+
+TeX math expressions are detected if more than two \code{$} are detected in the
+string. Parsing is accomplished with the \code{TeX} function from the \code{latex2exp}
+package; a warning if  the\code{latex2exp} is not available.
+
+Text to be parsed as plotmath is detected when the text begins with \verb{!!}.
 }
 \examples{
 parse_label("foo $\\\\mu$")
+parse_label("!!mu")
 
 }

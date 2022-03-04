@@ -20,12 +20,22 @@ Imports:
   glue, 
   assertthat, 
   tidyr, 
-  purrr,
-  forcats
+  forcats, 
+  lifecycle, 
+  tidyselect
 VignetteBuilder: knitr
-Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny, rmarkdown
+Suggests: 
+  testthat, 
+  GGally, 
+  latex2exp, 
+  knitr, 
+  cowplot, 
+  yaml, 
+  miniUI, 
+  shiny, 
+  rmarkdown
 Depends: ggplot2 (>= 3.0.0)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'
