@@ -15,35 +15,39 @@ scatt(
   col = NULL,
   plot_id = FALSE,
   size = pm_opts$scatter.size,
+  alpha = pm_opts$scatter.alpha,
   scale_col = scale_color_brewer(palette = "Set2", name = ""),
   ...
 )
 }
 \arguments{
-\item{df}{data frame to plot}
+\item{df}{Data frame to plot.}
 
-\item{x}{character name for x-axis data}
+\item{x}{Character name for x-axis data.}
 
-\item{y}{character name for y-axis data}
+\item{y}{Character name for y-axis data.}
 
-\item{xs}{see \link{defx}}
+\item{xs}{See \code{\link[=defx]{defx()}}.}
 
-\item{ys}{see \link{defy}}
+\item{ys}{See \code{\link[=defy]{defy()}}.}
 
-\item{title}{character, passed to \link[ggplot2:labs]{ggplot2::ggtitle}}
+\item{title}{Character, passed to \code{\link[ggplot2:labs]{ggplot2::ggtitle()}}.}
 
-\item{group}{character name of grouping variable}
+\item{group}{Character name of grouping variable.}
 
-\item{col}{character name of variable to color the points}
+\item{col}{Character name of variable to color the points.}
 
-\item{plot_id}{if \code{TRUE} then subject IDs are plotted rather than points;
-see the \code{size} argument - the size may need to be increased when plotting IDs}
+\item{plot_id}{If \code{TRUE} then subject IDs are plotted rather than points;
+see the \code{size} argument - the size may need to be increased when plotting
+IDs.}
 
-\item{size}{passed to \link[ggplot2:geom_point]{ggplot2::geom_point} or \link[ggplot2:geom_text]{ggplot2::geom_text}}
+\item{size}{PPassed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} or \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
-\item{scale_col}{discrete scale to use for coloring the points (see default)}
+\item{alpha}{Passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
-\item{...}{not used}
+\item{scale_col}{Discrete scale to use for coloring the points (see default).}
+
+\item{...}{Not used.}
 }
 \value{
 A single plot.
@@ -52,7 +56,6 @@ A single plot.
 Scatter plot function
 }
 \details{
-Since this function creates a scatter plot,
-both the \code{x} and \code{y} columns must
+Since this function creates a scatter plot, both the \code{x} and \code{y} columns must
 be numeric.
 }

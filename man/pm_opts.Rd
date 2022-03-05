@@ -7,9 +7,9 @@
 \alias{pm}
 \title{Set global plot options}
 \format{
-An object of class \code{pm_opts} (inherits from \code{environment}) of length 42.
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 43.
 
-An object of class \code{pm_opts} (inherits from \code{environment}) of length 42.
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 43.
 }
 \usage{
 pm_options(
@@ -19,6 +19,7 @@ pm_options(
   smooth.method = "loess",
   scatter.size = 1.5,
   scatter.col = "black",
+  scatter.alpha = 1,
   density.lwd = 1.35,
   density.col = .ggblue,
   density.lty = 2,
@@ -67,29 +68,31 @@ pm
 
 \item{scatter.col}{character name of color for scatter plot}
 
+\item{scatter.alpha}{transparency for points in scatter plot}
+
 \item{density.lwd}{line width for density plot on histogram}
 
 \item{density.col}{line color for density plot on histogram}
 
 \item{density.lty}{line type for density plot on histogram}
 
-\item{hline.lwd}{line width for horizontal reference line; see \link{layer_h}
-and \link{gh}}
+\item{hline.lwd}{line width for horizontal reference line; see \code{\link[=layer_h]{layer_h()}}
+and \code{\link[=gh]{gh()}}}
 
-\item{hline.col}{line color for horizontal reference line; see \link{layer_h}
-and \link{gh}}
+\item{hline.col}{line color for horizontal reference line; see \code{\link[=layer_h]{layer_h()}}
+and \code{\link[=gh]{gh()}}}
 
-\item{hline.lty}{line type for horizontal reference line; see \link{layer_h}
-and \link{gh}}
+\item{hline.lty}{line type for horizontal reference line; see \code{\link[=layer_h]{layer_h()}}
+and \code{\link[=gh]{gh()}}}
 
-\item{abline.lwd}{line width for diagonal reference line; see \link{layer_a}
-and \link{ga}}
+\item{abline.lwd}{line width for diagonal reference line; see \code{\link[=layer_a]{layer_a()}}
+and \code{\link[=ga]{ga()}}}
 
-\item{abline.col}{line color for diagonal reference line; see \link{layer_a}
-and \link{ga}}
+\item{abline.col}{line color for diagonal reference line; see \code{\link[=layer_a]{layer_a()}}
+and \code{\link[=ga]{ga()}}}
 
-\item{abline.lty}{line type for diagonal reference line; see \link{layer_a}
-and \link{ga}}
+\item{abline.lty}{line type for diagonal reference line; see \code{\link[=layer_a]{layer_a()}}
+and \code{\link[=ga]{ga()}}}
 
 \item{histogram.fill}{fill color for histograms}
 
@@ -140,7 +143,7 @@ observations used to calculate correlation in upper panels of pairs plots}
 Set global plot options
 }
 \details{
-\link{pm} and \link{pm_opts} both refer to the same environment.
+\code{\link[=pm]{pm()}} and \code{\link[=pm_opts]{pm_opts()}} both refer to the same environment.
 
 Global options can
 be set in the environment with \code{pm$set(name = value)}.  There is also
