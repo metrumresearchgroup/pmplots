@@ -46,43 +46,6 @@ trigger:
 ---
 kind: pipeline
 type: docker
-name: mpn:oldest
-
-platform:
-  os: linux
-  arch: amd64
-
-# this will help test pre-dplyr 1.0 compat
-steps:
-- name: pull
-  image: omerxx/drone-ecr-auth
-  commands:
-  - $(aws ecr get-login --no-include-email --region us-east-1)
-  - docker pull 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.0:2020-05-27
-  volumes:
-  - name: docker.sock
-    path: /var/run/docker.sock
-
-- name: "Check package: R 4.0"
-  pull: never
-  image: 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.0:2020-05-27
-  commands:
-  - R -s -e 'devtools::install_deps(upgrade = '"'"'always'"'"')'
-  - R -s -e 'devtools::check(env_vars = c("NOT_CRAN" = "true"))'
-
-volumes:
-- name: docker.sock
-  host:
-    path: /var/run/docker.sock
-
-trigger:
-  event:
-    exclude:
-    - promote
-
----
-kind: pipeline
-type: docker
 name: cran-latest
 
 platform:
@@ -242,5 +205,4 @@ trigger:
 
 depends_on:
 - mpn:latest
-- mpn:oldest
 - cran-latest
