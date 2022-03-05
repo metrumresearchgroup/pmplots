@@ -1,4 +1,17 @@
 
+set_color <- function(data, col, default) {
+  if(!inherits(col, c("character", "NULL"))) {
+    stop("col should have type character or NULL")
+  }
+  if(is.null(col)) {
+    return(paste0("I('", default, "')"))
+  }
+  if(col %in% names(data)) {
+    return(col)
+  }
+  return(paste0("I('", col, "')"))
+}
+
 #' Scatter plot function
 #'
 #' @param df data frame to plot
@@ -32,7 +45,8 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   locol <- .ggblue
-  if(is.null(col)) col <- glue("I('{scatter.col}')",.envir = pm_opts)
+  #if(is.null(col)) col <- glue("I('{scatter.col}')",.envir = pm_opts)
+  col <- set_color(data = df, col = col, default = pm_opts$scatter.col)
   p <- ggplot(data=df,aes_string(x,y,col=col))
   if(plot_id) {
     require_column(df,"ID")
