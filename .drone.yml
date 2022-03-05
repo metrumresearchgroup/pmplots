@@ -14,7 +14,7 @@ steps:
   - $(aws ecr get-login --no-include-email --region us-east-1)
   - docker pull 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.0:latest
   - docker pull 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.1:latest
-  - Rscript -e "install.packages('patchwork')""
+  - Rscript -e "install.packages('patchwork')"
   volumes:
   - name: docker.sock
     path: /var/run/docker.sock
