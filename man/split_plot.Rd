@@ -4,7 +4,7 @@
 \alias{split_plot}
 \title{Split and plot}
 \usage{
-split_plot(df, fun, sp = get_split_col(df), labeller = label_value, ...)
+split_plot(df, fun, sp = get_split_col(df), labeller = label_tex, ...)
 }
 \arguments{
 \item{df}{Data frame to split and plot.}
@@ -17,8 +17,7 @@ of how this is specified, \code{sp} should name a single column
 split column will be determined from the groups.}
 
 \item{labeller}{A labeller to pass to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}; by default,
-the value is printed on the strip with \link[ggplot2:labellers]{ggplot2::label_value}; pass
-\link{label_tex} to parse TeX expressions if the latex2exp package is available.}
+the value is printed on the strip with \code{\link[=label_tex]{label_tex()}}.}
 
 \item{...}{passed to \code{fun}}
 }

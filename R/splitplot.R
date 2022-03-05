@@ -12,8 +12,7 @@
 ##' of how this is specified, \code{sp} should name a single column
 ##' split column will be determined from the groups.
 ##' @param labeller A labeller to pass to [ggplot2::facet_wrap()]; by default,
-##' the value is printed on the strip with [ggplot2::label_value]; pass
-##' [label_tex] to parse TeX expressions if the latex2exp package is available.
+##' the value is printed on the strip with [label_tex()].
 ##' @param ... passed to \code{fun}
 ##'
 ##' @examples
@@ -28,7 +27,7 @@
 ##' A list of plots, one for each grouping in `sp`.
 ##'
 ##' @export
-split_plot <- function(df, fun, sp = get_split_col(df), labeller = label_value,
+split_plot <- function(df, fun, sp = get_split_col(df), labeller = label_tex,
                        ...) {
   if(length(sp) != 1) {
     stop("Only one grouping or split variable is allowed.")
