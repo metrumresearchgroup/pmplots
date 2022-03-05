@@ -14,7 +14,6 @@ steps:
   - $(aws ecr get-login --no-include-email --region us-east-1)
   - docker pull 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.0:latest
   - docker pull 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.1:latest
-  - R -s -e "install.packages('patchwork')"
   volumes:
   - name: docker.sock
     path: /var/run/docker.sock
@@ -23,7 +22,7 @@ steps:
   pull: never
   image: 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.0:latest
   commands:
-  - R -s -e 'devtools::install_deps(upgrade = '"'"'never'"'"')'
+  - R -s -e 'devtools::install_deps(upgrade = '"'"'always'"'"')'
   - R -s -e 'devtools::check(env_vars = c("NOT_CRAN" = "true"))'
 
 
@@ -31,7 +30,7 @@ steps:
   pull: never
   image: 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.1:latest
   commands:
-  - R -s -e 'devtools::install_deps(upgrade = '"'"'never'"'"')'
+  - R -s -e 'devtools::install_deps(upgrade = '"'"'always'"'"')'
   - R -s -e 'devtools::check(env_vars = c("NOT_CRAN" = "true"))'
 
 volumes:
@@ -68,7 +67,7 @@ steps:
   pull: never
   image: 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.0:2020-05-27
   commands:
-  - R -s -e 'devtools::install_deps(upgrade = '"'"'never'"'"')'
+  - R -s -e 'devtools::install_deps(upgrade = '"'"'always'"'"')'
   - R -s -e 'devtools::check(env_vars = c("NOT_CRAN" = "true"))'
 
 volumes:
@@ -151,7 +150,7 @@ steps:
   pull: never
   image: 906087756158.dkr.ecr.us-east-1.amazonaws.com/r-dev-ci-mpn-4.1:latest
   commands:
-  - R -s -e 'devtools::install_deps(upgrade = '"'"'never'"'"')'
+  - R -s -e 'devtools::install_deps(upgrade = '"'"'always'"'"')'
   - R -s -e 'covr::codecov()'
   environment:
     CODECOV_TOKEN:
