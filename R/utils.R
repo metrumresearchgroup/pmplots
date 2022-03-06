@@ -47,8 +47,7 @@ require_discrete <- function(df,x) {
 
 require_numeric <- function(df,x) {
   require_column(df,x)
-  cl <- class(unlist(df[1,x],use.names=FALSE))
-  if(!is.element(cl,c("numeric","integer"))) {
+  if(!is.numeric(df[[x]])) {
     .stop("column ", x, " is required to be numeric")
   }
   return(invisible(NULL))
@@ -291,7 +290,7 @@ look_for_tex <- function(x) {
 
 pm_labs <- function(...) {
   x <- lapply(list(...), parse_label)
-  do.call(ggplot2::labs,x)
+  do.call(labs, x)
 }
 
 noline <- ggplot2::element_blank()
@@ -487,3 +486,8 @@ chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
 }
 
 force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')
+
+.asis <- function(x) {
+  if(is.character(x)) x <- shQuote(x)
+  paste0("I(", x, ")")
+}

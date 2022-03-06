@@ -16,16 +16,23 @@ test_that("vector inputs for cont_cont", {
   expect_length(ans,length(x)*length(y))
 })
 
-test_that("scatt: pass color name", {
-  ans <- scatt(id, col = NULL, x = "ALB", y = "WT")
+test_that("scatt: default color name", {
+  ans <- scatt(id, x = "ALB", y = "WT")
   ans <- suppressMessages(layer_data(ans, i = 1))
   expect_true(all(ans$colour=="black"))
 })
 
-test_that("scatt: pass color mapping", {
-  ans <- scatt(id, col = "red4", x = "ALB", y = "WT")
+test_that("scatt: pass color name", {
+  ans <- scatt(id, x = "ALB", y = "WT", col = "red4")
   ans <- suppressMessages(layer_data(ans, i = 1))
   expect_true(all(ans$colour=="red4"))
+})
+
+test_that("scatt: pass color mapping", {
+  ans <- scatt(id, x = "ALB", y = "WT", mapping = aes(col = STUDYc))
+  ans <- suppressMessages(layer_data(ans, i = 1))
+  colors <- unique(ans$colour)
+  expect_true(all(grepl("#", ans$colour)))
 })
 
 test_that("scatt: set via opts", {
@@ -37,9 +44,3 @@ test_that("scatt: set via opts", {
   pm_opts$reset()
 })
 
-test_that("scatt: pass color error", {
-  expect_error(
-    scatt(id, x = "ALB", y = "WT", col = 1),
-    regexp="col should have type character or NULL"
-  )
-})

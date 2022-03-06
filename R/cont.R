@@ -1,31 +1,19 @@
-
-set_color <- function(data, col, default) {
-  if(!inherits(col, c("character", "NULL"))) {
-    stop("col should have type character or NULL")
-  }
-  if(is.null(col)) {
-    return(paste0("I('", default, "')"))
-  }
-  if(col %in% names(data)) {
-    return(col)
-  }
-  return(paste0("I('", col, "')"))
-}
-
 #' Scatter plot function
 #'
 #' @param df data frame to plot
 #' @param x character name for x-axis data
 #' @param y character name for y-axis data
-#' @param xs see [defx]
-#' @param ys see [defy]
-#' @param title character, passed to [ggplot2::ggtitle]
+#' @param xs see [defx()]
+#' @param ys see [defy()]
+#' @param title character, passed to [ggplot2::ggtitle()]
 #' @param group character name of grouping variable
 #' @param col character name of variable to color the points
-#' @param scale_col discrete scale to use for coloring the points (see default)
+#' @param size passed to [ggplot2::geom_point()] or [ggplot2::geom_text()]
 #' @param plot_id if `TRUE` then subject IDs are plotted rather than points;
 #' see the `size` argument - the size may need to be increased when plotting IDs
-#' @param size passed to [ggplot2::geom_point] or [ggplot2::geom_text]
+#' @param mapping Additional list of mappings to be used for the plot; this
+#' should be an object generated with [ggplot2::aes()], [ggplot2::aes_string()],
+#' or [ggplot2::aes_()].
 #' @param ... not used
 #'
 #' @details
@@ -37,24 +25,27 @@ set_color <- function(data, col, default) {
 #' @md
 #' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
-                  title = NULL, group=NULL, col=NULL, plot_id = FALSE,
+                  title = NULL, group = NULL, plot_id = FALSE,
                   size = pm_opts$scatter.size,
-                  scale_col = scale_color_brewer(palette="Set2", name=""),
-                  ... ) {
+                  col = pm_opts$scatter.col,
+                  mapping = aes(),  ... ) {
 
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
-  locol <- .ggblue
-  #if(is.null(col)) col <- glue("I('{scatter.col}')",.envir = pm_opts)
-  col <- set_color(data = df, col = col, default = pm_opts$scatter.col)
-  p <- ggplot(data=df,aes_string(x,y,col=col))
-  if(plot_id) {
-    require_column(df,"ID")
-    p <- p + geom_text(aes_string(label="ID"), size = size)
-  } else {
-    p <- p + geom_point(size = size)
+  if(!identical(class(mapping), .aes_class)) {
+    stop("`mapping` must be generated from ggplot2::aes() or equivalent.")
   }
-  if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
+  mapping <- combine_list(mapping, aes_(x = as.name(x), y = as.name(y)))
+  sett <- list(size = size, colour = col)
+  sett <- sett[!(names(sett) %in% names(mapping))]
+  p <- ggplot(data = df, mapping = mapping)
+  if(plot_id) {
+    require_column(df, "ID")
+    p <- p + geom_text(aes_(label = as.name("ID")))
+  } else {
+    p <- p + do.call(geom_point, sett)
+  }
+  if(!is.null(group)) p <- p + geom_line(aes_(group = as.name(group)))
   if(is.character(title)) p <- p + ggtitle(title)
   p + xscale + yscale + pm_theme()
 }

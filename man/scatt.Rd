@@ -12,10 +12,10 @@ scatt(
   ys = defy(),
   title = NULL,
   group = NULL,
-  col = NULL,
   plot_id = FALSE,
   size = pm_opts$scatter.size,
-  scale_col = scale_color_brewer(palette = "Set2", name = ""),
+  col = pm_opts$scatter.col,
+  mapping = aes(),
   ...
 )
 }
@@ -26,22 +26,24 @@ scatt(
 
 \item{y}{character name for y-axis data}
 
-\item{xs}{see \link{defx}}
+\item{xs}{see \code{\link[=defx]{defx()}}}
 
-\item{ys}{see \link{defy}}
+\item{ys}{see \code{\link[=defy]{defy()}}}
 
-\item{title}{character, passed to \link[ggplot2:labs]{ggplot2::ggtitle}}
+\item{title}{character, passed to \code{\link[ggplot2:labs]{ggplot2::ggtitle()}}}
 
 \item{group}{character name of grouping variable}
-
-\item{col}{character name of variable to color the points}
 
 \item{plot_id}{if \code{TRUE} then subject IDs are plotted rather than points;
 see the \code{size} argument - the size may need to be increased when plotting IDs}
 
-\item{size}{passed to \link[ggplot2:geom_point]{ggplot2::geom_point} or \link[ggplot2:geom_text]{ggplot2::geom_text}}
+\item{size}{passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} or \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}}
 
-\item{scale_col}{discrete scale to use for coloring the points (see default)}
+\item{col}{character name of variable to color the points}
+
+\item{mapping}{Additional list of mappings to be used for the plot; this
+should be an object generated with \code{\link[ggplot2:aes]{ggplot2::aes()}}, \code{\link[ggplot2:aes_]{ggplot2::aes_string()}},
+or \code{\link[ggplot2:aes_]{ggplot2::aes_()}}.}
 
 \item{...}{not used}
 }
