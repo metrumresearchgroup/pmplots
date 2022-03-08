@@ -15,5 +15,14 @@ test_that("vector inputs for cont_cont", {
   expect_length(ans,length(x)*length(y))
 })
 
+test_that("set alpha in scatter plot", {
+  p1 <- dv_pred(df[1:20,], alpha = 0.25)
+  layerd <- suppressMessages(layer_data(p1))
+  expect_true(all(layerd$alpha==0.25))
 
-
+  pm_opts$set(scatter.alpha = 0.75)
+  p1 <- dv_time(df[1:20,])
+  pm_opts$reset()
+  layerd <- suppressMessages(layer_data(p1))
+  expect_true(all(layerd$alpha==0.75))
+})
