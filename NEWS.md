@@ -17,7 +17,7 @@
   and any plot built on these (see `?wrap_plots`) #43, #47.
 
 - Fix bug where points overlaid on boxplots were jittered in both directions; 
-  jitter is no only in x-direction #45, #46. 
+  jitter is now only in x-direction #45, #46. 
 
 # pmplots 0.3.3
 
