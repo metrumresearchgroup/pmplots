@@ -30,4 +30,13 @@ test_that("grouped", {
   expect_error(split_plot(ungroup(df),x = "WT", y = "CWRESI", fun = cont_cont))
 })
 
-
+test_that("split_plot uses TeX labeller by default", {
+  skip_if_not_installed("latex2exp")
+  x <- split_plot(df, fun = cont_cat, sp = "RF", x = "STUDYc", y = "WT")
+  x <- ggplot_build(x[[1]])
+  labeller <- x$layout$facet_params$labeller
+  df <- data.frame(a = c("$\\mu$"), b = "a")
+  ans <- labeller(df)
+  expect_is(ans$a[[1]], "expression")
+  expect_is(ans$b[[1]], "character")
+})
