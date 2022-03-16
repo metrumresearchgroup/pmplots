@@ -15,3 +15,9 @@ test_that("vector inputs for cont_cat", {
   expect_length(ans,length(x)*length(y))
 })
 
+test_that("cont_cat jitters points in x-direction only", {
+  id <- pmplots::pmplots_data_id()
+  p <- cont_cat(id, x = "STUDYc", y = "WT", points = TRUE)
+  d <- suppressMessages(layer_data(p, 1L))
+  expect_equal(d$y, id$WT, tolerance = 1e-5)
+})
