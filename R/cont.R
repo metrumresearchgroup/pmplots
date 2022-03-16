@@ -13,7 +13,7 @@
 #' @param plot_id If `TRUE` then subject IDs are plotted rather than points;
 #' see the `size` argument - the size may need to be increased when plotting
 #' IDs.
-#' @param size PPassed to [ggplot2::geom_point()] or [ggplot2::geom_text()].
+#' @param size Passed to [ggplot2::geom_point()] or [ggplot2::geom_text()].
 #' @param alpha Passed to [ggplot2::geom_point()].
 #' @param ... Not used.
 #'
