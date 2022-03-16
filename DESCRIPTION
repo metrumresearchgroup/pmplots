@@ -21,7 +21,9 @@ Imports:
   assertthat, 
   tidyr (>= 1.1.4), 
   purrr (>= 0.3.4),
-  forcats (>= 0.5.1)
+  forcats (>= 0.5.1), 
+  lifecycle, 
+  tidyselect (>= 1.1.1)
 VignetteBuilder: knitr
 Suggests: 
   testthat,
@@ -33,7 +35,7 @@ Suggests:
   miniUI, 
   shiny, 
   rmarkdown
-Depends: ggplot2 (>= 3.0.0)
+Depends: ggplot2 (>= 3.3.5)
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Collate: 
