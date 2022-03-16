@@ -14,7 +14,7 @@ pm_grid(x, ..., ncol = 2)
 \item{ncol}{Passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 }
 \description{
-This is a ligth wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
+This is a light wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
 }
 \details{
 The patchwork package must be installed to use this function.

@@ -9,7 +9,7 @@
 - `split_plot()` gains `labeller` argument which gets passed to `facet_wrap()` 
   #43, #47.
 
-- `label_tex()` replaces `label_parse_label()` for labelling facets via 
+- `label_tex()` replaces `label_parse_label()` for labeling facets via 
   `latex2exp::TeX()`; `label_parse_label()` remains as an alias #47. 
 
 - `label_fun` argument for wrap plots is renamed `labeller`; applies to 
