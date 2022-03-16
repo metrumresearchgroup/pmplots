@@ -463,7 +463,7 @@ parse_eval <- function(x) {
 
 #' Arrange a list of plots in a grid
 #'
-#' This is a ligth wrapper around [patchwork::wrap_plots()].
+#' This is a light wrapper around [patchwork::wrap_plots()].
 #'
 #' @param x A list of plots.
 #' @param ncol Passed to [patchwork::wrap_plots()].
