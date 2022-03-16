@@ -41,7 +41,7 @@ scatt(
 see the \code{size} argument - the size may need to be increased when plotting
 IDs.}
 
-\item{size}{PPassed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} or \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
+\item{size}{Passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}} or \code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}.}
 
 \item{alpha}{Passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
