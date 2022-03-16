@@ -15,16 +15,27 @@ BugReports: https://github.com/metrumresearchgroup/pmplots/issues
 Encoding: UTF-8
 Language: en-US
 Imports: 
-  dplyr (>= 0.7.2),
-  rlang (>= 0.1.2),
-  glue, 
+  dplyr (>= 1.0.7),
+  rlang (>= 0.4.12),
+  glue (>= 1.5.0), 
   assertthat, 
-  tidyr, 
-  purrr,
-  forcats
+  tidyr (>= 1.1.4), 
+  purrr (>= 0.3.4),
+  forcats (>= 0.5.1), 
+  lifecycle, 
+  tidyselect (>= 1.1.1)
 VignetteBuilder: knitr
-Suggests: testthat, GGally, latex2exp, knitr, cowplot, yaml, miniUI, shiny, rmarkdown
-Depends: ggplot2 (>= 3.0.0)
+Suggests: 
+  testthat,
+  GGally, 
+  latex2exp, 
+  patchwork, 
+  knitr, 
+  yaml, 
+  miniUI, 
+  shiny, 
+  rmarkdown
+Depends: ggplot2 (>= 3.3.5)
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Collate: 

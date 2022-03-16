@@ -254,20 +254,33 @@ col_labels <- function(x) {
 
 #' Parse the label part of a col_label
 #'
-#' @param x a character string
+#' @details
+#' The label can include TeX math expressions (more common) or plotmath.
+#'
+#' TeX math expressions are detected if more than two `$` are detected in the
+#' string. Parsing is accomplished with the `TeX` function from the `latex2exp`
+#' package; a warning if  the`latex2exp` is not available.
+#'
+#' Text to be parsed as plotmath is detected when the text begins with `!!`.
+#'
+#' @param x A character string.
 #'
 #' @examples
 #' parse_label("foo $\\mu$")
+#' parse_label("!!mu")
 #'
+#' @md
 #' @export
 parse_label <- function(x) {
-  if(substr(x,1,2)=="!!") {
-    x <- parse(text=substr(x,3,nchar(x)))
+  if(substr(x, 1, 2) == "!!") {
+    x <- parse(text = substr(x, 3, nchar(x)))
     return(x)
   }
   if(look_for_tex(x)) {
-    if(requireNamespace("latex2exp")) {
-      return(latex2exp::TeX(x))
+    if(!requireNamespace("latex2exp")) {
+      warning("Please install the latex2exp package to parse TeX expressions.")
+    } else {
+      x <- latex2exp::TeX(x)
     }
   }
   x
@@ -275,19 +288,34 @@ parse_label <- function(x) {
 
 #' @rdname parse_label
 #' @export
-label_parse_label <- function(x) {
+look_for_tex <- function(x) {
+  if(getOption("pmplots.TeX.labels", FALSE)) {
+    return(TRUE)
+  }
+  charcount(x,"$") >= 2
+}
+
+#' TeX labeller
+#'
+#' This function can be passed to the `labeller` argument of
+#' [ggplot2::facet_wrap()] or [ggplot2::facet_grid()]. Labels are processed
+#' using [parse_label()].
+#'
+#' @param x Data frame of labels.
+#'
+#' @rdname parse_label
+#' @md
+#' @export
+label_tex <- function(x) {
   x <- lapply(x, as.character)
   lapply(x, function(values) {
     lapply(values, parse_label)
   })
 }
 
-look_for_tex <- function(x) {
-  if(getOption("pmplots_TeX_labels",FALSE)) {
-    return(TRUE)
-  }
-  charcount(x,"$") >= 2
-}
+#' @rdname parse_label
+#' @export
+label_parse_label <- label_tex
 
 pm_labs <- function(...) {
   x <- lapply(list(...), parse_label)
@@ -433,29 +461,31 @@ parse_eval <- function(x) {
   eval(parse(text = x),envir=parent.frame(2))
 }
 
-##' Arrange a list of plots in a grid
-##'
-##' @param x a list of plots
-##' @param ncol passed to \code{\link[cowplot]{plot_grid}}
-##' @param ... passed to \code{\link[cowplot]{plot_grid}}
-##'
-##' @details
-##' The cowplot package must be installed to use this function.
-##'
-##' @examples
-##'
-##' data <- pmplots_data_obs()
-##'
-##' plot <- wres_cont(data, x = c("WT", "ALB"))
-##'
-##' pm_grid(plot)
-##'
-##' @export
-pm_grid <- function(x, ..., ncol=2) {
-  if(!requireNamespace("cowplot")) {
-    stop("Please install the cowplot package to use this function.")
+#' Arrange a list of plots in a grid
+#'
+#' This is a ligth wrapper around [patchwork::wrap_plots()].
+#'
+#' @param x A list of plots.
+#' @param ncol Passed to [patchwork::wrap_plots()].
+#' @param ... Passed to [patchwork::wrap_plots()].
+#'
+#' @details
+#' The patchwork package must be installed to use this function.
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#'
+#' plot <- wres_cont(data, x = c("WT", "ALB"))
+#'
+#' pm_grid(plot)
+#'
+#' @md
+#' @export
+pm_grid <- function(x, ..., ncol = 2) {
+  if(!requireNamespace("patchwork")) {
+    stop("Please install the patchwork package to use this function.")
   }
-  cowplot::plot_grid(plotlist=x, ..., ncol = ncol)
+  patchwork::wrap_plots(x, ncol = ncol, ...)
 }
 
 chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {

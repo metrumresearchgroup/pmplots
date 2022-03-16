@@ -1,11 +1,29 @@
 # pmplots (development version)
 
+- `pm_grid()` now uses 'patchwork' to arrange plots; 'patchwork' becomes
+  a suggested package and 'cowplot' is dropped #49. 
+
+- `scatt()` gains `alpha` argument with default provided by `pm_opts$scatter.alpha` 
+  #42, #48. 
+
+- `split_plot()` gains `labeller` argument which gets passed to `facet_wrap()` 
+  #43, #47.
+
+- `label_tex()` replaces `label_parse_label()` for labelling facets via 
+  `latex2exp::TeX()`; `label_parse_label()` remains as an alias #47. 
+
+- `label_fun` argument for wrap plots is renamed `labeller`; applies to 
+  the following plots: `wrap_cont_cont()`, `wrap_hist()`, `wrap_cont_cat()`, 
+  and any plot built on these (see `?wrap_plots`) #43, #47.
+
+- Fix bug where points overlaid on boxplots were jittered in both directions; 
+  jitter is now only in x-direction #45, #46. 
+
 # pmplots 0.3.3
 
 - Add vignettes into package (#37)
 
 - Re-work README (#37)
-
 
 # pmplots 0.3.2
 

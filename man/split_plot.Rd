@@ -4,25 +4,30 @@
 \alias{split_plot}
 \title{Split and plot}
 \usage{
-split_plot(df, fun, sp = get_split_col(df), ...)
+split_plot(df, fun, sp = get_split_col(df), labeller = label_tex, ...)
 }
 \arguments{
-\item{df}{data frame to split and plot}
+\item{df}{Data frame to split and plot.}
 
-\item{fun}{function to use to plot}
+\item{fun}{Function to use to plot.}
 
-\item{sp}{character name of column to split; if \code{df} is a
+\item{sp}{Character name of column to split; if \code{df} is a
 grouped data frame, leave this argument missing and the; regardless
 of how this is specified, \code{sp} should name a single column
-split column will be determined from the groups}
+split column will be determined from the groups.}
+
+\item{labeller}{A labeller to pass to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}; by default,
+the value is printed on the strip with \code{\link[=label_tex]{label_tex()}}.}
 
 \item{...}{passed to \code{fun}}
 }
 \value{
-A list of plots.
+A list of plots, one for each grouping in \code{sp}.
 }
 \description{
-Split and plot
+Split a data frame on a single factor and create a plot from each chunk.
+Each plot is labeled with the value of \code{sp} using \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}.
+See examples.
 }
 \examples{
 
