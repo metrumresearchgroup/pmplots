@@ -7,20 +7,19 @@
 pm_grid(x, ..., ncol = 2)
 }
 \arguments{
-\item{x}{a list of plots}
+\item{x}{A list of plots.}
 
-\item{...}{passed to \code{\link[cowplot]{plot_grid}}}
+\item{...}{Passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 
-\item{ncol}{passed to \code{\link[cowplot]{plot_grid}}}
+\item{ncol}{Passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 }
 \description{
-Arrange a list of plots in a grid
+This is a light wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
 }
 \details{
-The cowplot package must be installed to use this function.
+The patchwork package must be installed to use this function.
 }
 \examples{
-
 data <- pmplots_data_obs()
 
 plot <- wres_cont(data, x = c("WT", "ALB"))

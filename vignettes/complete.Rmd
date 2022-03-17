@@ -33,6 +33,11 @@ library(dplyr)
 library(purrr)
 ```
 
+```{r, include = FALSE}
+have_yspec <- requireNamespace("yspec")
+```
+
+
 \newpage
 
 # Example data in the package
@@ -79,7 +84,7 @@ col_label("WT")
 You can also pull `col//title` data from a `yspec` object. Load the `yspec`
 package and generate an example data specification object
 
-```{r}
+```{r, eval = have_yspec}
 library(yspec)
 spec <- ys_help$spec()
 ```
@@ -87,12 +92,13 @@ spec <- ys_help$spec()
 Typically, you'll want to select a subset of columns and then call
 `axis_col_labs()`
 
-```{r}
+```{r, eval = have_yspec}
 spec %>% 
   ys_select(WT, AGE, BMI) %>% 
   axis_col_labs()
 ```
 
+You should install the `yspec` to use this functionality.
 
 \newpage
 

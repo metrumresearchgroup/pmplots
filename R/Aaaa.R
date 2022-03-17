@@ -1,23 +1,25 @@
-#' @importFrom dplyr filter as_data_frame arrange n_distinct n
+#' @importFrom dplyr filter as_data_frame arrange n_distinct n bind_rows
 #' @importFrom dplyr group_by filter ungroup summarize distinct pull
 #' @importFrom dplyr groups is_grouped_df mutate .data rename %>%
+#' @importFrom dplyr as_tibble
+#' @importFrom tidyselect all_of
 #' @importFrom grDevices pdf dev.off
 #' @importFrom ggplot2 ggplot aes_string geom_boxplot geom_line
 #' @importFrom ggplot2 ggtitle theme geom_point geom_smooth
-#' @importFrom ggplot2 geom_abline geom_hline margin
+#' @importFrom ggplot2 geom_abline geom_hline geom_text margin
 #' @importFrom ggplot2 stat_qq facet_wrap geom_histogram
 #' @importFrom ggplot2 scale_color_brewer theme_bw theme_set
 #' @importFrom ggplot2 element_text labs aes waiver rel
 #' @importFrom ggplot2 scale_shape_discrete scale_x_continuous scale_y_log10
-#' @importFrom ggplot2 geom_text
+#' @importFrom ggplot2 geom_text position_jitter label_value
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list
 #' @importFrom glue glue
 #' @importFrom assertthat assert_that
-#' @importFrom tidyr gather pivot_longer
-#' @importFrom purrr map2 map map_df
+#' @importFrom tidyr pivot_longer
 #' @importFrom forcats fct_inorder
 #' @importFrom utils str
+#' @importFrom lifecycle deprecate_warn is_present deprecated
 #'
 NULL
 

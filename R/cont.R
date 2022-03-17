@@ -1,46 +1,49 @@
 
 #' Scatter plot function
 #'
-#' @param df data frame to plot
-#' @param x character name for x-axis data
-#' @param y character name for y-axis data
-#' @param xs see [defx]
-#' @param ys see [defy]
-#' @param title character, passed to [ggplot2::ggtitle]
-#' @param group character name of grouping variable
-#' @param col character name of variable to color the points
-#' @param scale_col discrete scale to use for coloring the points (see default)
-#' @param plot_id if `TRUE` then subject IDs are plotted rather than points;
-#' see the `size` argument - the size may need to be increased when plotting IDs
-#' @param size passed to [ggplot2::geom_point] or [ggplot2::geom_text]
-#' @param ... not used
+#' @param df Data frame to plot.
+#' @param x Character name for x-axis data.
+#' @param y Character name for y-axis data.
+#' @param xs See [defx()].
+#' @param ys See [defy()].
+#' @param title Character, passed to [ggplot2::ggtitle()].
+#' @param group Character name of grouping variable.
+#' @param col Character name of variable to color the points.
+#' @param scale_col Discrete scale to use for coloring the points (see default).
+#' @param plot_id If `TRUE` then subject IDs are plotted rather than points;
+#' see the `size` argument - the size may need to be increased when plotting
+#' IDs.
+#' @param size Passed to [ggplot2::geom_point()] or [ggplot2::geom_text()].
+#' @param alpha Passed to [ggplot2::geom_point()].
+#' @param ... Not used.
 #'
 #' @details
-#' Since this function creates a scatter plot,
-#' both the `x` and `y` columns must
+#' Since this function creates a scatter plot, both the `x` and `y` columns must
 #' be numeric.
 #'
-#' @return A single plot.
+#' @return
+#' A single plot.
+#'
 #' @md
 #' @export
 scatt <- function(df, x, y, xs = defx(), ys = defy(),
                   title = NULL, group=NULL, col=NULL, plot_id = FALSE,
-                  size = pm_opts$scatter.size,
+                  size = pm_opts$scatter.size, alpha = pm_opts$scatter.alpha,
                   scale_col = scale_color_brewer(palette="Set2", name=""),
                   ... ) {
 
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   locol <- .ggblue
-  if(is.null(col)) col <- glue("I('{scatter.col}')",.envir = pm_opts)
-  p <- ggplot(data=df,aes_string(x,y,col=col))
+  if(is.null(col)) col <- glue("I('{scatter.col}')", .envir = pm_opts)
+  p <- ggplot(data = df, aes_string(x, y, col = col))
   if(plot_id) {
     require_column(df,"ID")
-    p <- p + geom_text(aes_string(label="ID"), size = size)
+    p <- p + geom_text(aes_string(label = "ID"), size = size, alpha = alpha)
   } else {
-    p <- p + geom_point(size = size)
+    p <- p + geom_point(size = size, alpha = alpha)
   }
-  if(!is.null(group)) p <- p + geom_line(aes_string(group=group))
+  if(!is.null(group)) p <- p + geom_line(aes_string(group = group))
   if(is.character(title)) p <- p + ggtitle(title)
   p + xscale + yscale + pm_theme()
 }

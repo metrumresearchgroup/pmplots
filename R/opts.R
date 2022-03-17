@@ -7,21 +7,22 @@
 #' @param smooth.method method to use for creating smoother
 #' @param scatter.size point size for scatter plot
 #' @param scatter.col character name of color for scatter plot
+#' @param scatter.alpha transparency for points in scatter plot
 #' @param density.lwd line width for density plot on histogram
 #' @param density.col line color for density plot on histogram
 #' @param density.lty line type for density plot on histogram
-#' @param hline.lwd line width for horizontal reference line; see [layer_h]
-#' and [gh]
-#' @param hline.col line color for horizontal reference line; see [layer_h]
-#' and [gh]
-#' @param hline.lty line type for horizontal reference line; see [layer_h]
-#' and [gh]
-#' @param abline.lwd line width for diagonal reference line; see [layer_a]
-#' and [ga]
-#' @param abline.col line color for diagonal reference line; see [layer_a]
-#' and [ga]
-#' @param abline.lty line type for diagonal reference line; see [layer_a]
-#' and [ga]
+#' @param hline.lwd line width for horizontal reference line; see [layer_h()]
+#' and [gh()]
+#' @param hline.col line color for horizontal reference line; see [layer_h()]
+#' and [gh()]
+#' @param hline.lty line type for horizontal reference line; see [layer_h()]
+#' and [gh()]
+#' @param abline.lwd line width for diagonal reference line; see [layer_a()]
+#' and [ga()]
+#' @param abline.col line color for diagonal reference line; see [layer_a()]
+#' and [ga()]
+#' @param abline.lty line type for diagonal reference line; see [layer_a()]
+#' and [ga()]
 #' @param histogram.fill fill color for histograms
 #' @param histogram.alpha alpha value for histograms
 #' @param histogram.col line color for histograms
@@ -49,7 +50,7 @@
 #' @param time.unit default time unit
 #'
 #' @details
-#' [pm] and [pm_opts] both refer to the same environment.
+#' [pm()] and [pm_opts()] both refer to the same environment.
 #'
 #' Global options can
 #' be set in the environment with `pm$set(name = value)`.  There is also
@@ -99,6 +100,7 @@ pm_options <- function(smooth.lwd = 1.35,
                        smooth.method = "loess",
                        scatter.size = 1.5,
                        scatter.col = "black",
+                       scatter.alpha = 1,
                        density.lwd = 1.35,
                        density.col = .ggblue,
                        density.lty = 2,

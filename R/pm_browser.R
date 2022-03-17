@@ -16,13 +16,13 @@ pm_browser <- function(quiet=FALSE,title=TRUE) {
   id <- pmplots_data_id()
   etas <- c("ETA1", "ETA2", "ETA3")
   x0 <- yaml::yaml.load_file(loc)
-  out <- map_df(x0$plots, as_data_frame)
+  out <- bind_rows(lapply(x0$plots, as_tibble))
   names(out)[1] <- "y"
   out <- suppressMessages(
     suppressWarnings(
       out %>%
         mutate(gg = lapply(.data[["call"]], parse_eval)) %>%
-        mutate(gg = map2(.data[["gg"]], .data[["call"]], .f=add_title,title=title)) %>%
+        mutate(gg = Map(add_title, .data[["gg"]], .data[["call"]], title = title)) %>%
         mutate(time = .data[["x"]] %in% c("time", "tad", "tafd")) %>%
         mutate(res = .data[["y"]] %in% c("res", "wres", "cwres", "cwresi")) %>%
         mutate(wrap = grepl("wrap", .data[["call"]])) %>%
