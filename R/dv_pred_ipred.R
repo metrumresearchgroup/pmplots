@@ -1,12 +1,21 @@
-
 #' Create plots showing DV, PRED, and IPRED by individual
 #'
-#' `DV` is plotted with a symbol while `PRED` and `IPRED` are plotted with lines.
-#' The plot is faceted by unique individual identifier (like `ID` or `USUBJID`).
+#' `DV` is plotted with a symbol while `PRED` and `IPRED` are plotted with lines
+#' and symbols. The plot is faceted by unique individual identifier (like `ID`
+#' or `USUBJID`) as well as other faceting variables.
+#'
+#' @details
+#' If both `nrow` and `ncol` are supplied and numeric, `id_per_plot` will be set
+#' to `nrow*ncol`.
 #'
 #' @param data the data frame to plot
 #' @param ... additional arguments passed to [dv_pred_ipred_impl()]
-#' @param id_per_plot number of subjects to include in each page
+#' @param id_per_plot number of unique combinations of `facets` columns to
+#' include on each page
+#' @param facets a character vector of column names to use for faceting the
+#' plot, passed to [ggplot2::facet_wrap()]; if passed in [col_label()] format,
+#' then the column data is modified with a call to [glue::glue_data()]; see
+#' examples
 #' @param ncol number of columns in the plot grid; passed to
 #' [ggplot2::facet_wrap()]
 #' @param nrow number of rows in the plot grid; passed to
@@ -16,58 +25,70 @@
 #' used for the x-axis title along with `xunit`; see also the `xlab` argument
 #' @param dv the `DV` column, in [col_label()] format; the title portion is used
 #' for the y-axis title; see also the `ylab` argument
-#' @param pred the name of the `PRED` column; [col_label()] format is allowed, but
-#' the label portion is discarded
+#' @param pred the name of the `PRED` column; [col_label()] format is allowed,
+#' but the label portion is discarded
 #' @param ipred the name of the `IPRED` column; [col_label()] format is allowed,
 #' but the label portion is discarded
-#' @param id_col the column name for the subject identifier; the value will
-#' be displayed in the plot strip
-#' @param xbreaks x-axis breaks; passed to [ggplot2::scale_x_continuous()]
-#' @param xunit used to form x-axis title only if `xlab` is not provided
-#' @param xlab x-axis title; if not `NULL`, passed to [ggplot2::xlab()]
-#' @param ylab y-axis title; if not `NULL`, passed to [ggplot2::ylab()]
-#' @param angle rotation angle for x-axis tick labels; passed to [rot_x()]
-#' @param font_size deprecated
-#' @param margin deprecated
-#' @param plot.margin for the plot; passed [ggplot2::margin()].
-#' @param legend.position passed to [ggplot2::theme()]
-#' @param pred_lty `PRED` linetype; passed to [ggplot2::geom_line()]
-#' @param ipred_lty `IPRED` linetype; passed to [ggplot2::geom_line()]
-#' @param lwd line width for `PRED` and `IPRED`; passed to
-#' [ggplot2::geom_line()]
-#' @param size size of shape for `DV`; passed to [ggplot2::geom_point()]
-#' @param dv_shape shape for `DV`; passed to [ggplot2::geom_point()]
-#' @param dv_line logical; if `TRUE` then a line is added to the plot connecting
-#' `DV` points
-#' @param dv_lwd  line width for `DV`; passed to [ggplot2::geom_line()] as `lwd`
-#' @param scales passed to [ggplot2::facet_wrap()]
-#' @param log_y logical; if `TRUE` then y-axis is shown in log-scale
-#' @param use_theme a theme to use for the plot
 #' @param dv_color color to use for `DV` points
 #' @param ipred_color color to use for `IPRED` line
 #' @param pred_color color to use for `PRED` line
-#' @param axis.text.rel relative text size for axis text; use this to selectively
-#' decrease font size for axis tick labels
+#' @param pred_lty `PRED` linetype; passed to [ggplot2::geom_line()]
+#' @param ipred_lty `IPRED` linetype; passed to [ggplot2::geom_line()]
+#' @param pred_point logical; should points be plotted for `PRED`?
+#' @param ipred_point logical; should points be plotted for `IPRED`?
+#' @param dv_shape shape for `DV`; passed to [ggplot2::geom_point()]
+#' @param dv_line logical; if `TRUE` then a line is added to the plot connecting
+#' `DV` points
+#' @param lwd line width for `PRED` and `IPRED`; passed to
+#' [ggplot2::geom_line()]
+#' @param dv_lwd  line width for `DV`; passed to [ggplot2::geom_line()] as `lwd`
+#' @param size size of shape for `DV`, `IPRED` and `PRED`; passed
+#' to [ggplot2::geom_point()]
+#' @param xbreaks x-axis breaks; passed to [ggplot2::scale_x_continuous()]
+#' @param angle rotation angle for x-axis tick labels; passed to [rot_x()]
+#' @param xunit used to form x-axis title only if `xlab` is not provided
+#' @param xlab x-axis title; if not `NULL`, passed to [ggplot2::xlab()]
+#' @param ylab y-axis title; if not `NULL`, passed to [ggplot2::ylab()]
+#' @param log_y logical; if `TRUE` then y-axis is shown in log-scale
+#' @param plot.margin for the plot; passed [ggplot2::margin()]
+#' @param strip.text optionally, the result of [ggplot2::element_text()] to
+#' format the strip text (e.g. change the font size or padding)
+#' @param legend.position passed to [ggplot2::theme()]
+#' @param scales passed to [ggplot2::facet_wrap()]
+#' @param use_theme a theme to use for the plot
+#' @param axis.text.rel relative text size for axis text; use this to
+#' selectively decrease font size for axis tick labels
 #' @param fun a function accepting a gg object as argument and returning
 #' an updated gg object; experimental
-#'
-#' @details
-#'
-#' If both `nrow` and `ncol` are supplied and numeric, `id_per_plot` will be set
-#' to `nrow*ncol`.
+#' @param id_col deprecated; use `facets` argument instead
+#' @param font_size deprecated
+#' @param margin deprecated
 #'
 #' @examples
-#'
 #' data <- pmplots_data_obs()
 #'
 #' p <- dv_pred_ipred(data, ylab="Concentration (ng/mL)", nrow=3, ncol=3)
 #'
+#' p <- dv_pred_ipred(
+#'   data,
+#'   facets = c("ID", "STUDYc//Study: {STUDYc}")
+#' )
+#'
 #' @md
 #' @export
-dv_pred_ipred <- function(data, id_per_plot = 9,
+dv_pred_ipred <- function(data, id_per_plot = 9, id_col = deprecated(),
                           facets = "ID",
                           nrow = NULL, ncol = NULL,
-                          fun = NULL,...) {
+                          fun = NULL, ...) {
+
+  if(is_present(id_col)) {
+    deprecate_warn(
+      "0.3.5",
+      "dv_pred_ipred(id_col = )",
+      "dv_pred_ipred(id_col = )"
+    )
+  }
+
   if(is.numeric(nrow) && is.numeric(ncol)) {
     if(!missing(id_per_plot) & id_per_plot != nrow*ncol) {
       warning("updating id_per_plot to ", nrow*ncol, call. = FALSE)
@@ -100,15 +121,15 @@ dv_pred_ipred_impl <- function(data,
                                pred = pm_axis_pred(),
                                ipred = pm_axis_ipred(),
                                facets = "ID",
-                               id_col = "ID",
+                               id_col = deprecated(),
                                xbreaks = waiver(),
                                xunit = pm_opts$time.unit,
                                xlab  = NULL,
                                ylab  = NULL,
                                angle = NULL,
                                strip.text = element_text(),
-                               font_size = NULL,
-                               margin = NULL,
+                               font_size = deprecated(),
+                               margin = deprecated(),
                                plot.margin = NULL,
                                legend.position = "top",
                                pred_lty = 2,
@@ -133,11 +154,17 @@ dv_pred_ipred_impl <- function(data,
 
   if(is_present(margin)) {
     deprecate_warn(
-      "0.3.4",
-      "wrap_cont_cont(label_fun = )",
-      "wrap_cont_cont(labeller = )"
+      "0.3.5",
+      "dv_pred_ipred_impl(margin = )",
+      "dv_pred_ipred_impl(strip.text = )"
     )
-    labeller <- label_fun
+  }
+  if(is_present(font_size)) {
+    deprecate_warn(
+      "0.3.5",
+      "dv_pred_ipred_impl(font_size = )",
+      "dv_pred_ipred_impl(strip.text = )"
+    )
   }
 
   show_dv <- TRUE
@@ -233,7 +260,7 @@ dv_pred_ipred_impl <- function(data,
   }
 
   data$name <- factor(data$name, levels = rev(ycols), labels = rev(ycols))
-  data <- arrange(data, name)
+  data <- arrange(data, .data$name)
   names(clrs) <- unname(ycols)
   names(lnes) <- unname(ycols)
   names(shapes) <- unname(ycols)

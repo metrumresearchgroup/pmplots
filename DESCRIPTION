@@ -20,7 +20,6 @@ Imports:
   glue (>= 1.5.0), 
   assertthat, 
   tidyr (>= 1.1.4), 
-  purrr (>= 0.3.4),
   forcats (>= 0.5.1), 
   lifecycle, 
   tidyselect (>= 1.1.1)

@@ -8,6 +8,7 @@ inst/exdata/run102.RDS
 Makefile
 inst/img
 inst/examples/img
+inst/examples/pmplots_complete\.html
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
