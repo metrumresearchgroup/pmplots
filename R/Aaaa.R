@@ -13,8 +13,8 @@
 #' @importFrom ggplot2 scale_shape_discrete scale_x_continuous scale_y_log10
 #' @importFrom ggplot2 geom_text position_jitter label_value
 #' @importFrom stats as.formula qnorm quantile cor dnorm
-#' @importFrom rlang sym quo_text quos set_names quo_name as_list
-#' @importFrom glue glue
+#' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
+#' @importFrom glue glue glue_data
 #' @importFrom assertthat assert_that
 #' @importFrom tidyr pivot_longer
 #' @importFrom forcats fct_inorder

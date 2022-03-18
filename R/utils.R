@@ -512,8 +512,8 @@ pm_grid <- function(x, ..., ncol = 2) {
 #'
 #' chunk_by_row(x, 4)
 #'
-#' @name chunk_data_frame
-#' @export
+#' @keywords internal
+#' @noRd
 chunk_by_id <- function(data, id_per_chunk, id_col = "ID") {
   if(!is.data.frame(data)) {
     stop("data argument must be a data.frame",call.=FALSE)

@@ -27,9 +27,9 @@
 #' @param xlab x-axis title; if not `NULL`, passed to [ggplot2::xlab()]
 #' @param ylab y-axis title; if not `NULL`, passed to [ggplot2::ylab()]
 #' @param angle rotation angle for x-axis tick labels; passed to [rot_x()]
-#' @param font_size the font size for strip text
-#' @param margin the top and bottom margin for the plot strip; passed to
-#' [ggplot2::margin()] as `t` and `b`
+#' @param font_size deprecated
+#' @param margin deprecated
+#' @param plot.margin for the plot; passed [ggplot2::margin()].
 #' @param legend.position passed to [ggplot2::theme()]
 #' @param pred_lty `PRED` linetype; passed to [ggplot2::geom_line()]
 #' @param ipred_lty `IPRED` linetype; passed to [ggplot2::geom_line()]
@@ -74,7 +74,12 @@ dv_pred_ipred <- function(data, id_per_plot = 9,
     }
     id_per_plot <- nrow*ncol
   }
-  ans <- chunk_by_cols(data, id_per_chunk = id_per_plot, cols = facets)
+
+  assert_that(is.character(facets))
+  assert_that(length(facets) > 0)
+  facets <- col_labels(facets)
+
+  ans <- chunk_by_cols(data, id_per_chunk = id_per_plot, cols = unname(facets))
   out <- lapply(
     ans,
     dv_pred_ipred_impl,
@@ -104,12 +109,13 @@ dv_pred_ipred_impl <- function(data,
                                strip.text = element_text(),
                                font_size = NULL,
                                margin = NULL,
+                               plot.margin = NULL,
                                legend.position = "top",
                                pred_lty = 2,
                                ipred_lty = 1,
-                               pred_point = FALSE,
-                               ipred_point = FALSE,
-                               lwd = 0.7,
+                               pred_point = TRUE,
+                               ipred_point = TRUE,
+                               lwd = 0.5,
                                size = pm_opts$scatter.size,
                                dv_shape = 16,
                                dv_line = FALSE,
@@ -118,12 +124,21 @@ dv_pred_ipred_impl <- function(data,
                                log_y = FALSE,
                                use_theme = pm_theme(),
                                dv_color = "black",
-                               ipred_color = "red3",
-                               pred_color = "blue3",
+                               ipred_color = "red2",
+                               pred_color = "blue2",
                                ncol = NULL,
                                nrow = NULL,
                                axis.text.rel = NULL,
                                fun = NULL) {
+
+  if(is_present(margin)) {
+    deprecate_warn(
+      "0.3.4",
+      "wrap_cont_cont(label_fun = )",
+      "wrap_cont_cont(labeller = )"
+    )
+    labeller <- label_fun
+  }
 
   show_dv <- TRUE
   show_ipred <- TRUE
@@ -132,6 +147,9 @@ dv_pred_ipred_impl <- function(data,
   clrs <- character(0)
   lnes <- integer(0)
   shapes <- integer(0)
+
+  facets_glue <- facets[names(facets) != facets]
+
   if(!all(facets %in% names(data))) {
     stop("cannot find all facets in `data`", call. = FALSE)
   }
@@ -207,6 +225,13 @@ dv_pred_ipred_impl <- function(data,
     names_to = "name"
   )
 
+  if(length(facets_glue) > 0) {
+    to_glue <- names(facets_glue)
+    for(i in seq_along(facets_glue)) {
+      data[[facets_glue[i]]] <- glue_data(data, to_glue[[i]])
+    }
+  }
+
   data$name <- factor(data$name, levels = rev(ycols), labels = rev(ycols))
   data <- arrange(data, name)
   names(clrs) <- unname(ycols)
@@ -244,6 +269,9 @@ dv_pred_ipred_impl <- function(data,
   if(is.numeric(axis.text.rel)) {
     axtx <- element_text(size = ggplot2::rel(axis.text.rel))
     use_theme <- use_theme + theme(axis.text = axtx)
+  }
+  if(inherits(margin, "margin")) {
+    use_theme <- use_theme + theme(plot.margin = plot.margin)
   }
 
   p <- p + use_theme
