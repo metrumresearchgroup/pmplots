@@ -14,9 +14,6 @@ test_that("test-chunk chunk data", {
   x2 <- pmplots:::chunk_by_id(data2, id_per_chunk = 5, id_col = "SUBJ")
   expect_identical(length(x), 5L)
 
-  x2 <- pmplots:::chunk_by_id(data2, id_per_chunk = 5, mark = "test")
-  expect_true(exists("test", x2[[3]]))
-  expect_true(all(x[[4]][["test"]]==4))
 })
 
 test_that("test-chunk chunk data by multiple cols", {
