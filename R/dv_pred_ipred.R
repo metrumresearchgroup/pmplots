@@ -4,70 +4,73 @@
 #' and symbols. The plot is faceted by unique individual identifier (like `ID`
 #' or `USUBJID`) as well as other faceting variables.
 #'
-#' @details
-#' If both `nrow` and `ncol` are supplied and numeric, `id_per_plot` will be set
-#' to `nrow*ncol`.
-#'
-#' @param data the data frame to plot
-#' @param ... additional arguments passed to [dv_pred_ipred_impl()]
+#' @param data the data frame to plot.
+#' @param ... additional arguments passed to [dv_pred_ipred_impl()].
 #' @param id_per_plot number of unique combinations of `facets` columns to
-#' include on each page
+#' include on each page.
 #' @param facets a character vector of column names to use for faceting the
 #' plot, passed to [ggplot2::facet_wrap()]; if passed in [col_label()] format,
-#' then the column data is modified with a call to [glue::glue_data()]; see
-#' examples
+#' then the column data is modified with a call to [glue::glue_data()], so that
+#' the strip label is more informative; see examples.
 #' @param ncol number of columns in the plot grid; passed to
-#' [ggplot2::facet_wrap()]
+#' [ggplot2::facet_wrap()].
 #' @param nrow number of rows in the plot grid; passed to
-#' [ggplot2::facet_wrap()]
+#' [ggplot2::facet_wrap()].
 #' @param x the time-axis column, in
 #' [col_label()] format; the title portion is
-#' used for the x-axis title along with `xunit`; see also the `xlab` argument
+#' used for the x-axis title along with `xunit`; see also the `xlab` argument.
 #' @param dv the `DV` column, in [col_label()] format; the title portion is used
-#' for the y-axis title; see also the `ylab` argument
+#' for the y-axis title; see also the `ylab` argument.
 #' @param pred the name of the `PRED` column; [col_label()] format is allowed,
-#' but the label portion is discarded
+#' but the label portion is discarded.
 #' @param ipred the name of the `IPRED` column; [col_label()] format is allowed,
-#' but the label portion is discarded
-#' @param dv_color color to use for `DV` points
-#' @param ipred_color color to use for `IPRED` line
-#' @param pred_color color to use for `PRED` line
-#' @param pred_lty `PRED` linetype; passed to [ggplot2::geom_line()]
-#' @param ipred_lty `IPRED` linetype; passed to [ggplot2::geom_line()]
+#' but the label portion is discarded.
+#' @param dv_color color to use for `DV` points.
+#' @param ipred_color color to use for `IPRED` line.
+#' @param pred_color color to use for `PRED` line.
+#' @param pred_lty `PRED` linetype; passed to [ggplot2::geom_line()].
+#' @param ipred_lty `IPRED` linetype; passed to [ggplot2::geom_line()].
 #' @param pred_point logical; should points be plotted for `PRED`?
 #' @param ipred_point logical; should points be plotted for `IPRED`?
-#' @param dv_shape shape for `DV`; passed to [ggplot2::geom_point()]
+#' @param dv_shape shape for `DV`; passed to [ggplot2::geom_point()].
 #' @param dv_line logical; if `TRUE` then a line is added to the plot connecting
-#' `DV` points
+#' `DV` points.
 #' @param lwd line width for `PRED` and `IPRED`; passed to
-#' [ggplot2::geom_line()]
-#' @param dv_lwd  line width for `DV`; passed to [ggplot2::geom_line()] as `lwd`
+#' [ggplot2::geom_line()].
+#' @param dv_lwd  line width for `DV`; passed to [ggplot2::geom_line()] as
+#' `lwd`.
 #' @param size size of shape for `DV`, `IPRED` and `PRED`; passed
-#' to [ggplot2::geom_point()]
-#' @param xbreaks x-axis breaks; passed to [ggplot2::scale_x_continuous()]
-#' @param angle rotation angle for x-axis tick labels; passed to [rot_x()]
-#' @param xunit used to form x-axis title only if `xlab` is not provided
-#' @param xlab x-axis title; if not `NULL`, passed to [ggplot2::xlab()]
-#' @param ylab y-axis title; if not `NULL`, passed to [ggplot2::ylab()]
-#' @param log_y logical; if `TRUE` then y-axis is shown in log-scale
-#' @param plot.margin for the plot; passed [ggplot2::margin()]
+#' to [ggplot2::geom_point()].
+#' @param xbreaks x-axis (time) breaks; passed to
+#' [ggplot2::scale_x_continuous()].
+#' @param angle rotation angle for x-axis tick labels; passed to [rot_x()].
+#' @param xunit used to form x-axis title only if `xlab` is not provided.
+#' @param xlab x-axis title; if not `NULL`, passed to [ggplot2::xlab()].
+#' @param ylab y-axis title; if not `NULL`, passed to [ggplot2::ylab()].
+#' @param log_y logical; if `TRUE` then y-axis is shown in log-scale.
+#' @param plot.margin for the plot; passed [ggplot2::margin()].
 #' @param strip.text optionally, the result of [ggplot2::element_text()] to
-#' format the strip text (e.g. change the font size or padding)
-#' @param legend.position passed to [ggplot2::theme()]
-#' @param scales passed to [ggplot2::facet_wrap()]
-#' @param use_theme a theme to use for the plot
+#' format the strip text (e.g. change the font size or padding).
+#' @param legend.position passed to [ggplot2::theme()].
+#' @param scales passed to [ggplot2::facet_wrap()].
+#' @param use_theme a theme to use for the plot.
 #' @param axis.text.rel relative text size for axis text; use this to
-#' selectively decrease font size for axis tick labels
+#' selectively decrease font size for axis tick labels.
 #' @param fun a function accepting a gg object as argument and returning
-#' an updated gg object; experimental
-#' @param id_col deprecated; use `facets` argument instead
-#' @param font_size deprecated
-#' @param margin deprecated
+#' an updated gg object; if supplied, this function is applied to each plot
+#' in the output list.
+#' @param id_col deprecated; use `facets` argument instead.
+#' @param font_size deprecated.
+#' @param margin deprecated.
 #'
 #' @examples
 #' data <- pmplots_data_obs()
 #'
-#' p <- dv_pred_ipred(data, ylab="Concentration (ng/mL)", nrow=3, ncol=3)
+#' p <- dv_pred_ipred(
+#'   data,
+#'   ylab = "Concentration (ng/mL)",
+#'   nrow = 3, ncol = 3
+#' )
 #'
 #' p <- dv_pred_ipred(
 #'   data,
@@ -76,10 +79,10 @@
 #'
 #' @md
 #' @export
-dv_pred_ipred <- function(data, id_per_plot = 9, id_col = deprecated(),
+dv_pred_ipred <- function(data, id_per_plot = 9,
                           facets = "ID",
                           nrow = NULL, ncol = NULL,
-                          fun = NULL, ...) {
+                          fun = NULL, ..., id_col = deprecated()) {
 
   if(is_present(id_col)) {
     deprecate_warn(
@@ -89,17 +92,9 @@ dv_pred_ipred <- function(data, id_per_plot = 9, id_col = deprecated(),
     )
   }
 
-  if(is.numeric(nrow) && is.numeric(ncol)) {
-    if(!missing(id_per_plot) & id_per_plot != nrow*ncol) {
-      warning("updating id_per_plot to ", nrow*ncol, call. = FALSE)
-    }
-    id_per_plot <- nrow*ncol
-  }
-
   assert_that(is.character(facets))
   assert_that(length(facets) > 0)
   facets <- col_labels(facets)
-
   ans <- chunk_by_cols(data, id_per_chunk = id_per_plot, cols = unname(facets))
   out <- lapply(
     ans,
@@ -138,7 +133,7 @@ dv_pred_ipred_impl <- function(data,
                                ipred_point = TRUE,
                                lwd = 0.5,
                                size = pm_opts$scatter.size,
-                               dv_shape = 16,
+                               dv_shape = 19,
                                dv_line = FALSE,
                                dv_lwd = 0.5,
                                scales = "free",
@@ -175,6 +170,7 @@ dv_pred_ipred_impl <- function(data,
   lnes <- integer(0)
   shapes <- integer(0)
 
+  assert_that(is_named(facets))
   facets_glue <- facets[names(facets) != facets]
 
   if(!all(facets %in% names(data))) {
@@ -207,7 +203,7 @@ dv_pred_ipred_impl <- function(data,
     clrs <- c(clrs, pred_color)
     lnes <- c(lnes, pred_lty)
     pred_shape <- NA_integer_
-    if(isTRUE(pred_point)) pred_shape <- 19
+    if(isTRUE(pred_point)) pred_shape <- dv_shape
     shapes <- c(shapes, pred_shape)
     if(anyNA(data[[pred]])) {
       warning("[pmplots] removed missing values in pred column",call.=FALSE)
@@ -224,7 +220,7 @@ dv_pred_ipred_impl <- function(data,
     clrs <- c(clrs, ipred_color)
     lnes <- c(lnes, ipred_lty)
     ipred_shape <- NA_integer_
-    if(isTRUE(ipred_point)) ipred_shape <- 19
+    if(isTRUE(ipred_point)) ipred_shape <- dv_shape
     shapes <- c(shapes, ipred_shape)
     if(anyNA(data[[ipred]])) {
       warning("[pmplots] removed missing values in ipred column",call.=FALSE)
