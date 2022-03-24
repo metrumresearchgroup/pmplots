@@ -57,7 +57,7 @@ pm_axis_data <- list(
   )
 )
 
-mk_col_title <- function(what,sep="//") {
+mk_col_title <- function(what, sep = "//") {
   title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
   paste0(
     pm_axis_data[["col"]][[what]],
@@ -78,13 +78,19 @@ mk_col_title <- function(what,sep="//") {
 ##' @rdname pm_axis_functions
 ##' @name pm_axis_functions
 ##' @export
-pm_axis_tad <- function() mk_col_title("tad")
+pm_axis_tad <- function(xunit = NULL) {
+  glue_unit(mk_col_title("tad"), xunit)
+}
 ##' @rdname pm_axis_functions
 ##' @export
-pm_axis_time <- function() mk_col_title("time")
+pm_axis_time <- function(xunit = NULL) {
+  glue_unit(mk_col_title("time"), xunit)
+}
 ##' @rdname pm_axis_functions
 ##' @export
-pm_axis_tafd <- function() mk_col_title("tafd")
+pm_axis_tafd <- function(xunit = NULL) {
+  glue_unit(mk_col_title("tafd"), xunit)
+}
 ##' @rdname pm_axis_functions
 ##' @export
 pm_axis_res <- function() mk_col_title("res")
@@ -102,11 +108,16 @@ pm_axis_cwresi <- function() mk_col_title("cwresi")
 pm_axis_npde <- function() mk_col_title("npde")
 ##' @rdname pm_axis_functions
 ##' @export
-pm_axis_pred <- function() mk_col_title("pred")
+pm_axis_pred <- function(xname = NULL) {
+  glue_xname(mk_col_title("pred"), xname)
+}
 ##' @rdname pm_axis_functions
 ##' @export
-pm_axis_ipred <- function() mk_col_title("ipred")
+pm_axis_ipred <- function(xname = NULL) {
+  glue_xname(mk_col_title("ipred"), xname)
+}
 ##' @rdname pm_axis_functions
 ##' @export
-pm_axis_dv <- function() mk_col_title("dv")
-
+pm_axis_dv <- function(yname = NULL) {
+  glue_yname(mk_col_title("dv"), yname)
+}

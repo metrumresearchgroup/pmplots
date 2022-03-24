@@ -426,10 +426,20 @@ no_cwres <- function(object) {
   !(name %in% names(object))
 }
 
-glue_unit <- function(x,xunit) {
+glue_unit <- function(x, xunit) {
   if(is.null(xunit)) return(x)
   if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
-  glue::glue(x)
+  as.character(glue::glue(x))
+}
+
+glue_xname <- function(x, xname) {
+  if(is.null(xname)) return(x)
+  as.character(glue::glue(x))
+}
+
+glue_yname <- function(x, yname) {
+  if(is.null(yname)) return(x)
+  as.character(glue::glue(x))
 }
 
 charcount <- function(x,w,fx=TRUE) {
