@@ -8,12 +8,10 @@ data2 <- data
 data2[["SUBJ"]] <- data2[["ID"]]
 
 test_that("test-chunk chunk data", {
-  x <- pmplots:::chunk_by_id(data, id_per_chunk=5)
+  x <- pmplots:::chunk_by_cols(data, cols = "ID", id_per_chunk = 5)
   expect_identical(length(x), 5L)
-
-  x2 <- pmplots:::chunk_by_id(data2, id_per_chunk = 5, id_col = "SUBJ")
+  x2 <- pmplots:::chunk_by_cols(data2, id_per_chunk = 5, cols = "SUBJ")
   expect_identical(length(x), 5L)
-
 })
 
 test_that("test-chunk chunk data by multiple cols", {
@@ -23,15 +21,4 @@ test_that("test-chunk chunk data by multiple cols", {
   expect_equal(length(chunked), 2)
   tot <- sum(vapply(chunked, nrow, 1L))
   expect_equal(tot, nrow(data))
-})
-
-test_that("test-chunk chunk bad input", {
-  expect_error(pmplots:::chunk_by_id(list(), 5))
-  expect_error(pmplots:::chunk_by_id(matrix(0), 5))
-  expect_error(pmplots:::chunk_by_id(data, 0))
-  expect_error(pmplots:::chunk_by_id(data, "A"))
-  expect_error(pmplots:::chunk_by_id(data, "kyletbaron"))
-  expect_error(pmplots:::chunk_by_id(data, 26))
-  expect_is(pmplots:::chunk_by_id(data,25),"list")
-  expect_error(pmplots:::chunk_by_id(data,4,id_col="FOO"))
 })

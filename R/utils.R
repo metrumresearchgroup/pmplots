@@ -490,17 +490,10 @@ pm_grid <- function(x, ..., ncol = 2) {
 
 #' Chunk a data frame
 #'
-#' Use [chunk_by_id()] to split up a data set by the `ID` column; use
-#' [chunk_by_row()] split a data set by rows.
-#'
 #' @param data a data frame.
 #' @param id_per_chunk number of units per chunk.
-#' @param id_col character name specifying the column containing the `ID` for
-#' chunking.
-#' @param cols a character vector of columns to use for deriving `ID` to use
-#' for chunking.
-#' @param mark when populated as a character label, adds a column to the
-#' chunked data frames with that name and with value the integer group number.
+#' @param cols a character vector of one or more columns to use for deriving
+#' `ID` to use for chunking.
 #'
 #' @return
 #' A list of data frames.
@@ -508,69 +501,42 @@ pm_grid <- function(x, ..., ncol = 2) {
 #' @examples
 #' x <- expand.grid(ID = 1:10, B = rev(1:10))
 #'
-#' chunk_by_id(x, 3)
-#'
-#' chunk_by_row(x, 4)
+#' chunk_by_cols(x, 3, "ID")
 #'
 #' @keywords internal
 #' @noRd
-chunk_by_id <- function(data, id_per_chunk, id_col = "ID") {
-  if(!is.data.frame(data)) {
-    stop("data argument must be a data.frame",call.=FALSE)
-  }
-  if(!exists(id_col, data)) {
-    stop(sprintf("chunking column %s does not exist in data", id_col),call.=FALSE)
-  }
-  if(!is.numeric(id_per_chunk)) {
-    stop("id_per_chunk must be numeric",call.=FALSE)
-  }
-  if(!(id_per_chunk > 0)) {
-    stop("id_per_chunk must be greater than zero",call.=FALSE)
-  }
-  id <- data[[id_col]]
-  ids <- unique(id)
-  ntot <- length(ids)
-  if(!(id_per_chunk <= ntot)) {
-    stop("id_per_chunk must be <= number of IDs",call.=FALSE)
-  }
-  chunkn <- seq(ceiling(ntot %/% id_per_chunk)+1)
-  a <- sort(rep(chunkn, each = id_per_chunk, length.out = ntot))
-  sp <- a[match(id,ids)]
-  split.data.frame(data, sp)
-}
-
 chunk_by_cols <- function(data, id_per_chunk, cols) {
   if(!is.character(cols)) {
-    stop("`cols` must be character.")
-  }
-  if(length(cols)==1) {
-    return(chunk_by_id(data,id_per_chunk,id_col=cols))
+    stop("`cols` argument must be character.")
   }
   if(!is.data.frame(data)) {
-    stop("data argument must be a data.frame",call.=FALSE)
+    stop("`data` argument must be a data.frame.")
   }
   for(col in cols) {
     if(!exists(col, data)) {
-      stop(sprintf("chunking column %s does not exist in data", col),call.=FALSE)
+      stop(sprintf("chunking column %s does not exist in data.", col))
     }
   }
   if(!is.numeric(id_per_chunk)) {
-    stop("id_per_chunk must be numeric",call.=FALSE)
+    stop("`id_per_chunk` must be numeric.")
   }
   if(!(id_per_chunk > 0)) {
-    stop("id_per_chunk must be greater than zero",call.=FALSE)
+    stop("`id_per_chunk` must be greater than zero.")
   }
-  id <- do.call(paste, c(data[,cols,drop=FALSE], sep = " "))
-  ids <- unique(id)
-  ntot <- length(ids)
+  if(length(cols) ==1) {
+    id <- data[[cols]]
+  } else {
+    id <- do.call(paste, c(data[, cols, drop = FALSE], sep = "-@-@-"))
+  }
+  uids <- unique(id)
+  ntot <- length(uids)
   if(!(id_per_chunk <= ntot)) {
-    stop("id_per_chunk must be <= number of unique values in `cols`",call.=FALSE)
+    stop("id_per_chunk must be <= number of unique values in `cols`.")
   }
-  chunkn <- seq(ceiling(ntot %/% id_per_chunk)+1)
+  chunkn <- seq(ceiling(ntot %/% id_per_chunk) + 1)
   a <- sort(rep(chunkn, each = id_per_chunk, length.out = ntot))
-  sp <- a[match(id,ids)]
+  sp <- a[match(id, uids)]
   split.data.frame(data, sp)
 }
-
 
 force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')
