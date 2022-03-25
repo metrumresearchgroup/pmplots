@@ -25,7 +25,7 @@ test_that("cwresi plots use cwresi titles", {
   expect_true(grepl("CWRESI", x))
 })
 
-test_that("glue in axis data", {
+test_that("pm-axis glue in axis data", {
   a <- pm_axis_time("hr")
   expect_equal(a, "TIME//Time (hr)")
   b <- pm_axis_tad("hour")
