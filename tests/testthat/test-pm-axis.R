@@ -24,3 +24,18 @@ test_that("cwresi plots use cwresi titles", {
   x <- eval(formals(cwresi_q)$x)
   expect_true(grepl("CWRESI", x))
 })
+
+test_that("glue in axis data", {
+  a <- pm_axis_time("hr")
+  expect_equal(a, "TIME//Time (hr)")
+  b <- pm_axis_tad("hour")
+  expect_equal(b, "TAD//Time after dose (hour)")
+  c <- pm_axis_tafd("h")
+  expect_equal(c, "TAFD//Time after first dose (h)")
+  d <- pm_axis_dv("conc (ng/mL)")
+  expect_equal(d, "DV//Observed conc (ng/mL)")
+  e <- pm_axis_pred("conc (ng/mL)")
+  expect_equal(e, "PRED//Population predicted conc (ng/mL)")
+  f <- pm_axis_ipred("conc (ng/mL)")
+  expect_equal(f, "IPRED//Individual predicted conc (ng/mL)")
+})

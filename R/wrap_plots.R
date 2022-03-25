@@ -217,7 +217,7 @@ wrap_cont_cat <- function(df, x, y, ...,
       scales = scales,
       ncol = ncol,
       use_labels = TRUE,
-      label_fun = labeller
+      labeller = labeller
     )
     return(ans)
   }
