@@ -1,0 +1,67 @@
+PMP-S001:
+  name: Upper and lower functions are not used in pairs_plot
+  description: As a user, I want to be able to pass custom functions for upper and
+    lower panels in pairs_plot.  These arguments exist, but only the default internal
+    functions are used.
+  ProductRisk: low-risk
+  tests: PMP-TEST-029
+PMP-S002:
+  name: Option-based control over upper panels in pairs plots
+  description: As a user, I want to be able to control font size, prefix, font color,
+    font face, number of digits when reporting correlation in upper panels of pairs
+    plots
+  ProductRisk: low-risk
+  tests: PMP-TEST-032
+PMP-S003:
+  name: Faceted boxplot
+  description: As a user, I want to make a faceted boxplot
+  ProductRisk: low-risk
+  tests: PMP-TEST-079
+PMP-S004:
+  name: Drop half-log tick marks as default for dv_pred and dv_ipred
+  description: As a user, I want full log scale increment tick marks for dv/pred and
+    dv/ipred plots with the option for half-log incremented tick marks
+  ProductRisk: low-risk
+  tests: PMP-TEST-036
+PMP-S005:
+  name: Drop upper and lower reference lines for NPDE plots
+  description: As a user, I want pmplots to not add reference lines to npde plots
+    at -3 and 3 by default
+  ProductRisk: low-risk
+  tests: PMP-TEST-014
+PMP-S006:
+  name: Refactor issues with pairs upper and lower
+  description: As a user, I want to customize the lower and diagonal plots that appear
+    in `pairs_plot`
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-030
+  - PMP-TEST-031
+PMP-S007:
+  name: Expose alpha in scatt
+  description: As a user, I want to control the value of alpha in a scatter plot
+  ProductRisk: low-risk
+  tests: PMP-TEST-056
+PMP-S008:
+  name: Pass labeller to split_plot
+  description: As a user, I want split_plot to use TeX labeller by default
+  ProductRisk: low-risk
+  tests: PMP-TEST-061
+PMP-S009:
+  name: Points are jittered in both directions when overlaying on boxplot
+  description: As a user, I want pmplots to jitter points only in the x direction
+    when overlaying on boxplot
+  ProductRisk: low-risk
+  tests: PMP-TEST-002
+PMP-S010:
+  name: Use patchwork to drive pm_grid
+  description: As a user, I want the patchwork package to put plots in a grid using
+    pm_grid
+  ProductRisk: low-risk
+  tests: PMP-TEST-015
+PMP-S011:
+  name: Pass and glue extra axis title info
+  description: As a user, I want to pass in axis title specifics and have the interpolated
+    into the axis title.
+  ProductRisk: low-risk
+  tests: pm-axis glue in axis data

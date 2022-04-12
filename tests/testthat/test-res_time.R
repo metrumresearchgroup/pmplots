@@ -37,7 +37,7 @@ expect_y <- function(object, y, name) {
 }
 
 
-test_that("res time", {
+test_that("res time [PMP-TEST-053]", {
 
   p <- res_time(df)
   expect_is(p, "gg")
@@ -102,7 +102,7 @@ test_that("res time", {
 
 })
 
-test_that("npde", {
+test_that("npde [PMP-TEST-054]", {
   p <- npde_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "NPDE")

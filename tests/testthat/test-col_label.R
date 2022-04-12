@@ -2,7 +2,7 @@ library(testthat)
 
 context("test-col_label")
 
-test_that("col_label", {
+test_that("col_label [PMP-TEST-005]", {
 
   x <- col_label("WT // Weight (kg)")
   expect_length(x,2)
@@ -31,7 +31,7 @@ test_that("col_label", {
   expect_is(pmplots:::parse_label("foo $\\mu$"), "expression")
 })
 
-test_that("punctuation in col-label issue-72", {
+test_that("punctuation in col-label issue-72 [PMP-TEST-006]", {
   x <- col_label("wt_baseline")
   expect_equal(x[1], "wt_baseline")
   expect_equal(x[2], "wt_baseline")

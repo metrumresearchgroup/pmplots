@@ -4,7 +4,7 @@ context("test-required")
 
 df <- dplyr::filter(pmplots_data(),EVID==0)
 
-test_that("Functions fail when col doesn't exist", {
+test_that("Functions fail when col doesn't exist [PMP-TEST-051]", {
 
   df$WRES <- NULL
   df$IPRED <- NULL
@@ -20,7 +20,7 @@ test_that("Functions fail when col doesn't exist", {
 })
 
 
-test_that("Column type is correct", {
+test_that("Column type is correct [PMP-TEST-052]", {
 
   expect_error(cont_cat(df, x="WT//Weight", y="AST//AST"),
                "is required to be character")
