@@ -8,7 +8,7 @@ etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 p <- dv_pred(df)
 p <- ggplot(df, aes(TIME,DV)) + geom_point()
 
-test_that("layer_xx", {
+test_that("layer_xx [PMP-TEST-009]", {
   x <- layer_hs(p, hline = NULL)
   expect_equal(x, layer_s(p))
   x <- layer_hs(p, smooth = NULL)
@@ -27,7 +27,7 @@ test_that("layer_xx", {
   expect_is(x,"gg")
 })
 
-test_that("extra layers", {
+test_that("extra layers [PMP-TEST-010]", {
   x <- cwresi_hist(df)  %>% layer_dnorm()
   expect_is(x,"gg")
 
@@ -40,7 +40,7 @@ test_that("extra layers", {
 })
 
 
-test_that("gh", {
+test_that("gh [PMP-TEST-011]", {
   x <- pmplots:::gh()
   expect_identical(names(x), c("yintercept", "lwd", "col", "lty"))
   expect_identical(x$yintercept,0)
@@ -49,7 +49,7 @@ test_that("gh", {
 })
 
 
-test_that("gs", {
+test_that("gs [PMP-TEST-012]", {
   x <- pmplots:::gs()
   expect_is(x,"list")
   expect_identical(names(x), c("method", "se", "lty", "lwd", "col"))
@@ -59,7 +59,7 @@ test_that("gs", {
   expect_identical(x$col,"#3366FF")
 })
 
-test_that("ga", {
+test_that("ga [PMP-TEST-013]", {
   x <- pmplots:::ga()
   expect_is(x,"list")
   expect_identical(names(x), c("intercept", "slope", "col", "lwd", "lty"))
@@ -68,7 +68,7 @@ test_that("ga", {
   expect_identical(x$slope,1)
 })
 
-test_that("npde_ref", {
+test_that("npde_ref [PMP-TEST-014]", {
   x <- npde_ref()
   expect_is(x,"list")
   expect_identical(names(x), c("yintercept", "lwd"))
