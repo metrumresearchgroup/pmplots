@@ -79,8 +79,7 @@
 #'
 #' @md
 #' @export
-dv_pred_ipred <- function(data, id_per_plot = 9,
-                          facets = "ID",
+dv_pred_ipred <- function(data, id_per_plot = 9, facets = "ID",
                           nrow = NULL, ncol = NULL,
                           fun = NULL, ..., id_col = deprecated()) {
 
@@ -189,7 +188,7 @@ dv_pred_ipred_impl <- function(data,
     shapes <- c(shapes, dv_shape)
     lnes <- c(lnes, 0)
     if(anyNA(data[[dv]])) {
-      warning("[pmplots] removed missing values in dv column",call.=FALSE)
+      warning("[pmplots] removed missing values in dv column", call.=FALSE)
     }
   }
 
@@ -236,7 +235,8 @@ dv_pred_ipred_impl <- function(data,
   x <- x[1]
   yl <- "value"
 
-  require_numeric(data,x[1])
+  require_numeric(data, x[1])
+
   if(is.character(ylab)) yl <- ylab
   if(is.character(xlab)) xl <- xlab
 
@@ -262,15 +262,15 @@ dv_pred_ipred_impl <- function(data,
   names(shapes) <- unname(ycols)
 
   p <-
-    ggplot(data, aes(x=.data[[x[1]]], y=.data$value)) +
-    scale_color_manual(name="", values = clrs) +
-    scale_linetype_manual(name="", values = lnes) +
-    scale_shape_manual(name="", values = shapes) +
+    ggplot(data, aes(x = .data[[x[1]]], y = .data$value)) +
+    scale_color_manual(name = "", values = clrs) +
+    scale_linetype_manual(name = "", values = lnes) +
+    scale_shape_manual(name = "", values = shapes) +
     geom_line(aes(lty =    .data$name, col = .data$name), lwd = lwd) +
     geom_point(aes(shape = .data$name, col = .data$name), na.rm = TRUE, size = size)
 
   if(dv_line) {
-    dfline <- dplyr::filter(data,.data$name == dv)
+    dfline <- filter(data, .data$name == dv)
     p <- p + geom_line(data = dfline, col = dv_color, lwd = dv_lwd)
   }
 
@@ -309,5 +309,5 @@ dv_pred_ipred_impl <- function(data,
 #' @export
 do_dv_pred_ipred <- function(data, options=list()) {
   options[["data"]] <- data
-  do.call(dv_pred_ipred,options)
+  do.call(dv_pred_ipred, options)
 }
