@@ -16,3 +16,4 @@ inst/examples/img
 _pkgdown\.yml
 vignettes/complete\.Rmd
 vignettes/*\.pdf
+inst/examples/*\.html

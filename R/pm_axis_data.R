@@ -8,9 +8,9 @@
 #'
 #' @export
 pm_axis <- function(what) {
-  assertthat::assert_that(
-    exists(what,pm_axis_data$col)
-  )
+  if(!what %in% names(pm_axis_data$col)) {
+    stop(glue("cannot find axis data for `{what}`."))
+  }
   mk_col_title(what)
 }
 #' @export

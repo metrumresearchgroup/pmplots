@@ -39,3 +39,10 @@ test_that("pm-axis glue in axis data", {
   f <- pm_axis_ipred("conc (ng/mL)")
   expect_equal(f, "IPRED//Individual predicted conc (ng/mL)")
 })
+
+test_that("pm-axis error when asking for undefined item", {
+  expect_error(
+    pm_axis("fop"),
+    regexp = "cannot find axis data for `fop`"
+  )
+})
