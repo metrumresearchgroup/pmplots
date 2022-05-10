@@ -9,11 +9,12 @@
 dv_pred_ipred(
   data,
   id_per_plot = 9,
-  id_col = "ID",
+  facets = "ID",
   nrow = NULL,
   ncol = NULL,
   fun = NULL,
-  ...
+  ...,
+  id_col = deprecated()
 )
 
 dv_pred_ipred_impl(
@@ -22,28 +23,33 @@ dv_pred_ipred_impl(
   dv = pm_axis_dv(),
   pred = pm_axis_pred(),
   ipred = pm_axis_ipred(),
-  id_col = "USUBJID",
+  facets = "ID",
+  id_col = deprecated(),
   xbreaks = waiver(),
-  xunit = opts$time.unit,
+  xunit = pm_opts$time.unit,
   xlab = NULL,
   ylab = NULL,
   angle = NULL,
-  font_size = 7,
-  margin = 1,
+  strip.text = element_text(),
+  font_size = deprecated(),
+  margin = deprecated(),
+  plot.margin = NULL,
   legend.position = "top",
   pred_lty = 2,
   ipred_lty = 1,
-  lwd = 0.7,
-  size = opts$scatter.size,
-  dv_shape = 1,
+  pred_point = TRUE,
+  ipred_point = TRUE,
+  lwd = 0.5,
+  size = pm_opts$scatter.size,
+  dv_shape = 19,
   dv_line = FALSE,
   dv_lwd = 0.5,
   scales = "free",
   log_y = FALSE,
-  use_theme = theme_plain(),
+  use_theme = pm_theme(),
   dv_color = "black",
-  ipred_color = "firebrick",
-  pred_color = "darkslateblue",
+  ipred_color = "red2",
+  pred_color = "blue2",
   ncol = NULL,
   nrow = NULL,
   axis.text.rel = NULL,
@@ -53,95 +59,121 @@ dv_pred_ipred_impl(
 do_dv_pred_ipred(data, options = list())
 }
 \arguments{
-\item{data}{the data frame to plot}
+\item{data}{the data frame to plot.}
 
-\item{id_per_plot}{number of subjects to include in each page}
+\item{id_per_plot}{number of unique combinations of \code{facets} columns to
+include on each page.}
 
-\item{id_col}{the column name for the subject identifier; the value will
-be displayed in the plot strip}
+\item{facets}{a character vector of column names to use for faceting the
+plot, passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}; if passed in \code{\link[=col_label]{col_label()}} format,
+then the column data is modified with a call to \code{\link[glue:glue]{glue::glue_data()}}, so that
+the strip label is more informative; see examples.}
 
-\item{nrow}{number of rows in the plot grid; passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}}
+\item{nrow}{number of rows in the plot grid; passed to
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}.}
 
-\item{ncol}{number of columns in the plot grid; passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}}
+\item{ncol}{number of columns in the plot grid; passed to
+\code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}.}
 
 \item{fun}{a function accepting a gg object as argument and returning
-an updated gg object; experimental}
+an updated gg object; if supplied, this function is applied to each plot
+in the output list.}
 
-\item{...}{additional arguments passed to \link{dv_pred_ipred_impl}}
+\item{...}{additional arguments passed to \code{\link[=dv_pred_ipred_impl]{dv_pred_ipred_impl()}}.}
 
-\item{x}{the time-axis column, in \link{col_label} format; the title portion is
-used for the x-axis title along with \code{xunit}; see also the \code{xlab} argument}
+\item{id_col}{deprecated; use \code{facets} argument instead.}
 
-\item{dv}{the \code{DV} column, in \link{col_label} format; the title portion is used
-for the y-axis title; see also the \code{ylab} argument}
+\item{x}{the time-axis column, in
+\code{\link[=col_label]{col_label()}} format; the title portion is
+used for the x-axis title along with \code{xunit}; see also the \code{xlab} argument.}
 
-\item{pred}{the name of the \code{PRED} column; \link{col_label} format is allowed, but
-the label portion is discarded}
+\item{dv}{the \code{DV} column, in \code{\link[=col_label]{col_label()}} format; the title portion is used
+for the y-axis title; see also the \code{ylab} argument.}
 
-\item{ipred}{the name of the \code{IPRED} column; \link{col_label} format is allowed,
-but the label portion is discarded}
+\item{pred}{the name of the \code{PRED} column; \code{\link[=col_label]{col_label()}} format is allowed,
+but the label portion is discarded.}
 
-\item{xbreaks}{x-axis breaks; passed to \link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous}}
+\item{ipred}{the name of the \code{IPRED} column; \code{\link[=col_label]{col_label()}} format is allowed,
+but the label portion is discarded.}
 
-\item{xunit}{used to form x-axis title only if \code{xlab} is not provided}
+\item{xbreaks}{x-axis (time) breaks; passed to
+\code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}.}
 
-\item{xlab}{x-axis title; if not \code{NULL}, passed to \link[ggplot2:labs]{ggplot2::xlab}}
+\item{xunit}{used to form x-axis title only if \code{xlab} is not provided.}
 
-\item{ylab}{y-axis title; if not \code{NULL}, passed to \link[ggplot2:labs]{ggplot2::ylab}}
+\item{xlab}{x-axis title; if not \code{NULL}, passed to \code{\link[ggplot2:labs]{ggplot2::xlab()}}.}
 
-\item{angle}{rotation angle for x-axis tick labels; passed to \link{rot_x}}
+\item{ylab}{y-axis title; if not \code{NULL}, passed to \code{\link[ggplot2:labs]{ggplot2::ylab()}}.}
 
-\item{font_size}{the font size for strip text}
+\item{angle}{rotation angle for x-axis tick labels; passed to \code{\link[=rot_x]{rot_x()}}.}
 
-\item{margin}{the top and bottom margin for the plot strip; passed to
-\link[ggplot2:element]{ggplot2::margin} as \code{t} and \code{b}}
+\item{strip.text}{optionally, the result of \code{\link[ggplot2:element]{ggplot2::element_text()}} to
+format the strip text (e.g. change the font size or padding).}
 
-\item{legend.position}{passed to \link[ggplot2:theme]{ggplot2::theme}}
+\item{font_size}{deprecated.}
 
-\item{pred_lty}{\code{PRED} linetype; passed to \link[ggplot2:geom_path]{ggplot2::geom_line}}
+\item{margin}{deprecated.}
 
-\item{ipred_lty}{\code{IPRED} linetype; passed to \link[ggplot2:geom_path]{ggplot2::geom_line}}
+\item{plot.margin}{for the plot; passed \code{\link[ggplot2:element]{ggplot2::margin()}}.}
 
-\item{lwd}{line width for \code{PRED} and \code{IPRED}; passed to \link[ggplot2:geom_path]{ggplot2::geom_line}}
+\item{legend.position}{passed to \code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
-\item{size}{size of shape for \code{DV}; passed to \link[ggplot2:geom_point]{ggplot2::geom_point}}
+\item{pred_lty}{\code{PRED} linetype; passed to \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}.}
 
-\item{dv_shape}{shape for \code{DV}; passed to \link[ggplot2:geom_point]{ggplot2::geom_point}}
+\item{ipred_lty}{\code{IPRED} linetype; passed to \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}.}
+
+\item{pred_point}{logical; should points be plotted for \code{PRED}?}
+
+\item{ipred_point}{logical; should points be plotted for \code{IPRED}?}
+
+\item{lwd}{line width for \code{PRED} and \code{IPRED}; passed to
+\code{\link[ggplot2:geom_path]{ggplot2::geom_line()}}.}
+
+\item{size}{size of shape for \code{DV}, \code{IPRED} and \code{PRED}; passed
+to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
+
+\item{dv_shape}{shape for \code{DV}; passed to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}.}
 
 \item{dv_line}{logical; if \code{TRUE} then a line is added to the plot connecting
-\code{DV} points}
+\code{DV} points.}
 
-\item{dv_lwd}{line width for \code{DV}; passed to \link[ggplot2:geom_path]{ggplot2::geom_line} as \code{lwd}}
+\item{dv_lwd}{line width for \code{DV}; passed to \code{\link[ggplot2:geom_path]{ggplot2::geom_line()}} as
+\code{lwd}.}
 
-\item{scales}{passed to \link[ggplot2:facet_wrap]{ggplot2::facet_wrap}}
+\item{scales}{passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}.}
 
-\item{log_y}{logical; if \code{TRUE} then y-axis is shown in log-scale}
+\item{log_y}{logical; if \code{TRUE} then y-axis is shown in log-scale.}
 
-\item{use_theme}{a theme to use for the plot}
+\item{use_theme}{a theme to use for the plot.}
 
-\item{dv_color}{color to use for \code{DV} points}
+\item{dv_color}{color to use for \code{DV} points.}
 
-\item{ipred_color}{color to use for \code{IPRED} line}
+\item{ipred_color}{color to use for \code{IPRED} line.}
 
-\item{pred_color}{color to use for \code{PRED} line}
+\item{pred_color}{color to use for \code{PRED} line.}
 
-\item{axis.text.rel}{relative text size for axis text; use this to selectively
-decrease font size for axis tick labels}
+\item{axis.text.rel}{relative text size for axis text; use this to
+selectively decrease font size for axis tick labels.}
 
 \item{options}{a named list of options to pass to \link{dv_pred_ipred}}
 }
 \description{
-\code{DV} is plotted with a symbol while \code{PRED} and \code{IPRED} are plotted with lines.
-The plot is faceted by unique individual identifier (like \code{ID} or \code{USUBJID}).
-}
-\details{
-if both \code{nrow} and \code{ncol} are supplied and numeric, \code{id_per_plot} will be set
-to \code{nrow*ncol}.
+\code{DV} is plotted with a symbol while \code{PRED} and \code{IPRED} are plotted with lines
+and symbols. The plot is faceted by unique individual identifier (like \code{ID}
+or \code{USUBJID}) as well as other faceting variables.
 }
 \examples{
-
 data <- pmplots_data_obs()
 
-p <- dv_pred_ipred(data, ylab="Concentration (ng/mL)", nrow=3, ncol=3)
+p <- dv_pred_ipred(
+  data,
+  ylab = "Concentration (ng/mL)",
+  nrow = 3, ncol = 3
+)
+
+p <- dv_pred_ipred(
+  data,
+  facets = c("ID", "STUDYc//Study: {STUDYc}")
+)
 
 }

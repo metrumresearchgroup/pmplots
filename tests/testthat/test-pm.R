@@ -289,8 +289,8 @@ test_that("dv_pred_ipred issue-6 [PMP-TEST-050]", {
   expect_is(p[[1]],"gg")
   p2 <- do_dv_pred_ipred(df, options = list(nrow = 5, ncol =3))
   expect_equivalent(p,p2)
-  expect_error(dv_pred_ipred(df, id_col = "USUBJID"))
+  expect_error(dv_pred_ipred(df, facets = "USUBJID"))
   df[["DV"]][10] <- NA_real_
-  expect_warning(dv_pred_ipred(df),regexp="removed missing values in dv column")
+  expect_warning(dv_pred_ipred(df), regexp="removed missing values in dv column")
 })
 
