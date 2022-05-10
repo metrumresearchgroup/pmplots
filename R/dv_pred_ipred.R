@@ -48,7 +48,7 @@
 #' @param xlab x-axis title; if not `NULL`, passed to [ggplot2::xlab()].
 #' @param ylab y-axis title; if not `NULL`, passed to [ggplot2::ylab()].
 #' @param log_y logical; if `TRUE` then y-axis is shown in log-scale.
-#' @param plot.margin for the plot; passed [ggplot2::margin()].
+#' @param plot.margin for the plot; passed [ggplot2::theme()].
 #' @param strip.text optionally, the result of [ggplot2::element_text()] to
 #' format the strip text (e.g. change the font size or padding).
 #' @param legend.position passed to [ggplot2::theme()].
@@ -293,7 +293,7 @@ dv_pred_ipred_impl <- function(data,
     axtx <- element_text(size = ggplot2::rel(axis.text.rel))
     use_theme <- use_theme + theme(axis.text = axtx)
   }
-  if(inherits(margin, "margin")) {
+  if(inherits(plot.margin, "margin")) {
     use_theme <- use_theme + theme(plot.margin = plot.margin)
   }
 

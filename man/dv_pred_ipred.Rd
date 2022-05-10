@@ -114,7 +114,7 @@ format the strip text (e.g. change the font size or padding).}
 
 \item{margin}{deprecated.}
 
-\item{plot.margin}{for the plot; passed \code{\link[ggplot2:element]{ggplot2::margin()}}.}
+\item{plot.margin}{for the plot; passed \code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
 \item{legend.position}{passed to \code{\link[ggplot2:theme]{ggplot2::theme()}}.}
 
