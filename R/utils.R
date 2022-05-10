@@ -498,31 +498,54 @@ pm_grid <- function(x, ..., ncol = 2) {
   patchwork::wrap_plots(x, ncol = ncol, ...)
 }
 
-chunk_by_id <- function(data,nchunk,id_col="ID",mark=NULL) {
+#' Chunk a data frame
+#'
+#' @param data a data frame.
+#' @param id_per_chunk number of units per chunk.
+#' @param cols a character vector of one or more columns to use for deriving
+#' `ID` to use for chunking.
+#'
+#' @return
+#' A list of data frames.
+#'
+#' @examples
+#' x <- expand.grid(ID = 1:10, B = rev(1:10))
+#'
+#' chunk_by_cols(x, 3, "ID")
+#'
+#' @keywords internal
+#' @noRd
+chunk_by_cols <- function(data, id_per_chunk, cols) {
+  if(!is.character(cols)) {
+    stop("`cols` argument must be character.")
+  }
   if(!is.data.frame(data)) {
-    stop("data argument must be a data.frame")
+    stop("`data` argument must be a data.frame.")
   }
-  if(!exists(id_col,data)) {
-    stop(sprintf("chunking column %s does not exist in data", id_col))
+  for(col in cols) {
+    if(!exists(col, data)) {
+      stop(sprintf("chunking column %s does not exist in data.", col))
+    }
   }
-  if(!is.numeric(nchunk)) {
-    stop("nchunk must be numeric")
+  if(!is.numeric(id_per_chunk)) {
+    stop("`id_per_chunk` must be numeric.")
   }
-  if(!(nchunk > 0)) {
-    stop("nchunk must be greater than zero")
+  if(!(id_per_chunk > 0)) {
+    stop("`id_per_chunk` must be greater than zero.")
   }
-  id <- data[[id_col]]
-  ids <- unique(id)
-  ntot <- length(ids)
-  if(!(nchunk <= ntot)) {
-    stop("nchunk must be <= number of IDs")
+  if(length(cols) ==1) {
+    id <- data[[cols]]
+  } else {
+    id <- do.call(paste, c(data[, cols, drop = FALSE], sep = "-@-@-"))
   }
-  nper <- ceiling(ntot/nchunk)
-  a <- rep(seq(nper), each = nchunk, length.out = ntot)
-  sp <- a[match(id,ids)]
-  if(is.character(mark)) {
-    data[[mark]] <- sp
+  uids <- unique(id)
+  ntot <- length(uids)
+  if(!(id_per_chunk <= ntot)) {
+    stop("id_per_chunk must be <= number of unique values in `cols`.")
   }
+  chunkn <- seq(ceiling(ntot %/% id_per_chunk) + 1)
+  a <- sort(rep(chunkn, each = id_per_chunk, length.out = ntot))
+  sp <- a[match(id, uids)]
   split.data.frame(data, sp)
 }
 

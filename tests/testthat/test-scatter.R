@@ -4,7 +4,7 @@ context("test-scatter")
 
 df <- pmplots_data_obs()
 
-test_that("vector inputs for cont_cont", {
+test_that("vector inputs for cont_cont [PMP-TEST-055]", {
   x <- c("ALB", "BMI", "SCR")
   y <- c("CRCL", "AAG")
   ans <- cont_cont(df,x,y[1])
@@ -15,7 +15,7 @@ test_that("vector inputs for cont_cont", {
   expect_length(ans,length(x)*length(y))
 })
 
-test_that("set alpha in scatter plot", {
+test_that("set alpha in scatter plot [PMP-TEST-056]", {
   p1 <- dv_pred(df[1:20,], alpha = 0.25)
   layerd <- suppressMessages(layer_data(p1))
   expect_true(all(layerd$alpha==0.25))

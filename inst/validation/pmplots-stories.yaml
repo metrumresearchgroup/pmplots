@@ -1,0 +1,206 @@
+PMP-S001:
+  name: Upper and lower functions are not used in pairs_plot
+  description: As a user, I want to be able to pass custom functions for upper and
+    lower panels in pairs_plot.  These arguments exist, but only the default internal
+    functions are used.
+  ProductRisk: low-risk
+  tests: PMP-TEST-029
+PMP-S002:
+  name: Option-based control over upper panels in pairs plots
+  description: As a user, I want to be able to control font size, prefix, font color,
+    font face, number of digits when reporting correlation in upper panels of pairs
+    plots
+  ProductRisk: low-risk
+  tests: PMP-TEST-032
+PMP-S003:
+  name: Faceted boxplot
+  description: As a user, I want to make a faceted boxplot
+  ProductRisk: low-risk
+  tests: PMP-TEST-079
+PMP-S004:
+  name: Drop half-log tick marks as default for dv_pred and dv_ipred
+  description: As a user, I want full log scale increment tick marks for dv/pred and
+    dv/ipred plots with the option for half-log incremented tick marks
+  ProductRisk: low-risk
+  tests: PMP-TEST-036
+PMP-S005:
+  name: Drop upper and lower reference lines for NPDE plots
+  description: As a user, I want pmplots to not add reference lines to npde plots
+    at -3 and 3 by default
+  ProductRisk: low-risk
+  tests: PMP-TEST-014
+PMP-S006:
+  name: Refactor issues with pairs upper and lower
+  description: As a user, I want to customize the lower and diagonal plots that appear
+    in `pairs_plot`
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-030
+  - PMP-TEST-031
+PMP-S007:
+  name: Expose alpha in scatt
+  description: As a user, I want to control the value of alpha in a scatter plot
+  ProductRisk: low-risk
+  tests: PMP-TEST-056
+PMP-S008:
+  name: Pass labeller to split_plot
+  description: As a user, I want split_plot to use TeX labeller by default
+  ProductRisk: low-risk
+  tests: PMP-TEST-061
+PMP-S009:
+  name: Points are jittered in both directions when overlaying on boxplot
+  description: As a user, I want pmplots to jitter points only in the x direction
+    when overlaying on boxplot
+  ProductRisk: low-risk
+  tests: PMP-TEST-002
+PMP-S010:
+  name: Use patchwork to drive pm_grid
+  description: As a user, I want the patchwork package to put plots in a grid using
+    pm_grid
+  ProductRisk: low-risk
+  tests: PMP-TEST-015
+PMP-S011:
+  name: Pass and glue extra axis title info
+  description: As a user, I want to pass in axis title specifics and have the interpolated
+    into the axis title.
+  ProductRisk: low-risk
+  tests: pm-axis glue in axis data
+PMP-S012:
+  name: Create dv_pred(), dv_preds(), and dv_ipred() plots
+  description: As a user, I want to generate dv_pred and dv_ipred plots
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-007
+  - PMP-TEST-009
+  - PMP-TEST-036
+  - PMP-TEST-052
+PMP-S013:
+  name: Create dv_pred_ipred(), dv_pred_ipred_impl(), and do_dv_pred_ipred() plots
+  description: As a user, I want to generate dv_pred_ipred, dv_pred_ipred_impl, and do_dv_pred_ipred plots
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-050
+PMP-S014:
+  name: Create dv_time(), dv_tafd(), and dv_tad() plots
+  description: As a user, I want to generate dv_time, dv_tafd, and dv_tad plots
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-034
+  - PMP-TEST-035
+  - PMP-TEST-056
+  - PMP-TEST-069
+PMP-S015:
+  name: Create pairs_plot() and eta_pairs() plots
+  description: As a user, I want to create pair plots, showing the correlation and distribution of each parameter.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-027
+  - PMP-TEST-028
+  - PMP-TEST-029
+  - PMP-TEST-030
+  - PMP-TEST-031
+  - PMP-TEST-032
+  - PMP-TEST-042
+  - PMP-TEST-043
+  - PMP-TEST-049
+PMP-S016:
+  name: Plot residuals or NPDE versus predicted values
+  description: As a user, I want to plot residuals or NPDE versus predicted values.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-033
+  - PMP-TEST-037
+  - PMP-TEST-044
+  - PMP-TEST-051
+  - PMP-TEST-052
+  - PMP-TEST-053
+  - PMP-TEST-054
+  - PMP-TEST-062
+PMP-S017:
+  name: QQ plots for conditional residuals or NPDE
+  description: As a user, I want to generate QC plots for conditional residuals or NPDE.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-033
+  - PMP-TEST-044
+PMP-S018:
+  name: Scatter plots
+  description: As a user, I want to generate scatter plots
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-056
+PMP-S019:
+  name: Split and plot
+  description: As a user, I want to be able to split a data frame on a single factor and create a plot from each chunk
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-057
+  - PMP-TEST-058
+  - PMP-TEST-059
+  - PMP-TEST-060
+  - PMP-TEST-061
+PMP-S020:
+  name: Wrap plots
+  description: As a user, I want to be able to facet plots from long tables
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-070
+  - PMP-TEST-071
+  - PMP-TEST-072
+  - PMP-TEST-073
+  - PMP-TEST-074
+  - PMP-TEST-075
+  - PMP-TEST-076
+  - PMP-TEST-077
+  - PMP-TEST-078
+  - PMP-TEST-079
+PMP-S021:
+  name: Plot continious data versus time
+  description: As a user, I want to plot continious data (and residuals) versus time.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-051
+  - PMP-TEST-052
+  - PMP-TEST-053
+  - PMP-TEST-054
+  - PMP-TEST-062
+PMP-S022:
+  name: Plot residuals versus continous or categorical variables
+  description: As a user, I want to plot residuals versus continous or categorical variables.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-033
+  - PMP-TEST-038
+  - PMP-TEST-039
+PMP-S023:
+  name: Plot histograms
+  description: As a user, I want to plot histograms.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-010
+  - PMP-TEST-040
+  - PMP-TEST-041
+  - PMP-TEST-074
+PMP-S024:
+  name: List plots
+  description: As a user, I want to create list plots.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-016
+  - PMP-TEST-017
+  - PMP-TEST-018
+  - PMP-TEST-047
+PMP-S025:
+  name: Coninuous and categorical plots
+  description: As a user, I want to plot continuous variables against categorical variables.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-001
+  - PMP-TEST-002
+  - PMP-TEST-003
+PMP-S026:
+  name: Example datasets
+  description: As a user, I want access to example datasets.
+  ProductRisk: low-risk
+  tests:
+  - PMP-TEST-008

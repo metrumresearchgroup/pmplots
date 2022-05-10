@@ -2,7 +2,7 @@ library(testthat)
 
 context("test-pm-axis")
 
-test_that("cwresi plots use cwresi titles", {
+test_that("cwresi plots use cwresi titles [PMP-TEST-033]", {
   call_formals_y <- function(fun) {
     eval(formals(fun)$y)
   }

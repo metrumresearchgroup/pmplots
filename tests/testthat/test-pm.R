@@ -34,7 +34,7 @@ expect_y <- function(object, y, name) {
   expect(identical(act,expected), "y-axis elements are not correct.")
 }
 
-test_that("check", {
+test_that("check [PMP-TEST-034]", {
   p <- dv_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "DV")
@@ -42,7 +42,7 @@ test_that("check", {
 })
 
 
-test_that("dv time", {
+test_that("dv time [PMP-TEST-035]", {
   p <- dv_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "DV")
@@ -57,7 +57,7 @@ test_that("dv time", {
   expect_is(p,"gg")
 })
 
-test_that("dv pred", {
+test_that("dv pred [PMP-TEST-036]", {
   p <- dv_pred(df, yname="NoDoze (ng/ml)")
   expect_is(p, "gg")
   expect_labels(p, "PRED", "DV")
@@ -90,7 +90,7 @@ test_that("dv pred", {
   expect_is(p2, "gg")
 })
 
-test_that("red pred", {
+test_that("red pred [PMP-TEST-037]", {
   p <- res_pred(df)
   expect_is(p, "gg")
   expect_labels(p, "PRED", "RES")
@@ -107,7 +107,7 @@ test_that("red pred", {
   expect_titles(p, "Population predicted value", "CWRES with interaction")
 })
 
-test_that("res cont", {
+test_that("res cont [PMP-TEST-038]", {
   p <- cwresi_cont(df, x="WT//Weight (kg)")
   expect_is(p, "gg")
   expect_labels(p, "WT", "CWRESI")
@@ -130,7 +130,7 @@ test_that("res cont", {
 })
 
 
-test_that("res cat", {
+test_that("res cat [PMP-TEST-039]", {
   p <- res_cat(df, x="STUDYc//Study")
   expect_is(p, "gg")
   expect_labels(p, "STUDYc", "RES")
@@ -147,7 +147,7 @@ test_that("res cat", {
   expect_titles(p, "Study", "CWRES with interaction")
 })
 
-test_that("eta cat cont hist", {
+test_that("eta cat cont hist [PMP-TEST-040]", {
   p <- eta_hist(df,etas)
   expect_is(p, "list")
   p <- p[[1]]
@@ -169,7 +169,7 @@ test_that("eta cat cont hist", {
 
 
 
-test_that("res hist", {
+test_that("res hist [PMP-TEST-041]", {
   p <- wres_hist(df)
   expect_is(p, "gg")
   expect_x(p, "WRES", "Weighted residual")
@@ -180,7 +180,7 @@ test_that("res hist", {
 })
 
 
-test_that("eta pairs", {
+test_that("eta pairs [PMP-TEST-042]", {
   p <- eta_pairs(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
   expect_is(p,"ggmatrix")
 
@@ -211,19 +211,19 @@ test_that("eta pairs", {
   expect_is(x,"gg")
 })
 
-test_that("pairs_plot with latex", {
+test_that("pairs_plot with latex [PMP-TEST-043]", {
   x <- pairs_plot(df, c("ETA1//ETA$_1$", "ETA2//ETA$_2$", "ETA3//ETA3"))
   expect_is(x,"gg")
 })
 
-test_that("qq", {
+test_that("qq [PMP-TEST-044]", {
   expect_is(cwresi_q(df),"gg")
   expect_is(wres_q(df),"gg")
   expect_is(npde_q(df),"gg")
 })
 
 
-test_that("Axis title customization", {
+test_that("Axis title customization [PMP-TEST-045]", {
   p <- cwresi_time(df, xunit="min")
   expect_titles(p, "Time (min)", "CWRES with interaction")
 
@@ -236,7 +236,7 @@ test_that("Axis title customization", {
 })
 
 
-test_that("pm theme", {
+test_that("pm theme [PMP-TEST-046]", {
 
   expect_identical(pm_theme(), theme_bw())
 
@@ -250,7 +250,7 @@ test_that("pm theme", {
 })
 
 
-test_that("list plots", {
+test_that("list plots [PMP-TEST-047]", {
   x <- c("WT", "CRCL", "ALB")
   etas <- c("ETA1", "ETA2")
 
@@ -269,7 +269,7 @@ test_that("list plots", {
 })
 
 
-test_that("eta labs", {
+test_that("eta labs [PMP-TEST-048]", {
   x <- eta_labs(CL,V2,KA)
   expect_identical(x, c("ETA-CL", "ETA-V2", "ETA-KA"))
 
@@ -277,20 +277,20 @@ test_that("eta labs", {
   expect_identical(x, c(`ETA-CL` = "ETA1//ETA-CL", `ETA-KA` = "ETA2//ETA-KA"))
 })
 
-test_that("pairs plot with expression", {
+test_that("pairs plot with expression [PMP-TEST-049]", {
   p <- pairs_plot(df, c("CWRES", "WRES", "DV//Conc ($\\mu$M)"))
   expect_is(p, "gg")
 })
 
-test_that("dv_pred_ipred issue-6", {
+test_that("dv_pred_ipred issue-6 [PMP-TEST-050]", {
   df <- filter(df, ID <= 15)
   p <- dv_pred_ipred(df, ncol = 3, nrow = 5)
   expect_is(p,"list")
   expect_is(p[[1]],"gg")
   p2 <- do_dv_pred_ipred(df, options = list(nrow = 5, ncol =3))
   expect_equivalent(p,p2)
-  expect_error(dv_pred_ipred(df, id_col = "USUBJID"))
+  expect_error(dv_pred_ipred(df, facets = "USUBJID"))
   df[["DV"]][10] <- NA_real_
-  expect_warning(dv_pred_ipred(df),regexp="removed missing values in dv column")
+  expect_warning(dv_pred_ipred(df), regexp="removed missing values in dv column")
 })
 

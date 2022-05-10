@@ -5,17 +5,17 @@ context("test-pairs")
 df <- pmplots_data_obs()
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 
-test_that("pairs plots y", {
+test_that("pairs plots y [PMP-TEST-027]", {
   p <- pairs_plot(df, y = c("ALB", "WT", "SCR"))
   expect_is(p, "gg")
 })
 
-test_that("eta pairs plots etas", {
+test_that("eta pairs plots etas [PMP-TEST-028]", {
   p <- eta_pairs(df, etas = etas)
   expect_is(p, "gg")
 })
 
-test_that("upper and lower funs are used in pairs plots", {
+test_that("upper and lower funs are used in pairs plots [PMP-TEST-029]", {
   lower <- function(data, mapping, ...) {
     stop("passing lower plot")
   }
@@ -28,7 +28,7 @@ test_that("upper and lower funs are used in pairs plots", {
   expect_error(print(p), "passing upper plot")
 })
 
-test_that("use lower_plot to draw scatter plot in lower panels", {
+test_that("use lower_plot to draw scatter plot in lower panels [PMP-TEST-030]", {
   lower <- function(p) {
     stop("draw using lower_plot")
   }
@@ -41,14 +41,14 @@ test_that("use lower_plot to draw scatter plot in lower panels", {
   )
 })
 
-test_that("select different diagonal renderings", {
+test_that("select different diagonal renderings [PMP-TEST-031]", {
   p <- pairs_plot(df, y = etas, diag = "barDiag")
   expect_is(p, "ggmatrix")
   p <- pairs_plot(df, y = etas, diag = "densityDiag")
   expect_is(p, "ggmatrix")
 })
 
-test_that("options to control correlation panels", {
+test_that("options to control correlation panels [PMP-TEST-032]", {
   p0 <- eta_pairs(df, etas = etas)
   pm_opts$pairs.cor.col <- "black"
   p <- eta_pairs(df, etas = etas)
