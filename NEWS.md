@@ -1,5 +1,15 @@
 # pmplots (development version)
 
+- Functions generating default axis titles now have arguments so that 
+  interpolated customizations can happen when calling the function outside
+  of a plot context (#57).
+
+- `dv_pred_ipred()` heavily refactored for functionality and style; see the 
+  PR for significant changes / improvements (#54).
+
+- Put stories in yaml format; add script to build validation docs from the
+  yaml file (#58, #59).
+
 # pmplots 0.3.4
 
 - `pm_grid()` now uses 'patchwork' to arrange plots; 'patchwork' becomes
