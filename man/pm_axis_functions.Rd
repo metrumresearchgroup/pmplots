@@ -15,11 +15,11 @@
 \alias{pm_axis_dv}
 \title{Functions to generate axis data}
 \usage{
-pm_axis_tad()
+pm_axis_tad(xunit = NULL)
 
-pm_axis_time()
+pm_axis_time(xunit = NULL)
 
-pm_axis_tafd()
+pm_axis_tafd(xunit = NULL)
 
 pm_axis_res()
 
@@ -31,22 +31,32 @@ pm_axis_cwresi()
 
 pm_axis_npde()
 
-pm_axis_pred()
+pm_axis_pred(xname = NULL)
 
-pm_axis_ipred()
+pm_axis_ipred(xname = NULL)
 
-pm_axis_dv()
+pm_axis_dv(yname = NULL)
+}
+\arguments{
+\item{xunit}{an optional time unit to be glued into the title.}
+
+\item{xname}{an optional name to be glued into the title.}
+
+\item{yname}{an optional name to be glued into the title.}
 }
 \description{
 Functions to generate axis data
 }
 \details{
-These functions call \code{pmplots:::mk_col_title}
+These functions call \code{pmplots:::mk_col_title()}. When time units
+(\code{xunit}) are passed, they will be wrapped in parens.
 }
 \examples{
 pm_axis_time()
+pm_axis_time("h")
+pm_axis_pred("concentration")
 
 }
 \seealso{
-\code{\link{pm_axis}}
+\code{\link[=pm_axis]{pm_axis()}}
 }

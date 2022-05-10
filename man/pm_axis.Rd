@@ -14,7 +14,7 @@ pm_axis(what)
 pm_axis_data
 }
 \arguments{
-\item{what}{the axis identifier}
+\item{what}{the axis identifier.}
 }
 \description{
 Get defaults for plot axes
