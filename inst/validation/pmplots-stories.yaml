@@ -64,7 +64,8 @@ PMP-S011:
   description: As a user, I want to pass in axis title specifics and have the interpolated
     into the axis title.
   ProductRisk: low-risk
-  tests: pm-axis glue in axis data
+  tests:
+  - PMP-TEST-080
 PMP-S012:
   name: Create dv_pred(), dv_preds(), and dv_ipred() plots
   description: As a user, I want to generate dv_pred and dv_ipred plots
@@ -80,6 +81,14 @@ PMP-S013:
   ProductRisk: low-risk
   tests:
   - PMP-TEST-050
+  - PMP-TEST-081
+  - PMP-TEST-082
+  - PMP-TEST-083
+  - PMP-TEST-084
+  - PMP-TEST-085
+  - PMP-TEST-086
+  - PMP-TEST-087
+  - PMP-TEST-088
 PMP-S014:
   name: Create dv_time(), dv_tafd(), and dv_tad() plots
   description: As a user, I want to generate dv_time, dv_tafd, and dv_tad plots
