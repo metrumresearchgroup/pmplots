@@ -79,10 +79,10 @@ test_that("dv-pred-ipred margin  [PMP-TEST-086]", {
   ans <- dv_pred_ipred(data1, plot.margin = margin(0, 2, 0, 0, unit = "in"))
   ans <- ggplot_build(ans[[1]])
   mar <- ans$plot$theme$plot.margin
-  expect_equal(as.character(mar[1]), "0inches")
-  expect_equal(as.character(mar[2]), "2inches")
-  expect_equal(as.character(mar[3]), "0inches")
-  expect_equal(as.character(mar[4]), "0inches")
+  expect_equal(as.numeric(mar[1]), 0)
+  expect_equal(as.numeric(mar[2]), 2)
+  expect_equal(as.numeric(mar[3]), 0)
+  expect_equal(as.numeric(mar[4]), 0)
 })
 
 test_that("dv-pred-ipred chunking even [PMP-TEST-087]", {
