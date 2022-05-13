@@ -1,0 +1,168 @@
+---
+title: "Testing DV/PRED/IPRED"
+output: html_vignette
+---
+
+```{r}
+#| message: false
+#| warning: false
+library(dplyr)
+library(pmplots)
+data <- pmplots_data_obs()
+
+data <- filter(data, ID <= 9*2)
+data <- mutate(data, OCC = as.integer(TIME > 12))
+
+head(data)
+
+count(data, ID, OCC)
+
+data1 <- filter(data, ID <= 9)
+```
+
+# Chunk
+
+-   2 chunks
+
+```{r}
+pmplots:::chunk_by_cols(
+  data, 
+  cols = "ID", 
+  id_per_chunk = 9
+)
+```
+
+-   6 chunks
+
+```{r}
+pmplots:::chunk_by_cols(
+  data, 
+  cols = "ID", 
+  id_per_chunk = 3) %>% length()
+```
+
+-   12 chunks
+
+```{r}
+pmplots:::chunk_by_cols(
+  data, 
+  cols = c("ID", "OCC"), 
+  id_per_chunk = 3) %>% length()
+```
+
+# Basic plot
+
+## Faceted by ID
+
+- including x and y labels
+
+```{r}
+ans <- dv_pred_ipred(
+  data, 
+  facets = "ID", 
+  id_per_plot = 4, ncol = 2, 
+  xlab  = "Time (hr)", 
+  ylab = "Concentration (ng/ml)"
+)
+
+length(ans)
+
+ans[1:2]
+```
+
+## Faceted by ID and OCC
+
+This has twice as many plots because every
+
+```{r}
+ans <- dv_pred_ipred(
+  data, 
+  facets = c("ID", "OCC"),
+  id_per_plot = 4, ncol = 2
+)
+length(ans)
+
+ans[1:2]
+```
+
+# Glue in better strip labels
+
+- If we ask for `OCC` and that takes values of `0` and `1`, the strip labels will show `0` and `1`
+- With the `glue` syntax, rather than specifying `OCC` we pass `OCC//Occasion: {OCC}` so that the 
+  strip will say `Occasion: 1` and `Occasion: 2`
+
+```{r}
+ans <- dv_pred_ipred(
+  data, 
+  facets = c("ID//ID: {ID}", "OCC//Occasion: {OCC}"),
+  id_per_plot = 4, ncol = 2
+)
+
+ans[1]
+```
+
+# Lines
+
+-   `ipred_lty`: linetype for ipred; use 0 to suppress the line
+-   `pred_lty`: linetype for pred; use 0 to suppress the line
+
+The plot will drop lines for `PRED` and `IPRED` in the plot and legend
+
+```{r}
+dv_pred_ipred(data1, ipred_lty = 0, pred_lty = 0)[[1]]
+```
+
+# Points
+
+- `ipred_point`: logical indicating if points should be plotted; shape is same as dv
+- `pred_point`: logical indicating if points should be plotted; shape is same as dv
+
+The plot will drop points for `PRED` and `IPRED` in the plot and legend
+
+```{r}
+dv_pred_ipred(data1, ipred_point = FALSE, pred_point = FALSE)[[1]]
+```
+
+# Colors
+
+- `ipred_color`: color for ipred data
+- `pred_color`: color for pred data
+
+The plot will drop points for `PRED` and `IPRED` in the plot and legend
+
+```{r}
+dv_pred_ipred(data1, ipred_color = "green4", pred_color = "orange3")[[1]]
+```
+
+
+# Margin
+
+- We want to put in extra margin if needed
+- `margin` is deprecated; use `plot.margin` instead
+
+```{r}
+dv_pred_ipred(
+  data1, 
+  plot.margin = margin(0, 2, 0, 0, unit = "in")
+)[[1]]
+```
+
+# Format the strip
+
+- This was manipulated by default before
+- Now, you need to pass `strip.text`
+
+```{r}
+dv_pred_ipred(
+  data1, 
+  strip.text = element_text(size = 5, margin = margin(3,0,3,0))
+)[[1]]
+```
+
+# Log y
+
+```{r}
+dv_pred_ipred(data1, log_y = TRUE)[[1]]
+```
+
+

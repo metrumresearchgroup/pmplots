@@ -8,6 +8,7 @@ inst/exdata/run102.RDS
 Makefile
 inst/img
 inst/examples/img
+inst/examples/pmplots_complete\.html
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
@@ -16,3 +17,4 @@ inst/examples/img
 _pkgdown\.yml
 vignettes/complete\.Rmd
 vignettes/*\.pdf
+inst/examples/*\.html

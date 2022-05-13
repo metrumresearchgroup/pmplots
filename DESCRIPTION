@@ -1,7 +1,7 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.3.4
+Version: 0.3.5
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person("Metrum Research Group", role =  c("cph"))
@@ -20,7 +20,6 @@ Imports:
   glue (>= 1.5.0), 
   assertthat, 
   tidyr (>= 1.1.4), 
-  purrr (>= 0.3.4),
   forcats (>= 0.5.1), 
   lifecycle, 
   tidyselect (>= 1.1.1)
