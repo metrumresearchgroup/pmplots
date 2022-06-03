@@ -12,11 +12,11 @@
 #######################################################
 
 PKGNAME <- "pmplots"
-PKGVERSION <- "0.3.4.9000"
+PKGVERSION <- "0.3.5"
 STYLE_REF_DIR <- "docx-ref-header-image" # set to NULL if not using style ref
 
 # set up directories and clear existing output dirs, if they exist
-val_dir <- system.file("validation", package = PKGNAME)
+val_dir <- getwd()#system.file("validation", package = PKGNAME)
 print(val_dir)
 
 style_ref_path <- NULL
