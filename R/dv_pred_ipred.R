@@ -266,12 +266,12 @@ dv_pred_ipred_impl <- function(data,
     scale_color_manual(name = "", values = clrs) +
     scale_linetype_manual(name = "", values = lnes) +
     scale_shape_manual(name = "", values = shapes) +
-    geom_line(aes(lty =    .data$name, col = .data$name), lwd = lwd) +
+    geom_line(aes(lty =    .data$name, col = .data$name), linewidth = lwd) +
     geom_point(aes(shape = .data$name, col = .data$name), na.rm = TRUE, size = size)
 
   if(dv_line) {
     dfline <- filter(data, .data$name == dv)
-    p <- p + geom_line(data = dfline, col = dv_color, lwd = dv_lwd)
+    p <- p + geom_line(data = dfline, col = dv_color, linewidth = dv_lwd)
   }
 
   p <-

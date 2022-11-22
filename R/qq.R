@@ -44,7 +44,7 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
   if(is.null(abline)) abline <- qq_reg_data(df[[x]])
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
-  p <- ggplot(data=df, aes_string(sample=x))
+  p <- ggplot(data=df, aes(sample = .data[[x]]))
   p <- p + stat_qq(color=col, alpha=alpha, distribution=qnorm,size=size)
   p <- p + xscale + yscale
   p <- p + pm_labs(x = "Standard normal quantile", y = paste0(x, " distribution quantile"))

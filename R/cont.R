@@ -35,15 +35,29 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   locol <- .ggblue
-  if(is.null(col)) col <- glue("I('{scatter.col}')", .envir = pm_opts)
-  p <- ggplot(data = df, aes_string(x, y, col = col))
+
+  if(is.null(col)) {
+    col <- I(glue('{scatter.col}', .envir = pm_opts))
+  } else {
+    if(!is.character(col)) stop("`col` must have type character.")
+    if(col %in% names(df)) {
+      col <- sym(col)
+    } else {
+      col <- I(glue('{col}'))
+    }
+  }
+
+  p <- ggplot(data = df, aes(x=.data[[x]], y=.data[[y]], col={{ col }}))
+
   if(plot_id) {
     require_column(df,"ID")
-    p <- p + geom_text(aes_string(label = "ID"), size = size, alpha = alpha)
+    p <- p + geom_text(aes(label = .data$ID), alpha = alpha, size = size)
   } else {
-    p <- p + geom_point(size = size, alpha = alpha)
+    p <- p + geom_point(alpha = alpha, size = size)
   }
-  if(!is.null(group)) p <- p + geom_line(aes_string(group = group))
+  if(!is.null(group)) {
+    p <- p + geom_line(aes(group = .data[[group]]))
+  }
   if(is.character(title)) p <- p + ggtitle(title)
   p + xscale + yscale + pm_theme()
 }

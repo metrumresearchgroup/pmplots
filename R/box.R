@@ -84,7 +84,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   yscale <- do.call("scale_y_continuous", ys)
   xscale <- do.call("scale_x_discrete", xs)
 
-  p <- ggplot(data=df, aes_string(x=x,y=y))
+  p <- ggplot(data=df, aes(x = .data[[x]],y = .data[[y]]))
 
   do_points <- !missing(points) & !is.null(points)
   if(do_points) {
@@ -108,7 +108,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   if(is.numeric(hline)) {
     p <- p + geom_hline(
       yintercept = hline,
-      lwd = opts$boxplot.hline.lwd,
+      linewidth = opts$boxplot.hline.lwd,
       lty = opts$boxplot.hline.lty,
       col = opts$boxplot.hline.col
     )

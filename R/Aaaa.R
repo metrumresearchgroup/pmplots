@@ -4,7 +4,7 @@
 #' @importFrom dplyr as_tibble
 #' @importFrom tidyselect all_of
 #' @importFrom grDevices pdf dev.off
-#' @importFrom ggplot2 ggplot aes_string geom_boxplot geom_line
+#' @importFrom ggplot2 ggplot geom_boxplot geom_line
 #' @importFrom ggplot2 ggtitle theme geom_point geom_smooth
 #' @importFrom ggplot2 geom_abline geom_hline geom_text margin
 #' @importFrom ggplot2 stat_qq facet_wrap geom_histogram
@@ -15,6 +15,7 @@
 #' @importFrom ggplot2 geom_text position_jitter label_value
 #' @importFrom ggplot2 scale_color_manual scale_linetype_manual
 #' @importFrom ggplot2 scale_shape_manual scale_shape_discrete
+#' @importFrom ggplot2 after_stat
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
 #' @importFrom glue glue glue_data

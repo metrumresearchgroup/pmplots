@@ -26,7 +26,7 @@ pairs_lower_plot <- function(p) {
       color = opts$smooth.col,
       lty = opts$smooth.lty,
       se = FALSE,
-      lwd = opts$smooth.lwd
+      linewidth = opts$smooth.lwd
     )
 }
 

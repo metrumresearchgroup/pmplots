@@ -18,7 +18,7 @@ theme_plain <- function(...) {
 pm_smooths <- function(method=opts$smooth.method, se=FALSE,
                        lty=opts$smooth.lty, lwd=opts$smooth.lwd,
                        col=opts$smooth.col,...) {
-  geom_smooth(method=method,se=se,lty=lty,lwd=lwd,col=col)
+  geom_smooth(method=method,se=se,lty=lty,linewidth=lwd,col=col)
 }
 
 ##' The standard pmplots theme

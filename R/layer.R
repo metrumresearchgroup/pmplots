@@ -120,7 +120,7 @@ layer_dots <- function(x,...) {
 gs <- function(method=pm_opts$smooth.method, se=FALSE, lty=pm_opts$smooth.lty,
                lwd=pm_opts$smooth.lwd, col = pm_opts$smooth.col,...) {
   args <- list(...)
-  def <- list(method=method,se=se,lty=lty,lwd=lwd,col=col)
+  def <- list(method=method,se=se,lty=lty,linewidth=lwd,col=col)
   update_list(def,args)
 }
 
@@ -130,7 +130,7 @@ ga <- function(intercept=0, slope=1,
                lty = pm_opts$abline.lty,
                col=pm_opts$abline.col,...) {
   args <- list(...)
-  def <- list(intercept=intercept, slope=slope,col=col,lwd=lwd,lty=lty)
+  def <- list(intercept=intercept, slope=slope,col=col,linewidth=lwd,lty=lty)
   update_list(def,args)
 }
 
@@ -140,7 +140,7 @@ gh <- function(yintercept=0,
                lty = pm_opts$hline.lty,
                col = pm_opts$hline.col,...) {
   args <- list(...)
-  def <- list(yintercept=yintercept,lwd=lwd,col=col,lty=lty)
+  def <- list(yintercept=yintercept,linewidth=lwd,col=col,lty=lty)
   update_list(def,args)
 }
 
@@ -157,13 +157,13 @@ gh <- function(yintercept=0,
 ##'
 ##' @export
 geom_3s <- function(lwd = 1.35, lty=1, col = "darkgrey", yintercept = c(-3,3), ...) {
-  geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty, ...)
+  geom_hline(yintercept = yintercept, col = col, linewidth = lwd, lty = lty, ...)
 }
 
 ##' @export
 ##' @rdname geom_3s
 layer_3s <- function(x, lwd = 1.35, lty = 1, col = "darkgrey", yintercept = c(-3,3), ...) {
-  x + geom_hline(yintercept = yintercept, col = col, lwd = lwd, lty = lty,...)
+  x + geom_hline(yintercept = yintercept, col = col, linewidth = lwd, lty = lty,...)
 }
 
 
@@ -186,7 +186,7 @@ add_density <- function(fun = dnorm,
                         col = pm_opts$density.col,
                         lwd = pm_opts$density.lwd,
                         lty = pm_opts$density.lty, ...) {
-  ggplot2::stat_function(fun = fun, col = col, lwd = lwd, lty = lty, ...)
+  ggplot2::stat_function(fun = fun, col = col, linewidth = lwd, lty = lty, ...)
 }
 
 ##' @rdname add_density
@@ -204,5 +204,5 @@ layer_dnorm <- function(x, sd = 1, mean = 0, ...) {
 ##'
 ##' @export
 npde_ref <- function(y = 0, lwd = 1,...) {
-  c(list(yintercept = y, lwd = lwd),list(...))
+  c(list(yintercept = y, linewidth = lwd),list(...))
 }
