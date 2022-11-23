@@ -34,7 +34,7 @@ Suggests:
   miniUI, 
   shiny, 
   rmarkdown
-Depends: ggplot2 (>= 3.3.5)
+Depends: ggplot2 (>= 3.4.0)
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Collate: 

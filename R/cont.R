@@ -39,7 +39,6 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
   if(is.null(col)) {
     col <- I(glue('{scatter.col}', .envir = pm_opts))
   } else {
-    if(!is.character(col)) stop("`col` must have type character.")
     if(col %in% names(df)) {
       col <- sym(col)
     } else {
