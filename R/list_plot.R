@@ -25,6 +25,7 @@
 ##' @export
 ##' @rdname list_plot
 list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- vector(mode = "list", length = length(x))
   for(i in seq_along(x)) {
     out[[i]] <- .fun(df = df, x = x[i], y = y, ...)
@@ -35,6 +36,7 @@ list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @export
 ##' @rdname list_plot
 list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- vector(mode = "list", length = length(y))
   for(i in seq_along(y)) {
     out[[i]] <- .fun(df = df, x = x, y = y[i], ...)
@@ -45,6 +47,7 @@ list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @export
 ##' @rdname list_plot
 list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- vector(mode = "list", length = (length(x)*length(y)))
   k <- 1
   for(i in seq_along(x)) {
@@ -59,6 +62,7 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @export
 ##' @rdname list_plot
 list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- vector(mode = "list", length = (length(x)*length(y)))
   k <- 1
   for(j in seq_along(y)) {

@@ -31,7 +31,7 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
                   size = pm_opts$scatter.size, alpha = pm_opts$scatter.alpha,
                   scale_col = scale_color_brewer(palette="Set2", name=""),
                   ... ) {
-
+  df <- pmplots_nlmixr2_data(df)
   xscale <- do.call("scale_x_continuous", xs)
   yscale <- do.call("scale_y_continuous", ys)
   locol <- .ggblue
@@ -87,7 +87,7 @@ y_time <- function(df,
                    yname = NULL,
                    xs = list(), ys = list(),
                    log = FALSE, xby = NULL, ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   x <- glue_unit(x,xunit)
   y <- glue::glue(y)
 
@@ -160,6 +160,7 @@ y_time <- function(df,
 #'
 #' @export
 pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
+  df <- pmplots_nlmixr2_data(df)
   if(length(x) > 1 || length(y) > 1) {
     return(pm_scatter_list(df,x,y,xs=xs,ys=ys,...))
   }
@@ -175,6 +176,7 @@ pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
 #' @rdname pm_scatter
 #' @export
 pm_scatter_list <- function(df, x, y, ...) {
+  df <- pmplots_nlmixr2_data(df)
   list_plot_xy(df, x, y, cont_cont, ...)
 }
 

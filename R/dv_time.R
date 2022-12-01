@@ -47,7 +47,7 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
                     xunit = opts$time.unit,
                     yname = "DV", group = "ID",
                     xs=list(), ys=list(), log=FALSE, xby = NULL, ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   x <- glue_unit(x,xunit)
   y <- glue::glue(y)
 
@@ -98,11 +98,13 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
 ##' @export
 ##' @rdname dv_time
 dv_tafd <- function(df, x =  pm_axis_tafd(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   dv_time(df, x = x, ...)
 }
 
 ##' @export
 ##' @rdname dv_time
 dv_tad <- function(df, x = pm_axis_tad(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   dv_time(df, x = x, ...)
 }

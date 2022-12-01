@@ -26,6 +26,7 @@
 ##'
 ##' @export
 eta_cont <- function(df, x, y,...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- list_plot_yx(df, x, y, cont_cont,...)
   out <- lapply(out, layer_hs,...)
   if(length(out)==1) return(out[[1]])

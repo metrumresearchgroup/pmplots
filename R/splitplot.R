@@ -29,6 +29,7 @@
 ##' @export
 split_plot <- function(df, fun, sp = get_split_col(df), labeller = label_tex,
                        ...) {
+  df <- pmplots_nlmixr2_data(df)
   if(length(sp) != 1) {
     stop("Only one grouping or split variable is allowed.")
   }
@@ -42,6 +43,7 @@ split_plot <- function(df, fun, sp = get_split_col(df), labeller = label_tex,
 }
 
 get_split_col <- function(df) {
+  df <- pmplots_nlmixr2_data(df)
   if(!is_grouped_df(df)) {
     stop("either pass a grouped data frame or specify the sp argument.")
   }

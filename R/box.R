@@ -71,7 +71,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
                     points = NULL,
                     outlier.shape = opts$boxplot.outlier.shape,
                     ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   if(shown) {
     require_column(df, "ID")
     .sum <- box_labels(df, x, y)
@@ -154,6 +154,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
 #'
 #' @export
 pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   if(length(x) > 1 || length(y) > 1) {
     return(pm_box_list(df,x,y,xs=xs,ys=ys,...))
   }
@@ -169,6 +170,7 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
 #' @rdname pm_box
 #' @export
 pm_box_list <- function(df, x, y, ...) {
+  df <- pmplots_nlmixr2_data(df)
   list_plot_xy(df, x, y, cont_cat, ...)
 }
 

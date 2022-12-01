@@ -30,6 +30,7 @@
 cont_hist <- function(df, x, xs = defx(),
                       y = "..count..",
                       add_density = y=="..density..", add_layers=TRUE, ...) {
+  df <- pmplots_nlmixr2_data(df)
   xscale <- do.call("scale_x_continuous", xs)
   xx <- col_label(x)
   require_numeric(df,xx[1])
@@ -46,6 +47,7 @@ cont_hist <- function(df, x, xs = defx(),
 ##' @rdname cont_hist
 ##' @export
 cont_hist_list <- function(df, x, ...) {
+  df <- pmplots_nlmixr2_data(df)
   list_plot_x(df, x, ...)
 }
 

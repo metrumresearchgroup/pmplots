@@ -40,6 +40,7 @@
 ##'
 ##' @export
 res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- y_time(df, x = x, y = y, ...)
   layer_hs(out, ...)
 }
@@ -47,12 +48,14 @@ res_time <- function(df, x = pm_axis_time(), y = pm_axis_res(), ...) {
 ##' @export
 ##' @rdname res_time
 res_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_res(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   res_time(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_time
 res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   res_time(df, x = x, y = y, ...)
 }
 
@@ -81,18 +84,21 @@ res_tad <- function(df, x = pm_axis_tad(), y = pm_axis_res(), ...) {
 ##' @export
 ##'
 wres_time <- function(df, x = pm_axis_time(), y = pm_axis_wres(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   res_time(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname wres_time
 wres_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_wres(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   wres_time(df, x = x, y = y, ...)
 }
 
 ##' @export
 ##' @rdname wres_time
 wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   wres_time(df,  x = x, y = y, ...)
 }
 
@@ -121,6 +127,7 @@ wres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_wres(), ...) {
 ##' @export
 ##'
 cwres_time <- function(df, x = pm_axis_time(), y = pm_axis_cwres(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   if(no_cwres(df)) df <- supplement_cwres(df)
   res_time(df, x = x, y = y, ...)
 }
@@ -128,6 +135,7 @@ cwres_time <- function(df, x = pm_axis_time(), y = pm_axis_cwres(), ...) {
 ##' @export
 ##' @rdname cwres_time
 cwres_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_cwres(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   if(no_cwres(df)) df <- supplement_cwres(df)
   cwres_time(df, x = x, y = y, ...)
 }
@@ -135,6 +143,7 @@ cwres_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_cwres(), ...) {
 ##' @export
 ##' @rdname cwres_time
 cwres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_cwres(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   if(no_cwres(df)) df <- supplement_cwres(df)
   cwres_time(df, x = x, y = y, ...)
 }
@@ -143,18 +152,21 @@ cwres_tad <- function(df, x = pm_axis_tad(), y = pm_axis_cwres(), ...) {
 ##' @export
 ##' @rdname cwres_time
 cwresi_time <- function(df, x = pm_axis_time(), y = pm_axis_cwresi(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   cwres_time(df, x = x, y = y, ... )
 }
 
 ##' @export
 ##' @rdname cwres_time
 cwresi_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_cwresi(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   cwres_tafd(df, x = x, y = y, ... )
 }
 
 ##' @export
 ##' @rdname cwres_time
 cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   cwres_tad(df, x = x, y = y, ... )
 }
 
@@ -185,17 +197,20 @@ cwresi_tad <- function(df, x= pm_axis_tad(), y = pm_axis_cwresi(), ...) {
 ##' @export
 npde_time <- function(df, x= pm_axis_time(), y  = pm_axis_npde(), ...,
                       hline = npde_ref()) {
+  df <- pmplots_nlmixr2_data(df)
   res_time(df, x = x, y = y, hline = hline, ...)
 }
 
 ##' @rdname npde_time
 ##' @export
 npde_tad <- function(df, x = pm_axis_tad(), y = pm_axis_npde(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   npde_time(df, x = x, y = y, ...)
 }
 
 ##' @rdname npde_time
 ##' @export
 npde_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_npde(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   npde_time(df, x = x, y = y, ...)
 }

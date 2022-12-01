@@ -60,7 +60,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
                            ncol = NULL, use_labels = FALSE,
                            label_fun = deprecated(),
                            labeller = label_tex) {
-
+  df <- pmplots_nlmixr2_data(df)
   if(is_present(label_fun)) {
     deprecate_warn(
       "0.3.4",
@@ -125,18 +125,21 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
 #' @rdname wrap_plots
 #' @export
 wrap_cont_time <- function(df, ..., x = pm_axis_time()) {
+  df <- pmplots_nlmixr2_data(df)
   wrap_cont_cont(df, ..., x = pm_axis_time(), fun = y_time)
 }
 
 #' @rdname wrap_plots
 #' @export
 wrap_res_time <- function(df, ..., x = pm_axis_time()) {
+  df <- pmplots_nlmixr2_data(df)
   wrap_cont_cont(df, ..., x = x, fun = res_time)
 }
 
 #' @rdname wrap_plots
 #' @export
 wrap_eta_cont <- function(df, x, y, scales = "fixed", ...) {
+  df <- pmplots_nlmixr2_data(df)
   wrap_cont_cont(df, x, y = y, fun = eta_cont, scales = scales, ...)
 }
 
@@ -145,7 +148,7 @@ wrap_eta_cont <- function(df, x, y, scales = "fixed", ...) {
 wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
                       use_labels = FALSE, labeller = label_tex,
                       label_fun = deprecated(), ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   if(is_present(label_fun)) {
     deprecate_warn(
       "0.3.4",
@@ -180,6 +183,7 @@ wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
 #' @rdname wrap_plots
 #' @export
 wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales="fixed") {
+  df <- pmplots_nlmixr2_data(df)
   x <- c(pm_axis_pred(), pm_axis_ipred())
   for(i in seq_along(x)) x[i] <- glue(x[i])
   wrap_cont_cont(
@@ -195,7 +199,7 @@ wrap_cont_cat <- function(df, x, y, ...,
                           title = NULL, scales = "free_y",
                           ncol = NULL, use_labels = FALSE,
                           labeller = label_tex, label_fun = deprecated()) {
-
+  df <- pmplots_nlmixr2_data(df)
   if(is_present(label_fun)) {
     deprecate_warn(
       "0.3.4",

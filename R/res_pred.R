@@ -41,7 +41,7 @@ res_pred <- function(df,
                      xname = "value",
                      xs=defx(), ys=defy(),
                      ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   x <- glue::glue(x)
 
   x <- col_label(x)
@@ -64,12 +64,14 @@ res_pred <- function(df,
 ##' @export
 ##' @rdname res_pred
 wres_pred <- function(df, ..., y=pm_axis_wres()) {
+  df <- pmplots_nlmixr2_data(df)
   res_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
 cwres_pred <- function(df, ..., y=pm_axis_cwres()) {
+  df <- pmplots_nlmixr2_data(df)
   if(no_cwres(df)) df <- supplement_cwres(df)
   res_pred(df, y = y, ...)
 }
@@ -77,12 +79,14 @@ cwres_pred <- function(df, ..., y=pm_axis_cwres()) {
 ##' @export
 ##' @rdname res_pred
 cwresi_pred <- function(df, y=pm_axis_cwresi(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   cwres_pred(df, y = y, ...)
 }
 
 ##' @export
 ##' @rdname res_pred
 npde_pred <- function(df, ..., y = pm_axis_npde(), hline = npde_ref()) {
+  df <- pmplots_nlmixr2_data(df)
   res_pred(df, y = y, hline = hline, ...)
 }
 

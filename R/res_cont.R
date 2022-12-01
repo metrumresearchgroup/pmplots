@@ -30,6 +30,7 @@
 ##'
 ##' @export
 res_cont <- function(df, x, y=pm_axis_res(), xs=defx(), ys=defy(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- list_plot_xy(df, x, y, xs = xs, ys = ys, ...)
   out <- lapply(out, layer_hs, ...)
   if(length(out)==1) return(out[[1]])
@@ -39,12 +40,14 @@ res_cont <- function(df, x, y=pm_axis_res(), xs=defx(), ys=defy(), ...) {
 ##' @export
 ##' @rdname res_cont
 wres_cont <- function(df, x, y=pm_axis_wres(), xs=defx(), ys=defy(),...) {
+  df <- pmplots_nlmixr2_data(df)
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }
 
 ##' @export
 ##' @rdname res_cont
 cwres_cont <- function(df, x, y=pm_axis_cwres(), xs=defx(), ys=defy(),...) {
+  df <- pmplots_nlmixr2_data(df)
   if(no_cwres(df)) df <- supplement_cwres(df)
   res_cont(df, x = x, y = y, xs = xs, ys = ys, ...)
 }

@@ -33,6 +33,7 @@
 ##'
 ##' @export
 eta_cat <- function(df, x, y, hline=0, ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- list_plot_xy(df,x,y,.fun = pm_box, hline = hline, ...)
   if(length(out)==1) return(out[[1]])
   return(out)

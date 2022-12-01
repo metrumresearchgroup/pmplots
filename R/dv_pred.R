@@ -50,7 +50,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
                     ys = list(), xs = ys, loglog = FALSE,
                     scales = c("fixed", "free", "null"),
                     logbr = c("full", "half", "null"), ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   scales <- match.arg(scales)
 
   if(missing(xname)) xname <- yname
@@ -127,6 +127,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
 #' @export
 #' @rdname dv_pred
 dv_ipred <- function(df, x = pm_axis_ipred(), ...) {
+  df <- pmplots_nlmixr2_data(df)
   out <- dv_pred(df, x = x, ...)
   layer_as(out,...)
 }
@@ -134,5 +135,6 @@ dv_ipred <- function(df, x = pm_axis_ipred(), ...) {
 #' @export
 #' @rdname dv_pred
 dv_preds <- function(df, ...) {
+  df <- pmplots_nlmixr2_data(df)
   list(dv_pred(df, ...), dv_ipred(df, ...))
 }

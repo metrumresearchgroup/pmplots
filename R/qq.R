@@ -39,7 +39,7 @@ qq_reg_data <- function(y) {
 wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
                    col = opts$qq.col, alpha = opts$qq.alpha,
                    size = opts$qq.size, ...) {
-
+  df <- pmplots_nlmixr2_data(df)
   require_numeric(df,x)
   if(is.null(abline)) abline <- qq_reg_data(df[[x]])
   xscale <- do.call("scale_x_continuous", xs)
@@ -57,6 +57,7 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
 ##' @export
 ##' @rdname res_q
 cwres_q <- function(df, x="CWRES", ...) {
+  df <- pmplots_nlmixr2_data(df)
   if(no_cwres(df)) df <- supplement_cwres(df)
   wres_q(df, x, ...)
 }
@@ -64,12 +65,14 @@ cwres_q <- function(df, x="CWRES", ...) {
 ##' @export
 ##' @rdname res_q
 cwresi_q <- function(df, x="CWRESI", ...) {
+  df <- pmplots_nlmixr2_data(df)
   cwres_q(df, x, ...)
 }
 
 ##' @export
 ##' @rdname res_q
 npde_q <- function(df, x="NPDE", ...) {
+  df <- pmplots_nlmixr2_data(df)
   wres_q(df, x, ...)
 }
 

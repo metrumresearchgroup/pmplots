@@ -25,17 +25,18 @@ Imports:
   tidyselect (>= 1.1.1)
 VignetteBuilder: knitr
 Suggests: 
-  testthat,
-  GGally, 
-  latex2exp, 
-  patchwork, 
-  knitr, 
-  yaml, 
-  miniUI, 
-  shiny, 
-  rmarkdown
+    testthat,
+    GGally,
+    latex2exp,
+    patchwork,
+    knitr,
+    yaml,
+    miniUI,
+    shiny,
+    rmarkdown,
+    nlmixr2extra
 Depends: ggplot2 (>= 3.3.5)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'

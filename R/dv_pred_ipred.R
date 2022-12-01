@@ -82,7 +82,7 @@
 dv_pred_ipred <- function(data, id_per_plot = 9, facets = "ID",
                           nrow = NULL, ncol = NULL,
                           fun = NULL, ..., id_col = deprecated()) {
-
+  data <- pmplots_nlmixr2_data(data)
   if(is_present(id_col)) {
     deprecate_warn(
       "0.3.5",
@@ -145,7 +145,7 @@ dv_pred_ipred_impl <- function(data,
                                nrow = NULL,
                                axis.text.rel = NULL,
                                fun = NULL) {
-
+  data <- pmplots_nlmixr2_data(data)
   if(is_present(margin)) {
     deprecate_warn(
       "0.3.5",
@@ -308,6 +308,7 @@ dv_pred_ipred_impl <- function(data,
 #' @rdname dv_pred_ipred
 #' @export
 do_dv_pred_ipred <- function(data, options=list()) {
+  data <- pmplots_nlmixr2_data(data)
   options[["data"]] <- data
   do.call(dv_pred_ipred, options)
 }
