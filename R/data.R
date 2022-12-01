@@ -41,6 +41,9 @@ pmplots_data_obs <- function() {
 ##'   dataset.  If it isn't a nlmixr2 fit simply return the dataset
 ##' 
 ##' @author Matthew Fidler
+##'
+##'
+##' @export
 ##' 
 ##' @examples
 ##' if (requireNamespace("nlmixr2extra", quietly = TRUE)) {
