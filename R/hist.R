@@ -7,7 +7,7 @@
 ##' @param df the data frame containing plotting data
 ##' @param x the x column for \code{geom_histogram}
 ##' @param y what to use for the y-axis on the histogram; can be
-##' \code{"..count.."} or \code{"..density.."}
+##' \code{"count"} or \code{"density"}
 ##' @param add_density if \code{TRUE}, a normal density line will
 ##' be plotted over the histogram using \code{\link{add_density}}
 ##' @param xs a list of information for the x axis
@@ -28,14 +28,14 @@
 ##'
 ##' @export
 cont_hist <- function(df, x, xs = defx(),
-                      y = "..count..",
-                      add_density = y=="..density..", add_layers=TRUE, ...) {
+                      y = "count",
+                      add_density = y=="density", add_layers=TRUE, ...) {
   xscale <- do.call("scale_x_continuous", xs)
   xx <- col_label(x)
   require_numeric(df,xx[1])
   out <-
-    ggplot(data=df, aes_string(x = xx[1])) +
-    pm_histogram(mapping = aes_string(y = y), ...) +
+    ggplot(data=df, aes(x = .data[[xx[1]]])) +
+    pm_histogram(mapping = aes(y = after_stat(!!sym(y))), ...) +
     xscale + pm_theme() + pm_labs(x = xx[2])
   if(add_density & add_layers) {
     out <- out + add_density(...)

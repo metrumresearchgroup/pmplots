@@ -10,8 +10,8 @@ cont_hist(
   df,
   x,
   xs = defx(),
-  y = "..count..",
-  add_density = y == "..density..",
+  y = "count",
+  add_density = y == "density",
   add_layers = TRUE,
   ...
 )
@@ -33,7 +33,7 @@ pm_histogram(
 \item{xs}{a list of information for the x axis}
 
 \item{y}{what to use for the y-axis on the histogram; can be
-\code{"..count.."} or \code{"..density.."}}
+\code{"count"} or \code{"density"}}
 
 \item{add_density}{if \code{TRUE}, a normal density line will
 be plotted over the histogram using \code{\link{add_density}}}
