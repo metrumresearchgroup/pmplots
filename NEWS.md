@@ -1,4 +1,7 @@
-# pmplots (development version)
+# pmplots 0.3.6
+
+- Update plotting code to work with new `ggplot2` behavior introduced 
+  in version 3.4.0 (#71).
 
 # pmplots 0.3.5
 
