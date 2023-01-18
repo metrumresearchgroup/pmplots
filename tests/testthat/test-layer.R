@@ -9,13 +9,26 @@ p <- dv_pred(df)
 p <- ggplot(df, aes(TIME,DV)) + geom_point()
 
 test_that("layer_xx [PMP-TEST-009]", {
+  x0 <- layer_hs(p)
   x <- layer_hs(p, hline = NULL)
-  expect_equal(x, layer_s(p))
+  y <- layer_s(p)
+  expect_equal(length(x0$layers), 3)
+  expect_equal(length(x$layers), 2)
+  expect_equal(length(y$layers), 2)
+
+  x0 <- layer_hs(p)
   x <- layer_hs(p, smooth = NULL)
-  expect_equal(x, layer_h(p))
+  y <- layer_h(p)
+  expect_equal(length(x0$layers), 3)
+  expect_equal(length(x$layers), 2)
+  expect_equal(length(y$layers), 2)
+
+  x0 <- layer_sh(p)
   x <- layer_sh(p, hline = NULL)
-  expect_equal(x,layer_s(p))
-  expect_is(layer_sa(p),"gg")
+  y <- layer_s(p)
+  expect_equal(length(x0$layers), 3)
+  expect_equal(length(x$layers), 2)
+  expect_equal(length(y$layers), 2)
 
   x <- layer_a(p)
   expect_is(x,"gg")
@@ -42,9 +55,9 @@ test_that("extra layers [PMP-TEST-010]", {
 
 test_that("gh [PMP-TEST-011]", {
   x <- pmplots:::gh()
-  expect_identical(names(x), c("yintercept", "lwd", "col", "lty"))
+  expect_identical(names(x), c("yintercept", "linewidth", "col", "lty"))
   expect_identical(x$yintercept,0)
-  expect_identical(x$lwd,1.35)
+  expect_identical(x$linewidth,1.35)
   expect_identical(x$col,"darkgrey")
 })
 
@@ -52,18 +65,18 @@ test_that("gh [PMP-TEST-011]", {
 test_that("gs [PMP-TEST-012]", {
   x <- pmplots:::gs()
   expect_is(x,"list")
-  expect_identical(names(x), c("method", "se", "lty", "lwd", "col"))
+  expect_identical(names(x), c("method", "se", "lty", "linewidth", "col"))
   expect_identical(x$se,FALSE)
   expect_identical(x$lty,2)
-  expect_identical(x$lwd,1.35)
+  expect_identical(x$linewidth,1.35)
   expect_identical(x$col,"#3366FF")
 })
 
 test_that("ga [PMP-TEST-013]", {
   x <- pmplots:::ga()
   expect_is(x,"list")
-  expect_identical(names(x), c("intercept", "slope", "col", "lwd", "lty"))
-  expect_identical(x$lwd,1.35)
+  expect_identical(names(x), c("intercept", "slope", "col", "linewidth", "lty"))
+  expect_identical(x$linewidth,1.35)
   expect_identical(x$col,"darkgrey")
   expect_identical(x$slope,1)
 })
@@ -71,6 +84,6 @@ test_that("ga [PMP-TEST-013]", {
 test_that("npde_ref [PMP-TEST-014]", {
   x <- npde_ref()
   expect_is(x,"list")
-  expect_identical(names(x), c("yintercept", "lwd"))
+  expect_identical(names(x), c("yintercept", "linewidth"))
   expect_identical(x$yintercept, 0)
 })

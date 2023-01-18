@@ -128,7 +128,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
 #' @rdname dv_pred
 dv_ipred <- function(df, x = pm_axis_ipred(), ...) {
   out <- dv_pred(df, x = x, ...)
-  layer_as(out,...)
+  layer_as(out, ...)
 }
 
 #' @export

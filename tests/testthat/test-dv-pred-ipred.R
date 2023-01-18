@@ -20,8 +20,8 @@ test_that("dv-pred-ipred basics [PMP-TEST-081]", {
   data2 <- p2$data[[2]]
   expect_equal(unique(data1$PANEL), factor(c(1, 2, 3, 4, 5)))
 
-  dd1 <- dplyr::distinct(data1, colour, linetype, group, size)
-  expect_true(all(dd1$size==0.5))
+  dd1 <- dplyr::distinct(data1, colour, linetype, group, linewidth)
+  expect_true(all(dd1$linewidth==0.5))
   expect_equal(dd1$group, c(1, 2, 3))
   expect_equal(dd1$colour, c("red2", "blue2", "black"))
   expect_equal(dd1$linetype, c(1, 2, 0))
