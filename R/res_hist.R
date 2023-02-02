@@ -5,7 +5,7 @@
 ##' @param x character name for x-axis data
 ##' @param xs see \code{\link{defx}}
 ##' @param y what to use for the y-axis on the histogram; can be
-##' \code{"..count.."} or \code{"..density.."}
+##' \code{"count"} or \code{"density"}
 ##'
 ##' @examples
 ##' df <- pmplots_data_obs()

@@ -10,7 +10,7 @@
 \usage{
 res_hist(df, ..., x = pm_axis_res(), xs = defx())
 
-wres_hist(df, ..., x = pm_axis_wres(), y = "..density..")
+wres_hist(df, ..., x = pm_axis_wres(), y = "density")
 
 cwres_hist(df, ..., x = pm_axis_cwres())
 
@@ -28,7 +28,7 @@ npde_hist(df, ..., x = pm_axis("npde"))
 \item{xs}{see \code{\link{defx}}}
 
 \item{y}{what to use for the y-axis on the histogram; can be
-\code{"..count.."} or \code{"..density.."}}
+\code{"count"} or \code{"density"}}
 }
 \value{
 A single plot.
