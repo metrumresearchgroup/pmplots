@@ -25,7 +25,7 @@ res_hist <- function(df, ...,
 ##' @rdname res_hist
 wres_hist <- function(df, ...,
                       x = pm_axis_wres(),
-                      y = "..density..") {
+                      y = "density") {
   res_hist(df, x = x, y = y, ...)
 }
 
