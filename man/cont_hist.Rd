@@ -26,27 +26,27 @@ pm_histogram(
 )
 }
 \arguments{
-\item{df}{the data frame containing plotting data}
+\item{df}{the data frame containing plotting data.}
 
-\item{x}{the x column for \code{geom_histogram}}
+\item{x}{the x column for \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}.}
 
-\item{xs}{a list of information for the x axis}
+\item{xs}{a list of information for the x axis.}
 
 \item{y}{what to use for the y-axis on the histogram; can be
-\code{"count"} or \code{"density"}}
+\code{"count"} or\code{"density"}.}
 
-\item{add_density}{if \code{TRUE}, a normal density line will
-be plotted over the histogram using \code{\link{add_density}}}
+\item{add_density}{if `TRUE, a normal density line will
+be plotted over the histogram using \code{\link[=add_density]{add_density()}}.}
 
-\item{add_layers}{extra layers will be added only if \code{TRUE}}
+\item{add_layers}{extra layers will be added only if \code{TRUE}.}
 
-\item{...}{passed to \code{geom_histogram} and \code{add_density}}
+\item{...}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} and \code{\link[=add_density]{add_density()}}.}
 
-\item{col}{a character value passed to \code{geom_histogram}}
+\item{col}{a character value passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}.}
 
-\item{fill}{a character value passed to \code{geom_histogram}}
+\item{fill}{a character value passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}.}
 
-\item{alpha}{a numeric value passed to \code{geom_histogram}}
+\item{alpha}{a numeric value passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}}.}
 }
 \value{
 A single plot.
