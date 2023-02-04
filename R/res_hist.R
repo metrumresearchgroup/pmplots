@@ -1,11 +1,11 @@
 ##' Histograms of residuals or NPDE
 ##'
-##' @param df data frame to plot
-##' @param ... passed to \code{\link{cont_hist}}
-##' @param x character name for x-axis data
-##' @param xs see \code{\link{defx}}
+##' @param df data frame to plot.
+##' @param ... passed to [cont_hist()]
+##' @param x character name for x-axis data.
+##' @param xs see [defx()].
 ##' @param y what to use for the y-axis on the histogram; can be
-##' \code{"count"} or \code{"density"}
+##' "count"` or `"density"`.
 ##'
 ##' @examples
 ##' df <- pmplots_data_obs()
@@ -13,6 +13,8 @@
 ##' cwres_hist(df)
 ##'
 ##' @return A single plot.
+##'
+##' @md
 ##'
 ##' @export
 res_hist <- function(df, ...,
