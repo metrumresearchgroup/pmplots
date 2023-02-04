@@ -190,6 +190,7 @@ PMP-S023:
   - PMP-TEST-040
   - PMP-TEST-041
   - PMP-TEST-074
+  - PMP-TEST-089
 PMP-S024:
   name: List plots
   description: As a user, I want to create list plots.
