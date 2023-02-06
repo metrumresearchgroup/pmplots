@@ -8,7 +8,7 @@
 ##' @param x the x column for [ggplot2::geom_histogram()].
 ##' @param y what to use for the y-axis on the histogram; can be
 ##' `"count"` or `"density"`.
-##' @param add_density if `TRUE, a normal density line will
+##' @param add_density if `TRUE`, a normal density line will
 ##' be plotted over the histogram using [add_density()].
 ##' @param xs a list of information for the x axis.
 ##' @param fill a character value passed to [ggplot2::geom_histogram()].

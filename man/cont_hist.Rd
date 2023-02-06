@@ -35,7 +35,7 @@ pm_histogram(
 \item{y}{what to use for the y-axis on the histogram; can be
 \code{"count"} or \code{"density"}.}
 
-\item{add_density}{if `TRUE, a normal density line will
+\item{add_density}{if \code{TRUE}, a normal density line will
 be plotted over the histogram using \code{\link[=add_density]{add_density()}}.}
 
 \item{add_layers}{extra layers will be added only if \code{TRUE}.}
