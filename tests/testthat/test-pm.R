@@ -192,7 +192,7 @@ test_that("optional density plot over histogram [PMP-TEST-089]", {
   z <- cont_hist(df, x = "NPDE", add_density = TRUE)
   expect_length(z$layers, 2)
 
-  w <- cont_hist(df, x="WT", add_density = FALSE)
+  w <- cont_hist(df, x = "WT", add_density = FALSE)
   expect_length(w$layers, 1)
 })
 
