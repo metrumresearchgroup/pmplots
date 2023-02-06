@@ -1,5 +1,11 @@
 # pmplots (development version)
 
+## Bugs fixed
+
+- Fix bug where density line was not being drawn by default over npde and 
+  cwres histograms; the bug came about from incomplete transition to 
+  changes introduced in `ggplot2` v3.4.0 (#74, #75).
+
 # pmplots 0.3.6
 
 - Update plotting code to work with new `ggplot2` behavior introduced 

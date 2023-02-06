@@ -1,21 +1,21 @@
 ##' Generate a histogram plot
 ##'
-##' \code{cont_hist_list} is a vectorized version
-##' of \code{cont_hist}.  \code{pm_histogram} is a generic histogram
+##' `cont_hist_list` is a vectorized version
+##' of `cont_hist`.  `pm_histogram` is a generic histogram
 ##' function that is called by other functions in pmplots.
 ##'
-##' @param df the data frame containing plotting data
-##' @param x the x column for \code{geom_histogram}
+##' @param df the data frame containing plotting data.
+##' @param x the x column for [ggplot2::geom_histogram()].
 ##' @param y what to use for the y-axis on the histogram; can be
-##' \code{"count"} or \code{"density"}
-##' @param add_density if \code{TRUE}, a normal density line will
-##' be plotted over the histogram using \code{\link{add_density}}
-##' @param xs a list of information for the x axis
-##' @param fill a character value passed to \code{geom_histogram}
-##' @param col a character value passed to \code{geom_histogram}
-##' @param alpha a numeric value passed to \code{geom_histogram}
-##' @param add_layers extra layers will be added only if \code{TRUE}
-##' @param ... passed to \code{geom_histogram} and \code{add_density}
+##' `"count"` or `"density"`.
+##' @param add_density if `TRUE`, a normal density line will
+##' be plotted over the histogram using [add_density()].
+##' @param xs a list of information for the x axis.
+##' @param fill a character value passed to [ggplot2::geom_histogram()].
+##' @param col a character value passed to [ggplot2::geom_histogram()].
+##' @param alpha a numeric value passed to [ggplot2::geom_histogram()].
+##' @param add_layers extra layers will be added only if `TRUE`.
+##' @param ... passed to [ggplot2::geom_histogram()] and [add_density()].
 ##'
 ##'
 ##' @examples
@@ -25,7 +25,7 @@
 ##' cont_hist(data, x = "WT//Weight (kg)")
 ##'
 ##' @return A single plot.
-##'
+##' @md
 ##' @export
 cont_hist <- function(df, x, xs = defx(),
                       y = "count",

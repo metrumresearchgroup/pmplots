@@ -10,7 +10,7 @@
 \usage{
 res_hist(df, ..., x = pm_axis_res(), xs = defx())
 
-wres_hist(df, ..., x = pm_axis_wres(), y = "..density..")
+wres_hist(df, ..., x = pm_axis_wres(), y = "density")
 
 cwres_hist(df, ..., x = pm_axis_cwres())
 
@@ -19,16 +19,16 @@ cwresi_hist(df, x = pm_axis_cwresi(), ...)
 npde_hist(df, ..., x = pm_axis("npde"))
 }
 \arguments{
-\item{df}{data frame to plot}
+\item{df}{data frame to plot.}
 
-\item{...}{passed to \code{\link{cont_hist}}}
+\item{...}{passed to \code{\link[=cont_hist]{cont_hist()}}}
 
-\item{x}{character name for x-axis data}
+\item{x}{character name for x-axis data.}
 
-\item{xs}{see \code{\link{defx}}}
+\item{xs}{see \code{\link[=defx]{defx()}}.}
 
 \item{y}{what to use for the y-axis on the histogram; can be
-\code{"..count.."} or \code{"..density.."}}
+"count"\code{or}"density"`.}
 }
 \value{
 A single plot.

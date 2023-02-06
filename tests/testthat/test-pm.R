@@ -180,6 +180,22 @@ test_that("res hist [PMP-TEST-041]", {
 })
 
 
+test_that("optional density plot over histogram [PMP-TEST-089]", {
+  # issue 74
+  x <- npde_hist(df)
+  expect_is(x, "gg")
+  expect_length(x$layers, 2)
+
+  y <- npde_hist(df, add_density = FALSE)
+  expect_length(y$layers, 1)
+
+  z <- cont_hist(df, x = "NPDE", add_density = TRUE)
+  expect_length(z$layers, 2)
+
+  w <- cont_hist(df, x = "WT", add_density = FALSE)
+  expect_length(w$layers, 1)
+})
+
 test_that("eta pairs [PMP-TEST-042]", {
   p <- eta_pairs(df, c("ETA1//ETA-CL", "ETA2//ETA-V2"))
   expect_is(p,"ggmatrix")
