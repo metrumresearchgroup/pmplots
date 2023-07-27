@@ -1,4 +1,4 @@
-# pmplots (development version)
+# pmplots 0.3.7
 
 ## Bugs fixed
 
