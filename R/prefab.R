@@ -69,7 +69,7 @@ cwres_covariate <- function(data, x, ncol = 2, tag = FALSE) {
 #'
 #' @md
 #' @export
-npde_panel <- function(data, ncol = 2, time_unit = "days", tag = FALSE) {
+npde_panel <- function(data, ncol = 2, xname = "value", time_unit = "days", tag = FALSE) {
   if(!requireNamespace("patchwork", quietly = TRUE)) {
     stop(
       "Must have the patchwork package installed to run `npde_panel()`",
@@ -82,7 +82,7 @@ npde_panel <- function(data, ncol = 2, time_unit = "days", tag = FALSE) {
   }
   c <- npde_hist(data)
   d <- npde_q(data)
-  e <- npde_pred(data)
+  e <- npde_pred(data, xname = xname)
   p <- a/e/(c+d)
   if(isTRUE(tag)) p <- p + patchwork::plot_annotation(tag_levels = 'A')
   p
@@ -92,7 +92,7 @@ npde_panel <- function(data, ncol = 2, time_unit = "days", tag = FALSE) {
 #'
 #' @md
 #' @export
-cwres_panel <- function(data, time_unit = "days", xname = "foo concentraiion", tag = FALSE) {
+cwres_panel <- function(data, time_unit = "days", xname = "value", tag = FALSE) {
   if(!requireNamespace("patchwork", quietly = TRUE)) {
     stop(
       "Must have the patchwork package installed to run `cwres_panel()`",
