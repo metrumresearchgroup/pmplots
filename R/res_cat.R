@@ -70,3 +70,8 @@ npde_cat <- function(df, x, y = pm_axis_npde(), ...) {
   res_cat(df, x, y, ...)
 }
 
+##' @export
+##' @rdname res_cat
+npd_cat <- function(df, x, y = pm_axis_npd(), ...) {
+  res_cat(df, x, y, ...)
+}

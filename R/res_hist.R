@@ -50,3 +50,8 @@ npde_hist <- function(df, ..., x = pm_axis("npde")) {
   wres_hist(df, x = x, ...)
 }
 
+##' @export
+##' @rdname res_hist
+npd_hist <- function(df, ..., x = pm_axis("npd")) {
+  wres_hist(df, x = x, ...)
+}

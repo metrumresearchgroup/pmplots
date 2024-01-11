@@ -63,6 +63,13 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [npde_q()]
 #'   - [npde_cont()]
 #'   - [npde_cat()]
+#' - NPD plots
+#'   - [npd_time()], [npd_tad()], [npd_tafd()]
+#'   - [npd_pred()]
+#'   - [npd_hist()]
+#'   - [npd_q()]
+#'   - [npd_cont()]
+#'   - [npd_cat()]
 #' - Pairs plots
 #'   - [eta_pairs()], [pairs_plot()]
 #' - QQ plots

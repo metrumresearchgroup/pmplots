@@ -46,6 +46,15 @@ by this package.
 \item \code{\link[=npde_cont]{npde_cont()}}
 \item \code{\link[=npde_cat]{npde_cat()}}
 }
+\item NPD plots
+\itemize{
+\item \code{\link[=npd_time]{npd_time()}}, \code{\link[=npd_tad]{npd_tad()}}, \code{\link[=npd_tafd]{npd_tafd()}}
+\item \code{\link[=npd_pred]{npd_pred()}}
+\item \code{\link[=npd_hist]{npd_hist()}}
+\item \code{\link[=npd_q]{npd_q()}}
+\item \code{\link[=npd_cont]{npd_cont()}}
+\item \code{\link[=npd_cat]{npd_cat()}}
+}
 \item Pairs plots
 \itemize{
 \item \code{\link[=eta_pairs]{eta_pairs()}}, \code{\link[=pairs_plot]{pairs_plot()}}
