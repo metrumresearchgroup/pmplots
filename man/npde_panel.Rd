@@ -2,9 +2,12 @@
 % Please edit documentation in R/prefab.R
 \name{npde_panel}
 \alias{npde_panel}
+\alias{npde_panel_list}
 \title{Create a panel of NPDE diagnostic plots}
 \usage{
-npde_panel(data, ncol = 2, time_unit = "days", tag = FALSE)
+npde_panel(data, ncol = 2, time_unit = "days", xname = "value", tag = FALSE)
+
+npde_panel_list(data, time_unit = "days", xname = "value")
 }
 \description{
 Create a panel of NPDE diagnostic plots

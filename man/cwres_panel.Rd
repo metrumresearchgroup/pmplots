@@ -2,9 +2,12 @@
 % Please edit documentation in R/prefab.R
 \name{cwres_panel}
 \alias{cwres_panel}
+\alias{cwres_panel_list}
 \title{Plot a panel of CWRES diagnostic plots}
 \usage{
-cwres_panel(data, time_unit = "days", xname = "foo concentraiion", tag = FALSE)
+cwres_panel(data, time_unit = "days", xname = "value", tag = FALSE)
+
+cwres_panel_list(data, time_unit = "days", xname = "value")
 }
 \description{
 Plot a panel of CWRES diagnostic plots

@@ -1,12 +1,13 @@
 
 
-diagnostic_display <- function(data, x, y, ncol, fun_cat, fun_cont, tag) {
+diagnostic_display_plots <- function(data, x, y, ncol, fun_cat, fun_cont, tag) {
   out <- vector(mode = "list", length = length(y))
   tag <- isTRUE(tag)
   for(i in seq_along(y)) {
     panel <- lapply(seq_along(x), function(ii) {
-      require_column(data, x[ii])
-      if(inherits(unlist(data[,x[ii]]), c("character", "factor", "logical", "integer"))) {
+      col <- col_label(x[[ii]])[[1]]
+      require_column(data, col)
+      if(inherits(unlist(data[, col]), c("character", "factor", "logical", "integer"))) {
         p <- fun_cat(data, x = x[ii], y = y[i])
       } else {
         p <- fun_cont(data, x = x[ii], y = y[i])
@@ -69,23 +70,38 @@ cwres_covariate <- function(data, x, ncol = 2, tag = FALSE) {
 #'
 #' @md
 #' @export
-npde_panel <- function(data, ncol = 2, xname = "value", time_unit = "days", tag = FALSE) {
+npde_panel <- function(data, ncol = 2, time_unit = "days",xname = "value", tag = FALSE) {
   if(!requireNamespace("patchwork", quietly = TRUE)) {
     stop(
       "Must have the patchwork package installed to run `npde_panel()`",
       call.=FALSE
     )
   }
-  a <- npde_time(data, xunit = time_unit)
-  if("TAD" %in% names(data)) {
-    a <- a + npde_tad(data, xunit = time_unit)
+  l <- npde_panel_list(data, time_unit, xname)
+  a <- l$time
+  if(!is.null(l$tad)) {
+    a <- a + l$tad
   }
-  c <- npde_hist(data)
-  d <- npde_q(data)
-  e <- npde_pred(data, xname = xname)
-  p <- a/e/(c+d)
+  c <- l$pred
+  d <- l$hist
+  e <- l$q
+  p <- a/c/(d+e)
   if(isTRUE(tag)) p <- p + patchwork::plot_annotation(tag_levels = 'A')
   p
+}
+
+#' @rdname npde_panel
+#' @export
+npde_panel_list <- function(data, time_unit = "days", xname = "value") {
+    a <- npde_time(data, xunit = time_unit)
+    b <- NULL
+    if("TAD" %in% names(data)) {
+      b <- npde_tad(data, xunit = time_unit)
+    }
+    c <- npde_pred(data, xname = xname)
+    d <- npde_hist(data)
+    e <- npde_q(data)
+    list(time = a, tad = b, hist = d, q = e, pred = c)
 }
 
 #' Plot a panel of CWRES diagnostic plots
@@ -99,14 +115,29 @@ cwres_panel <- function(data, time_unit = "days", xname = "value", tag = FALSE) 
       call.=FALSE
     )
   }
-  a <- cwres_time(data, xunit = time_unit)
-  if("TAD" %in% names(data)) {
-    a <- a + cwres_tad(data, xunit = time_unit)
+  l <- cwres_panel_list(data, time_unit, xname)
+  a <- l$time
+  if(!is.null(l$tad)) {
+    a <- a + l$tad
   }
-  c <- cwres_hist(data)
-  d <- cwres_q(data)
-  e <- cwres_pred(data, xname = xname)
-  p <- a/e/(c+d)
+  c <- l$pred
+  d <- l$hist
+  e <- l$q
+  p <- a/c/(d+e)
   if(isTRUE(tag)) p <- p + patchwork::plot_annotation(tag_levels = 'A')
   p
+}
+
+#' @rdname cwres_panel
+#' @export
+cwres_panel_list <- function(data, time_unit = "days", xname = "value") {
+  a <- cwres_time(data, xunit = time_unit)
+  b <- NULL
+  if("TAD" %in% names(data)) {
+    b <- cwres_tad(data, xunit = time_unit)
+  }
+  c <- cwres_pred(data, xname = xname)
+  d <- cwres_hist(data)
+  e <- cwres_q(data)
+  list(time = a, tad = b, hist = d, q = e, pred = c)
 }
