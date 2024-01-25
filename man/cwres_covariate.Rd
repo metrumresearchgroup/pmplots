@@ -2,10 +2,26 @@
 % Please edit documentation in R/prefab.R
 \name{cwres_covariate}
 \alias{cwres_covariate}
+\alias{cwres_covariate_list}
 \title{Plot CWRES versus covariates}
 \usage{
-cwres_covariate(data, x, ncol = 2, tag = FALSE)
+cwres_covariate(df, x, ncol = 2, tag_levels = NULL)
+
+cwres_covariate_list(df, x)
+}
+\arguments{
+\item{df}{a data frame to plot.}
+
+\item{x}{character \verb{col//title} for covariates to plot on x-axis;
+see \link{col_label}.}
+
+\item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
+
+\item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
 Plot CWRES versus covariates
+}
+\seealso{
+\code{\link[=npde_covariate]{npde_covariate()}}, \code{\link[=eta_covariate]{eta_covariate()}}
 }

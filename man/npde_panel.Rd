@@ -5,10 +5,46 @@
 \alias{npde_panel_list}
 \title{Create a panel of NPDE diagnostic plots}
 \usage{
-npde_panel(data, ncol = 2, time_unit = "days", xname = "value", tag = FALSE)
+npde_panel(
+  df,
+  ncol = 2,
+  xname = "value",
+  unit_time = "hours",
+  unit_tad = "hours",
+  xby_time = NULL,
+  xby_tad = NULL,
+  tag_levels = NULL
+)
 
-npde_panel_list(data, time_unit = "days", xname = "value")
+npde_panel_list(
+  df,
+  xname = "value",
+  unit_time = "hours",
+  unit_tad = "hours",
+  xby_time = NULL,
+  xby_tad = NULL
+)
+}
+\arguments{
+\item{df}{a data frame to plot.}
+
+\item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
+
+\item{xname}{passed through \code{\link[=npde_pred]{npde_pred()}}.}
+
+\item{unit_time}{passed through \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
+
+\item{unit_tad}{passed through \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
+
+\item{xby_time}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xby}.}
+
+\item{xby_tad}{passed to \code{\link[=npde_tad]{npde_tad()}} as \code{xby}.}
+
+\item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
 Create a panel of NPDE diagnostic plots
+}
+\seealso{
+\code{\link[=cwres_panel]{cwres_panel()}}
 }

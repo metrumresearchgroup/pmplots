@@ -2,10 +2,26 @@
 % Please edit documentation in R/prefab.R
 \name{npde_covariate}
 \alias{npde_covariate}
+\alias{npde_covariate_list}
 \title{Plot NPDE versus covariates}
 \usage{
-npde_covariate(data, x, ncol = 2, tag = FALSE)
+npde_covariate(df, x, ncol = 2, tag_levels = NULL)
+
+npde_covariate_list(df, x)
+}
+\arguments{
+\item{df}{a data frame to plot.}
+
+\item{x}{character \verb{col//title} for covariates to plot on x-axis;
+see \link{col_label}.}
+
+\item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
+
+\item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
 Plot NPDE versus covariates
+}
+\seealso{
+\code{\link[=cwres_covariate]{cwres_covariate()}}, \code{\link[=eta_covariate]{eta_covariate()}}
 }

@@ -5,10 +5,43 @@
 \alias{cwres_panel_list}
 \title{Plot a panel of CWRES diagnostic plots}
 \usage{
-cwres_panel(data, time_unit = "days", xname = "value", tag = FALSE)
+cwres_panel(
+  df,
+  xname = "value",
+  unit_time = "hours",
+  unit_tad = "hours",
+  xby_time = NULL,
+  xby_tad = NULL,
+  tag_levels = NULL
+)
 
-cwres_panel_list(data, time_unit = "days", xname = "value")
+cwres_panel_list(
+  df,
+  xname = "value",
+  unit_time = "hours",
+  unit_tad = "hours",
+  xby_time = NULL,
+  xby_tad = NULL
+)
+}
+\arguments{
+\item{df}{a data frame to plot.}
+
+\item{xname}{passed through \code{\link[=npde_pred]{npde_pred()}}.}
+
+\item{unit_time}{passed through \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
+
+\item{unit_tad}{passed through \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
+
+\item{xby_time}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xby}.}
+
+\item{xby_tad}{passed to \code{\link[=npde_tad]{npde_tad()}} as \code{xby}.}
+
+\item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
 Plot a panel of CWRES diagnostic plots
+}
+\seealso{
+\code{\link[=npde_panel]{npde_panel()}}
 }
