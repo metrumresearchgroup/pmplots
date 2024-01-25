@@ -1,3 +1,8 @@
+class_pm_display <- function(x) {
+  stopifnot(is.list(x))
+  class(x) <- c("pm_display", class(x))
+  x
+}
 
 diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
   out <- vector(mode = "list", length = length(y))
@@ -22,16 +27,25 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' see [col_label].
 #' @param y character `col//title` for ETAs to plot on y-axis; see [col_label].
 #' @param ncol passed to [pm_grid()].
+#' @param byrow passed through [pm_grid()].
 #' @param tag_levels passed to [patchwork::plot_annotation()].
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' etas <- c("ETA1//ETA-CL", "ETA2//ETA-V")
+#' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
+#' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#' eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+#'
 #'
 #' @seealso [npde_covariate()], [cwres_covariate()]
 #' @md
 #' @export
-eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL) {
+eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL) {
   require_patchwork()
   p <- eta_covariate_list(df, x, y)
-  if(!is.numeric(ncol)) {
-    p <- lapply(p, pm_grid, ncol = ncol)
+  if(is.numeric(ncol)) {
+    p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
   }
   if(!is.null(tag_levels)) {
     p <- lapply(p, function(x) x + patchwork::plot_annotation(tag_levels = tag_levels))
@@ -45,10 +59,11 @@ eta_covariate_list <- function(df, x, y) {
   p  <- diagnostic_display_list(df, x, y, eta_cat, eta_cont)
   labx <- lapply(x, col_label)
   labx <- sapply(labx, "[[", 1)
-  laby <- lapply(etas, col_label)
+  laby <- lapply(y, col_label)
   laby <- sapply(laby, "[[", 1)
-  ans  <- lapply(p, setNames, nm = labx)
+  p  <- lapply(p, setNames, nm = labx)
   names(p) <- laby
+  p <- lapply(p, class_pm_display)
   p
 }
 
@@ -79,6 +94,7 @@ npde_covariate_list <- function(df, x) {
   labx <- lapply(x, col_label)
   labx <- sapply(labx, "[[", 1)
   names(p) <- labx
+  p <- lapply(p, class_pm_display)
   p
 }
 
@@ -159,7 +175,7 @@ npde_panel_list <- function(df, xname = "value",
   hist <- npde_hist(df)
   q <- npde_q(df)
   p <- list(time = time, tad = tad, hist = hist, q = q, pred = pred)
-  class(p) <- c("pm_display", class(p))
+  p <- class_pm_display(p)
   p
 }
 
@@ -200,10 +216,12 @@ cwres_panel_list <- function(df, xname = "value",
   hist <- cwres_hist(df)
   q <- cwres_q(df)
   p <- list(time = time, tad = tad, hist = hist, q = q, pred = pred)
-  class(p) <- c("pm_display", class(p))
+  p <- class_pm_display(p)
   p
 }
 
+#' with method for pm_display objects
+#'
 #' @param tag_levels passed to [patchwork::plot_annotation()].
 #' @export
 with.pm_display <- function(data, expr, tag_levels = NULL, ...) {
