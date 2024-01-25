@@ -5,9 +5,17 @@
 \alias{eta_covariate_list}
 \title{Plot ETAs versus covariates}
 \usage{
-eta_covariate(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL)
+eta_covariate(
+  df,
+  x,
+  y,
+  ncol = 2,
+  tag_levels = NULL,
+  byrow = NULL,
+  transpose = FALSE
+)
 
-eta_covariate_list(df, x, y)
+eta_covariate_list(df, x, y, transpose = FALSE)
 }
 \arguments{
 \item{df}{a data frame to plot.}
@@ -22,6 +30,9 @@ see \link{col_label}.}
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 
 \item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
+
+\item{transpose}{logical; if \code{TRUE}, output will be transposed to group
+plots byt the covariate, rather than the \code{ETA}; see \strong{Examples}.}
 }
 \description{
 Plot ETAs versus covariates
@@ -32,6 +43,9 @@ etas <- c("ETA1//ETA-CL", "ETA2//ETA-V")
 cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 cat <- c("RF//Renal function", "CPc//Child-Pugh")
 eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+
+eta_covariate(data, cont)
+eta_covariate(data, cont, transpose = TRUE)
 
 
 }

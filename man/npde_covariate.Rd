@@ -24,6 +24,13 @@ see \link{col_label}.}
 \description{
 Plot NPDE versus covariates
 }
+\examples{
+data <- pmplots_data_id()
+cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
+cat <- c("RF//Renal function", "CPc//Child-Pugh")
+npde_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+
+}
 \seealso{
 \code{\link[=cwres_covariate]{cwres_covariate()}}, \code{\link[=eta_covariate]{eta_covariate()}}
 }

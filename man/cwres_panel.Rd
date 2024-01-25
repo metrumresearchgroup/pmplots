@@ -42,6 +42,14 @@ cwres_panel_list(
 \description{
 Plot a panel of CWRES diagnostic plots
 }
+\examples{
+data <- pmplots_data_obs()
+cwres_panel(data, tag_levels = "A")
+
+l <- cwres_panel_list(data)
+with(l, (q+hist) / pred)
+
+}
 \seealso{
 \code{\link[=npde_panel]{npde_panel()}}
 }

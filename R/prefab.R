@@ -29,6 +29,8 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' @param ncol passed to [pm_grid()].
 #' @param byrow passed through [pm_grid()].
 #' @param tag_levels passed to [patchwork::plot_annotation()].
+#' @param transpose logical; if `TRUE`, output will be transposed to group
+#' plots byt the covariate, rather than the `ETA`; see **Examples**.
 #'
 #' @examples
 #' data <- pmplots_data_id()
@@ -37,13 +39,17 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
 #' eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 #'
+#' eta_covariate(data, cont)
+#' eta_covariate(data, cont, transpose = TRUE)
+#'
 #'
 #' @seealso [npde_covariate()], [cwres_covariate()]
 #' @md
 #' @export
-eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL) {
+eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL,
+                          transpose = FALSE) {
   require_patchwork()
-  p <- eta_covariate_list(df, x, y)
+  p <- eta_covariate_list(df, x, y, transpose)
   if(is.numeric(ncol)) {
     p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
   }
@@ -55,7 +61,7 @@ eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL) {
 
 #' @rdname eta_covariate
 #' @export
-eta_covariate_list <- function(df, x, y) {
+eta_covariate_list <- function(df, x, y, transpose = FALSE) {
   p  <- diagnostic_display_list(df, x, y, eta_cat, eta_cont)
   labx <- lapply(x, col_label)
   labx <- sapply(labx, "[[", 1)
@@ -64,12 +70,21 @@ eta_covariate_list <- function(df, x, y) {
   p  <- lapply(p, setNames, nm = labx)
   names(p) <- laby
   p <- lapply(p, class_pm_display)
+  if(isTRUE(transpose)) {
+    p <- list_transpose(p)
+  }
   p
 }
 
 #' Plot NPDE versus covariates
 #'
 #' @inheritParams eta_covariate
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
+#' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#' npde_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 #'
 #' @seealso [cwres_covariate()], [eta_covariate()]
 #' @md
@@ -101,6 +116,12 @@ npde_covariate_list <- function(df, x) {
 #' Plot CWRES versus covariates
 #'
 #' @inheritParams eta_covariate
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
+#' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#' cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
 #'
 #' @seealso [npde_covariate()], [eta_covariate()]
 #' @md
@@ -138,6 +159,28 @@ cwres_covariate_list <- function(df, x) {
 #' @param xby_time passed to [npde_time()] as `xby`.
 #' @param xby_tad passed to [npde_tad()] as `xby`.
 #'
+#' @examples
+#' data <- pmplots_data_obs()
+#' npde_panel(data, tag_levels = "A")
+#'
+#' l <- npde_panel_list(data)
+#' names(l)
+#' with(l, (q+hist) / pred, tag_levels = "a")
+#'
+#' @return
+#' `npde_panel()` returns a single graphic with the following panels:
+#'
+#' - `NPDE` versus `TIME` via [npde_time()]
+#' - `NPDE` versus `TAD` via [npde_tad()]
+#' - `NPDE` versus `PRED` via [npde_pred()]
+#' - `NPDE` histogram via [npde_hist()]
+#' - `NPDE` quantile-quantile plot via [npde_q()]
+#'
+#' `npde_panel_list()` returns a list of the individual plots that are
+#' incorporated into the `npde_panel()` output. Each element of the list
+#' is named for the plot in that position: `time`, `tad`, `pred`, `hist`
+#' `q`. See **Examples** for how you can work with that list.
+#'
 #' @seealso [cwres_panel()]
 #' @md
 #' @export
@@ -151,9 +194,6 @@ npde_panel <- function(df, ncol = 2, xname = "value",
   if(!is.null(l$tad)) {
     time <- time + l$tad
   }
-  c <- l$pred
-  d <- l$hist
-  e <- l$q
   p <- time/l$pred/(l$hist+l$q)
   if(!is.null(tag_levels)) {
     p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
@@ -182,6 +222,13 @@ npde_panel_list <- function(df, xname = "value",
 #' Plot a panel of CWRES diagnostic plots
 #'
 #' @inheritParams npde_panel
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#' cwres_panel(data, tag_levels = "A")
+#'
+#' l <- cwres_panel_list(data)
+#' with(l, (q+hist) / pred)
 #'
 #' @seealso [npde_panel()]
 #' @md

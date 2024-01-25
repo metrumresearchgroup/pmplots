@@ -42,8 +42,32 @@ npde_panel_list(
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+\code{npde_panel()} returns a single graphic with the following panels:
+\itemize{
+\item \code{NPDE} versus \code{TIME} via \code{\link[=npde_time]{npde_time()}}
+\item \code{NPDE} versus \code{TAD} via \code{\link[=npde_tad]{npde_tad()}}
+\item \code{NPDE} versus \code{PRED} via \code{\link[=npde_pred]{npde_pred()}}
+\item \code{NPDE} histogram via \code{\link[=npde_hist]{npde_hist()}}
+\item \code{NPDE} quantile-quantile plot via \code{\link[=npde_q]{npde_q()}}
+}
+
+\code{npde_panel_list()} returns a list of the individual plots that are
+incorporated into the \code{npde_panel()} output. Each element of the list
+is named for the plot in that position: \code{time}, \code{tad}, \code{pred}, \code{hist}
+\code{q}. See \strong{Examples} for how you can work with that list.
+}
 \description{
 Create a panel of NPDE diagnostic plots
+}
+\examples{
+data <- pmplots_data_obs()
+npde_panel(data, tag_levels = "A")
+
+l <- npde_panel_list(data)
+names(l)
+with(l, (q+hist) / pred, tag_levels = "a")
+
 }
 \seealso{
 \code{\link[=cwres_panel]{cwres_panel()}}

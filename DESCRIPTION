@@ -22,7 +22,8 @@ Imports:
   tidyr (>= 1.1.4), 
   forcats (>= 0.5.1), 
   lifecycle, 
-  tidyselect (>= 1.1.1)
+  tidyselect (>= 1.1.1), 
+  purrr(>= 1.0.0)
 VignetteBuilder: knitr
 Suggests: 
   testthat,

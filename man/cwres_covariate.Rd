@@ -22,6 +22,13 @@ see \link{col_label}.}
 \description{
 Plot CWRES versus covariates
 }
+\examples{
+data <- pmplots_data_id()
+cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
+cat <- c("RF//Renal function", "CPc//Child-Pugh")
+cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
+
+}
 \seealso{
 \code{\link[=npde_covariate]{npde_covariate()}}, \code{\link[=eta_covariate]{eta_covariate()}}
 }
