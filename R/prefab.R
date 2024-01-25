@@ -222,7 +222,10 @@ cwres_panel_list <- function(df, xname = "value",
 
 #' with method for pm_display objects
 #'
+#' @param data a `pm_display` object.
+#' @param expr a `patchwork` formula for arranging plots in `data`.
 #' @param tag_levels passed to [patchwork::plot_annotation()].
+#' @param ... not used.
 #' @export
 with.pm_display <- function(data, expr, tag_levels = NULL, ...) {
   expr <- enexpr(expr)

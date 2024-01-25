@@ -7,7 +7,13 @@
 \method{with}{pm_display}(data, expr, tag_levels = NULL, ...)
 }
 \arguments{
+\item{data}{a \code{pm_display} object.}
+
+\item{expr}{a \code{patchwork} formula for arranging plots in \code{data}.}
+
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
+
+\item{...}{not used.}
 }
 \description{
 with method for pm_display objects
