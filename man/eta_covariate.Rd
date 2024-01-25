@@ -5,7 +5,7 @@
 \alias{eta_covariate_list}
 \title{Plot ETAs versus covariates}
 \usage{
-eta_covariate(df, x, y, ncol = 2, tag_levels = NULL)
+eta_covariate(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL)
 
 eta_covariate_list(df, x, y)
 }
@@ -20,6 +20,8 @@ see \link{col_label}.}
 \item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
+
+\item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
 }
 \description{
 Plot ETAs versus covariates

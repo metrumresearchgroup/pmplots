@@ -5,7 +5,7 @@
 \alias{npde_covariate_list}
 \title{Plot NPDE versus covariates}
 \usage{
-npde_covariate(df, x, ncol = 2, tag_levels = NULL)
+npde_covariate(df, x, ncol = 2, tag_levels = NULL, byrow = NULL)
 
 npde_covariate_list(df, x)
 }
@@ -18,6 +18,8 @@ see \link{col_label}.}
 \item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
+
+\item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
 }
 \description{
 Plot NPDE versus covariates
