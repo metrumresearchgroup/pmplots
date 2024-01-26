@@ -32,10 +32,27 @@ see \link{col_label}.}
 \item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
 
 \item{transpose}{logical; if \code{TRUE}, output will be transposed to group
-plots byt the covariate, rather than the \code{ETA}; see \strong{Examples}.}
+plots by the covariate, rather than the \code{ETA}; see \strong{Examples}.}
+}
+\value{
+\code{eta_covariate()} returns a list of plots arranged in a graphic using
+\code{\link[=pm_grid]{pm_grid()}} and \code{eta_covariate_list()} the same plots, but unarranged as a
+list of lists.
+
+When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
+by the \code{ETA} name (e.g., \code{ETA1}) the names of the list reflect that \code{ETA}
+name. When \code{transpose} is \code{TRUE}, the graphics are grouped by column names
+passed via \code{x} and the names of the list reflect those covariate data names.
+See \strong{Examples}.
 }
 \description{
-Plot ETAs versus covariates
+Get a single graphic of \code{ETA} versus continuous and / or categorical
+covariates (\code{eta_covariate()}) or the component plots as a list
+(\code{eta_covariate_list()}) that can be arranged by the user.
+}
+\details{
+Pass \code{ncol = NULL} or another non-numeric value to bypass arranging plots
+coming from \code{eta_covariate()}.
 }
 \examples{
 data <- pmplots_data_id()
@@ -47,6 +64,8 @@ eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 eta_covariate(data, cont)
 eta_covariate(data, cont, transpose = TRUE)
 
+eta_covariate_list(data, x = cat, y = etas)
+eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)
 
 }
 \seealso{

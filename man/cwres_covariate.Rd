@@ -19,8 +19,20 @@ see \link{col_label}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+\code{cwres_covariate()} returns single graphic of scatter plot diagnostics
+as a \code{patchwork} object that has been arranged using \code{\link[=pm_grid]{pm_grid()}} and
+\code{cwres_covariate()} returns the same component plots unarranged in a list.
+}
 \description{
-Plot CWRES versus covariates
+Get a single graphic of \code{CWRES} versus continuous and / or categorical
+covariates (\code{cwres_covariate()}) or get a list (\code{cwres_covariate_list()})
+that can be arranged by the user. See \code{\link[=cwres_panel]{cwres_panel()}} for other \code{CWRES}
+diagnostic displays.
+}
+\details{
+Pass \code{ncol = NULL} or another non-numeric value to bypass arranging plots
+coming from \code{cwres_covariate()}.
 }
 \examples{
 data <- pmplots_data_id()

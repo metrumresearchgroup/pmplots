@@ -22,6 +22,10 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 
 #' Plot ETAs versus covariates
 #'
+#' Get a single graphic of `ETA` versus continuous and / or categorical
+#' covariates (`eta_covariate()`) or the component plots as a list
+#' (`eta_covariate_list()`) that can be arranged by the user.
+#'
 #' @param df a data frame to plot.
 #' @param x character `col//title` for covariates to plot on x-axis;
 #' see [col_label].
@@ -30,7 +34,11 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' @param byrow passed through [pm_grid()].
 #' @param tag_levels passed to [patchwork::plot_annotation()].
 #' @param transpose logical; if `TRUE`, output will be transposed to group
-#' plots byt the covariate, rather than the `ETA`; see **Examples**.
+#' plots by the covariate, rather than the `ETA`; see **Examples**.
+#'
+#' @details
+#' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
+#' coming from `eta_covariate()`.
 #'
 #' @examples
 #' data <- pmplots_data_id()
@@ -42,6 +50,19 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' eta_covariate(data, cont)
 #' eta_covariate(data, cont, transpose = TRUE)
 #'
+#' eta_covariate_list(data, x = cat, y = etas)
+#' eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)
+#'
+#' @return
+#' `eta_covariate()` returns a list of plots arranged in a graphic using
+#' [pm_grid()] and `eta_covariate_list()` the same plots, but unarranged as a
+#' list of lists.
+#'
+#' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
+#' by the `ETA` name (e.g., `ETA1`) the names of the list reflect that `ETA`
+#' name. When `transpose` is `TRUE`, the graphics are grouped by column names
+#' passed via `x` and the names of the list reflect those covariate data names.
+#' See **Examples**.
 #'
 #' @seealso [npde_covariate()], [cwres_covariate()]
 #' @md
@@ -49,6 +70,9 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL,
                           transpose = FALSE) {
   require_patchwork()
+  if(missing(ncol) && length(x)==1) {
+    ncol <- 1
+  }
   p <- eta_covariate_list(df, x, y, transpose)
   if(is.numeric(ncol)) {
     p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
@@ -78,7 +102,16 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 
 #' Plot NPDE versus covariates
 #'
+#' Get a single graphic of `NPDE` versus continuous and / or categorical
+#' covariates (`npde_covariate()`) or get a list (`npde_covariate_list()`) that
+#' can be arranged by the user. See [npde_panel()] for other `NPDE`
+#' diagnostic displays.
+#'
 #' @inheritParams eta_covariate
+#'
+#' @details
+#' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
+#' coming from `npde_covariate()`.
 #'
 #' @examples
 #' data <- pmplots_data_id()
@@ -86,11 +119,19 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
 #' npde_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 #'
+#' @return
+#' `npde_covariate()` returns single graphic of scatter plot diagnostics
+#' as a `patchwork` object that has been arranged using [pm_grid()] and
+#' `npde_covariate()` returns the same component plots unarranged in a list.
+#'
 #' @seealso [cwres_covariate()], [eta_covariate()]
 #' @md
 #' @export
 npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
   require_patchwork()
+  if(missing(ncol) && length(x)==1) {
+    ncol <- 1
+  }
   p <- npde_covariate_list(df, x)
   if(is.numeric(ncol)) {
     p <- pm_grid(p, ncol = ncol, byrow = byrow)
@@ -115,7 +156,16 @@ npde_covariate_list <- function(df, x) {
 
 #' Plot CWRES versus covariates
 #'
+#' Get a single graphic of `CWRES` versus continuous and / or categorical
+#' covariates (`cwres_covariate()`) or get a list (`cwres_covariate_list()`)
+#' that can be arranged by the user. See [cwres_panel()] for other `CWRES`
+#' diagnostic displays.
+#'
 #' @inheritParams eta_covariate
+#'
+#' @details
+#' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
+#' coming from `cwres_covariate()`.
 #'
 #' @examples
 #' data <- pmplots_data_id()
@@ -123,11 +173,19 @@ npde_covariate_list <- function(df, x) {
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
 #' cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
 #'
+#' @return
+#' `cwres_covariate()` returns single graphic of scatter plot diagnostics
+#' as a `patchwork` object that has been arranged using [pm_grid()] and
+#' `cwres_covariate()` returns the same component plots unarranged in a list.
+#'
 #' @seealso [npde_covariate()], [eta_covariate()]
 #' @md
 #' @export
 cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL) {
   require_patchwork()
+  if(missing(ncol) && length(x)==1) {
+    ncol <- 1
+  }
   p <- cwres_covariate_list(df, x)
   if(is.numeric(ncol)) {
     p <- pm_grid(p, ncol = ncol)
@@ -151,6 +209,10 @@ cwres_covariate_list <- function(df, x) {
 
 #' Create a panel of NPDE diagnostic plots
 #'
+#' Get a single graphic of basic `NPDE` diagnostics (`npde_panel()`) or get the
+#' component plots in a list (`npde_panel_list()`) that can be arranged by the
+#' user. See [npde_covariate()] for plotting `NPDE` versus covariates.
+#'
 #' @inheritParams eta_covariate
 #'
 #' @param unit_tad passed through [npde_time()] as `xunit`.
@@ -168,7 +230,8 @@ cwres_covariate_list <- function(df, x) {
 #' with(l, (q+hist) / pred, tag_levels = "a")
 #'
 #' @return
-#' `npde_panel()` returns a single graphic with the following panels:
+#' `npde_panel()` returns a single graphic as a `patchwork` object with the
+#' following panels:
 #'
 #' - `NPDE` versus `TIME` via [npde_time()]
 #' - `NPDE` versus `TAD` via [npde_tad()]
@@ -182,9 +245,10 @@ cwres_covariate_list <- function(df, x) {
 #' `q`. See **Examples** for how you can work with that list.
 #'
 #' @seealso [cwres_panel()]
+#'
 #' @md
 #' @export
-npde_panel <- function(df, ncol = 2, xname = "value",
+npde_panel <- function(df, xname = "value",
                        unit_time = "hours", unit_tad = "hours",
                        xby_time  = NULL, xby_tad = NULL,
                        tag_levels = NULL) {
@@ -221,6 +285,10 @@ npde_panel_list <- function(df, xname = "value",
 
 #' Plot a panel of CWRES diagnostic plots
 #'
+#' Get a single graphic of basic `CWRES` diagnostics (`cwres_panel()`) or get
+#' the component plots in a list (`cwres_panel_list()`) that can be arranged by
+#' the user. See [cwres_covariate()] for plotting `CWRES` versus covariates.
+#'
 #' @inheritParams npde_panel
 #'
 #' @examples
@@ -230,7 +298,21 @@ npde_panel_list <- function(df, xname = "value",
 #' l <- cwres_panel_list(data)
 #' with(l, (q+hist) / pred)
 #'
-#' @seealso [npde_panel()]
+#' @return
+#' `cwres_panel()` returns a single graphic with the following panels:
+#'
+#' - `CWRES` versus `TIME` via [cwres_time()]
+#' - `CWRES` versus `TAD` via [cwres_tad()]
+#' - `CWRES` versus `PRED` via [cwres_pred()]
+#' - `CWRES` histogram via [cwres_hist()]
+#' - `CWRES` quantile-quantile plot via [cwres_q()]
+#'
+#' `npde_panel_list()` returns a list of the individual plots that are
+#' incorporated into the `npde_panel()` output. Each element of the list
+#' is named for the plot in that position: `time`, `tad`, `pred`, `hist`
+#' `q`. See **Examples** for how you can work with that list.
+#'
+#' @seealso [npde_panel()], [npde_covariate()]
 #' @md
 #' @export
 cwres_panel <- function(df, xname = "value",
@@ -264,6 +346,50 @@ cwres_panel_list <- function(df, xname = "value",
   q <- cwres_q(df)
   p <- list(time = time, tad = tad, hist = hist, q = q, pred = pred)
   p <- class_pm_display(p)
+  p
+}
+
+#' Residual histograms and quantile-quantile displays
+#'
+#' Get a single graphic showing `NPDE` or `CWRES` histogram and
+#' quantile-quantile plots.
+#'
+#' @inheritParams npde_panel
+#'
+#' @examples
+#' df <- pmplots_data_obs()
+#' npde_hist_q(df, tag_levels = "a")
+#' npde_hist_q(df, tag_levels = "a", ncol = 2)
+#'
+#' @details
+#' The default value for `ncol` (1) means the two plots will be arranged in a
+#' single column, with the histogram on the top and quantile-quantile plot
+#' on the bottom. Using `ncol=2` will return an graphic with the plots
+#' side by side.
+#'
+#' @return
+#' A single graphic is returned, with a `NPDE`  or `CWRES` histogram and
+#' quantile-quantile plot arranged in a an object
+#' using [patchwork::plot_annotation()].
+#'
+#' @name res_hist_q
+#' @export
+npde_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
+  require_patchwork()
+  hist <- npde_hist(df)
+  q <- npde_q(df)
+  p <- pm_grid(list(hist, q), ncol = ncol)
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
+  p
+}
+
+#' @rdname res_hist_q
+#' @export
+cwres_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
+  hist <- cwres_hist(df)
+  q <- cwres_q(df)
+  p <- pm_grid(list(hist, q), ncol = ncol)
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
 

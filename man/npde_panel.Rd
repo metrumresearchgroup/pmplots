@@ -7,7 +7,6 @@
 \usage{
 npde_panel(
   df,
-  ncol = 2,
   xname = "value",
   unit_time = "hours",
   unit_tad = "hours",
@@ -28,8 +27,6 @@ npde_panel_list(
 \arguments{
 \item{df}{a data frame to plot.}
 
-\item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
-
 \item{xname}{passed through \code{\link[=npde_pred]{npde_pred()}}.}
 
 \item{unit_time}{passed through \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
@@ -43,7 +40,8 @@ npde_panel_list(
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \value{
-\code{npde_panel()} returns a single graphic with the following panels:
+\code{npde_panel()} returns a single graphic as a \code{patchwork} object with the
+following panels:
 \itemize{
 \item \code{NPDE} versus \code{TIME} via \code{\link[=npde_time]{npde_time()}}
 \item \code{NPDE} versus \code{TAD} via \code{\link[=npde_tad]{npde_tad()}}
@@ -58,7 +56,9 @@ is named for the plot in that position: \code{time}, \code{tad}, \code{pred}, \c
 \code{q}. See \strong{Examples} for how you can work with that list.
 }
 \description{
-Create a panel of NPDE diagnostic plots
+Get a single graphic of basic \code{NPDE} diagnostics (\code{npde_panel()}) or get the
+component plots in a list (\code{npde_panel_list()}) that can be arranged by the
+user. See \code{\link[=npde_covariate]{npde_covariate()}} for plotting \code{NPDE} versus covariates.
 }
 \examples{
 data <- pmplots_data_obs()

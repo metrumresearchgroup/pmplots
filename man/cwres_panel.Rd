@@ -39,8 +39,25 @@ cwres_panel_list(
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
+\value{
+\code{cwres_panel()} returns a single graphic with the following panels:
+\itemize{
+\item \code{CWRES} versus \code{TIME} via \code{\link[=cwres_time]{cwres_time()}}
+\item \code{CWRES} versus \code{TAD} via \code{\link[=cwres_tad]{cwres_tad()}}
+\item \code{CWRES} versus \code{PRED} via \code{\link[=cwres_pred]{cwres_pred()}}
+\item \code{CWRES} histogram via \code{\link[=cwres_hist]{cwres_hist()}}
+\item \code{CWRES} quantile-quantile plot via \code{\link[=cwres_q]{cwres_q()}}
+}
+
+\code{npde_panel_list()} returns a list of the individual plots that are
+incorporated into the \code{npde_panel()} output. Each element of the list
+is named for the plot in that position: \code{time}, \code{tad}, \code{pred}, \code{hist}
+\code{q}. See \strong{Examples} for how you can work with that list.
+}
 \description{
-Plot a panel of CWRES diagnostic plots
+Get a single graphic of basic \code{CWRES} diagnostics (\code{cwres_panel()}) or get
+the component plots in a list (\code{cwres_panel_list()}) that can be arranged by
+the user. See \code{\link[=cwres_covariate]{cwres_covariate()}} for plotting \code{CWRES} versus covariates.
 }
 \examples{
 data <- pmplots_data_obs()
@@ -51,5 +68,5 @@ with(l, (q+hist) / pred)
 
 }
 \seealso{
-\code{\link[=npde_panel]{npde_panel()}}
+\code{\link[=npde_panel]{npde_panel()}}, \code{\link[=npde_covariate]{npde_covariate()}}
 }
