@@ -151,7 +151,7 @@ npde_covariate_list <- function(df, x) {
   labx <- lapply(x, col_label)
   labx <- sapply(labx, "[[", 1)
   names(p) <- labx
-  p <- lapply(p, class_pm_display)
+  p <- class_pm_display(p)
   p
 }
 
@@ -205,6 +205,7 @@ cwres_covariate_list <- function(df, x) {
   labx <- lapply(x, col_label)
   labx <- sapply(labx, "[[", 1)
   names(p) <- labx
+  p <- class_pm_display(p)
   p
 }
 
