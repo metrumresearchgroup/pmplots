@@ -23,7 +23,8 @@ cwres_scatter(
   unit_tad = "hours",
   xby_time = NULL,
   xby_tad = NULL,
-  tag_levels = NULL
+  tag_levels = NULL,
+  compact = FALSE
 )
 }
 \arguments{
@@ -56,8 +57,9 @@ Get a single graphic of \code{NPDE} or \code{CWRES} diagnostics versus \code{TIM
 \code{TAD} and \code{PRED}. Output can be in either long or compact format.
 }
 \examples{
-npde_scatter(df)
-npde_scatter(df, compact = TRUE)
+data <- pmplots_data_obs()
+npde_scatter(data)
+npde_scatter(data, compact = TRUE)
 
 }
 \seealso{

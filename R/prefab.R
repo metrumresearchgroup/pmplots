@@ -355,9 +355,9 @@ cwres_panel_list <- function(df, xname = "value",
 #' @inheritParams eta_covariate
 #'
 #' @examples
-#' df <- pmplots_data_obs()
-#' npde_hist_q(df, tag_levels = "a")
-#' npde_hist_q(df, tag_levels = "a", ncol = 2)
+#' data <- pmplots_data_obs()
+#' npde_hist_q(data, tag_levels = "a")
+#' npde_hist_q(data, tag_levels = "a", ncol = 2)
 #'
 #' @details
 #' The default value for `ncol` (1) means the two plots will be arranged in a
@@ -409,8 +409,9 @@ cwres_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
 #' plot on the top and the `TAD` and `PRED` plots on the bottom.
 #'
 #' @examples
-#' npde_scatter(df)
-#' npde_scatter(df, compact = TRUE)
+#' data <- pmplots_data_obs()
+#' npde_scatter(data)
+#' npde_scatter(data, compact = TRUE)
 #'
 #' @seealso [npde_panel()], [npde_panel_list()], [cwres_panel()],
 #' [cwres_panel_list()]
@@ -438,7 +439,7 @@ npde_scatter <- function(df, xname = "value",
 cwres_scatter <- function(df, xname = "value",
                           unit_time = "hours", unit_tad = "hours",
                           xby_time  = NULL, xby_tad = NULL,
-                          tag_levels = NULL) {
+                          tag_levels = NULL, compact = FALSE) {
   require_patchwork()
   time <- cwres_time(df, xby = xby_time, xunit = unit_time)
   tad <- cwres_tad(df, xby = xby_tad, xunit = unit_tad)

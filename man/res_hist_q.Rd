@@ -33,8 +33,8 @@ on the bottom. Using \code{ncol=2} will return an graphic with the plots
 side by side.
 }
 \examples{
-df <- pmplots_data_obs()
-npde_hist_q(df, tag_levels = "a")
-npde_hist_q(df, tag_levels = "a", ncol = 2)
+data <- pmplots_data_obs()
+npde_hist_q(data, tag_levels = "a")
+npde_hist_q(data, tag_levels = "a", ncol = 2)
 
 }
