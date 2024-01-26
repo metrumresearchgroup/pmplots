@@ -139,9 +139,7 @@ npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
   if(is.numeric(ncol)) {
     p <- pm_grid(p, ncol = ncol, byrow = byrow)
   }
-  if(!is.null(tag_levels)) {
-    p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
-  }
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
 
@@ -195,9 +193,7 @@ cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL) {
   if(is.numeric(ncol)) {
     p <- pm_grid(p, ncol = ncol)
   }
-  if(!is.null(tag_levels)) {
-    p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
-  }
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
 
@@ -264,9 +260,7 @@ npde_panel <- function(df, xname = "value",
     time <- time + l$tad
   }
   p <- time/l$pred/(l$hist+l$q)
-  if(!is.null(tag_levels)) {
-    p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
-  }
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
 
@@ -330,9 +324,7 @@ cwres_panel <- function(df, xname = "value",
     time <- time + l$tad
   }
   p <- time/l$pred/(l$hist+l$q)
-  if(!is.null(tag_levels)) {
-    p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
-  }
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
 
@@ -392,9 +384,70 @@ npde_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
 #' @rdname res_hist_q
 #' @export
 cwres_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
+  require_patchwork()
   hist <- cwres_hist(df)
   q <- cwres_q(df)
   p <- pm_grid(list(hist, q), ncol = ncol)
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
+  p
+}
+
+#' Create a display of residuals versus time and predicted values
+#'
+#' Get a single graphic of `NPDE` or `CWRES` diagnostics versus `TIME`,
+#' `TAD` and `PRED`. Output can be in either long or compact format.
+#'
+#' @inheritParams npde_panel
+#' @param compact use `compact = TRUE` to get a more compact display; see
+#' **Examples**.
+#'
+#' @return
+#' A single graphic with three panels (`NPDE` or `CWRES` versus `TIME`, `TAD`
+#' and `PRED` as a `patchwork` object. The default behavior is to create a
+#' graphic with three panels in three rows, filling a portrait page.
+#' Use `compact = TRUE` for a single graphic in two rows, with the `TIME`
+#' plot on the top and the `TAD` and `PRED` plots on the bottom.
+#'
+#' @examples
+#' npde_scatter(df)
+#' npde_scatter(df, compact = TRUE)
+#'
+#' @seealso [npde_panel()], [npde_panel_list()], [cwres_panel()],
+#' [cwres_panel_list()]
+#'
+#' @export
+npde_scatter <- function(df, xname = "value",
+                         unit_time = "hours", unit_tad = "hours",
+                         xby_time  = NULL, xby_tad = NULL,
+                         tag_levels = NULL, compact = FALSE) {
+  require_patchwork()
+  time <- npde_time(df, xby = xby_time, xunit = unit_time)
+  tad <- npde_tad(df, xby = xby_tad, xunit = unit_tad)
+  pred <- npde_pred(df, xname = xname)
+  if(isTRUE(compact)) {
+    p <- time / (tad + pred)
+  } else {
+    p <- time / tad / pred
+  }
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
+  p
+}
+
+#' @rdname npde_scatter
+#' @export
+cwres_scatter <- function(df, xname = "value",
+                          unit_time = "hours", unit_tad = "hours",
+                          xby_time  = NULL, xby_tad = NULL,
+                          tag_levels = NULL) {
+  require_patchwork()
+  time <- cwres_time(df, xby = xby_time, xunit = unit_time)
+  tad <- cwres_tad(df, xby = xby_tad, xunit = unit_tad)
+  pred <- cwres_pred(df, xname = xname)
+  if(isTRUE(compact)) {
+    p <- time / (tad + pred)
+  } else {
+    p <- time / tad / pred
+  }
   p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
@@ -409,8 +462,6 @@ cwres_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
 with.pm_display <- function(data, expr, tag_levels = NULL, ...) {
   expr <- enexpr(expr)
   p <- eval(expr, envir = data)
-  if(!is.null(tag_levels)) {
-    p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
-  }
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
 }
