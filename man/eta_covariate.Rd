@@ -61,8 +61,8 @@ cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 cat <- c("RF//Renal function", "CPc//Child-Pugh")
 eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 
-eta_covariate(data, cont)
-eta_covariate(data, cont, transpose = TRUE)
+eta_covariate(data, cont, y = etas)
+eta_covariate(data, cont, y = etas, transpose = TRUE)
 
 eta_covariate_list(data, x = cat, y = etas)
 eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)

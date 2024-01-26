@@ -42,7 +42,7 @@ cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 cat <- c("RF//Renal function", "CPc//Child-Pugh")
 
 npde_covariate(data, x = c(cont, cat), tag_levels = "A")
-npde_covariate_list(data, x = cat, tag_levels = "A")
+npde_covariate_list(data, x = cat)
 
 
 }

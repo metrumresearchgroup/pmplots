@@ -47,8 +47,8 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
 #' eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 #'
-#' eta_covariate(data, cont)
-#' eta_covariate(data, cont, transpose = TRUE)
+#' eta_covariate(data, cont, y = etas)
+#' eta_covariate(data, cont, y = etas, transpose = TRUE)
 #'
 #' eta_covariate_list(data, x = cat, y = etas)
 #' eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)
@@ -119,7 +119,7 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
 #'
 #' npde_covariate(data, x = c(cont, cat), tag_levels = "A")
-#' npde_covariate_list(data, x = cat, tag_levels = "A")
+#' npde_covariate_list(data, x = cat)
 #'
 #'
 #' @return
@@ -360,6 +360,7 @@ cwres_panel_list <- function(df, xname = "value",
 #' quantile-quantile plots.
 #'
 #' @inheritParams npde_panel
+#' @inheritParams eta_covariate
 #'
 #' @examples
 #' df <- pmplots_data_obs()

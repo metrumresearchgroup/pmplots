@@ -13,6 +13,8 @@ cwres_hist_q(df, ncol = 1, tag_levels = NULL)
 \arguments{
 \item{df}{a data frame to plot.}
 
+\item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
+
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \value{
