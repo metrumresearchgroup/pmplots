@@ -3,7 +3,7 @@
 \name{npde_covariate}
 \alias{npde_covariate}
 \alias{npde_covariate_list}
-\title{Plot NPDE versus covariates}
+\title{Create NPDE versus covariate displays}
 \usage{
 npde_covariate(df, x, ncol = 2, tag_levels = NULL, byrow = NULL)
 
@@ -40,7 +40,10 @@ coming from \code{npde_covariate()}.
 data <- pmplots_data_id()
 cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 cat <- c("RF//Renal function", "CPc//Child-Pugh")
-npde_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+
+npde_covariate(data, x = c(cont, cat), tag_levels = "A")
+npde_covariate_list(data, x = cat, tag_levels = "A")
+
 
 }
 \seealso{

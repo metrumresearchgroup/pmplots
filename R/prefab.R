@@ -20,7 +20,7 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
   out
 }
 
-#' Plot ETAs versus covariates
+#' Create ETA versus covariate displays
 #'
 #' Get a single graphic of `ETA` versus continuous and / or categorical
 #' covariates (`eta_covariate()`) or the component plots as a list
@@ -54,9 +54,9 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)
 #'
 #' @return
-#' `eta_covariate()` returns a list of plots arranged in a graphic using
-#' [pm_grid()] and `eta_covariate_list()` the same plots, but unarranged as a
-#' list of lists.
+#' `eta_covariate()` returns a list of plots arranged in graphics as a
+#' `patchwork` object using [pm_grid()] and `eta_covariate_list()` the same
+#' plots, but unarranged as a list of lists.
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
 #' by the `ETA` name (e.g., `ETA1`) the names of the list reflect that `ETA`
@@ -100,7 +100,7 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
   p
 }
 
-#' Plot NPDE versus covariates
+#' Create NPDE versus covariate displays
 #'
 #' Get a single graphic of `NPDE` versus continuous and / or categorical
 #' covariates (`npde_covariate()`) or get a list (`npde_covariate_list()`) that
@@ -117,7 +117,10 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' data <- pmplots_data_id()
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
-#' npde_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+#'
+#' npde_covariate(data, x = c(cont, cat), tag_levels = "A")
+#' npde_covariate_list(data, x = cat, tag_levels = "A")
+#'
 #'
 #' @return
 #' `npde_covariate()` returns single graphic of scatter plot diagnostics
@@ -154,7 +157,7 @@ npde_covariate_list <- function(df, x) {
   p
 }
 
-#' Plot CWRES versus covariates
+#' Create CWRES versus covariate displays
 #'
 #' Get a single graphic of `CWRES` versus continuous and / or categorical
 #' covariates (`cwres_covariate()`) or get a list (`cwres_covariate_list()`)
@@ -171,7 +174,9 @@ npde_covariate_list <- function(df, x) {
 #' data <- pmplots_data_id()
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#'
 #' cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
+#' cwres_covariate_list(data, x = cont)
 #'
 #' @return
 #' `cwres_covariate()` returns single graphic of scatter plot diagnostics
@@ -207,7 +212,7 @@ cwres_covariate_list <- function(df, x) {
   p
 }
 
-#' Create a panel of NPDE diagnostic plots
+#' Create a display of NPDE diagnostic plots
 #'
 #' Get a single graphic of basic `NPDE` diagnostics (`npde_panel()`) or get the
 #' component plots in a list (`npde_panel_list()`) that can be arranged by the
@@ -283,7 +288,7 @@ npde_panel_list <- function(df, xname = "value",
   p
 }
 
-#' Plot a panel of CWRES diagnostic plots
+#' Create a display of CWRES diagnostic plots
 #'
 #' Get a single graphic of basic `CWRES` diagnostics (`cwres_panel()`) or get
 #' the component plots in a list (`cwres_panel_list()`) that can be arranged by
@@ -349,7 +354,7 @@ cwres_panel_list <- function(df, xname = "value",
   p
 }
 
-#' Residual histograms and quantile-quantile displays
+#' Create a display of residual histograms and quantile-quantile plots
 #'
 #' Get a single graphic showing `NPDE` or `CWRES` histogram and
 #' quantile-quantile plots.

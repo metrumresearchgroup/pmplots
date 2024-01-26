@@ -3,7 +3,7 @@
 \name{cwres_panel}
 \alias{cwres_panel}
 \alias{cwres_panel_list}
-\title{Plot a panel of CWRES diagnostic plots}
+\title{Create a display of CWRES diagnostic plots}
 \usage{
 cwres_panel(
   df,

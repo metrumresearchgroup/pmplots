@@ -3,7 +3,7 @@
 \name{cwres_covariate}
 \alias{cwres_covariate}
 \alias{cwres_covariate_list}
-\title{Plot CWRES versus covariates}
+\title{Create CWRES versus covariate displays}
 \usage{
 cwres_covariate(df, x, ncol = 2, tag_levels = NULL)
 
@@ -38,7 +38,9 @@ coming from \code{cwres_covariate()}.
 data <- pmplots_data_id()
 cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 cat <- c("RF//Renal function", "CPc//Child-Pugh")
+
 cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
+cwres_covariate_list(data, x = cont)
 
 }
 \seealso{

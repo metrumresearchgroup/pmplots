@@ -3,7 +3,7 @@
 \name{eta_covariate}
 \alias{eta_covariate}
 \alias{eta_covariate_list}
-\title{Plot ETAs versus covariates}
+\title{Create ETA versus covariate displays}
 \usage{
 eta_covariate(
   df,
@@ -35,9 +35,9 @@ see \link{col_label}.}
 plots by the covariate, rather than the \code{ETA}; see \strong{Examples}.}
 }
 \value{
-\code{eta_covariate()} returns a list of plots arranged in a graphic using
-\code{\link[=pm_grid]{pm_grid()}} and \code{eta_covariate_list()} the same plots, but unarranged as a
-list of lists.
+\code{eta_covariate()} returns a list of plots arranged in graphics as a
+\code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}} and \code{eta_covariate_list()} the same
+plots, but unarranged as a list of lists.
 
 When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
 by the \code{ETA} name (e.g., \code{ETA1}) the names of the list reflect that \code{ETA}

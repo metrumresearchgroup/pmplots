@@ -3,7 +3,7 @@
 \name{npde_panel}
 \alias{npde_panel}
 \alias{npde_panel_list}
-\title{Create a panel of NPDE diagnostic plots}
+\title{Create a display of NPDE diagnostic plots}
 \usage{
 npde_panel(
   df,
