@@ -81,6 +81,10 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [wrap_cont_cont()], [wrap_cont_time()], [wrap_dv_preds()], [wrap_eta_cont()]
 #'   - [wrap_hist()]
 #'   - [wrap_cont_cat()]
+#' - Standard paneled displays
+#'   - [eta_covariate()], [npde_covariate()], [cwres_covariate()]
+#'   - [npde_panel()], [cwres_panel()]
+#'   - [npde_hist_q()], [cwres_hist_q()]
 #' - Other plots
 #'   - [dv_pred_ipred()]
 #' - Layers
