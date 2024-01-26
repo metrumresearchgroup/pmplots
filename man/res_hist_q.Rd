@@ -36,5 +36,6 @@ side by side.
 data <- pmplots_data_obs()
 npde_hist_q(data, tag_levels = "a")
 npde_hist_q(data, tag_levels = "a", ncol = 2)
+cwres_hist_q(data)
 
 }

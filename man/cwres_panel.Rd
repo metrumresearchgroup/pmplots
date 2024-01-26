@@ -49,8 +49,8 @@ cwres_panel_list(
 \item \code{CWRES} quantile-quantile plot via \code{\link[=cwres_q]{cwres_q()}}
 }
 
-\code{npde_panel_list()} returns a list of the individual plots that are
-incorporated into the \code{npde_panel()} output. Each element of the list
+\code{cwres_panel_list()} returns a list of the individual plots that are
+incorporated into the \code{cwres_panel()} output. Each element of the list
 is named for the plot in that position: \code{time}, \code{tad}, \code{pred}, \code{hist}
 \code{q}. See \strong{Examples} for how you can work with that list.
 }

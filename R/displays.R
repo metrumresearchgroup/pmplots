@@ -93,10 +93,10 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
   laby <- sapply(laby, "[[", 1)
   p  <- lapply(p, setNames, nm = labx)
   names(p) <- laby
-  p <- lapply(p, class_pm_display)
   if(isTRUE(transpose)) {
     p <- list_transpose(p)
   }
+  p <- lapply(p, class_pm_display)
   p
 }
 
@@ -307,8 +307,8 @@ npde_panel_list <- function(df, xname = "value",
 #' - `CWRES` histogram via [cwres_hist()]
 #' - `CWRES` quantile-quantile plot via [cwres_q()]
 #'
-#' `npde_panel_list()` returns a list of the individual plots that are
-#' incorporated into the `npde_panel()` output. Each element of the list
+#' `cwres_panel_list()` returns a list of the individual plots that are
+#' incorporated into the `cwres_panel()` output. Each element of the list
 #' is named for the plot in that position: `time`, `tad`, `pred`, `hist`
 #' `q`. See **Examples** for how you can work with that list.
 #'
@@ -359,6 +359,7 @@ cwres_panel_list <- function(df, xname = "value",
 #' data <- pmplots_data_obs()
 #' npde_hist_q(data, tag_levels = "a")
 #' npde_hist_q(data, tag_levels = "a", ncol = 2)
+#' cwres_hist_q(data)
 #'
 #' @details
 #' The default value for `ncol` (1) means the two plots will be arranged in a
