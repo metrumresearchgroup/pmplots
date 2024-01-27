@@ -5,7 +5,7 @@
 \alias{cwres_covariate_list}
 \title{Create CWRES versus covariate displays}
 \usage{
-cwres_covariate(df, x, ncol = 2, tag_levels = NULL)
+cwres_covariate(df, x, ncol = 2, tag_levels = NULL, byrow = NULL)
 
 cwres_covariate_list(df, x)
 }
@@ -18,6 +18,8 @@ see \link{col_label}.}
 \item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
+
+\item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
 }
 \value{
 \code{cwres_covariate()} returns single graphic of scatter plot diagnostics

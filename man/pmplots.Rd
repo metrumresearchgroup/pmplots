@@ -75,6 +75,7 @@ by this package.
 \item \code{\link[=eta_covariate]{eta_covariate()}}, \code{\link[=npde_covariate]{npde_covariate()}}, \code{\link[=cwres_covariate]{cwres_covariate()}}
 \item \code{\link[=npde_panel]{npde_panel()}}, \code{\link[=cwres_panel]{cwres_panel()}}
 \item \code{\link[=npde_hist_q]{npde_hist_q()}}, \code{\link[=cwres_hist_q]{cwres_hist_q()}}
+\item \code{\link[=npde_scatter]{npde_scatter()}}, \code{\link[=cwres_scatter]{cwres_scatter()}}
 }
 \item Other plots
 \itemize{

@@ -184,14 +184,14 @@ npde_covariate_list <- function(df, x) {
 #' @seealso [npde_covariate()], [eta_covariate()]
 #' @md
 #' @export
-cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL) {
+cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
   require_patchwork()
   if(missing(ncol) && length(x)==1) {
     ncol <- 1
   }
   p <- cwres_covariate_list(df, x)
   if(is.numeric(ncol)) {
-    p <- pm_grid(p, ncol = ncol)
+    p <- pm_grid(p, ncol = ncol, byrow = byrow)
   }
   p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p

@@ -18,10 +18,6 @@ test_that("eta_covariate", {
   expect_identical(names(a), etas1)
   expect_type(a, "list")
   expect_s3_class(a[[1]], "patchwork")
-
-  a <- eta_covariate(data, covs, etas, ncol = 3)
-  expect_type(a, "list")
-  expect_s3_class(a[[1]], "patchwork")
 })
 
 test_that("eta_covariate transpose", {
@@ -54,7 +50,7 @@ test_that("eta_covariate_list", {
   expect_s3_class(a[[1]], "pm_display")
   expect_s3_class(a[[1]][[1]], "gg")
 
-  p <- with(a$ETA1, WT/AAG, tag_levels = 1)
+  p <- with(a$ETA1, WT/AAG)
   expect_s3_class(p, "gg")
 })
 
@@ -63,15 +59,8 @@ test_that("eta_covariate_list transpose", {
   expect_equal(names(a), covs1)
   expect_equal(names(a[[1]]), etas1)
 
-  p <- with(a$WT, ETA1/ETA2/ETA3, tag_levels = "a")
+  p <- with(a$WT, ETA1/ETA2/ETA3)
   expect_s3_class(p, "patchwork")
-})
-
-test_that("eta_covariate by column ", {
-  a <- eta_covariate(data, covs, etas, byrow = FALSE)
-  b <- eta_covariate(data, covs, etas, byrow = TRUE)
-  expect_false(identical(a,b))
-  expect_equal(names(a), etas1)
 })
 
 test_that("npde_covariate_list", {
@@ -82,7 +71,7 @@ test_that("npde_covariate_list", {
   expect_s3_class(a, "pm_display")
   expect_s3_class(a[[1]], "gg")
 
-  p <- with(a, WT/AAG, tag_levels = 1)
+  p <- with(a, WT/AAG)
   expect_s3_class(p, "gg")
 })
 
@@ -94,12 +83,14 @@ test_that("cwres_covariate_list", {
   expect_s3_class(a, "pm_display")
   expect_s3_class(a[[1]], "gg")
 
-  p <- with(a, CPc+STUDYc, tag_levels = 1)
+  p <- with(a, CPc+STUDYc)
   expect_s3_class(p, "gg")
 })
 
+# ---------------------------------------------------------------------------
+
 test_that("npde_panel", {
-  a <- npde_panel(data, tag_levels = "i")
+  a <- npde_panel(data)
   expect_s3_class(a, "patchwork")
 })
 
@@ -116,22 +107,22 @@ test_that("npde_panel customized", {
 })
 
 test_that("cwres_panel", {
-  a <- cwres_panel(data, tag_levels = "i")
+  a <- cwres_panel(data)
   expect_s3_class(a, "patchwork")
 })
 
 test_that("npde_hist_q", {
-  a <- npde_hist_q(data, tag_levels = "i")
+  a <- npde_hist_q(data)
   expect_s3_class(a, "patchwork")
 })
 
 test_that("cwres_hist_q", {
-  a <- cwres_hist_q(data, tag_levels = "i")
+  a <- cwres_hist_q(data)
   expect_s3_class(a, "patchwork")
 })
 
 test_that("npde_scatter", {
-  a <- npde_scatter(data, tag_levels = "i")
+  a <- npde_scatter(data)
   expect_s3_class(a, "patchwork")
 })
 
@@ -153,7 +144,7 @@ test_that("npde_scatter customized", {
 })
 
 test_that("cwres_scatter", {
-  a <- cwres_scatter(data, tag_levels = "i")
+  a <- cwres_scatter(data)
   expect_s3_class(a, "patchwork")
 })
 
@@ -167,7 +158,7 @@ test_that("npde_panel_list", {
   expect_s3_class(a, "pm_display")
   expect_identical(names(a), c("time", "tad", "hist", "q", "pred"))
 
-  p <- with(a, (tad+q)/(time|tad), tag_levels = 'a')
+  p <- with(a, (tad+q)/(time|tad))
   expect_s3_class(p, "patchwork")
 })
 
@@ -176,6 +167,87 @@ test_that("cwres_panel_list", {
   expect_s3_class(a, "pm_display")
   expect_identical(names(a), c("time", "tad", "hist", "q", "pred"))
 
-  p <- with(a, (tad+q)/(time|tad), tag_levels = 'a')
+  p <- with(a, (tad+q)/(time|tad))
   expect_s3_class(p, "patchwork")
 })
+
+# ---------------------------------------------------------------------------
+
+test_that("covariate plots - arrange by column", {
+  a <- eta_covariate(data, covs[1], etas[1:2], byrow = FALSE)
+  expect_false(a$ETA1$patches$layout$byrow)
+
+  a <- npde_covariate(data, covs, byrow = FALSE)
+  expect_false(a$patches$layout$byrow)
+
+  a <- cwres_covariate(data, covs, byrow = FALSE)
+  expect_false(a$patches$layout$byrow)
+})
+
+test_that("covariate plots - set ncol", {
+  a <- eta_covariate(data, covs, etas, ncol = 3)
+  expect_equal(a$ETA1$patches$layout$ncol, 3)
+
+  a <- npde_covariate(data, covs, ncol = 2)
+  expect_equal(a$patches$layout$ncol, 2)
+
+  a <- cwres_covariate(data, covs, ncol = 1)
+  expect_equal(a$patches$layout$ncol, 1)
+})
+
+# ---------------------------------------------------------------------------
+
+test_that("tag levels via function", {
+
+  a <- eta_covariate(data, covs, etas, tag_levels = "A")
+  expect_equal(a$ETA1$patches$annotation$tag_levels, "A")
+
+  a <- npde_covariate(data, covs, tag_levels = "1")
+  expect_equal(a$patches$annotation$tag_levels, "1")
+
+  a <- cwres_covariate(data, covs, tag_levels = "a")
+  expect_equal(a$patches$annotation$tag_levels, "a")
+
+  a <- npde_panel(data, tag_levels = "i")
+  expect_equal(a$patches$annotation$tag_levels, "i")
+
+  a <- cwres_panel(data, tag_levels = "I")
+  expect_equal(a$patches$annotation$tag_levels, "I")
+
+  a <- npde_hist_q(data, tag_levels = "A")
+  expect_equal(a$patches$annotation$tag_levels, "A")
+
+  a <- cwres_hist_q(data, tag_levels = "A")
+  expect_equal(a$patches$annotation$tag_levels, "A")
+
+  a <- npde_scatter(data, tag_levels = "A")
+  expect_equal(a$patches$annotation$tag_levels, "A")
+
+  a <- cwres_scatter(data, tag_levels = "A")
+  expect_equal(a$patches$annotation$tag_levels, "A")
+})
+
+test_that("tag levels via with()", {
+
+  a <- eta_covariate_list(data, covs, etas)
+  p <- with(a$ETA1, WT, tag_levels = "A")
+  expect_equal(p$patches$annotation$tag_levels, "A")
+
+  a <- npde_covariate_list(data, covs)
+  p <- with(a, WT + AAG, tag_levels = "A")
+  expect_equal(p$patches$annotation$tag_levels, "A")
+
+  a <- cwres_covariate_list(data, covs)
+  p <- with(a, WT + AAG, tag_levels = "A")
+  expect_equal(p$patches$annotation$tag_levels, "A")
+
+  a <- npde_panel_list(data)
+  p <- with(a, time + pred, tag_levels = "A")
+  expect_equal(p$patches$annotation$tag_levels, "A")
+
+  a <- cwres_panel_list(data)
+  p <- with(a, time + pred, tag_levels = "A")
+  expect_equal(p$patches$annotation$tag_levels, "A")
+})
+
+# ---------------------------------------------------------------------------

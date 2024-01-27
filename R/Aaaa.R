@@ -85,6 +85,7 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [eta_covariate()], [npde_covariate()], [cwres_covariate()]
 #'   - [npde_panel()], [cwres_panel()]
 #'   - [npde_hist_q()], [cwres_hist_q()]
+#'   - [npde_scatter()], [cwres_scatter()]
 #' - Other plots
 #'   - [dv_pred_ipred()]
 #' - Layers
