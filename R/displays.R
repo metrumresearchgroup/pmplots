@@ -24,7 +24,7 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #'
 #' Get a single graphic of `ETA` versus continuous and / or categorical
 #' covariates (`eta_covariate()`) or the component plots as a list
-#' (`eta_covariate_list()`) that can be arranged by the user.
+#' that can be arranged by the user (`eta_covariate_list()`).
 #'
 #' @param df a data frame to plot.
 #' @param x character `col//title` for covariates to plot on x-axis;
@@ -45,6 +45,7 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' etas <- c("ETA1//ETA-CL", "ETA2//ETA-V")
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 #' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#'
 #' eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 #'
 #' eta_covariate(data, cont, y = etas)
@@ -59,10 +60,10 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' plots, but unarranged as a list of lists.
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
-#' by the `ETA` name (e.g., `ETA1`) the names of the list reflect that `ETA`
-#' name. When `transpose` is `TRUE`, the graphics are grouped by column names
-#' passed via `x` and the names of the list reflect those covariate data names.
-#' See **Examples**.
+#' by the `ETA` the names of the list reflect that name (e.g., `ETA1`). When
+#' `transpose` is `TRUE`, the graphics are grouped by column names passed via
+#' `x` and the names of the list reflect those covariate data names. See
+#' **Examples**.
 #'
 #' @seealso [npde_covariate()], [cwres_covariate()]
 #' @md
@@ -103,8 +104,8 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' Create NPDE versus covariate displays
 #'
 #' Get a single graphic of `NPDE` versus continuous and / or categorical
-#' covariates (`npde_covariate()`) or get a list (`npde_covariate_list()`) that
-#' can be arranged by the user. See [npde_panel()] for other `NPDE`
+#' covariates (`npde_covariate()`) or get a list that can be arranged by the
+#' user  (`npde_covariate_list()`). See [npde_panel()] for other `NPDE`
 #' diagnostic displays.
 #'
 #' @inheritParams eta_covariate
@@ -158,8 +159,8 @@ npde_covariate_list <- function(df, x) {
 #' Create CWRES versus covariate displays
 #'
 #' Get a single graphic of `CWRES` versus continuous and / or categorical
-#' covariates (`cwres_covariate()`) or get a list (`cwres_covariate_list()`)
-#' that can be arranged by the user. See [cwres_panel()] for other `CWRES`
+#' covariates (`cwres_covariate()`) or get a list that can be arranged by
+#' the user (`cwres_covariate_list()`). See [cwres_panel()] for other `CWRES`
 #' diagnostic displays.
 #'
 #' @inheritParams eta_covariate
@@ -212,8 +213,9 @@ cwres_covariate_list <- function(df, x) {
 #' Create a display of NPDE diagnostic plots
 #'
 #' Get a single graphic of basic `NPDE` diagnostics (`npde_panel()`) or get the
-#' component plots in a list (`npde_panel_list()`) that can be arranged by the
-#' user. See [npde_covariate()] for plotting `NPDE` versus covariates.
+#' component plots in a list that can be arranged by the user
+#' (`npde_panel_list()`) . See [npde_covariate()] for plotting `NPDE` versus
+#' covariates.
 #'
 #' @inheritParams eta_covariate
 #'
@@ -286,8 +288,9 @@ npde_panel_list <- function(df, xname = "value",
 #' Create a display of CWRES diagnostic plots
 #'
 #' Get a single graphic of basic `CWRES` diagnostics (`cwres_panel()`) or get
-#' the component plots in a list (`cwres_panel_list()`) that can be arranged by
-#' the user. See [cwres_covariate()] for plotting `CWRES` versus covariates.
+#' the component plots in a list that can be arranged by the user
+#' (`cwres_panel_list()`) . See [cwres_covariate()] for plotting `CWRES`
+#' versus covariates.
 #'
 #' @inheritParams npde_panel
 #'
