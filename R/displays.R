@@ -219,9 +219,9 @@ cwres_covariate_list <- function(df, x) {
 #'
 #' @inheritParams eta_covariate
 #'
-#' @param unit_tad passed through [npde_time()] as `xunit`.
-#' @param unit_time passed through [npde_tad()] as `xunit`.
-#' @param xname passed through [npde_pred()].
+#' @param unit_tad passed to [npde_time()] as `xunit`.
+#' @param unit_time passed to [npde_tad()] as `xunit`.
+#' @param xname passed to [npde_pred()].
 #' @param xby_time passed to [npde_time()] as `xby`.
 #' @param xby_tad passed to [npde_tad()] as `xby`.
 #'
