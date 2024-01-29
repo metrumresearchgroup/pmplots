@@ -19,7 +19,7 @@ cwres_hist_q(df, ncol = 1, tag_levels = NULL)
 }
 \value{
 A single graphic is returned, with a \code{NPDE}  or \code{CWRES} histogram and
-quantile-quantile plot arranged in a an object
+quantile-quantile plot arranged in an object
 using \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.
 }
 \description{

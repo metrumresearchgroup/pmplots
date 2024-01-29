@@ -27,11 +27,11 @@ cwres_panel_list(
 \arguments{
 \item{df}{a data frame to plot.}
 
-\item{xname}{passed through \code{\link[=npde_pred]{npde_pred()}}.}
+\item{xname}{passed to \code{\link[=npde_pred]{npde_pred()}}.}
 
-\item{unit_time}{passed through \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
+\item{unit_time}{passed to \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
 
-\item{unit_tad}{passed through \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
+\item{unit_tad}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
 
 \item{xby_time}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xby}.}
 
@@ -56,8 +56,9 @@ is named for the plot in that position: \code{time}, \code{tad}, \code{pred}, \c
 }
 \description{
 Get a single graphic of basic \code{CWRES} diagnostics (\code{cwres_panel()}) or get
-the component plots in a list (\code{cwres_panel_list()}) that can be arranged by
-the user. See \code{\link[=cwres_covariate]{cwres_covariate()}} for plotting \code{CWRES} versus covariates.
+the component plots in a list that can be arranged by the user
+(\code{cwres_panel_list()}) . See \code{\link[=cwres_covariate]{cwres_covariate()}} for plotting \code{CWRES}
+versus covariates.
 }
 \examples{
 data <- pmplots_data_obs()

@@ -19,17 +19,18 @@ see \link{col_label}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 
-\item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
+\item{byrow}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 }
 \value{
 \code{cwres_covariate()} returns single graphic of scatter plot diagnostics
 as a \code{patchwork} object that has been arranged using \code{\link[=pm_grid]{pm_grid()}} and
-\code{cwres_covariate()} returns the same component plots unarranged in a list.
+\code{cwres_covariate_list()} returns the same component plots unarranged in a
+list.
 }
 \description{
 Get a single graphic of \code{CWRES} versus continuous and / or categorical
-covariates (\code{cwres_covariate()}) or get a list (\code{cwres_covariate_list()})
-that can be arranged by the user. See \code{\link[=cwres_panel]{cwres_panel()}} for other \code{CWRES}
+covariates (\code{cwres_covariate()}) or get a list that can be arranged by
+the user (\code{cwres_covariate_list()}). See \code{\link[=cwres_panel]{cwres_panel()}} for other \code{CWRES}
 diagnostic displays.
 }
 \details{

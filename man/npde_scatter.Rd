@@ -30,11 +30,11 @@ cwres_scatter(
 \arguments{
 \item{df}{a data frame to plot.}
 
-\item{xname}{passed through \code{\link[=npde_pred]{npde_pred()}}.}
+\item{xname}{passed to \code{\link[=npde_pred]{npde_pred()}}.}
 
-\item{unit_time}{passed through \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
+\item{unit_time}{passed to \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
 
-\item{unit_tad}{passed through \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
+\item{unit_tad}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
 
 \item{xby_time}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xby}.}
 
@@ -47,7 +47,7 @@ cwres_scatter(
 }
 \value{
 A single graphic with three panels (\code{NPDE} or \code{CWRES} versus \code{TIME}, \code{TAD}
-and \code{PRED} as a \code{patchwork} object. The default behavior is to create a
+and \code{PRED}) as a \code{patchwork} object. The default behavior is to create a
 graphic with three panels in three rows, filling a portrait page.
 Use \code{compact = TRUE} for a single graphic in two rows, with the \code{TIME}
 plot on the top and the \code{TAD} and \code{PRED} plots on the bottom.

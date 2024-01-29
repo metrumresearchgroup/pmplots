@@ -19,17 +19,17 @@ see \link{col_label}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 
-\item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
+\item{byrow}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 }
 \value{
 \code{npde_covariate()} returns single graphic of scatter plot diagnostics
 as a \code{patchwork} object that has been arranged using \code{\link[=pm_grid]{pm_grid()}} and
-\code{npde_covariate()} returns the same component plots unarranged in a list.
+\code{npde_covariate_list()} returns the same component plots unarranged in a list.
 }
 \description{
 Get a single graphic of \code{NPDE} versus continuous and / or categorical
-covariates (\code{npde_covariate()}) or get a list (\code{npde_covariate_list()}) that
-can be arranged by the user. See \code{\link[=npde_panel]{npde_panel()}} for other \code{NPDE}
+covariates (\code{npde_covariate()}) or get a list that can be arranged by the
+user  (\code{npde_covariate_list()}). See \code{\link[=npde_panel]{npde_panel()}} for other \code{NPDE}
 diagnostic displays.
 }
 \details{

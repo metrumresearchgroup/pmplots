@@ -27,11 +27,11 @@ npde_panel_list(
 \arguments{
 \item{df}{a data frame to plot.}
 
-\item{xname}{passed through \code{\link[=npde_pred]{npde_pred()}}.}
+\item{xname}{passed to \code{\link[=npde_pred]{npde_pred()}}.}
 
-\item{unit_time}{passed through \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
+\item{unit_time}{passed to \code{\link[=npde_tad]{npde_tad()}} as \code{xunit}.}
 
-\item{unit_tad}{passed through \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
+\item{unit_tad}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xunit}.}
 
 \item{xby_time}{passed to \code{\link[=npde_time]{npde_time()}} as \code{xby}.}
 
@@ -57,8 +57,9 @@ is named for the plot in that position: \code{time}, \code{tad}, \code{pred}, \c
 }
 \description{
 Get a single graphic of basic \code{NPDE} diagnostics (\code{npde_panel()}) or get the
-component plots in a list (\code{npde_panel_list()}) that can be arranged by the
-user. See \code{\link[=npde_covariate]{npde_covariate()}} for plotting \code{NPDE} versus covariates.
+component plots in a list that can be arranged by the user
+(\code{npde_panel_list()}) . See \code{\link[=npde_covariate]{npde_covariate()}} for plotting \code{NPDE} versus
+covariates.
 }
 \examples{
 data <- pmplots_data_obs()

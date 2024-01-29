@@ -56,13 +56,13 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #'
 #' @return
 #' `eta_covariate()` returns a list of plots arranged in graphics as a
-#' `patchwork` object using [pm_grid()] and `eta_covariate_list()` the same
+#' `patchwork` object using [pm_grid()]. `eta_covariate_list()` the same
 #' plots, but unarranged as a list of lists.
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
-#' by the `ETA` the names of the list reflect that name (e.g., `ETA1`). When
-#' `transpose` is `TRUE`, the graphics are grouped by column names passed via
-#' `x` and the names of the list reflect those covariate data names. See
+#' by the `ETA`, and the names of the list reflect that name (e.g., `ETA1`).
+#' When `transpose` is `TRUE`, the graphics are grouped by column names passed
+#' via `x` and the names of the list reflect those covariate data names. See
 #' **Examples**.
 #'
 #' @seealso [npde_covariate()], [cwres_covariate()]
@@ -126,7 +126,7 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' @return
 #' `npde_covariate()` returns single graphic of scatter plot diagnostics
 #' as a `patchwork` object that has been arranged using [pm_grid()] and
-#' `npde_covariate()` returns the same component plots unarranged in a list.
+#' `npde_covariate_list()` returns the same component plots unarranged in a list.
 #'
 #' @seealso [cwres_covariate()], [eta_covariate()]
 #' @md
@@ -180,7 +180,8 @@ npde_covariate_list <- function(df, x) {
 #' @return
 #' `cwres_covariate()` returns single graphic of scatter plot diagnostics
 #' as a `patchwork` object that has been arranged using [pm_grid()] and
-#' `cwres_covariate()` returns the same component plots unarranged in a list.
+#' `cwres_covariate_list()` returns the same component plots unarranged in a
+#' list.
 #'
 #' @seealso [npde_covariate()], [eta_covariate()]
 #' @md
@@ -372,7 +373,7 @@ cwres_panel_list <- function(df, xname = "value",
 #'
 #' @return
 #' A single graphic is returned, with a `NPDE`  or `CWRES` histogram and
-#' quantile-quantile plot arranged in a an object
+#' quantile-quantile plot arranged in an object
 #' using [patchwork::plot_annotation()].
 #'
 #' @name res_hist_q
@@ -408,7 +409,7 @@ cwres_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
 #'
 #' @return
 #' A single graphic with three panels (`NPDE` or `CWRES` versus `TIME`, `TAD`
-#' and `PRED` as a `patchwork` object. The default behavior is to create a
+#' and `PRED`) as a `patchwork` object. The default behavior is to create a
 #' graphic with three panels in three rows, filling a portrait page.
 #' Use `compact = TRUE` for a single graphic in two rows, with the `TIME`
 #' plot on the top and the `TAD` and `PRED` plots on the bottom.

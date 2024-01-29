@@ -29,26 +29,26 @@ see \link{col_label}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 
-\item{byrow}{passed through \code{\link[=pm_grid]{pm_grid()}}.}
+\item{byrow}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 
 \item{transpose}{logical; if \code{TRUE}, output will be transposed to group
 plots by the covariate, rather than the \code{ETA}; see \strong{Examples}.}
 }
 \value{
 \code{eta_covariate()} returns a list of plots arranged in graphics as a
-\code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}} and \code{eta_covariate_list()} the same
+\code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}}. \code{eta_covariate_list()} the same
 plots, but unarranged as a list of lists.
 
 When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
-by the \code{ETA} name (e.g., \code{ETA1}) the names of the list reflect that \code{ETA}
-name. When \code{transpose} is \code{TRUE}, the graphics are grouped by column names
-passed via \code{x} and the names of the list reflect those covariate data names.
-See \strong{Examples}.
+by the \code{ETA}, and the names of the list reflect that name (e.g., \code{ETA1}).
+When \code{transpose} is \code{TRUE}, the graphics are grouped by column names passed
+via \code{x} and the names of the list reflect those covariate data names. See
+\strong{Examples}.
 }
 \description{
 Get a single graphic of \code{ETA} versus continuous and / or categorical
 covariates (\code{eta_covariate()}) or the component plots as a list
-(\code{eta_covariate_list()}) that can be arranged by the user.
+that can be arranged by the user (\code{eta_covariate_list()}).
 }
 \details{
 Pass \code{ncol = NULL} or another non-numeric value to bypass arranging plots
@@ -59,6 +59,7 @@ data <- pmplots_data_id()
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V")
 cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
 cat <- c("RF//Renal function", "CPc//Child-Pugh")
+
 eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
 
 eta_covariate(data, cont, y = etas)
