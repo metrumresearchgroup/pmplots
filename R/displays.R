@@ -31,7 +31,7 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' see [col_label].
 #' @param y character `col//title` for ETAs to plot on y-axis; see [col_label].
 #' @param ncol passed to [pm_grid()].
-#' @param byrow passed through [pm_grid()].
+#' @param byrow passed to [pm_grid()].
 #' @param tag_levels passed to [patchwork::plot_annotation()].
 #' @param transpose logical; if `TRUE`, output will be transposed to group
 #' plots by the covariate, rather than the `ETA`; see **Examples**.
