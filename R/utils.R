@@ -492,9 +492,7 @@ parse_eval <- function(x) {
 #' @md
 #' @export
 pm_grid <- function(x, ..., ncol = 2) {
-  if(!requireNamespace("patchwork")) {
-    stop("Please install the patchwork package to use this function.")
-  }
+  require_patchwork()
   patchwork::wrap_plots(x, ncol = ncol, ...)
 }
 
@@ -550,3 +548,10 @@ chunk_by_cols <- function(data, id_per_chunk, cols) {
 }
 
 force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')
+
+require_patchwork <- function() {
+  if(!requireNamespace("patchwork", quietly = TRUE)) {
+    stop('The "patchwork" package is required.')
+  }
+}
+

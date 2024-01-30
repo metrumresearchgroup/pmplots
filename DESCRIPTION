@@ -1,7 +1,7 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.3.7.9000
+Version: 0.3.7.9004
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person("Metrum Research Group", role =  c("cph"))
@@ -22,7 +22,8 @@ Imports:
   tidyr (>= 1.1.4), 
   forcats (>= 0.5.1), 
   lifecycle, 
-  tidyselect (>= 1.1.1)
+  tidyselect (>= 1.1.1), 
+  purrr(>= 1.0.0)
 VignetteBuilder: knitr
 Suggests: 
   testthat,
@@ -42,17 +43,18 @@ Collate:
     'box.R'
     'cont.R'
     'data.R'
+    'displays.R'
     'dv_pred.R'
-    'dv_time.R'
     'dv_pred_ipred.R'
+    'dv_time.R'
     'eta_cat.R'
     'eta_cont.R'
     'eta_hist.R'
-    'utils.R'
     'eta_pairs.R'
     'hist.R'
     'layer.R'
     'list_plot.R'
+    'opts.R'
     'pm_axis_data.R'
     'pm_browser.R'
     'pm_theme.R'
@@ -63,5 +65,5 @@ Collate:
     'res_pred.R'
     'res_time.R'
     'splitplot.R'
+    'utils.R'
     'wrap_plots.R'
-    'opts.R'

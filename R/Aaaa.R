@@ -18,13 +18,17 @@
 #' @importFrom ggplot2 after_stat
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
+#' @importFrom rlang enexpr
+#' @importFrom purrr list_transpose
 #' @importFrom glue glue glue_data
 #' @importFrom assertthat assert_that
 #' @importFrom tidyr pivot_longer
 #' @importFrom forcats fct_inorder
 #' @importFrom utils str
 #' @importFrom lifecycle deprecate_warn is_present deprecated
+#' @importFrom stats setNames
 #'
+#' @include Aaaa.R
 NULL
 
 
@@ -77,6 +81,11 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [wrap_cont_cont()], [wrap_cont_time()], [wrap_dv_preds()], [wrap_eta_cont()]
 #'   - [wrap_hist()]
 #'   - [wrap_cont_cat()]
+#' - Standard paneled displays
+#'   - [eta_covariate()], [npde_covariate()], [cwres_covariate()]
+#'   - [npde_panel()], [cwres_panel()]
+#'   - [npde_hist_q()], [cwres_hist_q()]
+#'   - [npde_scatter()], [cwres_scatter()]
 #' - Other plots
 #'   - [dv_pred_ipred()]
 #' - Layers
