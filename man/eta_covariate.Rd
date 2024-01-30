@@ -58,15 +58,15 @@ coming from \code{eta_covariate()}.
 data <- pmplots_data_id()
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V")
 cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
-cat <- c("RF//Renal function", "CPc//Child-Pugh")
+cats <- c("RF//Renal function", "CPc//Child-Pugh")
 
-eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+eta_covariate(data, x = c(cont, cats), y = etas, tag_levels = "A")
 
 eta_covariate(data, cont, y = etas)
 eta_covariate(data, cont, y = etas, transpose = TRUE)
 
-eta_covariate_list(data, x = cat, y = etas)
-eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)
+eta_covariate_list(data, x = cats, y = etas)
+eta_covariate_list(data, x = cats, y = etas, transpose = TRUE)
 
 }
 \seealso{

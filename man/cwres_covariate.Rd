@@ -40,9 +40,9 @@ coming from \code{cwres_covariate()}.
 \examples{
 data <- pmplots_data_id()
 cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
-cat <- c("RF//Renal function", "CPc//Child-Pugh")
+cats <- c("RF//Renal function", "CPc//Child-Pugh")
 
-cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
+cwres_covariate(data, x = c(cont, cats), tag_levels = "A")
 cwres_covariate_list(data, x = cont)
 
 }

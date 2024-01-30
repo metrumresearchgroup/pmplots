@@ -51,8 +51,8 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' eta_covariate(data, cont, y = etas)
 #' eta_covariate(data, cont, y = etas, transpose = TRUE)
 #'
-#' eta_covariate_list(data, x = cat, y = etas)
-#' eta_covariate_list(data, x = cat, y = etas, transpose = TRUE)
+#' eta_covariate_list(data, x = cats, y = etas)
+#' eta_covariate_list(data, x = cats, y = etas, transpose = TRUE)
 #'
 #' @return
 #' `eta_covariate()` returns a list of plots arranged in graphics as a
