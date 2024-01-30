@@ -1,5 +1,4 @@
 library(testthat)
-library(vdiffr)
 local_edition(3)
 
 data <- pmplots_data_obs()
