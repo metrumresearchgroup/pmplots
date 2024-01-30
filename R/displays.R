@@ -44,9 +44,9 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' data <- pmplots_data_id()
 #' etas <- c("ETA1//ETA-CL", "ETA2//ETA-V")
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
-#' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#' cats <- c("RF//Renal function", "CPc//Child-Pugh")
 #'
-#' eta_covariate(data, x = c(cont, cat), y = etas, tag_levels = "A")
+#' eta_covariate(data, x = c(cont, cats), y = etas, tag_levels = "A")
 #'
 #' eta_covariate(data, cont, y = etas)
 #' eta_covariate(data, cont, y = etas, transpose = TRUE)
@@ -117,10 +117,10 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' @examples
 #' data <- pmplots_data_id()
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
-#' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#' cats <- c("RF//Renal function", "CPc//Child-Pugh")
 #'
-#' npde_covariate(data, x = c(cont, cat), tag_levels = "A")
-#' npde_covariate_list(data, x = cat)
+#' npde_covariate(data, x = c(cont, cats), tag_levels = "A")
+#' npde_covariate_list(data, x = cats)
 #'
 #'
 #' @return
@@ -172,9 +172,9 @@ npde_covariate_list <- function(df, x) {
 #' @examples
 #' data <- pmplots_data_id()
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)")
-#' cat <- c("RF//Renal function", "CPc//Child-Pugh")
+#' cats <- c("RF//Renal function", "CPc//Child-Pugh")
 #'
-#' cwres_covariate(data, x = c(cont, cat), tag_levels = "A")
+#' cwres_covariate(data, x = c(cont, cats), tag_levels = "A")
 #' cwres_covariate_list(data, x = cont)
 #'
 #' @return
