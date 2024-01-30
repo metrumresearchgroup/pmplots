@@ -467,6 +467,7 @@ cwres_scatter <- function(df, xname = "value",
 #' @param ... not used.
 #' @export
 with.pm_display <- function(data, expr, tag_levels = NULL, ...) {
+  require_patchwork()
   expr <- enexpr(expr)
   p <- eval(expr, envir = data)
   p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
