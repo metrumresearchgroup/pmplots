@@ -1,26 +1,20 @@
 ---
-title: "Standardized diagnostics with pmplots"
-format: 
-  html: 
-    toc: true
-    embed-resources: true
+title: "Diagnostic Displays"
+author: "Kyle Baron"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette: 
+    keep_md: true
+vignette: >
+  %\VignetteIndexEntry{Diagnostic Displays}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
 
 ```{r include = FALSE}
 knitr::opts_chunk$set(message = FALSE, fig.align = "center")
 ```
-
-# Goals
-
-- start making more standardized displays
-- start using composite graphics showing several diagnostics on a single page
-
-We don't always _need_ to be doing the standard; there is plenty of room to 
-customize these plots to get what you want. But if we could agree on a few 
-plots that will cover 80 or 90% of the cases, it would be a win for 
-
-- ease of QC
-- consistency within and across reports
 
 # Overview
 
@@ -34,7 +28,7 @@ This feature set provides standardized displays of diagnostics, including
   - just histogram and QQ plots
 
 In addition to these standard displays, the user can get an object back 
-which is a list of the component plots for the standardized displays 
+containing the component plots for the standardized displays 
 that you can arrange yourself. 
 
 
@@ -42,7 +36,6 @@ that you can arrange yourself.
 library(pmplots)
 data <- pmplots_data_obs()
 id <- pmplots_data_id()
-
 cont <- c("WT//Weight (kg)", "AGE//Age (years)")
 cat <- c("CPc//Child-Pugh", "STUDYc//Study")
 covs <- c(cont,cat)
@@ -52,9 +45,12 @@ etas <- c("ETA1//ETA-CL", "ETA2//ETA-V", "ETA3//ETA-KA")
 
 # ETA versus covariates
 
-The basic / default behavior is to get a list of arranged plots, one for each `ETA`
+The basic / default behavior is to get a list of arranged plots, one for each 
+`ETA`
 
 ```{r}
+#| fig-width: 6
+#| fig-height: 6
 p <- eta_covariate(id, x = covs, y = etas)
 
 names(p) 
@@ -65,6 +61,8 @@ p$ETA1
 We can label the panels; thinking about making this the default
 
 ```{r}
+#| fig-width: 6
+#| fig-height: 6
 p <- eta_covariate(id, x = covs, y = etas, tag_levels = "A")
 
 p$ETA1
@@ -74,6 +72,8 @@ p$ETA1
 We can arrange this by column instead
 
 ```{r}
+#| fig-width: 6
+#| fig-height: 6
 p <- eta_covariate(id, x = covs, y = etas, tag_levels = "A", byrow = FALSE)
 
 p$ETA1
@@ -90,12 +90,16 @@ names(p)
 
 Now, we have all the `ETAs` for each covariate on the same page
 ```{r}
+#| fig-width: 6
+#| fig-height: 6
 p$AGE
 ```
 
 and
 
 ```{r}
+#| fig-width: 6
+#| fig-height: 6
 p$CPc
 ```
 
@@ -104,6 +108,7 @@ We can make a custom arrangement using the `patchwork` arrangement operators
 
 ```{r}
 #| fig-height: 8
+#| fig-width: 6
 p <- eta_covariate_list(id, x = covs, y = etas)
 
 with(p$ETA1, (WT / (CPc + STUDYc) / AGE), tag_levels = "A")
@@ -112,12 +117,13 @@ with(p$ETA1, (WT / (CPc + STUDYc) / AGE), tag_levels = "A")
 
 # Standard NPDE diagnostics
 
-You can get everything in on plot; might be too much for a report, but could be 
-handy for your model checkout script
+You can get all the `NPDE` diagnostics in a single graphic. This might be too 
+much for a report, but could be handy for your model checkout script
 
 ```{r}
 #| fig-height: 8
-npde_panel(data, tag_levels="A")
+#| fig-width: 6
+npde_panel(data, tag_levels = "A")
 ```
 
 or just the histogram and qq plot
@@ -149,13 +155,18 @@ You can also customize the layout to be whatever you want
 
 ```{r}
 #| fig-width: 7
+#| fig-height: 6
 plots <- npde_panel_list(data)
 
 with(plots, time / (hist + q + tad), tag_levels = "A") 
 ```
 
 
-And there is some customization for the plot axes and titles
+There is some customization for the plot axes and titles, including 
+
+- x-axis tick intervals for `time` and `tad`
+- x-axis units for `time` and `tad`
+- the name for `pred`
 
 ```{r}
 #| fig-width: 5
@@ -194,9 +205,6 @@ with(plots, (AGE + WT) / CPc / STUDYc, tag_levels = "i")
 
 The behavior / feature set looks just like the `NPDE` plots for both 
 standard diagnostics and covariates. 
-
-I want to think about abbreviating `CWRES` like we do `NPDE`; axis titles would 
-fit much better in lots of situations.
 
 
 ```{r}
