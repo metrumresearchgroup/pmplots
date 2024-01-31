@@ -4,17 +4,21 @@
 \alias{pm_grid}
 \title{Arrange a list of plots in a grid}
 \usage{
-pm_grid(x, ..., ncol = 2)
+pm_grid(x, ..., ncol = 2, tag_levels = NULL)
 }
 \arguments{
-\item{x}{A list of plots.}
+\item{x}{a list of plots.}
 
-\item{...}{Passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
+\item{...}{passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 
-\item{ncol}{Passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
+\item{ncol}{passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
+
+\item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
 }
 \description{
-This is a light wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
+This is a light wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}} to
+arrange the plots and \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}} to
+optionally tag levels in the grid of plots.
 }
 \details{
 The patchwork package must be installed to use this function.
@@ -25,5 +29,7 @@ data <- pmplots_data_obs()
 plot <- wres_cont(data, x = c("WT", "ALB"))
 
 pm_grid(plot)
+
+pm_grid(plot, tag_levels = "a")
 
 }
