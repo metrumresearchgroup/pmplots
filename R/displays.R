@@ -88,10 +88,8 @@ eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL,
 #' @export
 eta_covariate_list <- function(df, x, y, transpose = FALSE) {
   p  <- diagnostic_display_list(df, x, y, eta_cat, eta_cont)
-  labx <- lapply(x, col_label)
-  labx <- sapply(labx, "[[", 1)
-  laby <- lapply(y, col_label)
-  laby <- sapply(laby, "[[", 1)
+  labx <- col_label_col(x)
+  laby <- col_label_col(y)
   p  <- lapply(p, setNames, nm = labx)
   names(p) <- laby
   if(isTRUE(transpose)) {
@@ -149,8 +147,7 @@ npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 npde_covariate_list <- function(df, x) {
   p  <- diagnostic_display_list(df, x, pm_axis_npde(), npde_cat, npde_cont)
   p <- p[[1]]
-  labx <- lapply(x, col_label)
-  labx <- sapply(labx, "[[", 1)
+  labx <- col_label_col(x)
   names(p) <- labx
   p <- class_pm_display(p)
   p
@@ -204,8 +201,7 @@ cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 cwres_covariate_list <- function(df, x) {
   p  <- diagnostic_display_list(df, x, pm_axis_npde(), cwres_cat, cwres_cont)
   p <- p[[1]]
-  labx <- lapply(x, col_label)
-  labx <- sapply(labx, "[[", 1)
+  labx <- col_label_col(x)
   names(p) <- labx
   p <- class_pm_display(p)
   p
