@@ -473,11 +473,14 @@ parse_eval <- function(x) {
 
 #' Arrange a list of plots in a grid
 #'
-#' This is a light wrapper around [patchwork::wrap_plots()].
+#' This is a light wrapper around [patchwork::wrap_plots()] to
+#' arrange the plots and [patchwork::plot_annotation()] to
+#' optionally tag levels in the grid of plots.
 #'
-#' @param x A list of plots.
-#' @param ncol Passed to [patchwork::wrap_plots()].
-#' @param ... Passed to [patchwork::wrap_plots()].
+#' @param x a list of plots.
+#' @param ncol passed to [patchwork::wrap_plots()].
+#' @param tag_levels passed to [patchwork::plot_annotation()].
+#' @param ... passed to [patchwork::wrap_plots()].
 #'
 #' @details
 #' The patchwork package must be installed to use this function.
@@ -489,11 +492,17 @@ parse_eval <- function(x) {
 #'
 #' pm_grid(plot)
 #'
+#' pm_grid(plot, tag_levels = "a")
+#'
 #' @md
 #' @export
-pm_grid <- function(x, ..., ncol = 2) {
+pm_grid <- function(x, ncol = 2, tag_levels = NULL, ...) {
   require_patchwork()
-  patchwork::wrap_plots(x, ncol = ncol, ...)
+  x <- patchwork::wrap_plots(x, ncol = ncol, ...)
+  if(!is.null(tag_levels)) {
+    x <- x + patchwork::plot_annotation(tag_levels = tag_levels)
+  }
+  x
 }
 
 #' Chunk a data frame
