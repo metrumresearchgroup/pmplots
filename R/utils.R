@@ -500,7 +500,7 @@ pm_grid <- function(x, ..., ncol = 2, tag_levels = NULL) {
   require_patchwork()
   x <- patchwork::wrap_plots(x, ncol = ncol, ...)
   if(!is.null(tag_levels)) {
-    x <- patchwork::plot_annotation(x, tag_levels = tag_levels)
+    x <- x + patchwork::plot_annotation(tag_levels = tag_levels)
   }
   x
 }

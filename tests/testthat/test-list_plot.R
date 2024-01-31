@@ -11,6 +11,11 @@ test_that("pm_grid [PMP-TEST-015]", {
   expect_is(pm_grid(list(p,p)), "gg")
 })
 
+test_that("pm_grid tag levels", {
+  a <- pm_grid(list(p,p), tag_levels = "i")
+  expect_equal(a$patches$annotation$tag_levels, "i")
+})
+
 x <- c("WT", "CRCL", "ALB")
 y <- c("SCR", "AAG")
 
