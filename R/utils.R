@@ -496,7 +496,7 @@ parse_eval <- function(x) {
 #'
 #' @md
 #' @export
-pm_grid <- function(x, ..., ncol = 2, tag_levels = NULL) {
+pm_grid <- function(x, ncol = 2, tag_levels = NULL, ...) {
   require_patchwork()
   x <- patchwork::wrap_plots(x, ncol = ncol, ...)
   if(!is.null(tag_levels)) {

@@ -4,16 +4,16 @@
 \alias{pm_grid}
 \title{Arrange a list of plots in a grid}
 \usage{
-pm_grid(x, ..., ncol = 2, tag_levels = NULL)
+pm_grid(x, ncol = 2, tag_levels = NULL, ...)
 }
 \arguments{
 \item{x}{a list of plots.}
 
-\item{...}{passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
-
 \item{ncol}{passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 
 \item{tag_levels}{passed to \code{\link[patchwork:plot_annotation]{patchwork::plot_annotation()}}.}
+
+\item{...}{passed to \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.}
 }
 \description{
 This is a light wrapper around \code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}} to
