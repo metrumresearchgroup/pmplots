@@ -457,10 +457,10 @@ cwres_scatter <- function(df, xname = "value",
 
 #' Create a display of continuous versus categorical covariates
 #'
-#' Get a single graphic of continous covariate boxpots split by
-#' levels of different categorical covariates (`covariate_split()`).
+#' Get a single graphic of continuous covariate boxplots split by
+#' levels of different categorical covariates (`cont_cat_panel()`).
 #' Alternatively, get the component plots to be arranged by the user
-#' (`covariate_split_list()`)
+#' (`cont_cat_panel_list()`)
 #'
 #' @inheritParams eta_covariate
 #'
@@ -475,25 +475,25 @@ cwres_scatter <- function(df, xname = "value",
 #'
 #' @details
 #' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
-#' coming from `covariate_split()`.
+#' coming from `cont_cat_panel()`.
 #'
 #' @examples
 #' data <- pmplots_data_id()
 #' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)", "AGE//Age (years)")
 #' cats <- c("RF//Renal function", "CPc//Child-Pugh")
 #'
-#' covariate_split(data, x = cats, y = cont, tag_levels = "A")
+#' cont_cat_panel(data, x = cats, y = cont, tag_levels = "A")
 #'
-#' covariate_split(data, cats, cont)
-#' covariate_split(data, cats, cont, transpose = TRUE)
+#' cont_cat_panel(data, cats, cont)
+#' cont_cat_panel(data, cats, cont, transpose = TRUE)
 #'
-#' l <- covariate_split_list(data, cats, cont, transpose = TRUE)
+#' l <- cont_cat_panel_list(data, cats, cont, transpose = TRUE)
 #'
 #' with(l$RF, WT/(ALB + AGE), tag_levels = "A")
 #'
 #' @return
-#' `covariate_split()` returns a list of plots arranged in graphics as a
-#' `patchwork` object using [pm_grid()]. `covariate_split_list()` the same
+#' `cont_cat_panel()` returns a list of plots arranged in graphics as a
+#' `patchwork` object using [pm_grid()]. `cont_cat_panel_list()` the same
 #' plots, but unarranged as a list of lists.
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
@@ -505,10 +505,10 @@ cwres_scatter <- function(df, xname = "value",
 #' @seealso [eta_covariate()], [eta_covariate_list()]
 #' @md
 #' @export
-covariate_split <- function(df, x, y, ncol = 2, tag_levels = NULL,
+cont_cat_panel <- function(df, x, y, ncol = 2, tag_levels = NULL,
                             byrow = FALSE, transpose = FALSE, ...) {
   require_patchwork()
-  p <- covariate_split_list(df, x, y, transpose, ...)
+  p <- cont_cat_panel_list(df, x, y, transpose, ...)
   if(is.numeric(ncol)) {
     p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
   }
@@ -520,7 +520,7 @@ covariate_split <- function(df, x, y, ncol = 2, tag_levels = NULL,
 
 #' @rdname covariate_split
 #' @export
-covariate_split_list <- function(df, x, y, transpose = FALSE, ...) {
+cont_cat_panel_list <- function(df, x, y, transpose = FALSE, ...) {
   p <- list_plot_y(df, x, y, .fun = cont_cat, ...)
   labx <- col_label_col(x)
   laby <- col_label_col(y)
