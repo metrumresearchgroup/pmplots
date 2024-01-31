@@ -487,8 +487,20 @@ cwres_scatter <- function(df, xname = "value",
 #' covariate_split(data, cats, cont)
 #' covariate_split(data, cats, cont, transpose = TRUE)
 #'
-#' covariate_split_list(data, cats, cont)
-#' covariate_split_list(data, cats, cont, transpose = TRUE)
+#' l <- covariate_split_list(data, cats, cont, transpose = TRUE)
+#'
+#' with(l$RF, WT/(ALB + AGE), tag_levels = "A")
+#'
+#' @return
+#' `covariate_split()` returns a list of plots arranged in graphics as a
+#' `patchwork` object using [pm_grid()]. `covariate_split_list()` the same
+#' plots, but unarranged as a list of lists.
+#'
+#' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
+#' by the continuous covariate (passed as `y`), and the names of the list
+#' reflect those names (e.g., `WT`). When `transpose` is `TRUE`, the graphics
+#' are grouped by the categorical covariate (passed as `x`) and the names of the
+#' list reflect those names (e.g. `RF`). See **Examples**.
 #'
 #' @seealso [eta_covariate()], [eta_covariate_list()]
 #' @md

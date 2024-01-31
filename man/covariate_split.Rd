@@ -39,6 +39,17 @@ covariates.}
 
 \item{...}{additional arguments passed to \code{\link[=cont_cat]{cont_cat()}}.}
 }
+\value{
+\code{covariate_split()} returns a list of plots arranged in graphics as a
+\code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}}. \code{covariate_split_list()} the same
+plots, but unarranged as a list of lists.
+
+When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
+by the continuous covariate (passed as \code{y}), and the names of the list
+reflect those names (e.g., \code{WT}). When \code{transpose} is \code{TRUE}, the graphics
+are grouped by the categorical covariate (passed as \code{x}) and the names of the
+list reflect those names (e.g. \code{RF}). See \strong{Examples}.
+}
 \description{
 Get a single graphic of continous covariate boxpots split by
 levels of different categorical covariates (\code{covariate_split()}).
@@ -59,8 +70,9 @@ covariate_split(data, x = cats, y = cont, tag_levels = "A")
 covariate_split(data, cats, cont)
 covariate_split(data, cats, cont, transpose = TRUE)
 
-covariate_split_list(data, cats, cont)
-covariate_split_list(data, cats, cont, transpose = TRUE)
+l <- covariate_split_list(data, cats, cont, transpose = TRUE)
+
+with(l$RF, WT/(ALB + AGE), tag_levels = "A")
 
 }
 \seealso{
