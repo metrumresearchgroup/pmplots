@@ -455,6 +455,72 @@ cwres_scatter <- function(df, xname = "value",
   p
 }
 
+#' Create a display of continuous versus categorical covariates
+#'
+#' Get a single graphic of continous covariate boxpots split by
+#' levels of different categorical covariates (`covariate_split()`).
+#' Alternatively, get the component plots to be arranged by the user
+#' (`covariate_split_list()`)
+#'
+#' @inheritParams eta_covariate
+#'
+#' @param x character `col//title` for the categorical covariates to
+#' plot on x-axis; see [col_label].
+#' @param y character `col//title` for the continuous covariates to
+#' plot on y-axis; see [col_label].
+#' @param transpose logical; if `TRUE`, output will be transposed to
+#' group plots by the categorical covariates rather than the continuous
+#' covariates.
+#' @param ... additional arguments passed to [cont_cat()].
+#'
+#' @details
+#' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
+#' coming from `covariate_split()`.
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)", "AGE//Age (years)")
+#' cats <- c("RF//Renal function", "CPc//Child-Pugh")
+#'
+#' covariate_split(data, x = cats, y = cont, tag_levels = "A")
+#'
+#' covariate_split(data, cats, cont)
+#' covariate_split(data, cats, cont, transpose = TRUE)
+#'
+#' covariate_split_list(data, cats, cont)
+#' covariate_split_list(data, cats, cont, transpose = TRUE)
+#'
+#' @seealso [eta_covariate()], [eta_covariate_list()]
+#' @md
+#' @export
+covariate_split <- function(df, x, y, ncol = 2, tag_levels = NULL,
+                            byrow = FALSE, transpose = FALSE, ...) {
+  require_patchwork()
+  p <- covariate_split_list(df, x, y, transpose, ...)
+  if(is.numeric(ncol)) {
+    p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
+  }
+  if(!is.null(tag_levels)) {
+    p <- lapply(p, function(x) x + patchwork::plot_annotation(tag_levels = tag_levels))
+  }
+  p
+}
+
+#' @rdname covariate_split
+#' @export
+covariate_split_list <- function(df, x, y, transpose = FALSE, ...) {
+  p <- list_plot_y(df, x, y, .fun = cont_cat, ...)
+  labx <- col_label_col(x)
+  laby <- col_label_col(y)
+  names(p) <- laby
+  p <- lapply(p, setNames, labx)
+  if(isTRUE(transpose)) {
+    p <- list_transpose(p)
+  }
+  p <- lapply(p, class_pm_display)
+  p
+}
+
 #' with method for pm_display objects
 #'
 #' @param data a `pm_display` object.
