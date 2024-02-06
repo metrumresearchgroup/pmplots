@@ -41,8 +41,8 @@ covariates.}
 }
 \value{
 \code{cont_cat_panel()} returns a list of plots arranged in graphics as a
-\code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}}. \code{cont_cat_panel_list()} the same
-plots, but unarranged as a list of lists.
+\code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}}. \code{cont_cat_panel_list()} returns the
+same plots, but unarranged as a named list of lists.
 
 When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
 by the continuous covariates (passed as \code{y}), and the names of the list

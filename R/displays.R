@@ -493,8 +493,8 @@ cwres_scatter <- function(df, xname = "value",
 #'
 #' @return
 #' `cont_cat_panel()` returns a list of plots arranged in graphics as a
-#' `patchwork` object using [pm_grid()]. `cont_cat_panel_list()` the same
-#' plots, but unarranged as a list of lists.
+#' `patchwork` object using [pm_grid()]. `cont_cat_panel_list()` returns the
+#' same plots, but unarranged as a named list of lists.
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
 #' by the continuous covariates (passed as `y`), and the names of the list
