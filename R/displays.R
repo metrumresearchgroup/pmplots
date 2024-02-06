@@ -28,8 +28,8 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #'
 #' @param df a data frame to plot.
 #' @param x character `col//title` for covariates to plot on x-axis;
-#' see [col_label].
-#' @param y character `col//title` for ETAs to plot on y-axis; see [col_label].
+#' see [col_label()].
+#' @param y character `col//title` for ETAs to plot on y-axis; see [col_label()].
 #' @param ncol passed to [pm_grid()].
 #' @param byrow passed to [pm_grid()].
 #' @param tag_levels passed to [patchwork::plot_annotation()].
@@ -465,9 +465,9 @@ cwres_scatter <- function(df, xname = "value",
 #' @inheritParams eta_covariate
 #'
 #' @param x character `col//title` for the categorical covariates to
-#' plot on x-axis; see [col_label].
+#' plot on x-axis; see [col_label()].
 #' @param y character `col//title` for the continuous covariates to
-#' plot on y-axis; see [col_label].
+#' plot on y-axis; see [col_label()].
 #' @param transpose logical; if `TRUE`, output will be transposed to
 #' group plots by the categorical covariates rather than the continuous
 #' covariates.

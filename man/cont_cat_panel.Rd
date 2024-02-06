@@ -22,10 +22,10 @@ cont_cat_panel_list(df, x, y, transpose = FALSE, ...)
 \item{df}{a data frame to plot.}
 
 \item{x}{character \verb{col//title} for the categorical covariates to
-plot on x-axis; see \link{col_label}.}
+plot on x-axis; see \code{\link[=col_label]{col_label()}}.}
 
 \item{y}{character \verb{col//title} for the continuous covariates to
-plot on y-axis; see \link{col_label}.}
+plot on y-axis; see \code{\link[=col_label]{col_label()}}.}
 
 \item{ncol}{passed to \code{\link[=pm_grid]{pm_grid()}}.}
 
