@@ -518,7 +518,7 @@ cont_cat_panel <- function(df, x, y, ncol = 2, tag_levels = NULL,
   p
 }
 
-#' @rdname covariate_split
+#' @rdname cont_cat_panel
 #' @export
 cont_cat_panel_list <- function(df, x, y, transpose = FALSE, ...) {
   p <- list_plot_y(df, x, y, .fun = cont_cat, ...)

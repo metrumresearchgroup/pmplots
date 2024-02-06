@@ -2,6 +2,7 @@
 % Please edit documentation in R/displays.R
 \name{cont_cat_panel}
 \alias{cont_cat_panel}
+\alias{cont_cat_panel_list}
 \title{Create a display of continuous versus categorical covariates}
 \usage{
 cont_cat_panel(
@@ -14,6 +15,8 @@ cont_cat_panel(
   transpose = FALSE,
   ...
 )
+
+cont_cat_panel_list(df, x, y, transpose = FALSE, ...)
 }
 \arguments{
 \item{df}{a data frame to plot.}
