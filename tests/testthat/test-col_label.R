@@ -40,3 +40,11 @@ test_that("punctuation in col-label issue-72 [PMP-TEST-006]", {
     c("wt.baseline", "Baseline Weight")
   )
 })
+
+test_that("get col part from a col-label vector", {
+  x <- "a//first"
+  expect_identical(pmplots:::col_label_col(x), "a")
+
+  x <- c("a//first", "b@@second", "c//third")
+  expect_identical(pmplots:::col_label_col(x), c("a", "b", "c"))
+})
