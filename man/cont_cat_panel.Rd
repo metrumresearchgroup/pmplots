@@ -45,10 +45,10 @@ covariates.}
 plots, but unarranged as a list of lists.
 
 When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
-by the continuous covariate (passed as \code{y}), and the names of the list
+by the continuous covariates (passed as \code{y}), and the names of the list
 reflect those names (e.g., \code{WT}). When \code{transpose} is \code{TRUE}, the graphics
-are grouped by the categorical covariate (passed as \code{x}) and the names of the
-list reflect those names (e.g. \code{RF}). See \strong{Examples}.
+are grouped by the categorical covariates (passed as \code{x}) and the names of
+the list reflect those names (e.g. \code{RF}). See \strong{Examples}.
 }
 \description{
 Get a single graphic of continuous covariate boxplots split by
@@ -71,7 +71,7 @@ cont_cat_panel(data, cats, cont)
 cont_cat_panel(data, cats, cont, transpose = TRUE)
 
 l <- cont_cat_panel_list(data, cats, cont, transpose = TRUE)
-
+names(l)
 with(l$RF, WT/(ALB + AGE), tag_levels = "A")
 
 }

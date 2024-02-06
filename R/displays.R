@@ -488,7 +488,7 @@ cwres_scatter <- function(df, xname = "value",
 #' cont_cat_panel(data, cats, cont, transpose = TRUE)
 #'
 #' l <- cont_cat_panel_list(data, cats, cont, transpose = TRUE)
-#'
+#' names(l)
 #' with(l$RF, WT/(ALB + AGE), tag_levels = "A")
 #'
 #' @return
@@ -497,10 +497,10 @@ cwres_scatter <- function(df, xname = "value",
 #' plots, but unarranged as a list of lists.
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
-#' by the continuous covariate (passed as `y`), and the names of the list
+#' by the continuous covariates (passed as `y`), and the names of the list
 #' reflect those names (e.g., `WT`). When `transpose` is `TRUE`, the graphics
-#' are grouped by the categorical covariate (passed as `x`) and the names of the
-#' list reflect those names (e.g. `RF`). See **Examples**.
+#' are grouped by the categorical covariates (passed as `x`) and the names of
+#' the list reflect those names (e.g. `RF`). See **Examples**.
 #'
 #' @seealso [eta_covariate()], [eta_covariate_list()]
 #' @md
