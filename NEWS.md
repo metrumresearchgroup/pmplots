@@ -1,4 +1,25 @@
-# pmplots (development version)
+# pmplots 0.4.0
+
+- Add a series of functions for standardized, paneled displays (#77, #81).
+  - `eta_covariate()` creates panel of ETA versus continuous or categorical 
+     covariates.
+  - `npde_covariate()` creates panel of NPDE versus continuous or categorical 
+     covariates.
+  - `cwres_covariate()` creates panel of CWRES versus continuous or categorical 
+     covariates.
+  - `cont_cat_panel()` creates panel of continuous versus categorical covariates.
+  - `npde_panel()` creates panel of NPDE-based diagnostics.
+  - `cwres_panel()` creates panel of CWRES-based diagnostics.
+  - `npde_scatter()` creates panel of NPDE-based scatter plots.
+  - `cwres_scatter()` creates panel of CWRES-based scatter plots.
+  - `npde_hist_q()` creates NPDE histogram and Q-Q plot in a panel.
+  - `cwres_hist_q()` creates CWRES histogram and Q-Q plot in a panel.
+  - Component plots can be returned in a list which can be arranged via 
+    `with()`.
+  
+- `pm_grid()` gains `tag_levels` argument that gets passed to 
+  `patchwork::plot_annotation()` (#80).
+
 
 # pmplots 0.3.7
 
