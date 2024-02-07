@@ -1,4 +1,5 @@
-# pmplots (development version)
+# pmplots 0.4.0
+
 
 # pmplots 0.3.7
 
