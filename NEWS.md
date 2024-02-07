@@ -1,6 +1,6 @@
 # pmplots 0.4.0
 
-- Add a series of functions for standardized display grids (#77, #81).
+- Add a series of functions for standardized, paneled displays (#77, #81).
   - `eta_covariate()` creates panel of ETA versus continuous or categorical 
      covariates.
   - `npde_covariate()` creates panel of NPDE versus continuous or categorical 
