@@ -1,10 +1,13 @@
 # pmplots 0.4.0
 
-- Add a series of functions for standardized, multipanel displays (#77, #81).
-  - `eta_covariate()` plots ETA versus continuous or categorical covariates.
-  - `npde_covariate()` plots NPDE versus continuous or categorical covariates.
-  - `cwres_covariate()` plots CWRES versus continuous or categorical covariates.
-  - `cont_cat_panel()` plots continuous versus categorical covariates.
+- Add a series of functions for standardized display grids (#77, #81).
+  - `eta_covariate()` creates panel of ETA versus continuous or categorical 
+     covariates.
+  - `npde_covariate()` creates panel of NPDE versus continuous or categorical 
+     covariates.
+  - `cwres_covariate()` creates panel of CWRES versus continuous or categorical 
+     covariates.
+  - `cont_cat_panel()` creates panel of continuous versus categorical covariates.
   - `npde_panel()` creates a panel of NPDE-based diagnostics.
   - `cwres_panel()` creates a panel of CWRES-based diagnostics.
   - `npde_scatter()` creates a panel of NPDE-based scatter plots.
