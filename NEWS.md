@@ -18,7 +18,7 @@
     `with()`.
   
 - `pm_grid()` gains `tag_levels` argument that gets passed to 
-  `patchwork::plot_annotation` (#80).
+  `patchwork::plot_annotation()` (#80).
 
 
 # pmplots 0.3.7
