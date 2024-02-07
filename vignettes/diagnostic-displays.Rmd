@@ -26,6 +26,7 @@ This feature set provides standardized displays of diagnostics, including
   - single, comprehensive panel
   - just scatter plots
   - just histogram and QQ plots
+- Continuous versus categorical plots
 
 In addition to these standard displays, the user can get an object back 
 containing the component plots for the standardized displays 
@@ -211,5 +212,20 @@ standard diagnostics and covariates.
 #| fig-width: 6
 #| fig-height: 6
 cwres_scatter(data, tag_levels = "A", compact = TRUE)
+```
+
+# Continuous versus categorical panels
+
+These plots work a lot like `eta_covariate()` in that you need to pass in 
+both the `x` and `y` variables. 
+
+```{r}
+cont <- c("WT//Weight (kg)", "ALB//Albumin (g/dL)", "HT//Height (cm)")
+cat <- c("CPc//Child-Pugh", "STUDYc//Study", "RF//Renal function", "TALL//Tall")
+id$TALL <- factor(id$HT > 180, labels = c("No", "Yes"))
+```
+
+```{r}
+cont_cat_panel(id, x = cat, y = cont)
 ```
 
