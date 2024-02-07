@@ -252,6 +252,11 @@ col_labels <- function(x) {
   values
 }
 
+col_label_col <- function(x) {
+  x <- lapply(x, col_label)
+  vapply(x, "[", 1, FUN.VALUE = "a")
+}
+
 #' Parse the label part of a col_label
 #'
 #' @details

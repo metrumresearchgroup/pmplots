@@ -28,8 +28,8 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #'
 #' @param df a data frame to plot.
 #' @param x character `col//title` for covariates to plot on x-axis;
-#' see [col_label].
-#' @param y character `col//title` for ETAs to plot on y-axis; see [col_label].
+#' see [col_label()].
+#' @param y character `col//title` for ETAs to plot on y-axis; see [col_label()].
 #' @param ncol passed to [pm_grid()].
 #' @param byrow passed to [pm_grid()].
 #' @param tag_levels passed to [patchwork::plot_annotation()].
@@ -88,10 +88,8 @@ eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL,
 #' @export
 eta_covariate_list <- function(df, x, y, transpose = FALSE) {
   p  <- diagnostic_display_list(df, x, y, eta_cat, eta_cont)
-  labx <- lapply(x, col_label)
-  labx <- sapply(labx, "[[", 1)
-  laby <- lapply(y, col_label)
-  laby <- sapply(laby, "[[", 1)
+  labx <- col_label_col(x)
+  laby <- col_label_col(y)
   p  <- lapply(p, setNames, nm = labx)
   names(p) <- laby
   if(isTRUE(transpose)) {
@@ -149,8 +147,7 @@ npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 npde_covariate_list <- function(df, x) {
   p  <- diagnostic_display_list(df, x, pm_axis_npde(), npde_cat, npde_cont)
   p <- p[[1]]
-  labx <- lapply(x, col_label)
-  labx <- sapply(labx, "[[", 1)
+  labx <- col_label_col(x)
   names(p) <- labx
   p <- class_pm_display(p)
   p
@@ -204,8 +201,7 @@ cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 cwres_covariate_list <- function(df, x) {
   p  <- diagnostic_display_list(df, x, pm_axis_npde(), cwres_cat, cwres_cont)
   p <- p[[1]]
-  labx <- lapply(x, col_label)
-  labx <- sapply(labx, "[[", 1)
+  labx <- col_label_col(x)
   names(p) <- labx
   p <- class_pm_display(p)
   p
@@ -456,6 +452,84 @@ cwres_scatter <- function(df, xname = "value",
     p <- time / tad / pred
   }
   p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
+  p
+}
+
+#' Create a display of continuous versus categorical covariates
+#'
+#' Get a single graphic of continuous covariate boxplots split by
+#' levels of different categorical covariates (`cont_cat_panel()`).
+#' Alternatively, get the component plots to be arranged by the user
+#' (`cont_cat_panel_list()`)
+#'
+#' @inheritParams eta_covariate
+#'
+#' @param x character `col//title` for the categorical covariates to
+#' plot on x-axis; see [col_label()].
+#' @param y character `col//title` for the continuous covariates to
+#' plot on y-axis; see [col_label()].
+#' @param transpose logical; if `TRUE`, output will be transposed to
+#' group plots by the categorical covariates rather than the continuous
+#' covariates.
+#' @param ... additional arguments passed to [cont_cat()].
+#'
+#' @details
+#' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
+#' coming from `cont_cat_panel()`.
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' cont <- c("WT//Weight (kg)", "ALB//Albumin (mg/dL)", "AGE//Age (years)")
+#' cats <- c("RF//Renal function", "CPc//Child-Pugh")
+#'
+#' cont_cat_panel(data, x = cats, y = cont, tag_levels = "A")
+#'
+#' cont_cat_panel(data, cats, cont)
+#' cont_cat_panel(data, cats, cont, transpose = TRUE)
+#'
+#' l <- cont_cat_panel_list(data, cats, cont, transpose = TRUE)
+#' names(l)
+#' with(l$RF, WT/(ALB + AGE), tag_levels = "A")
+#'
+#' @return
+#' `cont_cat_panel()` returns a list of plots arranged in graphics as a
+#' `patchwork` object using [pm_grid()]. `cont_cat_panel_list()` returns the
+#' same plots, but unarranged as a named list of lists.
+#'
+#' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
+#' by the continuous covariates (passed as `y`), and the names of the list
+#' reflect those names (e.g., `WT`). When `transpose` is `TRUE`, the graphics
+#' are grouped by the categorical covariates (passed as `x`) and the names of
+#' the list reflect those names (e.g. `RF`). See **Examples**.
+#'
+#' @seealso [eta_covariate()], [eta_covariate_list()]
+#' @md
+#' @export
+cont_cat_panel <- function(df, x, y, ncol = 2, tag_levels = NULL,
+                            byrow = FALSE, transpose = FALSE, ...) {
+  require_patchwork()
+  p <- cont_cat_panel_list(df, x, y, transpose, ...)
+  if(is.numeric(ncol)) {
+    p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
+  }
+  if(!is.null(tag_levels)) {
+    p <- lapply(p, function(x) x + patchwork::plot_annotation(tag_levels = tag_levels))
+  }
+  p
+}
+
+#' @rdname cont_cat_panel
+#' @export
+cont_cat_panel_list <- function(df, x, y, transpose = FALSE, ...) {
+  p <- list_plot_y(df, x, y, .fun = cont_cat, ...)
+  labx <- col_label_col(x)
+  laby <- col_label_col(y)
+  names(p) <- laby
+  p <- lapply(p, setNames, labx)
+  if(isTRUE(transpose)) {
+    p <- list_transpose(p)
+  }
+  p <- lapply(p, class_pm_display)
   p
 }
 
