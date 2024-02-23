@@ -28,7 +28,7 @@
 eta_hist <- function(df, x, xs=defx(), add_density = FALSE, ...) {
   out <- vector(mode="list", length=length(x))
   for(i in seq_along(x)) {
-    out[[i]] <- cont_hist(df, x = x[i], xs, add_density = add_density, ...)
+    out[[i]] <- cont_hist(df, x = x[[i]], xs, add_density = add_density, ...)
   }
   if(length(out)==1) return(out[[1]])
   return(out)

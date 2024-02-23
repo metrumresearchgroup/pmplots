@@ -335,4 +335,14 @@ test_that("tag levels via with()", {
 
 # ---------------------------------------------------------------------------
 
-
+test_that("display plots accept list", {
+  both <- as.list(c(conts, cats))
+  cats <- as.list(cats)
+  conts <- as.list(conts)
+  etas <- as.list(etas)
+  expect_s3_class(eta_covariate(id, cats, etas)[[1]], "patchwork")
+  expect_s3_class(eta_covariate(id, both, etas)[[1]], "patchwork")
+  expect_s3_class(cont_cat_panel(data, cats, conts)[[1]], "patchwork")
+  expect_s3_class(npde_covariate(data, conts), "patchwork")
+  expect_s3_class(cwres_covariate(data, cats), "patchwork")
+})
