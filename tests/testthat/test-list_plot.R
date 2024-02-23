@@ -34,4 +34,16 @@ test_that("list_plot_xy [PMP-TEST-018]", {
   expect_equal(length(p), length(y)*length(x))
 })
 
+test_that("list_plot accepts vector or list", {
+  x <- as.list(x)
+  y <- as.list(y)
 
+  expect_type(list_plot_x(df, "WT", y), "list")
+  expect_type(list_plot_y(df, x, y[1]), "list")
+  expect_type(list_plot_xy(df, x, y), "list")
+
+  x <- as.list("STUDYc", "CPc")
+  expect_type(list_plot_x(df, x, y[1], cont_cat), "list")
+  expect_type(list_plot_y(df, x[1], y, cont_cat), "list")
+  expect_type(list_plot_xy(df, x, y, cont_cat), "list")
+})

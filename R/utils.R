@@ -232,6 +232,7 @@ split_col_label <- function(x,split="//") {
 ##'
 ##' @export
 col_label <- function(x) {
+  if(is.list(x)) x <- unlist(x)
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
     if(length(y)==2) {
