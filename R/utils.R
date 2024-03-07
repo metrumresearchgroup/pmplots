@@ -193,7 +193,7 @@ defcx <- function(...) {
   x0 <- list(...)
   x <- as.list(formals(ggplot2::scale_x_discrete))
   x <- merge.list(x,x0)
-  x[[1]] <- NULL
+  x[["..."]] <- NULL
   x
 }
 
