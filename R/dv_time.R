@@ -65,6 +65,9 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
   inx <- xs
   iny <- ys
 
+  xs <- remap_trans_arg(xs)
+  ys <- remap_trans_arg(ys)
+
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(),ys)
 
@@ -77,10 +80,10 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
   }
 
   if(log) {
-    ys$trans <- "log"
+    ys$transform <- "log"
   }
 
-  if(ys$trans %in% c("log", "log10")) {
+  if(ys$transform %in% c("log", "log10")) {
     ykp <- df[,y] > 0
     df <- dplyr::filter(df,ykp)
     if(.miss("breaks", iny)) {

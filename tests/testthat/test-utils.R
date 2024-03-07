@@ -13,7 +13,7 @@ test_that("CWRESI gets subbed for CWRES [PMP-TEST-062]", {
 test_that("log scale [PMP-TEST-063]", {
   x <- log_scale()
   expect_is(x, "list")
-  expect_equal(x$trans, "log10")
+  expect_equal(x$transform, "log10")
   expect_equal(x$breaks, NULL)
   x <- log_scale(logbr())
   expect_equal(x$breaks, 10^seq(-10,10))
@@ -63,3 +63,46 @@ test_that("args are passed to rot_x and rot_y [PMP-TEST-069]", {
   expect_is(p, "gg")
 })
 
+test_that("trans argument is mapped to transform", {
+  fns <- list(
+    pm_log,
+    defx,
+    defy
+  )
+  for (fn in fns) {
+    lifecycle::expect_deprecated(
+      res <- fn(trans = "log2")
+    )
+
+    expect_identical(res[["transform"]], "log2")
+    expect_false("trans" %in% names(res))
+    identical(res, fn(transform = "log2"))
+  }
+})
+
+test_that("remap_trans_arg() converts trans to transform", {
+  # expect_deprecated() configures an option that should ensure the warning is
+  # always emitted, but for some reason only one warning is given if
+  # remap_trans_arg() is called with its default user_env value.
+  env <- rlang::current_env()
+
+  expect_identical(
+    lifecycle::expect_deprecated(
+      remap_trans_arg(list(trans = "log2"), user_env = env)
+    ),
+    list(transform = "log2")
+  )
+
+  expect_identical(
+    lifecycle::expect_deprecated(
+      remap_trans_arg(list(trans = "log2", transform = "log10"), user_env = env)
+    ),
+    list(transform = "log2")
+  )
+
+  # If both are specified, `trans` is in effect, following ggplot2 precedence.
+  expect_identical(
+    remap_trans_arg(list(transform = "log2")),
+    list(transform = "log2")
+  )
+})

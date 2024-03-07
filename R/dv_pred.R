@@ -70,6 +70,9 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
   inx <- xs
   iny <- ys
 
+  xs <- remap_trans_arg(xs)
+  ys <- remap_trans_arg(ys)
+
   xs <- update_list(defx(), xs)
   ys <- update_list(defy(), ys)
 
@@ -77,8 +80,8 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
   y <- y[1]
 
   if(loglog) {
-    xs$trans <- "log10"
-    ys$trans <- "log10"
+    xs$transform <- "log10"
+    ys$transform <- "log10"
     logbr <- match.arg(logbr)
     if(logbr == "half") {
       log_breaks <- logbr3()
@@ -91,7 +94,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
     }
   }
 
-  if(xs$trans %in% c("log", "log10")) {
+  if(xs$transform %in% c("log", "log10")) {
     xkp <- df[,x] > 0
     df <- dplyr::filter(df, xkp)
     if(.miss("breaks", inx)) {
@@ -99,7 +102,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
     }
   }
 
-  if(ys$trans %in% c("log", "log10")) {
+  if(ys$transform %in% c("log", "log10")) {
     ykp <- df[,y] > 0
     df <- dplyr::filter(df, ykp)
     if(.miss("breaks", iny)) {

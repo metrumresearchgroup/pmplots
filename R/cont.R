@@ -116,6 +116,9 @@ y_time <- function(df,
   inx <- xs
   iny <- ys
 
+  xs <- remap_trans_arg(xs)
+  ys <- remap_trans_arg(ys)
+
   xs <- update_list(defx(),xs)
   ys <- update_list(defy(), ys)
 
@@ -127,7 +130,7 @@ y_time <- function(df,
   }
 
   if(log) {
-    ys$trans <- "log"
+    ys$transform <- "log"
     ys$breaks <- logbr3()
   }
 
