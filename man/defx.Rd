@@ -4,10 +4,12 @@
 \alias{defx}
 \title{Default setting for x-axis scale}
 \usage{
-defx(...)
+defx(..., trans = deprecated())
 }
 \arguments{
 \item{...}{arguments for \code{scale_x_continuous}}
+
+\item{trans}{deprecated; use \code{transform} argument instead.}
 }
 \description{
 A named list of the formal arguments for \code{scale_x_continuous}.  This
@@ -21,6 +23,6 @@ In the named list, the name is the argument name and the value
 is the argument value.
 }
 \examples{
-defx(trans="log")
+defx(transform="log")
 
 }
