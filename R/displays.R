@@ -199,7 +199,7 @@ cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 #' @rdname cwres_covariate
 #' @export
 cwres_covariate_list <- function(df, x) {
-  p  <- diagnostic_display_list(df, x, pm_axis_npde(), cwres_cat, cwres_cont)
+  p  <- diagnostic_display_list(df, x, pm_axis_cwres(), cwres_cat, cwres_cont)
   p <- p[[1]]
   labx <- col_label_col(x)
   names(p) <- labx
