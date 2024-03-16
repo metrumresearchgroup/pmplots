@@ -4,10 +4,12 @@
 \alias{defy}
 \title{Default setting for continuous y-axis scale}
 \usage{
-defy(...)
+defy(..., trans = deprecated())
 }
 \arguments{
 \item{...}{arguments for \code{scale_y_continuous}}
+
+\item{trans}{deprecated; use \code{transform} argument instead.}
 }
 \description{
 A named list of the formal arguments for \code{scale_y_continuous}.  This
@@ -17,6 +19,6 @@ create your own named list for arguments you want to update, using
 this default as a base.
 }
 \examples{
-defy(trans="log")
+defy(transform="log")
 
 }

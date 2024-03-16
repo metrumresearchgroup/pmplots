@@ -880,7 +880,7 @@ wrap_cont_time(df, y = y, use_labels=TRUE)
 ## Modify x-axis
 
 ``` r
-a <- list(trans="log", breaks = logbr3())
+a <- list(transform="log", breaks = logbr3())
 
 dv_time(df, xs=a)
 ```

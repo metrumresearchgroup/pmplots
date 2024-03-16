@@ -95,7 +95,7 @@ dv_time(data, xby = 30)
 You can put the y-axis on log scale
 
 ```{r}
-dv_time(data, ys = list(trans = "log10"))
+dv_time(data, ys = list(transform = "log10"))
 ```
 
 Again note there is a `log` argument to this function that lets us do this 
@@ -111,7 +111,7 @@ in your plot.
 
 Specifically not that you should not do this
 ```{r}
-dv_time(data) + scale_y_continuous(trans = "log10")
+dv_time(data) + scale_y_continuous(transform = "log10")
 ```
 
 This will result in a warning and clobber the scale that pmplots set. Always

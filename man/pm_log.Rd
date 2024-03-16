@@ -5,7 +5,13 @@
 \alias{pm_ident}
 \title{Identity and log scale helpers}
 \usage{
-pm_log(breaks = NULL, limits = NULL, trans = "log10", ...)
+pm_log(
+  breaks = NULL,
+  limits = NULL,
+  transform = "log10",
+  ...,
+  trans = deprecated()
+)
 
 pm_ident(breaks, limits = range(breaks), ...)
 }
@@ -14,9 +20,11 @@ pm_ident(breaks, limits = range(breaks), ...)
 
 \item{limits}{passed to scale function}
 
-\item{trans}{passed to scale function}
+\item{transform}{passed to scale function}
 
 \item{...}{passed to scale function}
+
+\item{trans}{deprecated; use \code{transform} argument instead.}
 }
 \description{
 Identity and log scale helpers
