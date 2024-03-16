@@ -95,7 +95,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
   }
 
   if(xs$transform %in% c("log", "log10")) {
-    xkp <- df[,x] > 0
+    xkp <- df[[x]] > 0
     df <- dplyr::filter(df, xkp)
     if(.miss("breaks", inx)) {
       xs$breaks <- log_breaks
@@ -103,7 +103,7 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
   }
 
   if(ys$transform %in% c("log", "log10")) {
-    ykp <- df[,y] > 0
+    ykp <- df[[y]] > 0
     df <- dplyr::filter(df, ykp)
     if(.miss("breaks", iny)) {
       ys$breaks <- log_breaks
