@@ -57,7 +57,7 @@ test_that("res time [PMP-TEST-053]", {
   p <- cwres_time(df)
   expect_is(p, "gg")
   expect_labels(p, "TIME", "CWRES")
-  expect_titles(p, "Time (hr)", "Conditional weighted residual")
+  expect_titles(p, "Time (hr)", "CWRES")
 
   p <- res_tad(df)
   expect_is(p, "gg")
@@ -77,7 +77,7 @@ test_that("res time [PMP-TEST-053]", {
   p <- cwres_tad(df)
   expect_is(p, "gg")
   expect_labels(p, "TAD", "CWRES")
-  expect_titles(p, "Time after dose (hr)", "Conditional weighted residual")
+  expect_titles(p, "Time after dose (hr)", "CWRES")
 
   p <- res_tafd(df)
   expect_is(p, "gg")
@@ -97,7 +97,7 @@ test_that("res time [PMP-TEST-053]", {
   p <- cwres_tafd(df)
   expect_is(p, "gg")
   expect_labels(p, "TAFD", "CWRES")
-  expect_titles(p, "Time after first dose (hr)", "Conditional weighted residual")
+  expect_titles(p, "Time after first dose (hr)", "CWRES")
 
 
 })

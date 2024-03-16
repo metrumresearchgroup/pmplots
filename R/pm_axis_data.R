@@ -30,7 +30,7 @@ pm_axis_data <- list(
     npde = "NPDE"
   ),
   title  = list(
-    cwres = "Conditional weighted residual",
+    cwres = "CWRES",
     cwresi = "CWRES with interaction",
     res = "Residual",
     wres = "Weighted residual",
