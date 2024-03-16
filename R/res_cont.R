@@ -61,3 +61,9 @@ npde_cont <- function(df, x, y=pm_axis_npde(), ...) {
   res_cont(df, x = x, y = y, ...)
 }
 
+##' @export
+##' @rdname res_cont
+npd_cont <- function(df, x, y=pm_axis_npd(), ...) {
+  res_cont(df, x = x, y = y, ...)
+}
+
