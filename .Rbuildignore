@@ -13,7 +13,7 @@ inst/examples/pmplots_complete\.html
 ^\.Rproj\.user$
 ^docs$
 ^\.travis\.yml$
-\.drone\.yml
+^\.github$
 _pkgdown\.yml
 vignettes/complete\.Rmd
 vignettes/*\.pdf
