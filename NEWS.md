@@ -3,7 +3,7 @@
 - y-axis for `cwres_q()` and `npde_q()` changed to remove the word "distribution"
   (#92). 
 
-- pmplots now depends on ggplot2 version 3.5.0 or later (#86).
+- pmplots now depends on ggplot2 version 3.5.0 or greater (#86).
 
 - Axis titles for conditional weighted residuals are now abbreviated "CWRES" (#83).
 
