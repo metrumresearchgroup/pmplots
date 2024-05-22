@@ -4,6 +4,9 @@
 \alias{npde_time}
 \alias{npde_tad}
 \alias{npde_tafd}
+\alias{npd_time}
+\alias{npd_tad}
+\alias{npd_tafd}
 \title{Plot NPDE versus time}
 \usage{
 npde_time(df, x = pm_axis_time(), y = pm_axis_npde(), ..., hline = npde_ref())
@@ -11,6 +14,12 @@ npde_time(df, x = pm_axis_time(), y = pm_axis_npde(), ..., hline = npde_ref())
 npde_tad(df, x = pm_axis_tad(), y = pm_axis_npde(), ...)
 
 npde_tafd(df, x = pm_axis_tafd(), y = pm_axis_npde(), ...)
+
+npd_time(df, x = pm_axis_time(), y = pm_axis_npd(), ..., hline = npde_ref())
+
+npd_tad(df, x = pm_axis_tad(), y = pm_axis_npd(), ...)
+
+npd_tafd(df, x = pm_axis_tafd(), y = pm_axis_npd(), ...)
 }
 \arguments{
 \item{df}{data set to plot}
