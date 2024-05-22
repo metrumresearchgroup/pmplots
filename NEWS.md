@@ -9,7 +9,7 @@
 
 ## Bugs fixed
 
-- Fixed a bug where the wrong y-axis title was getting used in [cwres_covariate()]
+- Fixed a bug where the wrong y-axis title was getting used in `cwres_covariate()`
   (#89).
 
 # pmplots 0.4.0
