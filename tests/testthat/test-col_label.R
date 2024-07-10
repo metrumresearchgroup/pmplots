@@ -56,7 +56,7 @@ test_that("col_label accepts list or vector", {
   expect_identical(a,b)
 })
 
-test_that("col_labesl accepts list or vector", {
+test_that("col_labels accepts list or vector", {
   x <- c("a//b", "c@@d")
   a <- pmplots:::col_labels(x)
   b <- pmplots:::col_labels(as.list(x))
