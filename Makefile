@@ -8,10 +8,6 @@ CHKDIR=.
 testn:
 	Rscript inst/validation/latest.R
 
-drone:
-	R CMD build --no-build-vignettes --md5
-	R CMD check ${TARBALL}
-
 covr:
 		Rscript inst/script/covr.R
 

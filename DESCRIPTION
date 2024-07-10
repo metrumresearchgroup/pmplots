@@ -1,7 +1,7 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.4.0.9000
+Version: 0.4.1
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person("Metrum Research Group", role =  c("cph"))
@@ -29,14 +29,14 @@ Suggests:
   testthat,
   GGally, 
   latex2exp, 
-  patchwork, 
+  patchwork (>= 1.2.0),
   knitr, 
   yaml, 
   miniUI, 
   shiny, 
   rmarkdown
-Depends: ggplot2 (>= 3.4.0)
-RoxygenNote: 7.2.3
+Depends: ggplot2 (>= 3.5.0)
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'

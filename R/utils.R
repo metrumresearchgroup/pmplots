@@ -100,12 +100,17 @@ logbr3 <- function() {
 ##'
 ##' @param breaks passed to scale function
 ##' @param limits passed to scale function
-##' @param trans passed to scale function
+##' @param transform passed to scale function
+##' @param trans deprecated; use `transform` argument instead.
 ##' @param ... passed to scale function
 ##'
 ##' @export
-pm_log <- function(breaks = NULL, limits=NULL, trans = "log10", ...) {
-  ans <- list(trans = trans,...)
+pm_log <- function(breaks = NULL, limits=NULL, transform = "log10", ..., trans = deprecated()) {
+  ans <- list(transform = transform, ...)
+  if (is_present(trans)) {
+    deprecate_warn("0.5.0", "pm_log(trans)", "pm_log(transform)")
+    ans[["transform"]] <- trans
+  }
   ans[["breaks"]] <- breaks
   ans[["limits"]] <- limits
   ans
@@ -132,18 +137,24 @@ pm_ident <- function(breaks, limits = range(breaks), ...) {
 ##' this default as a base.
 ##'
 ##' @param ... arguments for \code{scale_x_continuous}
+##' @param trans deprecated; use `transform` argument instead.
 ##'
 ##' @details
 ##' In the named list, the name is the argument name and the value
 ##' is the argument value.
 ##'
 ##' @examples
-##' defx(trans="log")
+##' defx(transform="log")
 ##'
 ##' @export
-defx <- function(...) {
+defx <- function(..., trans = deprecated()) {
   x0 <- list(...)
+  if (is_present(trans)) {
+    deprecate_warn("0.5.0", "defx(trans)", "defx(transform)")
+    x0[["transform"]] <- trans
+  }
   x <- as.list(formals(ggplot2::scale_x_continuous))
+  x[["trans"]] <- NULL
   x <- merge.list(x,x0)
   x$oob <-  NULL
   x
@@ -158,14 +169,20 @@ defx <- function(...) {
 ##' this default as a base.
 ##'
 ##' @param ... arguments for \code{scale_y_continuous}
+##' @param trans deprecated; use `transform` argument instead.
 ##'
 ##' @examples
-##' defy(trans="log")
+##' defy(transform="log")
 ##'
 ##' @export
-defy <- function(...) {
+defy <- function(..., trans = deprecated()) {
   x0 <- list(...)
+  if (is_present(trans)) {
+    deprecate_warn("0.5.0", "defy(trans)", "defy(transform)")
+    x0[["transform"]] <- trans
+  }
   x <- as.list(formals(ggplot2::scale_y_continuous))
+  x[["trans"]] <- NULL
   x <- merge.list(x,x0)
   x$oob <-  NULL
   x
@@ -193,7 +210,7 @@ defcx <- function(...) {
   x0 <- list(...)
   x <- as.list(formals(ggplot2::scale_x_discrete))
   x <- merge.list(x,x0)
-  x[[1]] <- NULL
+  x[["..."]] <- NULL
   x
 }
 
@@ -207,7 +224,7 @@ defcx <- function(...) {
 ##'
 ##' @export
 log_scale <- function(breaks=NULL,...) {
-  ans <- list(trans="log10",...)
+  ans <- list(transform="log10",...)
   ans[["breaks"]] <- breaks
   ans
 }
@@ -365,6 +382,19 @@ update_list <- function(left, right) {
   common <- intersect(names(left), names(right))
   left[common] <-  right[common]
   left
+}
+
+remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
+  # ggplot2 3.5.0 deprecated `trans` in favor of `transform`.
+  if ("trans" %in% names(args)) {
+    deprecate_warn(
+      "0.5.0", I("`trans` argument"), I("`transform` argument"),
+      user_env = user_env
+    )
+    args[["transform"]] <- args[["trans"]]
+    args[["trans"]] <- NULL
+  }
+  return(args)
 }
 
 ##' Rotate axis text
