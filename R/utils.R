@@ -449,6 +449,89 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
   theme(axis.text.y=y)
 }
 
+
+.rotxy <- function(x, ...) UseMethod(".rotxy")
+#' @export
+.rotxy.gg <- function(x, axis = "x", ...) {
+  if(axis=="x") {
+    x <- x + rot_x(...)
+  } else {
+    x <- x + rot_y(...)
+  }
+  x
+}
+#' @export
+.rotxy.patchwork <- function(x, axis = "x", ...) {
+  stopifnot(requireNamespace("patchwork", silently))
+  if(axis=="x") {
+    x <- x & rot_x(...)
+  } else {
+    x <- x & rot_y(...)
+  }
+  x
+}
+#' @export
+.rotxy.default <- function(x, ...) {
+  stop("invalid object; can only rotate gg or patchwork objects.")
+}
+
+#' Rotate axis tick marks in a list of plots
+#'
+#' Pass in a list of gg or patchwork objects and rotate tick marks on x or y
+#' axes.
+#'
+#' @param x a named list of gg or patchwork objects.
+#' @param at a character vector of list names to rotate.
+#' @param re a regular expression for selecting names to be used as `at`.
+#' @param axis which axis to rotate.
+#' @param ... additional arguments passed to [rot_x()] or [rot_y()].
+#'
+#' @details
+#' Note that all plots in the list need to be named. If
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#'
+#' co <- c("STUDYc", "CPc", "RF")
+#' etas <- paste0("ETA", 1:3)
+#'
+#' x <- eta_cat(data, x = co, y = etas)
+#' names(x)
+#'
+#' x <- rot_at(x, at = "ETA1vRF", angle = 35)
+#' x$ETA1vRF
+#'
+#' x <- rot_at(x, re = "RF", vertical = TRUE)
+#' x$ETA2vRF
+#' x$ETA3vRF
+#'
+#' @md
+#' @export
+rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
+  if(!is.list(x)) abort("`x` must be a list.")
+  if(!is_named(x)) abort("`x` must be named.")
+  axis <- match.arg(axis)
+  if(is.character(re)) {
+    where <- grep(re, names(x), perl = TRUE)
+  } else {
+    if(!is.character(at)) abort("`at` must be character.")
+    bad <- setdiff(at, names(x))
+    if(length(bad)) {
+      names(bad) <- rep("x", length(bad))
+      abort("requested names not found in `x`.", body = bad)
+    }
+    where <- which(names(x) %in% at)
+  }
+  if(!length(where)) {
+    warn("did not find any plots for axis rotation.")
+    return(x)
+  }
+  for(w in where) {
+    x[[w]] <- .rotxy(x[[w]], axis = axis, ...)
+  }
+  x
+}
+
 .has <- function(name,object) {
   name %in% names(object)
 }

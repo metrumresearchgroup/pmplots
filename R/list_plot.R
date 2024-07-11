@@ -29,6 +29,7 @@ list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
   for(i in seq_along(x)) {
     out[[i]] <- .fun(df = df, x = x[i], y = y, ...)
   }
+  names(out) <- col_labels(x)
   out
 }
 
@@ -39,6 +40,7 @@ list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
   for(i in seq_along(y)) {
     out[[i]] <- .fun(df = df, x = x, y = y[i], ...)
   }
+  names(out) <- col_labels(y)
   out
 }
 
@@ -53,6 +55,10 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
       k <- k + 1
     }
   }
+  lx <- col_labels(x)
+  ly <- col_labels(y)
+  outnames <- lapply(lx, function(xi) paste0(ly, "v", xi))
+  names(out) <- unlist(outnames)
   out
 }
 
@@ -67,7 +73,9 @@ list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
       k <- k + 1
     }
   }
+  lx <- col_labels(x)
+  ly <- col_labels(y)
+  outnames <- lapply(ly, function(yi) paste0(yi, "v", lx))
+  names(out) <- unlist(outnames)
   out
 }
-
-
