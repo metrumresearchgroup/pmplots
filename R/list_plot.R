@@ -79,9 +79,13 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
   }
   clx <- col_labels(x)
   cly <- col_labels(y)
+  if(length(x)==1) {
+    outn <- cly
+  }
   if(length(y)==1) {
     outn <- clx
-  } else {
+  }
+  if(length(y) > 1 && length(x) > 1) {
     outn <- lapply(clx, function(xi) paste0(cly, "v", xi))
   }
   names(out) <- unlist(outn, use.names=FALSE)
@@ -103,7 +107,11 @@ list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
   cly <- col_labels(y)
   if(length(x)==1) {
     outn <- cly
-  } else {
+  }
+  if(length(y)==1) {
+    outn <- clx
+  }
+  if(length(y) > 1 && length(x) > 1) {
     outn <- lapply(cly, function(yi) paste0(yi, "v", clx))
   }
   names(out) <- unlist(outn, use.names=FALSE)
