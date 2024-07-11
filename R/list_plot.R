@@ -29,7 +29,19 @@ list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
   for(i in seq_along(x)) {
     out[[i]] <- .fun(df = df, x = x[i], y = y, ...)
   }
-  names(out) <- col_labels(x)
+  # Names are YvX only if there is just a single y
+  clx <- col_labels(x)
+  cly <- col_labels(y)
+  if(length(y)==1) {
+    outn <- lapply(clx, function(xi) paste0(cly, "v", xi))
+  } else {
+    # Otherwise, name the plots one level down in the list
+    outn <- clx
+    for(j in seq_along(outn)) {
+      names(out[[j]]) <- paste0(cly, "v", outn[j])
+    }
+  }
+  names(out) <- unlist(outn, use.names=FALSE)
   out
 }
 
@@ -40,7 +52,17 @@ list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
   for(i in seq_along(y)) {
     out[[i]] <- .fun(df = df, x = x, y = y[i], ...)
   }
-  names(out) <- col_labels(y)
+  clx <- col_labels(x)
+  cly <- col_labels(y)
+  if(length(x)==1) {
+    outn <- lapply(cly, function(yi) paste0(yi, "v", clx))
+  } else {
+    outn <- cly
+    for(j in seq_along(outn)) {
+      names(out[[j]]) <- paste0(outn[j], "v", clx)
+    }
+  }
+  names(out) <- unlist(outn, use.names=FALSE)
   out
 }
 
@@ -55,10 +77,10 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
       k <- k + 1
     }
   }
-  lx <- col_labels(x)
-  ly <- col_labels(y)
-  outnames <- lapply(lx, function(xi) paste0(ly, "v", xi))
-  names(out) <- unlist(outnames)
+  clx <- col_labels(x)
+  cly <- col_labels(y)
+  outn <- lapply(clx, function(xi) paste0(cly, "v", xi))
+  names(out) <- unlist(outn, use.names=FALSE)
   out
 }
 
@@ -73,9 +95,9 @@ list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
       k <- k + 1
     }
   }
-  lx <- col_labels(x)
-  ly <- col_labels(y)
-  outnames <- lapply(ly, function(yi) paste0(yi, "v", lx))
-  names(out) <- unlist(outnames)
+  clx <- col_labels(x)
+  cly <- col_labels(y)
+  outn <- lapply(cly, function(yi) paste0(yi, "v", clx))
+  names(out) <- unlist(outn, use.names=FALSE)
   out
 }
