@@ -19,18 +19,34 @@ test_that("pm_grid tag levels", {
 x <- c("WT", "CRCL", "ALB")
 y <- c("SCR", "AAG")
 
-test_that("list_plot_x [PMP-TEST-016]", {
+test_that("list_plot_x, single y [PMP-TEST-016]", {
   p <- list_plot_x(df, x, "WT")
   expect_equal(length(p), length(x))
   expect_named(p)
   expect_equal(names(p), paste0("WTv", x))
 })
 
-test_that("list_plot_y [PMP-TEST-017]", {
+test_that("list_plot_x, multiple y", {
+  p <- list_plot_x(df, x, y)
+  expect_equal(length(p), length(x))
+  expect_named(p)
+  expect_equal(names(p), x)
+  expect_equal(names(p$WT), y)
+})
+
+test_that("list_plot_y, single x [PMP-TEST-017]", {
   p <- list_plot_y(df, "WT", y)
   expect_equal(length(p), length(y))
   expect_named(p)
   expect_equal(names(p), paste0(y, "vWT"))
+})
+
+test_that("list_plot_y with multiple x", {
+  p <- list_plot_y(df, x, y)
+  expect_equal(length(p), length(y))
+  expect_named(p)
+  expect_equal(names(p), y)
+  expect_equal(names(p$AAG), x)
 })
 
 test_that("list_plot_xy [PMP-TEST-018]", {

@@ -38,7 +38,7 @@ list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
     # Otherwise, name the plots one level down in the list
     outn <- clx
     for(j in seq_along(outn)) {
-      names(out[[j]]) <- paste0(cly, "v", outn[j])
+      names(out[[j]]) <- cly
     }
   }
   names(out) <- unlist(outn, use.names=FALSE)
@@ -59,7 +59,7 @@ list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
   } else {
     outn <- cly
     for(j in seq_along(outn)) {
-      names(out[[j]]) <- paste0(outn[j], "v", clx)
+      names(out[[j]]) <- clx
     }
   }
   names(out) <- unlist(outn, use.names=FALSE)
