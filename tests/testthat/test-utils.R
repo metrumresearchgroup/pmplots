@@ -42,6 +42,11 @@ test_that("rot_at - rotate list of plots", {
   expect_equal(x$ETA2vSTUDYc$theme$axis.text.x$angle, 11)
   expect_null(x$ETA1vSTUDYc$theme$axis.text.x$angle)
 
+  x <- rot_at(x0, at = c("ETA2vSTUDYc", "ETA1vRF"), angle = 11)
+  expect_is(x, "list")
+  expect_equal(x$ETA2vSTUDYc$theme$axis.text.x$angle, 11)
+  expect_equal(x$ETA1vRF$theme$axis.text.x$angle, 11)
+
   x <- rot_at(x0, re = "ETA2", angle = 33)
   expect_is(x, "list")
   expect_is(x[[1]], "gg")
