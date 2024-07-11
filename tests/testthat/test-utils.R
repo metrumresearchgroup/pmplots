@@ -2,6 +2,7 @@ library(testthat)
 
 context("test-utils")
 data <- pmplots_data_obs()
+id <- pmplots_data_id()
 p <- dv_time(data)
 
 test_that("CWRESI gets subbed for CWRES [PMP-TEST-062]", {
@@ -22,6 +23,38 @@ test_that("log scale [PMP-TEST-063]", {
 test_that("rot_x and rot_y [PMP-TEST-064]", {
   expect_is(p + rot_x(), "gg")
   expect_is(p + rot_y(), "gg")
+})
+
+test_that("rot_at - rotate list of plots", {
+  etas <- paste0("ETA", 1:3)
+  co <- c("STUDYc", "CPc", "RF")
+
+  x0 <- eta_cat(id, x = co, y = etas)
+
+  expect_identical(
+    names(x0)[1:3],
+    c("ETA1vSTUDYc", "ETA2vSTUDYc", "ETA3vSTUDYc")
+  )
+
+  x <- rot_at(x0, at = "ETA2vSTUDYc", angle = 11)
+  expect_is(x, "list")
+  expect_is(x[[1]], "gg")
+  expect_equal(x$ETA2vSTUDYc$theme$axis.text.x$angle, 11)
+  expect_null(x$ETA1vSTUDYc$theme$axis.text.x$angle)
+
+  x <- rot_at(x0, re = "ETA2", angle = 33)
+  expect_is(x, "list")
+  expect_is(x[[1]], "gg")
+  expect_equal(x$ETA2vSTUDYc$theme$axis.text.x$angle, 33)
+  expect_equal(x$ETA2vCPc$theme$axis.text.x$angle, 33)
+  expect_equal(x$ETA2vRF$theme$axis.text.x$angle, 33)
+  expect_null(x$ETA1vSTUDYc$theme$axis.text.x$angle)
+  expect_null(x$ETA3vCPc$theme$axis.text.x$angle)
+
+  expect_error(rot_at(x0, at = "kyle"), "requested names not found")
+  expect_warning(rot_at(x0, re = "banana"), "did not find any plots")
+  expect_error(rot_at(x0[[1]]), "must be a list of gg")
+  expect_error(rot_at(unname(x0)), "must be named")
 })
 
 test_that("def [PMP-TEST-065]", {

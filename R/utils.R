@@ -508,7 +508,9 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
 #' @md
 #' @export
 rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
-  if(!is.list(x)) abort("`x` must be a list.")
+  if(!is.list(x) || is.ggplot(x) || inherits(x, "patchwork")) {
+    abort("`x` must be a list of gg or patchwork objects.")
+  }
   if(!is_named(x)) abort("`x` must be named.")
   axis <- match.arg(axis)
   if(is.character(re)) {
