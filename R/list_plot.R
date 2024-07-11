@@ -1,29 +1,29 @@
 
 
-##' Apply a plotting function to a vector of x or y values
-##'
-##' \code{list_plot_x} vectorizes over the \code{x} value,
-##' \code{list_plot_y} vectorizes over the \code{y} value,
-##' \code{list_plot_xy} vectorizes over \code{x} and
-##' then \code{y}, and \code{list_plot_yx} vectorizes over
-##' \code{y} before \code{x}.
-##'
-##' @param df the plotting data set
-##' @param x the x-column, as a col_label
-##' @param y the y-column, as col_label
-##' @param .fun the function to call
-##' @param ... arguments passed to \code{fun}
-##'
-##' @return a list of plots generated from \code{.fun}
-##'
-##' @details
-##' This function was intended for use with functions
-##' that ultimately call \code{\link{cont_cont}} and
-##' have continuous data on the x and y axes.
-##'
-##'
-##' @export
-##' @rdname list_plot
+#' Apply a plotting function to a vector of x or y values
+#'
+#' `list_plot_x` vectorizes over the `x` value,
+#' `list_plot_y` vectorizes over the `y` value,
+#' `list_plot_xy` vectorizes first over `x`
+#' then over `y`, and `list_plot_yx` vectorizes over
+#' `y` before `x`.
+#'
+#' @param df the plotting data set.
+#' @param x the x-column, as a [col_label].
+#' @param y the y-column, as a [col_label].
+#' @param .fun the function to call.
+#' @param ... arguments passed to `fun`.
+#'
+#' @return A named list of plots generated from `.fun`.
+#'
+#' @details
+#' This function was intended for use with functions
+#' that ultimately call [cont_cont()] and
+#' have continuous data on the x and y axes.
+#'
+#' @md
+#' @export
+#' @rdname list_plot
 list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
   out <- vector(mode = "list", length = length(x))
   for(i in seq_along(x)) {
