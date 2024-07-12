@@ -101,6 +101,21 @@ test_that("args are passed to rot_x and rot_y [PMP-TEST-069]", {
   expect_is(p, "gg")
 })
 
+test_that("pm_with arranges a list of plots", {
+  data <- pmplots_data_id()
+  x <- c("STUDYc", "CPc", "RF")
+  y <- paste0("ETA", 1:3)
+  p <- eta_cat(data, x, y[1])
+  a <- pm_with(p, STUDYc+CPc+RF)
+  expect_is(a, "patchwork")
+  expect_length(a, 3)
+
+  p <- eta_covariate_list(data, x, y)
+  a <- pm_with(p$ETA1, (STUDYc + CPc)/RF)
+  expect_is(a, "patchwork")
+  expect_length(a, 2)
+})
+
 test_that("trans argument is mapped to transform", {
   fns <- list(
     pm_log,

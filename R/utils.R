@@ -642,6 +642,7 @@ pm_grid <- function(x, ncol = 2, tag_levels = NULL, ...) {
 #'
 #' @export
 pm_with <- function(x, expr, tag_levels = NULL) {
+  # See also with method in displays.R
   if(!is_named(x)) {
     abort("`x` must be named.")
   }
