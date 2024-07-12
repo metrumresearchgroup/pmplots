@@ -155,7 +155,7 @@ defx <- function(..., trans = deprecated()) {
   }
   x <- as.list(formals(ggplot2::scale_x_continuous))
   x[["trans"]] <- NULL
-  x <- merge.list(x,x0)
+  x <- merge_list(x,x0)
   x$oob <-  NULL
   x
 }
@@ -183,7 +183,7 @@ defy <- function(..., trans = deprecated()) {
   }
   x <- as.list(formals(ggplot2::scale_y_continuous))
   x[["trans"]] <- NULL
-  x <- merge.list(x,x0)
+  x <- merge_list(x,x0)
   x$oob <-  NULL
   x
 }
@@ -209,7 +209,7 @@ defy <- function(..., trans = deprecated()) {
 defcx <- function(...) {
   x0 <- list(...)
   x <- as.list(formals(ggplot2::scale_x_discrete))
-  x <- merge.list(x,x0)
+  x <- merge_list(x,x0)
   x[["..."]] <- NULL
   x
 }
@@ -346,7 +346,7 @@ pm_labs <- function(...) {
 
 noline <- ggplot2::element_blank()
 
-merge.list <- function(x,y,...,open=FALSE,
+merge_list <- function(x,y,...,open=FALSE,
                        warn=FALSE,context="object") {
   y <- as.list(y)
 
@@ -403,7 +403,7 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 ##' @param vjust passed to [ggplot2::element_text()].
 ##' @param vertical if `TRUE`, then x-axis tick labels are rotated 90 degrees
 ##' with `vjust` set to 0.5 and `hjust` set to 1; when using `rot_y()`,
-##' y-axis tick labels are rotated 90 degrees and `hjust` is set to 0.5
+##' y-axis tick labels are rotated 90 degrees with `hjust` is set to 0.5
 ##' with `vjust` set to 1; see details.
 ##' @param ... passed to [ggplot2::element_text()].
 ##'
@@ -423,7 +423,9 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 ##'
 ##' \dontrun{
 ##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
-##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "b")
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "bottom")
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "left")
 ##' }
 ##'
 ##' @md
@@ -440,7 +442,7 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
     angle <- 90
     vjust <- 0.5
   } else {
-    if(is.character("hjust")) {
+    if(is.character(hjust)) {
       abort("hjust must be numeric or NULL in this case.")
     }
   }
@@ -453,9 +455,9 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
   if(isTRUE(vertical)) {
     if(is.character(vjust)) {
-      vjust <- match.arg(vjust, c("top", "bottom"))
-      if(vjust=="top") vjust <- 1
-      if(vjust=="bottom") vjust <- 0
+      vjust <- match.arg(vjust, c("left", "right"))
+      if(vjust=="left") vjust <- 1
+      if(vjust=="right") vjust <- 0
     } else {
       if(missing(vjust)) vjust <- 1
     }

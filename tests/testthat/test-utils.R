@@ -21,8 +21,36 @@ test_that("log scale [PMP-TEST-063]", {
 })
 
 test_that("rot_x and rot_y [PMP-TEST-064]", {
-  expect_is(p + rot_x(), "gg")
-  expect_is(p + rot_y(), "gg")
+  x <- p + rot_x(angle = 33)
+  expect_is(x, "gg")
+  expect_equal(x$theme$axis.text.x$angle, 33)
+
+  y <- p + rot_y(angle = 11)
+  expect_equal(y$theme$axis.text.y$angle, 11)
+
+  x <- p + rot_x(vertical = TRUE)
+  expect_equal(x$theme$axis.text.x$angle, 90)
+  expect_equal(x$theme$axis.text.x$hjust, 1)
+
+  y <- p + rot_y(vertical = TRUE)
+  expect_equal(y$theme$axis.text.y$angle, 90)
+  expect_equal(y$theme$axis.text.y$vjust, 1)
+
+  x1 <- p + rot_x(vertical = TRUE, hjust = "bottom")
+  expect_equal(x1$theme$axis.text.x$angle, 90)
+  expect_equal(x1$theme$axis.text.x$hjust, 0)
+
+  x2 <- p + rot_x(vertical = TRUE, hjust = "top")
+  expect_equal(x2$theme$axis.text.x$angle, 90)
+  expect_equal(x2$theme$axis.text.x$hjust, 1)
+
+  y1 <- p + rot_y(vertical = TRUE, vjust = "left")
+  expect_equal(y1$theme$axis.text.y$angle, 90)
+  expect_equal(y1$theme$axis.text.y$vjust, 1)
+
+  y2 <- p + rot_y(vertical = TRUE, vjust = "right")
+  expect_equal(y2$theme$axis.text.y$angle, 90)
+  expect_equal(y2$theme$axis.text.y$vjust, 0)
 })
 
 test_that("rot_at - rotate list of plots", {
