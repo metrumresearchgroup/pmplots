@@ -42,8 +42,9 @@ dv_pred(data) + rot_x()
 \dontrun{
 cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
 cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "bottom")
-cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
-cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "left")
+
+cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE)
+cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE, vjust = "left")
 }
 
 }

@@ -424,8 +424,9 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 ##' \dontrun{
 ##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
 ##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "bottom")
-##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
-##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "left")
+##'
+##' cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE, vjust = "left")
 ##' }
 ##'
 ##' @md
