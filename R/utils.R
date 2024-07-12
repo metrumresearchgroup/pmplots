@@ -625,6 +625,36 @@ pm_grid <- function(x, ncol = 2, tag_levels = NULL, ...) {
   x
 }
 
+#' Arrange a named list of plots
+#'
+#' @param x a named list of gg objects to arrange.
+#' @param expr a `patchwork` formula for arranging plots in `x`.
+#' @param tag_levels passed to [patchwork::plot_annotation()].
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' etas <- paste0("ETA", 1:3)
+#' covs <- c("WT", "AGE", "ALB")
+#'
+#' x <- eta_covariate_list(data, x = covs, y = etas, transpose = TRUE)
+#'
+#' pm_with(x$WT, (ETA1 + ETA2) / ETA3)
+#'
+#' @export
+pm_with <- function(x, expr, tag_levels = NULL) {
+  if(!is_named(x)) {
+    abort("`x` must be named.")
+  }
+  if(!is.list(x) || is.ggplot(x) || inherits(x, "patchwork")) {
+    abort("`x` must be a list.")
+  }
+  require_patchwork()
+  expr <- enexpr(expr)
+  p <- eval(expr, envir = x)
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
+  p
+}
+
 #' Chunk a data frame
 #'
 #' @param data a data frame.
