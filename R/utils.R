@@ -398,20 +398,23 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 
 ##' Rotate axis text
 ##'
-##' @param angle passed to [ggplot2::element_text]
-##' @param hjust passed to [ggplot2::element_text]
-##' @param vjust passed to [ggplot2::element_text]
+##' @param angle passed to [ggplot2::element_text()].
+##' @param hjust passed to [ggplot2::element_text()].
+##' @param vjust passed to [ggplot2::element_text()].
 ##' @param vertical if `TRUE`, then x-axis tick labels are rotated 90 degrees
-##' with `vjust` set to 0.5 and `hjust` set to 0; when `vertical` is set to
-##' `TRUE`, then `hjust` can be passed as character string that must match
-##' either `top` (then `hjust` is set to 1) or `bottom` (then `hjust` is set to
-##' 0
-##' @param ... passed to [ggplot2::element_text]
+##' with `vjust` set to 0.5 and `hjust` set to 1; when using `rot_y()`,
+##' y-axis tick labels are rotated 90 degrees and `hjust` is set to 0.5
+##' with `vjust` set to 1; see details.
+##' @param ... passed to [ggplot2::element_text()].
 ##'
-##' @details If x-axis tick labels do not have enough space, consider using
-##' `vert = TRUE`.  By default, the tick labels will be justified up to the
-##' x-axis line.  Use `hjust = "b"` or `hjust = "bottom"` (with `vert = TRUE`)
-##' to justify the axis labels toward the bottom margin of the plot.
+##' @details
+##'
+##' If x-axis tick labels do not have enough space, consider using
+##' `vertical = TRUE`.  By default, the tick labels will be justified up to the
+##' x-axis line.  Use `hjust = "bottom"` (with `vertical = TRUE`)
+##' to justify the axis labels toward the bottom margin of the plot. Similar
+##' behavior can be made for y-axis tick labels, but use `vertical = TRUE` and
+##' set `vjust` to either "left" or "right" to control proximity to the y-axis.
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
@@ -419,15 +422,14 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 ##' dv_pred(data) + rot_x()
 ##'
 ##' \dontrun{
-##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE)
-##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE, hjust = "b")
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "b")
 ##' }
 ##'
 ##' @md
 ##' @export
 rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
-  if(vertical) {
-
+  if(isTRUE(vertical)) {
     if(is.character(hjust)) {
       hjust <- match.arg(hjust, c("top", "bottom"))
       if(hjust=="top") hjust <- 1
@@ -437,6 +439,10 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
     }
     angle <- 90
     vjust <- 0.5
+  } else {
+    if(is.character("hjust")) {
+      abort("hjust must be numeric or NULL in this case.")
+    }
   }
   x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
   theme(axis.text.x=x)
@@ -444,8 +450,23 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 
 ##' @rdname rot_x
 ##' @export
-rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
-  y <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
+rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
+  if(isTRUE(vertical)) {
+    if(is.character(vjust)) {
+      vjust <- match.arg(vjust, c("top", "bottom"))
+      if(vjust=="top") vjust <- 1
+      if(vjust=="bottom") vjust <- 0
+    } else {
+      if(missing(vjust)) vjust <- 1
+    }
+    angle <- 90
+    hjust <- 0.5
+  } else {
+    if(is.character(vjust)) {
+      abort("`vjust` must be numeric or NULL in this case.")
+    }
+  }
+  y <- element_text(angle = angle, hjust = hjust, vjust = vjust,, ...)
   theme(axis.text.y=y)
 }
 
