@@ -558,6 +558,32 @@ rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
   x
 }
 
+#' Rotate the left a right axes
+#'
+#' @param x a gg object, patchwork object, or list of those objects.
+#' @param ... arguments passed to [rot_at()] and [rot_x()] or [rot_y()].
+#'
+#' @export
+rot_xy <- function(x, ...) UseMethod("rot_xy")
+
+#' @rdname rot_xy
+#' @export
+rot_xy.gg <- function(x, ...) {
+  .rotxy(x, ...)
+}
+
+#' @rdname rot_xy
+#' @export
+rot_xy.patchwork <- function(x, ...) {
+  .rotxy(x, ...)
+}
+
+#' @rdname rot_xy
+#' @export
+rot_xy.list <- function(x, ...) {
+  rot_at(x, ...)
+}
+
 .has <- function(name,object) {
   name %in% names(object)
 }
