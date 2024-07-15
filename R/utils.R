@@ -558,10 +558,44 @@ rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
   x
 }
 
-#' Rotate the left a right axes
+#' Rotate the x or y axes for gg or patchwork objects
+#'
+#' This is a wrapper function around [rot_at()], [rot_x()], and [rot_y()] that
+#' accepts gg objects, patchwork objects, or lists of gg or patchwork objects.
+#' Arguments to those wrapped functions can be passed through. See arguments
+#' to [rot_at()] as well as [rot_x()] and [rot_y()].
+#'
+#' @inheritParams rot_at
 #'
 #' @param x a gg object, patchwork object, or list of those objects.
-#' @param ... arguments passed to [rot_at()] and [rot_x()] or [rot_y()].
+#' @param ... arguments passed to [rot_x()] or [rot_y()].
+#'
+#' @seealso [rot_at()], [rot_x()], [rot_y()].
+#'
+#' @examples
+#' library(patchwork)
+#'
+#' data <- pmplots_data_obs()
+#' id <- pmplots_data_id()
+#'
+#' p <- dv_pred(data)
+#'
+#' p1 <- rot_xy(p)
+#' p2 <- rot_xy(p, vertical = TRUE)
+#' p3 <- rot_xy(p, axis = "y", angle = 15)
+#'
+#' p1 + p2 + p3
+#'
+#' rot_xy(p + dv_ipred(data))
+#'
+#' co <- c("STUDYc", "CPc")
+#' etas <- paste0("ETA", 1:2)
+#'
+#' x <- eta_covariate(data, x = co, y = etas, transpose = TRUE)
+#'
+#' pp <- rot_xy(x, at = "CPc")
+#'
+#' pm_with(pp, STUDYc/CPc)
 #'
 #' @export
 rot_xy <- function(x, ...) UseMethod("rot_xy")
@@ -580,8 +614,8 @@ rot_xy.patchwork <- function(x, ...) {
 
 #' @rdname rot_xy
 #' @export
-rot_xy.list <- function(x, ...) {
-  rot_at(x, ...)
+rot_xy.list <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
+  rot_at(x, at = at, re = re, axis = axis, ...)
 }
 
 .has <- function(name,object) {

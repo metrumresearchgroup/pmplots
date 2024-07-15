@@ -5,7 +5,7 @@
 \alias{rot_xy.gg}
 \alias{rot_xy.patchwork}
 \alias{rot_xy.list}
-\title{Rotate the left a right axes}
+\title{Rotate the x or y axes for gg or patchwork objects}
 \usage{
 rot_xy(x, ...)
 
@@ -13,13 +13,51 @@ rot_xy(x, ...)
 
 \method{rot_xy}{patchwork}(x, ...)
 
-\method{rot_xy}{list}(x, ...)
+\method{rot_xy}{list}(x, at = names(x), re = NULL, axis = c("x", "y"), ...)
 }
 \arguments{
 \item{x}{a gg object, patchwork object, or list of those objects.}
 
-\item{...}{arguments passed to \code{\link[=rot_at]{rot_at()}} and \code{\link[=rot_x]{rot_x()}} or \code{\link[=rot_y]{rot_y()}}.}
+\item{...}{arguments passed to \code{\link[=rot_x]{rot_x()}} or \code{\link[=rot_y]{rot_y()}}.}
+
+\item{at}{a character vector of list names to rotate.}
+
+\item{re}{a regular expression for selecting names to be used as \code{at}.}
+
+\item{axis}{which axis to rotate.}
 }
 \description{
-Rotate the left a right axes
+This is a wrapper function around \code{\link[=rot_at]{rot_at()}}, \code{\link[=rot_x]{rot_x()}}, and \code{\link[=rot_y]{rot_y()}} that
+accepts gg objects, patchwork objects, or lists of gg or patchwork objects.
+Arguments to those wrapped functions can be passed through. See arguments
+to \code{\link[=rot_at]{rot_at()}} as well as \code{\link[=rot_x]{rot_x()}} and \code{\link[=rot_y]{rot_y()}}.
+}
+\examples{
+library(patchwork)
+
+data <- pmplots_data_obs()
+id <- pmplots_data_id()
+
+p <- dv_pred(data)
+
+p1 <- rot_xy(p)
+p2 <- rot_xy(p, vertical = TRUE)
+p3 <- rot_xy(p, axis = "y", angle = 15)
+
+p1 + p2 + p3
+
+rot_xy(p + dv_ipred(data))
+
+co <- c("STUDYc", "CPc")
+etas <- paste0("ETA", 1:2)
+
+x <- eta_covariate(data, x = co, y = etas, transpose = TRUE)
+
+pp <- rot_xy(x, at = "CPc")
+
+pm_with(pp, STUDYc/CPc)
+
+}
+\seealso{
+\code{\link[=rot_at]{rot_at()}}, \code{\link[=rot_x]{rot_x()}}, \code{\link[=rot_y]{rot_y()}}.
 }
