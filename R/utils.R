@@ -506,12 +506,14 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 #'
 #' @param x a named list of gg or patchwork objects.
 #' @param at a character vector of list names to rotate.
-#' @param re a regular expression for selecting names to be used as `at`.
+#' @param re a regular expression for selecting names to be used for `at`.
 #' @param axis which axis to rotate.
 #' @param ... additional arguments passed to [rot_x()] or [rot_y()].
 #'
 #' @details
-#' Note that all plots in the list need to be named. If
+#' Note that all plots in the list need to be named.
+#'
+#' @seealso [rot_xy()], [rot_x()], [rot_y()].
 #'
 #' @examples
 #' data <- pmplots_data_id()
@@ -565,10 +567,10 @@ rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
 #' Arguments to those wrapped functions can be passed through. See arguments
 #' to [rot_at()] as well as [rot_x()] and [rot_y()].
 #'
-#' @inheritParams rot_at
-#'
 #' @param x a gg object, patchwork object, or list of those objects.
-#' @param ... arguments passed to [rot_x()] or [rot_y()].
+#' @param axis which axis to rotate (`x` or `y`).
+#' @param ... arguments passed to [rot_at()] (`at`, `re`) or [rot_x()] / [rot_y()]
+#' (`angle`, `vertical` `hjust`, `vjust`).
 #'
 #' @seealso [rot_at()], [rot_x()], [rot_y()].
 #'
@@ -602,20 +604,20 @@ rot_xy <- function(x, ...) UseMethod("rot_xy")
 
 #' @rdname rot_xy
 #' @export
-rot_xy.gg <- function(x, ...) {
-  .rotxy(x, ...)
+rot_xy.gg <- function(x, axis = c("x", "y", ...)) {
+  .rotxy(x, axis = axis, ...)
 }
 
 #' @rdname rot_xy
 #' @export
-rot_xy.patchwork <- function(x, ...) {
-  .rotxy(x, ...)
+rot_xy.patchwork <- function(x, axis = c("x", "y", ...)) {
+  .rotxy(x, axis = axis, ...)
 }
 
 #' @rdname rot_xy
 #' @export
-rot_xy.list <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
-  rot_at(x, at = at, re = re, axis = axis, ...)
+rot_xy.list <- function(x, axis = c("x", "y"), ...) {
+  rot_at(x, axis = axis, ...)
 }
 
 .has <- function(name,object) {

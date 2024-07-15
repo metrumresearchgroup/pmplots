@@ -11,7 +11,7 @@ rot_at(x, at = names(x), re = NULL, axis = c("x", "y"), ...)
 
 \item{at}{a character vector of list names to rotate.}
 
-\item{re}{a regular expression for selecting names to be used as \code{at}.}
+\item{re}{a regular expression for selecting names to be used for \code{at}.}
 
 \item{axis}{which axis to rotate.}
 
@@ -22,7 +22,7 @@ Pass in a list of gg or patchwork objects and rotate tick marks on x or y
 axes.
 }
 \details{
-Note that all plots in the list need to be named. If
+Note that all plots in the list need to be named.
 }
 \examples{
 data <- pmplots_data_id()
@@ -40,4 +40,7 @@ x <- rot_at(x, re = "RF", vertical = TRUE)
 x$ETA2vRF
 x$ETA3vRF
 
+}
+\seealso{
+\code{\link[=rot_xy]{rot_xy()}}, \code{\link[=rot_x]{rot_x()}}, \code{\link[=rot_y]{rot_y()}}.
 }

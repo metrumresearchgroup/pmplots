@@ -9,22 +9,19 @@
 \usage{
 rot_xy(x, ...)
 
-\method{rot_xy}{gg}(x, ...)
+\method{rot_xy}{gg}(x, axis = c("x", "y", ...))
 
-\method{rot_xy}{patchwork}(x, ...)
+\method{rot_xy}{patchwork}(x, axis = c("x", "y", ...))
 
-\method{rot_xy}{list}(x, at = names(x), re = NULL, axis = c("x", "y"), ...)
+\method{rot_xy}{list}(x, axis = c("x", "y"), ...)
 }
 \arguments{
 \item{x}{a gg object, patchwork object, or list of those objects.}
 
-\item{...}{arguments passed to \code{\link[=rot_x]{rot_x()}} or \code{\link[=rot_y]{rot_y()}}.}
+\item{...}{arguments passed to \code{\link[=rot_at]{rot_at()}} (\code{at}, \code{re}) or \code{\link[=rot_x]{rot_x()}} / \code{\link[=rot_y]{rot_y()}}
+(\code{angle}, \code{vertical} \code{hjust}, \code{vjust}).}
 
-\item{at}{a character vector of list names to rotate.}
-
-\item{re}{a regular expression for selecting names to be used as \code{at}.}
-
-\item{axis}{which axis to rotate.}
+\item{axis}{which axis to rotate (\code{x} or \code{y}).}
 }
 \description{
 This is a wrapper function around \code{\link[=rot_at]{rot_at()}}, \code{\link[=rot_x]{rot_x()}}, and \code{\link[=rot_y]{rot_y()}} that
