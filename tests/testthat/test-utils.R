@@ -90,6 +90,46 @@ test_that("rot_at - rotate list of plots", {
   expect_error(rot_at(unname(x0)), "must be named")
 })
 
+test_that("rot_xy", {
+  g1 <- dv_pred(data)
+  g2 <- dv_ipred(data)
+  p1 <- g1 + g2
+  p2 <- g1/g2
+  l <- list(a = g1, b = g2)
+  lp <- list(a = p1, b = p2)
+  l0 <- unname(l)
+
+  # rotate gg
+  a <- rot_xy(g1)
+  b <- g1 + rot_x()
+  expect_equal(a, b)
+
+  # rotate patchwork
+  a <- rot_xy(p1)
+  b <- p1 & rot_x()
+  expect_equal(a, b)
+
+  # list of gg
+  a <- lapply(l, rot_xy)
+  expect_is(a, "list")
+  b <- list(a = rot_xy(l[[1]]), b = rot_xy(l[[2]]))
+  expect_equal(a, b)
+  expect_error(rot_xy(unname(l)), "must be named")
+
+  # list of patchwork
+  a <- lapply(lp, rot_xy)
+  expect_is(a, "list")
+  b <- list(a = rot_xy(lp[[1]]), b = rot_xy(lp[[2]]))
+  expect_equal(a, b)
+
+  # Arguments are passed through
+  a <- rot_xy(g1, angle = 89)
+  expect_equal(a$theme$axis.text.x$angle, 89)
+
+  a <- rot_xy(g2, angle = 98, axis = "y")
+  expect_equal(a$theme$axis.text.y$angle, 98)
+})
+
 test_that("def [PMP-TEST-065]", {
   x <- defx(breaks = c(1,2,3))
   expect_equal(x$breaks, c(1,2,3))
