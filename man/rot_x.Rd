@@ -18,7 +18,7 @@ rot_y(angle = 30, hjust = 1, vjust = NULL, vertical = FALSE, ...)
 
 \item{vertical}{if \code{TRUE}, then x-axis tick labels are rotated 90 degrees
 with \code{vjust} set to 0.5 and \code{hjust} set to 1; when using \code{rot_y()},
-y-axis tick labels are rotated 90 degrees with \code{hjust} is set to 0.5
+y-axis tick labels are rotated 90 degrees with \code{hjust} set to 0.5
 with \code{vjust} set to 1; see details.}
 
 \item{...}{passed to \code{\link[ggplot2:element]{ggplot2::element_text()}}.}

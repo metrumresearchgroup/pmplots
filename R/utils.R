@@ -574,7 +574,6 @@ rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
 #' library(patchwork)
 #'
 #' data <- pmplots_data_obs()
-#' id <- pmplots_data_id()
 #'
 #' p <- dv_pred(data)
 #'

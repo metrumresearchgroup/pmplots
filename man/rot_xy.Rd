@@ -33,7 +33,6 @@ to \code{\link[=rot_at]{rot_at()}} as well as \code{\link[=rot_x]{rot_x()}} and 
 library(patchwork)
 
 data <- pmplots_data_obs()
-id <- pmplots_data_id()
 
 p <- dv_pred(data)
 
