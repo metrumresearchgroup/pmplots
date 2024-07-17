@@ -7,31 +7,32 @@
 \usage{
 rot_x(angle = 30, hjust = 1, vjust = NULL, vertical = FALSE, ...)
 
-rot_y(angle = 30, hjust = 1, vjust = NULL, ...)
+rot_y(angle = 30, hjust = 1, vjust = NULL, vertical = FALSE, ...)
 }
 \arguments{
-\item{angle}{passed to \link[ggplot2:element]{ggplot2::element_text}}
+\item{angle}{passed to \code{\link[ggplot2:element]{ggplot2::element_text()}}.}
 
-\item{hjust}{passed to \link[ggplot2:element]{ggplot2::element_text}}
+\item{hjust}{passed to \code{\link[ggplot2:element]{ggplot2::element_text()}}.}
 
-\item{vjust}{passed to \link[ggplot2:element]{ggplot2::element_text}}
+\item{vjust}{passed to \code{\link[ggplot2:element]{ggplot2::element_text()}}.}
 
 \item{vertical}{if \code{TRUE}, then x-axis tick labels are rotated 90 degrees
-with \code{vjust} set to 0.5 and \code{hjust} set to 0; when \code{vertical} is set to
-\code{TRUE}, then \code{hjust} can be passed as character string that must match
-either \code{top} (then \code{hjust} is set to 1) or \code{bottom} (then \code{hjust} is set to
-0}
+with \code{vjust} set to 0.5 and \code{hjust} set to 1; when using \code{rot_y()},
+y-axis tick labels are rotated 90 degrees with \code{hjust} set to 0.5
+with \code{vjust} set to 1; see details.}
 
-\item{...}{passed to \link[ggplot2:element]{ggplot2::element_text}}
+\item{...}{passed to \code{\link[ggplot2:element]{ggplot2::element_text()}}.}
 }
 \description{
 Rotate axis text
 }
 \details{
 If x-axis tick labels do not have enough space, consider using
-\code{vert = TRUE}.  By default, the tick labels will be justified up to the
-x-axis line.  Use \code{hjust = "b"} or \code{hjust = "bottom"} (with \code{vert = TRUE})
-to justify the axis labels toward the bottom margin of the plot.
+\code{vertical = TRUE}.  By default, the tick labels will be justified up to the
+x-axis line.  Use \code{hjust = "bottom"} (with \code{vertical = TRUE})
+to justify the axis labels toward the bottom margin of the plot. Similar
+behavior can be made for y-axis tick labels, but use \code{vertical = TRUE} and
+set \code{vjust} to either "left" or "right" to control proximity to the y-axis.
 }
 \examples{
 data <- pmplots_data_obs()
@@ -39,8 +40,11 @@ data <- pmplots_data_obs()
 dv_pred(data) + rot_x()
 
 \dontrun{
-cwres_cat(data, x = "CPc") + rot_x(vert = TRUE)
-cwres_cat(data, x = "CPc") + rot_x(vert = TRUE, hjust = "b")
+cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
+cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "bottom")
+
+cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE)
+cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE, vjust = "left")
 }
 
 }

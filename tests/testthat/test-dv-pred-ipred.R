@@ -1,8 +1,6 @@
 library(testthat)
 library(pmplots)
 
-context("test-dv-pred-ipred")
-
 df <- pmplots_data_obs()
 
 data <- subset(df, ID <= 9*2)

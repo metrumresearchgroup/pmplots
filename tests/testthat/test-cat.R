@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-cat")
-
 df <- pmplots_data_obs()
 id <- pmplots_data_id()
 

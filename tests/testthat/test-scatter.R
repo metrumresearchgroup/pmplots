@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-scatter")
-
 df <- pmplots_data_obs()
 
 test_that("vector inputs for cont_cont [PMP-TEST-055]", {

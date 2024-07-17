@@ -33,9 +33,17 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
           use-public-rspm: true
+      - name: Set evaluate source
+        # evaluate v0.24 requires R >= 4.0.
+        if: matrix.config.r == '3.6.3'
+        shell: bash
+        run: |
+          echo 'EVALUATE_PKG=github::r-lib/evaluate@v0.23' >>$GITHUB_ENV
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::rcmdcheck
+          extra-packages: |
+            any::rcmdcheck
+            ${{ env.EVALUATE_PKG }}
           upgrade: 'TRUE'
       - uses: r-lib/actions/check-r-package@v2
   release:

@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-wrap")
-
 df <- pmplots_data_obs()
 df[["TAFD"]] <- df[["TIME"]]
 df[["CWRES"]] <- df[["CWRESI"]]

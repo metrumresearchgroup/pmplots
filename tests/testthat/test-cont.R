@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-cont")
-
 df <- pmplots_data_obs()
 
 test_that("scatter plot IDs [PMP-TEST-007]", {

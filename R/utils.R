@@ -155,7 +155,7 @@ defx <- function(..., trans = deprecated()) {
   }
   x <- as.list(formals(ggplot2::scale_x_continuous))
   x[["trans"]] <- NULL
-  x <- merge.list(x,x0)
+  x <- merge_list(x,x0)
   x$oob <-  NULL
   x
 }
@@ -183,7 +183,7 @@ defy <- function(..., trans = deprecated()) {
   }
   x <- as.list(formals(ggplot2::scale_y_continuous))
   x[["trans"]] <- NULL
-  x <- merge.list(x,x0)
+  x <- merge_list(x,x0)
   x$oob <-  NULL
   x
 }
@@ -209,7 +209,7 @@ defy <- function(..., trans = deprecated()) {
 defcx <- function(...) {
   x0 <- list(...)
   x <- as.list(formals(ggplot2::scale_x_discrete))
-  x <- merge.list(x,x0)
+  x <- merge_list(x,x0)
   x[["..."]] <- NULL
   x
 }
@@ -347,7 +347,7 @@ pm_labs <- function(...) {
 
 noline <- ggplot2::element_blank()
 
-merge.list <- function(x,y,...,open=FALSE,
+merge_list <- function(x,y,...,open=FALSE,
                        warn=FALSE,context="object") {
   y <- as.list(y)
 
@@ -399,20 +399,23 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 
 ##' Rotate axis text
 ##'
-##' @param angle passed to [ggplot2::element_text]
-##' @param hjust passed to [ggplot2::element_text]
-##' @param vjust passed to [ggplot2::element_text]
+##' @param angle passed to [ggplot2::element_text()].
+##' @param hjust passed to [ggplot2::element_text()].
+##' @param vjust passed to [ggplot2::element_text()].
 ##' @param vertical if `TRUE`, then x-axis tick labels are rotated 90 degrees
-##' with `vjust` set to 0.5 and `hjust` set to 0; when `vertical` is set to
-##' `TRUE`, then `hjust` can be passed as character string that must match
-##' either `top` (then `hjust` is set to 1) or `bottom` (then `hjust` is set to
-##' 0
-##' @param ... passed to [ggplot2::element_text]
+##' with `vjust` set to 0.5 and `hjust` set to 1; when using `rot_y()`,
+##' y-axis tick labels are rotated 90 degrees with `hjust` set to 0.5
+##' with `vjust` set to 1; see details.
+##' @param ... passed to [ggplot2::element_text()].
 ##'
-##' @details If x-axis tick labels do not have enough space, consider using
-##' `vert = TRUE`.  By default, the tick labels will be justified up to the
-##' x-axis line.  Use `hjust = "b"` or `hjust = "bottom"` (with `vert = TRUE`)
-##' to justify the axis labels toward the bottom margin of the plot.
+##' @details
+##'
+##' If x-axis tick labels do not have enough space, consider using
+##' `vertical = TRUE`.  By default, the tick labels will be justified up to the
+##' x-axis line.  Use `hjust = "bottom"` (with `vertical = TRUE`)
+##' to justify the axis labels toward the bottom margin of the plot. Similar
+##' behavior can be made for y-axis tick labels, but use `vertical = TRUE` and
+##' set `vjust` to either "left" or "right" to control proximity to the y-axis.
 ##'
 ##' @examples
 ##' data <- pmplots_data_obs()
@@ -420,17 +423,19 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 ##' dv_pred(data) + rot_x()
 ##'
 ##' \dontrun{
-##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE)
-##' cwres_cat(data, x = "CPc") + rot_x(vert = TRUE, hjust = "b")
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_x(vertical = TRUE, hjust = "bottom")
+##'
+##' cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE)
+##' cwres_cat(data, x = "CPc") + rot_y(vertical = TRUE, vjust = "left")
 ##' }
 ##'
 ##' @md
 ##' @export
 rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
-  if(vertical) {
-
+  if(isTRUE(vertical)) {
     if(is.character(hjust)) {
-      hjust <- match.arg(hjust, c("top", "bottom"))
+      hjust <- arg_match(hjust, c("top", "bottom"))
       if(hjust=="top") hjust <- 1
       if(hjust=="bottom") hjust <- 0
     } else {
@@ -438,6 +443,10 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
     }
     angle <- 90
     vjust <- 0.5
+  } else {
+    if(is.character(hjust)) {
+      abort("hjust must be numeric or NULL in this case.")
+    }
   }
   x <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
   theme(axis.text.x=x)
@@ -445,9 +454,169 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 
 ##' @rdname rot_x
 ##' @export
-rot_y <- function(angle=30, hjust = 1, vjust = NULL,...) {
+rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
+  if(isTRUE(vertical)) {
+    if(is.character(vjust)) {
+      vjust <- arg_match(vjust, c("left", "right"))
+      if(vjust=="left") vjust <- 1
+      if(vjust=="right") vjust <- 0
+    } else {
+      if(missing(vjust)) vjust <- 1
+    }
+    angle <- 90
+    hjust <- 0.5
+  } else {
+    if(is.character(vjust)) {
+      abort("`vjust` must be numeric or NULL in this case.")
+    }
+  }
   y <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
   theme(axis.text.y=y)
+}
+
+
+.rotxy <- function(x, ...) UseMethod(".rotxy")
+#' @export
+.rotxy.gg <- function(x, axis = "x", ...) {
+  if(axis=="x") {
+    x <- x + rot_x(...)
+  } else {
+    x <- x + rot_y(...)
+  }
+  x
+}
+#' @export
+.rotxy.patchwork <- function(x, axis = "x", ...) {
+  require_patchwork()
+  if(axis=="x") {
+    x <- x & rot_x(...)
+  } else {
+    x <- x & rot_y(...)
+  }
+  x
+}
+
+#' Rotate axis tick marks in a list of plots
+#'
+#' Pass in a list of gg or patchwork objects and rotate tick marks on x or y
+#' axes.
+#'
+#' @param x a named list of gg or patchwork objects.
+#' @param at a character vector of list names to rotate.
+#' @param re a regular expression for selecting names to be used for `at`.
+#' @param axis which axis to rotate.
+#' @param ... additional arguments passed to [rot_x()] or [rot_y()].
+#'
+#' @details
+#' Note that all plots in the list need to be named.
+#'
+#' @seealso [rot_xy()], [rot_x()], [rot_y()].
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#'
+#' co <- c("STUDYc", "CPc", "RF")
+#' etas <- paste0("ETA", 1:3)
+#'
+#' x <- eta_cat(data, x = co, y = etas)
+#' names(x)
+#'
+#' x <- rot_at(x, at = "ETA1vRF", angle = 35)
+#' x$ETA1vRF
+#'
+#' x <- rot_at(x, re = "RF", vertical = TRUE)
+#' x$ETA2vRF
+#' x$ETA3vRF
+#'
+#' @md
+#' @export
+rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
+  if(!is.list(x) || is.ggplot(x) || inherits(x, "patchwork")) {
+    abort("`x` must be a list of gg or patchwork objects.")
+  }
+  if(!is_named(x)) abort("`x` must be named.")
+  axis <- match.arg(axis)
+  if(is.character(re)) {
+    where <- grep(re, names(x), perl = TRUE)
+  } else {
+    if(!is.character(at)) abort("`at` must be character.")
+    bad <- setdiff(at, names(x))
+    if(length(bad)) {
+      names(bad) <- rep("x", length(bad))
+      abort("requested names not found in `x`.", body = bad)
+    }
+    where <- which(names(x) %in% at)
+  }
+  if(!length(where)) {
+    warn("did not find any plots for axis rotation.")
+    return(x)
+  }
+  for(w in where) {
+    x[[w]] <- .rotxy(x[[w]], axis = axis, ...)
+  }
+  x
+}
+
+#' Rotate the x or y axes for gg or patchwork objects
+#'
+#' This is a wrapper function around [rot_at()], [rot_x()], and [rot_y()] that
+#' accepts gg objects, patchwork objects, or lists of gg or patchwork objects.
+#' Arguments to those wrapped functions can be passed through. See arguments
+#' to [rot_at()] as well as [rot_x()] and [rot_y()].
+#'
+#' @param x a gg object, patchwork object, or list of those objects.
+#' @param axis which axis to rotate (`x` or `y`).
+#' @param ... arguments passed to [rot_at()] (`at`, `re`) or [rot_x()] / [rot_y()]
+#' (`angle`, `vertical` `hjust`, `vjust`).
+#'
+#' @seealso [rot_at()], [rot_x()], [rot_y()].
+#'
+#' @examples
+#' library(patchwork)
+#'
+#' data <- pmplots_data_obs()
+#'
+#' p <- dv_pred(data)
+#'
+#' p1 <- rot_xy(p)
+#' p2 <- rot_xy(p, vertical = TRUE)
+#' p3 <- rot_xy(p, axis = "y", angle = 15)
+#'
+#' p1 + p2 + p3
+#'
+#' rot_xy(p + dv_ipred(data))
+#'
+#' co <- c("STUDYc", "CPc")
+#' etas <- paste0("ETA", 1:2)
+#'
+#' x <- eta_covariate(data, x = co, y = etas, transpose = TRUE)
+#'
+#' pp <- rot_xy(x, at = "CPc")
+#'
+#' pm_with(pp, STUDYc/CPc)
+#'
+#' @export
+rot_xy <- function(x, ...) UseMethod("rot_xy")
+
+#' @rdname rot_xy
+#' @export
+rot_xy.gg <- function(x, axis = c("x", "y"), ...) {
+  axis <- match.arg(axis)
+  .rotxy(x, axis = axis, ...)
+}
+
+#' @rdname rot_xy
+#' @export
+rot_xy.patchwork <- function(x, axis = c("x", "y"), ...) {
+  axis <- match.arg(axis)
+  .rotxy(x, axis = axis, ...)
+}
+
+#' @rdname rot_xy
+#' @export
+rot_xy.list <- function(x, axis = c("x", "y"), ...) {
+  axis <- match.arg(axis)
+  rot_at(x, axis = axis, ...)
 }
 
 .has <- function(name,object) {
@@ -539,6 +708,37 @@ pm_grid <- function(x, ncol = 2, tag_levels = NULL, ...) {
     x <- x + patchwork::plot_annotation(tag_levels = tag_levels)
   }
   x
+}
+
+#' Arrange a named list of plots
+#'
+#' @param x a named list of gg objects to arrange.
+#' @param expr a `patchwork` formula for arranging plots in `x`.
+#' @param tag_levels passed to [patchwork::plot_annotation()].
+#'
+#' @examples
+#' data <- pmplots_data_id()
+#' etas <- paste0("ETA", 1:3)
+#' covs <- c("WT", "AGE", "ALB")
+#'
+#' x <- eta_covariate_list(data, x = covs, y = etas, transpose = TRUE)
+#'
+#' pm_with(x$WT, (ETA1 + ETA2) / ETA3)
+#'
+#' @export
+pm_with <- function(x, expr, tag_levels = NULL) {
+  # See also with method in displays.R
+  if(!is_named(x)) {
+    abort("`x` must be named.")
+  }
+  if(!is.list(x) || is.ggplot(x) || inherits(x, "patchwork")) {
+    abort("`x` must be a list.")
+  }
+  require_patchwork()
+  expr <- enexpr(expr)
+  p <- eval(expr, envir = x)
+  p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
+  p
 }
 
 #' Chunk a data frame
