@@ -28,7 +28,7 @@ list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
   stopifnot(length(x) > 0, length(y) > 0)
   out <- vector(mode = "list", length = length(x))
   for(i in seq_along(x)) {
-    out[[i]] <- .fun(df = df, x = x[i], y = y, ...)
+    out[[i]] <- .fun(df = df, x = x[[i]], y = y, ...)
   }
   # Names are YvX only if there is just a single y
   clx <- col_labels(x)
@@ -52,7 +52,7 @@ list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
   stopifnot(length(x) > 0, length(y) > 0)
   out <- vector(mode = "list", length = length(y))
   for(i in seq_along(y)) {
-    out[[i]] <- .fun(df = df, x = x, y = y[i], ...)
+    out[[i]] <- .fun(df = df, x = x, y = y[[i]], ...)
   }
   clx <- col_labels(x)
   cly <- col_labels(y)
@@ -76,7 +76,7 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
   k <- 1
   for(i in seq_along(x)) {
     for(j in seq_along(y)) {
-      out[[k]] <- .fun(df, x = x[i], y = y[j], ...)
+      out[[k]] <- .fun(df, x = x[[i]], y = y[[j]], ...)
       k <- k + 1
     }
   }
@@ -101,7 +101,7 @@ list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
   k <- 1
   for(j in seq_along(y)) {
     for(i in seq_along(x)) {
-      out[[k]] <- .fun(df, x = x[i], y = y[j], ...)
+      out[[k]] <- .fun(df, x = x[[i]], y = y[[j]], ...)
       k <- k + 1
     }
   }

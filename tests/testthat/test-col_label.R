@@ -46,3 +46,17 @@ test_that("get col part from a col-label vector", {
   x <- c("a//first", "b@@second", "c//third")
   expect_identical(pmplots:::col_label_col(x), c("a", "b", "c"))
 })
+
+test_that("col_label accepts list or vector", {
+  x <- c("a//b", "c@@d")
+  a <- col_label(x)
+  b <- col_label(as.list(x))
+  expect_identical(a,b)
+})
+
+test_that("col_labels accepts list or vector", {
+  x <- c("a//b", "c@@d")
+  a <- pmplots:::col_labels(x)
+  b <- pmplots:::col_labels(as.list(x))
+  expect_identical(a,b)
+})

@@ -32,3 +32,12 @@ test_that("points on top of box plot issue-13 [PMP-TEST-003]", {
   expect_false(identical(a,b))
   expect_false(identical(a,c))
 })
+
+test_that("pass vector or list", {
+  y <- list("WT", "SCR")
+  x <- "STUDYc"
+  z <- cont_cat(id, x, y)
+  expect_length(z, 2)
+  expect_is(z, "list")
+  expect_is(z[[1]], "gg")
+})
