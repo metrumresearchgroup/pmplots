@@ -101,7 +101,7 @@ test_that("rot_xy", {
 
   as_svg <- function(x) {
     temp <- file.path(tempdir(), "as-svg")
-    svg(temp, width = 2, height = 2)
+    bmp(temp, width = 2, height = 2)
     print(x)
     dev.off()
     tools::md5sum(temp)
@@ -119,14 +119,14 @@ test_that("rot_xy", {
   expect_equal(as_svg(a), as_svg(b))
 
   # list of gg
-  a <- lapply(l, rot_xy)
+  a <- lapply(l, function(xx) xx + rot_x())
   expect_is(a, "list")
   b <- rot_xy(l)
   expect_equal(lapply(a, as_svg), lapply(b, as_svg))
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
-  a <- lapply(lp, rot_xy)
+  a <- lapply(l, function(xx) xx & rot_x())
   expect_is(a, "list")
   b <- rot_xy(lp)
   expect_equal(lapply(a, as_svg), lapply(b, as_svg))
