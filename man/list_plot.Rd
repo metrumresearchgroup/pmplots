@@ -16,28 +16,28 @@ list_plot_xy(df, x, y, .fun = cont_cont, ...)
 list_plot_yx(df, x, y, .fun = cont_cont, ...)
 }
 \arguments{
-\item{df}{the plotting data set}
+\item{df}{the plotting data set.}
 
-\item{x}{the x-column, as a col_label}
+\item{x}{the x-column, as a \link{col_label}.}
 
-\item{y}{the y-column, as col_label}
+\item{y}{the y-column, as a \link{col_label}.}
 
-\item{.fun}{the function to call}
+\item{.fun}{the function to call.}
 
-\item{...}{arguments passed to \code{fun}}
+\item{...}{arguments passed to \code{fun}.}
 }
 \value{
-a list of plots generated from \code{.fun}
+A named list of plots generated from \code{.fun}.
 }
 \description{
 \code{list_plot_x} vectorizes over the \code{x} value,
 \code{list_plot_y} vectorizes over the \code{y} value,
-\code{list_plot_xy} vectorizes over \code{x} and
-then \code{y}, and \code{list_plot_yx} vectorizes over
+\code{list_plot_xy} vectorizes first over \code{x}
+then over \code{y}, and \code{list_plot_yx} vectorizes over
 \code{y} before \code{x}.
 }
 \details{
 This function was intended for use with functions
-that ultimately call \code{\link{cont_cont}} and
+that ultimately call \code{\link[=cont_cont]{cont_cont()}} and
 have continuous data on the x and y axes.
 }
