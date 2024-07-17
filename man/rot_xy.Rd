@@ -9,9 +9,9 @@
 \usage{
 rot_xy(x, ...)
 
-\method{rot_xy}{gg}(x, axis = c("x", "y", ...))
+\method{rot_xy}{gg}(x, axis = c("x", "y"), ...)
 
-\method{rot_xy}{patchwork}(x, axis = c("x", "y", ...))
+\method{rot_xy}{patchwork}(x, axis = c("x", "y"), ...)
 
 \method{rot_xy}{list}(x, axis = c("x", "y"), ...)
 }

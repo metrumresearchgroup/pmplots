@@ -604,13 +604,13 @@ rot_xy <- function(x, ...) UseMethod("rot_xy")
 
 #' @rdname rot_xy
 #' @export
-rot_xy.gg <- function(x, axis = c("x", "y", ...)) {
+rot_xy.gg <- function(x, axis = c("x", "y"), ...) {
   .rotxy(x, axis = axis, ...)
 }
 
 #' @rdname rot_xy
 #' @export
-rot_xy.patchwork <- function(x, axis = c("x", "y", ...)) {
+rot_xy.patchwork <- function(x, axis = c("x", "y"), ...) {
   .rotxy(x, axis = axis, ...)
 }
 
