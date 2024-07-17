@@ -469,7 +469,7 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
       abort("`vjust` must be numeric or NULL in this case.")
     }
   }
-  y <- element_text(angle = angle, hjust = hjust, vjust = vjust,, ...)
+  y <- element_text(angle = angle, hjust = hjust, vjust = vjust, ...)
   theme(axis.text.y=y)
 }
 
