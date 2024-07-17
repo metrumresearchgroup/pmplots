@@ -112,15 +112,20 @@ test_that("rot_xy", {
   # list of gg
   a <- lapply(l, rot_xy)
   expect_is(a, "list")
-  b <- rot_xy(l)
-  expect_equivalent(a, b)
+  if(R.version$minor >= 4.1) {
+    b <- rot_xy(l)
+    expect_equivalent(a, b)
+  }
+
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
   a <- lapply(lp, rot_xy)
   expect_is(a, "list")
-  b <- rot_xy(lp)
-  expect_equal(a, b)
+  if(R.version$minor >= 4.1) {
+    b <- rot_xy(lp)
+    expect_equal(a, b)
+  }
 
   # Arguments are passed through
   a <- rot_xy(g1, angle = 89)
