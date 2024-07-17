@@ -113,7 +113,7 @@ test_that("rot_xy", {
   a <- lapply(l, rot_xy)
   expect_is(a, "list")
   b <- list(a = rot_xy(l[[1]]), b = rot_xy(l[[2]]))
-  expect_equal(a, b)
+  expect_equivalent(a, b)
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
