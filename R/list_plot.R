@@ -25,6 +25,7 @@
 #' @export
 #' @rdname list_plot
 list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
+  stopifnot(length(x) > 0, length(y) > 0)
   out <- vector(mode = "list", length = length(x))
   for(i in seq_along(x)) {
     out[[i]] <- .fun(df = df, x = x[i], y = y, ...)
@@ -48,6 +49,7 @@ list_plot_x <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @export
 ##' @rdname list_plot
 list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
+  stopifnot(length(x) > 0, length(y) > 0)
   out <- vector(mode = "list", length = length(y))
   for(i in seq_along(y)) {
     out[[i]] <- .fun(df = df, x = x, y = y[i], ...)
@@ -69,6 +71,7 @@ list_plot_y <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @export
 ##' @rdname list_plot
 list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
+  stopifnot(length(x) > 0, length(y) > 0)
   out <- vector(mode = "list", length = (length(x)*length(y)))
   k <- 1
   for(i in seq_along(x)) {
@@ -79,13 +82,11 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
   }
   clx <- col_labels(x)
   cly <- col_labels(y)
-  if(length(x)==1) {
-    outn <- cly
-  }
-  if(length(y)==1) {
+  if (length(y) == 1 && length(x) > 1) {
     outn <- clx
-  }
-  if(length(y) > 1 && length(x) > 1) {
+  } else if (length(x) == 1 && length(y) > 1) {
+    outn <- cly
+  } else {
     outn <- lapply(clx, function(xi) paste0(cly, "v", xi))
   }
   names(out) <- unlist(outn, use.names=FALSE)
@@ -95,6 +96,7 @@ list_plot_xy <- function(df, x, y, .fun = cont_cont, ...) {
 ##' @export
 ##' @rdname list_plot
 list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
+  stopifnot(length(x) > 0, length(y) > 0)
   out <- vector(mode = "list", length = (length(x)*length(y)))
   k <- 1
   for(j in seq_along(y)) {
@@ -105,13 +107,11 @@ list_plot_yx <- function(df, x, y, .fun = cont_cont, ...) {
   }
   clx <- col_labels(x)
   cly <- col_labels(y)
-  if(length(x)==1) {
-    outn <- cly
-  }
-  if(length(y)==1) {
+  if (length(y) == 1 && length(x) > 1) {
     outn <- clx
-  }
-  if(length(y) > 1 && length(x) > 1) {
+  } else if (length(x) == 1 && length(y) > 1) {
+    outn <- cly
+  } else {
     outn <- lapply(cly, function(yi) paste0(yi, "v", clx))
   }
   names(out) <- unlist(outn, use.names=FALSE)

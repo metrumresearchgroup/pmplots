@@ -57,10 +57,20 @@ test_that("list_plot_xy [PMP-TEST-018]", {
   expect_equal(names(p)[4:6], c("AAGvCRCL", "SCRvALB", "AAGvALB"))
 })
 
+test_that("list_plot_xy, single x and y", {
+  p <- list_plot_xy(df, x[1], y[1])
+  expect_identical(names(p), "SCRvWT")
+})
+
 test_that("list_plot_yx", {
   p <- list_plot_yx(df, x, y)
   expect_equal(length(p), length(y)*length(x))
   expect_named(p)
   expect_equal(names(p)[1:3], c("SCRvWT", "SCRvCRCL", "SCRvALB"))
   expect_equal(names(p)[4:6], c("AAGvWT", "AAGvCRCL", "AAGvALB"))
+})
+
+test_that("list_plot_yx, single x and y", {
+  p <- list_plot_yx(df, x[1], y[1])
+  expect_identical(names(p), "SCRvWT")
 })
