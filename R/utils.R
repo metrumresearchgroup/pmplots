@@ -494,10 +494,6 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
   }
   x
 }
-#' @export
-.rotxy.default <- function(x, ...) {
-  stop("invalid object; can only rotate gg or patchwork objects.")
-}
 
 #' Rotate axis tick marks in a list of plots
 #'

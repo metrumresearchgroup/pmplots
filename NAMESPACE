@@ -2,7 +2,6 @@
 
 S3method("$<-",pm_opts)
 S3method("[",pm_opts)
-S3method(.rotxy,default)
 S3method(.rotxy,gg)
 S3method(.rotxy,patchwork)
 S3method(as.list,pm_opts)
