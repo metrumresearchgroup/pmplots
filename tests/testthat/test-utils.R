@@ -113,6 +113,8 @@ test_that("rot_xy", {
   a <- lapply(l, rot_xy)
   expect_is(a, "list")
   b <- list(a = rot_xy(l[[1]]), b = rot_xy(l[[2]]))
+  a <- lapply(a, ggplot_build)
+  b <- lapply(b, ggplot_build)
   expect_equivalent(a, b)
   expect_error(rot_xy(unname(l)), "must be named")
 
@@ -120,6 +122,8 @@ test_that("rot_xy", {
   a <- lapply(lp, rot_xy)
   expect_is(a, "list")
   b <- list(a = rot_xy(lp[[1]]), b = rot_xy(lp[[2]]))
+  a <- lapply(a, ggplot_build)
+  b <- lapply(b, ggplot_build)
   expect_equal(a, b)
 
   # Arguments are passed through
