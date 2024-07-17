@@ -119,14 +119,14 @@ test_that("rot_xy", {
   a <- lapply(l, rot_xy)
   expect_is(a, "list")
   b <- rot_xy(l)
-  expect_equal(nuke_env(a), nuke_env(b))
+  expect_equal(lapply(a, nuke_env), lapply(a, nuke_env))
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
   a <- lapply(lp, rot_xy)
   expect_is(a, "list")
   b <- rot_xy(lp)
-  expect_equal(nuke_env(a), nuke_env(b))
+  expect_equal(lapply(a, nuke_env), lapply(a, nuke_env))
 
   # Arguments are passed through
   a <- rot_xy(g1, angle = 89)
