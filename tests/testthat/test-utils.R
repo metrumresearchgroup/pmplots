@@ -1,4 +1,5 @@
 library(testthat)
+library(patchwork)
 
 context("test-utils")
 data <- pmplots_data_obs()
