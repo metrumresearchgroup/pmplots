@@ -403,7 +403,7 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 ##' @param vjust passed to [ggplot2::element_text()].
 ##' @param vertical if `TRUE`, then x-axis tick labels are rotated 90 degrees
 ##' with `vjust` set to 0.5 and `hjust` set to 1; when using `rot_y()`,
-##' y-axis tick labels are rotated 90 degrees with `hjust` is set to 0.5
+##' y-axis tick labels are rotated 90 degrees with `hjust` set to 0.5
 ##' with `vjust` set to 1; see details.
 ##' @param ... passed to [ggplot2::element_text()].
 ##'
