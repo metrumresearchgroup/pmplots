@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-required")
-
 df <- dplyr::filter(pmplots_data(),EVID==0)
 
 test_that("Functions fail when col doesn't exist [PMP-TEST-051]", {

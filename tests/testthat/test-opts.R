@@ -1,8 +1,6 @@
 
 library(testthat)
 
-context("test-opts")
-
 def <- pm$defaults
 pm$reset()
 

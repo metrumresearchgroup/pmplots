@@ -1,6 +1,5 @@
 library(testthat)
 
-context("test-utils")
 data <- pmplots_data_obs()
 p <- dv_time(data)
 

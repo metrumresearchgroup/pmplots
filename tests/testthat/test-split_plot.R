@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-split_plot")
-
 df <- pmplots_data_obs()
 
 test_that("split_plot succeeds when using numeric split [PMP-TEST-057]", {
