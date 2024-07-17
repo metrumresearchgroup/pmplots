@@ -98,7 +98,6 @@ test_that("rot_xy", {
   p2 <- g1/g2
   l <- list(a = g1, b = g2)
   lp <- list(a = p1, b = p2)
-  l0 <- unname(l)
 
   nuke_env <- function(xs) {
     for (i in seq_along(xs)) {
