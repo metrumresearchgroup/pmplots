@@ -1,7 +1,5 @@
 library(testthat)
 
-context("chunk data sets")
-
 data <- expand.grid(amt = seq(25))
 data$ID  <- seq(nrow(data))
 data2 <- data

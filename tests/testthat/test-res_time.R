@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-pm")
-
 df <- pmplots_data_obs()
 df[["TAFD"]] <- df[["TIME"]]
 df[["CWRES"]] <- df[["CWRESI"]]

@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-pm")
-
 df <- pmplots_data_obs()
 df[["CWRES"]] <- df[["CWRESI"]]
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")

@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-col_label")
-
 test_that("col_label [PMP-TEST-005]", {
 
   x <- col_label("WT // Weight (kg)")

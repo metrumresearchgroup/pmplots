@@ -1,7 +1,5 @@
 library(testthat)
 
-context("test-layer")
-
 df <- pmplots_data_obs()
 etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 p <- dv_pred(df)
