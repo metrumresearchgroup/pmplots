@@ -100,9 +100,9 @@ test_that("rot_xy", {
   lp <- list(a = p1, b = p2)
   l0 <- unname(l)
 
-  as_svg <- function(x) {
+  as_img <- function(x) {
     temp <- file.path(tempdir(), "as-svg")
-    bmp(temp, width = 2, height = 2)
+    png(temp, width = 3, height = 3, units = "in", res = 90)
     print(x)
     dev.off()
     tools::md5sum(temp)
@@ -112,25 +112,25 @@ test_that("rot_xy", {
   # rotate gg
   a <- rot_xy(g1)
   b <- g1 + rot_x()
-  expect_equal(as_svg(a), as_svg(b))
+  expect_equal(as_img(a), as_img(b))
 
   # rotate patchwork
   a <- rot_xy(p1)
   b <- p1 & rot_x()
-  expect_equal(as_svg(a), as_svg(b))
+  expect_equal(as_img(a), as_img(b))
 
   # list of gg
   a <- lapply(l, function(xx) xx + rot_x())
   expect_is(a, "list")
   b <- rot_xy(l)
-  expect_equal(lapply(a, as_svg), lapply(b, as_svg))
+  expect_equal(lapply(a, as_img), lapply(b, as_img))
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
   a <- lapply(l, function(xx) xx & rot_x())
   expect_is(a, "list")
   b <- rot_xy(lp)
-  expect_equal(lapply(a, as_svg), lapply(b, as_svg))
+  expect_equal(lapply(a, as_img), lapply(b, as_img))
 
   # Arguments are passed through
   a <- rot_xy(g1, angle = 89)
