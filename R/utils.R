@@ -486,7 +486,7 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 }
 #' @export
 .rotxy.patchwork <- function(x, axis = "x", ...) {
-  stopifnot(requireNamespace("patchwork", quietly = TRUE))
+  require_patchwork()
   if(axis=="x") {
     x <- x & rot_x(...)
   } else {
