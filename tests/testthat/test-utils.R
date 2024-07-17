@@ -99,34 +99,37 @@ test_that("rot_xy", {
   lp <- list(a = p1, b = p2)
   l0 <- unname(l)
 
-  nuke_env <- function(x) {
-    x$plot_env <- NULL
-    x
+  as_svg <- function(x) {
+    temp <- tempfile()
+    svg(temp, width = 2, height = 2)
+    print(x)
+    dev.off()
+    unname(tools::md5sum(temp))
   }
 
   # Check if these are the same, ignoring plot_env
   # rotate gg
   a <- rot_xy(g1)
   b <- g1 + rot_x()
-  expect_equal(nuke_env(a), nuke_env(b))
+  expect_equal(as_svg(a), as_svg(b))
 
   # rotate patchwork
   a <- rot_xy(p1)
   b <- p1 & rot_x()
-  expect_equal(nuke_env(a), nuke_env(b))
+  expect_equal(as_svg(a), as_svg(b))
 
   # list of gg
   a <- lapply(l, rot_xy)
   expect_is(a, "list")
   b <- rot_xy(l)
-  expect_equal(lapply(a, nuke_env), lapply(a, nuke_env))
+  expect_equal(lapply(a, as_svg), lapply(a, as_svg))
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
   a <- lapply(lp, rot_xy)
   expect_is(a, "list")
   b <- rot_xy(lp)
-  expect_equal(lapply(a, nuke_env), lapply(a, nuke_env))
+  expect_equal(lapply(a, as_svg), lapply(a, as_svg))
 
   # Arguments are passed through
   a <- rot_xy(g1, angle = 89)
