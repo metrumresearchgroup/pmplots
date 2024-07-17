@@ -127,7 +127,7 @@ test_that("rot_xy", {
   expect_error(rot_xy(unname(l)), "must be named")
 
   # list of patchwork
-  a <- lapply(l, function(xx) xx & rot_x())
+  a <- lapply(lp, function(xx) xx & rot_x())
   expect_is(a, "list")
   b <- rot_xy(lp)
   expect_equal(lapply(a, as_img), lapply(b, as_img))
