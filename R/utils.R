@@ -434,7 +434,7 @@ remap_trans_arg <- function(args, user_env = rlang::caller_env(2)) {
 rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
   if(isTRUE(vertical)) {
     if(is.character(hjust)) {
-      hjust <- match.arg(hjust, c("top", "bottom"))
+      hjust <- arg_match(hjust, c("top", "bottom"))
       if(hjust=="top") hjust <- 1
       if(hjust=="bottom") hjust <- 0
     } else {
@@ -456,7 +456,7 @@ rot_x <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
   if(isTRUE(vertical)) {
     if(is.character(vjust)) {
-      vjust <- match.arg(vjust, c("left", "right"))
+      vjust <- arg_match(vjust, c("left", "right"))
       if(vjust=="left") vjust <- 1
       if(vjust=="right") vjust <- 0
     } else {

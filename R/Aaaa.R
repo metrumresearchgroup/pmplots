@@ -18,7 +18,7 @@
 #' @importFrom ggplot2 after_stat is.ggplot
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
-#' @importFrom rlang enexpr abort warn
+#' @importFrom rlang enexpr abort warn arg_match
 #' @importFrom purrr list_transpose
 #' @importFrom glue glue glue_data
 #' @importFrom assertthat assert_that
