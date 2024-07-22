@@ -1,6 +1,6 @@
 # pmplots 0.5.0
 
-- Multiple `x` and `y` can be now be passed as `list` in addition to 
+- Multiple `x` and `y` can be now be passed as a `list` in addition to 
   character vector (#95). 
 
 - Vectorized plots (returned as a list of plots) are now named according to the 
