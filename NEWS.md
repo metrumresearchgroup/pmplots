@@ -1,4 +1,26 @@
-# pmplots (development version)
+# pmplots 0.5.0
+
+- Multiple `x` and `y` can be now be passed as a `list` in addition to 
+  character vector (#95). 
+
+- Vectorized plots (returned as a list of plots) are now named according to the 
+  `x` or `y` data column (#96). 
+
+- New function `rot_xy()` allows rotation of x- or y-axis tick labels for `gg`
+  objects, `patchwork` objects, or lists of `gg` or `patchwork` objects; this 
+  function uses `rot_at()` for processing lists (#96). 
+  
+- New function `rot_at()` allows rotation of x- or y-axis tick labels of `gg`
+  or `patchwork` objects or named lists of these objects; the list method 
+  allows rotation of specific plots in the list by matching the name exactly 
+  or through a regular expression (#96).
+
+- New function `pm_with()` allows arrangement of a named list of plots using
+  `patchwork` syntax (#96). 
+
+- `rot_y()` has been updated with a `vertical` argument, similar to existing
+  argument in `rot_x()` (#96). 
+
 
 # pmplots 0.4.1
 
