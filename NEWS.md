@@ -15,11 +15,11 @@
   allows rotation of specific plots in the list by matching the name exactly 
   or through a regular expression (#96).
 
-- New function `pm_with()`, allowing arrangement of a named list of plots using
+- New function `pm_with()` allows arrangement of a named list of plots using
   `patchwork` syntax (#96). 
 
-- `rot_y()` has been updated with a vertical argument, similar to `rot_x()`
-  (#96). 
+- `rot_y()` has been updated with a `vertical` argument, similar to existing
+  argument in `rot_x()` (#96). 
 
 
 # pmplots 0.4.1
