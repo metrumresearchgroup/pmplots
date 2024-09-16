@@ -6,6 +6,7 @@
 \alias{cwres_pred}
 \alias{cwresi_pred}
 \alias{npde_pred}
+\alias{npd_pred}
 \title{Residuals or NPDE versus predicted values}
 \usage{
 res_pred(
@@ -25,6 +26,8 @@ cwres_pred(df, ..., y = pm_axis_cwres())
 cwresi_pred(df, y = pm_axis_cwresi(), ...)
 
 npde_pred(df, ..., y = pm_axis_npde(), hline = npde_ref())
+
+npd_pred(df, ..., y = pm_axis_npd(), hline = npde_ref())
 }
 \arguments{
 \item{df}{data frame to plot}
