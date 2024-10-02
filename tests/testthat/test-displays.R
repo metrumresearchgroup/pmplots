@@ -32,6 +32,11 @@ test_that("eta_covariate with integer data", {
   a <- eta_covariate(data, cont, etas)
   expect_type(a, "list")
   expect_s3_class(a[[3]], "gg")
+
+  tib <- dplyr::as_tibble(data)
+  a <- eta_covariate(tib, cont, etas)
+  expect_type(a, "list")
+  expect_s3_class(a[[3]], "gg")
 })
 
 test_that("cont_cat_panel", {
