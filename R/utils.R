@@ -37,19 +37,19 @@ supplement_cwres <- function(x) {
   return(x)
 }
 
-require_discrete <- function(df,x) {
-  require_column(df, x)
-  if(!.is_discrete(df[[x]])) {
-    .stop("column ", x, " is required to be character, factor, or logical.")
-  }
-}
-
 .is_discrete <- function(x) {
   inherits(x, c("character", "factor", "logical"))
 }
 
 .is_continuous <- function(x) {
   inherits(x, c("integer", "numeric"))
+}
+
+require_discrete <- function(df,x) {
+  require_column(df, x)
+  if(!.is_discrete(df[[x]])) {
+    .stop("column ", x, " is required to be character, factor, or logical.")
+  }
 }
 
 require_numeric <- function(df,x) {
