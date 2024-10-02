@@ -10,7 +10,7 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
     out[[i]] <- lapply(seq_along(x), function(ii) {
       col <- col_label(x[[ii]])[[1]]
       require_column(df, col)
-      if(inherits(unlist(df[, col]), c("character", "factor", "logical", "integer"))) {
+      if(.is_discrete(df[[col]])) {
         p <- fun_cat(df, x = x[[ii]], y = y[[i]])
       } else {
         p <- fun_cont(df, x = x[[ii]], y = y[[i]])
