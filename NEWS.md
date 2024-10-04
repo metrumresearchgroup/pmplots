@@ -1,4 +1,12 @@
-# pmplots (development version)
+# pmplots 0.5.1
+
+## Bugs fixed
+
+- `eta_covariate()` now calls `eta_cont()` rather than `eta_cat()` when data for 
+  the x-axis is `integer`, fixing an error that was generated from `eta_cat()`, 
+  which always expects `factor`, `character`, or `logical`; other internal 
+  updates have been made to ensure consistent treatment of `integer` data as 
+  continuous rather than discrete (#104).
 
 # pmplots 0.5.0
 

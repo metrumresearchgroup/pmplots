@@ -1,7 +1,7 @@
 Package: pmplots
 Type: Package
 Title: Plots for Pharmacometrics
-Version: 0.5.0.9000
+Version: 0.5.1
 Authors@R: c(
        person("Kyle T", "Baron", "", "kyleb@metrumrg.com", c("aut", "cre")),
        person(given = "Kyle", family = "Meyer", role = "ctb", email = "kylem@metrumrg.com"),
