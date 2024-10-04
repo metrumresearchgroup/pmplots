@@ -41,3 +41,11 @@ test_that("pass vector or list", {
   expect_is(z, "list")
   expect_is(z[[1]], "gg")
 })
+
+test_that("cont_cat errors when receiving integer data for x", {
+  df$AGE <- as.integer(df$AGE)
+  expect_error(
+    cont_cat(df, x = "AGE", y = "WT"),
+    "column AGE is required to be character"
+  )
+})

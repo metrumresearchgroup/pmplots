@@ -238,3 +238,47 @@ test_that("remap_trans_arg() converts trans to transform", {
     list(transform = "log2")
   )
 })
+
+test_that("data type detection", {
+  dd <- data.frame(
+    num = c(1,2,3),
+    int = c(1L, 2L, 3L),
+    char = letters[1:3],
+    log = c(TRUE, FALSE, TRUE)
+  )
+  dd$fac <- factor(dd$num)
+  tib <- dplyr::as_tibble(dd)
+
+  # tests with data.frame
+  expect_error(pmplots:::require_discrete(dd, "num"))
+  expect_error(pmplots:::require_discrete(dd, "int"))
+  expect_null(pmplots:::require_discrete(dd, "char"))
+  expect_null(pmplots:::require_discrete(dd, "fac"))
+  expect_null(pmplots:::require_discrete(dd, "log"))
+
+  expect_null(pmplots:::require_numeric(dd, "num"))
+  expect_null(pmplots:::require_numeric(dd, "int"))
+  expect_error(pmplots:::require_numeric(dd, "char"))
+  expect_error(pmplots:::require_numeric(dd, "fac"))
+  expect_error(pmplots:::require_numeric(dd, "log"))
+
+  # tests with tibble
+  expect_error(pmplots:::require_discrete(tib, "num"))
+  expect_error(pmplots:::require_discrete(tib, "int"))
+  expect_null(pmplots:::require_discrete(tib, "char"))
+  expect_null(pmplots:::require_discrete(tib, "fac"))
+  expect_null(pmplots:::require_discrete(tib, "log"))
+
+  expect_null(pmplots:::require_numeric(tib, "num"))
+  expect_null(pmplots:::require_numeric(tib, "int"))
+  expect_error(pmplots:::require_numeric(tib, "char"))
+  expect_error(pmplots:::require_numeric(tib, "fac"))
+  expect_error(pmplots:::require_numeric(tib, "log"))
+
+  # test discrete
+  expect_false(pmplots:::.is_discrete(dd[["num"]]))
+  expect_false(pmplots:::.is_discrete(dd[["int"]]))
+  expect_true(pmplots:::.is_discrete(dd[["char"]]))
+  expect_true(pmplots:::.is_discrete(dd[["fac"]]))
+  expect_true(pmplots:::.is_discrete(dd[["log"]]))
+})

@@ -27,6 +27,18 @@ test_that("eta_covariate", {
   expect_s3_class(a[[1]], "patchwork")
 })
 
+test_that("eta_covariate with integer data", {
+  data$AGE <- as.integer(data$AGE)
+  a <- eta_covariate(data, cont, etas)
+  expect_type(a, "list")
+  expect_s3_class(a[[3]], "gg")
+
+  tib <- dplyr::as_tibble(data)
+  a <- eta_covariate(tib, cont, etas)
+  expect_type(a, "list")
+  expect_s3_class(a[[3]], "gg")
+})
+
 test_that("cont_cat_panel", {
   a <- cont_cat_panel(data, x = cats, y = cont)
   expect_length(a, length(cont))
