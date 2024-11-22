@@ -27,7 +27,8 @@ pm_axis_data <- list(
     pred = "PRED",
     ipred = "IPRED",
     dv = "DV",
-    npde = "NPDE"
+    npde = "NPDE",
+    npd = "NPD"
   ),
   title  = list(
     cwres = "CWRES",
@@ -40,7 +41,8 @@ pm_axis_data <- list(
     pred = "Population predicted {xname}",
     ipred = "Individual predicted {xname}",
     dv = "Observed {yname}",
-    npde = "NPDE"
+    npde = "NPDE",
+    npd = "NPD"
   ),
   short = list(
     cwres = "CWRES",
@@ -53,7 +55,8 @@ pm_axis_data <- list(
     pred = "PRED",
     ipred = "IPRED",
     dv = "Observed",
-    npde = "NPDE"
+    npde = "NPDE",
+    npd = "NPD"
   )
 )
 
@@ -114,6 +117,9 @@ pm_axis_cwresi <- function() mk_col_title("cwresi")
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_npde <- function() mk_col_title("npde")
+#' @rdname pm_axis_functions
+#' @export
+pm_axis_npd <- function() mk_col_title("npd")
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_pred <- function(xname = NULL) {
