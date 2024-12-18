@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# pmplots <img align="right" src = "man/figures/metrum_pmplots_git_logo.png" width="135px">
+# pmplots <img align="right" src = "man/figures/logo.png" width="135px">
 
 <!-- badges: start -->
 <!-- badges: end -->
