@@ -11,7 +11,7 @@ Maintainer: Kyle Baron <kyleb@metrumrg.com>
 Description: Very light wrappers around 'ggplot2' plotting code tailored for 
     pharmacometric applications.
 License: GPL (>=2)
-URL: https://github.com/metrumresearchgroup/pmplots/
+URL: https://metrumresearchgroup.github.io/pmplots, https://github.com/metrumresearchgroup/pmplots/
 BugReports: https://github.com/metrumresearchgroup/pmplots/issues
 Encoding: UTF-8
 Language: en-US
