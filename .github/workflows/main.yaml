@@ -51,9 +51,13 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            any::pkgdown
             any::rcmdcheck
           upgrade: ${{ (matrix.config.r == '3.6.3' || matrix.config.r == '4.0.5' || matrix.config.r == '4.1.3') && 'FALSE' || 'TRUE' }}
       - uses: r-lib/actions/check-r-package@v2
+      - name: Check pkgdown
+        shell: Rscript {0}
+        run: pkgdown::check_pkgdown()
   release:
     if: github.ref_type == 'tag'
     name: Upload release

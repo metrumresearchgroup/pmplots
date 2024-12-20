@@ -15,6 +15,7 @@ inst/examples/pmplots_complete\.html
 ^\.travis\.yml$
 ^\.github$
 _pkgdown\.yml
+^pkgdown$
 vignettes/complete\.Rmd
 vignettes/*\.pdf
 inst/examples/*\.html
