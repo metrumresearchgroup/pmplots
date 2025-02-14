@@ -115,9 +115,9 @@
       <h1 data-toc-skip>ETA Plots</h1>
                         <h4 data-toc-skip class="author">Kyle Baron</h4>
             
-            <h4 data-toc-skip class="date">2024-12-19</h4>
+            <h4 data-toc-skip class="date">2025-02-14</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/vignettes/eta.Rmd" class="external-link"><code>vignettes/eta.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/main/vignettes/eta.Rmd" class="external-link"><code>vignettes/eta.Rmd</code></a></small>
       <div class="hidden name"><code>eta.Rmd</code></div>
 
     </div>
@@ -128,16 +128,13 @@
 <h2 id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/pmplots">pmplots</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
-<span><span class="co">##   object 'type_sum.accel' not found</span></span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/pmplots">pmplots</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pmplots_data.html">pmplots_data_id</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>A good workflow is to create a character vector of your etas and
 their names.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">etas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ETA1//ETA-CL"</span>, <span class="st">"ETA2//ETA-VC"</span>, <span class="st">"ETA3//ETA-KA"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">etas</span></span></code></pre></div>
@@ -149,7 +146,7 @@ one for each ETA. You can combine them together into a single plot using
 <div class="section level2">
 <h2 id="eta-histogram">ETA histogram<a class="anchor" aria-label="anchor" href="#eta-histogram"></a>
 </h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eta_hist.html">eta_hist</a></span><span class="op">(</span><span class="va">data</span>,<span class="va">etas</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/pm_grid.html">pm_grid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span>
 <span><span class="co">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></span>
@@ -159,7 +156,7 @@ one for each ETA. You can combine them together into a single plot using
 <div class="section level2">
 <h2 id="eta-pairs">ETA Pairs<a class="anchor" aria-label="anchor" href="#eta-pairs"></a>
 </h2>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pairs_plot.html">eta_pairs</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">etas</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required namespace: GGally</span></span></code></pre>
 <pre><code><span><span class="co">## Registered S3 method overwritten by 'GGally':</span></span>
@@ -173,14 +170,14 @@ one for each ETA. You can combine them together into a single plot using
 <div class="section level2">
 <h2 id="eta-versus-categorical-variable">ETA versus categorical variable<a class="anchor" aria-label="anchor" href="#eta-versus-categorical-variable"></a>
 </h2>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eta_cat.html">eta_cat</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"STUDYc"</span>, y <span class="op">=</span> <span class="va">etas</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/pm_grid.html">pm_grid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="eta_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="eta-versus-continuous-variable">ETA versus continuous variable<a class="anchor" aria-label="anchor" href="#eta-versus-continuous-variable"></a>
 </h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/eta_cont.html">eta_cont</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"WT"</span>, y <span class="op">=</span> <span class="va">etas</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/pm_grid.html">pm_grid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span>
 <span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span>

@@ -115,9 +115,9 @@
       <h1 data-toc-skip>Customizing Plots</h1>
                         <h4 data-toc-skip class="author">Kyle Baron</h4>
             
-            <h4 data-toc-skip class="date">2024-12-19</h4>
+            <h4 data-toc-skip class="date">2025-02-14</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/vignettes/customize.Rmd" class="external-link"><code>vignettes/customize.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/main/vignettes/customize.Rmd" class="external-link"><code>vignettes/customize.Rmd</code></a></small>
       <div class="hidden name"><code>customize.Rmd</code></div>
 
     </div>
@@ -128,25 +128,22 @@
 <h2 id="set-up">Set up<a class="anchor" aria-label="anchor" href="#set-up"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/pmplots">pmplots</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
-<span><span class="co">##   object 'type_sum.accel' not found</span></span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/pmplots">pmplots</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="a-default-plot">A default plot<a class="anchor" aria-label="anchor" href="#a-default-plot"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_pred.html">dv_pred</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <div class="section level3">
 <h3 id="customize-the-axis-label">Customize the axis label<a class="anchor" aria-label="anchor" href="#customize-the-axis-label"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_pred.html">dv_pred</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Predicted concentration (mg/L)"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
@@ -156,14 +153,14 @@
 </h3>
 <p>There are a couple of ways to do this. The easiest is to have the <a href="https://CRAN.R-project.org/package=latex2exp" class="external-link">latex2exp</a>
 package installed and write the TeX right in the label.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_pred.html">dv_pred</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"IPRED//Predicted concentration ($\\mu$g/mL)"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required namespace: latex2exp</span></span></code></pre>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>Otherwise, you can trigger R plotmath by putting <code>!!</code> at
 the start of the column label</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_pred.html">dv_pred</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"IPRED//!!'Predicted concentration (' * mu * 'g/mL)'"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
@@ -171,7 +168,7 @@ the start of the column label</p>
 <div class="section level3">
 <h3 id="add-a-run-number-or-other-annotation-to-the-plot">Add a run number or other annotation to the plot<a class="anchor" aria-label="anchor" href="#add-a-run-number-or-other-annotation-to-the-plot"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_pred.html">dv_pred</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>subtitle <span class="op">=</span> <span class="st">"Run 1001"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
@@ -182,12 +179,12 @@ the start of the column label</p>
 </h2>
 <p>At some point, you might have to create a plot outside of pmplots,
 but you still want to adopt the pmplots look and feel.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">PRED</span>,<span class="va">DV</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">p</span></span></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>Use these helpers to style the plot</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="../reference/pm_theme.html">pm_theme</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/pm_theme.html">pm_abline</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/pm_theme.html">pm_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="customize_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
@@ -196,7 +193,7 @@ but you still want to adopt the pmplots look and feel.</p>
 <h2 id="customize-the-axis">Customize the axis<a class="anchor" aria-label="anchor" href="#customize-the-axis"></a>
 </h2>
 <p>If you start with this plot</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 <p>you can use the <code>xs</code> and <code>ys</code> arguments to
@@ -205,26 +202,26 @@ arguments that you would pass to
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">ggplot2::scale_x_continuous()</a></code> or
 <code><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">ggplot2::scale_y_continuous()</a></code>. For example we can set the
 breaks like this</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">data</span>, xs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">240</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>But note there is an easier way using <code>xby</code> argument for
 any of the <code>*_time()</code> plots</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">data</span>, xby <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 <p>You can put the y-axis on log scale</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">data</span>, ys <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>transform <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>Again note there is a <code>log</code> argument to this function that
 lets us do this more conveniently</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">data</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>While we’ve had some convenient shortcuts built into some of the
 functions, this should illustrate how you can control anything related
 to the axis scales in your plot.</p>
 <p>Specifically not that you should not do this</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>transform <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
 <span><span class="co">## Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span></code></pre>
@@ -238,11 +235,11 @@ Always customize the axis through <code>xs</code> and
 </h2>
 <p>Use <code><a href="../reference/rot_x.html">rot_x()</a></code> or <code><a href="../reference/rot_x.html">rot_y()</a></code> and specify the
 angle to rotate the tick labels</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pm_box.html">cont_cat</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"STUDYc"</span>, y <span class="op">=</span> <span class="st">"NPDE"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/rot_x.html">rot_x</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <p>or just set <code>vertical = TRUE</code> for <code><a href="../reference/rot_x.html">rot_x()</a></code></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pm_box.html">cont_cat</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"STUDYc"</span>, y <span class="op">=</span> <span class="st">"NPDE"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="../reference/rot_x.html">rot_x</a></span><span class="op">(</span>vertical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="customize_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>

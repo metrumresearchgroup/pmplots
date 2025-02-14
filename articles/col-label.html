@@ -115,9 +115,9 @@
       <h1 data-toc-skip>Specifying col//label</h1>
                         <h4 data-toc-skip class="author">Kyle Baron</h4>
             
-            <h4 data-toc-skip class="date">2024-12-19</h4>
+            <h4 data-toc-skip class="date">2025-02-14</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/vignettes/col-label.Rmd" class="external-link"><code>vignettes/col-label.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/main/vignettes/col-label.Rmd" class="external-link"><code>vignettes/col-label.Rmd</code></a></small>
       <div class="hidden name"><code>col-label.Rmd</code></div>
 
     </div>
@@ -125,11 +125,8 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/pmplots">pmplots</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Error in get(paste0(generic, ".", class), envir = get_method_env()) : </span></span>
-<span><span class="co">##   object 'type_sum.accel' not found</span></span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/pmplots">pmplots</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <p><code>col//label</code> is a way to select the column name in the
 data set to use for plotting as well as the label to use for the axis in
 the plot. This is a simple data structure that pmplots parses and uses
@@ -137,32 +134,32 @@ under the hood. Don’t worry about calling <code><a href="../reference/col_labe
 yourself; we’ll just use it here to illustrate.</p>
 <p>If we want to use weight from the data set and give it a nice name,
 we can use the <code>col//label</code> format</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"WT // Weight (kg)"</span></span></code></pre></div>
 <p>Here, we’ve put the column name to the left of <code>//</code> and
 the axis label name to the right. pmplots will parse it like this</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/col_label.html">col_label</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "WT"          "Weight (kg)"</span></span></code></pre>
 <p>and use the first item to select data from the data frame and the
 second to label your plot.</p>
 <p>If you are making a simple plot and don’t want to add an additional
 label, pmplots will just use the column name as the axis label.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/col_label.html">col_label</a></span><span class="op">(</span><span class="st">"WT"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "WT" "WT"</span></span></code></pre>
 <p>You can use alternative separators</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/col_label.html">col_label</a></span><span class="op">(</span><span class="st">"WT @@ Weight"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "WT"     "Weight"</span></span></code></pre>
 <p>You can also include TeX code in the label part which can be utilized
 in certain plots</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/col_label.html">col_label</a></span><span class="op">(</span><span class="st">"DV // Concentration ($\\mu$g/mL)"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "DV"                         "Concentration ($\\mu$g/mL)"</span></span></code></pre>
 <p>Note: you need the latex2exp package installed to make this work.</p>
 <p>In the plot it would look like</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_pred.html">dv_pred</a></span><span class="op">(</span><span class="fu"><a href="../reference/pmplots_data.html">pmplots_data_obs</a></span><span class="op">(</span><span class="op">)</span>, yname <span class="op">=</span> <span class="st">"Concentration ($\\mu$g/mL)"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Loading required namespace: latex2exp</span></span></code></pre>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
