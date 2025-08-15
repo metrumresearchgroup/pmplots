@@ -537,7 +537,7 @@ rot_y <- function(angle=30, hjust = 1, vjust = NULL, vertical = FALSE, ...) {
 #' @md
 #' @export
 rot_at <- function(x, at = names(x), re = NULL, axis = c("x", "y"), ...) {
-  if(!is.list(x) || is.ggplot(x) || inherits(x, "patchwork")) {
+  if(!is.list(x) || is_ggplot(x) || inherits(x, "patchwork")) {
     abort("`x` must be a list of gg or patchwork objects.")
   }
   if(!is_named(x)) abort("`x` must be named.")
@@ -737,7 +737,7 @@ pm_with <- function(x, expr, tag_levels = NULL) {
   if(!is_named(x)) {
     abort("`x` must be named.")
   }
-  if(!is.list(x) || is.ggplot(x) || inherits(x, "patchwork")) {
+  if(!is.list(x) || is_ggplot(x) || inherits(x, "patchwork")) {
     abort("`x` must be a list.")
   }
   require_patchwork()
@@ -745,6 +745,13 @@ pm_with <- function(x, expr, tag_levels = NULL) {
   p <- eval(expr, envir = x)
   p <- p + patchwork::plot_annotation(tag_levels = tag_levels)
   p
+}
+
+# ggplot2 3.5.2 deprecated is.ggplot in favor of is_ggplot.
+if (utils::packageVersion("ggplot2") < "3.5.2") {
+  is_ggplot <- ggplot2::is.ggplot
+} else {
+  is_ggplot <- ggplot2::is_ggplot
 }
 
 #' Chunk a data frame
