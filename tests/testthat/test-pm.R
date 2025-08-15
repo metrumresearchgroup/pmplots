@@ -206,7 +206,7 @@ test_that("eta pairs [PMP-TEST-042]", {
   expect_x(p, "ETA1", "ETA-CL")
 
   p2 <- pairs_plot(df, c("ETA1", "ETA2"))
-  expect_is(p2,"gg")
+  expect_is(p2, "ggmatrix")
 
   p <- eta_pairs(
     df,
@@ -214,7 +214,7 @@ test_that("eta pairs [PMP-TEST-042]", {
     smooth_color = "red",
     smooth_lty=1
   )
-  expect_is(p, "gg")
+  expect_is(p, "ggmatrix")
 
   x <- pmplots:::pairs_lower(
     df,
@@ -227,7 +227,7 @@ test_that("eta pairs [PMP-TEST-042]", {
 
 test_that("pairs_plot with latex [PMP-TEST-043]", {
   x <- pairs_plot(df, c("ETA1//ETA$_1$", "ETA2//ETA$_2$", "ETA3//ETA3"))
-  expect_is(x,"gg")
+  expect_is(x, "ggmatrix")
 })
 
 test_that("qq [PMP-TEST-044]", {
@@ -293,7 +293,7 @@ test_that("eta labs [PMP-TEST-048]", {
 
 test_that("pairs plot with expression [PMP-TEST-049]", {
   p <- pairs_plot(df, c("CWRES", "WRES", "DV//Conc ($\\mu$M)"))
-  expect_is(p, "gg")
+  expect_is(p, "ggmatrix")
 })
 
 test_that("dv_pred_ipred issue-6 [PMP-TEST-050]", {
