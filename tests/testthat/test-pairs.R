@@ -5,12 +5,12 @@ etas <- c("ETA1//ETA-CL", "ETA2//ETA-V2", "ETA3//ETA-KA")
 
 test_that("pairs plots y [PMP-TEST-027]", {
   p <- pairs_plot(df, y = c("ALB", "WT", "SCR"))
-  expect_is(p, "gg")
+  expect_is(p, "ggmatrix")
 })
 
 test_that("eta pairs plots etas [PMP-TEST-028]", {
   p <- eta_pairs(df, etas = etas)
-  expect_is(p, "gg")
+  expect_is(p, "ggmatrix")
 })
 
 test_that("upper and lower funs are used in pairs plots [PMP-TEST-029]", {
