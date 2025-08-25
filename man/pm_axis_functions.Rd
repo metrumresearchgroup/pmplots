@@ -10,6 +10,7 @@
 \alias{pm_axis_cwres}
 \alias{pm_axis_cwresi}
 \alias{pm_axis_npde}
+\alias{pm_axis_npd}
 \alias{pm_axis_pred}
 \alias{pm_axis_ipred}
 \alias{pm_axis_dv}
@@ -30,6 +31,8 @@ pm_axis_cwres()
 pm_axis_cwresi()
 
 pm_axis_npde()
+
+pm_axis_npd()
 
 pm_axis_pred(xname = NULL)
 
