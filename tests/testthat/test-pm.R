@@ -149,7 +149,13 @@ test_that("eta cat cont hist [PMP-TEST-040]", {
   p <- eta_hist(df,etas)
   expect_is(p, "list")
   p <- p[[1]]
-  expect_titles(p, "ETA-CL", "count")
+  # As of ggplot2 4.0.0, $labels records only explicitly set labels.
+  if (utils::packageVersion("ggplot2") < "4.0.0") {
+    expect_titles(p, "ETA-CL", "count")
+  } else {
+    expect_titles(p, "ETA-CL", NULL)
+  }
+
 
   p <- eta_cont(df, x="WT//Weight (kg)", y=etas)
   expect_is(p, "list")
