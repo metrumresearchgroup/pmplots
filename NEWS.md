@@ -1,3 +1,7 @@
+# pmpots 0.5.2
+
+- 
+
 # pmplots 0.5.1
 
 ## Bugs fixed
