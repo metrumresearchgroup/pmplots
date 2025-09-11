@@ -293,7 +293,9 @@ dv_pred_ipred_impl <- function(data,
     axtx <- element_text(size = ggplot2::rel(axis.text.rel))
     use_theme <- use_theme + theme(axis.text = axtx)
   }
-  if(inherits(plot.margin, "margin")) {
+
+  # ggplot2 4.0.0 changed the class to ggplot2::margin.
+  if (inherits(plot.margin, "margin") || inherits(plot.margin, "ggplot2::margin")) {
     use_theme <- use_theme + theme(plot.margin = plot.margin)
   }
 
