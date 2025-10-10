@@ -2,6 +2,10 @@
 
 ## Internal compatibility changes
 
+- Fix some test failures related to ggplot2 version 4.0 (#117).
+
+- Add S4 as optional dependency to slience `R CMD check` warning (#117).
+
 - Prefer `ggplot2::is_ggplot()` when available (#115).
 
 - Update CI and make tests compatible with GGally 2.2.0 (#114). 
