@@ -98,15 +98,26 @@ test_that("rot_xy", {
   l <- list(a = g1, b = g2)
   lp <- list(a = p1, b = p2)
 
-  nuke_env <- function(xs) {
-    for (i in seq_along(xs)) {
-      if (identical(names(xs[i]), "plot_env")) {
-        xs[[i]] <- "CLOBBERED"
-      } else if (is.list(xs[[i]])) {
-        xs[[i]] <- nuke_env(xs[[i]])
+  if (utils::packageVersion("ggplot2") < "4.0.0") {
+    # Overwrite plot_env because it trips up the expect_equal calls on R < 4.0.
+    # For unknown reasons, it doesn't affect later R versions.
+    #
+    # https://github.com/metrumresearchgroup/pmplots/pull/96#discussion_r1681145034
+    nuke_env <- function(xs) {
+      for (i in seq_along(xs)) {
+        if (identical(names(xs[i]), "plot_env")) {
+          xs[[i]] <- "CLOBBERED"
+        } else if (is.list(xs[[i]])) {
+          xs[[i]] <- nuke_env(xs[[i]])
+        }
       }
+      return(xs)
     }
-    return(xs)
+  } else {
+    # The above workaround isn't compatible with the S7 classes used in ggplot2
+    # >= 4.0.0, but it's not necessary anyway because ggplot2 4.0.0 requires R
+    # 4.1.
+    nuke_env <- identity
   }
 
   # Check if these are the same, ignoring plot_env
