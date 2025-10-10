@@ -1,6 +1,10 @@
-# pmpots 0.5.2
+# pmplots 0.5.2
 
-- 
+## Internal compatibility changes
+
+- Prefer `ggplot2::is_ggplot()` when available (#115).
+
+- Update CI and make tests compatible with GGally 2.2.0 (#114). 
 
 # pmplots 0.5.1
 
