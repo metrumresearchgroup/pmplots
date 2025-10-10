@@ -68,8 +68,6 @@ jobs:
             any::pkgdown
             any::rcmdcheck
             ${{ matrix.config.ggally_pkg }}
-            ${{ matrix.config.patchwork_pkg }}
-            ${{ matrix.config.scales_pkg }}
           upgrade: ${{ matrix.config.pinned && 'FALSE' || 'TRUE' }}
       - uses: r-lib/actions/check-r-package@v2
       - name: Check pkgdown
