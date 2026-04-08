@@ -48,8 +48,9 @@ pm_axis_dv(yname = NULL)
 Functions to generate axis data
 }
 \details{
-These functions call \code{pmplots:::mk_col_title()}. When time units
-(\code{xunit}) are passed, they will be wrapped in parens.
+These functions call  either \code{pmplots:::mk_col_title()} or
+\code{pmplots:::mk_col_title_opt()}. When time units (\code{xunit}) are
+passed, they will be wrapped in parens.
 }
 \examples{
 pm_axis_time()

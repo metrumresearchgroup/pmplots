@@ -7,9 +7,9 @@
 \alias{pm}
 \title{Set global plot options}
 \format{
-An object of class \code{pm_opts} (inherits from \code{environment}) of length 43.
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 49.
 
-An object of class \code{pm_opts} (inherits from \code{environment}) of length 43.
+An object of class \code{pm_opts} (inherits from \code{environment}) of length 49.
 }
 \usage{
 pm_options(
@@ -48,7 +48,13 @@ pm_options(
   pairs.cor.digits = 2,
   pairs.cor.shown = TRUE,
   axis.title.short = FALSE,
-  time.unit = "hr"
+  time.unit = "hr",
+  time.label = "Time",
+  time.label.short = time.label,
+  tafd.label = "Time after first dose",
+  tafd.label.short = tafd.label,
+  tad.label = "Time after dose",
+  tad.label.short = tad.label
 )
 
 pm_opts
@@ -138,6 +144,18 @@ observations used to calculate correlation in upper panels of pairs plots}
 \item{axis.title.short}{shorten standard axis titles}
 
 \item{time.unit}{default time unit}
+
+\item{time.label}{default time label}
+
+\item{time.label.short}{default short time label}
+
+\item{tafd.label}{default tafd label}
+
+\item{tafd.label.short}{default short tafd label}
+
+\item{tad.label}{default tadd label}
+
+\item{tad.label.short}{default tafd label}
 }
 \description{
 Set global plot options

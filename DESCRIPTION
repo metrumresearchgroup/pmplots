@@ -45,7 +45,6 @@ Collate:
     'box.R'
     'cont.R'
     'data.R'
-    'details.R'
     'displays.R'
     'dv_pred.R'
     'dv_pred_ipred.R'
