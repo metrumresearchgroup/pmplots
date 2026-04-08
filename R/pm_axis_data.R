@@ -77,7 +77,7 @@ mk_col_title <- function(what, sep = "//") {
 }
 
 mk_col_title_opt <- function(what, sep = "//") {
-  title <- ifelse(isTRUE(opts$axis$title$short), "opt_short", "opt_title")
+  title <- ifelse(isTRUE(opts$axis$title$short), "short_opt", "title_opt")
   paste0(
     pm_axis_data[["col"]][[what]], 
     sep, 
