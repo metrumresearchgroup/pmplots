@@ -638,9 +638,24 @@ no_cwres <- function(object) {
 }
 
 glue_unit <- function(x, xunit) {
-  if(is.null(xunit)) return(x)
-  if(nchar(xunit) > 0) xunit <- paste0("(",xunit,")")
+  if(is.null(xunit) || !opts$glue.xunit) {
+    return(x)
+  }
+  if(nchar(xunit) > 0) {
+    xunit <- paste0("(",xunit,")")
+    x <- try_append_xunit(x, xunit)
+  }
   as.character(glue(x))
+}
+
+try_append_xunit <- function(x, xunit) {
+  if(!opts$glue.xunit) {
+    return(x)
+  }
+  if(grepl("{xunit}", x, fixed = TRUE)) {
+    return(x)
+  }
+  paste0(x, " {xunit}")
 }
 
 glue_xname <- function(x, xname) {
