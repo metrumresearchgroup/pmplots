@@ -46,6 +46,8 @@
 #' in upper panels of pairs plots
 #' @param pairs.cor.shown if `TRUE`, then report the number of non-missing
 #' observations used to calculate correlation in upper panels of pairs plots
+#' @param glue.xunit if `TRUE`, pmplots will attempt to glue `{xunit}` into 
+#' x-axis labels
 #' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
 #' @param time.label default time label
@@ -135,21 +137,29 @@ pm_options <- function(smooth.lwd = 1.35,
                        pairs.cor.digits = 2,
                        pairs.cor.shown = TRUE,
                        axis.title.short = FALSE,
-                       time.unit = "hr", 
+                       glue.xunit = TRUE,
+                       time.unit = "h", 
                        time.label = "Time", 
-                       time.label.short = time.label, 
+                       time.label.short = time.label,
                        tafd.label = "Time after first dose", 
                        tafd.label.short = tafd.label,
                        tad.label = "Time after dose", 
-                       tad.label.short = tad.label) {
+                       tad.label.short = tad.label
+                       ) {
+  
   set <- function(..., .list = NULL) {
     if(is.list(.list)) {
       x <- .list
     } else {
       x <- list(...)
     }
-    if(length(x)==0) invisible(NULL)
-    for(k in names(x)) assign(k,x[[k]],envir=self)
+    if(length(x)==0) {
+      return(invisible(NULL))
+    }
+    for(k in names(x)) {
+      assign(k,x[[k]],envir=self)
+    }
+    self[["glue.xunit"]] <- isTRUE(self[["glue.xunit"]])
     return(invisible(NULL))
   }
   get <- function(x) {
@@ -160,6 +170,7 @@ pm_options <- function(smooth.lwd = 1.35,
     return(invisible(NULL))
   }
   mget <- function(x) base::mget(x,envir=self)
+  glue.xunit <- isTRUE(glue.xunit)
   as.list <- function() {
     ans <- base::as.list.environment(self)
     ans$defaults <- NULL
@@ -244,5 +255,5 @@ pm_opts <- pm_options()
 #' @rdname pm_opts
 #' @export
 pm <- pm_opts
-opts <- pm_opts
+  opts <- pm_opts
 
