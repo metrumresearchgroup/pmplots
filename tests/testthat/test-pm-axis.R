@@ -47,7 +47,7 @@ test_that("pm-axis error when asking for undefined item", {
 
 test_that("pm-axis time, tafd, tad set via option", {
   pm$reset()
-  p <- as.list(pm)
+  p <- pm$as.list()
 
   a <- pm_axis_time()
   expect_match(a, "Time")
@@ -65,8 +65,8 @@ test_that("pm-axis time, tafd, tad set via option", {
   pm$set(tafd.label = "up tafd")
   d <- pm_axis_tafd()
   expect_match(d, "up tafd")
+  
   pm$reset()
-
   pm$set(
     time.label = "long time", 
     time.label.short = "short time", 
@@ -75,4 +75,3 @@ test_that("pm-axis time, tafd, tad set via option", {
   e <- pm_axis_time()
   expect_match(e, "short time")
 })
-

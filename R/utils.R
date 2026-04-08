@@ -649,19 +649,22 @@ glue_unit <- function(x, xunit) {
 }
 
 glue_xname <- function(x, xname) {
-  if(is.null(xname)) return(x)
+  if(is.null(xname) || !opts$glue.xname) {
+    return(x)
+  }
+  x <- try_append_template(x, template = "{xname}")
   as.character(glue(x))
 }
 
 glue_yname <- function(x, yname) {
-  if(is.null(yname)) return(x)
+  if(is.null(yname) || !opts$glue.yname) {
+    return(x)
+  }
+  x <- try_append_template(x, template = "{yname}")
   as.character(glue(x))
 }
 
 try_append_template <- function(x, template) {
-  if(!opts$glue.xunit) {
-    return(x)
-  }
   if(grepl(template, x, fixed = TRUE)) {
     return(x)
   }

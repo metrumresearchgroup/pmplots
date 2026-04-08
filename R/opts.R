@@ -47,7 +47,11 @@
 #' @param pairs.cor.shown if `TRUE`, then report the number of non-missing
 #' observations used to calculate correlation in upper panels of pairs plots
 #' @param glue.xunit if `TRUE`, pmplots will attempt to glue `{xunit}` into 
-#' x-axis labels
+#' x-axis title
+#' @param glue.xname if `TRUE`, pmplots will attempt to glue `{xname}` into 
+#' x-axis title
+#' @param glue.yname if `TRUE`, pmplots will attempt to glue `{yname}` into
+#' y-axis title 
 #' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
 #' @param time.label default time label
@@ -138,6 +142,8 @@ pm_options <- function(smooth.lwd = 1.35,
                        pairs.cor.shown = TRUE,
                        axis.title.short = FALSE,
                        glue.xunit = TRUE,
+                       glue.xname = TRUE, 
+                       glue.yname = TRUE,
                        time.unit = "h", 
                        time.label = "Time", 
                        time.label.short = time.label,
@@ -160,6 +166,9 @@ pm_options <- function(smooth.lwd = 1.35,
       assign(k,x[[k]],envir=self)
     }
     self[["glue.xunit"]] <- isTRUE(self[["glue.xunit"]])
+    self[["glue.xname"]] <- isTRUE(self[["glue.xname"]])
+    self[["glue.yname"]] <- isTRUE(self[["glue.yname"]])
+
     return(invisible(NULL))
   }
   get <- function(x) {
