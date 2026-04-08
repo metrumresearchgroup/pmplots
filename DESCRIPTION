@@ -38,13 +38,14 @@ Suggests:
   shiny, 
   rmarkdown
 Depends: ggplot2 (>= 3.5.0)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'
     'box.R'
     'cont.R'
     'data.R'
+    'details.R'
     'displays.R'
     'dv_pred.R'
     'dv_pred_ipred.R'
