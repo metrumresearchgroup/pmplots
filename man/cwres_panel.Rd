@@ -8,8 +8,8 @@
 cwres_panel(
   df,
   xname = "value",
-  unit_time = "hours",
-  unit_tad = "hours",
+  unit_time = opts$time.unit,
+  unit_tad = opts$time.unit,
   xby_time = NULL,
   xby_tad = NULL,
   tag_levels = NULL
@@ -18,8 +18,8 @@ cwres_panel(
 cwres_panel_list(
   df,
   xname = "value",
-  unit_time = "hours",
-  unit_tad = "hours",
+  unit_time = opts$time.unit,
+  unit_tad = opts$time.unit,
   xby_time = NULL,
   xby_tad = NULL
 )

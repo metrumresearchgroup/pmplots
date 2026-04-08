@@ -8,8 +8,8 @@
 npde_scatter(
   df,
   xname = "value",
-  unit_time = "hours",
-  unit_tad = "hours",
+  unit_time = opts$time.unit,
+  unit_tad = opts$time.unit,
   xby_time = NULL,
   xby_tad = NULL,
   tag_levels = NULL,
@@ -19,8 +19,8 @@ npde_scatter(
 cwres_scatter(
   df,
   xname = "value",
-  unit_time = "hours",
-  unit_tad = "hours",
+  unit_time = opts$time.unit,
+  unit_tad = opts$time.unit,
   xby_time = NULL,
   xby_tad = NULL,
   tag_levels = NULL,

@@ -54,8 +54,7 @@
 #' @param time.label.short default short time label
 #' @param tafd.label default tafd label
 #' @param tafd.label.short default short tafd label
-#' @param tad.unit default tad unit
-#' @param tad.label default tadd label
+#' @param tad.label default tad label
 #' @param tad.label.short default tafd label
 #'
 #' @details
@@ -144,7 +143,6 @@ pm_options <- function(smooth.lwd = 1.35,
                        time.label.short = time.label,
                        tafd.label = "Time after first dose", 
                        tafd.label.short = tafd.label,
-                       tad.unit = "h",
                        tad.label = "Time after dose", 
                        tad.label.short = tad.label
                        ) {
