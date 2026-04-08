@@ -44,3 +44,35 @@ test_that("pm-axis error when asking for undefined item", {
     regexp = "cannot find axis data for `fop`"
   )
 })
+
+test_that("pm-axis time, tafd, tad set via option", {
+  pm$reset()
+  p <- as.list(pm)
+
+  a <- pm_axis_time()
+  expect_match(a, "Time")
+
+  pm$set(time.label = "up time")
+  b <- pm_axis_time()
+  expect_match(b, "up time")
+  pm$reset()
+
+  pm$set(tad.label = "up tad")
+  c <- pm_axis_tad()
+  expect_match(c, "up tad")
+  pm$reset()
+
+  pm$set(tafd.label = "up tafd")
+  d <- pm_axis_tafd()
+  expect_match(d, "up tafd")
+  pm$reset()
+
+  pm$set(
+    time.label = "long time", 
+    time.label.short = "short time", 
+    axis.title.short = TRUE
+  )
+  e <- pm_axis_time()
+  expect_match(e, "short time")
+})
+

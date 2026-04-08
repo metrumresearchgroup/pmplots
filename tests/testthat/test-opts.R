@@ -53,3 +53,19 @@ test_that("bracket dot pm_opts [PMP-TEST-026]", {
   expect_identical(a,b)
 })
 
+test_that("set multiple opts", {
+  pm$reset()
+  a <- as.list(pm)
+  
+  pm$set(time.label = "up time", tad.label = "up tad")
+  b <- as.list(pm)
+
+  expect_equal(a$time.label, "Time")
+  expect_equal(b$time.label, "up time")
+  expect_equal(a$tad.label, "Time after dose")
+  expect_equal(b$tad.label, "up tad")
+
+  pm$reset()
+  c <- as.list(pm)
+  expect_identical(c, a)
+})
