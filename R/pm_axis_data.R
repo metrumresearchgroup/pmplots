@@ -54,6 +54,16 @@ pm_axis_data <- list(
     ipred = "IPRED",
     dv = "Observed",
     npde = "NPDE"
+  ), 
+  title_opt = list(
+    time = "time.label", 
+    tafd = "tafd.label", 
+    tad = "tad.label"
+  ),
+  short_opt = list(
+    time = "time.label.short", 
+    tafd = "tafd.label.short", 
+    tad = "tad.label.short"
   )
 )
 
@@ -66,11 +76,21 @@ mk_col_title <- function(what, sep = "//") {
   )
 }
 
+mk_col_title_opt <- function(what, sep = "//") {
+  title <- ifelse(isTRUE(opts$axis$title$short), "opt_short", "opt_title")
+  paste0(
+    pm_axis_data[["col"]][[what]], 
+    sep, 
+    opts$get(pm_axis_data[[title]][[what]])
+  )
+}
+
 #' Functions to generate axis data
 #'
 #' @details
-#' These functions call `pmplots:::mk_col_title()`. When time units
-#' (`xunit`) are passed, they will be wrapped in parens.
+#' These functions call  either `pmplots:::mk_col_title()` or 
+#' `pmplots:::mk_col_title_opt()`. When time units (`xunit`) are 
+#' passed, they will be wrapped in parens.
 #'
 #' @param xunit an optional time unit to be glued into the title.
 #' @param xname an optional name to be glued into the title.
@@ -87,17 +107,17 @@ mk_col_title <- function(what, sep = "//") {
 #' @md
 #' @export
 pm_axis_tad <- function(xunit = NULL) {
-  glue_unit(mk_col_title("tad"), xunit)
+  glue_unit(mk_col_title_opt("tad"), xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_time <- function(xunit = NULL) {
-  glue_unit(mk_col_title("time"), xunit)
+  glue_unit(mk_col_title_opt("time"), xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_tafd <- function(xunit = NULL) {
-  glue_unit(mk_col_title("tafd"), xunit)
+  glue_unit(mk_col_title_opt("tafd"), xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
