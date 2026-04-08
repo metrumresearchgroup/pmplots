@@ -49,6 +49,8 @@
 #' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
 #' @param time.label default time label
+#' @param tafd.label default tafd label
+#' @param tad.label default tadd label
 #'
 #' @details
 #' [pm()] and [pm_opts()] both refer to the same environment.
@@ -131,7 +133,9 @@ pm_options <- function(smooth.lwd = 1.35,
                        pairs.cor.shown = TRUE,
                        axis.title.short = FALSE,
                        time.unit = "hr", 
-                       time.label = "Time") {
+                       time.label = "Time", 
+                       tafd.label = "Time after first dose", 
+                       tad.label = "Time after dose") {
   set <- function(..., .list = NULL) {
     if(is.list(.list)) {
       x <- .list
