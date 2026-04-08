@@ -643,19 +643,9 @@ glue_unit <- function(x, xunit) {
   }
   if(nchar(xunit) > 0) {
     xunit <- paste0("(",xunit,")")
-    x <- try_append_xunit(x, xunit)
+    x <- try_append_template(x, template = "{xunit}")
   }
   as.character(glue(x))
-}
-
-try_append_xunit <- function(x, xunit) {
-  if(!opts$glue.xunit) {
-    return(x)
-  }
-  if(grepl("{xunit}", x, fixed = TRUE)) {
-    return(x)
-  }
-  paste0(x, " {xunit}")
 }
 
 glue_xname <- function(x, xname) {
@@ -666,6 +656,16 @@ glue_xname <- function(x, xname) {
 glue_yname <- function(x, yname) {
   if(is.null(yname)) return(x)
   as.character(glue(x))
+}
+
+try_append_template <- function(x, template) {
+  if(!opts$glue.xunit) {
+    return(x)
+  }
+  if(grepl(template, x, fixed = TRUE)) {
+    return(x)
+  }
+  paste0(x, " ", template)
 }
 
 charcount <- function(x,w,fx=TRUE) {
