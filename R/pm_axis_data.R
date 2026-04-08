@@ -34,11 +34,11 @@ pm_axis_data <- list(
     cwresi = "CWRES with interaction",
     res = "Residual",
     wres = "Weighted residual",
-    time = "Time {xunit}",
-    tad  = "Time after dose {xunit}",
-    tafd = "Time after first dose {xunit}",
-    pred = "Population predicted {xname}",
-    ipred = "Individual predicted {xname}",
+    time = "Time",
+    tad  = "Time after dose",
+    tafd = "Time after first dose",
+    pred = "Population predicted",
+    ipred = "Individual predicted",
     dv = "Observed {yname}",
     npde = "NPDE"
   ),
@@ -47,7 +47,7 @@ pm_axis_data <- list(
     cwresi = "CWRESI",
     res = "RES",
     wres = "WRES",
-    time = "Time {xunit}",
+    time = "Time",
     tad = "TAD",
     tafd = "TAFD",
     pred = "PRED",
@@ -107,17 +107,20 @@ mk_col_title_opt <- function(what, sep = "//") {
 #' @md
 #' @export
 pm_axis_tad <- function(xunit = NULL) {
-  glue_unit(mk_col_title_opt("tad"), xunit)
+  title <- mk_col_title_opt("tad")
+  glue_unit(title, xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_time <- function(xunit = NULL) {
-  glue_unit(mk_col_title_opt("time"), xunit)
+  title <- mk_col_title_opt("time")
+  glue_unit(title, xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_tafd <- function(xunit = NULL) {
-  glue_unit(mk_col_title_opt("tafd"), xunit)
+  title <- mk_col_title_opt("tafd")
+  glue_unit(title, xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
