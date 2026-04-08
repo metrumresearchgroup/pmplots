@@ -250,7 +250,8 @@ cwres_covariate_list <- function(df, x) {
 #' @md
 #' @export
 npde_panel <- function(df, xname = "value",
-                       unit_time = "hours", unit_tad = "hours",
+                       unit_time = opts$time.unit, 
+                       unit_tad = opts$time.unit,
                        xby_time  = NULL, xby_tad = NULL,
                        tag_levels = NULL) {
   require_patchwork()
@@ -267,7 +268,8 @@ npde_panel <- function(df, xname = "value",
 #' @rdname npde_panel
 #' @export
 npde_panel_list <- function(df, xname = "value",
-                            unit_time = "hours", unit_tad = "hours",
+                            unit_time = opts$time.unit, 
+                            unit_tad = opts$time.unit,
                             xby_time  = NULL, xby_tad = NULL) {
   time <- npde_time(df, xunit = unit_time, xby = xby_time)
   tad <- NULL
@@ -316,7 +318,8 @@ npde_panel_list <- function(df, xname = "value",
 #' @md
 #' @export
 cwres_panel <- function(df, xname = "value",
-                        unit_time = "hours", unit_tad = "hours",
+                        unit_time = opts$time.unit, 
+                        unit_tad = opts$time.unit,
                         xby_time  = NULL, xby_tad = NULL, tag_levels = NULL) {
   require_patchwork()
   l <- cwres_panel_list(df, xname, unit_time, unit_tad, xby_time, xby_tad)
@@ -332,7 +335,8 @@ cwres_panel <- function(df, xname = "value",
 #' @rdname cwres_panel
 #' @export
 cwres_panel_list <- function(df, xname = "value",
-                             unit_time = "hours", unit_tad = "hours",
+                             unit_time = opts$time.unit, 
+                             unit_tad = opts$time.unit,
                              xby_time = NULL, xby_tad = NULL) {
   time <- cwres_time(df, xunit = unit_time, xby = xby_time)
   tad <- NULL
@@ -420,7 +424,8 @@ cwres_hist_q <- function(df, ncol = 1, tag_levels = NULL) {
 #'
 #' @export
 npde_scatter <- function(df, xname = "value",
-                         unit_time = "hours", unit_tad = "hours",
+                         unit_time = opts$time.unit, 
+                         unit_tad = opts$time.unit,
                          xby_time  = NULL, xby_tad = NULL,
                          tag_levels = NULL, compact = FALSE) {
   require_patchwork()
@@ -439,7 +444,8 @@ npde_scatter <- function(df, xname = "value",
 #' @rdname npde_scatter
 #' @export
 cwres_scatter <- function(df, xname = "value",
-                          unit_time = "hours", unit_tad = "hours",
+                          unit_time = opts$time.unit, 
+                          unit_tad = opts$time.unit,
                           xby_time  = NULL, xby_tad = NULL,
                           tag_levels = NULL, compact = FALSE) {
   require_patchwork()
