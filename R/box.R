@@ -114,7 +114,10 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
     )
   }
   if(is.character(title)) p <- p + ggtitle(title)
-  p + pm_theme()
+  p <- p + pm_theme()
+  p$pmp.x <- x
+  p$pmp.y <- y
+  p
 }
 
 #' Plot continuous variable against a categorical variable

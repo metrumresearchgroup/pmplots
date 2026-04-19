@@ -36,9 +36,10 @@ Suggests:
   miniUI, 
   S7,
   shiny, 
-  rmarkdown
+  rmarkdown, 
+  yspec
 Depends: ggplot2 (>= 3.5.0)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'
@@ -57,6 +58,7 @@ Collate:
     'layer.R'
     'list_plot.R'
     'opts.R'
+    'pm-gg-labs.R'
     'pm_axis_data.R'
     'pm_browser.R'
     'pm_theme.R'

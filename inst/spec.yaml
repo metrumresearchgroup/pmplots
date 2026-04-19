@@ -1,0 +1,22 @@
+SETUP__:
+  description: Testing pmplots
+  extend_file: extension.yaml
+DV:
+  short: Dependent variable
+  short.pk: CX1123 concentration
+  unit: ""
+  unit.pk: ng/mL
+
+TIME:
+  short: Time
+  unit: ""
+  unit.pk: "h"
+WT:
+  short: Weight
+  unit: kg
+AAG:
+  short: Alpha-1-acid glycoprotein
+  unit: mg/dL
+ALB:
+  short: Albumin
+  unit: mg/dL

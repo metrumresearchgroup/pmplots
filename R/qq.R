@@ -51,7 +51,9 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
   if(!is.null(abline)) {
     p <- p + geom_abline(intercept=abline[1], slope=abline[2])
   }
-  p + pm_theme()
+  p <- p + pm_theme()
+  p$pmp.x <- x
+  p
 }
 
 ##' @export

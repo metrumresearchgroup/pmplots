@@ -40,6 +40,8 @@ cont_hist <- function(df, x, xs = defx(),
   if(add_density & add_layers) {
     out <- out + add_density(...)
   }
+  out$pmp.x <- x
+  out$pmp.y <- y
   out
 }
 
