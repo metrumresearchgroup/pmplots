@@ -1,21 +1,13 @@
+get_labs_2 <- function(p) {
+  defaults <- ggplot2::labs()  # named list of NULLs for all standard slots
+  utils::modifyList(defaults, p$labels)
+}
 
 resolve_axis_label <- function(label, envir, default) {
   if(inherits(label, "AsIs")) return(label)
   res <- envir[[label]] %||% default
   if(is.null(res)) return(label)
   return(res)
-}
-
-#'
-#' @md
-#' @export
-pm_lab_xy <- function(p, envir) {
-  x <- p$pmp.x
-  y <- p$pmp.y
-  p + ggplot2::labs(
-    x = resolve_axis_label(x, envir, x),
-    y = resolve_axis_label(y, envir, y)
-  )
 }
 
 
@@ -64,13 +56,12 @@ pm_gg_labs <- function(labs = list(),
 
 #' @exportS3Method ggplot2::ggplot_add
 ggplot_add.pm_gg_labs <- function(object, p, object_name) {
-
   x <- p$pmp.x
   y <- p$pmp.y
-
+  existing <- get_labs_2(p)
   args <- list()
-  args$x <- resolve_axis_label(x, object$envir, x)
-  args$y <- resolve_axis_label(y, object$envir, y)
+  args$x <- resolve_axis_label(x, object$envir, existing$x)
+  args$y <- resolve_axis_label(y, object$envir, existing$y)
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 
@@ -80,6 +71,7 @@ pm_relabel <- function(x, ...) UseMethod("pm_relabel")
 
 #' @export
 pm_relabel.gg <- function(x, labs, ...) {
+  assert_that(isTRUE(x$pmp.pmplot))
   x + pm_gg_labs(labs)
 }
 
@@ -89,20 +81,19 @@ pm_relabel.list <- function(x, labs, ...) {
 }
 
 #' @export
-pm_add_labels <- function(data, spec) {
+pm_label_columns <- function(data, spec) {
   assert_that(inherits(data,"data.frame"))
   if(inherits(spec, "yspec")) {
     stopifnot(requireNamespace("yspec"))
     spec <- ys_get_short_unit(spec)
   }
-  col_labels <- spec
-  col_labels <- col_labels[names(col_labels) %in% names(data)]
-  if(!length(col_labels)) {
+  spec <- spec[names(spec) %in% names(data)]
+  if(!length(spec)) {
     warn("No columns were labeled.")
     return(data)
   }
-  for(col in names(col_labels)) {
-    attr(data[[col]], "pmp.axis.label") <- col_labels[[col]]
+  for(col in names(spec)) {
+    attr(data[[col]], "pmp.axis.label") <- spec[[col]]
   }
   data
 }
@@ -117,6 +108,7 @@ pm_rm_labels <- function(data) {
 }
 
 pm_save_xy <- function(p, data, x = NULL, y = NULL) {
+  p$pmp.pmplot <- TRUE
   p$pmp.x <- x
   p$pmp.y <- y
   if(is.character(x)) {
