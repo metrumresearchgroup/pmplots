@@ -115,8 +115,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   }
   if(is.character(title)) p <- p + ggtitle(title)
   p <- p + pm_theme()
-  p$pmp.x <- x
-  p$pmp.y <- y
+  p <- pm_save_xy(p, data, x, y)
   p
 }
 
@@ -166,7 +165,12 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   if(length(x)!=2) stop("invalid y value", call.=FALSE)
   require_numeric(df,y[1])
   require_discrete(df,x[1])
-  boxwork(df,x[1],y[1],xs,ys,...) + pm_labs(x = x[2], y = y[2])
+  p <- boxwork(df,x[1],y[1],xs,ys,...)
+
+  x[2] <- p$pmp.data.x %||% x[2]
+  y[2] <- p$pmp.data.y %||% y[2]
+
+  p + pm_labs(x = x[2], y = y[2])
 }
 
 #' @rdname pm_box

@@ -58,7 +58,12 @@ res_pred <- function(df,
 
   out <- scatt(df, x, y, xs, ys, ...)
 
-  layer_hs(out,...) + pm_labs(x = xlab, y = ylab)
+  out <- layer_hs(out,...)
+
+  xlab <- out$pmp.data.x %||% xlab
+  ylab <- out$pmp.data.y %||% ylab
+
+  out + pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export

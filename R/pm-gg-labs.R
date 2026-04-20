@@ -87,3 +87,47 @@ pm_relabel.gg <- function(x, labs, ...) {
 pm_relabel.list <- function(x, labs, ...) {
   lapply(x, pm_relabel, labs = labs, ...)
 }
+
+#' @export
+pm_add_labels <- function(data, spec) {
+  assert_that(inherits(data,"data.frame"))
+  if(inherits(spec, "yspec")) {
+    stopifnot(requireNamespace("yspec"))
+    spec <- ys_get_short_unit(spec)
+  }
+  col_labels <- spec
+  col_labels <- col_labels[names(col_labels) %in% names(data)]
+  if(!length(col_labels)) {
+    warn("No columns were labeled.")
+    return(data)
+  }
+  for(col in names(col_labels)) {
+    attr(data[[col]], "pmp.axis.label") <- col_labels[[col]]
+  }
+  data
+}
+
+#' @export
+pm_rm_labels <- function(data) {
+  data[] <- lapply(data, function(col) {
+    attr(col, "pmp.axis.label") <- NULL
+    col
+  })
+  data
+}
+
+pm_save_xy <- function(p, data, x = NULL, y = NULL) {
+  p$pmp.x <- x
+  p$pmp.y <- y
+  if(is.character(x)) {
+    p$pmp.data.x <- attr(data[[x]], "pmp.axis.label")
+  } else {
+    p$pmp.data.x <- NULL
+  }
+  if(is.character(y)) {
+    p$pmp.data.y <- attr(data[[y]], "pmp.axis.label")
+  } else {
+    p$pmp.data.y <- NULL
+  }
+  p
+}
