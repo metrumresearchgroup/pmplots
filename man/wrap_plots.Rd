@@ -43,13 +43,7 @@ wrap_hist(
   ...
 )
 
-wrap_dv_preds(
-  df,
-  ...,
-  title = "Predicted {yname}",
-  xname = "",
-  scales = "fixed"
-)
+wrap_dv_preds(df, ..., title = NULL, xname = "", scales = "fixed")
 
 wrap_cont_cat(
   df,

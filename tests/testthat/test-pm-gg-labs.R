@@ -246,7 +246,7 @@ test_that("pm_relabel_wrap applies spec labels to facet strips", {
   p2 <- pm_relabel_wrap(p, wrap_spec)
   lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
   mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
-  expect_equal(mapped$variable, c("Weight (kg)", "Albumin (mg/dL)"))
+  expect_equal(unlist(mapped$variable), c("Weight (kg)", "Albumin (mg/dL)"))
 })
 
 test_that("pm_relabel_wrap leaves unlabeled variables unchanged", {
@@ -255,7 +255,7 @@ test_that("pm_relabel_wrap leaves unlabeled variables unchanged", {
   p2 <- pm_relabel_wrap(p, list(WT = "Weight (kg)"))
   lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
   mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
-  expect_equal(mapped$variable, c("Weight (kg)", "ALB"))
+  expect_equal(unlist(mapped$variable), c("Weight (kg)", "ALB"))
 })
 
 test_that("pm_relabel_wrap labs overrides spec", {
@@ -264,7 +264,7 @@ test_that("pm_relabel_wrap labs overrides spec", {
   p2 <- pm_relabel_wrap(p, wrap_spec, labs = list(WT = "Body weight (kg)"))
   lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
   mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
-  expect_equal(mapped$variable[1], "Body weight (kg)")
+  expect_equal(unlist(mapped$variable)[1], "Body weight (kg)")
 })
 
 test_that("pm_relabel_wrap preserves scales from original plot", {

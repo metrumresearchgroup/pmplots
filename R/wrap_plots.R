@@ -186,7 +186,7 @@ wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
 
 #' @rdname wrap_plots
 #' @export
-wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales="fixed") {
+wrap_dv_preds <- function(df, ..., title = NULL, xname = "", scales = "fixed") {
   x <- c(pm_axis_pred(), pm_axis_ipred())
   for(i in seq_along(x)) x[i] <- glue(x[i])
   wrap_cont_cont(

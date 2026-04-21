@@ -190,16 +190,21 @@ pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
   )
 
   free <- p$facet$params$free
-  scales <- case_when(
-    free$x  & free$y  ~ "free",
-    free$x  & !free$y ~ "free_x",
-    !free$x & free$y  ~ "free_y",
-    .default = "fixed"
-  )
+  scales <- if(free$x && free$y) {
+    "free"
+  } else if(free$x) {
+    "free_x"
+  } else if(free$y) {
+    "free_y"
+  } else {
+    "fixed"
+  }
+
+  labeller <- function(df) label_tex(lapply(df, function(v) unname(label_map[as.character(v)])))
 
   p + facet_wrap(
     ~variable,
-    labeller = as_labeller(label_map),
+    labeller = labeller,
     scales   = scales,
     ncol     = p$facet$params$ncol
   )
