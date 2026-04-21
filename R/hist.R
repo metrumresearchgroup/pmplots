@@ -46,7 +46,7 @@ cont_hist <- function(df, x, xs = defx(),
     p <- p + add_density(...)
   }
 
-  p <- pm_save_xy(p, df, xlab, y = NULL)
+  p <- pm_save_xy(p, df, x = xlab, y = NULL)
 
   xlab <- pm_get_data_x(p) %||% xlab
 

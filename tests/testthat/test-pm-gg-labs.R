@@ -198,3 +198,40 @@ test_that("pm_get_data_x and pm_get_data_y error on a non-pmplot", {
   expect_error(pmplots:::pm_get_data_x(p), regexp = "pmplot")
   expect_error(pmplots:::pm_get_data_y(p), regexp = "pmplot")
 })
+
+# Labeling via pm_label_columns flows into npde_hist, npde_q, npde_covariate --
+
+npde_spec <- list(NPDE = "Normalized prediction distribution error", WT = "Weight (kg)")
+
+test_that("npde_hist: data labels flow into pmp.data.axis.x", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, npde_spec)
+  p <- npde_hist(labeled)
+  expect_equal(pmplots:::pm_get_data_x(p), npde_spec[["NPDE"]])
+})
+
+test_that("npde_q: data labels flow into pmp.data.axis.x", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, npde_spec)
+  p <- npde_q(labeled)
+  expect_equal(pmplots:::pm_get_data_x(p), npde_spec[["NPDE"]])
+})
+
+test_that("npde_covariate_list: data labels flow into pmp.data.axis.y", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, npde_spec)
+  plots <- npde_covariate_list(labeled, x = "WT//Weight (kg)")
+  expect_equal(pmplots:::pm_get_data_y(plots[[1]]), npde_spec[["NPDE"]])
+})
+
+test_that("pm_gg_labs overrides x label in npde_q", {
+  data <- pmplots_data_obs()
+  p <- npde_q(data) + pm_gg_labs(npde_spec)
+  expect_equal(p$labels$x, npde_spec[["NPDE"]])
+})
+
+test_that("pm_gg_labs overrides x label in npde_hist", {
+  data <- pmplots_data_obs()
+  p <- npde_hist(data) + pm_gg_labs(npde_spec)
+  expect_equal(p$labels$x, npde_spec[["NPDE"]])
+})

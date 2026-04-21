@@ -15,6 +15,7 @@ gg_get_labs_2 <- function(p) {
 }
 
 resolve_axis_label <- function(label, envir, default) {
+  if(is.null(label)) return(default)
   if(inherits(label, "AsIs")) return(as.character(label))
   res <- envir[[label]] %||% default
   if(is.null(res)) return(label)
