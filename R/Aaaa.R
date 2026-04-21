@@ -26,7 +26,7 @@
 #' @importFrom forcats fct_inorder
 #' @importFrom utils str modifyList
 #' @importFrom lifecycle deprecate_warn is_present deprecated
-#' @importFrom stats setNames
+#' @importFrom stats setNames reformulate
 #'
 #' @include Aaaa.R
 NULL

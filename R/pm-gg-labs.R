@@ -162,6 +162,9 @@ pm_relabel.list <- function(x, spec, labs = list(), ...) {
 #' @seealso [pm_relabel()], [pm_gg_labs()]
 #' @export
 pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
+  if(!isTRUE(p$pmp.pmplots.wrap)) {
+    abort("pm_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont()).")
+  }
   envir <- list()
   if(inherits(spec, "yspec")) {
     if(!requireNamespace("yspec")) {
@@ -179,34 +182,20 @@ pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
   }
   envir <- envir[!duplicated(names(envir))]
 
-  if(!isTRUE(p$pmp.pmplots.wrap)) {
-    abort("pm_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont()).")
-  }
-  var_names <- levels(p$data[["variable"]])
+  var_names <- p$pmp.pmplots.wrap.varnames
 
   label_map <- setNames(
     vapply(var_names, function(v) envir[[v]] %||% v, character(1)),
     var_names
   )
 
-  free <- p$facet$params$free
-  scales <- if(free$x && free$y) {
-    "free"
-  } else if(free$x) {
-    "free_x"
-  } else if(free$y) {
-    "free_y"
-  } else {
-    "fixed"
-  }
-
-  labeller <- function(df) label_tex(lapply(df, function(v) unname(label_map[as.character(v)])))
+  labelfun <- function(v) lapply(v, function(x) parse_label(label_map[[x]]))
 
   p + facet_wrap(
-    ~variable,
-    labeller = labeller,
-    scales   = scales,
-    ncol     = p$facet$params$ncol
+    reformulate(p$pmp.pmplots.wrap.facets),
+    labeller = as_labeller(labelfun),
+    scales   = p$pmp.pmplots.wrap.scales,
+    ncol     = p$pmp.pmplots.wrap.ncol
   )
 }
 

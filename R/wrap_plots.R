@@ -1,4 +1,13 @@
 
+save_wrap_plot_data <- function(p, ncol, scales, facets, varnames) {
+  p$pmp.pmplots.wrap <- TRUE
+  p$pmp.pmplots.wrap.ncol <- ncol
+  p$pmp.pmplots.wrap.scales <- scales
+  p$pmp.pmplots.wrap.facets <- facets
+  p$pmp.pmplots.wrap.varnames <- varnames
+  p
+}
+
 #' Faceted plots
 #'
 #' For these plots, data sets made long with respect to several
@@ -121,10 +130,11 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
     }
   }
 
-  p <- fun(df, x = x, y = y, ...) +
-    facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
-  p$pmp.pmplots.wrap <- TRUE
-  p
+  p <- fun(df, x = x, y = y, ...) 
+
+  p <- p + facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+
+  save_wrap_plot_data(p, ncol = ncol, scales = scales, facets = "variable", varnames = levels(df[["variable"]]))
 }
 
 #' @rdname wrap_plots
@@ -178,10 +188,11 @@ wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
   } else {
     x <- paste0("value//", title)
   }
-  p <- cont_hist(df, x = x, ...) +
-    facet_wrap(~variable, scales = scales, ncol=ncol, labeller = labeller)
-  p$pmp.pmplots.wrap <- TRUE
-  p
+  p <- cont_hist(df, x = x, ...)
+  
+  p <- p + facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+
+  save_wrap_plot_data(p, ncol = ncol, scales = scales, facets = "variable", varnames = levels(df[["variable"]]))
 }
 
 #' @rdname wrap_plots
@@ -247,8 +258,9 @@ wrap_cont_cat <- function(df, x, y, ...,
     y <- "value"
   }
 
-  p <- pm_box(df, x = x, y = y, ..., shown = FALSE) +
-    facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
-  p$pmp.pmplots.wrap <- TRUE
-  p
+  p <- pm_box(df, x = x, y = y, ..., shown = FALSE)
+  
+  p <- p + facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+  
+  save_wrap_plot_data(p, ncol = ncol, scales = scales, facets = "variable", varnames = levels(df[["variable"]]))
 }
