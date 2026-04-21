@@ -42,7 +42,7 @@ resolve_axis_label <- function(label, envir, default) {
 #' object.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
-#' @return A `pm_gg_labs` object that can be added to a pmplots gg object
+#' @return A `pmp_gg_labs` object that can be added to a pmplots gg object
 #' with `+`.
 #'
 #' @examples
@@ -51,13 +51,13 @@ resolve_axis_label <- function(label, envir, default) {
 #' spec <- list(PRED = "Population predicted CX1123 (ng/mL)",
 #'              DV = "Observed CX1123 (ng/mL)")
 #'
-#' p <- dv_pred(data) + pm_gg_labs(spec)
+#' p <- dv_pred(data) + pmp_gg_labs(spec)
 #'
 #' p
 #'
 #' @md
 #' @export
-pm_gg_labs <- function(spec = list(), labs = list(),
+pmp_gg_labs <- function(spec = list(), labs = list(),
                        x = NULL, y = NULL,
                        short_max = Inf,
                        ...) {
@@ -84,13 +84,13 @@ pm_gg_labs <- function(spec = list(), labs = list(),
       y = y,
       extra = list(...)
     ),
-    class = "pm_gg_labs"
+    class = "pmp_gg_labs"
   )
 }
 
 #' @exportS3Method ggplot2::ggplot_add
-ggplot_add.pm_gg_labs <- function(object, p, object_name) {
-  assert_that(isTRUE(p$pmp.pmplot), msg = "pm_gg_labs() can only be used with plots created by pmplots.")
+ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
+  assert_that(isTRUE(p$pmp.pmplot), msg = "pmp_gg_labs() can only be used with plots created by pmplots.")
   existing <- gg_get_labs_2(p)
   args <- list()
   args$x <- resolve_axis_label(object$x %||% p$pmp.x, object$envir, existing$x)
@@ -105,9 +105,9 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 #' is only for pmplot outputs; consider [yspec::ys_gg_labs()] for labeling
 #' aesthetics in an arbitrary `gg` object.
 #'
-#' @inheritParams pm_gg_labs
+#' @inheritParams pmp_gg_labs
 #' @param x a gg object created through a `pmplots` function.
-#' @param ... additional arguments passed to [pm_gg_labs()].
+#' @param ... additional arguments passed to [pmp_gg_labs()].
 #'
 #' @examples
 #' data <- pmplots_data_obs()
@@ -117,24 +117,24 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 #'
 #' spec <- list(DV = "CX1123 concentration (ng/mL)")
 #'
-#' p <- pm_relabel(p, spec)
+#' p <- pmp_relabel(p, spec)
 #' p
 #'
-#' @seealso [pm_gg_labs()], [pm_relabel_wrap()]
+#' @seealso [pmp_gg_labs()], [pmp_relabel_wrap()]
 #' @export
-pm_relabel <- function(x, ...) UseMethod("pm_relabel")
+pmp_relabel <- function(x, ...) UseMethod("pmp_relabel")
 
-#' @rdname pm_relabel
+#' @rdname pmp_relabel
 #' @export
-pm_relabel.gg <- function(x, spec, labs = list(), ...) {
-  assert_that(isTRUE(x$pmp.pmplot), msg = "pm_relabel() can only be used with plots created by pmplots.")
-  x + pm_gg_labs(spec, labs, ...)
+pmp_relabel.gg <- function(x, spec, labs = list(), ...) {
+  assert_that(isTRUE(x$pmp.pmplot), msg = "pmp_relabel() can only be used with plots created by pmplots.")
+  x + pmp_gg_labs(spec, labs, ...)
 }
 
-#' @rdname pm_relabel
+#' @rdname pmp_relabel
 #' @export
-pm_relabel.list <- function(x, spec, labs = list(), ...) {
-  lapply(x, pm_relabel, spec = spec, labs = labs, ...)
+pmp_relabel.list <- function(x, spec, labs = list(), ...) {
+  lapply(x, pmp_relabel, spec = spec, labs = labs, ...)
 }
 
 #' Relabel facet strips in a wrapped pmplot
@@ -145,7 +145,7 @@ pm_relabel.list <- function(x, spec, labs = list(), ...) {
 #' names are discovered automatically from the plot data. Names absent from
 #' `spec` and `labs` are left unchanged.
 #'
-#' @inheritParams pm_gg_labs
+#' @inheritParams pmp_gg_labs
 #' @param p a ggplot object created by a `wrap_*` pmplots function.
 #'
 #' @return The plot `p` with updated facet strip labels.
@@ -157,13 +157,13 @@ pm_relabel.list <- function(x, spec, labs = list(), ...) {
 #'
 #' p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
 #'
-#' pm_relabel_wrap(p, spec)
+#' pmp_relabel_wrap(p, spec)
 #'
-#' @seealso [pm_relabel()], [pm_gg_labs()]
+#' @seealso [pmp_relabel()], [pmp_gg_labs()]
 #' @export
-pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
+pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
   if(!isTRUE(p$pmp.pmplots.wrap)) {
-    abort("pm_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont()).")
+    abort("pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont()).")
   }
   envir <- list()
   if(inherits(spec, "yspec")) {
@@ -210,7 +210,7 @@ pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
 #' `df`, a warning is issued and `df` is returned unchanged.
 #'
 #' @seealso [pm_label_rm()]
-#' @inheritParams pm_gg_labs
+#' @inheritParams pmp_gg_labs
 #' @param df a data frame to label.
 #' @export
 pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {

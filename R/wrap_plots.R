@@ -60,7 +60,7 @@ save_wrap_plot_data <- function(p, ncol, scales, facets, varnames) {
 #' For all plots, either `x` or `y` may contain multiple columns, but an error
 #' will be generated if both `x` and `y` list multiple columns.
 #'
-#' Facet strip labels can be updated after the fact using [pm_relabel_wrap()],
+#' Facet strip labels can be updated after the fact using [pmp_relabel_wrap()],
 #' which looks up column names in a named list or `yspec` object.
 #'
 #' @md

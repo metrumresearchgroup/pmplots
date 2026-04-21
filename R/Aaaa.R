@@ -97,7 +97,7 @@ globalVariables(c("ID", "n", "IPRED"))
 #' - Arrangement
 #'   - [pm_grid]
 #' - Labeling
-#'   - [pm_gg_labs()], [pm_relabel()]
+#'   - [pmp_gg_labs()], [pmp_relabel()]
 #'   - [pm_label_columns()], [pm_label_rm()]
 #' - Example data sets
 #'   - [pmplots_data()], [pmplots_data_obs()], [pmplots_data_id()]

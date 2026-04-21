@@ -58,28 +58,28 @@ test_that("pm_label_rm is a no-op on a data frame with no labels", {
   expect_equal(out, data)
 })
 
-# validate_label_list (exercised via pm_gg_labs and pm_label_columns) ----------
+# validate_label_list (exercised via pmp_gg_labs and pm_label_columns) ----------
 
-test_that("pm_gg_labs errors when spec is not a list", {
+test_that("pmp_gg_labs errors when spec is not a list", {
   data <- pmplots_data_obs()
-  expect_error(dv_pred(data) + pm_gg_labs(spec = c(DV = "Concentration (ng/mL)")), regexp = "spec")
+  expect_error(dv_pred(data) + pmp_gg_labs(spec = c(DV = "Concentration (ng/mL)")), regexp = "spec")
 })
 
-test_that("pm_gg_labs errors when spec is an unnamed list", {
+test_that("pmp_gg_labs errors when spec is an unnamed list", {
   data <- pmplots_data_obs()
-  expect_error(dv_pred(data) + pm_gg_labs(spec = list("Concentration (ng/mL)")), regexp = "spec")
+  expect_error(dv_pred(data) + pmp_gg_labs(spec = list("Concentration (ng/mL)")), regexp = "spec")
 })
 
-test_that("pm_gg_labs errors when a spec value is not a length-1 character", {
+test_that("pmp_gg_labs errors when a spec value is not a length-1 character", {
   data <- pmplots_data_obs()
-  expect_error(dv_pred(data) + pm_gg_labs(spec = list(DV = c("a", "b"))), regexp = "spec")
-  expect_error(dv_pred(data) + pm_gg_labs(spec = list(DV = 1L)), regexp = "spec")
+  expect_error(dv_pred(data) + pmp_gg_labs(spec = list(DV = c("a", "b"))), regexp = "spec")
+  expect_error(dv_pred(data) + pmp_gg_labs(spec = list(DV = 1L)), regexp = "spec")
 })
 
-test_that("pm_gg_labs errors when labs fails validation", {
+test_that("pmp_gg_labs errors when labs fails validation", {
   data <- pmplots_data_obs()
   expect_error(
-    dv_pred(data) + pm_gg_labs(spec = dv_pred_spec, labs = list(DV = c("a", "b"))),
+    dv_pred(data) + pmp_gg_labs(spec = dv_pred_spec, labs = list(DV = c("a", "b"))),
     regexp = "labs"
   )
 })
@@ -89,76 +89,76 @@ test_that("pm_label_columns errors when spec values are not length-1 characters"
   expect_error(pm_label_columns(data, spec = list(DV = c("a", "b"))), regexp = "spec")
 })
 
-# pm_gg_labs -------------------------------------------------------------------
+# pmp_gg_labs -------------------------------------------------------------------
 
-test_that("pm_gg_labs sets x and y axis labels from spec", {
+test_that("pmp_gg_labs sets x and y axis labels from spec", {
   data <- pmplots_data_obs()
-  p <- dv_pred(data) + pm_gg_labs(dv_pred_spec)
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec)
   expect_equal(p$labels$x, "Population prediction (ng/mL)")
   expect_equal(p$labels$y, "Concentration (ng/mL)")
 })
 
-test_that("pm_gg_labs leaves labels unchanged for columns not in spec", {
+test_that("pmp_gg_labs leaves labels unchanged for columns not in spec", {
   data <- pmplots_data_obs()
   p_base <- dv_pred(data)
-  p_labeled <- p_base + pm_gg_labs(list(DV = "Concentration (ng/mL)"))
+  p_labeled <- p_base + pmp_gg_labs(list(DV = "Concentration (ng/mL)"))
   # y (DV) should update; x (PRED) should stay as the default
   expect_equal(p_labeled$labels$y, "Concentration (ng/mL)")
   expect_equal(p_labeled$labels$x, p_base$labels$x)
 })
 
-test_that("pm_gg_labs labs overrides spec for the same column", {
+test_that("pmp_gg_labs labs overrides spec for the same column", {
   data <- pmplots_data_obs()
   labs_override <- list(DV = "Observed Drug X (ng/mL)")
-  p <- dv_pred(data) + pm_gg_labs(spec = dv_pred_spec, labs = labs_override)
+  p <- dv_pred(data) + pmp_gg_labs(spec = dv_pred_spec, labs = labs_override)
   expect_equal(p$labels$y, "Observed Drug X (ng/mL)")
   # PRED was only in spec, not labs — should resolve normally
   expect_equal(p$labels$x, dv_pred_spec[["PRED"]])
 })
 
-test_that("pm_gg_labs errors on a standard ggplot (not a pmplots output)", {
+test_that("pmp_gg_labs errors on a standard ggplot (not a pmplots output)", {
   data <- pmplots_data_obs()
   p <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
-  expect_error(p + pm_gg_labs(dv_pred_spec), regexp = "pmplots")
+  expect_error(p + pmp_gg_labs(dv_pred_spec), regexp = "pmplots")
 })
 
-test_that("pm_gg_labs passes extra arguments through to ggplot2::labs", {
+test_that("pmp_gg_labs passes extra arguments through to ggplot2::labs", {
   data <- pmplots_data_obs()
-  p <- dv_pred(data) + pm_gg_labs(dv_pred_spec, title = "DV vs PRED")
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, title = "DV vs PRED")
   expect_equal(p$labels$title, "DV vs PRED")
 })
 
-test_that("pm_gg_labs x argument overrides the mapped column for label lookup", {
+test_that("pmp_gg_labs x argument overrides the mapped column for label lookup", {
   data <- pmplots_data_obs()
   # npde_time maps x to TIME, but we look up spec$TAFD for the x label
-  p <- npde_time(data) + pm_gg_labs(spec, x = "TAFD")
+  p <- npde_time(data) + pmp_gg_labs(spec, x = "TAFD")
   expect_equal(p$labels$x, spec[["TAFD"]])
 })
 
-test_that("pm_gg_labs x = I() uses the string literally without a spec lookup", {
+test_that("pmp_gg_labs x = I() uses the string literally without a spec lookup", {
   data <- pmplots_data_obs()
-  p <- npde_time(data) + pm_gg_labs(spec, x = I("Literal title"))
+  p <- npde_time(data) + pmp_gg_labs(spec, x = I("Literal title"))
   expect_equal(p$labels$x, "Literal title")
 })
 
-# pm_relabel -------------------------------------------------------------------
+# pmp_relabel -------------------------------------------------------------------
 
-test_that("pm_relabel relabels a single pmplot", {
+test_that("pmp_relabel relabels a single pmplot", {
   data <- pmplots_data_obs()
-  p <- pm_relabel(dv_pred(data), dv_pred_spec)
+  p <- pmp_relabel(dv_pred(data), dv_pred_spec)
   expect_equal(p$labels$x, dv_pred_spec[["PRED"]])
   expect_equal(p$labels$y, dv_pred_spec[["DV"]])
 })
 
-test_that("pm_relabel errors on a non-pmplot gg object", {
+test_that("pmp_relabel errors on a non-pmplot gg object", {
   data <- pmplots_data_obs()
   p <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
-  expect_error(pm_relabel(p, dv_pred_spec))
+  expect_error(pmp_relabel(p, dv_pred_spec))
 })
 
-test_that("pm_relabel applies spec to every plot in a list", {
+test_that("pmp_relabel applies spec to every plot in a list", {
   data <- pmplots_data_obs()
-  plots <- pm_relabel(dv_preds(data), dv_pred_spec)
+  plots <- pmp_relabel(dv_preds(data), dv_pred_spec)
   expect_true(is.list(plots))
   expect_length(plots, 2)
   for(p in plots) {
@@ -224,59 +224,59 @@ test_that("npde_covariate_list: data labels flow into pmp.data.axis.y", {
   expect_equal(pmplots:::pm_get_data_y(plots[[1]]), npde_spec[["NPDE"]])
 })
 
-test_that("pm_gg_labs overrides x label in npde_q", {
+test_that("pmp_gg_labs overrides x label in npde_q", {
   data <- pmplots_data_obs()
-  p <- npde_q(data) + pm_gg_labs(npde_spec)
+  p <- npde_q(data) + pmp_gg_labs(npde_spec)
   expect_equal(p$labels$x, npde_spec[["NPDE"]])
 })
 
-test_that("pm_gg_labs overrides x label in npde_hist", {
+test_that("pmp_gg_labs overrides x label in npde_hist", {
   data <- pmplots_data_obs()
-  p <- npde_hist(data) + pm_gg_labs(npde_spec)
+  p <- npde_hist(data) + pmp_gg_labs(npde_spec)
   expect_equal(p$labels$x, npde_spec[["NPDE"]])
 })
 
-# pm_relabel_wrap --------------------------------------------------------------
+# pmp_relabel_wrap --------------------------------------------------------------
 
 wrap_spec <- list(WT = "Weight (kg)", ALB = "Albumin (mg/dL)")
 
-test_that("pm_relabel_wrap applies spec labels to facet strips", {
+test_that("pmp_relabel_wrap applies spec labels to facet strips", {
   data <- pmplots_data_obs()
   p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
-  p2 <- pm_relabel_wrap(p, wrap_spec)
+  p2 <- pmp_relabel_wrap(p, wrap_spec)
   lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
   mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
   expect_equal(unlist(mapped$variable), c("Weight (kg)", "Albumin (mg/dL)"))
 })
 
-test_that("pm_relabel_wrap leaves unlabeled variables unchanged", {
+test_that("pmp_relabel_wrap leaves unlabeled variables unchanged", {
   data <- pmplots_data_obs()
   p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
-  p2 <- pm_relabel_wrap(p, list(WT = "Weight (kg)"))
+  p2 <- pmp_relabel_wrap(p, list(WT = "Weight (kg)"))
   lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
   mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
   expect_equal(unlist(mapped$variable), c("Weight (kg)", "ALB"))
 })
 
-test_that("pm_relabel_wrap labs overrides spec", {
+test_that("pmp_relabel_wrap labs overrides spec", {
   data <- pmplots_data_obs()
   p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
-  p2 <- pm_relabel_wrap(p, wrap_spec, labs = list(WT = "Body weight (kg)"))
+  p2 <- pmp_relabel_wrap(p, wrap_spec, labs = list(WT = "Body weight (kg)"))
   lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
   mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
   expect_equal(unlist(mapped$variable)[1], "Body weight (kg)")
 })
 
-test_that("pm_relabel_wrap preserves scales from original plot", {
+test_that("pmp_relabel_wrap preserves scales from original plot", {
   data <- pmplots_data_obs()
   p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
-  p2 <- pm_relabel_wrap(p, wrap_spec)
+  p2 <- pmp_relabel_wrap(p, wrap_spec)
   expect_true(p2$facet$params$free$x)
   expect_false(p2$facet$params$free$y)
 })
 
-test_that("pm_relabel_wrap errors when plot has no variable column", {
+test_that("pmp_relabel_wrap errors when plot has no variable column", {
   data <- pmplots_data_obs()
   p <- dv_pred(data)
-  expect_error(pm_relabel_wrap(p, wrap_spec), regexp = "wrapped pmplots")
+  expect_error(pmp_relabel_wrap(p, wrap_spec), regexp = "wrapped pmplots")
 })
