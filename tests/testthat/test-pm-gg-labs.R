@@ -107,15 +107,6 @@ test_that("pm_gg_labs leaves labels unchanged for columns not in spec", {
   expect_equal(p_labeled$labels$x, p_base$labels$x)
 })
 
-test_that("pm_gg_labs labs argument overrides spec for the same column", {
-  data <- pmplots_data_obs()
-  p <- dv_pred(data) + pm_gg_labs(
-    spec = dv_pred_spec,
-    labs = list(DV = "Observed Drug X (ng/mL)")
-  )
-  expect_equal(p$labels$y, "Observed Drug X (ng/mL)")
-})
-
 test_that("pm_gg_labs labs overrides spec for the same column", {
   data <- pmplots_data_obs()
   labs_override <- list(DV = "Observed Drug X (ng/mL)")
@@ -173,4 +164,37 @@ test_that("pm_relabel applies spec to every plot in a list", {
   for(p in plots) {
     expect_equal(p$labels$y, dv_pred_spec[["DV"]])
   }
+})
+
+# pm_save_xy / pm_get_data_x / pm_get_data_y ----------------------------------
+
+test_that("pm_label_columns labels flow into pmp.data.axis.x and pmp.data.axis.y", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, dv_pred_spec)
+  p <- dv_pred(labeled)
+  expect_equal(pmplots:::pm_get_data_x(p), dv_pred_spec[["PRED"]])
+  expect_equal(pmplots:::pm_get_data_y(p), dv_pred_spec[["DV"]])
+})
+
+test_that("pmp.data.axis labels are NULL when data has no pmp.axis.label attributes", {
+  data <- pmplots_data_obs()
+  p <- dv_pred(data)
+  expect_null(pmplots:::pm_get_data_x(p))
+  expect_null(pmplots:::pm_get_data_y(p))
+})
+
+test_that("pm_label_rm clears labels so they no longer flow into the plot", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, dv_pred_spec)
+  cleaned <- pm_label_rm(labeled)
+  p <- dv_pred(cleaned)
+  expect_null(pmplots:::pm_get_data_x(p))
+  expect_null(pmplots:::pm_get_data_y(p))
+})
+
+test_that("pm_get_data_x and pm_get_data_y error on a non-pmplot", {
+  data <- pmplots_data_obs()
+  p <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
+  expect_error(pmplots:::pm_get_data_x(p), regexp = "pmplot")
+  expect_error(pmplots:::pm_get_data_y(p), regexp = "pmplot")
 })
