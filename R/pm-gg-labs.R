@@ -22,7 +22,11 @@
 #' 
 #' @examples
 #' library(ggplot2)
-#'   
+#' 
+#' if(requireNamespace("yspec")) {
+#' 
+#' library(yspec)  
+#' 
 #' spec <- ys_help$spec()
 #' 
 #' spec <- update_short(spec, TIME = "Time")
@@ -32,6 +36,7 @@
 #' p <- ggplot(data, aes(TIME, DV)) + geom_point()
 #'   
 #' p + pm_gg_labs(spec)
+#' }
 #' 
 #' @md
 #' @export
@@ -142,9 +147,10 @@ resolve_aes_label <- function(aes, all_mappings, object) {
 #' spec <- list(DV = "CX1123 concentration (ng/mL)", PRED = "Population prediction (ng/mL)")
 #'
 #' p <- dv_pred(data)
+#' 
 #' pm_relabel(p, spec)
 #'
-#' @seealso [pm_gg_labs()]
+#' @seealso [pm_gg_labs()], [pmp_gg_labs()]
 #' @export
 pm_relabel <- function(x, ...) UseMethod("pm_relabel")
 

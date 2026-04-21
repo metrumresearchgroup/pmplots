@@ -34,9 +34,10 @@ data <- pmplots_data_obs()
 spec <- list(DV = "CX1123 concentration (ng/mL)", PRED = "Population prediction (ng/mL)")
 
 p <- dv_pred(data)
+
 pm_relabel(p, spec)
 
 }
 \seealso{
-\code{\link[=pm_gg_labs]{pm_gg_labs()}}
+\code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}
 }

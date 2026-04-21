@@ -58,7 +58,11 @@ Label ggplot aesthetics from a yspec object or other source
 }
 \examples{
 library(ggplot2)
-  
+
+if(requireNamespace("yspec")) {
+
+library(yspec)  
+
 spec <- ys_help$spec()
 
 spec <- update_short(spec, TIME = "Time")
@@ -68,5 +72,6 @@ data <- ys_help$data()
 p <- ggplot(data, aes(TIME, DV)) + geom_point()
   
 p + pm_gg_labs(spec)
+}
 
 }
