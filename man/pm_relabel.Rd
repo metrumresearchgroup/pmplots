@@ -43,5 +43,5 @@ p
 
 }
 \seealso{
-\code{\link[=pm_gg_labs]{pm_gg_labs()}}
+\code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pm_relabel_wrap]{pm_relabel_wrap()}}
 }

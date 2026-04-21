@@ -51,6 +51,9 @@
 #' For all plots, either `x` or `y` may contain multiple columns, but an error
 #' will be generated if both `x` and `y` list multiple columns.
 #'
+#' Facet strip labels can be updated after the fact using [pm_relabel_wrap()],
+#' which looks up column names in a named list or `yspec` object.
+#'
 #' @md
 #' @rdname wrap_plots
 #' @name wrap_plots

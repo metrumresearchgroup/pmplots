@@ -120,7 +120,7 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 #' p <- pm_relabel(p, spec)
 #' p
 #'
-#' @seealso [pm_gg_labs()]
+#' @seealso [pm_gg_labs()], [pm_relabel_wrap()]
 #' @export
 pm_relabel <- function(x, ...) UseMethod("pm_relabel")
 
@@ -190,7 +190,12 @@ pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
   )
 
   free <- p$facet$params$free
-  scales <- if(!free$x && !free$y) "fixed" else if(free$x && free$y) "free" else if(free$x) "free_x" else "free_y"
+  scales <- case_when(
+    free$x  & free$y  ~ "free",
+    free$x  & !free$y ~ "free_x",
+    !free$x & free$y  ~ "free_y",
+    .default = "fixed"
+  )
 
   p + facet_wrap(
     ~variable,
