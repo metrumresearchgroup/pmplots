@@ -10,21 +10,37 @@ resolve_axis_label <- function(label, envir, default) {
   return(res)
 }
 
-#' Automatically label ggplot aesthetics from a yspec object or other source
+#' Label pmplot aesthetics from a yspec object or named list
+#'
+#' This function generates `x` and `y` axis titles based on the data columns
+#' used to create the plot, looking up in a named list or `yspec` object. This
+#' is only for pmplot outputs; consider [yspec::ys_gg_labs()] for labeling
+#' aesthetics in an arbitrary `gg` object.
 #'
 #' @param spec a named list of label data; names correspond to columns
-#' in the data used to make the plot; may also be a `yspec` object, which 
+#' in the data used to make the plot; may also be a `yspec` object, which
 #' will be converted to a named list through [ys_get_short_unit()].
-#' @param labs another named list of label data to override names found in 
+#' @param labs another named list of label data to override names found in
 #' `spec`.
-#' @param x label for the x aesthetic. If `NULL`, resolved via the mapped
-#' column name. Pass a column name as a plain string to look it up in `spec` 
+#' @param x label for the x aesthetic; if `NULL`, resolved via the mapped
+#' column name. Pass a column name as a plain string to look it up in `spec`
 #' or `labs`; wrap in [I()] to use the string as a literal label.
 #' @param y label for the y aesthetic; see `x`.
-#' @param short_max passed to [ys_get_short_unit()].
+#' @param short_max passed to [ys_get_short_unit()] when `spec` is a `yspec`
+#' object.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A gg object that can be added to a ggplot with `+`.
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#'
+#' spec <- list(PRED = "Population predicted CX1123 (ng/mL)",
+#'              DV = "Observed CX1123 (ng/mL)")
+#'
+#' p <- dv_pred(data) + pm_gg_labs(spec)
+#'
+#' p
 #'
 #' @md
 #' @export
@@ -64,6 +80,7 @@ pm_gg_labs <- function(spec = list(), labs = list(),
 
 #' @exportS3Method ggplot2::ggplot_add
 ggplot_add.pm_gg_labs <- function(object, p, object_name) {
+  assert_that(isTRUE(p$pmp.pmplot), msg = "pm_gg_labs() can only be used with plots created by pmplots.")
   existing <- gg_get_labs_2(p)
   args <- list()
   args$x <- resolve_axis_label(p$pmp.x, object$envir, existing$x)
@@ -71,12 +88,29 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 
-#' Relabel a pmplots plot using a yspec object or named list.
-#' 
+#' Relabel a pmplots plot using a yspec object or named list
+#'
+#' This function relabels `x` and `y` axis titles based on the data columns
+#' used to create the plot, looking up in a named list or `yspec` object. This
+#' is only for pmplot outputs; consider [yspec::ys_gg_labs()] for labeling
+#' aesthetics in an arbitrary `gg` object.
+#'
 #' @inheritParams pm_gg_labs
 #' @param x a gg object created through a `pmplots` function.
 #' @param ... additional arguments passed to [pm_gg_labs()].
-#' 
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#'
+#' p <- dv_pred(data)
+#' p
+#'
+#' spec <- list(DV = "CX1123 concentration (ng/mL)")
+#'
+#' p <- pm_relabel(p, spec)
+#' p
+#'
+#' @seealso [pm_gg_labs()]
 #' @export
 pm_relabel <- function(x, ...) UseMethod("pm_relabel")
 
@@ -93,13 +127,18 @@ pm_relabel.list <- function(x, spec, labs = list(), ...) {
   lapply(x, pm_relabel, labs = labs, ...)
 }
 
-#' Add axis label data to a data frame 
-#' 
-#' @inheritParams pm_gg_labs 
-#' @param df a data frame.
+#' Add axis label data to a data frame
+#'
+#' This function adds candidate axis titles as an attribute on columns in
+#' `data`. This attribute is intended to be specifically use for pmplot axis
+#' labels, not to be confused with  the label added by [yspec::ys_add_labels()].
+#'
+#' @seealso [pm_label_rm()]
+#' @inheritParams pm_gg_labs
+#' @param df a data frame to label.
 #' @export
 pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {
-  assert_that(inherits(data,"data.frame"))
+  assert_that(inherits(df,"data.frame"))
   envir <- list()
   if(inherits(spec, "yspec")) {
     if(!requireNamespace("yspec")) {
@@ -129,13 +168,18 @@ pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {
   df
 }
 
+#' Remove pmplot-specific axis label information
+#'
+#' @param df a data frame to de-label.
+#'
+#' @seealso [pm_label_columns()]
 #' @export
-pm_rm_labels <- function(data) {
-  data[] <- lapply(data, function(col) {
+pm_label_rm <- function(df) {
+  df[] <- lapply(df, function(col) {
     attr(col, "pmp.axis.label") <- NULL
     col
   })
-  data
+  df
 }
 
 pm_save_xy <- function(p, data, x = NULL, y = NULL) {

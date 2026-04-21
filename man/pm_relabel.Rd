@@ -4,7 +4,7 @@
 \alias{pm_relabel}
 \alias{pm_relabel.gg}
 \alias{pm_relabel.list}
-\title{Relabel a pmplots plot using a yspec object or named list.}
+\title{Relabel a pmplots plot using a yspec object or named list}
 \usage{
 pm_relabel(x, ...)
 
@@ -25,5 +25,23 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \code{spec}.}
 }
 \description{
-Relabel a pmplots plot using a yspec object or named list.
+This function relabels \code{x} and \code{y} axis titles based on the data columns
+used to create the plot, looking up in a named list or \code{yspec} object. This
+is only for pmplot outputs; consider \code{\link[yspec:ys_gg_labs]{yspec::ys_gg_labs()}} for labeling
+aesthetics in an arbitrary \code{gg} object.
+}
+\examples{
+data <- pmplots_data_obs()
+
+p <- dv_pred(data)
+p
+
+spec <- list(DV = "CX1123 concentration (ng/mL)")
+
+p <- pm_relabel(p, spec)
+p
+
+}
+\seealso{
+\code{\link[=pm_gg_labs]{pm_gg_labs()}}
 }

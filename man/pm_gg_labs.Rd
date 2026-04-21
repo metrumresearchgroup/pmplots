@@ -2,7 +2,7 @@
 % Please edit documentation in R/pm-gg-labs.R
 \name{pm_gg_labs}
 \alias{pm_gg_labs}
-\title{Automatically label ggplot aesthetics from a yspec object or other source}
+\title{Label pmplot aesthetics from a yspec object or named list}
 \usage{
 pm_gg_labs(
   spec = list(),
@@ -22,13 +22,14 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \item{labs}{another named list of label data to override names found in
 \code{spec}.}
 
-\item{x}{label for the x aesthetic. If \code{NULL}, resolved via the mapped
+\item{x}{label for the x aesthetic; if \code{NULL}, resolved via the mapped
 column name. Pass a column name as a plain string to look it up in \code{spec}
 or \code{labs}; wrap in \code{\link[=I]{I()}} to use the string as a literal label.}
 
 \item{y}{label for the y aesthetic; see \code{x}.}
 
-\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a \code{yspec}
+object.}
 
 \item{...}{additional arguments passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.}
 }
@@ -36,5 +37,19 @@ or \code{labs}; wrap in \code{\link[=I]{I()}} to use the string as a literal lab
 A gg object that can be added to a ggplot with \code{+}.
 }
 \description{
-Automatically label ggplot aesthetics from a yspec object or other source
+This function generates \code{x} and \code{y} axis titles based on the data columns
+used to create the plot, looking up in a named list or \code{yspec} object. This
+is only for pmplot outputs; consider \code{\link[yspec:ys_gg_labs]{yspec::ys_gg_labs()}} for labeling
+aesthetics in an arbitrary \code{gg} object.
+}
+\examples{
+data <- pmplots_data_obs()
+
+spec <- list(PRED = "Population predicted CX1123 (ng/mL)",
+             DV = "Observed CX1123 (ng/mL)")
+
+p <- dv_pred(data) + pm_gg_labs(spec)
+
+p
+
 }

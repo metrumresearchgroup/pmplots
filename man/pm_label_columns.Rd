@@ -7,7 +7,7 @@
 pm_label_columns(df, spec, labs = list(), short_max = Inf)
 }
 \arguments{
-\item{df}{a data frame.}
+\item{df}{a data frame to label.}
 
 \item{spec}{a named list of label data; names correspond to columns
 in the data used to make the plot; may also be a \code{yspec} object, which
@@ -16,8 +16,14 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \item{labs}{another named list of label data to override names found in
 \code{spec}.}
 
-\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a \code{yspec}
+object.}
 }
 \description{
-Add axis label data to a data frame
+This function adds candidate axis titles as an attribute on columns in
+\code{data}. This attribute is intended to be specifically use for pmplot axis
+labels, not to be confused with  the label added by \code{\link[yspec:ys_add_labels]{yspec::ys_add_labels()}}.
+}
+\seealso{
+\code{\link[=pm_label_rm]{pm_label_rm()}}
 }
