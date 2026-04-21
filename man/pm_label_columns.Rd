@@ -19,10 +19,15 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a \code{yspec}
 object.}
 }
+\value{
+The data frame \code{df} with \code{pmp.axis.label} attributes set on the
+labeled columns. If no columns in \code{spec} or \code{labs} match column names in
+\code{df}, a warning is issued and \code{df} is returned unchanged.
+}
 \description{
 This function adds candidate axis titles as an attribute on columns in
-\code{data}. This attribute is intended to be specifically use for pmplot axis
-labels, not to be confused with  the label added by \code{\link[yspec:ys_add_labels]{yspec::ys_add_labels()}}.
+\code{data}. This attribute is intended to be specifically used for pmplot axis
+labels, not to be confused with the label added by \code{\link[yspec:ys_add_labels]{yspec::ys_add_labels()}}.
 }
 \seealso{
 \code{\link[=pm_label_rm]{pm_label_rm()}}

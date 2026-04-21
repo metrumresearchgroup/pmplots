@@ -9,6 +9,9 @@ pm_label_rm(df)
 \arguments{
 \item{df}{a data frame to de-label.}
 }
+\value{
+The data frame \code{df} with all \code{pmp.axis.label} attributes removed.
+}
 \description{
 Remove pmplot-specific axis label information
 }

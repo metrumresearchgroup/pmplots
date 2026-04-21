@@ -260,13 +260,11 @@ col_label <- function(x) {
     y <- split_col_label(x,sp)
     if(length(y)==2) {
       y <- trimws(y)
-      attr(y, "n") <- 2
       return(y)
     }
   }
   if(!grepl("[ ()/$!@]", x)) {
     x <- trimws(c(x, x))
-    attr(x, "n") <- 1
     return(x)
   }
   .stop("invalid 'column // label' specification:\n  ", x)
@@ -283,14 +281,6 @@ col_labels <- function(x) {
 col_label_col <- function(x) {
   x <- lapply(x, col_label)
   vapply(x, "[", 1, FUN.VALUE = "a")
-}
-
-col_label_n <- function(x) {
-  n <- attr(x, "n")
-  if(is.null(n)) {
-    abort("could not determine split n for col-label")
-  }
-  n
 }
 
 #' Parse the label part of a col_label

@@ -1,10 +1,21 @@
+validate_label_list <- function(x, name) {
+  assert_that(is.list(x), msg = paste0("`", name, "` must be a list."))
+  assert_that(is_named(x), msg = paste0("`", name, "` must be a named list."))
+  ok <- vapply(x, function(v) is.character(v) && length(v) == 1L, logical(1))
+  if(any(!ok)) {
+    bad <- paste(names(x)[!ok], collapse = ", ")
+    abort(paste0("Every element of `", name, "` must be a character string of length 1. Problem: ", bad))
+  }
+  invisible(x)
+}
+
 gg_get_labs_2 <- function(p) {
   defaults <- ggplot2::labs()  # named list of NULLs for all standard slots
   modifyList(defaults, p$labels)
 }
 
 resolve_axis_label <- function(label, envir, default) {
-  if(inherits(label, "AsIs")) return(label)
+  if(inherits(label, "AsIs")) return(as.character(label))
   res <- envir[[label]] %||% default
   if(is.null(res)) return(label)
   return(res)
@@ -30,7 +41,8 @@ resolve_axis_label <- function(label, envir, default) {
 #' object.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
-#' @return A gg object that can be added to a ggplot with `+`.
+#' @return A `pm_gg_labs` object that can be added to a pmplots gg object
+#' with `+`.
 #'
 #' @examples
 #' data <- pmplots_data_obs()
@@ -46,7 +58,6 @@ resolve_axis_label <- function(label, envir, default) {
 #' @export
 pm_gg_labs <- function(spec = list(), labs = list(),
                        x = NULL, y = NULL,
-                       warn = TRUE,
                        short_max = Inf,
                        ...) {
   envir <- list()
@@ -57,13 +68,11 @@ pm_gg_labs <- function(spec = list(), labs = list(),
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
   if(length(spec)) {
-    assert_that(is.list(spec))
-    assert_that(is_named(spec))
+    validate_label_list(spec, "spec")
     envir <- spec
   }
   if(length(labs)) {
-    assert_that(is.list(labs))
-    assert_that(is_named(labs))
+    validate_label_list(labs, "labs")
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
@@ -83,8 +92,8 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
   assert_that(isTRUE(p$pmp.pmplot), msg = "pm_gg_labs() can only be used with plots created by pmplots.")
   existing <- gg_get_labs_2(p)
   args <- list()
-  args$x <- resolve_axis_label(p$pmp.x, object$envir, existing$x)
-  args$y <- resolve_axis_label(p$pmp.y, object$envir, existing$y)
+  args$x <- resolve_axis_label(object$x %||% p$pmp.x, object$envir, existing$x)
+  args$y <- resolve_axis_label(object$y %||% p$pmp.y, object$envir, existing$y)
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 
@@ -117,21 +126,25 @@ pm_relabel <- function(x, ...) UseMethod("pm_relabel")
 #' @rdname pm_relabel
 #' @export
 pm_relabel.gg <- function(x, spec, labs = list(), ...) {
-  assert_that(isTRUE(x$pmp.pmplot))
+  assert_that(isTRUE(x$pmp.pmplot), msg = "pm_relabel() can only be used with plots created by pmplots.")
   x + pm_gg_labs(spec, labs, ...)
 }
 
 #' @rdname pm_relabel
 #' @export
 pm_relabel.list <- function(x, spec, labs = list(), ...) {
-  lapply(x, pm_relabel, labs = labs, ...)
+  lapply(x, pm_relabel, spec = spec, labs = labs, ...)
 }
 
 #' Add axis label data to a data frame
 #'
 #' This function adds candidate axis titles as an attribute on columns in
-#' `data`. This attribute is intended to be specifically use for pmplot axis
-#' labels, not to be confused with  the label added by [yspec::ys_add_labels()].
+#' `data`. This attribute is intended to be specifically used for pmplot axis
+#' labels, not to be confused with the label added by [yspec::ys_add_labels()].
+#'
+#' @return The data frame `df` with `pmp.axis.label` attributes set on the
+#' labeled columns. If no columns in `spec` or `labs` match column names in
+#' `df`, a warning is issued and `df` is returned unchanged.
 #'
 #' @seealso [pm_label_rm()]
 #' @inheritParams pm_gg_labs
@@ -147,13 +160,11 @@ pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
   if(length(spec)) {
-    assert_that(is.list(spec))
-    assert_that(is_named(spec))
+    validate_label_list(spec, "spec")
     envir <- spec
   }
   if(length(labs)) {
-    assert_that(is.list(labs))
-    assert_that(is_named(labs))
+    validate_label_list(labs, "labs")
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
@@ -171,6 +182,8 @@ pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {
 #' Remove pmplot-specific axis label information
 #'
 #' @param df a data frame to de-label.
+#'
+#' @return The data frame `df` with all `pmp.axis.label` attributes removed.
 #'
 #' @seealso [pm_label_columns()]
 #' @export

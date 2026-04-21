@@ -96,7 +96,7 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
 
   p <- scatt(df, x, y, xs = xs, ys = ys, smooth = FALSE, group = group, ...)
 
-  p <- pm_save_xy(p, data, x, y)
+  p <- pm_save_xy(p, df, x, y)
 
   xlab <- pm_get_data_x(p) %||% xlab
   ylab <- pm_get_data_y(p) %||% ylab

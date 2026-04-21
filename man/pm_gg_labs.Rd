@@ -9,7 +9,6 @@ pm_gg_labs(
   labs = list(),
   x = NULL,
   y = NULL,
-  warn = TRUE,
   short_max = Inf,
   ...
 )
@@ -34,7 +33,8 @@ object.}
 \item{...}{additional arguments passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.}
 }
 \value{
-A gg object that can be added to a ggplot with \code{+}.
+A \code{pm_gg_labs} object that can be added to a pmplots gg object
+with \code{+}.
 }
 \description{
 This function generates \code{x} and \code{y} axis titles based on the data columns

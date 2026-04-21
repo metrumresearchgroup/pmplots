@@ -115,7 +115,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   }
   if(is.character(title)) p <- p + ggtitle(title)
   p <- p + pm_theme()
-  p <- pm_save_xy(p, data, x, y)
+  p <- pm_save_xy(p, df, x, y)
   p
 }
 

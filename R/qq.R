@@ -58,7 +58,7 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
     p <- p + geom_abline(intercept=abline[1], slope=abline[2])
   }
 
-  p <- pm_save_xy(p, data, x, y = NULL)
+  p <- pm_save_xy(p, df, x, y = NULL)
   
   p + pm_labs(x = xlab, y = ylab) + pm_theme()
 }

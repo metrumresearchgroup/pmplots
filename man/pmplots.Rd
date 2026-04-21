@@ -95,6 +95,11 @@ by this package.
 \itemize{
 \item \link{pm_grid}
 }
+\item Labeling
+\itemize{
+\item \code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pm_relabel]{pm_relabel()}}
+\item \code{\link[=pm_label_columns]{pm_label_columns()}}, \code{\link[=pm_label_rm]{pm_label_rm()}}
+}
 \item Example data sets
 \itemize{
 \item \code{\link[=pmplots_data]{pmplots_data()}}, \code{\link[=pmplots_data_obs]{pmplots_data_obs()}}, \code{\link[=pmplots_data_id]{pmplots_data_id()}}
