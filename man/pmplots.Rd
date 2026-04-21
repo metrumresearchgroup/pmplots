@@ -97,7 +97,7 @@ by this package.
 }
 \item Labeling
 \itemize{
-\item \code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pm_relabel]{pm_relabel()}}
+\item \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}, \code{\link[=pmp_relabel]{pmp_relabel()}}
 \item \code{\link[=pm_label_columns]{pm_label_columns()}}, \code{\link[=pm_label_rm]{pm_label_rm()}}
 }
 \item Example data sets

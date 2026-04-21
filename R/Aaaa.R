@@ -12,7 +12,7 @@
 #' @importFrom ggplot2 element_text labs aes waiver rel
 #' @importFrom ggplot2 scale_y_continuous scale_x_continuous scale_y_log10
 #' @importFrom ggplot2 scale_x_discrete
-#' @importFrom ggplot2 geom_text position_jitter label_value
+#' @importFrom ggplot2 geom_text position_jitter label_value as_labeller
 #' @importFrom ggplot2 scale_color_manual scale_linetype_manual
 #' @importFrom ggplot2 scale_shape_manual scale_shape_discrete
 #' @importFrom ggplot2 after_stat

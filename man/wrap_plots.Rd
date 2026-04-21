@@ -121,6 +121,6 @@ forced to the value \code{FALSE}.
 For all plots, either \code{x} or \code{y} may contain multiple columns, but an error
 will be generated if both \code{x} and \code{y} list multiple columns.
 
-Facet strip labels can be updated after the fact using \code{\link[=pm_relabel_wrap]{pm_relabel_wrap()}},
+Facet strip labels can be updated after the fact using \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}},
 which looks up column names in a named list or \code{yspec} object.
 }
