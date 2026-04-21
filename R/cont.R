@@ -138,8 +138,8 @@ y_time <- function(df,
 
   p <- scatt(df, x, y, xs = xs, ys = ys, ...)
 
-  xlab <- p$pmp.data.x %||% xlab
-  ylab <- p$pmp.data.y %||% ylab
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
 
   p + pm_labs(x = xlab, y = ylab)
 }
@@ -192,8 +192,10 @@ pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
   require_numeric(df, x[1])
   require_numeric(df, y[1])
   p <- scatt(df,x[1],y[1],xs,ys,...)
-  xlab <- p$pmp.data.x %||% xlab
-  ylab <- p$pmp.data.y %||% ylab
+  
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
+
   p + pm_labs(x = xlab, y = ylab)
 }
 

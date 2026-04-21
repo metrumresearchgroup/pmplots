@@ -825,6 +825,13 @@ require_patchwork <- function() {
   }
 }
 
-despace <- function(x) {
-  trimws(gsub(" +", " ", x, perl = TRUE))
+split_string <- function(x, split = " ", max_nchar = 30) {
+  nc <- nchar(x)
+  if(nc <= max_nchar) return(x)
+  mid <- nchar(x) %/% 2
+  # Find all split positions
+  pos <- gregexpr(split, x)[[1]]
+  # Pick the position closest to the midpoint
+  best <- pos[which.min(abs(pos - mid))]
+  c(trimws(substr(x, 1, best)), trimws(substr(x, best + 1, nchar(x))))
 }

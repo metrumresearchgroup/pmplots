@@ -167,8 +167,8 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   require_discrete(df,x[1])
   p <- boxwork(df,x[1],y[1],xs,ys,...)
 
-  x[2] <- p$pmp.data.x %||% x[2]
-  y[2] <- p$pmp.data.y %||% y[2]
+  x[2] <- pm_get_data_x(p) %||% x[2]
+  y[2] <- pm_get_data_y(p) %||% y[2]
 
   p + pm_labs(x = x[2], y = y[2])
 }

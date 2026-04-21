@@ -126,8 +126,8 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
 
   p <- layer_as(out, ...)
 
-  xlab <- p$pmp.data.x %||% xlab
-  ylab <- p$pmp.data.y %||% ylab
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
 
   p + pm_labs(x = xlab, y = ylab)
 }

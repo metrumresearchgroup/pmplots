@@ -1,6 +1,8 @@
 SETUP__:
   description: Testing pmplots
   extend_file: extension.yaml
+  flags:
+    contCov: [WT, SCR, AAG, BMI]
 C:
   short: Comment character
   values: [".", "C"]
@@ -30,6 +32,7 @@ AMT:
 DV:
   short: Dependent variable
   short.pk: CX1123 concentration
+  short.pd: Response level
   unit: ""
   unit.pk: ng/mL
 AGE:

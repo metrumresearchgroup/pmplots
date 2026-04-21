@@ -5,6 +5,7 @@
 \title{Automatically label ggplot aesthetics from a yspec object or other source}
 \usage{
 pm_gg_labs(
+  spec = list(),
   labs = list(),
   x = NULL,
   y = NULL,
@@ -14,14 +15,20 @@ pm_gg_labs(
 )
 }
 \arguments{
-\item{labs}{a named list of label data; names correspond to columns
-in the data used to make the plot; overrides \code{spec}.}
+\item{spec}{a named list of label data; names correspond to columns
+in the data used to make the plot; may also be a \code{yspec} object, which
+will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+
+\item{labs}{another named list of label data to override names found in
+\code{spec}.}
 
 \item{x}{label for the x aesthetic. If \code{NULL}, resolved via the mapped
-column name. Pass a column name as a plain string to look it up in \code{spec} or
-\code{labs}; wrap in \code{\link[=I]{I()}} to use the string as a literal label.}
+column name. Pass a column name as a plain string to look it up in \code{spec}
+or \code{labs}; wrap in \code{\link[=I]{I()}} to use the string as a literal label.}
 
 \item{y}{label for the y aesthetic; see \code{x}.}
+
+\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
 
 \item{...}{additional arguments passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.}
 }

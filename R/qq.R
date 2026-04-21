@@ -59,8 +59,7 @@ wres_q <- function(df, x="WRES", xs = defx(), ys=defy(), abline=NULL,
   }
 
   p <- pm_save_xy(p, data, x, y = NULL)
-  xlab <- p$pmp.data.x %||% xlab
-
+  
   p + pm_labs(x = xlab, y = ylab) + pm_theme()
 }
 

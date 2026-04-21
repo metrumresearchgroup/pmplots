@@ -24,7 +24,7 @@
 #' @importFrom assertthat assert_that
 #' @importFrom tidyr pivot_longer
 #' @importFrom forcats fct_inorder
-#' @importFrom utils str
+#' @importFrom utils str modifyList
 #' @importFrom lifecycle deprecate_warn is_present deprecated
 #' @importFrom stats setNames
 #'

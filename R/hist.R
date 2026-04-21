@@ -48,7 +48,7 @@ cont_hist <- function(df, x, xs = defx(),
 
   p <- pm_save_xy(p, df, xlab, y = NULL)
 
-  xlab <- p$pmp.data.x %||% xlab
+  xlab <- pm_get_data_x(p) %||% xlab
 
   p + pm_labs(x = xlab) + pm_theme()
 }
