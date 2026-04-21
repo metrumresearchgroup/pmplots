@@ -42,19 +42,6 @@ pm_axis_data <- list(
     dv = "Observed {yname}",
     npde = "NPDE"
   ),
-  label  = list(
-    CWRES = "CWRES",
-    CWRESI = "CWRES with interaction",
-    RES = "Residual",
-    WRES = "Weighted residual",
-    TIME = "Time",
-    TAD  = "Time after dose",
-    TAFD = "Time after first dose",
-    PRED = "Population predicted value",
-    IPRED = "Individual predicted value",
-    DV = "Dependent variable",
-    NPDE = "NPDE"
-  ),
   short = list(
     cwres = "CWRES",
     cwresi = "CWRESI",
@@ -70,8 +57,6 @@ pm_axis_data <- list(
   )
 )
 
-
-
 mk_col_title <- function(what, sep = "//") {
   title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
   paste0(
@@ -79,12 +64,6 @@ mk_col_title <- function(what, sep = "//") {
     sep,
     pm_axis_data[[title]][[what]]
   )
-}
-
-get_axis_label <- function(col) {
-  label <- pm_axis_data$label[[col]]
-  if(is.null(label)) warning("could not find axis label")
-  label
 }
 
 #' Functions to generate axis data

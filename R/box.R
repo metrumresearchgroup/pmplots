@@ -165,7 +165,7 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   if(length(x)!=2) stop("invalid y value", call.=FALSE)
   require_numeric(df,y[1])
   require_discrete(df,x[1])
-  p <- boxwork(df,x[1],y[1],xs,ys,...)
+  p <- boxwork(df, x[1], y[1], xs, ys, ...)
 
   x[2] <- pm_get_data_x(p) %||% x[2]
   y[2] <- pm_get_data_y(p) %||% y[2]
