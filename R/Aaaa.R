@@ -95,10 +95,11 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [pm_opts()]
 #'   - [rot_x()], [rot_y()], [pm_theme()], [theme_plain()]
 #' - Arrangement
-#'   - [pm_grid]
+#'   - [pm_grid()]
 #' - Labeling
-#'   - [pmp_gg_labs()], [pmp_relabel()]
-#'   - [pm_label_columns()], [pm_label_rm()]
+#'   - [pm_gg_labs()], [pm_relabel()] - for several aesthetics on arbitrary gg plots 
+#'   - [pmp_gg_labs()], [pmp_relabel()] - x and y labels on plots made through pmplots functions   
+#'   - [pm_label_columns()], [pm_label_rm()] - add labels to data; for use with [pmp_gg_labs()]
 #' - Example data sets
 #'   - [pmplots_data()], [pmplots_data_obs()], [pmplots_data_id()]
 #'
@@ -107,4 +108,3 @@ globalVariables(c("ID", "n", "IPRED"))
 #' @name pmplots
 #' @md
 NULL
-

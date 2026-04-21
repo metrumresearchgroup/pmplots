@@ -59,7 +59,7 @@ wrap_cont_cat(
 )
 }
 \arguments{
-\item{df}{Data frame to plot.}
+\item{df}{data frame to plot.}
 
 \item{x}{x-axis data in \code{\link[=col_label]{col_label()}} format; if \code{y} has length greater than 1,
 then \code{x} must be length equal to 1.}
@@ -67,25 +67,27 @@ then \code{x} must be length equal to 1.}
 \item{y}{y-axis data in \code{\link[=col_label]{col_label()}} format; if \code{x} has length greater than 1,
 then \code{y} must be length equal to 1.}
 
-\item{...}{Passed to \code{fun}.}
+\item{...}{passed to \code{fun}.}
 
-\item{fun}{The plotting function.}
+\item{fun}{the plotting function.}
 
-\item{title}{A title to use for the axis with faceting groups.}
+\item{title}{a title to use for the axis with faceting groups.}
 
-\item{scales}{Passed to \code{facet_wrap}.}
+\item{scales}{passed to \code{facet_wrap}.}
 
-\item{ncol}{Passed to \code{facet_wrap}.}
+\item{ncol}{passed to \code{facet_wrap}.}
 
-\item{use_labels}{If \code{TRUE}, the label part of \code{col_label} will
-be used in the strip; the column name is used otherwise.}
+\item{use_labels}{if \code{TRUE}, look for an alternate facet label; if the data
+set was labeled with \code{\link[=pm_label_columns]{pm_label_columns()}}, use that label; otherwise use the
+label part of the \code{col_label} specification. he label part of \code{col_label}
+will be used in the strip; the column name is used otherwise.}
 
-\item{label_fun}{Deprecated; use \code{labeller} instead.}
+\item{label_fun}{deprecated; use \code{labeller} instead.}
 
-\item{labeller}{A labeller function; passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}; the
+\item{labeller}{a labeller function; passed to \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}}; the
 default is based on \code{\link[=parse_label]{parse_label()}} and allows latex markup in the label.}
 
-\item{xname}{Placeholder.}
+\item{xname}{placeholder.}
 }
 \description{
 For these plots, data sets made long with respect to several

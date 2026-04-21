@@ -16,8 +16,8 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \item{labs}{another named list of label data to override names found in
 \code{spec}.}
 
-\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a \code{yspec}
-object.}
+\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a
+\code{yspec} object.}
 }
 \value{
 The plot \code{p} with updated facet strip labels.

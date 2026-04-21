@@ -27,8 +27,8 @@ or \code{labs}; wrap in \code{\link[=I]{I()}} to use the string as a literal lab
 
 \item{y}{label for the y aesthetic; see \code{x}.}
 
-\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a \code{yspec}
-object.}
+\item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a
+\code{yspec} object.}
 
 \item{...}{additional arguments passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.}
 }
@@ -39,8 +39,8 @@ with \code{+}.
 \description{
 This function generates \code{x} and \code{y} axis titles based on the data columns
 used to create the plot, looking up in a named list or \code{yspec} object. This
-is only for pmplot outputs; consider \code{\link[yspec:ys_gg_labs]{yspec::ys_gg_labs()}} for labeling
-aesthetics in an arbitrary \code{gg} object.
+is only for pmplot outputs; consider \code{\link[=pm_gg_labs]{pm_gg_labs()}} for labeling aesthetics
+in an arbitrary \code{gg} object.
 }
 \examples{
 data <- pmplots_data_obs()

@@ -17,11 +17,12 @@ pm_relabel(x, ...)
 
 \item{...}{additional arguments passed to \code{\link[=pm_gg_labs]{pm_gg_labs()}}.}
 
-\item{spec}{a \code{yspec} object; label data is generated through a call to
-\code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+\item{spec}{a named list of label data; names correspond to columns
+in the data used to make the plot; may also be a \code{yspec} object, which
+will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
 
-\item{labs}{a named list of label data; names correspond to columns
-in the data used to make the plot; overrides \code{spec}.}
+\item{labs}{another named list of label data to override names found in
+\code{spec}.}
 }
 \description{
 Applies \code{\link[=pm_gg_labs]{pm_gg_labs()}} to a ggplot object or a list of ggplot objects,
@@ -31,7 +32,10 @@ list or \code{yspec} object.
 \examples{
 data <- pmplots_data_obs()
 
-spec <- list(DV = "CX1123 concentration (ng/mL)", PRED = "Population prediction (ng/mL)")
+spec <- list(
+  DV = "CX1123 concentration (ng/mL)", 
+  PRED = "Population prediction (ng/mL)"
+)
 
 p <- dv_pred(data)
 

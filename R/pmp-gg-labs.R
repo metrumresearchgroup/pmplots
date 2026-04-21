@@ -26,20 +26,20 @@ resolve_axis_label <- function(label, envir, default) {
 #'
 #' This function generates `x` and `y` axis titles based on the data columns
 #' used to create the plot, looking up in a named list or `yspec` object. This
-#' is only for pmplot outputs; consider [yspec::ys_gg_labs()] for labeling
-#' aesthetics in an arbitrary `gg` object.
+#' is only for pmplot outputs; consider [pm_gg_labs()] for labeling aesthetics 
+#' in an arbitrary `gg` object.
 #'
 #' @param spec a named list of label data; names correspond to columns
 #' in the data used to make the plot; may also be a `yspec` object, which
-#' will be converted to a named list through [ys_get_short_unit()].
+#' will be converted to a named list through [yspec::ys_get_short_unit()].
 #' @param labs another named list of label data to override names found in
 #' `spec`.
 #' @param x label for the x aesthetic; if `NULL`, resolved via the mapped
 #' column name. Pass a column name as a plain string to look it up in `spec`
 #' or `labs`; wrap in [I()] to use the string as a literal label.
 #' @param y label for the y aesthetic; see `x`.
-#' @param short_max passed to [ys_get_short_unit()] when `spec` is a `yspec`
-#' object.
+#' @param short_max passed to [yspec::ys_get_short_unit()] when `spec` is a 
+#' `yspec` object.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A `pmp_gg_labs` object that can be added to a pmplots gg object

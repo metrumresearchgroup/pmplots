@@ -259,13 +259,11 @@ col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
     if(length(y)==2) {
-      y <- trimws(y)
-      return(y)
+      return(trimws(y))
     }
   }
-  if(!grepl("[ ()/$!@]", x)) {
-    x <- trimws(c(x, x))
-    return(x)
+  if(!grepl("[ ()/$!@]",x)) {
+    return(trimws(c(x,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }
@@ -815,13 +813,3 @@ require_patchwork <- function() {
   }
 }
 
-split_string <- function(x, split = " ", max_nchar = 30) {
-  nc <- nchar(x)
-  if(nc <= max_nchar) return(x)
-  mid <- nchar(x) %/% 2
-  # Find all split positions
-  pos <- gregexpr(split, x)[[1]]
-  # Pick the position closest to the midpoint
-  best <- pos[which.min(abs(pos - mid))]
-  c(trimws(substr(x, 1, best)), trimws(substr(x, best + 1, nchar(x))))
-}

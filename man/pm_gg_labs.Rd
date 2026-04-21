@@ -22,13 +22,14 @@ pm_gg_labs(
 )
 }
 \arguments{
-\item{spec}{a \code{yspec} object; label data is generated through a call to
-\code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+\item{spec}{a named list of label data; names correspond to columns
+in the data used to make the plot; may also be a \code{yspec} object, which
+will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
 
-\item{labs}{a named list of label data; names correspond to columns
-in the data used to make the plot; overrides \code{spec}.}
+\item{labs}{another named list of label data to override names found in
+\code{spec}.}
 
-\item{x}{label for the x aesthetic. If \code{NULL}, resolved via the mapped
+\item{x}{label for the x aesthetic; if \code{NULL}, resolved via the mapped
 column name. Pass a column name as a plain string to look it up in \code{spec} or
 \code{labs}; wrap in \code{\link[=I]{I()}} to use the string as a literal label.}
 
@@ -54,12 +55,22 @@ labels.}
 A gg object that can be added to a ggplot with \code{+}.
 }
 \description{
-Label ggplot aesthetics from a yspec object or other source
+This function generates labels for ggplot aesthetics based on the data
+columns used to create the plot, looking up in a named list or \code{yspec}
+object. See \code{\link[=pmp_gg_labs]{pmp_gg_labs()}} to label \verb{x-} and \verb{y-} axes in plots generated
+by pmplots functions.
+}
+\details{
+In case multiple aesthetics are found, the aesthetics in the top-most
+layer will be used. The user will be informed in case multiple
+aesthetics are involved that resolve to different names. This
+situation should be rare; use the \code{quietly} argument to suppress
+notification to the console.
 }
 \examples{
-library(ggplot2)
 
 if(requireNamespace("yspec")) {
+library(ggplot2)
 
 library(yspec)  
 
@@ -72,6 +83,7 @@ data <- ys_help$data()
 p <- ggplot(data, aes(TIME, DV)) + geom_point()
   
 p + pm_gg_labs(spec)
+
 }
 
 }

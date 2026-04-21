@@ -1,10 +1,19 @@
+#' @include pmp-gg-labs.R
+NULL
+
 #' Label ggplot aesthetics from a yspec object or other source
+#' 
+#' This function generates labels for ggplot aesthetics based on the data 
+#' columns used to create the plot, looking up in a named list or `yspec` 
+#' object. See [pmp_gg_labs()] to label `x-` and `y-` axes in plots generated 
+#' by pmplots functions.
 #'
-#' @param spec a `yspec` object; label data is generated through a call to
-#' [yspec::ys_get_short_unit()].
-#' @param labs a named list of label data; names correspond to columns
-#' in the data used to make the plot; overrides `spec`.
-#' @param x label for the x aesthetic. If `NULL`, resolved via the mapped
+#' @param spec a named list of label data; names correspond to columns
+#' in the data used to make the plot; may also be a `yspec` object, which
+#' will be converted to a named list through [yspec::ys_get_short_unit()].
+#' @param labs another named list of label data to override names found in
+#' `spec`.
+#' @param x label for the x aesthetic; if `NULL`, resolved via the mapped
 #' column name. Pass a column name as a plain string to look it up in `spec` or
 #' `labs`; wrap in [I()] to use the string as a literal label.
 #' @param y label for the y aesthetic; see `x`.
@@ -20,10 +29,17 @@
 #'
 #' @return A gg object that can be added to a ggplot with `+`.
 #' 
+#' @details
+#' In case multiple aesthetics are found, the aesthetics in the top-most
+#' layer will be used. The user will be informed in case multiple 
+#' aesthetics are involved that resolve to different names. This 
+#' situation should be rare; use the `quietly` argument to suppress 
+#' notification to the console. 
+#' 
 #' @examples
-#' library(ggplot2)
 #' 
 #' if(requireNamespace("yspec")) {
+#' library(ggplot2)
 #' 
 #' library(yspec)  
 #' 
@@ -36,6 +52,7 @@
 #' p <- ggplot(data, aes(TIME, DV)) + geom_point()
 #'   
 #' p + pm_gg_labs(spec)
+#' 
 #' }
 #' 
 #' @md
@@ -52,18 +69,19 @@ pm_gg_labs <- function(spec = list(),
                        ...) {
   colour <- colour %||% color %||% col
   linetype <- linetype %||% lty
+  envir <- list()
   if(inherits(spec, "yspec")) {
+    if(!requireNamespace("yspec")) {
+      abort("the yspec package must be installed to use a yspec object for labels.")
+    }
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
-  envir <- list()
   if(length(spec)) {
-    assert_that(is.list(spec))
-    assert_that(is_named(spec))
+    validate_label_list(spec, "spec")
     envir <- spec
   }
   if(length(labs)) {
-    assert_that(is.list(labs))
-    assert_that(is_named(labs))
+    validate_label_list(labs, "labs")
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
@@ -85,7 +103,7 @@ pm_gg_labs <- function(spec = list(),
 
 aes_name <- function(q) {
   if(is.null(q)) return(NULL)
-  as_label(q)
+  rlang::as_label(q)
 }
 
 strip_factor_call <- function(var) {
@@ -144,7 +162,10 @@ resolve_aes_label <- function(aes, all_mappings, object) {
 #' @examples
 #' data <- pmplots_data_obs()
 #'
-#' spec <- list(DV = "CX1123 concentration (ng/mL)", PRED = "Population prediction (ng/mL)")
+#' spec <- list(
+#'   DV = "CX1123 concentration (ng/mL)", 
+#'   PRED = "Population prediction (ng/mL)"
+#' )
 #'
 #' p <- dv_pred(data)
 #' 

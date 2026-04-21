@@ -93,12 +93,13 @@ by this package.
 }
 \item Arrangement
 \itemize{
-\item \link{pm_grid}
+\item \code{\link[=pm_grid]{pm_grid()}}
 }
 \item Labeling
 \itemize{
-\item \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}, \code{\link[=pmp_relabel]{pmp_relabel()}}
-\item \code{\link[=pm_label_columns]{pm_label_columns()}}, \code{\link[=pm_label_rm]{pm_label_rm()}}
+\item \code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pm_relabel]{pm_relabel()}} - for several aesthetics on arbitrary gg plots
+\item \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}, \code{\link[=pmp_relabel]{pmp_relabel()}} - x and y labels on plots made through pmplots functions
+\item \code{\link[=pm_label_columns]{pm_label_columns()}}, \code{\link[=pm_label_rm]{pm_label_rm()}} - add labels to data; for use with \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}
 }
 \item Example data sets
 \itemize{
