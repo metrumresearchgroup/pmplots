@@ -235,3 +235,48 @@ test_that("pm_gg_labs overrides x label in npde_hist", {
   p <- npde_hist(data) + pm_gg_labs(npde_spec)
   expect_equal(p$labels$x, npde_spec[["NPDE"]])
 })
+
+# pm_relabel_wrap --------------------------------------------------------------
+
+wrap_spec <- list(WT = "Weight (kg)", ALB = "Albumin (mg/dL)")
+
+test_that("pm_relabel_wrap applies spec labels to facet strips", {
+  data <- pmplots_data_obs()
+  p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  p2 <- pm_relabel_wrap(p, wrap_spec)
+  lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
+  mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
+  expect_equal(mapped$variable, c("Weight (kg)", "Albumin (mg/dL)"))
+})
+
+test_that("pm_relabel_wrap leaves unlabeled variables unchanged", {
+  data <- pmplots_data_obs()
+  p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  p2 <- pm_relabel_wrap(p, list(WT = "Weight (kg)"))
+  lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
+  mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
+  expect_equal(mapped$variable, c("Weight (kg)", "ALB"))
+})
+
+test_that("pm_relabel_wrap labs overrides spec", {
+  data <- pmplots_data_obs()
+  p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  p2 <- pm_relabel_wrap(p, wrap_spec, labs = list(WT = "Body weight (kg)"))
+  lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
+  mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
+  expect_equal(mapped$variable[1], "Body weight (kg)")
+})
+
+test_that("pm_relabel_wrap preserves scales from original plot", {
+  data <- pmplots_data_obs()
+  p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  p2 <- pm_relabel_wrap(p, wrap_spec)
+  expect_true(p2$facet$params$free$x)
+  expect_false(p2$facet$params$free$y)
+})
+
+test_that("pm_relabel_wrap errors when plot has no variable column", {
+  data <- pmplots_data_obs()
+  p <- dv_pred(data)
+  expect_error(pm_relabel_wrap(p, wrap_spec), regexp = "wrapped pmplots")
+})

@@ -118,8 +118,10 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
     }
   }
 
-  fun(df, x = x, y = y, ...) +
+  p <- fun(df, x = x, y = y, ...) +
     facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+  p$pmp.pmplots.wrap <- TRUE
+  p
 }
 
 #' @rdname wrap_plots
@@ -173,8 +175,10 @@ wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
   } else {
     x <- paste0("value//", title)
   }
-  cont_hist(df, x = x, ...) +
+  p <- cont_hist(df, x = x, ...) +
     facet_wrap(~variable, scales = scales, ncol=ncol, labeller = labeller)
+  p$pmp.pmplots.wrap <- TRUE
+  p
 }
 
 #' @rdname wrap_plots
@@ -240,6 +244,8 @@ wrap_cont_cat <- function(df, x, y, ...,
     y <- "value"
   }
 
-  pm_box(df, x = x, y = y, ..., shown = FALSE) +
+  p <- pm_box(df, x = x, y = y, ..., shown = FALSE) +
     facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+  p$pmp.pmplots.wrap <- TRUE
+  p
 }

@@ -137,6 +137,69 @@ pm_relabel.list <- function(x, spec, labs = list(), ...) {
   lapply(x, pm_relabel, spec = spec, labs = labs, ...)
 }
 
+#' Relabel facet strips in a wrapped pmplot
+#'
+#' This function relabels the facet strip labels in a plot created by a
+#' `wrap_*` function (e.g., [wrap_eta_cont()], [wrap_cont_cont()]) by looking
+#' up the facet variable names in a named list or `yspec` object. Variable
+#' names are discovered automatically from the plot data. Names absent from
+#' `spec` and `labs` are left unchanged.
+#'
+#' @inheritParams pm_gg_labs
+#' @param p a ggplot object created by a `wrap_*` pmplots function.
+#'
+#' @return The plot `p` with updated facet strip labels.
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#'
+#' spec <- list(WT = "Weight (kg)", ALB = "Albumin (mg/dL)")
+#'
+#' p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+#'
+#' pm_relabel_wrap(p, spec)
+#'
+#' @seealso [pm_relabel()], [pm_gg_labs()]
+#' @export
+pm_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
+  envir <- list()
+  if(inherits(spec, "yspec")) {
+    if(!requireNamespace("yspec")) {
+      abort("the yspec package must be installed to use a yspec object for labels.")
+    }
+    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
+  }
+  if(length(spec)) {
+    validate_label_list(spec, "spec")
+    envir <- spec
+  }
+  if(length(labs)) {
+    validate_label_list(labs, "labs")
+    envir <- c(labs, envir)
+  }
+  envir <- envir[!duplicated(names(envir))]
+
+  if(!isTRUE(p$pmp.pmplots.wrap)) {
+    abort("pm_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont()).")
+  }
+  var_names <- levels(p$data[["variable"]])
+
+  label_map <- setNames(
+    vapply(var_names, function(v) envir[[v]] %||% v, character(1)),
+    var_names
+  )
+
+  free <- p$facet$params$free
+  scales <- if(!free$x && !free$y) "fixed" else if(free$x && free$y) "free" else if(free$x) "free_x" else "free_y"
+
+  p + facet_wrap(
+    ~variable,
+    labeller = as_labeller(label_map),
+    scales   = scales,
+    ncol     = p$facet$params$ncol
+  )
+}
+
 #' Add axis label data to a data frame
 #'
 #' This function adds candidate axis titles as an attribute on columns in
