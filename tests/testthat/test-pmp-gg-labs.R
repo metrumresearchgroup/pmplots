@@ -292,6 +292,9 @@ test_that("pmp_relabel_pairs relabels matched columns", {
   expect_equal(p2$yAxisLabels[1], "Weight\n(kg)")
   expect_equal(p2$yAxisLabels[2], "Height\n(cm)")
   expect_equal(p2$yAxisLabels[3], "SCR")
+  expect_equal(p2$xAxisLabels[1], "Weight\n(kg)")
+  expect_equal(p2$xAxisLabels[2], "Height\n(cm)")
+  expect_equal(p2$xAxisLabels[3], "SCR")
 })
 
 test_that("pmp_relabel_pairs with unit_break = FALSE does not insert newlines", {

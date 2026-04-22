@@ -281,6 +281,7 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, unit_brea
   }
 
   p$yAxisLabels <- unname(label_map)
+  p$xAxisLabels <- unname(label_map)
 
   p
 }
