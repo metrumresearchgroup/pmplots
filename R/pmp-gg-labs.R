@@ -1,7 +1,7 @@
 validate_label_list <- function(x, name) {
   assert_that(is.list(x), msg = paste0("`", name, "` must be a list."))
   assert_that(is_named(x), msg = paste0("`", name, "` must be a named list."))
-  ok <- vapply(x, function(v) is.character(v) && length(v) == 1L, logical(1))
+  ok <- lengths(x)==1 & vapply(x, \(v) is.character(v), logical(1))
   if(any(!ok)) {
     bad <- paste(names(x)[!ok], collapse = ", ")
     abort(paste0("Every element of `", name, "` must be a character string of length 1. Problem: ", bad))
@@ -10,7 +10,7 @@ validate_label_list <- function(x, name) {
 }
 
 gg_get_labs_2 <- function(p) {
-  defaults <- ggplot2::labs()  # named list of NULLs for all standard slots
+  defaults <- ggplot2::labs() 
   modifyList(defaults, p$labels)
 }
 
@@ -63,9 +63,7 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
                        ...) {
   envir <- list()
   if(inherits(spec, "yspec")) {
-    if(!requireNamespace("yspec")) {
-      abort("the yspec package must be installed to use a yspec object for labels.")
-    }
+    require_yspec()
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
   if(length(spec)) {
@@ -90,11 +88,16 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
 
 #' @exportS3Method ggplot2::ggplot_add
 ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
-  assert_that(isTRUE(p$pmp.pmplot), msg = "pmp_gg_labs() can only be used with plots created by pmplots.")
+  assert_that(
+    isTRUE(p$pmp.pmplot), 
+    msg = "pmp_gg_labs() can only be used with plots created by pmplots."
+  )
   existing <- gg_get_labs_2(p)
   args <- list()
-  args$x <- resolve_axis_label(object$x %||% p$pmp.x, object$envir, existing$x)
-  args$y <- resolve_axis_label(object$y %||% p$pmp.y, object$envir, existing$y)
+  x <- object$x %||% p$pmp.x
+  y <- object$y %||% p$pmp.y
+  args$x <- resolve_axis_label(x, object$envir, existing$x)
+  args$y <- resolve_axis_label(y, object$envir, existing$y)
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 
@@ -127,7 +130,10 @@ pmp_relabel <- function(x, ...) UseMethod("pmp_relabel")
 #' @rdname pmp_relabel
 #' @export
 pmp_relabel.gg <- function(x, spec, labs = list(), ...) {
-  assert_that(isTRUE(x$pmp.pmplot), msg = "pmp_relabel() can only be used with plots created by pmplots.")
+  assert_that(
+    isTRUE(x$pmp.pmplot), 
+    msg = "pmp_relabel() can only be used with plots created by pmplots."
+  )
   x + pmp_gg_labs(spec, labs, ...)
 }
 
@@ -162,14 +168,13 @@ pmp_relabel.list <- function(x, spec, labs = list(), ...) {
 #' @seealso [pmp_relabel()], [pmp_gg_labs()]
 #' @export
 pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
-  if(!isTRUE(p$pmp.pmplots.wrap)) {
-    abort("pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont()).")
-  }
+  assert_that(
+    isTRUE(x$pmp.pmplot), 
+    msg = "pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont())."
+  )
   envir <- list()
   if(inherits(spec, "yspec")) {
-    if(!requireNamespace("yspec")) {
-      abort("the yspec package must be installed to use a yspec object for labels.")
-    }
+    require_yspec()
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
   if(length(spec)) {
@@ -217,9 +222,7 @@ pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {
   assert_that(inherits(df,"data.frame"))
   envir <- list()
   if(inherits(spec, "yspec")) {
-    if(!requireNamespace("yspec")) {
-      abort("the yspec package must be installed to use a yspec object for labels.")
-    }
+    require_yspec()
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
   if(length(spec)) {

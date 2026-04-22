@@ -2,7 +2,8 @@ SETUP__:
   description: Testing pmplots
   extend_file: extension.yaml
   flags:
-    contCov: [WT, SCR, AAG, BMI]
+    contCov: [WT, SCR, ALB, AGE]
+    catCov: [CPc, STUDYc, RF]
 C:
   short: Comment character
   values: [".", "C"]
@@ -36,7 +37,7 @@ DV:
   unit: ""
   unit.pk: ng/mL
 AGE:
-  about: [age,years]
+  about: [Age,years]
   type: numeric
 WT:
   short: Weight
@@ -96,6 +97,9 @@ PHASE:
 STUDY:
   short: Study number
   values: {SAD: 1, MAD: 2, Renal: 3, Hepatic: 4}
+STUDYc:
+  short: Study ID
+  values: [SAD, MAD, Renal, Hepatic]
 RF:
   short: Renal function stage
   values: {Normal: norm, Mild: mild, Moderate: mod, Severe: sev}

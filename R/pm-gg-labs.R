@@ -71,9 +71,7 @@ pm_gg_labs <- function(spec = list(),
   linetype <- linetype %||% lty
   envir <- list()
   if(inherits(spec, "yspec")) {
-    if(!requireNamespace("yspec")) {
-      abort("the yspec package must be installed to use a yspec object for labels.")
-    }
+    require_yspec()
     spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
   }
   if(length(spec)) {

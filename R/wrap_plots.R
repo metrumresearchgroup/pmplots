@@ -80,7 +80,7 @@ wrap_try_data_labels <- function(df, labels) {
 #' @export
 wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
                            title = NULL, scales = "free_y",
-                           ncol = NULL, use_labels = FALSE,
+                           ncol = NULL, use_labels = TRUE,
                            label_fun = deprecated(),
                            labeller = label_tex) {
 
@@ -187,7 +187,7 @@ wrap_eta_cont <- function(df, x, y, scales = "fixed", ...) {
 #' @rdname wrap_plots
 #' @export
 wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
-                      use_labels = FALSE, labeller = label_tex,
+                      use_labels = TRUE, labeller = label_tex,
                       label_fun = deprecated(), ...) {
 
   if(is_present(label_fun)) {
@@ -245,7 +245,7 @@ wrap_dv_preds <- function(df, ..., title = NULL, xname = "", scales = "fixed") {
 #' @export
 wrap_cont_cat <- function(df, x, y, ...,
                           title = NULL, scales = "free_y",
-                          ncol = NULL, use_labels = FALSE,
+                          ncol = NULL, use_labels = TRUE,
                           labeller = label_tex, label_fun = deprecated()) {
 
   if(is_present(label_fun)) {
@@ -290,7 +290,7 @@ wrap_cont_cat <- function(df, x, y, ...,
     values_to = "value"
   )
   df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
-  
+
   if(use_labels) {
     df <- mutate(df, variable = factor(.data[["variable"]], labels = melt_labels))
   }

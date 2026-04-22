@@ -813,3 +813,8 @@ require_patchwork <- function() {
   }
 }
 
+require_yspec <- function() {
+  if(!requireNamespace("yspec", quietly = TRUE)) {
+    abort('The "yspec" package is required.')
+  }
+}
