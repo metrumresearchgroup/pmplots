@@ -3,6 +3,7 @@
 \name{pm_relabel}
 \alias{pm_relabel}
 \alias{pm_relabel.gg}
+\alias{pm_relabel.patchwork}
 \alias{pm_relabel.list}
 \title{Relabel a plot using a yspec object or named list}
 \usage{
@@ -10,10 +11,13 @@ pm_relabel(x, ...)
 
 \method{pm_relabel}{gg}(x, spec, labs = list(), ...)
 
+\method{pm_relabel}{patchwork}(x, spec, labs = list(), ...)
+
 \method{pm_relabel}{list}(x, spec, labs = list(), ...)
 }
 \arguments{
-\item{x}{a ggplot object or a list of ggplot objects.}
+\item{x}{a gg object, a \code{patchwork} object (e.g., from \code{\link[=eta_covariate]{eta_covariate()}} or
+\code{\link[=npde_panel]{npde_panel()}}), or a list of ggplot objects.}
 
 \item{...}{additional arguments passed to \code{\link[=pm_gg_labs]{pm_gg_labs()}}.}
 
@@ -25,15 +29,22 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \code{spec}.}
 }
 \description{
-Applies \code{\link[=pm_gg_labs]{pm_gg_labs()}} to a ggplot object or a list of ggplot objects,
-updating axis and aesthetic labels by looking up column names in a named
-list or \code{yspec} object.
+Applies \code{\link[=pm_gg_labs]{pm_gg_labs()}} to a ggplot object, \code{patchwork} object, or a list of
+ggplot objects, updating axis and aesthetic labels by looking up column names
+in a named list or \code{yspec} object.
+}
+\details{
+Methods are provided for \code{gg} objects (single plots), \code{patchwork} objects
+(multi-panel layouts produced by functions such as \code{\link[=eta_covariate]{eta_covariate()}} or
+\code{\link[=npde_panel]{npde_panel()}}), and plain \code{list} objects containing ggplot objects. The
+patchwork method applies the relabeling to every panel in the layout using
+the \code{&} operator.
 }
 \examples{
 data <- pmplots_data_obs()
 
 spec <- list(
-  DV = "CX1123 concentration (ng/mL)", 
+  DV = "CX1123 concentration (ng/mL)",
   PRED = "Population prediction (ng/mL)"
 )
 

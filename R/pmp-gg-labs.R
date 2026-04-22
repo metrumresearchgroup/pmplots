@@ -90,7 +90,7 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
 #' @exportS3Method ggplot2::ggplot_add
 ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
   assert_that(
-    isTRUE(p$pmp.pmplot),
+    isTRUE(p$pmp.pmplot) || is_pmp_patch(p),
     msg = "pmp_gg_labs() can only be used with plots created by pmplots."
   )
   existing <- gg_get_labs_2(p)
@@ -109,9 +109,16 @@ ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
 #' is only for pmplot outputs; consider [yspec::ys_gg_labs()] for labeling
 #' aesthetics in an arbitrary `gg` object.
 #'
+#' Methods are provided for `gg` objects (single pmplots plots), `patchwork`
+#' objects (multi-panel layouts produced by functions such as [eta_covariate()]
+#' or [npde_panel()]), and plain `list` objects containing pmplots plots.
+#' The patchwork method applies the relabeling to every panel in the layout
+#' using the `&` operator.
+#'
 #' @inheritParams pmp_gg_labs
-#' @param obj a gg object created through a `pmplots` function or a 
-#' list of such objects.
+#' @param obj a gg object created through a `pmplots` function, a `patchwork`
+#' object (e.g., from [eta_covariate()] or [npde_panel()]), or a list of such
+#' objects.
 #' @param ... additional arguments passed to [pmp_gg_labs()].
 #'
 #' @examples
@@ -137,6 +144,12 @@ pmp_relabel.gg <- function(obj, spec = list(), labs = list(), ...) {
     msg = "pmp_relabel() can only be used with plots created by pmplots."
   )
   obj + pmp_gg_labs(spec, labs, ...)
+}
+
+#' @rdname pmp_relabel
+#' @export
+pmp_relabel.patchwork <- function(obj, spec = list(), labs = list(), ...) {
+  obj & pmp_gg_labs(spec, labs, ...)
 }
 
 #' @rdname pmp_relabel
@@ -270,6 +283,72 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, unit_brea
   p$yAxisLabels <- unname(label_map)
 
   p
+}
+
+#' Relabel plots in a list using pmp_relabel
+#'
+#' Pass in a named list of gg objects and apply [pmp_relabel()] or 
+#' [pm_relabel()], as appropriate.
+#'
+#' @param x a named list of gg objects.
+#' @param at a character vector of list names to relabel.
+#' @param re a regular expression for selecting names to be used for `at`.
+#' @param ... additional arguments passed to [pmp_relabel()] or [pm_relabel()].
+#'
+#' @details
+#' Note that all plots in the list need to be named. When `re` is provided it
+#' takes precedence over `at`.
+#'
+#' @seealso [pmp_relabel()], [rot_at()].
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#'
+#' spec <- list(DV = "Observed (ng/mL)", PRED = "Population predicted (ng/mL)")
+#'
+#' x <- list(p1 = dv_pred(data), p2 = dv_ipred(data))
+#'
+#' x <- relabel_at(x, at = "p1", spec = spec)
+#' x$p1
+#'
+#' x <- relabel_at(x, re = "p", spec = spec)
+#' x$p2
+#'
+#' @md
+#' @export
+relabel_at <- function(x, at = names(x), spec = list(), labs = list(), 
+                       re = NULL, ...) {
+  if(!is.list(x) || is_ggplot(x) || inherits(x, "patchwork")) {
+    abort("`x` must be a list of gg objects.")
+  }
+  if(!is_named(x)) abort("`x` must be named.")
+  if(is.character(re)) {
+    where <- grep(re, names(x), perl = TRUE)
+  } else {
+    if(!is.character(at)) abort("`at` must be character.")
+    bad <- setdiff(at, names(x))
+    if(length(bad)) {
+      names(bad) <- rep("x", length(bad))
+      abort("requested names not found in `x`.", body = bad)
+    }
+    where <- which(names(x) %in% at)
+  }
+  if(!length(where)) {
+    warn("did not find any plots to relabel.")
+    return(x)
+  }
+  for(w in where) {
+    pmp <- isTRUE(x[[w]]$pmp.plot)
+    if(!pmp) {
+      pmp <- is_pmp_patch(x[[w]])
+    }
+    if(pmp) {
+      x[[w]] <- pmp_relabel(x[[w]], spec = spec, labs = labs, ...)
+    } else {
+      x[[w]] <- pm_relabel(x[[w]], spec = spec, labs = labs, ...)
+    }
+  }
+  x
 }
 
 #' Add axis label data to a data frame

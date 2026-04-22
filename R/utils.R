@@ -840,4 +840,6 @@ require_GGally <- function() {
   }
 }
 
-
+is_pmp_patch <- function(x) {
+  inherits(x, "patchwork") && isTRUE(x[[1]]$pmp.pmplot)
+}

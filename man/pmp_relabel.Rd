@@ -3,6 +3,7 @@
 \name{pmp_relabel}
 \alias{pmp_relabel}
 \alias{pmp_relabel.gg}
+\alias{pmp_relabel.patchwork}
 \alias{pmp_relabel.list}
 \title{Relabel a pmplots plot using a yspec object or named list}
 \usage{
@@ -10,11 +11,14 @@ pmp_relabel(obj, ...)
 
 \method{pmp_relabel}{gg}(obj, spec = list(), labs = list(), ...)
 
+\method{pmp_relabel}{patchwork}(obj, spec = list(), labs = list(), ...)
+
 \method{pmp_relabel}{list}(obj, spec = list(), labs = list(), ...)
 }
 \arguments{
-\item{obj}{a gg object created through a \code{pmplots} function or a
-list of such objects.}
+\item{obj}{a gg object created through a \code{pmplots} function, a \code{patchwork}
+object (e.g., from \code{\link[=eta_covariate]{eta_covariate()}} or \code{\link[=npde_panel]{npde_panel()}}), or a list of such
+objects.}
 
 \item{...}{additional arguments passed to \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}.}
 
@@ -30,6 +34,13 @@ This function relabels \code{x} and \code{y} axis titles based on the data colum
 used to create the plot, looking up in a named list or \code{yspec} object. This
 is only for pmplot outputs; consider \code{\link[yspec:ys_gg_labs]{yspec::ys_gg_labs()}} for labeling
 aesthetics in an arbitrary \code{gg} object.
+}
+\details{
+Methods are provided for \code{gg} objects (single pmplots plots), \code{patchwork}
+objects (multi-panel layouts produced by functions such as \code{\link[=eta_covariate]{eta_covariate()}}
+or \code{\link[=npde_panel]{npde_panel()}}), and plain \code{list} objects containing pmplots plots.
+The patchwork method applies the relabeling to every panel in the layout
+using the \code{&} operator.
 }
 \examples{
 data <- pmplots_data_obs()

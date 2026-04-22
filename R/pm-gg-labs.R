@@ -149,24 +149,32 @@ resolve_aes_label <- function(aes, all_mappings, object) {
 
 #' Relabel a plot using a yspec object or named list
 #'
-#' Applies [pm_gg_labs()] to a ggplot object or a list of ggplot objects,
-#' updating axis and aesthetic labels by looking up column names in a named
-#' list or `yspec` object.
+#' Applies [pm_gg_labs()] to a ggplot object, `patchwork` object, or a list of
+#' ggplot objects, updating axis and aesthetic labels by looking up column names
+#' in a named list or `yspec` object.
 #'
 #' @inheritParams pm_gg_labs
-#' @param x a ggplot object or a list of ggplot objects.
+#' @param x a gg object, a `patchwork` object (e.g., from [eta_covariate()] or
+#'   [npde_panel()]), or a list of ggplot objects.
 #' @param ... additional arguments passed to [pm_gg_labs()].
+#'
+#' @details
+#' Methods are provided for `gg` objects (single plots), `patchwork` objects
+#' (multi-panel layouts produced by functions such as [eta_covariate()] or
+#' [npde_panel()]), and plain `list` objects containing ggplot objects. The
+#' patchwork method applies the relabeling to every panel in the layout using
+#' the `&` operator.
 #'
 #' @examples
 #' data <- pmplots_data_obs()
 #'
 #' spec <- list(
-#'   DV = "CX1123 concentration (ng/mL)", 
+#'   DV = "CX1123 concentration (ng/mL)",
 #'   PRED = "Population prediction (ng/mL)"
 #' )
 #'
 #' p <- dv_pred(data)
-#' 
+#'
 #' pm_relabel(p, spec)
 #'
 #' @seealso [pm_gg_labs()], [pmp_gg_labs()]
@@ -177,6 +185,12 @@ pm_relabel <- function(x, ...) UseMethod("pm_relabel")
 #' @export
 pm_relabel.gg <- function(x, spec, labs = list(), ...) {
   x + pm_gg_labs(spec, labs, ...)
+}
+
+#' @rdname pm_relabel
+#' @export
+pm_relabel.patchwork <- function(x, spec, labs = list(), ...) {
+  x & pm_gg_labs(spec, labs, ...)
 }
 
 #' @rdname pm_relabel

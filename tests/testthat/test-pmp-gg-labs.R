@@ -354,3 +354,94 @@ test_that("col_labels_from_data uses wrap label labels in wrapped plots", {
   p <- wrap_eta_cont(labeled, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
   expect_equal(levels(p$data$variable), c("Weight (kg)", "Albumin (g/dL)"))
 })
+
+# relabel_at --------------------------------------------------------------------
+
+relabel_spec <- list(DV = "Concentration (ng/mL)", PRED = "Population prediction (ng/mL)")
+
+test_that("relabel_at with at relabels only the named elements", {
+  data <- pmplots_data_obs()
+  plots <- list(p1 = dv_pred(data), p2 = dv_ipred(data))
+  out <- relabel_at(plots, at = "p1", spec = relabel_spec)
+  expect_equal(out$p1$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$p1$labels$x, relabel_spec[["PRED"]])
+  expect_equal(out$p2$labels$y, plots$p2$labels$y)
+})
+
+test_that("relabel_at with re relabels elements matching the pattern", {
+  data <- pmplots_data_obs()
+  plots <- list(dv1 = dv_pred(data), dv2 = dv_ipred(data), eta1 = npde_pred(data))
+  out <- relabel_at(plots, re = "^dv", spec = relabel_spec)
+  expect_equal(out$dv1$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$dv2$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$eta1$labels$y, plots$eta1$labels$y)
+})
+
+test_that("relabel_at re takes precedence over at", {
+  data <- pmplots_data_obs()
+  plots <- list(p1 = dv_pred(data), p2 = dv_ipred(data))
+  out <- relabel_at(plots, at = "p1", re = "p2", spec = relabel_spec)
+  expect_equal(out$p2$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$p1$labels$y, plots$p1$labels$y)
+})
+
+test_that("relabel_at applies to all elements when at = names(x) (default)", {
+  data <- pmplots_data_obs()
+  plots <- list(p1 = dv_pred(data), p2 = dv_ipred(data))
+  out <- relabel_at(plots, spec = relabel_spec)
+  expect_equal(out$p1$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$p2$labels$y, relabel_spec[["DV"]])
+})
+
+test_that("relabel_at works on a list of plain gg plots", {
+  data <- pmplots_data_obs()
+  gg1 <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
+  gg2 <- ggplot2::ggplot(data, ggplot2::aes(IPRED, DV)) + ggplot2::geom_point()
+  plots <- list(a = gg1, b = gg2)
+  out <- relabel_at(plots, spec = relabel_spec)
+  expect_equal(out$a$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$a$labels$x, relabel_spec[["PRED"]])
+  expect_equal(out$b$labels$y, relabel_spec[["DV"]])
+})
+
+test_that("relabel_at works on a list of pmplot outputs", {
+  data <- pmplots_data_obs()
+  plots <- list(p1 = dv_pred(data), p2 = dv_ipred(data))
+  out <- relabel_at(plots, spec = relabel_spec)
+  expect_equal(out$p1$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$p1$labels$x, relabel_spec[["PRED"]])
+  expect_equal(out$p2$labels$y, relabel_spec[["DV"]])
+})
+
+test_that("relabel_at works on a mixed list of pmplot and plain gg objects", {
+  data <- pmplots_data_obs()
+  pmp <- dv_pred(data)
+  plain <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
+  plots <- list(pmp = pmp, plain = plain)
+  out <- relabel_at(plots, spec = relabel_spec)
+  expect_equal(out$pmp$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$plain$labels$y, relabel_spec[["DV"]])
+  expect_equal(out$plain$labels$x, relabel_spec[["PRED"]])
+})
+
+test_that("relabel_at errors when x is unnamed", {
+  data <- pmplots_data_obs()
+  plots <- list(dv_pred(data), dv_ipred(data))
+  expect_error(relabel_at(plots, spec = relabel_spec), regexp = "named")
+})
+
+test_that("relabel_at errors when at contains names not in x", {
+  data <- pmplots_data_obs()
+  plots <- list(p1 = dv_pred(data))
+  expect_error(relabel_at(plots, at = "p_missing", spec = relabel_spec))
+})
+
+test_that("relabel_at warns and returns x unchanged when re matches nothing", {
+  data <- pmplots_data_obs()
+  plots <- list(p1 = dv_pred(data))
+  expect_warning(
+    out <- relabel_at(plots, re = "^zzz", spec = relabel_spec),
+    regexp = "relabel"
+  )
+  expect_equal(out$p1$labels$y, plots$p1$labels$y)
+})
