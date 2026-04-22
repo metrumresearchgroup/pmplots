@@ -208,5 +208,3 @@ pm_scatter_list <- function(df, x, y, ...) {
 #' @rdname pm_scatter
 #' @export
 cont_cont <- pm_scatter
-
-

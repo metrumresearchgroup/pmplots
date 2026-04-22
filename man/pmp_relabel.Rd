@@ -6,14 +6,15 @@
 \alias{pmp_relabel.list}
 \title{Relabel a pmplots plot using a yspec object or named list}
 \usage{
-pmp_relabel(x, ...)
+pmp_relabel(obj, ...)
 
-\method{pmp_relabel}{gg}(x, spec, labs = list(), ...)
+\method{pmp_relabel}{gg}(obj, spec = list(), labs = list(), ...)
 
-\method{pmp_relabel}{list}(x, spec, labs = list(), ...)
+\method{pmp_relabel}{list}(obj, spec = list(), labs = list(), ...)
 }
 \arguments{
-\item{x}{a gg object created through a \code{pmplots} function.}
+\item{obj}{a gg object created through a \code{pmplots} function or a
+list of such objects.}
 
 \item{...}{additional arguments passed to \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}.}
 
@@ -43,5 +44,5 @@ p
 
 }
 \seealso{
-\code{\link[=pmp_gg_labs]{pmp_gg_labs()}}, \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}}
+\code{\link[=pmp_gg_labs]{pmp_gg_labs()}}, \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}}, \code{\link[=pmp_relabel_pairs]{pmp_relabel_pairs()}}
 }

@@ -142,5 +142,7 @@ dv_ipred <- function(df, x = pm_axis_ipred(), ...) {
 #' @export
 #' @rdname dv_pred
 dv_preds <- function(df, ...) {
-  list(dv_pred(df, ...), dv_ipred(df, ...))
+  plots <- list(dv_pred(df, ...), dv_ipred(df, ...))
+  names(plots) <- c("PRED", "IPRED")
+  plots
 }

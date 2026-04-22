@@ -53,3 +53,6 @@ p <- dv_pred(data) + pmp_gg_labs(spec)
 p
 
 }
+\seealso{
+\code{\link[=pmp_relabel]{pmp_relabel()}}, \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}}, \code{\link[=pmp_relabel_pairs]{pmp_relabel_pairs()}}
+}

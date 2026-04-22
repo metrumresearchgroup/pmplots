@@ -63,6 +63,9 @@ pairs_upper <- function(data, mapping, ...) {
 #'
 #' @param x plotting data.frame
 #' @param y character `col//label` for pairs data; see [col_label()]
+#' @param unit_break if `TRUE` (the default), a newline is inserted between the
+#' label text and a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
+#' `"Weight\n(kg)"`).
 #' @param bins passed to [ggplot2::geom_histogram()] to render the diagonal
 #' @param alpha passed to [ggplot2::geom_histogram()] or
 #' [ggplot2::geom_density()] to render the diagonal

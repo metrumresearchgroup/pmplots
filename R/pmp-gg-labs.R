@@ -10,7 +10,7 @@ validate_label_list <- function(x, name) {
 }
 
 gg_get_labs_2 <- function(p) {
-  defaults <- ggplot2::labs() 
+  defaults <- ggplot2::labs()
   modifyList(defaults, p$labels)
 }
 
@@ -26,7 +26,7 @@ resolve_axis_label <- function(label, envir, default) {
 #'
 #' This function generates `x` and `y` axis titles based on the data columns
 #' used to create the plot, looking up in a named list or `yspec` object. This
-#' is only for pmplot outputs; consider [pm_gg_labs()] for labeling aesthetics 
+#' is only for pmplot outputs; consider [pm_gg_labs()] for labeling aesthetics
 #' in an arbitrary `gg` object.
 #'
 #' @param spec a named list of label data; names correspond to columns
@@ -38,7 +38,7 @@ resolve_axis_label <- function(label, envir, default) {
 #' column name. Pass a column name as a plain string to look it up in `spec`
 #' or `labs`; wrap in [I()] to use the string as a literal label.
 #' @param y label for the y aesthetic; see `x`.
-#' @param short_max passed to [yspec::ys_get_short_unit()] when `spec` is a 
+#' @param short_max passed to [yspec::ys_get_short_unit()] when `spec` is a
 #' `yspec` object.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
@@ -55,6 +55,7 @@ resolve_axis_label <- function(label, envir, default) {
 #'
 #' p
 #'
+#' @seealso [pmp_relabel()], [pmp_relabel_wrap()], [pmp_relabel_pairs()]
 #' @md
 #' @export
 pmp_gg_labs <- function(spec = list(), labs = list(),
@@ -89,7 +90,7 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
 #' @exportS3Method ggplot2::ggplot_add
 ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
   assert_that(
-    isTRUE(p$pmp.pmplot), 
+    isTRUE(p$pmp.pmplot),
     msg = "pmp_gg_labs() can only be used with plots created by pmplots."
   )
   existing <- gg_get_labs_2(p)
@@ -109,7 +110,8 @@ ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
 #' aesthetics in an arbitrary `gg` object.
 #'
 #' @inheritParams pmp_gg_labs
-#' @param x a gg object created through a `pmplots` function.
+#' @param obj a gg object created through a `pmplots` function or a 
+#' list of such objects.
 #' @param ... additional arguments passed to [pmp_gg_labs()].
 #'
 #' @examples
@@ -123,24 +125,24 @@ ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
 #' p <- pmp_relabel(p, spec)
 #' p
 #'
-#' @seealso [pmp_gg_labs()], [pmp_relabel_wrap()]
+#' @seealso [pmp_gg_labs()], [pmp_relabel_wrap()], [pmp_relabel_pairs()]
 #' @export
-pmp_relabel <- function(x, ...) UseMethod("pmp_relabel")
+pmp_relabel <- function(obj, ...) UseMethod("pmp_relabel")
 
 #' @rdname pmp_relabel
 #' @export
-pmp_relabel.gg <- function(x, spec, labs = list(), ...) {
+pmp_relabel.gg <- function(obj, spec = list(), labs = list(), ...) {
   assert_that(
-    isTRUE(x$pmp.pmplot), 
+    isTRUE(obj$pmp.pmplot),
     msg = "pmp_relabel() can only be used with plots created by pmplots."
   )
-  x + pmp_gg_labs(spec, labs, ...)
+  obj + pmp_gg_labs(spec, labs, ...)
 }
 
 #' @rdname pmp_relabel
 #' @export
-pmp_relabel.list <- function(x, spec, labs = list(), ...) {
-  lapply(x, pmp_relabel, spec = spec, labs = labs, ...)
+pmp_relabel.list <- function(obj, spec = list(), labs = list(), ...) {
+  lapply(obj, pmp_relabel, spec = spec, labs = labs, ...)
 }
 
 #' Relabel facet strips in a wrapped pmplot
@@ -169,7 +171,7 @@ pmp_relabel.list <- function(x, spec, labs = list(), ...) {
 #' @export
 pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
   assert_that(
-    isTRUE(p$pmp.pmplots.wrap), 
+    isTRUE(p$pmp.pmplots.wrap),
     msg = "pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont())."
   )
   envir <- list()
@@ -236,7 +238,7 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
 #' @export
 pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, unit_break = TRUE, ...) {
   assert_that(
-    isTRUE(p$pmp.pmplot.pairs), 
+    isTRUE(p$pmp.pmplot.pairs),
     msg = "pmp_relabel_pairs() can only be used with pm pairs plots."
   )
   envir <- list()
