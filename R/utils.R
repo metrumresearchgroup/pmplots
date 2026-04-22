@@ -805,7 +805,22 @@ chunk_by_cols <- function(data, id_per_chunk, cols) {
   split.data.frame(data, sp)
 }
 
+col_labels_from_data <- function(df, cols) {
+  vapply(unname(cols), \(col) {
+    attr(df[[col]], "pmp.axis.label") %||% col
+  }, character(1))
+}
+
 force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')
+
+newline_at_unit <- function(x) {
+  has_nl <- grepl("\n", x, fixed = TRUE)
+  if(all(has_nl)) {
+    return(x)
+  }
+  x[!has_nl] <- sub("^(.*)\\s+(\\(.*\\))$", "\\1\n\\2", x[!has_nl])
+  x
+}
 
 require_patchwork <- function() {
   if(!requireNamespace("patchwork", quietly = TRUE)) {
@@ -818,3 +833,11 @@ require_yspec <- function() {
     abort('The "yspec" package is required.')
   }
 }
+
+require_GGally <- function() {
+  if(!requireNamespace("GGally", quietly = TRUE)) {
+    abort('The "GGally" package is required.')
+  }
+}
+
+

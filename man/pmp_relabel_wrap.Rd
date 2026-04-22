@@ -40,5 +40,5 @@ pmp_relabel_wrap(p, spec)
 
 }
 \seealso{
-\code{\link[=pmp_relabel]{pmp_relabel()}}, \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}
+\code{\link[=pmp_relabel]{pmp_relabel()}}, \code{\link[=pmp_relabel_pairs]{pmp_relabel_pairs()}}, \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}
 }

@@ -280,3 +280,77 @@ test_that("pmp_relabel_wrap errors when plot has no variable column", {
   p <- dv_pred(data)
   expect_error(pmp_relabel_wrap(p, wrap_spec), regexp = "wrapped pmplots")
 })
+
+# pmp_relabel_pairs -------------------------------------------------------------
+
+pairs_spec <- list(WT = "Weight (kg)", HT = "Height (cm)")
+
+test_that("pmp_relabel_pairs relabels matched columns", {
+  data <- pmplots_data_id()
+  p <- pairs_plot(data, c("WT", "HT", "SCR"))
+  p2 <- pmp_relabel_pairs(p, pairs_spec)
+  expect_equal(p2$yAxisLabels[1], "Weight\n(kg)")
+  expect_equal(p2$yAxisLabels[2], "Height\n(cm)")
+  expect_equal(p2$yAxisLabels[3], "SCR")
+})
+
+test_that("pmp_relabel_pairs with unit_break = FALSE does not insert newlines", {
+  data <- pmplots_data_id()
+  p <- pairs_plot(data, c("WT", "HT", "SCR"))
+  p2 <- pmp_relabel_pairs(p, pairs_spec, unit_break = FALSE)
+  expect_equal(p2$yAxisLabels[1], "Weight (kg)")
+  expect_equal(p2$yAxisLabels[2], "Height (cm)")
+  expect_equal(p2$yAxisLabels[3], "SCR")
+})
+
+test_that("pmp_relabel_pairs labs overrides spec", {
+  data <- pmplots_data_id()
+  p <- pairs_plot(data, c("WT", "HT", "SCR"))
+  p2 <- pmp_relabel_pairs(p, pairs_spec, labs = list(WT = "Body weight (kg)"), unit_break = FALSE)
+  expect_equal(p2$yAxisLabels[1], "Body weight (kg)")
+  expect_equal(p2$yAxisLabels[2], "Height (cm)")
+})
+
+test_that("pmp_relabel_pairs leaves columns absent from spec unchanged", {
+  data <- pmplots_data_id()
+  p <- pairs_plot(data, c("WT", "HT", "SCR"))
+  p2 <- pmp_relabel_pairs(p, list(WT = "Weight (kg)"), unit_break = FALSE)
+  expect_equal(p2$yAxisLabels[2], "HT")
+  expect_equal(p2$yAxisLabels[3], "SCR")
+})
+
+test_that("pmp_relabel_pairs errors on a non-pairs plot", {
+  data <- pmplots_data_obs()
+  p <- dv_pred(data)
+  expect_error(pmp_relabel_pairs(p, pairs_spec), regexp = "pm pairs plots")
+})
+
+test_that("pmp_relabel_pairs: data labels from pm_label_columns flow into yAxisLabels", {
+  data <- pmplots_data_id()
+  labeled <- pm_label_columns(data, list(WT = "Weight (kg)"))
+  p <- pairs_plot(labeled, c("WT", "HT", "SCR"))
+  expect_equal(p$yAxisLabels[1], "Weight\n(kg)")
+  expect_equal(p$yAxisLabels[2], "HT")
+})
+
+# col_labels_from_data ----------------------------------------------------------
+
+test_that("col_labels_from_data returns pmp.axis.label when present", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, list(WT = "Weight (kg)", ALB = "Albumin (g/dL)"))
+  result <- pmplots:::col_labels_from_data(labeled, c("WT", "ALB"))
+  expect_equal(unname(result), c("Weight (kg)", "Albumin (g/dL)"))
+})
+
+test_that("col_labels_from_data falls back to column name when no attribute", {
+  data <- pmplots_data_obs()
+  result <- pmplots:::col_labels_from_data(data, c("WT", "SCR"))
+  expect_equal(unname(result), c("WT", "SCR"))
+})
+
+test_that("col_labels_from_data uses wrap label labels in wrapped plots", {
+  data <- pmplots_data_obs()
+  labeled <- pm_label_columns(data, list(WT = "Weight (kg)", ALB = "Albumin (g/dL)"))
+  p <- wrap_eta_cont(labeled, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  expect_equal(levels(p$data$variable), c("Weight (kg)", "Albumin (g/dL)"))
+})

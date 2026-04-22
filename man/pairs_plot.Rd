@@ -9,6 +9,7 @@ pairs_plot(
   x,
   y,
   bins = 15,
+  unit_break = TRUE,
   alpha = opts$histogram.alpha,
   fill = opts$histogram.fill,
   col = opts$histogram.col,

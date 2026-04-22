@@ -20,7 +20,7 @@ wrap_cont_cont(
   title = NULL,
   scales = "free_y",
   ncol = NULL,
-  use_labels = FALSE,
+  use_labels = TRUE,
   label_fun = deprecated(),
   labeller = label_tex
 )
@@ -37,7 +37,7 @@ wrap_hist(
   title = NULL,
   scales = "free_x",
   ncol = NULL,
-  use_labels = FALSE,
+  use_labels = TRUE,
   labeller = label_tex,
   label_fun = deprecated(),
   ...
@@ -53,7 +53,7 @@ wrap_cont_cat(
   title = NULL,
   scales = "free_y",
   ncol = NULL,
-  use_labels = FALSE,
+  use_labels = TRUE,
   labeller = label_tex,
   label_fun = deprecated()
 )

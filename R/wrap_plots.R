@@ -8,15 +8,6 @@ save_wrap_plot_data <- function(p, ncol, scales, facets, varnames) {
   p
 }
 
-wrap_try_data_labels <- function(df, labels) {
-  lab <- lapply(df[, labels], attr, "pmp.axis.label")
-  lab <- unlist(unname(lab))
-  if(length(lab)==length(labels)) {
-    labels <- lab
-  }
-  labels
-}
-
 #' Faceted plots
 #'
 #' For these plots, data sets made long with respect to several
@@ -107,7 +98,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
     melt_labels <- names(to_melt)
 
     if(use_labels) {
-      melt_labels <- wrap_try_data_labels(df, to_melt)
+      melt_labels <- col_labels_from_data(df, to_melt)
     }
 
     df <- pivot_longer(
@@ -137,7 +128,7 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
     melt_labels <- names(to_melt)
 
     if(use_labels) {
-      melt_labels <- wrap_try_data_labels(df, to_melt)
+      melt_labels <- col_labels_from_data(df, to_melt)
     }
 
     df <- pivot_longer(
@@ -203,7 +194,7 @@ wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
   melt_labels <- names(to_melt)
 
   if(use_labels) {
-    melt_labels <- wrap_try_data_labels(df, to_melt)
+    melt_labels <- col_labels_from_data(df, to_melt)
   }
 
   df <- pivot_longer(
@@ -280,7 +271,7 @@ wrap_cont_cat <- function(df, x, y, ...,
   melt_labels <- names(to_melt)
 
   if(use_labels) {
-    melt_labels <- wrap_try_data_labels(df, to_melt)
+    melt_labels <- col_labels_from_data(df, to_melt)
   }
 
   df <- pivot_longer(

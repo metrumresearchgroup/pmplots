@@ -165,11 +165,11 @@ pmp_relabel.list <- function(x, spec, labs = list(), ...) {
 #'
 #' pmp_relabel_wrap(p, spec)
 #'
-#' @seealso [pmp_relabel()], [pmp_gg_labs()]
+#' @seealso [pmp_relabel()], [pmp_relabel_pairs()], [pmp_gg_labs()]
 #' @export
 pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
   assert_that(
-    isTRUE(x$pmp.pmplot), 
+    isTRUE(p$pmp.pmplots.wrap), 
     msg = "pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont())."
   )
   envir <- list()
@@ -202,6 +202,72 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
     scales   = p$pmp.pmplots.wrap.scales,
     ncol     = p$pmp.pmplots.wrap.ncol
   )
+}
+
+#' Relabel facets in a pmplots pairs plot
+#'
+#' This function relabels the axis strip labels in a pairs plot created by
+#' [eta_pairs()] or [pairs_plot()] by looking up the variable names in a named
+#' list or `yspec` object. Variable names are discovered automatically from the
+#' plot object. Names absent from `spec` and `labs` are left unchanged.
+#'
+#' @inheritParams pmp_gg_labs
+#' @param p a pairs plot object created by [eta_pairs()] or [pairs_plot()].
+#' @param unit_break if `TRUE` (the default), a newline is inserted between the
+#'   label text and a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
+#'   `"Weight\n(kg)"`).
+#' @param ... currently not used.
+#'
+#' @return The pairs plot `p` with updated facet labels.
+#'
+#' @examples
+#' id <- pmplots_data_id()
+#'
+#' etas <- c("ETA1//ETA-CL", "ETA2//ETA-VC", "ETA3//ETA-KA")
+#'
+#' spec <- list(ETA1 = "ETA on CL (L/h)", ETA2 = "ETA on Vc (L)")
+#'
+#' p <- eta_pairs(id, etas)
+#'
+#' pmp_relabel_pairs(p, spec)
+#'
+#' @seealso [pmp_relabel()], [pmp_relabel_wrap()], [pmp_gg_labs()]
+#' @md
+#' @export
+pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, unit_break = TRUE, ...) {
+  assert_that(
+    isTRUE(p$pmp.pmplot.pairs), 
+    msg = "pmp_relabel_pairs() can only be used with pm pairs plots."
+  )
+  envir <- list()
+  if(inherits(spec, "yspec")) {
+    require_yspec()
+    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
+  }
+  if(length(spec)) {
+    validate_label_list(spec, "spec")
+    envir <- spec
+  }
+  if(length(labs)) {
+    validate_label_list(labs, "labs")
+    envir <- c(labs, envir)
+  }
+  envir <- envir[!duplicated(names(envir))]
+
+  var_names <- p$pmp.pmplot.pairs.cols
+
+  label_map <- setNames(
+    vapply(var_names, function(v) envir[[v]] %||% v, character(1)),
+    var_names
+  )
+
+  if(isTRUE(unit_break)) {
+    label_map <- newline_at_unit(label_map)
+  }
+
+  p$yAxisLabels <- unname(label_map)
+
+  p
 }
 
 #' Add axis label data to a data frame
