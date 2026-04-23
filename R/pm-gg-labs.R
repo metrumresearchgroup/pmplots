@@ -25,6 +25,12 @@ NULL
 #' multiple variables that each have a spec entry but resolve to different
 #' labels.
 #' @param short_max passed to [yspec::ys_get_short_unit()].
+#' @param x_break character width at which to insert a line break in the x
+#'   axis label; defaults to `Inf` (no break). When the resolved label exceeds
+#'   this width, a newline is inserted at the last word boundary at or before
+#'   the limit.
+#' @param y_break character width at which to insert a line break in the y
+#'   axis label; see `x_break`.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A gg object that can be added to a ggplot with `+`.
@@ -66,6 +72,8 @@ pm_gg_labs <- function(spec = list(),
                        shape = NULL,
                        quietly = FALSE, 
                        short_max = Inf, 
+                       x_break = Inf, 
+                       y_break = Inf,
                        ...) {
   colour <- colour %||% color %||% col
   linetype <- linetype %||% lty
@@ -88,6 +96,8 @@ pm_gg_labs <- function(spec = list(),
       envir = envir,
       x = x,
       y = y,
+      x_break = x_break, 
+      y_break = y_break,
       fill = fill,
       colour = colour,
       linetype = linetype,
@@ -208,6 +218,8 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
   args <- list()
   args$x <- resolve_aes_label("x", all_mappings, object)
   args$y <- resolve_aes_label("y", all_mappings, object)
+  args$x <- str_break(args$x, object$x_break)
+  args$y <- str_break(args$y, object$y_break)
   for(aes in c("fill", "colour", "linetype", "shape")) {
     label <- resolve_aes_label(aes, all_mappings, object)
     if(!is.null(label)) args[[aes]] <- label

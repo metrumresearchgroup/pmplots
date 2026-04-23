@@ -822,6 +822,20 @@ newline_at_unit <- function(x) {
   x
 }
 
+str_break <- function(x, width = Inf) {
+  if(is.infinite(width)) return(x)
+  vapply(x, function(s) {
+    n <- nchar(s)
+    if(n <= width || grepl("\n", s, fixed = TRUE)) return(s)
+    spaces <- gregexpr(" ", s, fixed = TRUE)[[1]]
+    if(spaces[1] == -1L) return(s)
+    # prefer last space at or before width; fall back to first space
+    valid <- spaces[spaces <= width]
+    p <- if(length(valid)) max(valid) else min(spaces)
+    paste0(substr(s, 1, p - 1), "\n", substr(s, p + 1, n))
+  }, character(1), USE.NAMES = FALSE)
+}
+
 require_patchwork <- function() {
   if(!requireNamespace("patchwork", quietly = TRUE)) {
     stop('The "patchwork" package is required.')

@@ -40,6 +40,12 @@ resolve_axis_label <- function(label, envir, default) {
 #' @param y label for the y aesthetic; see `x`.
 #' @param short_max passed to [yspec::ys_get_short_unit()] when `spec` is a
 #' `yspec` object.
+#' @param x_break character width at which to insert a line break in the x
+#'   axis label; defaults to `Inf` (no break). When the resolved label exceeds
+#'   this width, a newline is inserted at the last word boundary at or before
+#'   the limit.
+#' @param y_break character width at which to insert a line break in the y
+#'   axis label; see `x_break`.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A `pmp_gg_labs` object that can be added to a pmplots gg object
@@ -61,6 +67,8 @@ resolve_axis_label <- function(label, envir, default) {
 pmp_gg_labs <- function(spec = list(), labs = list(),
                        x = NULL, y = NULL,
                        short_max = Inf,
+                       x_break = Inf, 
+                       y_break = Inf,
                        ...) {
   envir <- list()
   if(inherits(spec, "yspec")) {
@@ -81,6 +89,8 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
       envir = envir,
       x = x,
       y = y,
+      x_break = x_break, 
+      y_break = y_break,
       extra = list(...)
     ),
     class = "pmp_gg_labs"
@@ -99,6 +109,8 @@ ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
   y <- object$y %||% p$pmp.y
   args$x <- resolve_axis_label(x, object$envir, existing$x)
   args$y <- resolve_axis_label(y, object$envir, existing$y)
+  args$x <- str_break(args$x, object$x_break)
+  args$y <- str_break(args$y, object$y_break)
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 

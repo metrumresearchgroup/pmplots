@@ -141,6 +141,27 @@ test_that("pmp_gg_labs x = I() uses the string literally without a spec lookup",
   expect_equal(p$labels$x, "Literal title")
 })
 
+test_that("pmp_gg_labs x_break inserts newline in x label at word boundary", {
+  data <- pmplots_data_obs()
+  # "Population prediction (ng/mL)" — spaces at 11 and 22; x_break 15 picks 11
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, x_break = 15)
+  expect_equal(p$labels$x, "Population\nprediction (ng/mL)")
+})
+
+test_that("pmp_gg_labs y_break inserts newline in y label at word boundary", {
+  data <- pmplots_data_obs()
+  # "Concentration (ng/mL)" — space at 14; y_break 15 picks 14
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, y_break = 15)
+  expect_equal(p$labels$y, "Concentration\n(ng/mL)")
+})
+
+test_that("pmp_gg_labs x_break = Inf (default) does not insert newlines", {
+  data <- pmplots_data_obs()
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec)
+  expect_equal(p$labels$x, dv_pred_spec[["PRED"]])
+  expect_equal(p$labels$y, dv_pred_spec[["DV"]])
+})
+
 # pmp_relabel -------------------------------------------------------------------
 
 test_that("pmp_relabel relabels a single pmplot", {

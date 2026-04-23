@@ -210,6 +210,24 @@ test_that("no message when user passes aesthetic directly", {
   expect_no_message(p0 + pm_gg_labs(spec, x = I("My time label")))
 })
 
+test_that("pm_gg_labs x_break inserts newline in x label at word boundary", {
+  # spec: TIME = "Time (hour)" (11 chars) — space at 5; x_break 7 picks 5
+  p <- p0 + pm_gg_labs(spec, x_break = 7)
+  expect_equal(ggplot2::get_labs(p)$x, "Time\n(hour)")
+})
+
+test_that("pm_gg_labs y_break inserts newline in y label at word boundary", {
+  # spec: DV = "Concentration (ng/mL)" (21 chars) — space at 14; y_break 15 picks 14
+  p <- p0 + pm_gg_labs(spec, y_break = 15)
+  expect_equal(ggplot2::get_labs(p)$y, "Concentration\n(ng/mL)")
+})
+
+test_that("pm_gg_labs x_break = Inf (default) does not insert newlines", {
+  p <- p0 + pm_gg_labs(spec)
+  expect_equal(ggplot2::get_labs(p)$x, "Time (hour)")
+  expect_equal(ggplot2::get_labs(p)$y, "Concentration (ng/mL)")
+})
+
 test_that("top-level mapping wins over layer-level", {
   d2 <- data[data$ID==1, c("TIME", "DV")]
   names(d2) <- c("TAFO", "CONC")
