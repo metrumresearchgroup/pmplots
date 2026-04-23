@@ -58,7 +58,7 @@ pm_axis_data <- list(
 )
 
 mk_col_title <- function(what, sep = "//") {
-  
+  title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
   paste0(
     pm_axis_data[["col"]][[what]],
     sep,
