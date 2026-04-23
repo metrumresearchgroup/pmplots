@@ -58,9 +58,19 @@ pm_axis_data <- list(
 )
 
 mk_col_title <- function(what, sep = "//") {
-  title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
+  
   paste0(
     pm_axis_data[["col"]][[what]],
+    sep,
+    pm_axis_data[[title]][[what]]
+  )
+}
+
+# Currently, allows custom TIME or TAD column name through option
+mk_custom_title <- function(what, col, sep = "//") {
+  title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
+  paste0(
+    col,
     sep,
     pm_axis_data[[title]][[what]]
   )
@@ -87,12 +97,24 @@ mk_col_title <- function(what, sep = "//") {
 #' @md
 #' @export
 pm_axis_tad <- function(xunit = NULL) {
-  glue_unit(mk_col_title("tad"), xunit)
+  op <- pm_opts$tad.column
+  if(op != pm_axis_data[["col"]][["tad"]]) {
+    out <- mk_custom_title("tad", op)
+  } else {
+    out <- mk_col_title("tad")
+  }
+  glue_unit(out, xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
 pm_axis_time <- function(xunit = NULL) {
-  glue_unit(mk_col_title("time"), xunit)
+  op <- pm_opts$time.column
+  if(op != pm_axis_data[["col"]][["time"]]) {
+    out <- mk_custom_title("time", op)
+  } else {
+    out <- mk_col_title("time")
+  }
+  glue_unit(out, xunit)
 }
 #' @rdname pm_axis_functions
 #' @export
