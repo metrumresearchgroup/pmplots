@@ -48,6 +48,8 @@
 #' observations used to calculate correlation in upper panels of pairs plots
 #' @param axis.title.short shorten standard axis titles
 #' @param time.unit default time unit
+#' @param time.column data set column name for time after first dose
+#' @param tad.column data set column name for time after most recent dose
 #'
 #' @details
 #' [pm()] and [pm_opts()] both refer to the same environment.
@@ -129,7 +131,9 @@ pm_options <- function(smooth.lwd = 1.35,
                        pairs.cor.digits = 2,
                        pairs.cor.shown = TRUE,
                        axis.title.short = FALSE,
-                       time.unit = "hr") {
+                       time.unit = "hr", 
+                       time.column = "TIME", 
+                       tad.column = "TAD") {
   set <- function(..., .list = NULL) {
     if(is.list(.list)) {
       x <- .list
