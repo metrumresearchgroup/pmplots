@@ -109,8 +109,8 @@ ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
   y <- object$y %||% p$pmp.y
   args$x <- resolve_axis_label(x, object$envir, existing$x)
   args$y <- resolve_axis_label(y, object$envir, existing$y)
-  args$x <- str_break(args$x, object$x_break)
-  args$y <- str_break(args$y, object$y_break)
+  args$x <- str_break(args$x, width = object$x_break)
+  args$y <- str_break(args$y, width = object$y_break)
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 
@@ -180,6 +180,13 @@ pmp_relabel.list <- function(obj, spec = list(), labs = list(), ...) {
 #'
 #' @inheritParams pmp_gg_labs
 #' @param p a ggplot object created by a `wrap_*` pmplots function.
+#' @param f_break character width at which to insert a single line break in
+#'   facet strip labels; defaults to `Inf` (no break); when the resolved label
+#'   exceeds this width, a single newline is inserted at the last word boundary
+#'   at or before the limit.
+#' @param unit_break if `TRUE`, a newline is inserted between the label text and
+#'   a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
+#'   `"Weight\n(kg)"`); defaults to `FALSE`.
 #'
 #' @return The plot `p` with updated facet strip labels.
 #'
@@ -194,7 +201,7 @@ pmp_relabel.list <- function(obj, spec = list(), labs = list(), ...) {
 #'
 #' @seealso [pmp_relabel()], [pmp_relabel_pairs()], [pmp_gg_labs()]
 #' @export
-pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
+pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf, f_break = Inf, unit_break = FALSE) {
   assert_that(
     isTRUE(p$pmp.pmplots.wrap),
     msg = "pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont())."
@@ -221,6 +228,17 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
     var_names
   )
 
+  if(isTRUE(unit_break)) {
+    label_map <- newline_at_unit(label_map)
+  }
+
+  if(is.finite(f_break)) {
+    label_map <- setNames(
+      str_break(label_map, width = f_break), 
+      names(label_map)
+    )
+  }
+
   labelfun <- function(v) lapply(v, function(x) parse_label(label_map[[x]]))
 
   p + facet_wrap(
@@ -240,6 +258,10 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
 #'
 #' @inheritParams pmp_gg_labs
 #' @param p a pairs plot object created by [eta_pairs()] or [pairs_plot()].
+#' @param f_break character width at which to insert a single line break in
+#'   facet strip labels; defaults to `Inf` (no break); when the resolved label
+#'   exceeds this width, a single newline is inserted at the last word boundary
+#'   at or before the limit.
 #' @param unit_break if `TRUE` (the default), a newline is inserted between the
 #'   label text and a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
 #'   `"Weight\n(kg)"`).
@@ -261,7 +283,8 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf) {
 #' @seealso [pmp_relabel()], [pmp_relabel_wrap()], [pmp_gg_labs()]
 #' @md
 #' @export
-pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, unit_break = TRUE, ...) {
+pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, 
+                              f_break = Inf, unit_break = TRUE, ...) {
   assert_that(
     isTRUE(p$pmp.pmplot.pairs),
     msg = "pmp_relabel_pairs() can only be used with pm pairs plots."
@@ -290,6 +313,13 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, unit_brea
 
   if(isTRUE(unit_break)) {
     label_map <- newline_at_unit(label_map)
+  }
+
+  if(is.finite(f_break)) {
+    label_map <- setNames(
+      str_break(label_map, width = f_break), 
+      names(label_map)
+    )
   }
 
   p$yAxisLabels <- unname(label_map)

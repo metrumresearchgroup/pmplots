@@ -51,13 +51,13 @@ labels.}
 
 \item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
 
-\item{x_break}{character width at which to insert a line break in the x
-axis label; defaults to \code{Inf} (no break). When the resolved label exceeds
-this width, a newline is inserted at the last word boundary at or before
-the limit.}
+\item{x_break}{character width at which to insert a single line break in the
+x axis label; defaults to \code{Inf} (no break). When the resolved label exceeds
+this width, a single newline is inserted at the last word boundary at or
+before the limit.}
 
-\item{y_break}{character width at which to insert a line break in the y
-axis label; see \code{x_break}.}
+\item{y_break}{character width at which to insert a single line break in the
+y axis label; see \code{x_break}.}
 
 \item{...}{additional arguments passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.}
 }

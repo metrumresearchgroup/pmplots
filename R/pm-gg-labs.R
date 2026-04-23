@@ -218,8 +218,8 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
   args <- list()
   args$x <- resolve_aes_label("x", all_mappings, object)
   args$y <- resolve_aes_label("y", all_mappings, object)
-  args$x <- str_break(args$x, object$x_break)
-  args$y <- str_break(args$y, object$y_break)
+  args$x <- str_break(args$x, width = object$x_break)
+  args$y <- str_break(args$y, width = object$y_break)
   for(aes in c("fill", "colour", "linetype", "shape")) {
     label <- resolve_aes_label(aes, all_mappings, object)
     if(!is.null(label)) args[[aes]] <- label

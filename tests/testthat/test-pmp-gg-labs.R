@@ -296,6 +296,26 @@ test_that("pmp_relabel_wrap preserves scales from original plot", {
   expect_false(p2$facet$params$free$y)
 })
 
+test_that("pmp_relabel_wrap unit_break = TRUE inserts newline before parenthetical unit", {
+  data <- pmplots_data_obs()
+  p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  p2 <- pmp_relabel_wrap(p, wrap_spec, unit_break = TRUE)
+  lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
+  mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
+  expect_equal(unlist(mapped$variable), c("Weight\n(kg)", "Albumin\n(mg/dL)"))
+})
+
+test_that("pmp_relabel_wrap f_break inserts single newline in strip label at word boundary", {
+  data <- pmplots_data_obs()
+  p <- wrap_eta_cont(data, x = c("WT", "ALB"), y = "ETA1//ETA1", scales = "free_x")
+  # "Weight (kg)" = 11 chars, space at 7; "Albumin (mg/dL)" = 15 chars, space at 8
+  # f_break = 10 breaks both at their first space
+  p2 <- pmp_relabel_wrap(p, wrap_spec, f_break = 10)
+  lbl <- ggplot2::ggplot_build(p2)$layout$facet_params$labeller
+  mapped <- lbl(data.frame(variable = factor(c("WT", "ALB"))))
+  expect_equal(unlist(mapped$variable), c("Weight\n(kg)", "Albumin\n(mg/dL)"))
+})
+
 test_that("pmp_relabel_wrap errors when plot has no variable column", {
   data <- pmplots_data_obs()
   p <- dv_pred(data)
@@ -324,6 +344,16 @@ test_that("pmp_relabel_pairs with unit_break = FALSE does not insert newlines", 
   p2 <- pmp_relabel_pairs(p, pairs_spec, unit_break = FALSE)
   expect_equal(p2$yAxisLabels[1], "Weight (kg)")
   expect_equal(p2$yAxisLabels[2], "Height (cm)")
+  expect_equal(p2$yAxisLabels[3], "SCR")
+})
+
+test_that("pmp_relabel_pairs f_break inserts single newline in strip label at word boundary", {
+  data <- pmplots_data_id()
+  p <- pairs_plot(data, c("WT", "HT", "SCR"))
+  # "Weight (kg)" and "Height (cm)" are 11 chars each, space at 7; f_break = 10 breaks at that space
+  p2 <- pmp_relabel_pairs(p, pairs_spec, unit_break = FALSE, f_break = 10)
+  expect_equal(p2$yAxisLabels[1], "Weight\n(kg)")
+  expect_equal(p2$yAxisLabels[2], "Height\n(cm)")
   expect_equal(p2$yAxisLabels[3], "SCR")
 })
 

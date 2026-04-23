@@ -9,6 +9,7 @@ pmp_relabel_pairs(
   spec,
   labs = list(),
   short_max = Inf,
+  f_break = Inf,
   unit_break = TRUE,
   ...
 )
@@ -25,6 +26,11 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 
 \item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a
 \code{yspec} object.}
+
+\item{f_break}{character width at which to insert a single line break in
+facet strip labels; defaults to \code{Inf} (no break); when the resolved label
+exceeds this width, a single newline is inserted at the last word boundary
+at or before the limit.}
 
 \item{unit_break}{if \code{TRUE} (the default), a newline is inserted between the
 label text and a trailing parenthetical unit (e.g., \code{"Weight (kg)"} becomes
