@@ -228,15 +228,15 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf, f_break = 
     var_names
   )
 
-  if(isTRUE(unit_break)) {
-    label_map <- newline_at_unit(label_map)
-  }
-
   if(is.finite(f_break)) {
     label_map <- setNames(
       str_break(label_map, width = f_break), 
       names(label_map)
     )
+  }
+  
+  if(isTRUE(unit_break)) {
+    label_map <- newline_at_unit(label_map)
   }
 
   labelfun <- function(v) lapply(v, function(x) parse_label(label_map[[x]]))
@@ -311,15 +311,15 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
     var_names
   )
 
-  if(isTRUE(unit_break)) {
-    label_map <- newline_at_unit(label_map)
-  }
-
   if(is.finite(f_break)) {
     label_map <- setNames(
       str_break(label_map, width = f_break), 
       names(label_map)
     )
+  }
+  
+  if(isTRUE(unit_break)) {
+    label_map <- newline_at_unit(label_map)
   }
 
   p$yAxisLabels <- unname(label_map)
