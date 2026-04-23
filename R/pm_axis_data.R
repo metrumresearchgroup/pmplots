@@ -67,7 +67,7 @@ mk_col_title <- function(what, sep = "//") {
 }
 
 # Currently, allows custom TIME or TAD column name through option
-mk_custom_title <- function(what, col, sep = "//") {
+mk_custom_col_title <- function(what, col, sep = "//") {
   title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
   paste0(
     col,
@@ -99,7 +99,7 @@ mk_custom_title <- function(what, col, sep = "//") {
 pm_axis_tad <- function(xunit = NULL) {
   op <- pm_opts$tad.column
   if(op != pm_axis_data[["col"]][["tad"]]) {
-    out <- mk_custom_title("tad", op)
+    out <- mk_custom_col_title("tad", op)
   } else {
     out <- mk_col_title("tad")
   }
@@ -110,7 +110,7 @@ pm_axis_tad <- function(xunit = NULL) {
 pm_axis_time <- function(xunit = NULL) {
   op <- pm_opts$time.column
   if(op != pm_axis_data[["col"]][["time"]]) {
-    out <- mk_custom_title("time", op)
+    out <- mk_custom_col_title("time", op)
   } else {
     out <- mk_col_title("time")
   }
