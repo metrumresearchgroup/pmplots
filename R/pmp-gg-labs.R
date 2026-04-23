@@ -40,12 +40,12 @@ resolve_axis_label <- function(label, envir, default) {
 #' @param y label for the y aesthetic; see `x`.
 #' @param short_max passed to [yspec::ys_get_short_unit()] when `spec` is a
 #' `yspec` object.
-#' @param x_break character width at which to insert a line break in the x
-#'   axis label; defaults to `Inf` (no break). When the resolved label exceeds
-#'   this width, a newline is inserted at the last word boundary at or before
-#'   the limit.
-#' @param y_break character width at which to insert a line break in the y
-#'   axis label; see `x_break`.
+#' @param x_break character width at which to insert a single line break in the
+#'   x axis label; defaults to `Inf` (no break); when the resolved label exceeds
+#'   this width, a single newline is inserted at the last word boundary at or
+#'   before the limit.
+#' @param y_break character width at which to insert a single line break in the
+#'   y axis label; see `x_break`.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A `pmp_gg_labs` object that can be added to a pmplots gg object

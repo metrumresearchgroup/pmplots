@@ -4,7 +4,6 @@ skip_if_not_installed("yspec")
 library(dplyr)
 library(yspec)
 
-
 context("test-pm-gg-labs")
 
 data <- ys_help$data()
@@ -22,7 +21,7 @@ p0 <-
   ggplot2::geom_point()
 
 test_that("label x- and y- from the spec", {
-  expect_equal(ggplot2::get_labs(p0)$x, "TIME")
+  expect_equal(ggplot2:::get_labs(p0)$x, "TIME")
   expect_equal(ggplot2::get_labs(p0)$y, "DV")
 
   p <- p0 + pm_gg_labs(spec)

@@ -25,12 +25,12 @@ NULL
 #' multiple variables that each have a spec entry but resolve to different
 #' labels.
 #' @param short_max passed to [yspec::ys_get_short_unit()].
-#' @param x_break character width at which to insert a line break in the x
-#'   axis label; defaults to `Inf` (no break). When the resolved label exceeds
-#'   this width, a newline is inserted at the last word boundary at or before
-#'   the limit.
-#' @param y_break character width at which to insert a line break in the y
-#'   axis label; see `x_break`.
+#' @param x_break character width at which to insert a single line break in the
+#' x axis label; defaults to `Inf` (no break). When the resolved label exceeds
+#' this width, a single newline is inserted at the last word boundary at or
+#' before the limit.
+#' @param y_break character width at which to insert a single line break in the
+#' y axis label; see `x_break`.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A gg object that can be added to a ggplot with `+`.
