@@ -110,6 +110,8 @@ y_time <- function(df,
   xlab <- x[2]
   ylab <- y[2]
 
+  x[1] <- sub_aliases(x[1])
+
   require_numeric(df,x[1])
   require_numeric(df,y[1])
 
