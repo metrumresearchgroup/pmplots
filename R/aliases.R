@@ -2,12 +2,14 @@
 .aliases <- new.env(parent = emptyenv())
 
 #' @export
-set_aliases <- function(TIME = NULL, TAD = NULL) {
-  if(is.character(TIME)) {
-    .aliases[["TIME"]] <- TIME
+set_aliases <- function(...) {
+  args <- list(...)
+  if(!is_named(args)) {
+    abort("all arguments must be named")
   }
-  if(is.character(TAD)) {
-    .aliases[["TAD"]] <- TAD
+  vars <- names(args)
+  for(i in seq_along(vars)) {
+    .aliases[[vars[i]]] <- args[[i]]
   }
 }
 
