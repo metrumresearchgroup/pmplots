@@ -259,11 +259,14 @@ col_label <- function(x) {
   for(sp in c("//","$$", "@@", "!!")) {
     y <- split_col_label(x,sp)
     if(length(y)==2) {
-      return(trimws(y))
+      y <- trimws(y)
+      y[1] <- sub_aliases(y[1])
+      return(y)
     }
   }
   if(!grepl("[ ()/$!@]",x)) {
-    return(trimws(c(x,x)))
+    x1 <- sub_aliases(x)
+    return(trimws(c(x1,x)))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }
