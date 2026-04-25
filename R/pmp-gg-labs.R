@@ -46,6 +46,11 @@ resolve_axis_label <- function(label, envir, default) {
 #'   before the limit.
 #' @param y_break character width at which to insert a single line break in the
 #'   y axis label; see `x_break`.
+#' @param col_break a named list or named numeric vector; names refer to columns
+#'   in `spec` or `labs`, and each value is passed as the `width` argument to
+#'   [str_break()] to insert a newline in that column's label. Applied
+#'   column-by-column before axis labels are resolved; keys absent from
+#'   `spec`/`labs` are silently ignored.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A `pmp_gg_labs` object that can be added to a pmplots gg object
@@ -67,8 +72,9 @@ resolve_axis_label <- function(label, envir, default) {
 pmp_gg_labs <- function(spec = list(), labs = list(),
                        x = NULL, y = NULL,
                        short_max = Inf,
-                       x_break = Inf, 
+                       x_break = Inf,
                        y_break = Inf,
+                       col_break = list(),
                        ...) {
   envir <- list()
   if(inherits(spec, "yspec")) {
@@ -84,12 +90,20 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
+  if(length(col_break)) {
+    assert_that(is_named(col_break))
+    assert_that(is.list(col_break) || is.numeric(col_break))
+    col_break <- col_break[names(col_break) %in% names(envir)]
+    for(col in names(col_break)) {
+      envir[[col]] <- str_break(envir[[col]], width = col_break[[col]])
+    }
+  }
   structure(
     list(
       envir = envir,
       x = x,
       y = y,
-      x_break = x_break, 
+      x_break = x_break,
       y_break = y_break,
       extra = list(...)
     ),
@@ -230,11 +244,11 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf, f_break = 
 
   if(is.finite(f_break)) {
     label_map <- setNames(
-      str_break(label_map, width = f_break), 
+      str_break(label_map, width = f_break),
       names(label_map)
     )
   }
-  
+
   if(isTRUE(unit_break)) {
     label_map <- newline_at_unit(label_map)
   }
@@ -283,7 +297,7 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf, f_break = 
 #' @seealso [pmp_relabel()], [pmp_relabel_wrap()], [pmp_gg_labs()]
 #' @md
 #' @export
-pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf, 
+pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
                               f_break = Inf, unit_break = TRUE, ...) {
   assert_that(
     isTRUE(p$pmp.pmplot.pairs),
@@ -313,11 +327,11 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
 
   if(is.finite(f_break)) {
     label_map <- setNames(
-      str_break(label_map, width = f_break), 
+      str_break(label_map, width = f_break),
       names(label_map)
     )
   }
-  
+
   if(isTRUE(unit_break)) {
     label_map <- newline_at_unit(label_map)
   }
@@ -330,7 +344,7 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
 
 #' Relabel plots in a list using pmp_relabel
 #'
-#' Pass in a named list of gg objects and apply [pmp_relabel()] or 
+#' Pass in a named list of gg objects and apply [pmp_relabel()] or
 #' [pm_relabel()], as appropriate.
 #'
 #' @param x a named list of gg objects.
@@ -359,7 +373,7 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
 #'
 #' @md
 #' @export
-relabel_at <- function(x, at = names(x), spec = list(), labs = list(), 
+relabel_at <- function(x, at = names(x), spec = list(), labs = list(),
                        re = NULL, ...) {
   if(!is.list(x) || is_ggplot(x) || inherits(x, "patchwork")) {
     abort("`x` must be a list of gg objects.")

@@ -2,10 +2,10 @@
 NULL
 
 #' Label ggplot aesthetics from a yspec object or other source
-#' 
-#' This function generates labels for ggplot aesthetics based on the data 
-#' columns used to create the plot, looking up in a named list or `yspec` 
-#' object. See [pmp_gg_labs()] to label `x-` and `y-` axes in plots generated 
+#'
+#' This function generates labels for ggplot aesthetics based on the data
+#' columns used to create the plot, looking up in a named list or `yspec`
+#' object. See [pmp_gg_labs()] to label `x-` and `y-` axes in plots generated
 #' by pmplots functions.
 #'
 #' @param spec a named list of label data; names correspond to columns
@@ -31,36 +31,41 @@ NULL
 #' before the limit.
 #' @param y_break character width at which to insert a single line break in the
 #' y axis label; see `x_break`.
+#' @param col_break a named list or named numeric vector; names refer to columns
+#' in `spec` or `labs`, and each value is passed as the `width` argument to
+#' [str_break()] to insert a newline in that column's label. Applied
+#' column-by-column before axis labels are resolved; keys absent from
+#' `spec`/`labs` are silently ignored.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A gg object that can be added to a ggplot with `+`.
-#' 
+#'
 #' @details
 #' In case multiple aesthetics are found, the aesthetics in the top-most
-#' layer will be used. The user will be informed in case multiple 
-#' aesthetics are involved that resolve to different names. This 
-#' situation should be rare; use the `quietly` argument to suppress 
-#' notification to the console. 
-#' 
+#' layer will be used. The user will be informed in case multiple
+#' aesthetics are involved that resolve to different names. This
+#' situation should be rare; use the `quietly` argument to suppress
+#' notification to the console.
+#'
 #' @examples
-#' 
+#'
 #' if(requireNamespace("yspec")) {
 #' library(ggplot2)
-#' 
-#' library(yspec)  
-#' 
+#'
+#' library(yspec)
+#'
 #' spec <- ys_help$spec()
-#' 
+#'
 #' spec <- update_short(spec, TIME = "Time")
-#'   
+#'
 #' data <- ys_help$data()
-#'   
+#'
 #' p <- ggplot(data, aes(TIME, DV)) + geom_point()
-#'   
+#'
 #' p + pm_gg_labs(spec)
-#' 
+#'
 #' }
-#' 
+#'
 #' @md
 #' @export
 pm_gg_labs <- function(spec = list(),
@@ -70,10 +75,11 @@ pm_gg_labs <- function(spec = list(),
                        colour = NULL, color = NULL, col = NULL,
                        linetype = NULL, lty = NULL,
                        shape = NULL,
-                       quietly = FALSE, 
-                       short_max = Inf, 
-                       x_break = Inf, 
+                       quietly = FALSE,
+                       short_max = Inf,
+                       x_break = Inf,
                        y_break = Inf,
+                       col_break = list(),
                        ...) {
   colour <- colour %||% color %||% col
   linetype <- linetype %||% lty
@@ -91,12 +97,20 @@ pm_gg_labs <- function(spec = list(),
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
+  if(length(col_break)) {
+    assert_that(is_named(col_break))
+    assert_that(is.list(col_break) || is.numeric(col_break))
+    col_break <- col_break[names(col_break) %in% names(envir)]
+    for(col in names(col_break)) {
+      envir[[col]] <- str_break(envir[[col]], width = col_break[[col]])
+    }
+  }
   structure(
     list(
       envir = envir,
       x = x,
       y = y,
-      x_break = x_break, 
+      x_break = x_break,
       y_break = y_break,
       fill = fill,
       colour = colour,

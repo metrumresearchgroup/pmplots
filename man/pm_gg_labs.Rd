@@ -20,6 +20,7 @@ pm_gg_labs(
   short_max = Inf,
   x_break = Inf,
   y_break = Inf,
+  col_break = list(),
   ...
 )
 }
@@ -59,6 +60,12 @@ before the limit.}
 \item{y_break}{character width at which to insert a single line break in the
 y axis label; see \code{x_break}.}
 
+\item{col_break}{a named list or named numeric vector; names refer to columns
+in \code{spec} or \code{labs}, and each value is passed as the \code{width} argument to
+\code{\link[=str_break]{str_break()}} to insert a newline in that column's label. Applied
+column-by-column before axis labels are resolved; keys absent from
+\code{spec}/\code{labs} are silently ignored.}
+
 \item{...}{additional arguments passed to \code{\link[ggplot2:labs]{ggplot2::labs()}}.}
 }
 \value{
@@ -82,16 +89,16 @@ notification to the console.
 if(requireNamespace("yspec")) {
 library(ggplot2)
 
-library(yspec)  
+library(yspec)
 
 spec <- ys_help$spec()
 
 spec <- update_short(spec, TIME = "Time")
-  
+
 data <- ys_help$data()
-  
+
 p <- ggplot(data, aes(TIME, DV)) + geom_point()
-  
+
 p + pm_gg_labs(spec)
 
 }
