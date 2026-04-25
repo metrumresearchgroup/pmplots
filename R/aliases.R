@@ -1,10 +1,14 @@
 
 .aliases <- new.env(parent = emptyenv())
 
-#' Set aliases to canonical column names
+#' Manage column name aliases
 #'
-#' @param ... `alias_name = canonical_name` pairs, where the right-hand side
-#'   can be quoted or unquoted.
+#' @description
+#' * `pm_aliases()` prints the currently active aliases.
+#' * `pm_set_aliases()` registers one or more aliases mapping a data column name
+#'    to a canonical pmplots column name.
+#' * `pm_clear_aliases()` removes all registered aliases.
+#' * `pm_show_canonical()` returns the canonical column names that can be aliased.
 #'
 #' @export
 pm_aliases <- function() {
@@ -27,6 +31,8 @@ pm_aliases <- function() {
   }
 }
 #' @rdname pm_aliases
+#' @param ... `alias_name = canonical_name` pairs, where the right-hand side
+#' can be quoted or unquoted.
 #' @export
 pm_set_aliases <- function(...) {
   args <- enexprs(...)
@@ -39,8 +45,8 @@ pm_set_aliases <- function(...) {
     if(is.character(x)) return(x)
     abort("arguments must be unquoted or quoted column names.")
   }, "TIME", USE.NAMES = FALSE)
-  if(!all(canon %in% alias_cols)) {
-    stop("only certain columns can be aliased; see `pmplots::pm_axis_data$col`. ")
+  if(!all(canon %in% canon_cols)) {
+    stop("only certain columns can be aliased; see `pm_show_canonical()`. ")
   }
   for(i in seq_along(aliases)) {
     .aliases[[canon[i]]] <- aliases[[i]]
@@ -52,6 +58,12 @@ pm_clear_aliases <- function() {
   rm(list = ls(.aliases), envir = .aliases)
 }
 
+#' @rdname pm_aliases
+#' @export
+pm_show_canonical <- function() {
+  canon_cols
+}
+
 substitute_alias <- function(x) {
   if(!is.character(x) && length(x)==1) {
     abort("`x` must be character with length 1.")
@@ -61,3 +73,4 @@ substitute_alias <- function(x) {
   }
   x
 }
+

@@ -57,7 +57,7 @@ pm_axis_data <- list(
   )
 )
 
-alias_cols <- unlist(unname(pm_axis_data$col))
+canon_cols <- unlist(unname(pm_axis_data$col))
 
 mk_col_title <- function(what, sep = "//") {
   title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
