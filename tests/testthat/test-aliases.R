@@ -57,3 +57,21 @@ test_that("substitute_alias is a no-op for unregistered columns", {
   pm_clear_aliases()
   expect_equal(pmplots:::substitute_alias("DV"), "DV")
 })
+
+test_that("TAFD = TIME alias redirects pm_axis_time (alias name is itself canonical)", {
+  on.exit(pm_clear_aliases())
+  pm_set_aliases(TAFD = TIME)
+  expect_match(pm_axis_time(), "^TAFD//")
+  # pm_axis_tafd is unaffected; its own canonical (TAFD) has no alias
+  expect_match(pm_axis_tafd(), "^TAFD//")
+})
+
+test_that("alias is not applied when column name is passed directly to a plot function", {
+  on.exit(pm_clear_aliases())
+  data <- pmplots_data_obs()
+  pm_set_aliases(TAFD = TIME)
+  # default argument pm_axis_time() applies the alias
+  expect_equal(rlang::as_label(dv_time(data)$mapping$x), "TAFD")
+  # explicit x = "TIME" bypasses pm_axis_time() and skips alias substitution
+  expect_equal(rlang::as_label(dv_time(data, x = "TIME")$mapping$x), "TIME")
+})
