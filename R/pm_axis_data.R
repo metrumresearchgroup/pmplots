@@ -57,13 +57,13 @@ pm_axis_data <- list(
   )
 )
 
+alias_cols <- unlist(unname(pm_axis_data$col))
+
 mk_col_title <- function(what, sep = "//") {
   title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
-  paste0(
-    pm_axis_data[["col"]][[what]],
-    sep,
-    pm_axis_data[[title]][[what]]
-  )
+  column_name <- substitute_alias(pm_axis_data[["col"]][[what]])
+  title_text <- pm_axis_data[[title]][[what]]
+  paste0(column_name, sep, title_text)
 }
 
 #' Functions to generate axis data

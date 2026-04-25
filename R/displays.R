@@ -271,7 +271,8 @@ npde_panel_list <- function(df, xname = "value",
                             xby_time  = NULL, xby_tad = NULL) {
   time <- npde_time(df, xunit = unit_time, xby = xby_time)
   tad <- NULL
-  if("TAD" %in% names(df)) {
+  tadcol <- substitute_alias("TAD")
+  if(tadcol %in% names(df)) {
     tad <- npde_tad(df, xunit = unit_tad, xby = xby_tad)
   }
   pred <- npde_pred(df, xname = xname)
@@ -336,7 +337,8 @@ cwres_panel_list <- function(df, xname = "value",
                              xby_time = NULL, xby_tad = NULL) {
   time <- cwres_time(df, xunit = unit_time, xby = xby_time)
   tad <- NULL
-  if("TAD" %in% names(df)) {
+  tadcol <- substitute_alias("TAD")
+  if(tadcol %in% names(df)) {
     tad <- cwres_tad(df, xunit = unit_tad, xby = xby_tad)
   }
   pred <- cwres_pred(df, xname = xname)

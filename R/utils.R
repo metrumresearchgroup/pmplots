@@ -131,9 +131,6 @@ pm_ident <- function(breaks, limits = range(breaks), ...) {
   ans
 }
 
-
-
-
 ##' Default setting for x-axis scale
 ##'
 ##' A named list of the formal arguments for \code{scale_x_continuous}.  This
@@ -260,13 +257,12 @@ col_label <- function(x) {
     y <- split_col_label(x,sp)
     if(length(y)==2) {
       y <- trimws(y)
-      y[1] <- sub_aliases(y[1])
-      return(y)
+      return(trimws(y))
     }
   }
   if(!grepl("[ ()/$!@]",x)) {
-    x1 <- sub_aliases(x)
-    return(trimws(c(x1,x)))
+    x <- trimws(x)
+    return(c(x,x))
   }
   .stop("invalid 'column // label' specification:\n  ", x)
 }

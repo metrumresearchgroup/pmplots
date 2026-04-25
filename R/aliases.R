@@ -1,19 +1,61 @@
 
 .aliases <- new.env(parent = emptyenv())
 
+#' Set aliases to canonical column names
+#'
+#' @param ... `alias_name = canonical_name` pairs, where the right-hand side
+#'   can be quoted or unquoted.
+#'
 #' @export
-set_aliases <- function(...) {
-  args <- list(...)
+pm_aliases <- function() {
+  vars <- names(.aliases) 
+  if(!length(vars)) {
+    inform("[pmplots] no aliases were found.")
+    return(invisible(NULL))
+  }
+  al <- as.list(.aliases)
+  pada <- max(unlist(sapply(al, nchar)))
+  padb <- max(nchar(names(al)))
+  for(i in seq_along(al)) {
+    b <- names(al)[i]
+    a <- al[[b]]
+    a <- formatC(a, width = pada, flag = "-")
+    b <- formatC(b, width = padb, flag = "-")
+    msg <- paste0("data ", a, " --> ", b, " in pmplots")
+    names(msg) <- "*"
+    inform(msg)
+  }
+}
+#' @rdname pm_aliases
+#' @export
+pm_set_aliases <- function(...) {
+  args <- enexprs(...)
   if(!is_named(args)) {
     abort("all arguments must be named")
   }
-  vars <- names(args)
-  for(i in seq_along(vars)) {
-    .aliases[[vars[i]]] <- args[[i]]
+  aliases <- names(args)
+  canon <- vapply(args, function(x) {
+    if(is.symbol(x)) return(as.character(x))
+    if(is.character(x)) return(x)
+    abort("arguments must be unquoted or quoted column names.")
+  }, "TIME", USE.NAMES = FALSE)
+  if(!all(canon %in% alias_cols)) {
+    stop("only certain columns can be aliased; see `pmplots::pm_axis_data$col`. ")
+  }
+  for(i in seq_along(aliases)) {
+    .aliases[[canon[i]]] <- aliases[[i]]
   }
 }
+#' @rdname pm_aliases
+#' @export
+pm_clear_aliases <- function() {
+  rm(list = ls(.aliases), envir = .aliases)
+}
 
-sub_aliases <- function(x) {
+substitute_alias <- function(x) {
+  if(!is.character(x) && length(x)==1) {
+    abort("`x` must be character with length 1.")
+  }
   if(x %in% names(.aliases)) {
     return(.aliases[[x]])
   }
