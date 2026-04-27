@@ -18,25 +18,6 @@ jobs:
       matrix:
         config:
           - os: ubuntu-22.04
-            r: 3.6.3
-            # The latest versions of several dependencies require
-            # newer R versions.
-            rspm: 'https://packagemanager.posit.co/cran/__linux__/jammy/2023-11-15'
-            # pmplots depends on a ggplot2 version that's newer than
-            # what's in the above rspm URL.  The ggplot2 on CRAN in
-            # turn requires several packages that require an R version
-            # newer than 3.6.  Override CRAN to a snapshot that avoids
-            # these incompatibilities but still has a new enough
-            # ggplot2.
-            cran_override: 'https://mpn.metworx.com/snapshots/stable/2024-06-12'
-            pinned: true
-          - os: ubuntu-22.04
-            r: 4.0.5
-            # The latest versions of several dependencies require
-            # newer R versions.
-            rspm: 'https://packagemanager.posit.co/cran/__linux__/jammy/2024-07-22'
-            pinned: true
-          - os: ubuntu-22.04
             r: 4.1.3
             # The latest versions of several dependencies require
             # newer R versions.
