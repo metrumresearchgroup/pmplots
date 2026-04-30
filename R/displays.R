@@ -4,14 +4,14 @@ class_pm_display <- function(x) {
   x
 }
 
-diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
+diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont, points) {
   out <- vector(mode = "list", length = length(y))
   for(i in seq_along(y)) {
     out[[i]] <- lapply(seq_along(x), function(ii) {
       col <- col_label(x[[ii]])[[1]]
       require_column(df, col)
       if(.is_discrete(df[[col]])) {
-        p <- fun_cat(df, x = x[[ii]], y = y[[i]])
+        p <- fun_cat(df, x = x[[ii]], y = y[[i]], points = points)
       } else {
         p <- fun_cont(df, x = x[[ii]], y = y[[i]])
       }
@@ -35,6 +35,7 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' @param tag_levels passed to [patchwork::plot_annotation()].
 #' @param transpose logical; if `TRUE`, output will be transposed to group
 #' plots by the covariate, rather than the `ETA`; see **Examples**.
+#' @param points passed to [boxwork()] when plotting categorical covariates.
 #'
 #' @details
 #' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
@@ -69,12 +70,12 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont) {
 #' @md
 #' @export
 eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL,
-                          transpose = FALSE) {
+                          transpose = FALSE, points = NULL) {
   require_patchwork()
   if(missing(ncol) && length(x)==1) {
     ncol <- 1
   }
-  p <- eta_covariate_list(df, x, y, transpose)
+  p <- eta_covariate_list(df, x, y, transpose, points = points)
   if(is.numeric(ncol)) {
     p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
   }
@@ -86,8 +87,8 @@ eta_covariate <- function(df, x, y, ncol = 2, tag_levels = NULL, byrow = NULL,
 
 #' @rdname eta_covariate
 #' @export
-eta_covariate_list <- function(df, x, y, transpose = FALSE) {
-  p  <- diagnostic_display_list(df, x, y, eta_cat, eta_cont)
+eta_covariate_list <- function(df, x, y, transpose = FALSE, points = NULL) {
+  p <- diagnostic_display_list(df, x, y, eta_cat, eta_cont, points)
   labx <- col_label_col(x)
   laby <- col_label_col(y)
   p  <- lapply(p, setNames, nm = labx)
@@ -129,12 +130,13 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE) {
 #' @seealso [cwres_covariate()], [eta_covariate()]
 #' @md
 #' @export
-npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
+npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL,
+                           points = NULL) {
   require_patchwork()
   if(missing(ncol) && length(x)==1) {
     ncol <- 1
   }
-  p <- npde_covariate_list(df, x)
+  p <- npde_covariate_list(df, x, points = points)
   if(is.numeric(ncol)) {
     p <- pm_grid(p, ncol = ncol, byrow = byrow)
   }
@@ -144,8 +146,15 @@ npde_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 
 #' @rdname npde_covariate
 #' @export
-npde_covariate_list <- function(df, x) {
-  p  <- diagnostic_display_list(df, x, pm_axis_npde(), npde_cat, npde_cont)
+npde_covariate_list <- function(df, x, points = NULL) {
+  p <- diagnostic_display_list(
+    df,
+    x,
+    pm_axis_npde(),
+    npde_cat,
+    npde_cont,
+    points
+  )
   p <- p[[1]]
   labx <- col_label_col(x)
   names(p) <- labx
@@ -183,12 +192,13 @@ npde_covariate_list <- function(df, x) {
 #' @seealso [npde_covariate()], [eta_covariate()]
 #' @md
 #' @export
-cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
+cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL,
+                            points = NULL) {
   require_patchwork()
   if(missing(ncol) && length(x)==1) {
     ncol <- 1
   }
-  p <- cwres_covariate_list(df, x)
+  p <- cwres_covariate_list(df, x, points = points)
   if(is.numeric(ncol)) {
     p <- pm_grid(p, ncol = ncol, byrow = byrow)
   }
@@ -198,8 +208,15 @@ cwres_covariate <- function(df, x, ncol = 2, tag_levels = NULL, byrow = NULL) {
 
 #' @rdname cwres_covariate
 #' @export
-cwres_covariate_list <- function(df, x) {
-  p  <- diagnostic_display_list(df, x, pm_axis_cwres(), cwres_cat, cwres_cont)
+cwres_covariate_list <- function(df, x, points = NULL) {
+  p <- diagnostic_display_list(
+    df,
+    x,
+    pm_axis_cwres(),
+    cwres_cat,
+    cwres_cont,
+    points
+  )
   p <- p[[1]]
   labx <- col_label_col(x)
   names(p) <- labx

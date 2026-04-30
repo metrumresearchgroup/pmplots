@@ -358,3 +358,15 @@ test_that("display plots accept list", {
   expect_s3_class(npde_covariate(data, cont), "patchwork")
   expect_s3_class(cwres_covariate(data, cats), "patchwork")
 })
+
+test_that("display plots expose points arg", {
+  pws <- eta_covariate(data, cats, etas, points = TRUE)
+  # Expect three layers: geom_boxplot, geom_hline, and geom_point.
+  expect_length(pws[[1]][[1]]$layers, 3)
+
+  ps <- npde_covariate(data, cats, points = TRUE)
+  expect_length(ps[[1]]$layers, 3)
+
+  ps <- cwres_covariate(data, cats, points = TRUE)
+  expect_length(ps[[1]]$layers, 3)
+})

@@ -12,10 +12,11 @@ eta_covariate(
   ncol = 2,
   tag_levels = NULL,
   byrow = NULL,
-  transpose = FALSE
+  transpose = FALSE,
+  points = NULL
 )
 
-eta_covariate_list(df, x, y, transpose = FALSE)
+eta_covariate_list(df, x, y, transpose = FALSE, points = NULL)
 }
 \arguments{
 \item{df}{a data frame to plot.}
@@ -33,6 +34,8 @@ see \code{\link[=col_label]{col_label()}}.}
 
 \item{transpose}{logical; if \code{TRUE}, output will be transposed to group
 plots by the covariate, rather than the \code{ETA}; see \strong{Examples}.}
+
+\item{points}{passed to \code{\link[=boxwork]{boxwork()}} when plotting categorical covariates.}
 }
 \value{
 \code{eta_covariate()} returns a list of plots arranged in graphics as a
