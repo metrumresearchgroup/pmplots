@@ -37,6 +37,9 @@ test_that("cont_cat supports overriding fill", {
   p <- cont_cat(id, x = "CPc", y = "WT")
   expect_identical(unique(layer_data(p)[["fill"]]), pm_opts[["boxplot.fill"]])
 
+  p <- cont_cat(id, x = "CPc", y = "WT", fill = NULL) + aes(fill = STUDYc)
+  expect_length(unique(layer_data(p)[["fill"]]), nlevels(id$STUDYc))
+
   pm_opts[["boxplot.fill"]] <- NULL
 
   p <- cont_cat(id, x = "CPc", y = "WT") + aes(fill = STUDYc)
