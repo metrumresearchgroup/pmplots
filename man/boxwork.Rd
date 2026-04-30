@@ -31,7 +31,9 @@ boxwork(
 
 \item{ys}{see \code{\link{defy}}}
 
-\item{fill}{passed to \code{geom_boxplot}}
+\item{fill}{passed to \code{\link[ggplot2:geom_boxplot]{ggplot2::geom_boxplot()}}. Specifying \code{NULL} disables
+relaying the value to \code{geom_boxplot} and is required for modifying the fill
+of the returned plot with \code{\link[ggplot2:aes]{ggplot2::aes()}}.}
 
 \item{alpha}{passed to \code{geom_boxplot}}
 
