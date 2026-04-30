@@ -33,6 +33,21 @@ test_that("points on top of box plot issue-13 [PMP-TEST-003]", {
   expect_false(identical(a,c))
 })
 
+test_that("cont_cat supports overriding fill", {
+  p <- cont_cat(id, x = "CPc", y = "WT")
+  expect_identical(unique(layer_data(p)[["fill"]]), pm_opts[["boxplot.fill"]])
+
+  pm_opts[["boxplot.fill"]] <- NULL
+
+  p <- cont_cat(id, x = "CPc", y = "WT") + aes(fill = STUDYc)
+  expect_length(unique(layer_data(p)[["fill"]]), nlevels(id$STUDYc))
+
+  p <- cont_cat(id, x = "CPc", y = "WT", points = TRUE) + aes(fill = STUDYc)
+  expect_length(unique(layer_data(p, 2)[["fill"]]), nlevels(id$STUDYc))
+
+  pm_opts$reset()
+})
+
 test_that("pass vector or list", {
   y <- list("WT", "SCR")
   x <- "STUDYc"
