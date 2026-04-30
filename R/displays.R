@@ -479,7 +479,7 @@ cwres_scatter <- function(df, xname = "value",
 #' Alternatively, get the component plots to be arranged by the user
 #' (`cont_cat_panel_list()`)
 #'
-#' @inheritParams eta_covariate
+#' @inheritParams eta_covariate 
 #'
 #' @param x character `col//title` for the categorical covariates to
 #' plot on x-axis; see [col_label()].
@@ -523,9 +523,10 @@ cwres_scatter <- function(df, xname = "value",
 #' @md
 #' @export
 cont_cat_panel <- function(df, x, y, ncol = 2, tag_levels = NULL,
-                            byrow = FALSE, transpose = FALSE, ...) {
+                           byrow = FALSE, transpose = FALSE, points = NULL,
+                           ...) {
   require_patchwork()
-  p <- cont_cat_panel_list(df, x, y, transpose, ...)
+  p <- cont_cat_panel_list(df, x, y, transpose, points = points, ...)
   if(is.numeric(ncol)) {
     p <- lapply(p, pm_grid, ncol = ncol, byrow = byrow)
   }
