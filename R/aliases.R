@@ -103,12 +103,8 @@ pm_show_canonical <- function() {
 }
 
 substitute_alias <- function(x) {
-  if(!is.character(x) && length(x)==1) {
-    abort("`x` must be character with length 1.")
-  }
   if(x %in% names(.aliases)) {
     return(.aliases[[x]])
   }
   x
 }
-
