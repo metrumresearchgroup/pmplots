@@ -11,7 +11,9 @@
 #' plotting, hard-coded assumptions by pmplots are made (e.g., time is `TIME`).
 #' When user-defined aliases are set, these aliases are used in place of the 
 #' canonical names assumed by pmplots. Aliases are only applied when these
-#' [pm_axis_functions] are invoked to select the data column. 
+#' [pm_axis_functions] are invoked to select the data column. See [pm_col_id()]
+#' for aliasing `ID` through a global R option.
+#' 
 #' See **Examples**.
 #' 
 #' * `pm_aliases()` prints the currently active aliases.
@@ -47,7 +49,7 @@
 #' data <- pmplots_data_obs()
 #' dv_time(data, x = "TIME")
 #' 
-#' @seealso [pm_axis_functions]
+#' @seealso [pm_axis_functions], [pm_col_id()], [pm_col_tad()]
 #' @export
 pm_aliases <- function() {
   vars <- names(.aliases) 

@@ -26,7 +26,9 @@ When these functions are invoked to select the data columns used for
 plotting, hard-coded assumptions by pmplots are made (e.g., time is \code{TIME}).
 When user-defined aliases are set, these aliases are used in place of the
 canonical names assumed by pmplots. Aliases are only applied when these
-\link{pm_axis_functions} are invoked to select the data column.
+\link{pm_axis_functions} are invoked to select the data column. See \code{\link[=pm_col_id]{pm_col_id()}}
+for aliasing \code{ID} through a global R option.
+
 See \strong{Examples}.
 \itemize{
 \item \code{pm_aliases()} prints the currently active aliases.
@@ -65,5 +67,5 @@ dv_time(data, x = "TIME")
 
 }
 \seealso{
-\link{pm_axis_functions}
+\link{pm_axis_functions}, \code{\link[=pm_col_id]{pm_col_id()}}, \code{\link[=pm_col_tad]{pm_col_tad()}}
 }

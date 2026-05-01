@@ -75,3 +75,19 @@ test_that("alias is not applied when column name is passed directly to a plot fu
   # explicit x = "TIME" bypasses pm_axis_time() and skips alias substitution
   expect_equal(rlang::as_label(dv_time(data, x = "TIME")$mapping$x), "TIME")
 })
+
+test_that("alias TAD when asking for column name", {
+  pm_clear_aliases()
+  expect_identical(pm_col_tad(), "TAD")
+  pm_set_aliases(TALD = TAD)
+  expect_identical(pm_col_tad(), "TALD")
+  pm_clear_aliases()
+})
+
+test_that("alias ID when asking for column name", {
+  expect_identical(pm_col_id(), "ID")
+  withr::with_options(
+    list(mrg.id_col = "USUBJID"),
+    expect_identical(pm_col_id(), "USUBJID")
+  )
+})

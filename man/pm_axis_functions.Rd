@@ -58,11 +58,17 @@ The \verb{pm_axis_*} functions call \code{pmplots:::mk_col_title()}. When time
 units (\code{xunit}) are passed, they will be wrapped in parens. The
 \verb{pm_col_*} functions return standard column names or their alias if
 set (see \code{\link[=pm_aliases]{pm_aliases()}}.
+
+\code{ID} is occasionally used inside pmplots functions as a subject
+identifier. \code{pm_col_id()} is a wrapper around
+\code{getOption("mrg.id_col", "ID")}; this option can be to globally
+override \code{ID} as the default subject identifier.
 }
 \examples{
 pm_axis_time()
 pm_axis_time("h")
 pm_axis_pred("concentration")
+pm_col_id()
 
 }
 \seealso{

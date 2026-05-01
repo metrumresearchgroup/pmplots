@@ -44,3 +44,8 @@ test_that("pm-axis error when asking for undefined item", {
     regexp = "cannot find axis data for `fop`"
   )
 })
+
+test_that("pm-col functions return canonical column name", {
+  expect_identical(pm_col_id(), "ID")
+  expect_identical(pm_col_tad(), "TAD")
+})

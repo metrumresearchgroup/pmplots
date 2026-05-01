@@ -81,11 +81,18 @@ mk_col_title <- function(what, sep = "//") {
 #' @param xunit an optional time unit to be glued into the title.
 #' @param xname an optional name to be glued into the title.
 #' @param yname an optional name to be glued into the title.
+#' 
+#' @details
+#' `ID` is occasionally used inside pmplots functions as a subject
+#' identifier. `pm_col_id()` is a wrapper around 
+#' `getOption("mrg.id_col", "ID")`; this option can be to globally 
+#' override `ID` as the default subject identifier.
 #'
 #' @examples
 #' pm_axis_time()
 #' pm_axis_time("h")
 #' pm_axis_pred("concentration")
+#' pm_col_id()
 #'
 #' @seealso [pm_axis()]
 #' @rdname pm_axis_functions
@@ -145,6 +152,5 @@ pm_col_tad <- function() {
 #' @rdname pm_axis_functions
 #' @export
 pm_col_id <- function() {
-  col <- pm_axis_data[["col"]][["id"]]
-  getOption("mrg.id_col", col)
+  getOption("mrg.id_col", pm_axis_data[["col"]][["id"]])
 }
