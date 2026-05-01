@@ -46,17 +46,17 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
     }
   }
 
-p <- ggplot(data = df, aes(x = {{x}}, y = {{y}}, col= {{ col }}))
+p <- ggplot(data = df, aes(x = .data[[x]], y = .data[[y]], col= {{ col }}))
 
   if(plot_id) {
-    idcol <-pm_col_id()
+    idcol <- pm_col_id()
     require_column(df, idcol)
-    p <- p + geom_text(aes(label = {{idcol}}), alpha = alpha, size = size)
+    p <- p + geom_text(aes(label = .data[[idcol]]), alpha = alpha, size = size)
   } else {
     p <- p + geom_point(alpha = alpha, size = size)
   }
   if(!is.null(group)) {
-    p <- p + geom_line(aes(group = {{group}}))
+    p <- p + geom_line(aes(group = .data[[group]]))
   }
   if(is.character(title)) p <- p + ggtitle(title)
   p + xscale + yscale + pm_theme()
