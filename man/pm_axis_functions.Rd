@@ -13,8 +13,8 @@
 \alias{pm_axis_pred}
 \alias{pm_axis_ipred}
 \alias{pm_axis_dv}
-\alias{pm_col_id}
 \alias{pm_col_tad}
+\alias{pm_col_id}
 \title{Functions to generate axis data and other standard column names.}
 \usage{
 pm_axis_tad(xunit = NULL)
@@ -39,9 +39,9 @@ pm_axis_ipred(xname = NULL)
 
 pm_axis_dv(yname = NULL)
 
-pm_col_id()
-
 pm_col_tad()
+
+pm_col_id()
 }
 \arguments{
 \item{xunit}{an optional time unit to be glued into the title.}

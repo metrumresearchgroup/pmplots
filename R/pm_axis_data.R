@@ -138,12 +138,13 @@ pm_axis_dv <- function(yname = NULL) {
 
 #' @rdname pm_axis_functions
 #' @export
-pm_col_id <- function() {
-  substitute_alias(pm_axis_data[["col"]][["id"]])
+pm_col_tad <- function() {
+  substitute_alias(pm_axis_data[["col"]][["tad"]])
 }
 
 #' @rdname pm_axis_functions
 #' @export
-pm_col_tad <- function() {
-  substitute_alias(pm_axis_data[["col"]][["tad"]])
+pm_col_id <- function() {
+  col <- pm_axis_data[["col"]][["id"]]
+  getOption("mrg.id_col", col)
 }
