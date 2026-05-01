@@ -36,7 +36,8 @@ Suggests:
   miniUI, 
   S7,
   shiny, 
-  rmarkdown
+  rmarkdown, 
+  withr
 Depends: ggplot2 (>= 3.5.0)
 RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
