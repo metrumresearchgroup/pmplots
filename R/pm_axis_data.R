@@ -27,8 +27,7 @@ pm_axis_data <- list(
     pred = "PRED",
     ipred = "IPRED",
     dv = "DV",
-    npde = "NPDE", 
-    id = "ID"
+    npde = "NPDE"
   ),
   title  = list(
     cwres = "CWRES",
@@ -41,8 +40,7 @@ pm_axis_data <- list(
     pred = "Population predicted {xname}",
     ipred = "Individual predicted {xname}",
     dv = "Observed {yname}",
-    npde = "NPDE", 
-    id = "ID"
+    npde = "NPDE"
   ),
   short = list(
     cwres = "CWRES",
@@ -55,8 +53,7 @@ pm_axis_data <- list(
     pred = "PRED",
     ipred = "IPRED",
     dv = "Observed",
-    npde = "NPDE", 
-    id = "ID"
+    npde = "NPDE"
   )
 )
 
@@ -152,5 +149,5 @@ pm_col_tad <- function() {
 #' @rdname pm_axis_functions
 #' @export
 pm_col_id <- function() {
-  getOption("mrg.id_col", pm_axis_data[["col"]][["id"]])
+  getOption("mrg.id_col", "ID")
 }
