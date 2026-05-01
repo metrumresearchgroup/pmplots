@@ -46,11 +46,12 @@ scatt <- function(df, x, y, xs = defx(), ys = defy(),
     }
   }
 
-  p <- ggplot(data = df, aes(x=.data[[x]], y=.data[[y]], col={{ col }}))
+p <- ggplot(data = df, aes(x = .data[[x]], y = .data[[y]], col= {{ col }}))
 
   if(plot_id) {
-    require_column(df,"ID")
-    p <- p + geom_text(aes(label = .data$ID), alpha = alpha, size = size)
+    idcol <- pm_col_id()
+    require_column(df, idcol)
+    p <- p + geom_text(aes(label = .data[[idcol]]), alpha = alpha, size = size)
   } else {
     p <- p + geom_point(alpha = alpha, size = size)
   }

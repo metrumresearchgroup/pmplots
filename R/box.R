@@ -1,9 +1,9 @@
-box_labels <- function(df, x, y) {
+box_labels <- function(df, x, y, idcol) {
   .xcol <- rlang::sym(x)
   .ycol  <- rlang::sym(y)
   .sum <- filter(df, !is.na(!!.ycol))
   .sum <- group_by(.sum, !!.xcol)
-  .sum <- summarize(.sum, n = n(), N = n_distinct(ID))
+  .sum <- summarize(.sum, n = n(), N = n_distinct(!!sym(idcol)))
   .sum <- ungroup(.sum)
   as.data.frame(.sum)
 }
@@ -75,8 +75,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
                     ...) {
 
   if(shown) {
-    require_column(df, "ID")
-    .sum <- box_labels(df, x, y)
+    idcol <- pm_col_tad()
+    require_column(df, idcol)
+    .sum <- box_labels(df, x, y, idcol)
     xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"], "\nN=", .sum[,"N"])
     if(all(.sum$N == .sum$n)) {
       xs$labels <- paste0(.sum[,x], "\nN=", .sum[,"N"])

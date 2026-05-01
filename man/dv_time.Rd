@@ -12,7 +12,7 @@ dv_time(
   y = pm_axis_dv(),
   xunit = opts$time.unit,
   yname = "DV",
-  group = "ID",
+  group = pm_col_id(),
   xs = list(),
   ys = list(),
   log = FALSE,

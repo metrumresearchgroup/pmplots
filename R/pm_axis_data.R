@@ -57,29 +57,39 @@ pm_axis_data <- list(
   )
 )
 
+# Needed for aliases; see aliases.R
+canon_cols <- unlist(unname(pm_axis_data$col))
+
 mk_col_title <- function(what, sep = "//") {
   title <- ifelse(isTRUE(opts$axis.title.short), "short", "title")
-  paste0(
-    pm_axis_data[["col"]][[what]],
-    sep,
-    pm_axis_data[[title]][[what]]
-  )
+  column_name <- substitute_alias(pm_axis_data[["col"]][[what]])
+  title_text <- pm_axis_data[[title]][[what]]
+  paste0(column_name, sep, title_text)
 }
 
-#' Functions to generate axis data
+#' Functions to generate axis data and other standard column names.
 #'
 #' @details
-#' These functions call `pmplots:::mk_col_title()`. When time units
-#' (`xunit`) are passed, they will be wrapped in parens.
+#' The `pm_axis_*` functions call `pmplots:::mk_col_title()`. When time 
+#' units (`xunit`) are passed, they will be wrapped in parens. The 
+#' `pm_col_*` functions return standard column names or their alias if 
+#' set (see [pm_aliases()].
 #'
 #' @param xunit an optional time unit to be glued into the title.
 #' @param xname an optional name to be glued into the title.
 #' @param yname an optional name to be glued into the title.
+#' 
+#' @details
+#' `ID` is occasionally used inside pmplots functions as a subject
+#' identifier. `pm_col_id()` is a wrapper around 
+#' `getOption("mrg.id_col", "ID")`; this option can be to globally 
+#' override `ID` as the default subject identifier.
 #'
 #' @examples
 #' pm_axis_time()
 #' pm_axis_time("h")
 #' pm_axis_pred("concentration")
+#' pm_col_id()
 #'
 #' @seealso [pm_axis()]
 #' @rdname pm_axis_functions
@@ -128,4 +138,16 @@ pm_axis_ipred <- function(xname = NULL) {
 #' @export
 pm_axis_dv <- function(yname = NULL) {
   glue_yname(mk_col_title("dv"), yname)
+}
+
+#' @rdname pm_axis_functions
+#' @export
+pm_col_tad <- function() {
+  substitute_alias(pm_axis_data[["col"]][["tad"]])
+}
+
+#' @rdname pm_axis_functions
+#' @export
+pm_col_id <- function() {
+  getOption("mrg.id_col", "ID")
 }
