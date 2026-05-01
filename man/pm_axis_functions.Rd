@@ -13,7 +13,9 @@
 \alias{pm_axis_pred}
 \alias{pm_axis_ipred}
 \alias{pm_axis_dv}
-\title{Functions to generate axis data}
+\alias{pm_col_id}
+\alias{pm_col_tad}
+\title{Functions to generate axis data and other standard column names.}
 \usage{
 pm_axis_tad(xunit = NULL)
 
@@ -36,6 +38,10 @@ pm_axis_pred(xname = NULL)
 pm_axis_ipred(xname = NULL)
 
 pm_axis_dv(yname = NULL)
+
+pm_col_id()
+
+pm_col_tad()
 }
 \arguments{
 \item{xunit}{an optional time unit to be glued into the title.}
@@ -45,11 +51,13 @@ pm_axis_dv(yname = NULL)
 \item{yname}{an optional name to be glued into the title.}
 }
 \description{
-Functions to generate axis data
+Functions to generate axis data and other standard column names.
 }
 \details{
-These functions call \code{pmplots:::mk_col_title()}. When time units
-(\code{xunit}) are passed, they will be wrapped in parens.
+The \verb{pm_axis_*} functions call \code{pmplots:::mk_col_title()}. When time
+units (\code{xunit}) are passed, they will be wrapped in parens. The
+\verb{pm_col_*} functions return standard column names or their alias if
+set (see \code{\link[=pm_aliases]{pm_aliases()}}.
 }
 \examples{
 pm_axis_time()

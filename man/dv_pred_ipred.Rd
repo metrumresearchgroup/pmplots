@@ -9,7 +9,7 @@
 dv_pred_ipred(
   data,
   id_per_plot = 9,
-  facets = "ID",
+  facets = pm_col_id(),
   nrow = NULL,
   ncol = NULL,
   fun = NULL,
@@ -23,7 +23,7 @@ dv_pred_ipred_impl(
   dv = pm_axis_dv(),
   pred = pm_axis_pred(),
   ipred = pm_axis_ipred(),
-  facets = "ID",
+  facets = pm_col_id(),
   id_col = deprecated(),
   xbreaks = waiver(),
   xunit = pm_opts$time.unit,

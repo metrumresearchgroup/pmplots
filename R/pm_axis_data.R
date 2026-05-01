@@ -27,7 +27,8 @@ pm_axis_data <- list(
     pred = "PRED",
     ipred = "IPRED",
     dv = "DV",
-    npde = "NPDE"
+    npde = "NPDE", 
+    id = "ID"
   ),
   title  = list(
     cwres = "CWRES",
@@ -40,7 +41,8 @@ pm_axis_data <- list(
     pred = "Population predicted {xname}",
     ipred = "Individual predicted {xname}",
     dv = "Observed {yname}",
-    npde = "NPDE"
+    npde = "NPDE", 
+    id = "ID"
   ),
   short = list(
     cwres = "CWRES",
@@ -53,10 +55,12 @@ pm_axis_data <- list(
     pred = "PRED",
     ipred = "IPRED",
     dv = "Observed",
-    npde = "NPDE"
+    npde = "NPDE", 
+    id = "ID"
   )
 )
 
+# Needed for aliases; see aliases.R
 canon_cols <- unlist(unname(pm_axis_data$col))
 
 mk_col_title <- function(what, sep = "//") {
@@ -66,11 +70,13 @@ mk_col_title <- function(what, sep = "//") {
   paste0(column_name, sep, title_text)
 }
 
-#' Functions to generate axis data
+#' Functions to generate axis data and other standard column names.
 #'
 #' @details
-#' These functions call `pmplots:::mk_col_title()`. When time units
-#' (`xunit`) are passed, they will be wrapped in parens.
+#' The `pm_axis_*` functions call `pmplots:::mk_col_title()`. When time 
+#' units (`xunit`) are passed, they will be wrapped in parens. The 
+#' `pm_col_*` functions return standard column names or their alias if 
+#' set (see [pm_aliases()].
 #'
 #' @param xunit an optional time unit to be glued into the title.
 #' @param xname an optional name to be glued into the title.
@@ -128,4 +134,16 @@ pm_axis_ipred <- function(xname = NULL) {
 #' @export
 pm_axis_dv <- function(yname = NULL) {
   glue_yname(mk_col_title("dv"), yname)
+}
+
+#' @rdname pm_axis_functions
+#' @export
+pm_col_id <- function() {
+  substitute_alias(pm_axis_data[["col"]][["id"]])
+}
+
+#' @rdname pm_axis_functions
+#' @export
+pm_col_tad <- function() {
+  substitute_alias(pm_axis_data[["col"]][["tad"]])
 }
