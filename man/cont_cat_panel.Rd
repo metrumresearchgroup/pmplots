@@ -3,6 +3,7 @@
 \name{cont_cat_panel}
 \alias{cont_cat_panel}
 \alias{cont_cat_panel_list}
+\alias{cont_cat_panel_flat}
 \title{Create a display of continuous versus categorical covariates}
 \usage{
 cont_cat_panel(
@@ -18,6 +19,8 @@ cont_cat_panel(
 )
 
 cont_cat_panel_list(df, x, y, transpose = FALSE, ...)
+
+cont_cat_panel_flat(...)
 }
 \arguments{
 \item{df}{a data frame to plot.}
@@ -40,12 +43,15 @@ covariates.}
 
 \item{points}{passed to \code{\link[=boxwork]{boxwork()}} when plotting categorical covariates.}
 
-\item{...}{additional arguments passed to \code{\link[=cont_cat]{cont_cat()}}.}
+\item{...}{passed to \code{\link[=cont_cat_panel_list]{cont_cat_panel_list()}}.}
 }
 \value{
 \code{cont_cat_panel()} returns a list of plots arranged in graphics as a
 \code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}}. \code{cont_cat_panel_list()} returns the
-same plots, but unarranged as a named list of lists.
+same plots, but unarranged as a named list of lists. \code{cont_cat_panel_flat()}
+calls \code{\link[=cont_cat_panel_list]{cont_cat_panel_list()}} and flattens the result with
+\code{\link[purrr:flatten]{purrr::flatten()}}, returning a flat \code{pm_display} list of plots that can be arranged with
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
 
 When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
 by the continuous covariates (passed as \code{y}), and the names of the list

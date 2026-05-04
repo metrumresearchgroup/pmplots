@@ -107,6 +107,24 @@ test_that("cwres_covariate_list", {
   expect_s3_class(a[[1]], "gg")
 })
 
+test_that("eta_covariate_flat", {
+  a <- eta_covariate_flat(data, covs, etas)
+  expect_type(a, "list")
+  expect_length(a, length(etas) * length(covs))
+  expect_named(a)
+  expect_s3_class(a, "pm_display")
+  expect_true(all(sapply(a, inherits, "gg")))
+})
+
+test_that("cont_cat_panel_flat", {
+  a <- cont_cat_panel_flat(data, cats, cont)
+  expect_type(a, "list")
+  expect_length(a, length(cont) * length(cats))
+  expect_named(a)
+  expect_s3_class(a, "pm_display")
+  expect_true(all(sapply(a, inherits, "gg")))
+})
+
 # ---------------------------------------------------------------------------
 
 test_that("eta_covariate transpose", {

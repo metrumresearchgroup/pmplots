@@ -19,7 +19,7 @@
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
 #' @importFrom rlang enexpr abort warn arg_match inform enexprs
-#' @importFrom purrr list_transpose
+#' @importFrom purrr list_transpose flatten
 #' @importFrom glue glue glue_data
 #' @importFrom assertthat assert_that
 #' @importFrom tidyr pivot_longer
