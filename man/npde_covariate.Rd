@@ -26,7 +26,8 @@ see \code{\link[=col_label]{col_label()}}.}
 \value{
 \code{npde_covariate()} returns single graphic of scatter plot diagnostics
 as a \code{patchwork} object that has been arranged using \code{\link[=pm_grid]{pm_grid()}} and
-\code{npde_covariate_list()} returns the same component plots unarranged in a list.
+\code{npde_covariate_list()} returns the same component plots unarranged in a
+list.
 }
 \description{
 Get a single graphic of \code{NPDE} versus continuous and / or categorical

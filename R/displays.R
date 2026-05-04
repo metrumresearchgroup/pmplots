@@ -58,7 +58,10 @@ diagnostic_display_list <- function(df, x, y, fun_cat, fun_cont, points) {
 #' @return
 #' `eta_covariate()` returns a list of plots arranged in graphics as a
 #' `patchwork` object using [pm_grid()]. `eta_covariate_list()` the same
-#' plots, but unarranged as a list of lists.
+#' plots, but unarranged as a list of lists. `eta_covariate_flat()` calls
+#' [eta_covariate_list()] and flattens the result with [purrr::flatten()],
+#' returning a flat `pm_display` list of plots that can be arranged with
+#' [patchwork::wrap_plots()].
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
 #' by the `ETA`, and the names of the list reflect that name (e.g., `ETA1`).
@@ -100,6 +103,14 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE, points = NULL) {
   p
 }
 
+#' @rdname eta_covariate
+#' @param ... passed to [eta_covariate_list()].
+#' @export
+eta_covariate_flat <- function(...) {
+  p <- eta_covariate_list(...)
+  class_pm_display(flatten(p))
+}
+
 #' Create NPDE versus covariate displays
 #'
 #' Get a single graphic of `NPDE` versus continuous and / or categorical
@@ -125,7 +136,8 @@ eta_covariate_list <- function(df, x, y, transpose = FALSE, points = NULL) {
 #' @return
 #' `npde_covariate()` returns single graphic of scatter plot diagnostics
 #' as a `patchwork` object that has been arranged using [pm_grid()] and
-#' `npde_covariate_list()` returns the same component plots unarranged in a list.
+#' `npde_covariate_list()` returns the same component plots unarranged in a
+#' list.
 #'
 #' @seealso [cwres_covariate()], [eta_covariate()]
 #' @md
@@ -490,7 +502,8 @@ cwres_scatter <- function(df, xname = "value",
 #' @param transpose logical; if `TRUE`, output will be transposed to
 #' group plots by the categorical covariates rather than the continuous
 #' covariates.
-#' @param ... additional arguments passed to [cont_cat()].
+#' @param ... passed to [cont_cat_panel_list()] and eventually to 
+#' [cont_cat()].
 #'
 #' @details
 #' Pass `ncol = NULL` or another non-numeric value to bypass arranging plots
@@ -513,7 +526,10 @@ cwres_scatter <- function(df, xname = "value",
 #' @return
 #' `cont_cat_panel()` returns a list of plots arranged in graphics as a
 #' `patchwork` object using [pm_grid()]. `cont_cat_panel_list()` returns the
-#' same plots, but unarranged as a named list of lists.
+#' same plots, but unarranged as a named list of lists. `cont_cat_panel_flat()`
+#' calls [cont_cat_panel_list()] and flattens the result with
+#' [purrr::flatten()], returning a flat `pm_display` list of plots that can be arranged with
+#' [patchwork::wrap_plots()].
 #'
 #' When `transpose` is `FALSE` (default), plots in a single graphic are grouped
 #' by the continuous covariates (passed as `y`), and the names of the list
@@ -539,6 +555,7 @@ cont_cat_panel <- function(df, x, y, ncol = 2, tag_levels = NULL,
 }
 
 #' @rdname cont_cat_panel
+#' @param ... passed to [list_plot_y()].
 #' @export
 cont_cat_panel_list <- function(df, x, y, transpose = FALSE, ...) {
   p <- list_plot_y(df, x, y, .fun = cont_cat, ...)
@@ -551,6 +568,13 @@ cont_cat_panel_list <- function(df, x, y, transpose = FALSE, ...) {
   }
   p <- lapply(p, class_pm_display)
   p
+}
+#' @rdname cont_cat_panel
+#' @param ... passed to [cont_cat_panel_list()].
+#' @export
+cont_cat_panel_flat <- function(...) {
+  p <- cont_cat_panel_list(...)
+  class_pm_display(flatten(p))
 }
 
 #' with method for pm_display objects

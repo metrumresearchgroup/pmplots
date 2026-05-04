@@ -3,6 +3,7 @@
 \name{eta_covariate}
 \alias{eta_covariate}
 \alias{eta_covariate_list}
+\alias{eta_covariate_flat}
 \title{Create ETA versus covariate displays}
 \usage{
 eta_covariate(
@@ -17,6 +18,8 @@ eta_covariate(
 )
 
 eta_covariate_list(df, x, y, transpose = FALSE, points = NULL)
+
+eta_covariate_flat(...)
 }
 \arguments{
 \item{df}{a data frame to plot.}
@@ -36,11 +39,16 @@ see \code{\link[=col_label]{col_label()}}.}
 plots by the covariate, rather than the \code{ETA}; see \strong{Examples}.}
 
 \item{points}{passed to \code{\link[=boxwork]{boxwork()}} when plotting categorical covariates.}
+
+\item{...}{passed to \code{\link[=eta_covariate_list]{eta_covariate_list()}}.}
 }
 \value{
 \code{eta_covariate()} returns a list of plots arranged in graphics as a
 \code{patchwork} object using \code{\link[=pm_grid]{pm_grid()}}. \code{eta_covariate_list()} the same
-plots, but unarranged as a list of lists.
+plots, but unarranged as a list of lists. \code{eta_covariate_flat()} calls
+\code{\link[=eta_covariate_list]{eta_covariate_list()}} and flattens the result with \code{\link[purrr:flatten]{purrr::flatten()}},
+returning a flat \code{pm_display} list of plots that can be arranged with
+\code{\link[patchwork:wrap_plots]{patchwork::wrap_plots()}}.
 
 When \code{transpose} is \code{FALSE} (default), plots in a single graphic are grouped
 by the \code{ETA}, and the names of the list reflect that name (e.g., \code{ETA1}).
