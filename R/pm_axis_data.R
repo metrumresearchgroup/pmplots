@@ -73,7 +73,7 @@ mk_col_title <- function(what, sep = "//") {
 #' The `pm_axis_*` functions call `pmplots:::mk_col_title()`. When time 
 #' units (`xunit`) are passed, they will be wrapped in parens. The 
 #' `pm_col_*` functions return standard column names or their alias if 
-#' set (see [pm_aliases()].
+#' set (see [pm_aliases()]).
 #'
 #' @param xunit an optional time unit to be glued into the title.
 #' @param xname an optional name to be glued into the title.

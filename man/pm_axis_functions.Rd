@@ -57,7 +57,7 @@ Functions to generate axis data and other standard column names.
 The \verb{pm_axis_*} functions call \code{pmplots:::mk_col_title()}. When time
 units (\code{xunit}) are passed, they will be wrapped in parens. The
 \verb{pm_col_*} functions return standard column names or their alias if
-set (see \code{\link[=pm_aliases]{pm_aliases()}}.
+set (see \code{\link[=pm_aliases]{pm_aliases()}}).
 
 \code{ID} is occasionally used inside pmplots functions as a subject
 identifier. \code{pm_col_id()} is a wrapper around
