@@ -19,7 +19,7 @@ pmp_relabel_pairs(
 
 \item{spec}{a named list of label data; names correspond to columns
 in the data used to make the plot; may also be a \code{yspec} object, which
-will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+will be converted to a named list through \code{yspec::ys_get_short_unit()}.}
 
 \item{labs}{another named list of label data to override names found in
 \code{spec}.}

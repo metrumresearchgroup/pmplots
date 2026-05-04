@@ -31,7 +31,7 @@ resolve_axis_label <- function(label, envir, default) {
 #'
 #' @param spec a named list of label data; names correspond to columns
 #' in the data used to make the plot; may also be a `yspec` object, which
-#' will be converted to a named list through [yspec::ys_get_short_unit()].
+#' will be converted to a named list through `yspec::ys_get_short_unit()`.
 #' @param labs another named list of label data to override names found in
 #' `spec`.
 #' @param x label for the x aesthetic; if `NULL`, resolved via the mapped
@@ -132,7 +132,7 @@ ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
 #'
 #' This function relabels `x` and `y` axis titles based on the data columns
 #' used to create the plot, looking up in a named list or `yspec` object. This
-#' is only for pmplot outputs; consider [yspec::ys_gg_labs()] for labeling
+#' is only for pmplot outputs; consider [pm_relabel()] for labeling
 #' aesthetics in an arbitrary `gg` object.
 #'
 #' Methods are provided for `gg` objects (single pmplots plots), `patchwork`
@@ -412,7 +412,7 @@ relabel_at <- function(x, at = names(x), spec = list(), labs = list(),
 #'
 #' This function adds candidate axis titles as an attribute on columns in
 #' `data`. This attribute is intended to be specifically used for pmplot axis
-#' labels, not to be confused with the label added by [yspec::ys_add_labels()].
+#' labels, not to be confused with the label added by `yspec::ys_add_labels()`.
 #'
 #' @return The data frame `df` with `pmp.axis.label` attributes set on the
 #' labeled columns. If no columns in `spec` or `labs` match column names in

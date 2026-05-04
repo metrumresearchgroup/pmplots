@@ -24,7 +24,7 @@ objects.}
 
 \item{spec}{a named list of label data; names correspond to columns
 in the data used to make the plot; may also be a \code{yspec} object, which
-will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}}.}
+will be converted to a named list through \code{yspec::ys_get_short_unit()}.}
 
 \item{labs}{another named list of label data to override names found in
 \code{spec}.}
@@ -32,7 +32,7 @@ will be converted to a named list through \code{\link[yspec:ys_get_short_unit]{y
 \description{
 This function relabels \code{x} and \code{y} axis titles based on the data columns
 used to create the plot, looking up in a named list or \code{yspec} object. This
-is only for pmplot outputs; consider \code{\link[yspec:ys_gg_labs]{yspec::ys_gg_labs()}} for labeling
+is only for pmplot outputs; consider \code{\link[=pm_relabel]{pm_relabel()}} for labeling
 aesthetics in an arbitrary \code{gg} object.
 }
 \details{

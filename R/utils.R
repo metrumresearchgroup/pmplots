@@ -822,6 +822,16 @@ newline_at_unit <- function(x) {
   x
 }
 
+#' Add a single newline to break a string across two lines
+#' 
+#' @param x a string
+#' @param width the number of characters for the first of 
+#' two lines. 
+#' 
+#' @examples
+#' str_break("Population prediction CX122341 concentration", 10)
+#' 
+#' @keywords internal
 str_break <- function(x, width = Inf) {
   if(is.infinite(width)) return(x)
   vapply(x, function(s) {
