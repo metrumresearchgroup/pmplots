@@ -395,7 +395,7 @@ relabel_at <- function(x, at = names(x), spec = list(), labs = list(),
     return(x)
   }
   for(w in where) {
-    pmp <- isTRUE(x[[w]]$pmp.plot)
+    pmp <- isTRUE(x[[w]]$pmp.pmplot)
     if(!pmp) {
       pmp <- is_pmp_patch(x[[w]])
     }
