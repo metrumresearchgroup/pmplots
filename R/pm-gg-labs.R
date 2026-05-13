@@ -241,3 +241,47 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
+
+#'
+#' @export
+pm_break_labs <- function(p, ...) UseMethod("pm_break_labs")
+#' @export
+pm_break_labs.gg <- function(p, ...) {
+  labs <- get_labs(p)
+  up <- list(...)
+  for(aes in names(up)) {
+    labs[[aes]] <- str_break(labs[[aes]], up[[aes]])
+  }
+  p + do.call(ggplot2::labs, labs)
+}
+
+
+
+#' Make aesthetic labels break across two lines
+#'
+#' @param ... `name = value` pairs; names are mapping whose label text will be
+#' broken into two lines; values are the target lengths of the first lines
+#' after breaking.
+#'
+#' @md
+#' @export
+pm_col_break <- function(...) {
+  structure(list(...), class = "pm_col_break")
+}
+
+#' @exportS3Method ggplot2::ggplot_add
+ggplot_add.pm_col_break <- function(object, p, object_name) {
+  labs <- ggplot2::get_labs(p)
+  layer_mappings <- do.call(c, lapply(unname(p$layers), \(l) l$mapping))
+  all_mappings <- c(p$mapping, layer_mappings)
+  maps <- lapply(all_mappings, rlang::as_label)
+  labs <- labs[names(labs) %in% names(maps)]
+  maps <- data.frame(aes = names(maps), mapping = unlist(unname(maps)))
+  j <- data.frame(mapping = names(object), value = unlist(unname(object)))
+  text <- data.frame(aes = names(labs), text = unlist(unname(labs)))
+  r <- merge(maps, j, by = "mapping")
+  r <- merge(r, text, by = "aes")
+  new_labs <- Map(f = pmplots:::str_break, x = r$text, width = r$value)
+  names(new_labs) <- r$aes
+  p + do.call(ggplot2::labs, new_labs)
+}
