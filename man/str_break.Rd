@@ -16,7 +16,7 @@ two lines.}
 Add a single newline to break a string across two lines
 }
 \examples{
-str_break("Population prediction CX122341 concentration", 10)
+pmplots:::str_break("Population prediction CX122341 concentration", 10)
 
 }
 \keyword{internal}

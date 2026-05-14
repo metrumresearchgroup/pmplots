@@ -31,11 +31,11 @@ NULL
 #' before the limit.
 #' @param y_break character width at which to insert a single line break in the
 #' y axis label; see `x_break`.
-#' @param col_break a named list or named numeric vector; names refer to columns
-#' in `spec` or `labs`, and each value is passed as the `width` argument to
-#' [str_break()] to insert a newline in that column's label. Applied
-#' column-by-column before axis labels are resolved; keys absent from
-#' `spec`/`labs` are silently ignored.
+#' @param var_break a named list or named numeric vector; names refer to
+#' variables in `spec` or `labs`, and each value is passed as the `width`
+#' argument to [str_break()] to insert a newline in that variable's label.
+#' Applied variable-by-variable before axis labels are resolved; keys absent
+#' from `spec`/`labs` are silently ignored.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A gg object that can be added to a ggplot with `+`.
@@ -79,7 +79,7 @@ pm_gg_labs <- function(spec = list(),
                        short_max = Inf,
                        x_break = Inf,
                        y_break = Inf,
-                       col_break = list(),
+                       var_break = list(),
                        ...) {
   colour <- colour %||% color %||% col
   linetype <- linetype %||% lty
@@ -97,12 +97,12 @@ pm_gg_labs <- function(spec = list(),
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
-  if(length(col_break)) {
-    assert_that(is_named(col_break))
-    assert_that(is.list(col_break) || is.numeric(col_break))
-    col_break <- col_break[names(col_break) %in% names(envir)]
-    for(col in names(col_break)) {
-      envir[[col]] <- str_break(envir[[col]], width = col_break[[col]])
+  if(length(var_break)) {
+    assert_that(is_named(var_break))
+    assert_that(is.list(var_break) || is.numeric(var_break))
+    var_break <- var_break[names(var_break) %in% names(envir)]
+    for(v in names(var_break)) {
+      envir[[v]] <- str_break(envir[[v]], width = var_break[[v]])
     }
   }
   structure(

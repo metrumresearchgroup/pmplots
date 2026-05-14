@@ -11,6 +11,12 @@ relabel_at(x, at = names(x), spec = list(), labs = list(), re = NULL, ...)
 
 \item{at}{a character vector of list names to relabel.}
 
+\item{spec}{a named list of label data; names correspond to columns in the
+data used to make the plots; may also be a \code{yspec} object.}
+
+\item{labs}{another named list of label data to override names found in
+\code{spec}.}
+
 \item{re}{a regular expression for selecting names to be used for \code{at}.}
 
 \item{...}{additional arguments passed to \code{\link[=pmp_relabel]{pmp_relabel()}} or \code{\link[=pm_relabel]{pm_relabel()}}.}

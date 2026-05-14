@@ -227,22 +227,22 @@ test_that("pm_gg_labs x_break = Inf (default) does not insert newlines", {
   expect_equal(ggplot2::get_labs(p)$y, "Concentration (ng/mL)")
 })
 
-test_that("pm_gg_labs col_break breaks a named column's label at word boundary", {
-  # DV = "Concentration (ng/mL)" — space at 14; col_break 15 picks 14
-  p <- p0 + pm_gg_labs(spec, col_break = list(DV = 15))
+test_that("pm_gg_labs var_break breaks a named column's label at word boundary", {
+  # DV = "Concentration (ng/mL)" — space at 14; var_break 15 picks 14
+  p <- p0 + pm_gg_labs(spec, var_break = list(DV = 15))
   expect_equal(ggplot2::get_labs(p)$y, "Concentration\n(ng/mL)")
   # TIME label is unaffected
   expect_equal(ggplot2::get_labs(p)$x, "Time (hour)")
 })
 
-test_that("pm_gg_labs col_break accepts a named numeric vector", {
-  p <- p0 + pm_gg_labs(spec, col_break = c(DV = 15))
+test_that("pm_gg_labs var_break accepts a named numeric vector", {
+  p <- p0 + pm_gg_labs(spec, var_break = c(DV = 15))
   expect_equal(ggplot2::get_labs(p)$y, "Concentration\n(ng/mL)")
 })
 
-test_that("pm_gg_labs col_break silently ignores keys not in spec/labs", {
-  expect_no_error(p0 + pm_gg_labs(spec, col_break = list(NOTACOL = 10)))
-  p <- p0 + pm_gg_labs(spec, col_break = list(NOTACOL = 10))
+test_that("pm_gg_labs var_break silently ignores keys not in spec/labs", {
+  expect_no_error(p0 + pm_gg_labs(spec, var_break = list(NOTACOL = 10)))
+  p <- p0 + pm_gg_labs(spec, var_break = list(NOTACOL = 10))
   expect_equal(ggplot2::get_labs(p)$x, "Time (hour)")
   expect_equal(ggplot2::get_labs(p)$y, "Concentration (ng/mL)")
 })

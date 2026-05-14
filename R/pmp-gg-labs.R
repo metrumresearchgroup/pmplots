@@ -46,11 +46,11 @@ resolve_axis_label <- function(label, envir, default) {
 #'   before the limit.
 #' @param y_break character width at which to insert a single line break in the
 #'   y axis label; see `x_break`.
-#' @param col_break a named list or named numeric vector; names refer to columns
-#'   in `spec` or `labs`, and each value is passed as the `width` argument to
-#'   [str_break()] to insert a newline in that column's label. Applied
-#'   column-by-column before axis labels are resolved; keys absent from
-#'   `spec`/`labs` are silently ignored.
+#' @param var_break a named list or named numeric vector; names refer to
+#'   variables in `spec` or `labs`, and each value is passed as the `width`
+#'   argument to [str_break()] to insert a newline in that variable's label.
+#'   Applied variable-by-variable before axis labels are resolved; keys absent
+#'   from `spec`/`labs` are silently ignored.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
 #' @return A `pmp_gg_labs` object that can be added to a pmplots gg object
@@ -74,7 +74,7 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
                        short_max = Inf,
                        x_break = Inf,
                        y_break = Inf,
-                       col_break = list(),
+                       var_break = list(),
                        ...) {
   envir <- list()
   if(inherits(spec, "yspec")) {
@@ -90,12 +90,12 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
     envir <- c(labs, envir)
   }
   envir <- envir[!duplicated(names(envir))]
-  if(length(col_break)) {
-    assert_that(is_named(col_break))
-    assert_that(is.list(col_break) || is.numeric(col_break))
-    col_break <- col_break[names(col_break) %in% names(envir)]
-    for(col in names(col_break)) {
-      envir[[col]] <- str_break(envir[[col]], width = col_break[[col]])
+  if(length(var_break)) {
+    assert_that(is_named(var_break))
+    assert_that(is.list(var_break) || is.numeric(var_break))
+    var_break <- var_break[names(var_break) %in% names(envir)]
+    for(v in names(var_break)) {
+      envir[[v]] <- str_break(envir[[v]], width = var_break[[v]])
     }
   }
   structure(
@@ -350,6 +350,10 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
 #' @param x a named list of gg objects.
 #' @param at a character vector of list names to relabel.
 #' @param re a regular expression for selecting names to be used for `at`.
+#' @param spec a named list of label data; names correspond to columns in the
+#'   data used to make the plots; may also be a `yspec` object.
+#' @param labs another named list of label data to override names found in
+#'   `spec`.
 #' @param ... additional arguments passed to [pmp_relabel()] or [pm_relabel()].
 #'
 #' @details

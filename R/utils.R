@@ -829,7 +829,7 @@ newline_at_unit <- function(x) {
 #' two lines. 
 #' 
 #' @examples
-#' str_break("Population prediction CX122341 concentration", 10)
+#' pmplots:::str_break("Population prediction CX122341 concentration", 10)
 #' 
 #' @keywords internal
 str_break <- function(x, width = Inf) {

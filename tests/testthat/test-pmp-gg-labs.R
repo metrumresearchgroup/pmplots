@@ -162,25 +162,25 @@ test_that("pmp_gg_labs x_break = Inf (default) does not insert newlines", {
   expect_equal(p$labels$y, dv_pred_spec[["DV"]])
 })
 
-test_that("pmp_gg_labs col_break breaks a named column's label at word boundary", {
+test_that("pmp_gg_labs var_break breaks a named column's label at word boundary", {
   data <- pmplots_data_obs()
   # "Concentration (ng/mL)" — space at 14; col_break 15 picks 14
-  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, col_break = list(DV = 15))
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, var_break = list(DV = 15))
   expect_equal(p$labels$y, "Concentration\n(ng/mL)")
   # PRED label is unaffected
   expect_equal(p$labels$x, dv_pred_spec[["PRED"]])
 })
 
-test_that("pmp_gg_labs col_break accepts a named numeric vector", {
+test_that("pmp_gg_labs var_break accepts a named numeric vector", {
   data <- pmplots_data_obs()
-  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, col_break = c(DV = 15))
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, var_break = c(DV = 15))
   expect_equal(p$labels$y, "Concentration\n(ng/mL)")
 })
 
-test_that("pmp_gg_labs col_break silently ignores keys not in spec/labs", {
+test_that("pmp_gg_labs var_break silently ignores keys not in spec/labs", {
   data <- pmplots_data_obs()
-  expect_no_error(dv_pred(data) + pmp_gg_labs(dv_pred_spec, col_break = list(NOTACOL = 10)))
-  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, col_break = list(NOTACOL = 10))
+  expect_no_error(dv_pred(data) + pmp_gg_labs(dv_pred_spec, var_break = list(NOTACOL = 10)))
+  p <- dv_pred(data) + pmp_gg_labs(dv_pred_spec, var_break = list(NOTACOL = 10))
   expect_equal(p$labels$x, dv_pred_spec[["PRED"]])
   expect_equal(p$labels$y, dv_pred_spec[["DV"]])
 })
