@@ -1,7 +1,7 @@
 #' @importFrom dplyr filter as_data_frame arrange n_distinct n bind_rows
 #' @importFrom dplyr group_by filter ungroup summarize distinct pull
 #' @importFrom dplyr groups is_grouped_df mutate .data rename %>%
-#' @importFrom dplyr as_tibble
+#' @importFrom dplyr as_tibble left_join inner_join
 #' @importFrom tidyselect all_of
 #' @importFrom grDevices pdf dev.off
 #' @importFrom ggplot2 ggplot geom_boxplot geom_line
@@ -97,8 +97,8 @@ globalVariables(c("ID", "n", "IPRED"))
 #' - Arrangement
 #'   - [pm_grid()]
 #' - Labeling
-#'   - [pm_gg_labs()], [pm_relabel()] - for several aesthetics on arbitrary gg plots 
-#'   - [pmp_gg_labs()], [pmp_relabel()] - x and y labels on plots made through pmplots functions   
+#'   - [pm_gg_labs()], [pm_relabel()] - for several aesthetics on arbitrary gg plots
+#'   - [pmp_gg_labs()], [pmp_relabel()] - x and y labels on plots made through pmplots functions
 #'   - [pm_label_columns()], [pm_label_rm()] - add labels to data; for use with [pmp_gg_labs()]
 #' - Example data sets
 #'   - [pmplots_data()], [pmplots_data_obs()], [pmplots_data_id()]

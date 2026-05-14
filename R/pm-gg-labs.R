@@ -242,46 +242,111 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
   p + do.call(ggplot2::labs, c(args, object$extra))
 }
 
+#' Break aesthetic labels across two lines
 #'
-#' @export
-pm_break_labs <- function(p, ...) UseMethod("pm_break_labs")
-#' @export
-pm_break_labs.gg <- function(p, ...) {
-  labs <- get_labs(p)
-  up <- list(...)
-  for(aes in names(up)) {
-    labs[[aes]] <- str_break(labs[[aes]], up[[aes]])
-  }
-  p + do.call(ggplot2::labs, labs)
-}
-
-
-
-#' Make aesthetic labels break across two lines
+#' Inserts a single line break into one or more existing plot labels. By
+#' default (`names_from = "column"`), names in `...` refer to data columns
+#' mapped to aesthetics; the function locates the corresponding aesthetics and
+#' breaks their labels. With `names_from = "aes"`, names refer directly to
+#' aesthetic names (`x`, `y`, `colour`, etc.). [pm_gg_break_aes()] is an
+#' alias to `pm_gg_break(..., names_from = "aes")`.
 #'
-#' @param ... `name = value` pairs; names are mapping whose label text will be
-#' broken into two lines; values are the target lengths of the first lines
-#' after breaking.
+#' @param ... `name = value` pairs. When `names_from = "column"` (the
+#' default), names are data column names mapped to aesthetics in the plot;
+#' when `names_from = "aes"`, names are aesthetic names such as `x`, `y`,
+#' or `colour`. In both cases, values are the character width passed as
+#' `width` to [str_break()]: the label is broken at the last word boundary
+#' at or before that width.
+#' @param names_from whether names in `...` identify data column names
+#' (`"column"`, the default) or aesthetic names (`"aes"`).
+#'
+#' @return A gg object that can be added to a ggplot with `+`. Works with
+#' `&` when applied to a `patchwork` layout.
+#'
+#' @seealso [pm_gg_labs()], [pm_relabel()]
+#'
+#' @examples
+#' data <- pmplots_data_obs()
+#'
+#' p <- dv_pred(data) +
+#'   ggplot2::labs(
+#'     x = "Population predicted concentration (ng/mL)",
+#'     y = "Observed concentration (ng/mL)"
+#'   )
+#'
+#' # Break by column name (default)
+#' p + pm_gg_break(PRED = 20, DV = 20)
+#'
+#' # Equivalent using aesthetic names directly
+#' p + pm_gg_break_aes(x = 20, y = 20)
 #'
 #' @md
 #' @export
-pm_col_break <- function(...) {
-  structure(list(...), class = "pm_col_break")
+pm_gg_break <- function(..., names_from = c("column", "aes")) {
+  names_from <- match.arg(names_from)
+  breaks <- list(...)
+  valid_data <- vapply(
+    breaks,
+    FUN = \(x) is.numeric(x) && length(x)==1,
+    FUN.VALUE = TRUE
+  )
+  if(!(is_named(breaks) && all(valid_data))) {
+    abort("arguments must be named numeric break values.")
+  }
+  object <- list(
+    breaks = breaks,
+    names_from = names_from
+  )
+  structure(object, class = "pm_gg_break")
+}
+
+#' @describeIn pm_gg_break Shorthand for `pm_gg_break(..., names_from = "aes")`;
+#' names in `...` are aesthetic names (`x`, `y`, `colour`, etc.) rather
+#' than data column names.
+#' @export
+pm_gg_break_aes <- function(...) {
+  pm_gg_break(..., names_from = "aes")
 }
 
 #' @exportS3Method ggplot2::ggplot_add
-ggplot_add.pm_col_break <- function(object, p, object_name) {
-  labs <- ggplot2::get_labs(p)
+ggplot_add.pm_gg_break <- function(object, p, object_name) {
+
+  values <- object$breaks
+  aes_names <- object$names_from == "aes"
+
+  # All ggplot layer mappings
   layer_mappings <- do.call(c, lapply(unname(p$layers), \(l) l$mapping))
   all_mappings <- c(p$mapping, layer_mappings)
-  maps <- lapply(all_mappings, rlang::as_label)
-  labs <- labs[names(labs) %in% names(maps)]
-  maps <- data.frame(aes = names(maps), mapping = unlist(unname(maps)))
-  j <- data.frame(mapping = names(object), value = unlist(unname(object)))
-  text <- data.frame(aes = names(labs), text = unlist(unname(labs)))
-  r <- merge(maps, j, by = "mapping")
-  r <- merge(r, text, by = "aes")
-  new_labs <- Map(f = pmplots:::str_break, x = r$text, width = r$value)
-  names(new_labs) <- r$aes
+  maps <- lapply(all_mappings, as_label)
+  maps <- data.frame(
+    aes = names(maps),
+    mapping = unlist(unname(maps))
+  )
+
+  # Current labels in the plot
+  labs <- ggplot2::get_labs(p)
+  labs <- labs[names(labs) %in% maps$aes]
+  labs <- data.frame(
+    aes = names(labs),
+    text = unlist(unname(labs))
+  )
+
+  # User-specified breaks, keyed to the mapping name
+
+  # When breaks are named by the data column
+  breaks <- data.frame(
+    mapping = names(values),
+    value = unlist(unname(values))
+  )
+  # When breaks are named by the aesthetic
+  if(aes_names) {
+    names(breaks)[1] <- "aes"
+  }
+  dd <- inner_join(maps, breaks, by = names(breaks)[1])
+  dd <- left_join(dd, labs, by = "aes")
+
+  new_labs <- Map(f = str_break, x = dd$text, width = dd$value)
+  names(new_labs) <- dd$aes
+
   p + do.call(ggplot2::labs, new_labs)
 }
