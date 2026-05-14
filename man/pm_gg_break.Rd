@@ -5,20 +5,20 @@
 \alias{pm_gg_break_aes}
 \title{Break aesthetic labels across two lines}
 \usage{
-pm_gg_break(..., names_from = c("column", "aes"))
+pm_gg_break(..., names_from = c("variable", "aes"))
 
 pm_gg_break_aes(...)
 }
 \arguments{
-\item{...}{\code{name = value} pairs. When \code{names_from = "column"} (the
-default), names are data column names mapped to aesthetics in the plot;
+\item{...}{\code{name = value} pairs. When \code{names_from = "variable"} (the
+default), names are data variable names mapped to aesthetics in the plot;
 when \code{names_from = "aes"}, names are aesthetic names such as \code{x}, \code{y},
 or \code{colour}. In both cases, values are the character width passed as
 \code{width} to \code{\link[=str_break]{str_break()}}: the label is broken at the last word boundary
 at or before that width.}
 
-\item{names_from}{whether names in \code{...} identify data column names
-(\code{"column"}, the default) or aesthetic names (\code{"aes"}).}
+\item{names_from}{whether names in \code{...} identify data variable names
+(\code{"variable"}, the default) or aesthetic names (\code{"aes"}).}
 }
 \value{
 A gg object that can be added to a ggplot with \code{+}. Works with
@@ -26,17 +26,17 @@ A gg object that can be added to a ggplot with \code{+}. Works with
 }
 \description{
 Inserts a single line break into one or more existing plot labels. By
-default (\code{names_from = "column"}), names in \code{...} refer to data columns
+default (\code{names_from = "variable"}), names in \code{...} refer to data variables
 mapped to aesthetics; the function locates the corresponding aesthetics and
 breaks their labels. With \code{names_from = "aes"}, names refer directly to
-aesthetic names (\code{x}, \code{y}, \code{colour}, etc.). \code{\link[=pm_gg_break_aes]{pm_gg_break_aes()}} is an
-alias to \code{pm_gg_break(..., names_from = "aes")}.
+aesthetic names (\code{x}, \code{y}, \code{colour}, etc.). \code{\link[=pm_gg_break_aes]{pm_gg_break_aes()}} is a
+shorthand for \code{pm_gg_break(..., names_from = "aes")}.
 }
 \section{Functions}{
 \itemize{
 \item \code{pm_gg_break_aes()}: Shorthand for \code{pm_gg_break(..., names_from = "aes")};
 names in \code{...} are aesthetic names (\code{x}, \code{y}, \code{colour}, etc.) rather
-than data column names.
+than data variable names.
 
 }}
 \examples{
@@ -48,7 +48,7 @@ p <- dv_pred(data) +
     y = "Observed concentration (ng/mL)"
   )
 
-# Break by column name (default)
+# Break by variable name (default)
 p + pm_gg_break(PRED = 20, DV = 20)
 
 # Equivalent using aesthetic names directly

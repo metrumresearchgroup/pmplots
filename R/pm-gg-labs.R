@@ -245,20 +245,20 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 #' Break aesthetic labels across two lines
 #'
 #' Inserts a single line break into one or more existing plot labels. By
-#' default (`names_from = "column"`), names in `...` refer to data columns
+#' default (`names_from = "variable"`), names in `...` refer to data variables
 #' mapped to aesthetics; the function locates the corresponding aesthetics and
 #' breaks their labels. With `names_from = "aes"`, names refer directly to
-#' aesthetic names (`x`, `y`, `colour`, etc.). [pm_gg_break_aes()] is an
-#' alias to `pm_gg_break(..., names_from = "aes")`.
+#' aesthetic names (`x`, `y`, `colour`, etc.). [pm_gg_break_aes()] is a
+#' shorthand for `pm_gg_break(..., names_from = "aes")`.
 #'
-#' @param ... `name = value` pairs. When `names_from = "column"` (the
-#' default), names are data column names mapped to aesthetics in the plot;
+#' @param ... `name = value` pairs. When `names_from = "variable"` (the
+#' default), names are data variable names mapped to aesthetics in the plot;
 #' when `names_from = "aes"`, names are aesthetic names such as `x`, `y`,
 #' or `colour`. In both cases, values are the character width passed as
 #' `width` to [str_break()]: the label is broken at the last word boundary
 #' at or before that width.
-#' @param names_from whether names in `...` identify data column names
-#' (`"column"`, the default) or aesthetic names (`"aes"`).
+#' @param names_from whether names in `...` identify data variable names
+#' (`"variable"`, the default) or aesthetic names (`"aes"`).
 #'
 #' @return A gg object that can be added to a ggplot with `+`. Works with
 #' `&` when applied to a `patchwork` layout.
@@ -274,7 +274,7 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 #'     y = "Observed concentration (ng/mL)"
 #'   )
 #'
-#' # Break by column name (default)
+#' # Break by variable name (default)
 #' p + pm_gg_break(PRED = 20, DV = 20)
 #'
 #' # Equivalent using aesthetic names directly
@@ -282,7 +282,7 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
 #'
 #' @md
 #' @export
-pm_gg_break <- function(..., names_from = c("column", "aes")) {
+pm_gg_break <- function(..., names_from = c("variable", "aes")) {
   names_from <- match.arg(names_from)
   breaks <- list(...)
   valid_data <- vapply(
@@ -302,7 +302,7 @@ pm_gg_break <- function(..., names_from = c("column", "aes")) {
 
 #' @describeIn pm_gg_break Shorthand for `pm_gg_break(..., names_from = "aes")`;
 #' names in `...` are aesthetic names (`x`, `y`, `colour`, etc.) rather
-#' than data column names.
+#' than data variable names.
 #' @export
 pm_gg_break_aes <- function(...) {
   pm_gg_break(..., names_from = "aes")

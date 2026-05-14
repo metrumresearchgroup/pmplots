@@ -260,3 +260,77 @@ test_that("top-level mapping wins over layer-level", {
   expect_equal(ggplot2::get_labs(p)$x, "Time (hour)")
   expect_equal(ggplot2::get_labs(p)$y, "Concentration (ng/mL)")
 })
+
+# pm_gg_break / pm_gg_break_aes ------------------------------------------
+
+# A plot with long labels set explicitly so tests don't depend on spec content
+pb <- ggplot2::ggplot(data, ggplot2::aes(TIME, DV)) +
+  ggplot2::geom_point() +
+  ggplot2::labs(
+    x = "Population predicted concentration (ng/mL)",
+    y = "Observed concentration (ng/mL)"
+  )
+
+test_that("pm_gg_break breaks x label by variable name", {
+  p <- pb + pm_gg_break(TIME = 20)
+  expect_equal(ggplot2::get_labs(p)$x, "Population\npredicted concentration (ng/mL)")
+  expect_equal(ggplot2::get_labs(p)$y, "Observed concentration (ng/mL)")
+})
+
+test_that("pm_gg_break breaks y label by variable name", {
+  p <- pb + pm_gg_break(DV = 20)
+  expect_equal(ggplot2::get_labs(p)$y, "Observed\nconcentration (ng/mL)")
+  expect_equal(ggplot2::get_labs(p)$x, "Population predicted concentration (ng/mL)")
+})
+
+test_that("pm_gg_break breaks multiple labels in one call", {
+  p <- pb + pm_gg_break(TIME = 20, DV = 20)
+  expect_equal(ggplot2::get_labs(p)$x, "Population\npredicted concentration (ng/mL)")
+  expect_equal(ggplot2::get_labs(p)$y, "Observed\nconcentration (ng/mL)")
+})
+
+test_that("pm_gg_break with unknown variable name is silently ignored", {
+  expect_no_error(pb + pm_gg_break(NOTACOL = 10))
+  p <- pb + pm_gg_break(NOTACOL = 10)
+  expect_false(grepl("\n", ggplot2::get_labs(p)$x, fixed = TRUE))
+  expect_false(grepl("\n", ggplot2::get_labs(p)$y, fixed = TRUE))
+})
+
+test_that("pm_gg_break width wider than label leaves label unchanged", {
+  p <- pb + pm_gg_break(TIME = 200)
+  expect_false(grepl("\n", ggplot2::get_labs(p)$x, fixed = TRUE))
+})
+
+test_that("pm_gg_break_aes breaks x label by aesthetic name", {
+  p <- pb + pm_gg_break_aes(x = 20)
+  expect_equal(ggplot2::get_labs(p)$x, "Population\npredicted concentration (ng/mL)")
+  expect_equal(ggplot2::get_labs(p)$y, "Observed concentration (ng/mL)")
+})
+
+test_that("pm_gg_break_aes breaks y label by aesthetic name", {
+  p <- pb + pm_gg_break_aes(y = 20)
+  expect_equal(ggplot2::get_labs(p)$y, "Observed\nconcentration (ng/mL)")
+  expect_equal(ggplot2::get_labs(p)$x, "Population predicted concentration (ng/mL)")
+})
+
+test_that("pm_gg_break variable and aes modes produce the same result", {
+  p1 <- pb + pm_gg_break(TIME = 20, DV = 20)
+  p2 <- pb + pm_gg_break_aes(x = 20, y = 20)
+  expect_equal(ggplot2::get_labs(p1)$x, ggplot2::get_labs(p2)$x)
+  expect_equal(ggplot2::get_labs(p1)$y, ggplot2::get_labs(p2)$y)
+})
+
+test_that("pm_gg_break_aes breaks colour label", {
+  pc <- pb + ggplot2::aes(colour = factor(CP)) +
+    ggplot2::labs(colour = "Child-Pugh score group")
+  p <- pc + pm_gg_break_aes(colour = 12)
+  expect_equal(ggplot2::get_labs(p)$colour, "Child-Pugh\nscore group")
+})
+
+test_that("pm_gg_break aborts on non-numeric value", {
+  expect_error(pm_gg_break(TIME = "foo"), "named numeric")
+})
+
+test_that("pm_gg_break aborts on unnamed argument", {
+  expect_error(pm_gg_break(20), "named numeric")
+})
