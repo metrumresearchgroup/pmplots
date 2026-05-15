@@ -391,4 +391,3 @@ ggplot_add.pm_gg_break <- function(object, p, object_name) {
 pm_label_break <- function(width) {
   ggplot2::as_labeller(\(x) str_break(x, width = width))
 }
-
