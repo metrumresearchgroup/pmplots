@@ -334,3 +334,34 @@ test_that("pm_gg_break aborts on non-numeric value", {
 test_that("pm_gg_break aborts on unnamed argument", {
   expect_error(pm_gg_break(20), "named numeric")
 })
+
+# pm_label_break ------------------------------------------
+
+test_that("pm_label_break returns a labeller function", {
+  expect_true(is.function(pm_label_break(10)))
+})
+
+test_that("pm_label_break breaks a long strip label at word boundary", {
+  lb <- pm_label_break(10)
+  # "A long label here": spaces at 2, 7, 13; width 10 picks last valid (7)
+  result <- lb(data.frame(grp = "A long label here"))
+  expect_equal(result[[1]], "A long\nlabel here")
+})
+
+test_that("pm_label_break leaves a label shorter than width unchanged", {
+  lb <- pm_label_break(20)
+  result <- lb(data.frame(grp = "Short"))
+  expect_equal(result[[1]], "Short")
+})
+
+test_that("pm_label_break handles multiple labels in one facet variable", {
+  lb <- pm_label_break(10)
+  result <- lb(data.frame(grp = c("A long label here", "Short")))
+  expect_equal(result[[1]], c("A long\nlabel here", "Short"))
+})
+
+test_that("pm_label_break leaves a label that already contains a newline unchanged", {
+  lb <- pm_label_break(5)
+  result <- lb(data.frame(grp = "Already\nbroken"))
+  expect_equal(result[[1]], "Already\nbroken")
+})

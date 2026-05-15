@@ -323,6 +323,8 @@ ggplot_add.pm_gg_break <- function(object, p, object_name) {
     mapping = unlist(unname(maps))
   )
 
+  if(!aes_names && !nrow(maps)) return(p)
+
   # Current labels in the plot
   labs <- ggplot2::get_labs(p)
   labs <- labs[names(labs) %in% maps$aes]
@@ -332,7 +334,7 @@ ggplot_add.pm_gg_break <- function(object, p, object_name) {
   )
 
   # User-specified breaks, keyed to the mapping name
-
+  #
   # When breaks are named by the data column
   breaks <- data.frame(
     mapping = names(values),
@@ -342,11 +344,51 @@ ggplot_add.pm_gg_break <- function(object, p, object_name) {
   if(aes_names) {
     names(breaks)[1] <- "aes"
   }
+
   dd <- inner_join(maps, breaks, by = names(breaks)[1])
+  if(!nrow(dd)) return(p)
+
   dd <- left_join(dd, labs, by = "aes")
+  if(!nrow(dd)) return(p)
 
   new_labs <- Map(f = str_break, x = dd$text, width = dd$value)
   names(new_labs) <- dd$aes
 
   p + do.call(ggplot2::labs, new_labs)
 }
+
+#' Labeller to break a facet label into two lines
+#'
+#' Returns a ggplot2 labeller that inserts a single line break into facet
+#' strip labels, splitting at the last word boundary at or before `width`
+#' characters. This is the facet equivalent of [pm_gg_break()], which
+#' breaks axis and other aesthetic labels on a plot.
+#'
+#' @param width character width at which to insert the line break; the label
+#' is split at the last word boundary at or before this position.
+#'
+#' @return A labeller function suitable for the `labeller` argument of
+#' [ggplot2::facet_wrap()] or [ggplot2::facet_grid()].
+#'
+#' @seealso [pm_gg_break()], [pm_gg_break_aes()] to break axis and aesthetic
+#' labels on a plot.
+#'
+#' @examples
+#' library(ggplot2)
+#'
+#' data <- data.frame(
+#'   x = rnorm(60),
+#'   y = rnorm(60),
+#'   grp = rep(c("Short label", "A much longer label for this group"), 30)
+#' )
+#'
+#' ggplot(data, aes(x, y)) +
+#'   geom_point() +
+#'   facet_wrap(~grp, labeller = pm_label_break(15))
+#'
+#' @md
+#' @export
+pm_label_break <- function(width) {
+  ggplot2::as_labeller(\(x) str_break(x, width = width))
+}
+
