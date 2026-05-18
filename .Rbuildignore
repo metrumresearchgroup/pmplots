@@ -19,3 +19,4 @@ _pkgdown\.yml
 vignettes/complete\.Rmd
 vignettes/*\.pdf
 inst/examples/*\.html
+^CLAUDE\.md$
