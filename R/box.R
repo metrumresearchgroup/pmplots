@@ -1,9 +1,9 @@
-box_labels <- function(df, x, y) {
+box_labels <- function(df, x, y, idcol) {
   .xcol <- rlang::sym(x)
   .ycol  <- rlang::sym(y)
   .sum <- filter(df, !is.na(!!.ycol))
   .sum <- group_by(.sum, !!.xcol)
-  .sum <- summarize(.sum, n = n(), N = n_distinct(ID))
+  .sum <- summarize(.sum, n = n(), N = n_distinct(!!sym(idcol)))
   .sum <- ungroup(.sum)
   as.data.frame(.sum)
 }
@@ -15,7 +15,9 @@ box_labels <- function(df, x, y) {
 #' @param y character name for y-axis data
 #' @param xs see \code{\link{defcx}}
 #' @param ys see \code{\link{defy}}
-#' @param fill passed to \code{geom_boxplot}
+#' @param fill passed to [ggplot2::geom_boxplot()]. Specifying `NULL` disables
+#'   relaying the value to `geom_boxplot` and is required for modifying the fill
+#'   of the returned plot with [ggplot2::aes()].
 #' @param alpha passed to \code{geom_boxplot}
 #' @param hline used to draw horizontal reference line
 #' @param title passed to \code{ggtitle}
@@ -73,8 +75,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
                     ...) {
 
   if(shown) {
-    require_column(df, "ID")
-    .sum <- box_labels(df, x, y)
+    idcol <- pm_col_tad()
+    require_column(df, idcol)
+    .sum <- box_labels(df, x, y, idcol)
     xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"], "\nN=", .sum[,"N"])
     if(all(.sum$N == .sum$n)) {
       xs$labels <- paste0(.sum[,x], "\nN=", .sum[,"N"])
@@ -89,7 +92,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
   do_points <- !missing(points) & !is.null(points)
   if(do_points) {
     outlier.shape <- NA
-    fill <- NA
+    if (!is.null(fill)) {
+      fill <- NA
+    }
     def <- list(col = "grey", position  = position_jitter(height = 0))
     if(is.list(points)) {
       if("jitter_width" %in% names(points)) {
@@ -103,7 +108,13 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
     }
     p <- p + do.call(geom_point,points)
   }
-  p <- p + geom_boxplot(fill=fill, alpha = alpha, outlier.shape = outlier.shape, ...)
+
+  boxargs <- list(alpha = alpha, outlier.shape = outlier.shape, ...)
+  if (!is.null(fill)) {
+    boxargs <- c(fill = fill, boxargs)
+  }
+  p <- p + do.call(geom_boxplot, boxargs)
+
   p <- p + yscale + xscale
   if(is.numeric(hline)) {
     p <- p + geom_hline(

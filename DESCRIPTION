@@ -37,12 +37,15 @@ Suggests:
   S7,
   shiny, 
   rmarkdown, 
-  yspec
+  yspec, 
+  withr
 Depends: ggplot2 (>= 3.5.0), R (>= 4.1.0)
+Depends: ggplot2 (>= 3.5.0)
 RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Collate: 
     'Aaaa.R'
+    'aliases.R'
     'box.R'
     'cont.R'
     'data.R'

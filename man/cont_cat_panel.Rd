@@ -13,6 +13,7 @@ cont_cat_panel(
   tag_levels = NULL,
   byrow = FALSE,
   transpose = FALSE,
+  points = NULL,
   ...
 )
 
@@ -36,6 +37,8 @@ plot on y-axis; see \code{\link[=col_label]{col_label()}}.}
 \item{transpose}{logical; if \code{TRUE}, output will be transposed to
 group plots by the categorical covariates rather than the continuous
 covariates.}
+
+\item{points}{passed to \code{\link[=boxwork]{boxwork()}} when plotting categorical covariates.}
 
 \item{...}{additional arguments passed to \code{\link[=cont_cat]{cont_cat()}}.}
 }
