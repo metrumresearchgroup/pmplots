@@ -22,6 +22,8 @@ jobs:
             # The latest versions of several dependencies require
             # newer R versions.
             rspm: 'https://packagemanager.posit.co/cran/__linux__/jammy/2024-07-22'
+            cran_override: 'https://packagemanager.posit.co/cran/__linux__/jammy/2024-07-22'
+            mpn: '2025-04-23'
             pinned: true
           - os: ubuntu-22.04
             r: 4.2.3
@@ -42,7 +44,7 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
           use-public-rspm: true
-          extra-repositories: 'https://mpn.metworx.com/snapshots/stable/${{ env.MPN_LATEST }}'
+          extra-repositories: 'https://mpn.metworx.com/snapshots/stable/${{ matrix.config.mpn || env.MPN_LATEST }}'
         env:
           RSPM: ${{ matrix.config.rspm }}
           CRAN: ${{ matrix.config.cran_override }}
