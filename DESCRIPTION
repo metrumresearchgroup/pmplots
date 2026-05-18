@@ -40,7 +40,6 @@ Suggests:
   yspec, 
   withr
 Depends: ggplot2 (>= 3.5.0), R (>= 4.1.0)
-Depends: ggplot2 (>= 3.5.0)
 RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Collate: 
