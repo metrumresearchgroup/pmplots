@@ -15,7 +15,7 @@
 #' @importFrom ggplot2 geom_text position_jitter label_value as_labeller
 #' @importFrom ggplot2 scale_color_manual scale_linetype_manual
 #' @importFrom ggplot2 scale_shape_manual scale_shape_discrete
-#' @importFrom ggplot2 after_stat
+#' @importFrom ggplot2 after_stat get_labs
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
 #' @importFrom rlang enexpr enexprs abort warn inform arg_match %||% as_label
