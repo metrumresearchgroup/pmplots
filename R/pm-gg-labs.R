@@ -224,10 +224,10 @@ pm_relabel.list <- function(x, spec, labs = list(), ...) {
 }
 
 #' @exportS3Method ggplot2::ggplot_add
-ggplot_add.pm_gg_labs <- function(object, p, object_name) {
+ggplot_add.pm_gg_labs <- function(object, plot, object_name) {
 
-  layer_mappings <- do.call(c, lapply(unname(p$layers), \(l) l$mapping))
-  all_mappings <- c(p$mapping, layer_mappings)
+  layer_mappings <- do.call(c, lapply(unname(plot$layers), \(l) l$mapping))
+  all_mappings <- c(plot$mapping, layer_mappings)
 
   args <- list()
   args$x <- resolve_aes_label("x", all_mappings, object)
@@ -239,7 +239,7 @@ ggplot_add.pm_gg_labs <- function(object, p, object_name) {
     if(!is.null(label)) args[[aes]] <- label
   }
 
-  p + do.call(ggplot2::labs, c(args, object$extra))
+  plot + do.call(ggplot2::labs, c(args, object$extra))
 }
 
 #' Break aesthetic labels across two lines
@@ -309,24 +309,24 @@ pm_gg_break_aes <- function(...) {
 }
 
 #' @exportS3Method ggplot2::ggplot_add
-ggplot_add.pm_gg_break <- function(object, p, object_name) {
+ggplot_add.pm_gg_break <- function(object, plot, object_name) {
 
   values <- object$breaks
   aes_names <- object$names_from == "aes"
 
   # All ggplot layer mappings
-  layer_mappings <- do.call(c, lapply(unname(p$layers), \(l) l$mapping))
-  all_mappings <- c(p$mapping, layer_mappings)
+  layer_mappings <- do.call(c, lapply(unname(plot$layers), \(l) l$mapping))
+  all_mappings <- c(plot$mapping, layer_mappings)
   maps <- lapply(all_mappings, as_label)
   maps <- data.frame(
     aes = names(maps),
     mapping = unlist(unname(maps))
   )
 
-  if(!aes_names && !nrow(maps)) return(p)
+  if(!aes_names && !nrow(maps)) return(plot)
 
   # Current labels in the plot
-  labs <- ggplot2::get_labs(p)
+  labs <- ggplot2::get_labs(plot)
   labs <- labs[names(labs) %in% maps$aes]
   labs <- data.frame(
     aes = names(labs),
@@ -346,15 +346,15 @@ ggplot_add.pm_gg_break <- function(object, p, object_name) {
   }
 
   dd <- inner_join(maps, breaks, by = names(breaks)[1])
-  if(!nrow(dd)) return(p)
+  if(!nrow(dd)) return(plot)
 
   dd <- left_join(dd, labs, by = "aes")
-  if(!nrow(dd)) return(p)
+  if(!nrow(dd)) return(plot)
 
   new_labs <- Map(f = str_break, x = dd$text, width = dd$value)
   names(new_labs) <- dd$aes
 
-  p + do.call(ggplot2::labs, new_labs)
+  plot + do.call(ggplot2::labs, new_labs)
 }
 
 #' Labeller to break a facet label into two lines

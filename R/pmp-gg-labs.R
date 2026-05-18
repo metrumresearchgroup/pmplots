@@ -112,20 +112,20 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
 }
 
 #' @exportS3Method ggplot2::ggplot_add
-ggplot_add.pmp_gg_labs <- function(object, p, object_name) {
+ggplot_add.pmp_gg_labs <- function(object, plot, object_name) {
   assert_that(
-    isTRUE(p$pmp.pmplot) || is_pmp_patch(p),
+    isTRUE(plot$pmp.pmplot) || is_pmp_patch(plot),
     msg = "pmp_gg_labs() can only be used with plots created by pmplots."
   )
-  existing <- gg_get_labs_2(p)
+  existing <- gg_get_labs_2(plot)
   args <- list()
-  x <- object$x %||% p$pmp.x
-  y <- object$y %||% p$pmp.y
+  x <- object$x %||% plot$pmp.x
+  y <- object$y %||% plot$pmp.y
   args$x <- resolve_axis_label(x, object$envir, existing$x)
   args$y <- resolve_axis_label(y, object$envir, existing$y)
   args$x <- str_break(args$x, width = object$x_break)
   args$y <- str_break(args$y, width = object$y_break)
-  p + do.call(ggplot2::labs, c(args, object$extra))
+  plot + do.call(ggplot2::labs, c(args, object$extra))
 }
 
 #' Relabel a pmplots plot using a yspec object or named list
