@@ -67,6 +67,19 @@ test_that("factor x- or y- is passed through", {
   expect_equal(ggplot2::get_labs(p)$y, "Concentration (ng/mL)")
 })
 
+test_that("respect existing label", {
+  p0 <-
+    ggplot2::ggplot(data, ggplot2::aes(TIME, DV)) +
+    ggplot2::geom_point() + 
+    labs(x = "New time")
+
+  p1 <- p0 + pm_gg_labs(list(DV = "dee vee"))
+  expect_equal(p0$labels$x, "New time")
+  expect_equal(p0$labels$x, p1$labels$x)
+  expect_null(p0$labels$y)
+  expect_equal(p1$labels$y, "dee vee")
+})
+
 test_that("label colour", {
   p0 <-
     ggplot2::ggplot(data, ggplot2::aes(TIME, DV, colour = factor(CP))) +
@@ -363,3 +376,4 @@ test_that("pm_label_break leaves a label that already contains a newline unchang
   result <- lb(data.frame(grp = "Already\nbroken"))
   expect_equal(result[[1]], "Already\nbroken")
 })
+
