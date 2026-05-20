@@ -167,6 +167,7 @@ ggplot_add.pmp_gg_labs <- function(object, plot, object_name) {
 pmp_relabel <- function(obj, ...) UseMethod("pmp_relabel")
 
 #' @rdname pmp_relabel
+#' @export
 pmp_relabel.gg <- function(obj, spec = list(), labs = list(), ...) {
   assert_that(
     isTRUE(obj$pmp.pmplot),
@@ -176,11 +177,13 @@ pmp_relabel.gg <- function(obj, spec = list(), labs = list(), ...) {
 }
 
 #' @rdname pmp_relabel
+#' @export
 pmp_relabel.patchwork <- function(obj, spec = list(), labs = list(), ...) {
   obj & pmp_gg_labs(spec, labs, ...)
 }
 
 #' @rdname pmp_relabel
+#' @export
 pmp_relabel.list <- function(obj, spec = list(), labs = list(), ...) {
   lapply(obj, pmp_relabel, spec = spec, labs = labs, ...)
 }
