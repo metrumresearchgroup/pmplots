@@ -19,7 +19,7 @@ ggplot2::facet_wrap()."><meta property="og:image" content="https://metrumresearc
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ ggplot2::facet_wrap()."><meta property="og:image" content="https://metrumresearc
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Faceted plots</h1>
-    <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.5.2/R/wrap_plots.R" class="external-link"><code>R/wrap_plots.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/R/wrap_plots.R" class="external-link"><code>R/wrap_plots.R</code></a></small>
     <div class="hidden name"><code>wrap_plots.Rd</code></div>
     </div>
 
@@ -106,7 +106,7 @@ y-axis variables and then plotted and faceted with
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  scales <span class="op">=</span> <span class="st">"free_y"</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  use_labels <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  use_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  label_fun <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  labeller <span class="op">=</span> <span class="va">label_tex</span></span>
 <span><span class="op">)</span></span>
@@ -123,19 +123,13 @@ y-axis variables and then plotted and faceted with
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  scales <span class="op">=</span> <span class="st">"free_x"</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  use_labels <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  use_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labeller <span class="op">=</span> <span class="va">label_tex</span>,</span>
 <span>  label_fun <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">wrap_dv_preds</span><span class="op">(</span></span>
-<span>  <span class="va">df</span>,</span>
-<span>  <span class="va">...</span>,</span>
-<span>  title <span class="op">=</span> <span class="st">"Predicted {yname}"</span>,</span>
-<span>  xname <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  scales <span class="op">=</span> <span class="st">"fixed"</span></span>
-<span><span class="op">)</span></span>
+<span><span class="fu">wrap_dv_preds</span><span class="op">(</span><span class="va">df</span>, <span class="va">...</span>, title <span class="op">=</span> <span class="cn">NULL</span>, xname <span class="op">=</span> <span class="st">""</span>, scales <span class="op">=</span> <span class="st">"fixed"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">wrap_cont_cat</span><span class="op">(</span></span>
 <span>  <span class="va">df</span>,</span>
@@ -145,7 +139,7 @@ y-axis variables and then plotted and faceted with
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  scales <span class="op">=</span> <span class="st">"free_y"</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  use_labels <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  use_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  labeller <span class="op">=</span> <span class="va">label_tex</span>,</span>
 <span>  label_fun <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -156,7 +150,7 @@ y-axis variables and then plotted and faceted with
 
 
 <dl><dt id="arg-df">df<a class="anchor" aria-label="anchor" href="#arg-df"></a></dt>
-<dd><p>Data frame to plot.</p></dd>
+<dd><p>data frame to plot.</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -170,41 +164,43 @@ then <code>y</code> must be length equal to 1.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Passed to <code>fun</code>.</p></dd>
+<dd><p>passed to <code>fun</code>.</p></dd>
 
 
 <dt id="arg-fun">fun<a class="anchor" aria-label="anchor" href="#arg-fun"></a></dt>
-<dd><p>The plotting function.</p></dd>
+<dd><p>the plotting function.</p></dd>
 
 
 <dt id="arg-title">title<a class="anchor" aria-label="anchor" href="#arg-title"></a></dt>
-<dd><p>A title to use for the axis with faceting groups.</p></dd>
+<dd><p>a title to use for the axis with faceting groups.</p></dd>
 
 
 <dt id="arg-scales">scales<a class="anchor" aria-label="anchor" href="#arg-scales"></a></dt>
-<dd><p>Passed to <code>facet_wrap</code>.</p></dd>
+<dd><p>passed to <code>facet_wrap</code>.</p></dd>
 
 
 <dt id="arg-ncol">ncol<a class="anchor" aria-label="anchor" href="#arg-ncol"></a></dt>
-<dd><p>Passed to <code>facet_wrap</code>.</p></dd>
+<dd><p>passed to <code>facet_wrap</code>.</p></dd>
 
 
 <dt id="arg-use-labels">use_labels<a class="anchor" aria-label="anchor" href="#arg-use-labels"></a></dt>
-<dd><p>If <code>TRUE</code>, the label part of <code>col_label</code> will
-be used in the strip; the column name is used otherwise.</p></dd>
+<dd><p>if <code>TRUE</code>, look for an alternate facet label; if the data
+set was labeled with <code><a href="pm_label_columns.html">pm_label_columns()</a></code>, use that label; otherwise use the
+label part of the <code>col_label</code> specification. he label part of <code>col_label</code>
+will be used in the strip; the column name is used otherwise.</p></dd>
 
 
 <dt id="arg-label-fun">label_fun<a class="anchor" aria-label="anchor" href="#arg-label-fun"></a></dt>
-<dd><p>Deprecated; use <code>labeller</code> instead.</p></dd>
+<dd><p>deprecated; use <code>labeller</code> instead.</p></dd>
 
 
 <dt id="arg-labeller">labeller<a class="anchor" aria-label="anchor" href="#arg-labeller"></a></dt>
-<dd><p>A labeller function; passed to <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">ggplot2::facet_wrap()</a></code>; the
+<dd><p>a labeller function; passed to <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">ggplot2::facet_wrap()</a></code>; the
 default is based on <code><a href="parse_label.html">parse_label()</a></code> and allows latex markup in the label.</p></dd>
 
 
 <dt id="arg-xname">xname<a class="anchor" aria-label="anchor" href="#arg-xname"></a></dt>
-<dd><p>Placeholder.</p></dd>
+<dd><p>placeholder.</p></dd>
 
 </dl></div>
     <div id="details">
@@ -229,6 +225,8 @@ data column (the data are sent to <code><a href="pm_box.html">pm_box()</a></code
 forced to the value <code>FALSE</code>.</p>
 <p>For all plots, either <code>x</code> or <code>y</code> may contain multiple columns, but an error
 will be generated if both <code>x</code> and <code>y</code> list multiple columns.</p>
+<p>Facet strip labels can be updated after the fact using <code><a href="pmp_relabel_wrap.html">pmp_relabel_wrap()</a></code>,
+which looks up column names in a named list or <code>yspec</code> object.</p>
     </div>
 
   </div>
@@ -243,7 +241,7 @@ will be generated if both <code>x</code> and <code>y</code> list multiple column
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

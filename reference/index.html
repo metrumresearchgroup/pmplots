@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -223,13 +223,17 @@
         </td>
         <td><p>Parse the label part of a col_label</p></td>
       </tr><tr><td>
+          <p><code><a href="pm_aliases.html">pm_aliases()</a></code> <code><a href="pm_aliases.html">pm_set_aliases()</a></code> <code><a href="pm_aliases.html">pm_clear_aliases()</a></code> <code><a href="pm_aliases.html">pm_show_canonical()</a></code> </p>
+        </td>
+        <td><p>Set and manage aliases to certain canonical names used by pmplots</p></td>
+      </tr><tr><td>
           <p><code><a href="pm_axis.html">pm_axis()</a></code> <code><a href="pm_axis.html">pm_axis_data</a></code> </p>
         </td>
         <td><p>Get defaults for plot axes</p></td>
       </tr><tr><td>
-          <p><code><a href="pm_axis_functions.html">pm_axis_tad()</a></code> <code><a href="pm_axis_functions.html">pm_axis_time()</a></code> <code><a href="pm_axis_functions.html">pm_axis_tafd()</a></code> <code><a href="pm_axis_functions.html">pm_axis_res()</a></code> <code><a href="pm_axis_functions.html">pm_axis_wres()</a></code> <code><a href="pm_axis_functions.html">pm_axis_cwres()</a></code> <code><a href="pm_axis_functions.html">pm_axis_cwresi()</a></code> <code><a href="pm_axis_functions.html">pm_axis_npde()</a></code> <code><a href="pm_axis_functions.html">pm_axis_pred()</a></code> <code><a href="pm_axis_functions.html">pm_axis_ipred()</a></code> <code><a href="pm_axis_functions.html">pm_axis_dv()</a></code> </p>
+          <p><code><a href="pm_axis_functions.html">pm_axis_tad()</a></code> <code><a href="pm_axis_functions.html">pm_axis_time()</a></code> <code><a href="pm_axis_functions.html">pm_axis_tafd()</a></code> <code><a href="pm_axis_functions.html">pm_axis_res()</a></code> <code><a href="pm_axis_functions.html">pm_axis_wres()</a></code> <code><a href="pm_axis_functions.html">pm_axis_cwres()</a></code> <code><a href="pm_axis_functions.html">pm_axis_cwresi()</a></code> <code><a href="pm_axis_functions.html">pm_axis_npde()</a></code> <code><a href="pm_axis_functions.html">pm_axis_pred()</a></code> <code><a href="pm_axis_functions.html">pm_axis_ipred()</a></code> <code><a href="pm_axis_functions.html">pm_axis_dv()</a></code> <code><a href="pm_axis_functions.html">pm_col_tad()</a></code> <code><a href="pm_axis_functions.html">pm_col_id()</a></code> </p>
         </td>
-        <td><p>Functions to generate axis data</p></td>
+        <td><p>Functions to generate axis data and other standard column names.</p></td>
       </tr><tr><td>
           <p><code><a href="pm_box.html">pm_box()</a></code> <code><a href="pm_box.html">pm_box_list()</a></code> <code><a href="pm_box.html">cont_cat()</a></code> </p>
         </td>
@@ -243,9 +247,29 @@
         </td>
         <td><p>pmplots browser gadget</p></td>
       </tr><tr><td>
+          <p><code><a href="pm_gg_break.html">pm_gg_break()</a></code> <code><a href="pm_gg_break.html">pm_gg_break_aes()</a></code> </p>
+        </td>
+        <td><p>Break aesthetic labels across two lines</p></td>
+      </tr><tr><td>
+          <p><code><a href="pm_gg_labs.html">pm_gg_labs()</a></code> </p>
+        </td>
+        <td><p>Label ggplot aesthetics from a yspec object or other source</p></td>
+      </tr><tr><td>
           <p><code><a href="pm_grid.html">pm_grid()</a></code> </p>
         </td>
         <td><p>Arrange a list of plots in a grid</p></td>
+      </tr><tr><td>
+          <p><code><a href="pm_label_break.html">pm_label_break()</a></code> </p>
+        </td>
+        <td><p>Labeller to break a facet label into two lines</p></td>
+      </tr><tr><td>
+          <p><code><a href="pm_label_columns.html">pm_label_columns()</a></code> </p>
+        </td>
+        <td><p>Add axis label data to a data frame</p></td>
+      </tr><tr><td>
+          <p><code><a href="pm_label_rm.html">pm_label_rm()</a></code> </p>
+        </td>
+        <td><p>Remove pmplot-specific axis label information</p></td>
       </tr><tr><td>
           <p><code><a href="pm_log.html">pm_log()</a></code> <code><a href="pm_log.html">pm_ident()</a></code> </p>
         </td>
@@ -254,6 +278,10 @@
           <p><code><a href="pm_opts.html">pm_options()</a></code> <code><a href="pm_opts.html">pm_opts</a></code> <code><a href="pm_opts.html">pm</a></code> </p>
         </td>
         <td><p>Set global plot options</p></td>
+      </tr><tr><td>
+          <p><code><a href="pm_relabel.html">pm_relabel()</a></code> </p>
+        </td>
+        <td><p>Relabel a plot using a yspec object or named list</p></td>
       </tr><tr><td>
           <p><code><a href="pm_scatter.html">pm_scatter()</a></code> <code><a href="pm_scatter.html">pm_scatter_list()</a></code> <code><a href="pm_scatter.html">cont_cont()</a></code> </p>
         </td>
@@ -271,6 +299,22 @@
         </td>
         <td><p>Arrange a named list of plots</p></td>
       </tr><tr><td>
+          <p><code><a href="pmp_gg_labs.html">pmp_gg_labs()</a></code> </p>
+        </td>
+        <td><p>Label pmplot aesthetics from a yspec object or named list</p></td>
+      </tr><tr><td>
+          <p><code><a href="pmp_relabel.html">pmp_relabel()</a></code> </p>
+        </td>
+        <td><p>Relabel a pmplots plot using a yspec object or named list</p></td>
+      </tr><tr><td>
+          <p><code><a href="pmp_relabel_pairs.html">pmp_relabel_pairs()</a></code> </p>
+        </td>
+        <td><p>Relabel facets in a pmplots pairs plot</p></td>
+      </tr><tr><td>
+          <p><code><a href="pmp_relabel_wrap.html">pmp_relabel_wrap()</a></code> </p>
+        </td>
+        <td><p>Relabel facet strips in a wrapped pmplot</p></td>
+      </tr><tr><td>
           <p><code><a href="pmplots.html">pmplots</a></code> </p>
         </td>
         <td><p>Plots for pharmacometrics</p></td>
@@ -282,6 +326,10 @@
           <p><code><a href="print.pm_opts.html">print(<i>&lt;pm_opts&gt;</i>)</a></code> </p>
         </td>
         <td><p>Print the pm_opts object</p></td>
+      </tr><tr><td>
+          <p><code><a href="relabel_at.html">relabel_at()</a></code> </p>
+        </td>
+        <td><p>Relabel plots in a list using pm_relabel</p></td>
       </tr><tr><td>
           <p><code><a href="res_cat.html">res_cat()</a></code> <code><a href="res_cat.html">wres_cat()</a></code> <code><a href="res_cat.html">cwres_cat()</a></code> <code><a href="res_cat.html">cwresi_cat()</a></code> <code><a href="res_cat.html">npde_cat()</a></code> </p>
         </td>
@@ -371,7 +419,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

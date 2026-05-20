@@ -19,7 +19,7 @@ on customizing some aspects of the off-diagonal plots."><meta property="og:image
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ on customizing some aspects of the off-diagonal plots."><meta property="og:image
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Pairs plots using ggpairs</h1>
-    <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.5.2/R/eta_pairs.R" class="external-link"><code>R/eta_pairs.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/R/eta_pairs.R" class="external-link"><code>R/eta_pairs.R</code></a></small>
     <div class="hidden name"><code>pairs_plot.Rd</code></div>
     </div>
 
@@ -101,6 +101,7 @@ on customizing some aspects of the off-diagonal plots.</p>
 <span>  <span class="va">x</span>,</span>
 <span>  <span class="va">y</span>,</span>
 <span>  bins <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  unit_break <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="va">opts</span><span class="op">$</span><span class="va">histogram.alpha</span>,</span>
 <span>  fill <span class="op">=</span> <span class="va">opts</span><span class="op">$</span><span class="va">histogram.fill</span>,</span>
 <span>  col <span class="op">=</span> <span class="va">opts</span><span class="op">$</span><span class="va">histogram.col</span>,</span>
@@ -129,6 +130,12 @@ on customizing some aspects of the off-diagonal plots.</p>
 
 <dt id="arg-bins">bins<a class="anchor" aria-label="anchor" href="#arg-bins"></a></dt>
 <dd><p>passed to <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">ggplot2::geom_histogram()</a></code> to render the diagonal</p></dd>
+
+
+<dt id="arg-unit-break">unit_break<a class="anchor" aria-label="anchor" href="#arg-unit-break"></a></dt>
+<dd><p>if <code>TRUE</code> (the default), a newline is inserted between the
+label text and a trailing parenthetical unit (e.g., <code>"Weight (kg)"</code> becomes
+<code>"Weight\n(kg)"</code>).</p></dd>
 
 
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
@@ -238,7 +245,7 @@ options object to control aspects of the points: <code>scatter.col</code>,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

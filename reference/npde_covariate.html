@@ -20,7 +20,7 @@ diagnostic displays."><meta property="og:image" content="https://metrumresearchg
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@ diagnostic displays."><meta property="og:image" content="https://metrumresearchg
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create NPDE versus covariate displays</h1>
-    <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.5.2/R/displays.R" class="external-link"><code>R/displays.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/R/displays.R" class="external-link"><code>R/displays.R</code></a></small>
     <div class="hidden name"><code>npde_covariate.Rd</code></div>
     </div>
 
@@ -99,9 +99,9 @@ diagnostic displays.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">npde_covariate</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, ncol <span class="op">=</span> <span class="fl">2</span>, tag_levels <span class="op">=</span> <span class="cn">NULL</span>, byrow <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">npde_covariate</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, ncol <span class="op">=</span> <span class="fl">2</span>, tag_levels <span class="op">=</span> <span class="cn">NULL</span>, byrow <span class="op">=</span> <span class="cn">NULL</span>, points <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">npde_covariate_list</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">npde_covariate_list</span><span class="op">(</span><span class="va">df</span>, <span class="va">x</span>, points <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -127,6 +127,10 @@ see <code><a href="col_label.html">col_label()</a></code>.</p></dd>
 
 <dt id="arg-byrow">byrow<a class="anchor" aria-label="anchor" href="#arg-byrow"></a></dt>
 <dd><p>passed to <code><a href="pm_grid.html">pm_grid()</a></code>.</p></dd>
+
+
+<dt id="arg-points">points<a class="anchor" aria-label="anchor" href="#arg-points"></a></dt>
+<dd><p>passed to <code><a href="boxwork.html">boxwork()</a></code> when plotting categorical covariates.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -180,7 +184,7 @@ coming from <code>npde_covariate()</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

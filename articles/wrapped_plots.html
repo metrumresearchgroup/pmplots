@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -115,9 +115,9 @@
       <h1 data-toc-skip>Wrapped / Faceted Plots</h1>
                         <h4 data-toc-skip class="author">Kyle Baron</h4>
             
-            <h4 data-toc-skip class="date">2025-10-11</h4>
+            <h4 data-toc-skip class="date">2026-05-20</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.5.2/vignettes/wrapped_plots.Rmd" class="external-link"><code>vignettes/wrapped_plots.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/scratch/deploy-site/vignettes/wrapped_plots.Rmd" class="external-link"><code>vignettes/wrapped_plots.Rmd</code></a></small>
       <div class="hidden name"><code>wrapped_plots.Rmd</code></div>
 
     </div>
@@ -162,7 +162,7 @@ argument</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_plots.html">wrap_res_time</a></span><span class="op">(</span><span class="va">data</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CWRESI"</span>, <span class="st">"WRES"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
-<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="wrap_eta_cont">
@@ -178,7 +178,7 @@ argument</p>
 <span>  use_labels<span class="op">=</span><span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
-<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 <p>In this example, we enter labels along with column names and request
 that the labels be used for the shingle.</p>
 <p>We can facet on x or y</p>
@@ -190,7 +190,7 @@ that the labels be used for the shingle.</p>
 <span>  scales<span class="op">=</span><span class="st">"free_x"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
-<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="wrap_hist">
@@ -200,7 +200,7 @@ that the labels be used for the shingle.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_plots.html">wrap_hist</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CWRESI"</span>, <span class="st">"WRES"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `stat_bin()` using `bins = 30`. Pick better value `binwidth`.</span></span></code></pre>
-<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="dv-vs-pred-and-dv-vs-ipred">DV vs pred and DV vs ipred<a class="anchor" aria-label="anchor" href="#dv-vs-pred-and-dv-vs-ipred"></a>
@@ -208,7 +208,7 @@ that the labels be used for the shingle.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_plots.html">wrap_dv_preds</a></span><span class="op">(</span><span class="va">data</span>, yname <span class="op">=</span> <span class="st">"MRG1557"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
-<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p><img src="wrapped_plots_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 </div>
   </div>
@@ -228,7 +228,7 @@ that the labels be used for the shingle.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer>
