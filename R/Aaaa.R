@@ -98,8 +98,14 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [pm_grid()]
 #' - Labeling
 #'   - [pm_gg_labs()], [pm_relabel()] - for several aesthetics on arbitrary gg plots
+#'   - [pmp_relabel_wrap()] - relabel facet strip labels in wrap plots
+#'   - [pmp_relabel_pairs()] - relabel strip and axis labels in pairs plots
 #'   - [relabel_at()] - relabel plots in a list by name
 #'   - [pm_label_columns()], [pm_label_rm()] - add or remove labels to data sets
+#'   - [pm_label_break()] - labeller for wrapping strip text at a character width
+#' - Column names and aliases
+#'   - [pm_set_aliases()], [pm_aliases()], [pm_clear_aliases()], [pm_show_canonical()]
+#'   - [pm_col_id()], [pm_col_tad()]
 #' - Example data sets
 #'   - [pmplots_data()], [pmplots_data_obs()], [pmplots_data_id()]
 #'

@@ -1,4 +1,59 @@
-# pmplots (development version)
+# pmplots 0.6.0
+
+- A new family of functions lets you update axis and aesthetic labels on plots
+  after they are created, looking up column names in a named list or `yspec`
+  object. (#122)
+  - `pm_gg_labs()` builds a label object that can be added (`+`) to any `gg`
+    object to update axis and aesthetic labels based on the mapped column names.
+    It also accepts `x_break`, `y_break`, and `var_break` arguments for
+    inserting line breaks into long labels.
+  - `pm_relabel()` is a generic that applies `pm_gg_labs()` to a `gg` object,
+    a `patchwork` object (e.g., from `eta_covariate()` or `npde_panel()`), or a
+    list of `gg` objects.
+  - `pmp_relabel_wrap()` relabels facet strip labels in plots produced by
+    `wrap_*` functions (e.g., `wrap_eta_cont()`, `wrap_cont_cont()`), including
+    optional `f_break` and `unit_break` arguments for wrapping long strip labels.
+  - `pmp_relabel_pairs()` relabels strip and axis labels in pairs plots (e.g.,
+    from `eta_pairs()`).
+  - `relabel_at()` applies relabeling to specific plots in a named list,
+    selected by exact name or regular expression.
+  - `pm_label_columns()` attaches per-column labels to a data frame from a named
+    list or `yspec` object; `pm_label_rm()` removes them. When a data frame
+    labeled this way is passed to a `wrap_*` function with `use_labels = TRUE`
+    (now the default), the stored labels are used as facet strip titles.
+  - `pm_gg_break()` and `pm_gg_break_aes()` will break an established aesthetic
+    label across two lines; `pm_gg_break()` identifies labels to break by 
+    variable name while `pm_gg_break_aes()` identifies labels to break by 
+    aesthetic name.
+  - `pm_label_break()` is a `ggplot2` labeller function that wraps facet labels
+    at a specified character width, for use with `facet_wrap(labeller = ...)`.
+
+- A new aliasing system lets you globally redirect the canonical column names
+  assumed by pmplots to the names actually present in your data. (#124)
+  - `pm_set_aliases()` registers one or more `alias = canonical` pairs (e.g.,
+    `pm_set_aliases(TAFD = TIME)` redirects every place pmplots would look for
+    `TIME` to `TAFD` instead). Only columns returned by `pm_show_canonical()`
+    can be aliased.
+  - `pm_aliases()` prints currently active aliases; `pm_clear_aliases()` removes
+    them all; `pm_show_canonical()` lists which column names can be aliased.
+  - `pm_col_id()` returns the subject identifier column name (defaults to `"ID"`;
+    controlled globally via `options(mrg.id_col = ...)`). `pm_col_tad()` returns
+    the time-after-dose column name with alias support. Both are now used
+    internally wherever pmplots previously hard-coded `"ID"` or `"TAD"`.
+
+- `eta_covariate()`, `eta_covariate_list()`, `npde_covariate()`,
+  `npde_covariate_list()`, `cwres_covariate()`, `cwres_covariate_list()`, and
+  `cont_cat_panel()` gain a `points` argument that is forwarded to `boxwork()`
+  when a categorical covariate column is plotted as a boxplot. (#126)
+
+- `boxwork()` (and downstream functions such as `pm_box()`, `cont_cat()`, and
+  the `eta_cat()` / `npde_cat()` families) accept `fill = NULL` to suppress the
+  default fill, leaving the returned plot open to extension with `aes(fill =
+  ...)` for grouping by a third variable. (#125)
+
+- Minimum ggplot2 version is now 3.5.2. (#122)
+
+- Minimum R version is now 4.1.0. (#122)
 
 # pmplots 0.5.2
 
