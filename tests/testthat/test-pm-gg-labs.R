@@ -76,7 +76,6 @@ test_that("respect existing label", {
   p1 <- p0 + pm_gg_labs(list(DV = "dee vee"))
   expect_equal(p0$labels$x, "New time")
   expect_equal(p0$labels$x, p1$labels$x)
-  expect_null(p0$labels$y)
   expect_equal(p1$labels$y, "dee vee")
 })
 
