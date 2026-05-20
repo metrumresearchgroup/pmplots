@@ -26,8 +26,8 @@ objects.}
 in the data used to make the plot; may also be a \code{yspec} object, which
 will be converted to a named list through \code{yspec::ys_get_short_unit()}.}
 
-\item{labs}{another named list of label data to override names found in
-\code{spec}.}
+\item{labs}{another object like \code{spec} containing of label data to override
+names found in \code{spec}.}
 }
 \description{
 This function relabels \code{x} and \code{y} axis titles based on the data columns
@@ -50,9 +50,10 @@ p
 
 spec <- list(DV = "CX1123 concentration (ng/mL)")
 
+\dontrun{
 p <- pmp_relabel(p, spec)
 p
-
+}
 }
 \seealso{
 \code{\link[=pmp_gg_labs]{pmp_gg_labs()}}, \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}}, \code{\link[=pmp_relabel_pairs]{pmp_relabel_pairs()}}

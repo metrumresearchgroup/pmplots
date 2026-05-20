@@ -9,11 +9,6 @@ validate_label_list <- function(x, name) {
   invisible(x)
 }
 
-gg_get_labs_2 <- function(p) {
-  defaults <- ggplot2::labs()
-  modifyList(defaults, p$labels)
-}
-
 resolve_axis_label <- function(label, envir, default) {
   if(is.null(label)) return(default)
   if(inherits(label, "AsIs")) return(as.character(label))
@@ -21,6 +16,29 @@ resolve_axis_label <- function(label, envir, default) {
   if(is.null(res)) return(label)
   return(res)
 }
+
+pm_gg_labs_envir <- function(spec, labs, short_max) {
+  envir <- list()
+  if(inherits(spec, "yspec")) {
+    require_yspec()
+    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
+  }
+  if(inherits(labs, "yspec")) {
+    require_yspec()
+    labs <- yspec::ys_get_short_unit(labs, short_max = short_max)
+  }
+  if(length(spec)) {
+    validate_label_list(spec, "spec")
+    envir <- spec
+  }
+  if(length(labs)) {
+    validate_label_list(labs, "labs")
+    envir <- c(labs, envir)
+  }
+  envir <- envir[!duplicated(names(envir))]
+  envir
+}
+
 
 #' Label pmplot aesthetics from a yspec object or named list
 #'
@@ -32,8 +50,8 @@ resolve_axis_label <- function(label, envir, default) {
 #' @param spec a named list of label data; names correspond to columns
 #' in the data used to make the plot; may also be a `yspec` object, which
 #' will be converted to a named list through `yspec::ys_get_short_unit()`.
-#' @param labs another named list of label data to override names found in
-#' `spec`.
+#' @param labs another object like `spec` containing of label data to override 
+#' names found in `spec`.
 #' @param x label for the x aesthetic; if `NULL`, resolved via the mapped
 #' column name. Pass a column name as a plain string to look it up in `spec`
 #' or `labs`; wrap in [I()] to use the string as a literal label.
@@ -62,13 +80,13 @@ resolve_axis_label <- function(label, envir, default) {
 #' spec <- list(PRED = "Population predicted CX1123 (ng/mL)",
 #'              DV = "Observed CX1123 (ng/mL)")
 #'
+#' \dontrun{
 #' p <- dv_pred(data) + pmp_gg_labs(spec)
 #'
 #' p
-#'
+#' }
 #' @seealso [pmp_relabel()], [pmp_relabel_wrap()], [pmp_relabel_pairs()]
 #' @md
-#' @export
 pmp_gg_labs <- function(spec = list(), labs = list(),
                        x = NULL, y = NULL,
                        short_max = Inf,
@@ -76,20 +94,7 @@ pmp_gg_labs <- function(spec = list(), labs = list(),
                        y_break = Inf,
                        var_break = list(),
                        ...) {
-  envir <- list()
-  if(inherits(spec, "yspec")) {
-    require_yspec()
-    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
-  }
-  if(length(spec)) {
-    validate_label_list(spec, "spec")
-    envir <- spec
-  }
-  if(length(labs)) {
-    validate_label_list(labs, "labs")
-    envir <- c(labs, envir)
-  }
-  envir <- envir[!duplicated(names(envir))]
+  envir <- pm_gg_labs_envir(spec, labs, short_max)
   if(length(var_break)) {
     assert_that(is_named(var_break))
     assert_that(is.list(var_break) || is.numeric(var_break))
@@ -117,12 +122,11 @@ ggplot_add.pmp_gg_labs <- function(object, plot, object_name) {
     isTRUE(plot$pmp.pmplot) || is_pmp_patch(plot),
     msg = "pmp_gg_labs() can only be used with plots created by pmplots."
   )
-  existing <- gg_get_labs_2(plot)
   args <- list()
   x <- object$x %||% plot$pmp.x
   y <- object$y %||% plot$pmp.y
-  args$x <- resolve_axis_label(x, object$envir, existing$x)
-  args$y <- resolve_axis_label(y, object$envir, existing$y)
+  args$x <- resolve_axis_label(x, object$envir, plot$labels$x)
+  args$y <- resolve_axis_label(y, object$envir, plot$labels$y)
   args$x <- str_break(args$x, width = object$x_break)
   args$y <- str_break(args$y, width = object$y_break)
   plot + do.call(ggplot2::labs, c(args, object$extra))
@@ -154,16 +158,15 @@ ggplot_add.pmp_gg_labs <- function(object, plot, object_name) {
 #' p
 #'
 #' spec <- list(DV = "CX1123 concentration (ng/mL)")
-#'
+#' 
+#' \dontrun{
 #' p <- pmp_relabel(p, spec)
 #' p
-#'
+#' }
 #' @seealso [pmp_gg_labs()], [pmp_relabel_wrap()], [pmp_relabel_pairs()]
-#' @export
 pmp_relabel <- function(obj, ...) UseMethod("pmp_relabel")
 
 #' @rdname pmp_relabel
-#' @export
 pmp_relabel.gg <- function(obj, spec = list(), labs = list(), ...) {
   assert_that(
     isTRUE(obj$pmp.pmplot),
@@ -173,13 +176,11 @@ pmp_relabel.gg <- function(obj, spec = list(), labs = list(), ...) {
 }
 
 #' @rdname pmp_relabel
-#' @export
 pmp_relabel.patchwork <- function(obj, spec = list(), labs = list(), ...) {
   obj & pmp_gg_labs(spec, labs, ...)
 }
 
 #' @rdname pmp_relabel
-#' @export
 pmp_relabel.list <- function(obj, spec = list(), labs = list(), ...) {
   lapply(obj, pmp_relabel, spec = spec, labs = labs, ...)
 }
@@ -195,12 +196,12 @@ pmp_relabel.list <- function(obj, spec = list(), labs = list(), ...) {
 #' @inheritParams pmp_gg_labs
 #' @param p a ggplot object created by a `wrap_*` pmplots function.
 #' @param f_break character width at which to insert a single line break in
-#'   facet strip labels; defaults to `Inf` (no break); when the resolved label
-#'   exceeds this width, a single newline is inserted at the last word boundary
-#'   at or before the limit.
+#' facet strip labels; defaults to `Inf` (no break); when the resolved label
+#' exceeds this width, a single newline is inserted at the last word boundary
+#' at or before the limit.
 #' @param unit_break if `TRUE`, a newline is inserted between the label text and
-#'   a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
-#'   `"Weight\n(kg)"`); defaults to `FALSE`.
+#' a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
+#' `"Weight\n(kg)"`); defaults to `FALSE`.
 #'
 #' @return The plot `p` with updated facet strip labels.
 #'
@@ -220,20 +221,7 @@ pmp_relabel_wrap <- function(p, spec, labs = list(), short_max = Inf, f_break = 
     isTRUE(p$pmp.pmplots.wrap),
     msg = "pmp_relabel_wrap() can only be used with wrapped pmplots (e.g., from wrap_eta_cont())."
   )
-  envir <- list()
-  if(inherits(spec, "yspec")) {
-    require_yspec()
-    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
-  }
-  if(length(spec)) {
-    validate_label_list(spec, "spec")
-    envir <- spec
-  }
-  if(length(labs)) {
-    validate_label_list(labs, "labs")
-    envir <- c(labs, envir)
-  }
-  envir <- envir[!duplicated(names(envir))]
+  envir <- pm_gg_labs_envir(spec, labs, short_max)
 
   var_names <- p$pmp.pmplots.wrap.varnames
 
@@ -303,20 +291,7 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
     isTRUE(p$pmp.pmplot.pairs),
     msg = "pmp_relabel_pairs() can only be used with pm pairs plots."
   )
-  envir <- list()
-  if(inherits(spec, "yspec")) {
-    require_yspec()
-    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
-  }
-  if(length(spec)) {
-    validate_label_list(spec, "spec")
-    envir <- spec
-  }
-  if(length(labs)) {
-    validate_label_list(labs, "labs")
-    envir <- c(labs, envir)
-  }
-  envir <- envir[!duplicated(names(envir))]
+  envir <- pm_gg_labs_envir(spec, labs, short_max)
 
   var_names <- p$pmp.pmplot.pairs.cols
 
@@ -342,25 +317,24 @@ pmp_relabel_pairs <- function(p, spec, labs = list(), short_max = Inf,
   p
 }
 
-#' Relabel plots in a list using pmp_relabel
+#' Relabel plots in a list using pm_relabel
 #'
-#' Pass in a named list of gg objects and apply [pmp_relabel()] or
-#' [pm_relabel()], as appropriate.
+#' Pass in a named list of gg objects and apply [pm_relabel()].
 #'
 #' @param x a named list of gg objects.
 #' @param at a character vector of list names to relabel.
 #' @param re a regular expression for selecting names to be used for `at`.
 #' @param spec a named list of label data; names correspond to columns in the
-#'   data used to make the plots; may also be a `yspec` object.
-#' @param labs another named list of label data to override names found in
-#'   `spec`.
-#' @param ... additional arguments passed to [pmp_relabel()] or [pm_relabel()].
+#' data used to make the plots; may also be a `yspec` object.
+#' @param labs another object like `spec` containing of label data to override 
+#' names found in `spec`.
+#' @param ... additional arguments passed to [pm_relabel()].
 #'
 #' @details
 #' Note that all plots in the list need to be named. When `re` is provided it
 #' takes precedence over `at`.
 #'
-#' @seealso [pmp_relabel()], [rot_at()].
+#' @seealso [pm_relabel()], [rot_at()].
 #'
 #' @examples
 #' data <- pmplots_data_obs()
@@ -428,20 +402,7 @@ relabel_at <- function(x, at = names(x), spec = list(), labs = list(),
 #' @export
 pm_label_columns <- function(df, spec, labs = list(), short_max = Inf) {
   assert_that(inherits(df,"data.frame"))
-  envir <- list()
-  if(inherits(spec, "yspec")) {
-    require_yspec()
-    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
-  }
-  if(length(spec)) {
-    validate_label_list(spec, "spec")
-    envir <- spec
-  }
-  if(length(labs)) {
-    validate_label_list(labs, "labs")
-    envir <- c(labs, envir)
-  }
-  envir <- envir[!duplicated(names(envir))]
+  envir <- pm_gg_labs_envir(spec, labs, short_max)
   envir <- envir[names(envir) %in% names(df)]
   if(!length(envir)) {
     warn("No columns were labeled.")

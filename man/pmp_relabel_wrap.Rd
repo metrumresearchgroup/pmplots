@@ -20,8 +20,8 @@ pmp_relabel_wrap(
 in the data used to make the plot; may also be a \code{yspec} object, which
 will be converted to a named list through \code{yspec::ys_get_short_unit()}.}
 
-\item{labs}{another named list of label data to override names found in
-\code{spec}.}
+\item{labs}{another object like \code{spec} containing of label data to override
+names found in \code{spec}.}
 
 \item{short_max}{passed to \code{\link[yspec:ys_get_short_unit]{yspec::ys_get_short_unit()}} when \code{spec} is a
 \code{yspec} object.}

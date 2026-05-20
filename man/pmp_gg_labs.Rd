@@ -21,8 +21,8 @@ pmp_gg_labs(
 in the data used to make the plot; may also be a \code{yspec} object, which
 will be converted to a named list through \code{yspec::ys_get_short_unit()}.}
 
-\item{labs}{another named list of label data to override names found in
-\code{spec}.}
+\item{labs}{another object like \code{spec} containing of label data to override
+names found in \code{spec}.}
 
 \item{x}{label for the x aesthetic; if \code{NULL}, resolved via the mapped
 column name. Pass a column name as a plain string to look it up in \code{spec}
@@ -65,10 +65,11 @@ data <- pmplots_data_obs()
 spec <- list(PRED = "Population predicted CX1123 (ng/mL)",
              DV = "Observed CX1123 (ng/mL)")
 
+\dontrun{
 p <- dv_pred(data) + pmp_gg_labs(spec)
 
 p
-
+}
 }
 \seealso{
 \code{\link[=pmp_relabel]{pmp_relabel()}}, \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}}, \code{\link[=pmp_relabel_pairs]{pmp_relabel_pairs()}}

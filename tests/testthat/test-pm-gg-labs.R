@@ -4,8 +4,6 @@ skip_if_not_installed("yspec")
 library(dplyr)
 library(yspec)
 
-context("test-pm-gg-labs")
-
 data <- ys_help$data()
 spec <- ys_help$spec()
 

@@ -11,8 +11,8 @@ NULL
 #' @param spec a named list of label data; names correspond to columns
 #' in the data used to make the plot; may also be a `yspec` object, which
 #' will be converted to a named list through [yspec::ys_get_short_unit()].
-#' @param labs another named list of label data to override names found in
-#' `spec`.
+#' @param labs another object like `spec` containing of label data to override
+#' names found in `spec`.
 #' @param x label for the x aesthetic; if `NULL`, resolved via the mapped
 #' column name. Pass a column name as a plain string to look it up in `spec` or
 #' `labs`; wrap in [I()] to use the string as a literal label.
@@ -38,7 +38,8 @@ NULL
 #' from `spec`/`labs` are silently ignored.
 #' @param ... additional arguments passed to [ggplot2::labs()].
 #'
-#' @return A gg object that can be added to a ggplot with `+`.
+#' @return A `pm_gg_labs` object that can be added to a pmplots gg object
+#' with `+`.
 #'
 #' @details
 #' In case multiple aesthetics are found, the aesthetics in the top-most
@@ -83,20 +84,7 @@ pm_gg_labs <- function(spec = list(),
                        ...) {
   colour <- colour %||% color %||% col
   linetype <- linetype %||% lty
-  envir <- list()
-  if(inherits(spec, "yspec")) {
-    require_yspec()
-    spec <- yspec::ys_get_short_unit(spec, short_max = short_max)
-  }
-  if(length(spec)) {
-    validate_label_list(spec, "spec")
-    envir <- spec
-  }
-  if(length(labs)) {
-    validate_label_list(labs, "labs")
-    envir <- c(labs, envir)
-  }
-  envir <- envir[!duplicated(names(envir))]
+  envir <- pm_gg_labs_envir(spec, labs, short_max)
   if(length(var_break)) {
     assert_that(is_named(var_break))
     assert_that(is.list(var_break) || is.numeric(var_break))
@@ -140,13 +128,13 @@ strip_factor_call <- function(var) {
   }
 }
 
-resolve_label <- function(var, envir) {
+resolve_label <- function(var, envir, default) {
   if(is.null(var)) return(NULL)
   var <- strip_factor_call(var)
-  if(!is.null(envir) && !is.null(envir[[var]])) envir[[var]] else var
+  envir[[var]] %||% default %||% var
 }
 
-resolve_aes_label <- function(aes, all_mappings, object) {
+resolve_aes_label <- function(aes, all_mappings, object, default) {
   val <- object[[aes]]
   if(is.character(val)) {
     if(inherits(val, "AsIs")) return(as.character(val))
@@ -155,7 +143,7 @@ resolve_aes_label <- function(aes, all_mappings, object) {
   qs <- all_mappings[names(all_mappings) == aes]
   if(length(qs) == 0) return(NULL)
   vars <- vapply(qs, aes_name, character(1))
-  labels <- vapply(vars, resolve_label, character(1), envir = object$envir)
+  labels <- vapply(vars, resolve_label, character(1), envir = object$envir, default)
   if(isTRUE(object$quietly)) return(labels[[1]])
   vars_stripped <- vapply(vars, strip_factor_call, character(1))
   in_envir <- vapply(vars_stripped, \(v) !is.null(object$envir[[v]]), logical(1))
@@ -228,14 +216,14 @@ ggplot_add.pm_gg_labs <- function(object, plot, object_name) {
 
   layer_mappings <- do.call(c, lapply(unname(plot$layers), \(l) l$mapping))
   all_mappings <- c(plot$mapping, layer_mappings)
-
+  def <- plot$labels
   args <- list()
-  args$x <- resolve_aes_label("x", all_mappings, object)
-  args$y <- resolve_aes_label("y", all_mappings, object)
+  args$x <- resolve_aes_label("x", all_mappings, object, def[["x"]])
+  args$y <- resolve_aes_label("y", all_mappings, object, def[["y"]])
   args$x <- str_break(args$x, width = object$x_break)
   args$y <- str_break(args$y, width = object$y_break)
   for(aes in c("fill", "colour", "linetype", "shape")) {
-    label <- resolve_aes_label(aes, all_mappings, object)
+    label <- resolve_aes_label(aes, all_mappings, object, def[[aes]])
     if(!is.null(label)) args[[aes]] <- label
   }
 
