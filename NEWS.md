@@ -1,3 +1,5 @@
+# pmplots (development version)
+
 # pmplots 0.6.0
 
 - A new family of functions lets you update axis and aesthetic labels on plots
