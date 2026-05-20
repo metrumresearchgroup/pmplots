@@ -63,6 +63,9 @@ pairs_upper <- function(data, mapping, ...) {
 #'
 #' @param x plotting data.frame
 #' @param y character `col//label` for pairs data; see [col_label()]
+#' @param unit_break if `TRUE` (the default), a newline is inserted between the
+#' label text and a trailing parenthetical unit (e.g., `"Weight (kg)"` becomes
+#' `"Weight\n(kg)"`).
 #' @param bins passed to [ggplot2::geom_histogram()] to render the diagonal
 #' @param alpha passed to [ggplot2::geom_histogram()] or
 #' [ggplot2::geom_density()] to render the diagonal
@@ -117,6 +120,7 @@ pairs_upper <- function(data, mapping, ...) {
 #' @md
 #' @export
 pairs_plot <- function(x, y, bins = 15,
+                       unit_break = TRUE,
                        alpha = opts$histogram.alpha,
                        fill = opts$histogram.fill,
                        col = opts$histogram.col,
@@ -126,10 +130,7 @@ pairs_plot <- function(x, y, bins = 15,
                        lower_fun = NULL,
                        diag = c("barDiag", "densityDiag", "blankDiag"), ...) {
 
-  if(!requireNamespace("GGally")) {
-    stop("this function requires that the GGally package be installed",
-         call. = FALSE)
-  }
+  require_GGally()
 
   if(is.null(upper_fun)) {
     upper_fun <- pairs_upper
@@ -168,16 +169,27 @@ pairs_plot <- function(x, y, bins = 15,
   )
 
   x <- as.data.frame(x)
+  
   etal <- lapply(y, col_label)
+  
   cols <- sapply(etal, "[[", 1L)
   cols <- unique(cols)
+  
   for(col in cols) {
-    require_numeric(x,col)
+    require_numeric(x, col)
   }
+
   labs <- sapply(etal, "[[", 2L)
   labs <- unique(labs)
 
-  GGally::ggpairs(
+  attr_labs <- col_labels_from_data(x, cols)
+  labs[attr_labs != cols] <- attr_labs[attr_labs != cols]
+
+  if(isTRUE(unit_break)) {
+    labs <- newline_at_unit(labs)
+  }
+
+  p <- GGally::ggpairs(
     x, aes(...),
     columns = cols,
     columnLabels = labs,
@@ -185,7 +197,13 @@ pairs_plot <- function(x, y, bins = 15,
     upper = list(continuous = upper_fun),
     diag = list(continuous = diag_fun),
     lower = list(continuous = lower_fun)
-  ) + pm_theme()
+  ) 
+
+  p$pmp.pmplot.pairs <- TRUE
+  p$pmp.pmplot.pairs.cols <- cols
+  p$pmp.pmplot.pairs.facet <- labs
+
+  p + pm_theme()
 }
 
 #' @param etas character `col//label` for pairs data; see [col_label()]

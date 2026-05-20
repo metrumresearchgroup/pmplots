@@ -59,7 +59,9 @@ p <- ggplot(data = df, aes(x = .data[[x]], y = .data[[y]], col= {{ col }}))
     p <- p + geom_line(aes(group = .data[[group]]))
   }
   if(is.character(title)) p <- p + ggtitle(title)
-  p + xscale + yscale + pm_theme()
+  p <- p + xscale + yscale + pm_theme()
+  p <- pm_save_xy(p, df, x, y)
+  p
 }
 
 #' Plot continuous data versus time
@@ -135,8 +137,12 @@ y_time <- function(df,
     ys$breaks <- logbr3()
   }
 
-  scatt(df, x, y, xs=xs, ys=ys, ...) + pm_labs(x = xlab, y = ylab)
+  p <- scatt(df, x, y, xs = xs, ys = ys, ...)
 
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
+
+  p + pm_labs(x = xlab, y = ylab)
 }
 
 #' Plot continuous variable versus continuous variable
@@ -186,7 +192,12 @@ pm_scatter <- function(df, x, y, xs = defx(), ys=defy(),...) {
   ylab <- y[2]
   require_numeric(df, x[1])
   require_numeric(df, y[1])
-  scatt(df,x[1],y[1],xs,ys,...) + pm_labs(x = xlab, y = ylab)
+  p <- scatt(df,x[1],y[1],xs,ys,...)
+  
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
+
+  p + pm_labs(x = xlab, y = ylab)
 }
 
 #' @rdname pm_scatter
@@ -198,5 +209,3 @@ pm_scatter_list <- function(df, x, y, ...) {
 #' @rdname pm_scatter
 #' @export
 cont_cont <- pm_scatter
-
-

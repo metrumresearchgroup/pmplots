@@ -9,6 +9,7 @@ pairs_plot(
   x,
   y,
   bins = 15,
+  unit_break = TRUE,
   alpha = opts$histogram.alpha,
   fill = opts$histogram.fill,
   col = opts$histogram.col,
@@ -28,6 +29,10 @@ eta_pairs(x, etas, ...)
 \item{y}{character \verb{col//label} for pairs data; see \code{\link[=col_label]{col_label()}}}
 
 \item{bins}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} to render the diagonal}
+
+\item{unit_break}{if \code{TRUE} (the default), a newline is inserted between the
+label text and a trailing parenthetical unit (e.g., \code{"Weight (kg)"} becomes
+\code{"Weight\\n(kg)"}).}
 
 \item{alpha}{passed to \code{\link[ggplot2:geom_histogram]{ggplot2::geom_histogram()}} or
 \code{\link[ggplot2:geom_density]{ggplot2::geom_density()}} to render the diagonal}

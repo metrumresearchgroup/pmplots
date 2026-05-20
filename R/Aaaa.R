@@ -1,7 +1,7 @@
 #' @importFrom dplyr filter as_data_frame arrange n_distinct n bind_rows
 #' @importFrom dplyr group_by filter ungroup summarize distinct pull
 #' @importFrom dplyr groups is_grouped_df mutate .data rename %>%
-#' @importFrom dplyr as_tibble
+#' @importFrom dplyr as_tibble left_join inner_join
 #' @importFrom tidyselect all_of
 #' @importFrom grDevices pdf dev.off
 #' @importFrom ggplot2 ggplot geom_boxplot geom_line
@@ -12,21 +12,21 @@
 #' @importFrom ggplot2 element_text labs aes waiver rel
 #' @importFrom ggplot2 scale_y_continuous scale_x_continuous scale_y_log10
 #' @importFrom ggplot2 scale_x_discrete
-#' @importFrom ggplot2 geom_text position_jitter label_value
+#' @importFrom ggplot2 geom_text position_jitter label_value as_labeller
 #' @importFrom ggplot2 scale_color_manual scale_linetype_manual
 #' @importFrom ggplot2 scale_shape_manual scale_shape_discrete
-#' @importFrom ggplot2 after_stat
+#' @importFrom ggplot2 after_stat get_labs
 #' @importFrom stats as.formula qnorm quantile cor dnorm
 #' @importFrom rlang sym quo_text quos set_names quo_name as_list is_named
-#' @importFrom rlang enexpr abort warn arg_match inform enexprs
+#' @importFrom rlang enexpr enexprs abort warn inform arg_match %||% as_label
 #' @importFrom purrr list_transpose
 #' @importFrom glue glue glue_data
 #' @importFrom assertthat assert_that
 #' @importFrom tidyr pivot_longer
 #' @importFrom forcats fct_inorder
-#' @importFrom utils str
+#' @importFrom utils str modifyList
 #' @importFrom lifecycle deprecate_warn is_present deprecated
-#' @importFrom stats setNames
+#' @importFrom stats setNames reformulate
 #'
 #' @include Aaaa.R
 NULL
@@ -95,7 +95,11 @@ globalVariables(c("ID", "n", "IPRED"))
 #'   - [pm_opts()]
 #'   - [rot_x()], [rot_y()], [pm_theme()], [theme_plain()]
 #' - Arrangement
-#'   - [pm_grid]
+#'   - [pm_grid()]
+#' - Labeling
+#'   - [pm_gg_labs()], [pm_relabel()] - for several aesthetics on arbitrary gg plots
+#'   - [relabel_at()] - relabel plots in a list by name
+#'   - [pm_label_columns()], [pm_label_rm()] - add or remove labels to data sets
 #' - Example data sets
 #'   - [pmplots_data()], [pmplots_data_obs()], [pmplots_data_id()]
 #'
@@ -104,4 +108,3 @@ globalVariables(c("ID", "n", "IPRED"))
 #' @name pmplots
 #' @md
 NULL
-

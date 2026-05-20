@@ -803,7 +803,46 @@ chunk_by_cols <- function(data, id_per_chunk, cols) {
   split.data.frame(data, sp)
 }
 
+col_labels_from_data <- function(df, cols) {
+  vapply(unname(cols), \(col) {
+    attr(df[[col]], "pmp.axis.label") %||% col
+  }, character(1))
+}
+
 force_digits <- function(x,digits) formatC(x,digits=digits,format = 'f')
+
+newline_at_unit <- function(x) {
+  has_nl <- grepl("\n", x, fixed = TRUE)
+  if(all(has_nl)) {
+    return(x)
+  }
+  x[!has_nl] <- sub("^(.*)\\s+(\\(.*\\))$", "\\1\n\\2", x[!has_nl])
+  x
+}
+
+#' Add a single newline to break a string across two lines
+#' 
+#' @param x a string
+#' @param width the number of characters for the first of 
+#' two lines. 
+#' 
+#' @examples
+#' pmplots:::str_break("Population prediction CX122341 concentration", 10)
+#' 
+#' @keywords internal
+str_break <- function(x, width = Inf) {
+  if(is.infinite(width)) return(x)
+  vapply(x, function(s) {
+    n <- nchar(s)
+    if(n <= width || grepl("\n", s, fixed = TRUE)) return(s)
+    spaces <- gregexpr(" ", s, fixed = TRUE)[[1]]
+    if(spaces[1] == -1L) return(s)
+    # prefer last space at or before width; fall back to first space
+    valid <- spaces[spaces <= width]
+    p <- if(length(valid)) max(valid) else min(spaces)
+    paste0(substr(s, 1, p - 1), "\n", substr(s, p + 1, n))
+  }, character(1), USE.NAMES = FALSE)
+}
 
 require_patchwork <- function() {
   if(!requireNamespace("patchwork", quietly = TRUE)) {
@@ -811,3 +850,18 @@ require_patchwork <- function() {
   }
 }
 
+require_yspec <- function() {
+  if(!requireNamespace("yspec", quietly = TRUE)) {
+    abort('The "yspec" package is required.')
+  }
+}
+
+require_GGally <- function() {
+  if(!requireNamespace("GGally", quietly = TRUE)) {
+    abort('The "GGally" package is required.')
+  }
+}
+
+is_pmp_patch <- function(x) {
+  inherits(x, "patchwork") && isTRUE(x[[1]]$pmp.pmplot)
+}

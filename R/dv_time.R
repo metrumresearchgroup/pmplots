@@ -94,8 +94,14 @@ dv_time <- function(df, x=pm_axis_time(), y=pm_axis_dv(),
     xs$breaks <- seq(0,max(df[,x]),xby)
   }
 
-  scatt(df,x,y,xs=xs,ys=ys,smooth=FALSE,group=group,...) +
-    pm_labs(x = xlab, y = ylab)
+  p <- scatt(df, x, y, xs = xs, ys = ys, smooth = FALSE, group = group, ...)
+
+  p <- pm_save_xy(p, df, x, y)
+
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
+  
+  p + pm_labs(x = xlab, y = ylab)
 }
 
 ##' @export

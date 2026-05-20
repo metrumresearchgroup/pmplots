@@ -125,7 +125,9 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
     )
   }
   if(is.character(title)) p <- p + ggtitle(title)
-  p + pm_theme()
+  p <- p + pm_theme()
+  p <- pm_save_xy(p, df, x, y)
+  p
 }
 
 #' Plot continuous variable against a categorical variable
@@ -174,7 +176,12 @@ pm_box <- function(df, x, y, xs=defcx(), ys = defy(), ...) {
   if(length(x)!=2) stop("invalid y value", call.=FALSE)
   require_numeric(df,y[1])
   require_discrete(df,x[1])
-  boxwork(df,x[1],y[1],xs,ys,...) + pm_labs(x = x[2], y = y[2])
+  p <- boxwork(df, x[1], y[1], xs, ys, ...)
+
+  x[2] <- pm_get_data_x(p) %||% x[2]
+  y[2] <- pm_get_data_y(p) %||% y[2]
+
+  p + pm_labs(x = x[2], y = y[2])
 }
 
 #' @rdname pm_box

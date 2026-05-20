@@ -1,4 +1,13 @@
 
+save_wrap_plot_data <- function(p, ncol, scales, facets, varnames) {
+  p$pmp.pmplots.wrap <- TRUE
+  p$pmp.pmplots.wrap.ncol <- ncol
+  p$pmp.pmplots.wrap.scales <- scales
+  p$pmp.pmplots.wrap.facets <- facets
+  p$pmp.pmplots.wrap.varnames <- varnames
+  p
+}
+
 #' Faceted plots
 #'
 #' For these plots, data sets made long with respect to several
@@ -13,22 +22,24 @@
 #' creates a faceted histogram plot. `wrap_cont_cat` plots continuous versus
 #' categorical data as a boxplot.
 #'
-#' @param df Data frame to plot.
+#' @param df data frame to plot.
 #' @param x x-axis data in [col_label()] format; if `y` has length greater than 1,
 #' then `x` must be length equal to 1.
 #' @param y y-axis data in [col_label()] format; if `x` has length greater than 1,
 #' then `y` must be length equal to 1.
-#' @param ... Passed to `fun`.
-#' @param fun The plotting function.
-#' @param title A title to use for the axis with faceting groups.
-#' @param scales Passed to `facet_wrap`.
-#' @param ncol Passed to `facet_wrap`.
-#' @param use_labels If `TRUE`, the label part of `col_label` will
-#' be used in the strip; the column name is used otherwise.
-#' @param labeller A labeller function; passed to [ggplot2::facet_wrap()]; the
+#' @param ... passed to `fun`.
+#' @param fun the plotting function.
+#' @param title a title to use for the axis with faceting groups.
+#' @param scales passed to `facet_wrap`.
+#' @param ncol passed to `facet_wrap`.
+#' @param use_labels if `TRUE`, look for an alternate facet label; if the data 
+#' set was labeled with [pm_label_columns()], use that label; otherwise use the
+#' label part of the `col_label` specification. he label part of `col_label` 
+#' will be used in the strip; the column name is used otherwise.
+#' @param labeller a labeller function; passed to [ggplot2::facet_wrap()]; the
 #' default is based on [parse_label()] and allows latex markup in the label.
-#' @param label_fun Deprecated; use `labeller` instead.
-#' @param xname Placeholder.
+#' @param label_fun deprecated; use `labeller` instead.
+#' @param xname placeholder.
 #'
 #' @details
 #'
@@ -51,13 +62,16 @@
 #' For all plots, either `x` or `y` may contain multiple columns, but an error
 #' will be generated if both `x` and `y` list multiple columns.
 #'
+#' Facet strip labels can be updated after the fact using [pmp_relabel_wrap()],
+#' which looks up column names in a named list or `yspec` object.
+#'
 #' @md
 #' @rdname wrap_plots
 #' @name wrap_plots
 #' @export
 wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
                            title = NULL, scales = "free_y",
-                           ncol = NULL, use_labels = FALSE,
+                           ncol = NULL, use_labels = TRUE,
                            label_fun = deprecated(),
                            labeller = label_tex) {
 
@@ -79,16 +93,25 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
 
   if(multi_x) {
     y <- y[1]
+
     to_melt <- col_labels(x)
+    melt_labels <- names(to_melt)
+
+    if(use_labels) {
+      melt_labels <- col_labels_from_data(df, to_melt)
+    }
+
     df <- pivot_longer(
       df,
       cols = all_of(unname(to_melt)),
       names_to = "variable",
       values_to = "value"
     )
+
     df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
+
     if(use_labels) {
-      df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
+      df <- mutate(df, variable = factor(.data[["variable"]], labels = melt_labels))
     }
 
     if(!is.null(title)) {
@@ -100,16 +123,25 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
 
   if(multi_y) {
     x <- x[1]
+
     to_melt <- col_labels(y)
+    melt_labels <- names(to_melt)
+
+    if(use_labels) {
+      melt_labels <- col_labels_from_data(df, to_melt)
+    }
+
     df <- pivot_longer(
       df,
       cols = all_of(unname(to_melt)),
       names_to =  "variable",
       values_to = "value"
     )
+
     df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
+
     if(use_labels) {
-      df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
+      df <- mutate(df, variable = factor(.data[["variable"]], labels = melt_labels))
     }
     if(!is.null(title)) {
       y <- paste0("value//", title)
@@ -118,8 +150,11 @@ wrap_cont_cont <- function(df, x, y, ..., fun = pm_scatter,
     }
   }
 
-  fun(df, x = x, y = y, ...) +
-    facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+  p <- fun(df, x = x, y = y, ...)
+
+  p <- p + facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+
+  save_wrap_plot_data(p, ncol = ncol, scales = scales, facets = "variable", varnames = levels(df[["variable"]]))
 }
 
 #' @rdname wrap_plots
@@ -143,7 +178,7 @@ wrap_eta_cont <- function(df, x, y, scales = "fixed", ...) {
 #' @rdname wrap_plots
 #' @export
 wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
-                      use_labels = FALSE, labeller = label_tex,
+                      use_labels = TRUE, labeller = label_tex,
                       label_fun = deprecated(), ...) {
 
   if(is_present(label_fun)) {
@@ -155,31 +190,39 @@ wrap_hist <- function(df, x, title = NULL, scales = "free_x", ncol = NULL,
     labeller <- label_fun
   }
 
-  x <- col_labels(x)
+  to_melt <- col_labels(x)
+  melt_labels <- names(to_melt)
+
+  if(use_labels) {
+    melt_labels <- col_labels_from_data(df, to_melt)
+  }
 
   df <- pivot_longer(
     df,
-    cols = all_of(unname(x)),
+    cols = all_of(unname(to_melt)),
     names_to =  "variable",
     values_to = "value"
   )
   df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
 
   if(use_labels) {
-    df <- mutate(df, variable = factor(.data[["variable"]], labels=names(x)))
+    df <- mutate(df, variable = factor(.data[["variable"]], labels = melt_labels))
   }
   if(is.null(title)) {
     x <- "value"
   } else {
     x <- paste0("value//", title)
   }
-  cont_hist(df, x = x, ...) +
-    facet_wrap(~variable, scales = scales, ncol=ncol, labeller = labeller)
+  p <- cont_hist(df, x = x, ...)
+
+  p <- p + facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+
+  save_wrap_plot_data(p, ncol = ncol, scales = scales, facets = "variable", varnames = levels(df[["variable"]]))
 }
 
 #' @rdname wrap_plots
 #' @export
-wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales="fixed") {
+wrap_dv_preds <- function(df, ..., title = NULL, xname = "", scales = "fixed") {
   x <- c(pm_axis_pred(), pm_axis_ipred())
   for(i in seq_along(x)) x[i] <- glue(x[i])
   wrap_cont_cont(
@@ -193,7 +236,7 @@ wrap_dv_preds <- function(df, ..., title = "Predicted {yname}", xname="", scales
 #' @export
 wrap_cont_cat <- function(df, x, y, ...,
                           title = NULL, scales = "free_y",
-                          ncol = NULL, use_labels = FALSE,
+                          ncol = NULL, use_labels = TRUE,
                           labeller = label_tex, label_fun = deprecated()) {
 
   if(is_present(label_fun)) {
@@ -223,7 +266,14 @@ wrap_cont_cat <- function(df, x, y, ...,
   }
 
   x <- x[1]
+
   to_melt <- col_labels(y)
+  melt_labels <- names(to_melt)
+
+  if(use_labels) {
+    melt_labels <- col_labels_from_data(df, to_melt)
+  }
+
   df <- pivot_longer(
     df,
     cols = unname(to_melt),
@@ -231,8 +281,9 @@ wrap_cont_cat <- function(df, x, y, ...,
     values_to = "value"
   )
   df <- mutate(df, variable = fct_inorder(.data[["variable"]]))
+
   if(use_labels) {
-    df <- mutate(df, variable = factor(.data[["variable"]], labels = names(to_melt)))
+    df <- mutate(df, variable = factor(.data[["variable"]], labels = melt_labels))
   }
   if(!is.null(title)) {
     y <- paste0("value//", title)
@@ -240,6 +291,9 @@ wrap_cont_cat <- function(df, x, y, ...,
     y <- "value"
   }
 
-  pm_box(df, x = x, y = y, ..., shown = FALSE) +
-    facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+  p <- pm_box(df, x = x, y = y, ..., shown = FALSE)
+
+  p <- p + facet_wrap(~variable, scales = scales, ncol = ncol, labeller = labeller)
+
+  save_wrap_plot_data(p, ncol = ncol, scales = scales, facets = "variable", varnames = levels(df[["variable"]]))
 }

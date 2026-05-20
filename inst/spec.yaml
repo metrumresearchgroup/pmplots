@@ -1,0 +1,105 @@
+SETUP__:
+  description: Testing pmplots
+  extend_file: extension.yaml
+  flags:
+    contCov: [WT, SCR, ALB, AGE]
+    catCov: [CPc, STUDYc, RF]
+C:
+  short: Comment character
+  values: [".", "C"]
+  decode: [analysis row, commented row]
+  type: character
+ID:
+  short: Subject identifier
+  type: numeric
+SUBJ:
+  short: Subject identifier
+  type: character
+TIME:
+  short: Time
+  unit: ""
+  unit.pk: "h"
+SEQ:
+  short: Record ID
+CMT:
+  short: Compartment number
+  type: numeric
+EVID:
+  short: Event ID
+  values: {observation: 0, dose: 1}
+AMT:
+  short: Dose amount
+  type: numeric
+DV:
+  short: Dependent variable
+  short.pk: CX1123 concentration
+  short.pd: Response level
+  unit: ""
+  unit.pk: ng/mL
+AGE:
+  about: [Age,years]
+  type: numeric
+WT:
+  short: Weight
+  unit: kg
+  type: numeric
+CRCL:
+  short: Creatinine clearance
+  unit: ml/min
+ALB:
+  short: Albumin
+  unit: mg/dL
+BMI:
+  short: Body mass index
+  unit: m$^2$/kg
+  type: numeric
+AAG:
+  short: Alpha-1-acid glycoprotein
+  unit: mg/dL
+SCR:
+  short: Serum creatinine
+  unit: mg/dL
+AST:
+  short: Aspartate aminotransferase
+  unit: IU/mL
+ALT:
+  short: Alanine aminotransferase
+  unit: IU/mL
+HT:
+  short: Height
+  unit: cm
+CP:
+  short: Child-Pugh score
+  values: {normal: 0, Pugh1: 1, Pugh2: 2, Pugh3: 3}
+CPc:
+  short: Child-Pugh score
+  values: [normal,Puch1, Pugh2, Pugh3]
+TAFD:
+  short: Time after first dose
+  unit: h
+TAD:
+  short: Time after dose
+  unit: h
+LDOS:
+  short: Last dose amount
+  unit: mg
+MDV:
+  short: Missing dependent variable
+BLQ:
+  short: Below limit of quantification
+  values:
+    above QL: 0
+    below QL: 1
+PHASE:
+  short: Study phase indicator
+  values: 1
+  dots: {categorical: true}
+STUDY:
+  short: Study number
+  values: {SAD: 1, MAD: 2, Renal: 3, Hepatic: 4}
+STUDYc:
+  short: Study ID
+  values: [SAD, MAD, Renal, Hepatic]
+RF:
+  short: Renal function stage
+  values: {Normal: norm, Mild: mild, Moderate: mod, Severe: sev}

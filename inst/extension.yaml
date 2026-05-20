@@ -1,0 +1,15 @@
+PRED:
+  short: Population predicted value
+  short.pk: Population predicted CX1123
+  unit: none
+  unit.pk: ng/mL
+IPRED:
+  short: Individual predicted value
+  short.pk: Individual predicted CX1123
+  unit: none
+  unit.pk: ng/mL
+NPDE:
+  short: NPDE
+  short.pk: NPDE
+CWRES:
+  short: CWRES

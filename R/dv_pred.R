@@ -124,7 +124,12 @@ dv_pred <- function(df, x = pm_axis_pred(), y = pm_axis_dv(),
 
   out <- scatt(df, x, y, identity = TRUE, xs = xs, ys = ys, ...)
 
-  layer_as(out, ...) + pm_labs(x = xlab, y = ylab)
+  p <- layer_as(out, ...)
+
+  xlab <- pm_get_data_x(p) %||% xlab
+  ylab <- pm_get_data_y(p) %||% ylab
+
+  p + pm_labs(x = xlab, y = ylab)
 }
 
 #' @export
@@ -137,5 +142,7 @@ dv_ipred <- function(df, x = pm_axis_ipred(), ...) {
 #' @export
 #' @rdname dv_pred
 dv_preds <- function(df, ...) {
-  list(dv_pred(df, ...), dv_ipred(df, ...))
+  plots <- list(dv_pred(df, ...), dv_ipred(df, ...))
+  names(plots) <- c("PRED", "IPRED")
+  plots
 }

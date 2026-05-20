@@ -37,8 +37,9 @@ Suggests:
   S7,
   shiny, 
   rmarkdown, 
+  yspec, 
   withr
-Depends: ggplot2 (>= 3.5.0)
+Depends: ggplot2 (>= 3.5.2), R (>= 4.1.0)
 RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Collate: 
@@ -59,6 +60,8 @@ Collate:
     'layer.R'
     'list_plot.R'
     'opts.R'
+    'pmp-gg-labs.R'
+    'pm-gg-labs.R'
     'pm_axis_data.R'
     'pm_browser.R'
     'pm_theme.R'

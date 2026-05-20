@@ -29,18 +29,28 @@
 ##' @export
 cont_hist <- function(df, x, xs = defx(),
                       y = "count",
-                      add_density = y=="density", add_layers=TRUE, ...) {
+                      add_density = y=="density", add_layers = TRUE, ...) {
+
   xscale <- do.call("scale_x_continuous", xs)
+
   xx <- col_label(x)
   require_numeric(df,xx[1])
-  out <-
-    ggplot(data=df, aes(x = .data[[xx[1]]])) +
+  xlab <- xx[2]
+
+  p <-
+    ggplot(data = df, aes(x = .data[[xx[1]]])) +
     pm_histogram(mapping = aes(y = after_stat(!!sym(y))), ...) +
-    xscale + pm_theme() + pm_labs(x = xx[2])
+    xscale
+
   if(add_density & add_layers) {
-    out <- out + add_density(...)
+    p <- p + add_density(...)
   }
-  out
+
+  p <- pm_save_xy(p, df, x = xlab, y = NULL)
+
+  xlab <- pm_get_data_x(p) %||% xlab
+
+  p + pm_labs(x = xlab) + pm_theme()
 }
 
 ##' @rdname cont_hist

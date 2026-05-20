@@ -93,7 +93,13 @@ by this package.
 }
 \item Arrangement
 \itemize{
-\item \link{pm_grid}
+\item \code{\link[=pm_grid]{pm_grid()}}
+}
+\item Labeling
+\itemize{
+\item \code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pm_relabel]{pm_relabel()}} - for several aesthetics on arbitrary gg plots
+\item \code{\link[=relabel_at]{relabel_at()}} - relabel plots in a list by name
+\item \code{\link[=pm_label_columns]{pm_label_columns()}}, \code{\link[=pm_label_rm]{pm_label_rm()}} - add or remove labels to data sets
 }
 \item Example data sets
 \itemize{
