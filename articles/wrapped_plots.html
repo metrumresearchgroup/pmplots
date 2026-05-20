@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
 
 
 
-      </header><div class="row">
+      </header><script src="wrapped_plots_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Wrapped / Faceted Plots</h1>
@@ -117,7 +117,7 @@
             
             <h4 data-toc-skip class="date">2026-05-20</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/main/vignettes/wrapped_plots.Rmd" class="external-link"><code>vignettes/wrapped_plots.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.6.0/vignettes/wrapped_plots.Rmd" class="external-link"><code>vignettes/wrapped_plots.Rmd</code></a></small>
       <div class="hidden name"><code>wrapped_plots.Rmd</code></div>
 
     </div>
@@ -142,13 +142,7 @@
 <div class="section level2">
 <h2 id="rationale">Rationale<a class="anchor" aria-label="anchor" href="#rationale"></a>
 </h2>
-<p>For most applications, pmplots does not reshape your data frame; it
-works with what you pass in. However, for some applications, it is
-convenient to have a diagnostic plot that is faceted by a categorical
-variable in the data set. This vignette demonstrates the faceted plots
-that are available. This faceting support is for a focused set of plots
-only. Users should generally either create facets own or use the
-<code>split_plot</code> function for other applications.</p>
+<p>For most applications, pmplots does not reshape your data frame; it works with what you pass in. However, for some applications, it is convenient to have a diagnostic plot that is faceted by a categorical variable in the data set. This vignette demonstrates the faceted plots that are available. This faceting support is for a focused set of plots only. Users should generally either create facets own or use the <code>split_plot</code> function for other applications.</p>
 </div>
 <div class="section level2">
 <h2 id="plots">Plots<a class="anchor" aria-label="anchor" href="#plots"></a>
@@ -157,8 +151,7 @@ only. Users should generally either create facets own or use the
 <h3 id="wrap_res_time">
 <code>wrap_res_time</code><a class="anchor" aria-label="anchor" href="#wrap_res_time"></a>
 </h3>
-<p>Enter a vector of column names (or <code>col_label</code>) for the y
-argument</p>
+<p>Enter a vector of column names (or <code>col_label</code>) for the y argument</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_plots.html">wrap_res_time</a></span><span class="op">(</span><span class="va">data</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CWRESI"</span>, <span class="st">"WRES"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
@@ -179,8 +172,7 @@ argument</p>
 <span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="wrapped_plots_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
-<p>In this example, we enter labels along with column names and request
-that the labels be used for the shingle.</p>
+<p>In this example, we enter labels along with column names and request that the labels be used for the shingle.</p>
 <p>We can facet on x or y</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wrap_plots.html">wrap_eta_cont</a></span><span class="op">(</span></span>
@@ -228,7 +220,7 @@ that the labels be used for the shingle.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

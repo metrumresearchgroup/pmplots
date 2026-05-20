@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
 
 
 
-      </header><div class="row">
+      </header><script src="list_plots_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Vectorized Plots</h1>
@@ -117,7 +117,7 @@
             
             <h4 data-toc-skip class="date">2026-05-20</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/main/vignettes/list_plots.Rmd" class="external-link"><code>vignettes/list_plots.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.6.0/vignettes/list_plots.Rmd" class="external-link"><code>vignettes/list_plots.Rmd</code></a></small>
       <div class="hidden name"><code>list_plots.Rmd</code></div>
 
     </div>
@@ -136,19 +136,13 @@
 <div class="section level2">
 <h2 id="vectorized-plots">Vectorized plots<a class="anchor" aria-label="anchor" href="#vectorized-plots"></a>
 </h2>
-<p>Some pmplots functions have been vectorized so that you can pass in a
-vector of inputs and get a list of plots back. This is a convenience
-feature that allows you to quickly make several plots. The intended use
-is to arrange those plots in a single page or multiple pages for
-display.</p>
+<p>Some pmplots functions have been vectorized so that you can pass in a vector of inputs and get a list of plots back. This is a convenience feature that allows you to quickly make several plots. The intended use is to arrange those plots in a single page or multiple pages for display.</p>
 <p>For example, we can plot <code>WRES</code> versus <code>WT</code></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_cont.html">wres_cont</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="st">"WT"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
-<p>If we wanted to vectorize this plot and look at <code>WRES</code>
-versus <code>WT</code>, <code>ALB</code>, <code>CRCL</code>, and
-<code>AST</code> we would write</p>
+<p>If we wanted to vectorize this plot and look at <code>WRES</code> versus <code>WT</code>, <code>ALB</code>, <code>CRCL</code>, and <code>AST</code> we would write</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_cont.html">wres_cont</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WT"</span>, <span class="st">"ALB"</span>, <span class="st">"CRCL"</span>, <span class="st">"AST"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $WT</span></span></code></pre>
@@ -166,8 +160,7 @@ versus <code>WT</code>, <code>ALB</code>, <code>CRCL</code>, and
 <span><span class="co">## $AST</span></span></code></pre>
 <pre><code><span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-3-4.png" class="r-plt" alt="" width="700"></p>
-<p>And we get a list of plots back. This list can be arranged on the fly
-with</p>
+<p>And we get a list of plots back. This list can be arranged on the fly with</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>  <span class="st">"WT//Weight (kg)"</span>, <span class="st">"ALB//Albumin"</span>, </span>
@@ -180,8 +173,7 @@ with</p>
 <span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span>
 <span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
-<p>In this example, we also made the vector of inputs full
-<code>col_label</code> specification.</p>
+<p>In this example, we also made the vector of inputs full <code>col_label</code> specification.</p>
 <p>Another example are the <code>eta_cont</code> plots</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pmplots_data.html">pmplots_data_id</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -197,18 +189,12 @@ with</p>
 <div class="section level2">
 <h2 id="what-plots-are-vectorized">What plots are vectorized?<a class="anchor" aria-label="anchor" href="#what-plots-are-vectorized"></a>
 </h2>
-<p>Basically any plot where the user is required to identify the column
-for plotting. So in the example, <code>wres_cont</code> asks the user to
-specify what the continuous variable is for the x-axis. This plot is
-vectorized. Same with <code>wres_cat</code></p>
+<p>Basically any plot where the user is required to identify the column for plotting. So in the example, <code>wres_cont</code> asks the user to specify what the continuous variable is for the x-axis. This plot is vectorized. Same with <code>wres_cat</code></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_cat.html">wres_cat</a></span><span class="op">(</span><span class="va">data</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STUDYc"</span>, <span class="st">"CPc"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/pm_grid.html">pm_grid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
-<p>In contrast, <code>dv_pred</code> is hard-wired to look for
-<code>DV</code> and <code>PRED</code>. It is designed to look for only
-one thing on each axis. This plot is not vectorized.</p>
-<p>You can use <code>pm_scatter_list</code> <em>as</em> a vectorized
-function to vectorize anything. So this allows us to do</p>
+<p>In contrast, <code>dv_pred</code> is hard-wired to look for <code>DV</code> and <code>PRED</code>. It is designed to look for only one thing on each axis. This plot is not vectorized.</p>
+<p>You can use <code>pm_scatter_list</code> <em>as</em> a vectorized function to vectorize anything. So this allows us to do</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pm_scatter.html">pm_scatter_list</a></span><span class="op">(</span><span class="va">data</span>, y  <span class="op">=</span> <span class="st">"WRES"</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PRED"</span>, <span class="st">"IPRED"</span>, <span class="st">"TIME"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/pm_grid.html">pm_grid</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
@@ -219,8 +205,7 @@ function to vectorize anything. So this allows us to do</p>
 <span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span>
 <span><span class="co">## `geom_smooth()` using formula = 'y ~ x'</span></span></code></pre>
 <p><img src="list_plots_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
-<p>Please see the help topic for each function to know if that function
-is vectorized or not.</p>
+<p>Please see the help topic for each function to know if that function is vectorized or not.</p>
 </div>
   </div>
 
@@ -239,7 +224,7 @@ is vectorized or not.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

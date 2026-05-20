@@ -1,6 +1,6 @@
-pandoc: 3.8.3
-pkgdown: 2.2.0.9000
-pkgdown_sha: a6abe43ed48e58b1de42eba5e5541a5b6c46b46f
+pandoc: 2.9.2.1
+pkgdown: 2.2.0
+pkgdown_sha: ~
 articles:
   col-label: col-label.html
   complete: complete.html
@@ -13,7 +13,7 @@ articles:
   pmplots: pmplots.html
   residual_plots: residual_plots.html
   wrapped_plots: wrapped_plots.html
-last_built: 2026-05-20T19:19Z
+last_built: 2026-05-20T19:29Z
 urls:
   reference: https://metrumresearchgroup.github.io/pmplots/reference
   article: https://metrumresearchgroup.github.io/pmplots/articles
