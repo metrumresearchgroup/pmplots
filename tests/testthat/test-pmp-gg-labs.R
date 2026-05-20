@@ -107,7 +107,7 @@ test_that("pm_gg_labs sets x and y axis labels from spec", {
   expect_equal(p$labels$y, "Concentration (ng/mL)")
 })
 
-test_that("pmp_gg_labs leaves labels unchanged for columns not in spec", {
+test_that("pm_gg_labs leaves labels unchanged for columns not in spec", {
   data <- pmplots_data_obs()
   p_base <- dv_pred(data)
   p_labeled <- p_base + pm_gg_labs(list(DV = "Concentration (ng/mL)"))
