@@ -98,8 +98,16 @@ by this package.
 \item Labeling
 \itemize{
 \item \code{\link[=pm_gg_labs]{pm_gg_labs()}}, \code{\link[=pm_relabel]{pm_relabel()}} - for several aesthetics on arbitrary gg plots
+\item \code{\link[=pmp_relabel_wrap]{pmp_relabel_wrap()}} - relabel facet strip labels in wrap plots
+\item \code{\link[=pmp_relabel_pairs]{pmp_relabel_pairs()}} - relabel strip and axis labels in pairs plots
 \item \code{\link[=relabel_at]{relabel_at()}} - relabel plots in a list by name
 \item \code{\link[=pm_label_columns]{pm_label_columns()}}, \code{\link[=pm_label_rm]{pm_label_rm()}} - add or remove labels to data sets
+\item \code{\link[=pm_label_break]{pm_label_break()}} - labeller for wrapping strip text at a character width
+}
+\item Column names and aliases
+\itemize{
+\item \code{\link[=pm_set_aliases]{pm_set_aliases()}}, \code{\link[=pm_aliases]{pm_aliases()}}, \code{\link[=pm_clear_aliases]{pm_clear_aliases()}}, \code{\link[=pm_show_canonical]{pm_show_canonical()}}
+\item \code{\link[=pm_col_id]{pm_col_id()}}, \code{\link[=pm_col_tad]{pm_col_tad()}}
 }
 \item Example data sets
 \itemize{
