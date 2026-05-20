@@ -126,10 +126,9 @@ test_that("pm_gg_labs labs overrides spec for the same column", {
 })
 
 test_that("pmp_gg_labs errors on a standard ggplot (not a pmplots output)", {
-  skip() # TODO: revisit pmp 
   data <- pmplots_data_obs()
   p <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
-  expect_error(p + pmp_gg_labs(dv_pred_spec), regexp = "pmplots")
+  expect_error(p + pmplots:::pmp_gg_labs(dv_pred_spec), regexp = "pmplots")
 })
 
 test_that("pm_gg_labs passes extra arguments through to ggplot2::labs", {
@@ -205,10 +204,9 @@ test_that("pm_relabel relabels a single pmplot", {
 })
 
 test_that("pm_relabel errors on a non-pmplot gg object", {
-  skip() # TODO: revisit pmp
   data <- pmplots_data_obs()
   p <- ggplot2::ggplot(data, ggplot2::aes(PRED, DV)) + ggplot2::geom_point()
-  expect_error(pm_relabel(p, dv_pred_spec))
+  expect_error(pmplots:::pmp_relabel(p, dv_pred_spec))
 })
 
 test_that("pm_relabel applies spec to every plot in a list", {
@@ -280,9 +278,8 @@ test_that("npde_covariate_list: data labels flow into pmp.data.axis.y", {
 })
 
 test_that("pmp_gg_labs overrides x label in npde_q", {
-  skip() # TODO: revisit pmp
   data <- pmplots_data_obs()
-  p <- npde_q(data) + pmp_gg_labs(npde_spec)
+  p <- npde_q(data) + pmplots:::pmp_gg_labs(npde_spec)
   expect_equal(p$labels$x, npde_spec[["NPDE"]])
 })
 
