@@ -67,3 +67,13 @@ test_that("cont_cat errors when receiving integer data for x", {
     "column AGE is required to be character"
   )
 })
+
+test_that("cont_cat works with minimum columns", {
+  x <- "STUDYc"
+  y <- c("WT", "SCR")
+  data <- dplyr::select(df, "ID", any_of(x), any_of(y))
+  p <- cont_cat(data, x, y)
+  expect_length(p, 2)
+  expect_is(p[[1]], "gg")
+  expect_is(p[[2]], "gg")
+})

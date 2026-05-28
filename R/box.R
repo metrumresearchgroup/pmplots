@@ -75,7 +75,7 @@ boxwork <- function(df, x, y, xs=defcx(), ys=defy(),
                     ...) {
 
   if(shown) {
-    idcol <- pm_col_tad()
+    idcol <- pm_col_id()
     require_column(df, idcol)
     .sum <- box_labels(df, x, y, idcol)
     xs$labels <- paste0(.sum[,x], "\nn=", .sum[,"n"], "\nN=", .sum[,"N"])
