@@ -1,4 +1,10 @@
-# pmplots (development version)
+# pmplots 0.6.1
+
+## Bugs fixed
+
+- Fixed a bug introduced in #124, where a hard-coded "ID" was mistakenly 
+  replaced by a call to `pm_col_tad()` rather than `pm_col_id()` (#131).
+
 
 # pmplots 0.6.0
 
