@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1</span>
       </span>
     </div>
 
@@ -109,15 +109,15 @@
 
 
 
-      </header><script src="complete_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Available functions: pmplots</h1>
                         <h4 data-toc-skip class="author">Kyle Baron</h4>
             
-            <h4 data-toc-skip class="date">2026-05-20</h4>
+            <h4 data-toc-skip class="date">2026-06-01</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.6.0/vignettes/complete.Rmd" class="external-link"><code>vignettes/complete.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.6.1/vignettes/complete.Rmd" class="external-link"><code>vignettes/complete.Rmd</code></a></small>
       <div class="hidden name"><code>complete.Rmd</code></div>
 
     </div>
@@ -148,7 +148,8 @@
 <span><span class="va">etas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ETA1//ETA-CL"</span>, <span class="st">"ETA2//ETA-V2"</span>, <span class="st">"ETA3//ETA-KA"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WT//Weight (kg)"</span>, <span class="st">"ALB//Albumin (g/dL)"</span>, <span class="st">"SCR//Creatinine (mg/dL)"</span><span class="op">)</span></span></code></pre></div>
-<p>Override the <code>df</code> and <code>id</code> objects in the above chunk</p>
+<p>Override the <code>df</code> and <code>id</code> objects in the above
+chunk</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Nothing here</span></span></code></pre></div>
 <div style="page-break-after: always;"></div>
@@ -157,29 +158,35 @@
 <h2 id="coltitle-specification">
 <code>col//title</code> specification<a class="anchor" aria-label="anchor" href="#coltitle-specification"></a>
 </h2>
-<p>This is a way to specify the column name for source data along with the axis label</p>
+<p>This is a way to specify the column name for source data along with
+the axis label</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/col_label.html">col_label</a></span><span class="op">(</span><span class="st">"CL//Clearance (L)"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>. [1] "CL"            "Clearance (L)"</code></pre>
-<p>When only the column is given, then the column name will be used for the column title:</p>
+<p>When only the column is given, then the column name will be used for
+the column title:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/col_label.html">col_label</a></span><span class="op">(</span><span class="st">"WT"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>. [1] "WT" "WT"</code></pre>
 <div class="section level3">
 <h3 id="generate-using-the-yspec-package">Generate using the yspec package<a class="anchor" aria-label="anchor" href="#generate-using-the-yspec-package"></a>
 </h3>
-<p>You can also pull <code>col//title</code> data from a <code>yspec</code> object. Load the <code>yspec</code> package and generate an example data specification object</p>
+<p>You can also pull <code>col//title</code> data from a
+<code>yspec</code> object. Load the <code>yspec</code> package and
+generate an example data specification object</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://metrumresearchgroup.github.io/yspec" class="external-link">yspec</a></span><span class="op">)</span></span>
 <span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="va">ys_help</span><span class="op">$</span><span class="fu">spec</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Typically, you’ll want to select a subset of columns and then call <code><a href="https://metrumresearchgroup.github.io/yspec/reference/axis_labs.html" class="external-link">axis_col_labs()</a></code></p>
+<p>Typically, you’ll want to select a subset of columns and then call
+<code><a href="https://metrumresearchgroup.github.io/yspec/reference/axis_labs.html" class="external-link">axis_col_labs()</a></code></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spec</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://metrumresearchgroup.github.io/yspec/reference/ys_select.html" class="external-link">ys_select</a></span><span class="op">(</span><span class="va">WT</span>, <span class="va">AGE</span>, <span class="va">BMI</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://metrumresearchgroup.github.io/yspec/reference/axis_labs.html" class="external-link">axis_col_labs</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code>.                 WT                AGE                BMI 
 .  "WT//weight (kg)" "AGE//age (years)" "BMI//BMI (m2/kg)"</code></pre>
-<p>You should install the <code>yspec</code> to use this functionality.</p>
+<p>You should install the <code>yspec</code> to use this
+functionality.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
@@ -328,7 +335,8 @@
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
-<h3 id="weighted-residuals-versus-time-after-first-dose-wres_tafd">Weighted residuals versus time after first dose (<code>wres_tafd</code>)<a class="anchor" aria-label="anchor" href="#weighted-residuals-versus-time-after-first-dose-wres_tafd"></a>
+<h3 id="weighted-residuals-versus-time-after-first-dose-wres_tafd">Weighted residuals versus time after first dose
+(<code>wres_tafd</code>)<a class="anchor" aria-label="anchor" href="#weighted-residuals-versus-time-after-first-dose-wres_tafd"></a>
 </h3>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wres_time.html">wres_tafd</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
@@ -336,7 +344,8 @@
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
-<h3 id="weighted-residuals-versus-time-after-dose-wres_tad">Weighted residuals versus time after dose (<code>wres_tad</code>)<a class="anchor" aria-label="anchor" href="#weighted-residuals-versus-time-after-dose-wres_tad"></a>
+<h3 id="weighted-residuals-versus-time-after-dose-wres_tad">Weighted residuals versus time after dose
+(<code>wres_tad</code>)<a class="anchor" aria-label="anchor" href="#weighted-residuals-versus-time-after-dose-wres_tad"></a>
 </h3>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/wres_time.html">wres_tad</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
@@ -344,7 +353,8 @@
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
-<h3 id="weighted-residuals-versus-population-predicted-wres_pred">Weighted residuals versus population predicted (<code>wres_pred</code>)<a class="anchor" aria-label="anchor" href="#weighted-residuals-versus-population-predicted-wres_pred"></a>
+<h3 id="weighted-residuals-versus-population-predicted-wres_pred">Weighted residuals versus population predicted
+(<code>wres_pred</code>)<a class="anchor" aria-label="anchor" href="#weighted-residuals-versus-population-predicted-wres_pred"></a>
 </h3>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_pred.html">wres_pred</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
@@ -397,7 +407,8 @@
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
-<h3 id="conditional-weighted-residuals-versus-time-after-first-dose-cwres_tafd">Conditional weighted residuals versus time after first dose (<code>cwres_tafd</code>)<a class="anchor" aria-label="anchor" href="#conditional-weighted-residuals-versus-time-after-first-dose-cwres_tafd"></a>
+<h3 id="conditional-weighted-residuals-versus-time-after-first-dose-cwres_tafd">Conditional weighted residuals versus time after first dose
+(<code>cwres_tafd</code>)<a class="anchor" aria-label="anchor" href="#conditional-weighted-residuals-versus-time-after-first-dose-cwres_tafd"></a>
 </h3>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cwres_time.html">cwres_tafd</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
@@ -444,7 +455,8 @@
 <div style="page-break-after: always;"></div>
 </div>
 <div class="section level3">
-<h3 id="conditional-weighted-residual-histogram-cwres_hist">Conditional weighted residual histogram (<code>cwres_hist</code>)<a class="anchor" aria-label="anchor" href="#conditional-weighted-residual-histogram-cwres_hist"></a>
+<h3 id="conditional-weighted-residual-histogram-cwres_hist">Conditional weighted residual histogram
+(<code>cwres_hist</code>)<a class="anchor" aria-label="anchor" href="#conditional-weighted-residual-histogram-cwres_hist"></a>
 </h3>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_hist.html">cwres_hist</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
@@ -605,7 +617,8 @@
 <div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/dv_time.html">dv_time</a></span><span class="op">(</span><span class="va">df</span>, yname<span class="op">=</span><span class="st">"MRG1557 (ng/mL)"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">DOSE</span>, scales<span class="op">=</span><span class="st">"free_x"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="complete_files/figure-html/unnamed-chunk-60-1.png" class="r-plt" alt="" width="576"></p>
-<p><strong>NOTE</strong> this will not work as you expect; the labels are wrong.</p>
+<p><strong>NOTE</strong> this will not work as you expect; the labels
+are wrong.</p>
 <div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_cat.html">cwres_cat</a></span><span class="op">(</span><span class="va">df</span>, x <span class="op">=</span> <span class="st">"STUDYc"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">CPc</span><span class="op">)</span></span></code></pre></div>
 <p><img src="complete_files/figure-html/unnamed-chunk-61-1.png" class="r-plt" alt="" width="576"></p>
@@ -628,7 +641,8 @@
 <h2 id="dv-pred-ipred">DV-PRED-IPRED<a class="anchor" aria-label="anchor" href="#dv-pred-ipred"></a>
 </h2>
 <ul>
-<li>This returns a list of plots; we show only one here (the first 9 IDs) as an example</li>
+<li>This returns a list of plots; we show only one here (the first 9
+IDs) as an example</li>
 </ul>
 <div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dd1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">ID</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span></span>
@@ -708,14 +722,18 @@
 <div class="section level2">
 <h2 id="pairs-plots">Pairs plots<a class="anchor" aria-label="anchor" href="#pairs-plots"></a>
 </h2>
-<p>This is a simple wrapper around <code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html" class="external-link">GGally::ggpairs</a></code> with some customizations that have been developed internally at Metrum over the years.</p>
+<p>This is a simple wrapper around <code><a href="https://ggobi.github.io/ggally/reference/ggpairs.html" class="external-link">GGally::ggpairs</a></code> with
+some customizations that have been developed internally at Metrum over
+the years.</p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pairs_plot.html">pairs_plot</a></span><span class="op">(</span><span class="va">id</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"WT//Weight"</span>, <span class="st">"ALB//Albumin"</span>, <span class="st">"SCR//Serum creat"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="complete_files/figure-html/unnamed-chunk-72-1.png" class="r-plt" alt="" width="480"></p>
 <div class="section level3">
 <h3 id="customized-lower-triangle">Customized lower triangle<a class="anchor" aria-label="anchor" href="#customized-lower-triangle"></a>
 </h3>
-<p>Pass a function that customizes the scatter plots on the lower triangle. This function should accept a gg object and add a geom to it</p>
+<p>Pass a function that customizes the scatter plots on the lower
+triangle. This function should accept a gg object and add a geom to
+it</p>
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_lower</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">STUDYc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -746,7 +764,8 @@
 <h2 id="data-summary">Data summary<a class="anchor" aria-label="anchor" href="#data-summary"></a>
 </h2>
 <div class="section level3">
-<h3 id="continuous-variable-by-categorical-variable-cont_cat">Continuous variable by categorical variable (<code>cont_cat</code>)<a class="anchor" aria-label="anchor" href="#continuous-variable-by-categorical-variable-cont_cat"></a>
+<h3 id="continuous-variable-by-categorical-variable-cont_cat">Continuous variable by categorical variable
+(<code>cont_cat</code>)<a class="anchor" aria-label="anchor" href="#continuous-variable-by-categorical-variable-cont_cat"></a>
 </h3>
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pm_box.html">cont_cat</a></span><span class="op">(</span><span class="va">id</span>, x<span class="op">=</span><span class="st">"STUDYc"</span>, y<span class="op">=</span><span class="st">"WT"</span><span class="op">)</span></span></code></pre></div>
@@ -886,7 +905,8 @@
 <div class="section level3">
 <h3 id="modify-layer-specs">Modify layer specs<a class="anchor" aria-label="anchor" href="#modify-layer-specs"></a>
 </h3>
-<p>For example, change the values of argument for <code>geom_smooth</code></p>
+<p>For example, change the values of argument for
+<code>geom_smooth</code></p>
 <div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cwres_time.html">cwres_time</a></span><span class="op">(</span><span class="va">df</span>, smooth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"loess"</span>, span <span class="op">=</span> <span class="fl">0.1</span>, se<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="complete_files/figure-html/unnamed-chunk-95-1.png" class="r-plt" alt="" width="384"></p>
@@ -991,7 +1011,8 @@
 <div class="section level4">
 <h4 id="rotate-to-vertical">Rotate to vertical<a class="anchor" aria-label="anchor" href="#rotate-to-vertical"></a>
 </h4>
-<p>We are typically rotating the tick labels on the x-axis and frequently it is convenient to ask for a totally vertical rendering</p>
+<p>We are typically rotating the tick labels on the x-axis and
+frequently it is convenient to ask for a totally vertical rendering</p>
 <div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/res_cat.html">cwres_cat</a></span><span class="op">(</span><span class="va">df</span>, x <span class="op">=</span> <span class="st">"STUDYc"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">CPc</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/rot_x.html">rot_x</a></span><span class="op">(</span>vertical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -1068,7 +1089,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer>

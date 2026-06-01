@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">pmplots</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1</span>
       </span>
     </div>
 
@@ -84,9 +84,16 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.6.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/metrumresearchgroup/pmplots/blob/0.6.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.6.1" id="pmplots-061">pmplots 0.6.1<a class="anchor" aria-label="anchor" href="#pmplots-061"></a></h2>
+<div class="section level3">
+<h3 id="bugs-fixed-0-6-1">Bugs fixed<a class="anchor" aria-label="anchor" href="#bugs-fixed-0-6-1"></a></h3>
+<ul><li>Fixed a bug introduced in <a href="https://github.com/metrumresearchgroup/pmplots/issues/124" class="external-link">#124</a>, where a hard-coded “ID” was mistakenly replaced by a call to <code><a href="../reference/pm_axis_functions.html">pm_col_tad()</a></code> rather than <code><a href="../reference/pm_axis_functions.html">pm_col_id()</a></code>. (<a href="https://github.com/metrumresearchgroup/pmplots/issues/131" class="external-link">#131</a>)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.6.0" id="pmplots-060">pmplots 0.6.0<a class="anchor" aria-label="anchor" href="#pmplots-060"></a></h2>
 <ul><li>
@@ -118,7 +125,7 @@
 <code><a href="../reference/pm_axis_functions.html">pm_col_id()</a></code> returns the subject identifier column name (defaults to <code>"ID"</code>; controlled globally via <code>options(mrg.id_col = ...)</code>). <code><a href="../reference/pm_axis_functions.html">pm_col_tad()</a></code> returns the time-after-dose column name with alias support. Both are now used internally wherever pmplots previously hard-coded <code>"ID"</code> or <code>"TAD"</code>.</li>
 </ul></li>
 <li><p><code><a href="../reference/eta_covariate.html">eta_covariate()</a></code>, <code><a href="../reference/eta_covariate.html">eta_covariate_list()</a></code>, <code><a href="../reference/npde_covariate.html">npde_covariate()</a></code>, <code><a href="../reference/npde_covariate.html">npde_covariate_list()</a></code>, <code><a href="../reference/cwres_covariate.html">cwres_covariate()</a></code>, <code><a href="../reference/cwres_covariate.html">cwres_covariate_list()</a></code>, and <code><a href="../reference/cont_cat_panel.html">cont_cat_panel()</a></code> gain a <code>points</code> argument that is forwarded to <code><a href="../reference/boxwork.html">boxwork()</a></code> when a categorical covariate column is plotted as a boxplot. (<a href="https://github.com/metrumresearchgroup/pmplots/issues/126" class="external-link">#126</a>)</p></li>
-<li><p><code><a href="../reference/boxwork.html">boxwork()</a></code> (and downstream functions such as <code><a href="../reference/pm_box.html">pm_box()</a></code>, <code><a href="../reference/pm_box.html">cont_cat()</a></code>, and the <code><a href="../reference/eta_cat.html">eta_cat()</a></code> / <code><a href="../reference/res_cat.html">npde_cat()</a></code> families) accept <code>fill = NULL</code> to suppress the default fill, leaving the returned plot open to extension with <code>aes(fill =   ...)</code> for grouping by a third variable. (<a href="https://github.com/metrumresearchgroup/pmplots/issues/125" class="external-link">#125</a>)</p></li>
+<li><p><code><a href="../reference/boxwork.html">boxwork()</a></code> (and downstream functions such as <code><a href="../reference/pm_box.html">pm_box()</a></code>, <code><a href="../reference/pm_box.html">cont_cat()</a></code>, and the <code><a href="../reference/eta_cat.html">eta_cat()</a></code> / <code><a href="../reference/res_cat.html">npde_cat()</a></code> families) accept <code>fill = NULL</code> to suppress the default fill, leaving the returned plot open to extension with <code>aes(fill = ...)</code> for grouping by a third variable. (<a href="https://github.com/metrumresearchgroup/pmplots/issues/125" class="external-link">#125</a>)</p></li>
 <li><p>Minimum ggplot2 version is now 3.5.2. (<a href="https://github.com/metrumresearchgroup/pmplots/issues/122" class="external-link">#122</a>)</p></li>
 <li><p>Minimum R version is now 4.1.0. (<a href="https://github.com/metrumresearchgroup/pmplots/issues/122" class="external-link">#122</a>)</p></li>
 </ul></div>
@@ -137,7 +144,8 @@
 <div class="section level3">
 <h3 id="bugs-fixed-0-5-1">Bugs fixed<a class="anchor" aria-label="anchor" href="#bugs-fixed-0-5-1"></a></h3>
 <ul><li>
-<code><a href="../reference/eta_covariate.html">eta_covariate()</a></code> now calls <code><a href="../reference/eta_cont.html">eta_cont()</a></code> rather than <code><a href="../reference/eta_cat.html">eta_cat()</a></code> when data for the x-axis is <code>integer</code>, fixing an error that was generated from <code><a href="../reference/eta_cat.html">eta_cat()</a></code>, which always expects <code>factor</code>, <code>character</code>, or <code>logical</code>; other internal updates have been made to ensure consistent treatment of <code>integer</code> data as continuous rather than discrete (<a href="https://github.com/metrumresearchgroup/pmplots/issues/104" class="external-link">#104</a>).</li></ul></div>
+<code><a href="../reference/eta_covariate.html">eta_covariate()</a></code> now calls <code><a href="../reference/eta_cont.html">eta_cont()</a></code> rather than <code><a href="../reference/eta_cat.html">eta_cat()</a></code> when data for the x-axis is <code>integer</code>, fixing an error that was generated from <code><a href="../reference/eta_cat.html">eta_cat()</a></code>, which always expects <code>factor</code>, <code>character</code>, or <code>logical</code>; other internal updates have been made to ensure consistent treatment of <code>integer</code> data as continuous rather than discrete (<a href="https://github.com/metrumresearchgroup/pmplots/issues/104" class="external-link">#104</a>).</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="pmplots-050">pmplots 0.5.0<a class="anchor" aria-label="anchor" href="#pmplots-050"></a></h2>
@@ -155,11 +163,13 @@
 <li><p>Axis titles for conditional weighted residuals are now abbreviated “CWRES” (<a href="https://github.com/metrumresearchgroup/pmplots/issues/83" class="external-link">#83</a>).</p></li>
 </ul><div class="section level3">
 <h3 id="bugs-fixed-0-4-1">Bugs fixed<a class="anchor" aria-label="anchor" href="#bugs-fixed-0-4-1"></a></h3>
-<ul><li>Fixed a bug where the wrong y-axis title was getting used in <code><a href="../reference/cwres_covariate.html">cwres_covariate()</a></code> (<a href="https://github.com/metrumresearchgroup/pmplots/issues/89" class="external-link">#89</a>).</li></ul></div>
+<ul><li>Fixed a bug where the wrong y-axis title was getting used in <code><a href="../reference/cwres_covariate.html">cwres_covariate()</a></code> (<a href="https://github.com/metrumresearchgroup/pmplots/issues/89" class="external-link">#89</a>).</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.0" id="pmplots-040">pmplots 0.4.0<a class="anchor" aria-label="anchor" href="#pmplots-040"></a></h2>
-<ul><li>Add a series of functions for standardized, paneled displays (<a href="https://github.com/metrumresearchgroup/pmplots/issues/77" class="external-link">#77</a>, <a href="https://github.com/metrumresearchgroup/pmplots/issues/81" class="external-link">#81</a>).<ul><li>
+<ul><li>Add a series of functions for standardized, paneled displays (<a href="https://github.com/metrumresearchgroup/pmplots/issues/77" class="external-link">#77</a>, <a href="https://github.com/metrumresearchgroup/pmplots/issues/81" class="external-link">#81</a>).
+<ul><li>
 <code><a href="../reference/eta_covariate.html">eta_covariate()</a></code> creates panel of ETA versus continuous or categorical covariates.</li>
 <li>
 <code><a href="../reference/npde_covariate.html">npde_covariate()</a></code> creates panel of NPDE versus continuous or categorical covariates.</li>
@@ -188,11 +198,13 @@
 <h2 class="page-header" data-toc-text="0.3.7" id="pmplots-037">pmplots 0.3.7<a class="anchor" aria-label="anchor" href="#pmplots-037"></a></h2>
 <div class="section level3">
 <h3 id="bugs-fixed-0-3-7">Bugs fixed<a class="anchor" aria-label="anchor" href="#bugs-fixed-0-3-7"></a></h3>
-<ul><li>Fix bug where density line was not being drawn by default over npde and cwres histograms; the bug came about from incomplete transition to changes introduced in <code>ggplot2</code> v3.4.0 (<a href="https://github.com/metrumresearchgroup/pmplots/issues/74" class="external-link">#74</a>, <a href="https://github.com/metrumresearchgroup/pmplots/issues/75" class="external-link">#75</a>).</li></ul></div>
+<ul><li>Fix bug where density line was not being drawn by default over npde and cwres histograms; the bug came about from incomplete transition to changes introduced in <code>ggplot2</code> v3.4.0 (<a href="https://github.com/metrumresearchgroup/pmplots/issues/74" class="external-link">#74</a>, <a href="https://github.com/metrumresearchgroup/pmplots/issues/75" class="external-link">#75</a>).</li>
+</ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.6" id="pmplots-036">pmplots 0.3.6<a class="anchor" aria-label="anchor" href="#pmplots-036"></a></h2>
-<ul><li>Update plotting code to work with new <code>ggplot2</code> behavior introduced in version 3.4.0; <code>pmplots</code> now depends on <code>ggplot2</code> version 3.4.0 or greater (<a href="https://github.com/metrumresearchgroup/pmplots/issues/71" class="external-link">#71</a>).</li></ul></div>
+<ul><li>Update plotting code to work with new <code>ggplot2</code> behavior introduced in version 3.4.0; <code>pmplots</code> now depends on <code>ggplot2</code> version 3.4.0 or greater (<a href="https://github.com/metrumresearchgroup/pmplots/issues/71" class="external-link">#71</a>).</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.5" id="pmplots-035">pmplots 0.3.5<a class="anchor" aria-label="anchor" href="#pmplots-035"></a></h2>
 <ul><li><p>Functions generating default axis titles now have arguments so that interpolated customizations can happen when calling the function outside of a plot context (<a href="https://github.com/metrumresearchgroup/pmplots/issues/57" class="external-link">#57</a>).</p></li>
@@ -220,7 +232,8 @@
 <li><p>The reference lines at -3 and 3 on the y-axis of <code>npde</code> plots are no longer drawn by default (<a href="https://github.com/metrumresearchgroup/pmplots/issues/22" class="external-link">#22</a>)</p></li>
 <li>
 <p><code><a href="../reference/dv_pred.html">dv_pred()</a></code> and <code><a href="../reference/dv_pred.html">dv_ipred()</a></code> gain an argument (<code>logbr</code>) that lets the user pick the interval for tick marks when <code>loglog</code> plots are drawn; options are: “full” (full log units - 10, 100 ,1000), “half” (half log units - 30, 100,</p>
-<ol start="300" style="list-style-type: decimal"><li>or “null” (let ggplot decide); the default is now to show full log unit breaks rather than half log unit breaks (<a href="https://github.com/metrumresearchgroup/pmplots/issues/21" class="external-link">#21</a>)</li></ol></li>
+<ol start="300" style="list-style-type: decimal"><li>or “null” (let ggplot decide); the default is now to show full log unit breaks rather than half log unit breaks (<a href="https://github.com/metrumresearchgroup/pmplots/issues/21" class="external-link">#21</a>)</li>
+</ol></li>
 <li><p><code><a href="../reference/pairs_plot.html">pairs_plot()</a></code> gains an argument (<code>lower_plot</code>) which lets the user more easily customize the scatter plot that usually appears on the lower triangle (<a href="https://github.com/metrumresearchgroup/pmplots/issues/26" class="external-link">#26</a>)</p></li>
 <li><p><code><a href="../reference/wrap_plots.html">wrap_cont_cat()</a></code> is a new wrap function that lets the user make faceted plots of continuous variables versus categorical variables; (<a href="https://github.com/metrumresearchgroup/pmplots/issues/14" class="external-link">#14</a>)</p></li>
 </ul></div>
@@ -239,7 +252,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.0" id="pmplots-020">pmplots 0.2.0<a class="anchor" aria-label="anchor" href="#pmplots-020"></a></h2>
-<ul><li>Qualification under CR-88 and released to r_validated</li></ul></div>
+<ul><li>Qualification under CR-88 and released to r_validated</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0.9002" id="pmplots-0109002">pmplots 0.1.0.9002<a class="anchor" aria-label="anchor" href="#pmplots-0109002"></a></h2>
 <ul><li>Added non-exported functions to generate default col-label information (see <code><a href="../reference/pm_axis_functions.html">?pm_axis_functions</a></code>)</li>
@@ -290,7 +304,8 @@
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="pmplots-010">pmplots 0.1.0<a class="anchor" aria-label="anchor" href="#pmplots-010"></a></h2>
-<ul><li>Initial validated version</li></ul></div>
+<ul><li>Initial validated version</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -305,7 +320,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>
