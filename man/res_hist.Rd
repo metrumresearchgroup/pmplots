@@ -6,6 +6,7 @@
 \alias{cwres_hist}
 \alias{cwresi_hist}
 \alias{npde_hist}
+\alias{npd_hist}
 \title{Histograms of residuals or NPDE}
 \usage{
 res_hist(df, ..., x = pm_axis_res(), xs = defx())
@@ -17,6 +18,8 @@ cwres_hist(df, ..., x = pm_axis_cwres())
 cwresi_hist(df, x = pm_axis_cwresi(), ...)
 
 npde_hist(df, ..., x = pm_axis("npde"))
+
+npd_hist(df, ..., x = pm_axis("npd"))
 }
 \arguments{
 \item{df}{data frame to plot.}

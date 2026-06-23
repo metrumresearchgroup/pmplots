@@ -199,3 +199,21 @@ npde_tad <- function(df, x = pm_axis_tad(), y = pm_axis_npde(), ...) {
 npde_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_npde(), ...) {
   npde_time(df, x = x, y = y, ...)
 }
+##' @rdname npde_time
+##' @export
+npd_time <- function(df, x= pm_axis_time(), y  = pm_axis_npd(), ...,
+                      hline = npde_ref()) {
+  res_time(df, x = x, y = y, hline = hline, ...)
+}
+
+##' @rdname npde_time
+##' @export
+npd_tad <- function(df, x = pm_axis_tad(), y = pm_axis_npd(), ...) {
+  npd_time(df, x = x, y = y, ...)
+}
+
+##' @rdname npde_time
+##' @export
+npd_tafd <- function(df, x = pm_axis_tafd(), y = pm_axis_npd(), ...) {
+  npd_time(df, x = x, y = y, ...)
+}

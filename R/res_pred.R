@@ -91,4 +91,10 @@ npde_pred <- function(df, ..., y = pm_axis_npde(), hline = npde_ref()) {
   res_pred(df, y = y, hline = hline, ...)
 }
 
+##' @export
+##' @rdname res_pred
+npd_pred <- function(df, ..., y = pm_axis_npd(), hline = npde_ref()) {
+  res_pred(df, y = y, hline = hline, ...)
+}
+
 

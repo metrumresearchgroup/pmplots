@@ -82,5 +82,8 @@ npde_q <- function(df, x="NPDE", ...) {
   wres_q(df, x, ...)
 }
 
-
-
+##' @export
+##' @rdname res_q
+npd_q <- function(df, x="NPD", ...) {
+  wres_q(df, x, ...)
+}

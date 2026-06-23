@@ -6,6 +6,7 @@
 \alias{cwres_q}
 \alias{cwresi_q}
 \alias{npde_q}
+\alias{npd_q}
 \title{QQ plot for conditional residuals or NPDE}
 \usage{
 wres_q(
@@ -25,6 +26,8 @@ cwres_q(df, x = "CWRES", ...)
 cwresi_q(df, x = "CWRESI", ...)
 
 npde_q(df, x = "NPDE", ...)
+
+npd_q(df, x = "NPD", ...)
 }
 \arguments{
 \item{df}{data frame to plot}
